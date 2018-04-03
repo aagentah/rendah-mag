@@ -31,8 +31,8 @@ const Header = (): Element<'div'> => (
           </li>
         </ul>
       </nav>
-      <div className="header__social--cont  pr2">
-        <SearchInput textAlign="tal" />
+      <div className="header__social--cont  pr2  pr0-sm">
+        <SearchInput textAlign="tac" />
         <a className="header__social  ph1  dn-sm" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank"><Fb /></a>
         <a className="header__social  ph1  dn-sm" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank"><Tw /></a>
         <a className="header__social  ph1  dn-sm" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank"><Insta /></a>

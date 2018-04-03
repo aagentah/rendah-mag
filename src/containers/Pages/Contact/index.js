@@ -20,7 +20,7 @@ export class Contact extends PureComponent {
         <div className="container  tal">
           <div className="row">
             <div className="col-sm-14">
-              <h1 className="black  title-font  t5  pt5  pv4">Contact</h1>
+              <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">Contact</h1>
               <p>Get involved. We&apos;re constantly on the look out for new members for the Rendah team.</p>
               <ul>
                 <li className="pv1">Are you a listener and want to start writing articles? - <strong>Get involved</strong></li>
