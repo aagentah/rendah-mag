@@ -31,6 +31,8 @@
   "homepage": "",
   "scripts": {
     "start": "better-npm-run start",
+    "heroku-postbuild": "yarn build",
+    "start:heroku": "yarn start:prod",
     "start:production": "yarn build && yarn start:prod",
     "start:prod": "better-npm-run start:prod",
     "build": "yarn clean:build && better-npm-run build",
@@ -55,11 +57,12 @@
       }
     },
     "start:prod": {
-      "command": "node ./index.js",
+      "command": "PORT=${PORT:-8080} node ./index.js",
       "env": {
+        "NODE_HOST": "0.0.0.0",
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
-        "PORT": 8080
+        "BROWSER": "none" 
       }
     },
     "build": {
