@@ -18,7 +18,7 @@ export class About extends PureComponent {
         <div className="container  mb4">
           <div className="row">
             <div className="col-sm-24">
-              <h1 className="black  title-font  t5  pt5  pv4">About Rendah</h1>
+              <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">About Rendah</h1>
             </div>
           </div>
         </div>

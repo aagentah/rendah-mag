@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 export class WeekArticleListLoaded extends PureComponent {
   render() {
     return (
-      <div className="container  mt4">
+      <div className="container  mt4  mb3  mb2-sm">
         <div className="row">
           {this.props.list.map((article, i) => (
             <div key={i} className="link  w-100  zoom-in-fade-in-iteration--cont">

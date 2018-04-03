@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 export class SearchArticleList extends PureComponent {
   render() {
     return (
-      <div className="container  mv4">
+      <div className="container  mv3  mv2-sm">
         <div className="row">
           {this.props.list.map((article, i) => (
             <div key={i} className="link  w-100  zoom-in-fade-in-iteration--cont">
