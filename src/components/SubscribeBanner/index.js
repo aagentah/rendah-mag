@@ -11,11 +11,11 @@ export class SubscribeBanner extends PureComponent {
     const formProps = {
       action: 'https://rendahmag.us17.list-manage.com/subscribe/post?u=df0d549f92845c8dfc4d99dde&amp;id=2904b740be',
       messages: {
-        inputPlaceholder: 'Enter your email...',
-        btnLabel: 'Subscribe',
-        sending: 'Subscribing',
-        success: 'Subscribed',
-        error: 'Not a valid email...',
+        inputPlaceholder: 'ENTER YOUR EMAIL',
+        btnLabel: 'SUBSCRIBE',
+        sending: 'SUBSCRIBING',
+        success: 'SUBSCRIBED',
+        error: 'NOT A VALID EMAIL',
       },
       styles: {
         sending: {
