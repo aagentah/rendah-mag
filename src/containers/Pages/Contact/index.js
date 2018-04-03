@@ -17,7 +17,7 @@ export class Contact extends PureComponent {
     return (
       <main className="page-fade-in">
         <Helmet title="Contact" />
-        <div className="container  tal">
+        <div className="container  tal  ph4-sm">
           <div className="row">
             <div className="col-sm-14">
               <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">Contact</h1>
