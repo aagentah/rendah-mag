@@ -28,7 +28,7 @@ export class Home extends PureComponent {
         <div className="pt1  pb4"><SubscribeBanner /></div>
         <LatestArticles />
         <p className="pt4  t6  fw6  black  tac  title-font">Search the site for more</p>
-        <div className="pt1  pb4"><SearchInput textAlign="tac" /></div>
+        <div className="pt1  pb2"><SearchInput textAlign="tac" /></div>
         <CategoryGrid />
       </main>
     );
