@@ -1,0 +1,73 @@
+/* stylelint-disable */
+html {
+  box-sizing: border-box;
+}
+
+main {
+  min-height: calc(100vh);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $system-sans;
+  font-size: 16px;
+  font-weight: 400;
+  color: palette(almost-black);
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+h1 {
+  line-height: 34px;
+}
+
+h2, h3, h4, h5, h6 {
+  line-height: 28px;
+}
+
+p {
+  line-height: 22px;
+  margin: 0;
+  font-size: 1rem;
+}
+
+em {
+  &:before {
+    content: '"';
+  }
+
+  &:after {
+    content: '"';
+  }
+}
+
+figure {
+  margin: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+// input,
+// select,
+// textarea {
+//   font-family: $system-sans;
+// }

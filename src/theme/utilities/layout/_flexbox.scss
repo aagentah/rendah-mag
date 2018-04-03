@@ -1,0 +1,42 @@
+/* stylelint-disable */
+
+.flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-column-reverse { flex-direction: column-reverse; }
+.flex-row-reverse { flex-direction: row-reverse; }
+.flex-wrap-reverse { flex-wrap: wrap-reverse; }
+.align-start { align-items: flex-start; }
+.align-end { align-items: flex-end; }
+.align-center { align-items: center; }
+.align-baseline { align-items: baseline; }
+.align-stretch { align-items: stretch; }
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .flex-#{$infix} { display: flex; }
+    .flex-column-#{$infix} { flex-direction: column; }
+    .flex-row-#{$infix} { flex-direction: row; }
+    .flex-wrap-#{$infix} { flex-wrap: wrap; }
+    .flex-column-reverse-#{$infix} { flex-direction: column-reverse; }
+    .flex-row-reverse-#{$infix} { flex-direction: row-reverse; }
+    .flex-wrap-reverse-#{$infix} { flex-wrap: wrap-reverse; }
+    .align-start-#{$infix} { align-items: flex-start; }
+    .align-end-#{$infix} { align-items: flex-end; }
+    .align-center-#{$infix} { align-items: center; }
+    .align-baseline-#{$infix} { align-items: baseline; }
+    .align-stretch-#{$infix} { align-items: stretch; }
+    .justify-start-#{$infix} { justify-content: flex-start; }
+    .justify-end-#{$infix} { justify-content: flex-end; }
+    .justify-center-#{$infix} { justify-content: center; }
+    .justify-between-#{$infix} { justify-content: space-between; }
+    .justify-around-#{$infix} { justify-content: space-around; }
+  }
+}

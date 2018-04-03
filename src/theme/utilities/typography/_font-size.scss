@@ -1,0 +1,24 @@
+/* stylelint-disable */
+
+.t1 { font-size: 6rem; }
+.t2 { font-size: 5rem; }
+.t3 { font-size: 3rem; }
+.t4 { font-size: 2.25rem; }
+.t5 { font-size: 1.5rem; }
+.t6 { font-size: 1.25rem; }
+.t7 { font-size: 1rem; }
+.t8 { font-size: 0.875rem; }
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .t1-#{$infix} { font-size: 6rem; }
+    .t2-#{$infix} { font-size: 5rem; }
+    .t3-#{$infix} { font-size: 3rem; }
+    .t4-#{$infix} { font-size: 2.25rem; }
+    .t5-#{$infix} { font-size: 1.5rem; }
+    .t6-#{$infix} { font-size: 1.25rem; }
+    .t7-#{$infix} { font-size: 1rem; }
+    .t8-#{$infix} { font-size: 0.875rem; }
+  }
+}

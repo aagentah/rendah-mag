@@ -1,0 +1,40 @@
+/* stylelint-disable */
+
+.latestArticleList__col--latest {
+  height: 310px;
+}
+
+.latestArticleList__col--search {
+  height: auto;
+}
+
+.latestArticleList__col--leaving {
+  animation: latestArticleList__img--zoomOut 0.2s ease both, latestArticleList__cont--fadeOut 0.2s ease both;
+  }
+
+.latestArticleList__img--cont {
+  height: 150px;
+}
+
+.latestArticleList__img {
+  height: 150px;
+  object-fit: cover;
+}
+
+.latestArticleList__title {
+  height: auto;
+  max-height: 46px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.latestArticleList__intro {
+  height: 70px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-family: $normal-font;
+}

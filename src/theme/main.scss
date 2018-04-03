@@ -1,0 +1,221 @@
+/* stylelint-disable */
+
+// Vendor
+@import 'vendor/normalize';
+// @import 'vendor/prism';
+
+// Variables
+@import 'vars/index';
+
+// Functions
+@import 'functions/breakpoints';
+@import 'functions/colors';
+@import 'functions/easing';
+@import 'functions/spacings';
+
+// Mixins
+@import 'mixins/box-shadow';
+@import 'mixins/breakpoints';
+@import 'mixins/placeholder';
+
+// Utilities
+// @import 'utilities/debug';
+@import 'utilities/helper';
+@import 'utilities/state';
+
+@import 'vendor/bootstrap-grid';
+
+@import 'utilities/layout/clearfix';
+@import 'utilities/layout/display';
+// @import 'utilities/layout/flexbox';
+// @import 'utilities/layout/grid';
+@import 'utilities/layout/height';
+@import 'utilities/layout/max-width';
+@import 'utilities/layout/negative-margin';
+@import 'utilities/layout/overflow';
+@import 'utilities/layout/position';
+@import 'utilities/layout/float';
+@import 'utilities/layout/spacing';
+@import 'utilities/layout/vertical-align';
+@import 'utilities/layout/width';
+@import 'utilities/layout/z';
+
+@import 'utilities/theme/aspect-ratio';
+@import 'utilities/theme/background';
+@import 'utilities/theme/border';
+@import 'utilities/theme/border-color';
+@import 'utilities/theme/border-radius';
+@import 'utilities/theme/border-width';
+@import 'utilities/theme/box-shadow';
+@import 'utilities/theme/color';
+@import 'utilities/theme/cursor';
+@import 'utilities/theme/link';
+@import 'utilities/theme/opacity';
+@import 'utilities/theme/hover';
+@import 'utilities/theme/anims';
+
+
+@import 'utilities/typography/font-familiy';
+@import 'utilities/typography/font-size';
+@import 'utilities/typography/font-style';
+@import 'utilities/typography/font-weight';
+@import 'utilities/typography/line-height';
+@import 'utilities/typography/measure';
+@import 'utilities/typography/text-align';
+@import 'utilities/typography/text-decoration';
+@import 'utilities/typography/text-transform';
+@import 'utilities/typography/tracking';
+
+// Base
+@import 'base/index';
+
+// Elements
+@import 'elements/svg';
+
+// Modules
+@import 'modules/App';
+@import "modules/ArticleCard";
+@import 'modules/ArticleListLatest';
+@import 'modules/ArticleListSearch';
+@import 'modules/ArticleListWeek';
+@import 'modules/AuthorList';
+@import 'modules/AuthorCard';
+@import 'modules/Header';
+@import 'modules/Footer';
+@import "modules/SearchInput";
+@import "modules/SubscribeForm";
+@import "modules/InstaFeed";
+@import "modules/CategoryGrid";
+
+
+
+
+
+
+.nav {
+  ul {
+    list-style: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.player {
+  border: 1px solid #444;
+  transition: color 125ms ease-in-out;
+  background: white;
+  position: relative;
+  padding: 1.8rem;
+  z-index: 5;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+}
+.player__control {
+  margin-right: 1.2rem;
+  min-width: 6rem;
+  transition: fill 125ms ease-in-out;
+}
+.player__control__icon {
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.4rem;
+}
+.player__control__icon--play {
+}
+.player__control__icon--pause {
+  fill: #f50;
+}
+.player__track--active {
+  border-color: #a2a2a2;
+  background: white;
+  z-index: 10;
+}
+.player__display {
+  flex: 1 1 100%;
+  margin-bottom: 0;
+}
+.player__progress {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 0;
+}
+.player__progress__position {
+  text-align: right;
+  margin-right: 1rem;
+  margin-left: 0;
+  font-feature-settings: tnum;
+}
+.player__progress__time {
+  font-size: 1.1rem;
+  letter-spacing: 0.1rem;
+  line-height: 1rem;
+  color: #444;
+  flex: 0 1 auto;
+  vertical-align: middle;
+}
+.player__progress__bar {
+  flex: 1 1 auto;
+  width: 100%;
+  display: block;
+  padding: 0.5rem 0;
+  margin: 0 0.5rem;
+}
+.player__progress__bar--container {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: .4rem;
+  background: #eee;
+  border-radius: 2px;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+.player__progress__bar--percent {
+  transition: transform .2s;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: #f50;
+  display: block;
+}
+.player__progress__bar--progress {
+  background: pink;
+}
+
+
+.page-fade-in {
+  -webkit-animation: page-fade-in 0.5s ease-in-out; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: page-fade-in 0.5s ease-in-out; /* Firefox < 16 */
+    -ms-animation: page-fade-in 0.5s ease-in-out; /* Internet Explorer */
+     -o-animation: page-fade-in 0.5s ease-in-out; /* Opera < 12.1 */
+        animation: page-fade-in 0.5s ease-in-out;
+}
+
+@keyframes page-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}

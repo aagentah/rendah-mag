@@ -1,0 +1,10 @@
+/* stylelint-disable */
+
+@function easing($key) {
+  @if map-has-key($easings, $key) {
+    @return map-get($easings, $key);
+  }
+
+  @warn "Unknown '#{$key}' in $easing.";
+  @return null;
+}

@@ -1,0 +1,32 @@
+/* stylelint-disable */
+
+.rel { position: relative; }
+.abs { position: absolute; }
+.sta { position: static; }
+.fix { position: fixed; }
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .rel-#{$infix} { position: relative; }
+    .abs-#{$infix} { position: absolute; }
+    .sta-#{$infix} { position: static; }
+    .fix-#{$infix} { position: fixed; }
+  }
+}
+
+.top { top: 0; }
+.bottom { bottom: 0; }
+.left { left: 0; }
+.right { right: 0; }
+
+.center-3d {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center {
+  margin-right: auto;
+  margin-left: auto;
+}

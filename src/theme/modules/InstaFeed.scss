@@ -1,0 +1,11 @@
+/* stylelint-disable */
+#instaFeed {}
+
+.instafeed__item {
+  @extend .col-xs-8;
+  padding: 0;
+}
+
+.instafeed__item__caption {
+  display: none;
+}

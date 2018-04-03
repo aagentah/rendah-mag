@@ -1,0 +1,53 @@
+/* stylelint-disable */
+.subscribeBanner {
+  margin: 0 auto;
+  width: 180px;
+  align-self: center;
+  padding-top: 8px;
+  // position: relative;
+
+  form {
+    @extend .subscribeBanner__form;
+  }
+
+  input {
+    @extend .subscribeBanner__input;
+  }
+
+  button {
+    display: none;
+  }
+
+  p {
+    // position: absolute;
+    text-align: center;
+    padding-top: spacing(2);
+    width: 100%;
+  }
+}
+
+.subscribeBanner__form {
+  width: 180px;
+  display: inline-block;
+}
+
+.subscribeBanner__input {
+  width: 180px;
+  display: inline-block;
+  border: 0;
+  line-height: 25px;
+  -webkit-appearance: none;
+  outline: none;
+  text-align: center;
+  background: none;
+
+  &:focus {
+    outline: none;
+    // border-bottom: 2px solid black;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+}

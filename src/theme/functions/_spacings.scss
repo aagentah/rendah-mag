@@ -1,0 +1,5 @@
+/* stylelint-disable */
+
+@function spacing($spacing) {
+  @return map-get($spacings, $spacing);
+}

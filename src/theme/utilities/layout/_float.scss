@@ -1,0 +1,21 @@
+/* stylelint-disable */
+
+.fl { float: left; }
+.fr { float: right; }
+.fn { float: none; }
+// .dit { display: inline-table; }
+// .dt { display: table; }
+// .dtc { display: table-cell; }
+// .dt-row { display: table-row; }
+// .dt-row-g { display: table-row-group; }
+// .dt-col { display: table-column; }
+// .dt-col-g { display: table-column-group; }
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .fl-#{$infix} { float: left; }
+    .fr-#{$infix} { float: right; }
+    .fn-#{$infix} { float: none; }
+  }
+}

@@ -1,0 +1,12 @@
+/* stylelint-disable */
+
+@mixin breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media screen and (max-width: $max - 1px) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

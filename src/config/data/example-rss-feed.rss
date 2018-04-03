@@ -1,0 +1,61 @@
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>News Publisher</title>
+    <link>http://www.RendahMag.com/</link>
+    <description>
+      Read our awesome news, every day.
+    </description>
+    <language>en-us</language>
+    <lastBuildDate>2014-12-11T04:44:16Z</lastBuildDate>
+
+    <item>
+      <title>This is another Instant Article</title>
+      <link>http://RendahMag.com/another_article.html</link>
+      <pubDate>2017-02-14T05:20:00Z</pubDate>
+      <content:encoded>
+        <![CDATA[
+        <!doctype html>
+        <html lang="en" prefix="op: http://media.facebook.com/op#">
+          <head>
+            <meta charset="utf-8">
+            <link rel="canonical" href="http://example.com/another_article.html">
+            <meta property="op:markup_version" content="v1.0">
+          </head>
+          <body>
+            <article>
+              <header>
+                <figure>
+                  <img class="fb-feed-hero" src="http://videos.cctvnews.cn/publish/website/data/data/2016/08/26/1869145/83eac0be-5564-454a-b446-962faab0ee51.mp4" />
+                </figure>
+
+                <!-- The published time stamps -->
+                <time datetime="2016-08-26T06:17:20Z">2016-08-26</time>
+
+                <!-- The author of your article -->
+                <address>
+                  <a rel="facebook" href="https://www.facebook.com/cctvnewschina">CCTVNEWS</a>
+                </address>
+
+                <!-- Title -->
+                <h1>China's next-generation carrier rocket on way to launch site</h1>
+
+                <h3>
+                  Introduction
+                </h3>
+              </header>
+
+              <!— Article body goes here -->
+              <p>Article body</p>
+
+              <footer>
+                <!— Article footer goes here -->
+              </footer>
+            </article>
+          </body>
+        </html>
+        ]]>
+      </content:encoded>
+    </item>
+
+  </channel>
+</rss>

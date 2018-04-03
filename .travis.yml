@@ -1,0 +1,27 @@
+language: node_js
+
+node_js:
+  - "6"
+  - "7"
+  - "8"
+  - "stable"
+
+sudo: false
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+
+script:
+  - yarn flow
+  - yarn lint
+  - yarn test
+  - yarn build
+
+notifications:
+  email:
+    on_failure: change
+
+after_success:
+  - yarn coveralls

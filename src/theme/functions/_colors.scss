@@ -1,0 +1,5 @@
+/* stylelint-disable */
+
+@function palette($color) {
+  @return map-get($colors, $color);
+}

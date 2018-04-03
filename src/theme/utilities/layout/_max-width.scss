@@ -1,0 +1,14 @@
+/* stylelint-disable */
+
+@each $i, $value in $max-widths {
+  .mw#{$i} { max-width: $value; }
+}
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    @each $i, $value in $max-widths {
+      .mw#{$i}-#{$infix} { max-width: $value; }
+    }
+  }
+}

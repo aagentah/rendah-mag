@@ -1,0 +1,15 @@
+/* stylelint-disable */
+
+.helper-cell {
+  flex: 1 0 auto;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-src] {
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+.is-lazy {
+  opacity: 1;
+}

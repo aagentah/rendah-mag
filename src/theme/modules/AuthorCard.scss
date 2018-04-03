@@ -1,0 +1,25 @@
+/* stylelint-disable */
+
+  .authorCard__img {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .authorCard__cont {
+    min-height: 150px;
+  }
+
+  .authorCard__img--cont {
+    height: 120px;
+    overflow: hidden;
+  }
+
+  .authorCard__img {
+    height: 120px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .authorCard__social-link {
+    line-height: 30px;
+  }
