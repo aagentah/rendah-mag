@@ -1,0 +1,21 @@
+/* stylelint-disable */
+.facebook-comments-padding--top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: palette(white);
+  width: 50%;
+  height: 35px;
+  z-index: 100;
+  display: block;
+}
+
+.facebook-comments-padding--bottom {
+  position: absolute;
+  bottom: 0;
+  background: palette(white);
+  width: 100%;
+  height: 50px;
+  z-index: 100;
+  display: block;
+}

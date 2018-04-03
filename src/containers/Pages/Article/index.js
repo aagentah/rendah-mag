@@ -21,12 +21,14 @@ export class Article extends PureComponent {
       <main className="page-fade-in">
         <ArticleInfo match={this.props.match} />
         <div className="container  tac">
-          <div className="row">
-            <div className="col-md-16 col-md-offset-4">
+          <div className="row  rel">
+            <div className="facebook-comments-padding--top" />
+            <div className="col-md-16  col-md-offset-4  facebook-comments">
               <FacebookProvider appId="154881868603516">
                 <Comments href="http://www.facebook.com" numPosts={3} width="100%" />
               </FacebookProvider>
             </div>
+            <div className="facebook-comments-padding--bottom" />
           </div>
         </div>
         <h2 className="tac  mb4">More articles</h2>
