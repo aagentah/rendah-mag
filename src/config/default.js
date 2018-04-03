@@ -8,7 +8,7 @@ module.exports = {
     meta: [
       {
         name: 'description',
-        content: 'Beats culture magazine',
+        content: 'Beats, Halftime & Future Bass Magazine',
       },
       {
         name: 'apple-mobile-web-app-title',
