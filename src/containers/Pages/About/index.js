@@ -15,7 +15,7 @@ export class About extends PureComponent {
     return (
       <main className="page-fade-in">
         <Helmet title="About" />
-        <div className="container  mb4">
+        <div className="container  mb4  ph4-sm">
           <div className="row">
             <div className="col-sm-24">
               <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">About Rendah</h1>
