@@ -12,7 +12,7 @@ export class SearchInput extends PureComponent {
     this.state = {
       fireRedirect: false,
       inputValue: '',
-      placeholder: 'Search by keyword...',
+      placeholder: 'SEARCH SITE',
     };
   }
 
@@ -30,11 +30,11 @@ export class SearchInput extends PureComponent {
     if (this.state.fireRedirect) {
       this.setState({ fireRedirect: false });
       if (this.state.inputValue) {
-        this.setState({ placeholder: 'Search by keyword...' });
+        this.setState({ placeholder: 'SEARCH SITE' });
         this.setState({ inputValue: '' });
         return <Redirect push to={from || `/Search/${this.state.inputValue}`} />;
       }
-      this.setState({ placeholder: 'Search something?...' });
+      this.setState({ placeholder: 'SEARCH SITE' });
       return false;
     }
     return false;
