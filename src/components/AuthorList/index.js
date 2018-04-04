@@ -22,7 +22,7 @@ export class AuthorList extends PureComponent {
                     <img className="mb3  center  zoom-in-fade-in-iteration--item  authorList__img" alt={author.name} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
                   </div>
                 </figure>
-                <h2 className="link  black  t7  pt2  tac  cp  title-font">{author.name}</h2>
+                <h2 className="link  dark-grey  t7  pt2  tac  cp  title-font"><span>{author.name}</span><span className="pl1  grey  t8">({author.alias})</span></h2>
 
               </div>
             </Link>
