@@ -14,7 +14,7 @@
       <category>*|RSSITEM:CATEGORIES|*</category>
       <description>*|RSSITEM:CONTENT|*</description>
       <content:encoded>*|RSSITEM:CONTENT_FULL|*</content:encoded>
-      <media:content url="http://hathaway.edu/example.jpg *|RSSITEM:IMAGE|*" type="image/jpg"/>
+      <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
     </item>
     <item>
       <title>article 2</title>
@@ -25,7 +25,7 @@
       <category>*|RSSITEM:CATEGORIES|*</category>
       <description>*|RSSITEM:CONTENT|*</description>
       <content:encoded>*|RSSITEM:CONTENT_FULL|*</content:encoded>
-      <media:content url="http://hathaway.edu/example.jpg *|RSSITEM:IMAGE|*" type="image/jpg"/>
+      <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
     </item>
   </channel>
 </rss>
