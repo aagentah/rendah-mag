@@ -8,8 +8,10 @@ import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter } from 'react-router-redux';
 import RedBox from 'redbox-react';
+import { Route } from 'react-router-dom';
 
 import configureStore from './redux/store';
+import withTracker from './withTracker';
 
 // Get initial state from server-side rendering
 const initialState = window.__INITIAL_STATE__;
@@ -24,7 +26,7 @@ const renderApp = () => {
     <AppContainer errorReporter={({ error }) => <RedBox error={error} />}>
       <Provider store={store}>
         <ConnectedRouter onUpdate={() => window.scrollTo(0, 0)} history={history}>
-          <App />
+          <Route component={withTracker(App)} />
         </ConnectedRouter>
       </Provider>
     </AppContainer>,
