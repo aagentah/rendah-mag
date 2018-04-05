@@ -4,9 +4,7 @@
 import React from 'react';
 import type { Element } from 'react';
 import { Link } from 'react-router-dom';
-// import config from '../../../config';
 
-import { Fb, Tw, Insta } from '../../../components/Elements/Svg';
 import SearchInput from '../../../components/SearchInput';
 
 const Header = (): Element<'div'> => (
@@ -32,10 +30,10 @@ const Header = (): Element<'div'> => (
         </ul>
       </nav>
       <div className="header__social--cont  pr2  pr0-sm">
-        <SearchInput textAlign="tac" />
-        <a className="header__social  ph1  dn-sm" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank"><Fb /></a>
-        <a className="header__social  ph1  dn-sm" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank"><Tw /></a>
-        <a className="header__social  ph1  dn-sm" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank"><Insta /></a>
+        <SearchInput textAlign="inherit" />
+        <a className="header__social  ph1  dn-sm" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank"><img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" /></a>
+        <a className="header__social  ph1  dn-sm" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank"><img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" /></a>
+        <a className="header__social  ph1  dn-sm" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank"><img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" /></a>
       </div>
     </header>
   </div>
