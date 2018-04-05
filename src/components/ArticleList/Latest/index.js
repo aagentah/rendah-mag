@@ -19,7 +19,7 @@ export class LatestArticleListLoaded extends PureComponent {
 
                 <figure className="rel  pb3">
                   <Link to={`/Article/${article.title.replace(/\s+/g, '-')}`} className="shadow2  db  over-hidden  latestArticleList__img--cont">
-                    <img className="mb3  w-100  zoom-in-fade-in-iteration--item  cp  latestArticleList__img" alt={article.title} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${article.img}`} />
+                    <img className="mb3  w-100  zoom-in-fade-in-iteration--item  cp  latestArticleList__img" alt={article.title} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
                   </Link>
                 </figure>
                 <span className="grey  t8">{article.created} | </span>
