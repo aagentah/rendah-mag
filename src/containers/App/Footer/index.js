@@ -9,14 +9,16 @@ export class Footer extends React.Component {
   }
   render() {
     return (
-      <div className="rel  bt  bw1  z9  pv2  footer">
-        <footer className="container  footer">
-          <div className="row">
-            <div className="col-xs-24">
-              <p className="pt2  mt1">Rendah Mag 2018</p>
+      <div className="pt4">
+        <div className="rel  bt  bw1  z9  pv2  footer">
+          <footer className="container  footer">
+            <div className="row">
+              <div className="col-xs-24">
+                <p className="pt2  mt1">Rendah Mag 2018</p>
+              </div>
             </div>
-          </div>
-        </footer>
+          </footer>
+        </div>
       </div>
     );
   }

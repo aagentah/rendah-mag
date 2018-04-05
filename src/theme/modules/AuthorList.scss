@@ -1,5 +1,17 @@
 /* stylelint-disable */
 
+.authorList__col {
+  height: 310px;
+  @media only screen and (max-width: $sm - 1px) {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  @media only screen and (max-width: $xs - 1px) {
+    width: 80%;
+  }
+}
+
 .authorList__img--cont {
   height: 200px;
   overflow: hidden;
@@ -9,4 +21,5 @@
   height: 200px;
   width: 100%;
   object-fit: cover;
+  object-position: top;
 }
