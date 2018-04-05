@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>*|RSSFEED:TITLE|*</title>
+    <link>*|RSSFEED:URL|*</link>
+    <description>*|RSSFEED:DESCRIPTION|*</description>
+    <lastBuildDate>*|RSSFEED:DATE|*</lastBuildDate>
+    <item>
+      <title>*|RSSITEM:TITLE|*</title>
+      <link>*|RSSITEM:URL|*</link>
+      <comments>*|RSSITEM:COMMENTS_URL|*</comments>
+      <pubDate>*|RSSITEM:DATE|*</pubDate>
+      <author>*|RSSITEM:AUTHOR|*</author>
+      <category>*|RSSITEM:CATEGORIES|*</category>
+      <description>*|RSSITEM:CONTENT|*</description>
+      <content:encoded>*|RSSITEM:CONTENT_FULL|*</content:encoded>
+      <media:content url="http://hathaway.edu/example.jpg *|RSSITEM:IMAGE|*" type="image/jpg"/>
+    </item>
+  </channel>
+</rss>
