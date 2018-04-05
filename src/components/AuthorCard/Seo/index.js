@@ -20,20 +20,20 @@ export class Seo extends PureComponent {
           {/* Google+ */}
           <meta itemprop="name" content={author.name} />
           <meta itemprop="description" content={author.description} />
-          <meta itemprop="image" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
+          <meta itemprop="image" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${author.img}`} />
 
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@RendahMag" />
           <meta name="twitter:title" content={author.name} />
           <meta name="twitter:description" content={author.description} />
-          <meta name="twitter:image:src" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
+          <meta name="twitter:image:src" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${author.img}`} />
 
           {/* Open Graph data */}
           <meta property="og:title" content={author.name} />
           <meta property="og:type" content="author" />
           <meta property="og:url" content="http://www.RendahMag.com/" />
-          <meta property="og:image" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
+          <meta property="og:image" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${author.img}`} />
           <meta property="og:description" content={author.description} />
           <meta property="og:site_name" content="Rendah" />
           <meta property="author:section" content="Article Section" />
