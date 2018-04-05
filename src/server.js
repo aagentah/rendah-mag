@@ -320,24 +320,12 @@ app.get('*', (req, res) => {
 
 // connect to mongo db
 var db
-var mongoUsername = process.env.MONGO_USERNAME;
-var mongoPassword = process.env.MONGO_PASSWORD;
-
 const MongoClient = require('mongodb').MongoClient
-
-if (mongoUsername) {
-  MongoClient.connect(`mongodb://${mongoUsername}:${mongoPassword}@ds019996.mlab.com:19996/rendah`, (err, database) => {
-      if (err) return console.log(err);
-      db = database
-      console.log('db connected');
-  })
-} else {
-  MongoClient.connect('mongodb://Rendah-staging:test@ds123930.mlab.com:23930/halftimefront', (err, database) => {
-      if (err) return console.log(err);
-      db = database
-      console.log('db connected');
-  })
-}
+MongoClient.connect('mongodb://Rendah-staging:test@ds123930.mlab.com:23930/halftimefront', (err, database) => {
+    if (err) return console.log(err);
+    db = database
+    console.log('db connected');
+})
 
 if (port) {
   app.listen(port, host, (err) => {
