@@ -155,8 +155,8 @@ export class ArticleCard extends PureComponent {
           <div className="articleCard">
 
             <figure className="rel  articleCard__hero">
-              <div className="articleCard__hero--background" style={{ backgroundImage: `url(http://res.cloudinary.com/dzz8ji5lj/image/upload/${article.img})` }}></div>
-              <img className="articleCard__hero--img" alt={article.title} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${article.img}`} />
+              <div className="articleCard__hero--background" style={{ backgroundImage: `url(http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img})` }}></div>
+              <img className="articleCard__hero--img" alt={article.title} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
             </figure>
 
             <section className="rel">
