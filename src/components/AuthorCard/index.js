@@ -25,7 +25,7 @@ export class ArticleCard extends PureComponent {
                     <div className="col-md-6">
                       <figure className="rel  pb3  center">
                         <div className="shadow2  authorCard__img--cont">
-                          <img className="mb3  center  w4  zoom-in-fade-in-iteration--item  authorCard__img" alt={author.name} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
+                          <img className="mb3  center  w4  zoom-in-fade-in-iteration--item  authorCard__img" alt={author.name} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${author.img}`} />
                         </div>
                       </figure>
                     </div>
