@@ -62,7 +62,7 @@
         "NODE_HOST": "0.0.0.0",
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
-        "BROWSER": "none" 
+        "BROWSER": "none"
       }
     },
     "build": {
@@ -207,6 +207,7 @@
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "react-facebook": "^4.1.1",
+    "react-ga": "^2.4.1",
     "react-helmet": "^5.2.0",
     "react-hot-loader": "3.1.1",
     "react-instafeed": "^0.4.0",
