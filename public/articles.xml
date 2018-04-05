@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>*|RSSFEED:TITLE|*</title>
-    <link>*|RSSFEED:URL|*</link>
-    <description>*|RSSFEED:DESCRIPTION|*</description>
+    <title>Rendah Weekly</title>
+    <link>http://www.rendahmag.com/</link>
+    <description>Weekly updates from Rendah Mag.</description>
     <lastBuildDate>*|RSSFEED:DATE|*</lastBuildDate>
     <item>
-      <title>*|RSSITEM:TITLE|*</title>
-      <link>*|RSSITEM:URL|*</link>
+      <title>test Raaz enim aliqua duis Duis in adipisicing commodo officia</title>
+      <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
       <comments>*|RSSITEM:COMMENTS_URL|*</comments>
-      <pubDate>*|RSSITEM:DATE|*</pubDate>
-      <author>*|RSSITEM:AUTHOR|*</author>
+      <pubDate>10/20/2017</pubDate>
+      <author>Dan Jones</author>
+      <category>*|RSSITEM:CATEGORIES|*</category>
+      <description>*|RSSITEM:CONTENT|*</description>
+      <content:encoded>*|RSSITEM:CONTENT_FULL|*</content:encoded>
+      <media:content url="http://hathaway.edu/example.jpg *|RSSITEM:IMAGE|*" type="image/jpg"/>
+    </item>
+    <item>
+      <title>article 2</title>
+      <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
+      <comments>*|RSSITEM:COMMENTS_URL|*</comments>
+      <pubDate>10/20/2017</pubDate>
+      <author>Dan Jones</author>
       <category>*|RSSITEM:CATEGORIES|*</category>
       <description>*|RSSITEM:CONTENT|*</description>
       <content:encoded>*|RSSITEM:CONTENT_FULL|*</content:encoded>
