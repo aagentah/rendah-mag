@@ -2,7 +2,7 @@
 header {
   height: 90px;
   width: 100%;
-  @media only screen and (max-width: $md) {
+  @media only screen and (max-width: $md - 1px) {
     height: 126px;
   }
 }
@@ -14,7 +14,7 @@ header {
   z-index: 2000;
   top: 15px;
   left: 55px;
-  @media only screen and (max-width: $md) {
+  @media only screen and (max-width: $md - 1px) {
     left: 15px;
   }
 }
@@ -25,7 +25,7 @@ header {
   z-index: 2000;
   top: 5px;
   left: 125px;
-  @media only screen and (max-width: $md) {
+  @media only screen and (max-width: $md - 1px) {
     width: 100%;
     height: 38px;
     top: 88px;
@@ -38,7 +38,7 @@ header {
 }
 
 .nav__list {
-  @media only screen and (max-width: $md) {
+  @media only screen and (max-width: $md - 1px) {
     position: absolute;
     top: 8px;
     left: 0;
@@ -47,12 +47,12 @@ header {
 }
 
 .nav__link {
-  @media only screen and (max-width: $md) {
+  @media only screen and (max-width: $md - 1px) {
     font-size: 16px;
     padding-top: 2px;
     color: palette(white);
   }
-  @media only screen and (max-width: $xs) {
+  @media only screen and (max-width: $sm - 1px) {
     padding-top: 4px;
     font-size: 14px;
   }
@@ -64,8 +64,11 @@ header {
   justify-content: center;
   height: 90px;
 
-  @media only screen and (max-width: $sm) {
+  @media only screen and (max-width: $sm - 1px) {
   padding-bottom: 10px;
+  margin: 0 auto;
+  text-align: center;
+  float: none;
   }
 }
 

@@ -20,7 +20,7 @@ export class Search extends PureComponent {
     return (
       <main className="page-fade-in">
         <Helmet title="Search" />
-        <p className="pt4  black  tac  pt5  pv4">Latest results for <span className="fw6">{this.props.match.params.query}</span></p>
+        <p className="pt4  black  tac  pt5  pt4-sm  pv4  pb3-sm">Latest results for <span className="fw6">{this.props.match.params.query}</span></p>
         <SearchArticles match={this.props.match} />
         <CategoryGrid />
       </main>
