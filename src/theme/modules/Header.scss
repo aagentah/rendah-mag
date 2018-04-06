@@ -1,4 +1,5 @@
 /* stylelint-disable */
+
 header {
   height: 90px;
   width: 100%;
@@ -13,9 +14,10 @@ header {
   position: absolute;
   z-index: 2000;
   top: 15px;
-  left: 55px;
-  @media only screen and (max-width: $md - 1px) {
-    left: 15px;
+  left: 15px;
+  @media only screen and (max-width: $sm - 1px) {
+    left: auto;
+    right: 15px;
   }
 }
 
@@ -24,7 +26,7 @@ header {
   position: absolute;
   z-index: 2000;
   top: 5px;
-  left: 125px;
+  left: 85px;
   @media only screen and (max-width: $md - 1px) {
     width: 100%;
     height: 38px;
@@ -60,15 +62,21 @@ header {
   display: flex;
   justify-content: center;
   height: 90px;
-
+  padding-right: 15px;
   @media only screen and (max-width: $sm - 1px) {
-  padding-bottom: 10px;
-  margin: 0 auto;
-  text-align: center;
-  float: none;
+    padding-bottom: 5px;
+    text-align: left;
+    float: left;
+    padding-left: 15px;
   }
 }
 
 .header__social {
   align-self: center;
+  padding-top: 4px;
+
+  img {
+    width: 30px;
+    height: auto;
+  }
 }

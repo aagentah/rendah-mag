@@ -3,7 +3,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
 
 import * as action from './action';
 import AuthorCard from '../../../components/AuthorCard';
@@ -37,7 +36,6 @@ export class AuthorInfo extends PureComponent {
   render() {
     return (
       <div>
-        <Helmet title="Author Info" />
         {this.renderAuthorCard()}
       </div>
     );
