@@ -34,6 +34,34 @@ module.exports = {
         name: 'theme-color',
         content: '#fff',
       },
+      {
+        name: 'twitter:card',
+        content: 'summary',
+      },
+      {
+        name: 'twitter:site',
+        content: '@rendahmag',
+      },
+      {
+        name: 'twitter:creator',
+        content: '@rendahmag',
+      },
+      {
+        property: 'og:url',
+        content: 'https://www.rendahmag.com/',
+      },
+      {
+        property: 'og:title',
+        content: 'Rendah - %s',
+      },
+      {
+        property: 'og:description',
+        content: 'Beats, Halftime & Future Bass Magazine',
+      },
+      // {
+      //   property: 'og:image',
+      //   content: 'https://files.sliips.com/images/ogicon.png',
+      // },
     ],
   },
 };
