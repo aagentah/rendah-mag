@@ -80,6 +80,7 @@ app.get('/api/articles', (req, res) => {
 
     db.collection('articles')
         .find()
+        .skip(2)
         .limit(12)
         .sort("date", -1)
         .toArray()
