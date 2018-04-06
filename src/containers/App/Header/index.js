@@ -31,7 +31,7 @@ const Header = (): Element<'div'> => (
           </li>
         </ul>
       </nav>
-      <div className="header__social--cont  pr2  pr0-sm">
+      <div className="header__social--cont  pr0-sm">
         <SearchInput textAlign="inherit" />
         <a className="header__social  ph1  dn-sm" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank"><img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" /></a>
         <a className="header__social  ph1  dn-sm" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank"><img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" /></a>
