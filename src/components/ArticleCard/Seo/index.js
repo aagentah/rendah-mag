@@ -38,9 +38,7 @@ export class Seo extends PureComponent {
           <meta property="og:site_name" content="Rendah" />
           <meta property="article:published_time" content={article.created} />
           <meta property="article:modified_time" content={article.created} />
-          <meta property="article:section" content="Article Section" />
-          <meta property="article:tag" content="Article Tag" />
-          <meta property="fb:admins" content="Facebook numberic ID" />
+          <meta property="article:section" content="article" />
         </Helmet>
       </div>
     );

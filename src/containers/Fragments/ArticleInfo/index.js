@@ -3,7 +3,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
 
 import * as action from './action';
 import ArticleCard from '../../../components/ArticleCard';
@@ -37,7 +36,6 @@ export class ArticleInfo extends PureComponent {
   render() {
     return (
       <div>
-        <Helmet title="Article Info" />
         {this.renderArticleCard()}
       </div>
     );
