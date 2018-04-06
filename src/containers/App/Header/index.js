@@ -1,5 +1,5 @@
 /* eslint-disable react/sort-comp */
-/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default, max-len */
 
 import React from 'react';
 import type { Element } from 'react';
@@ -23,9 +23,11 @@ const Header = (): Element<'div'> => (
           <li className="dib">
             <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Authors'}>Authors</Link>
           </li>
-          <li className="dib">
-            <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/About'}>About Us</Link>
-          </li>
+          {
+          // <li className="dib">
+          //   <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/About'}>About Us</Link>
+          // </li>
+          }
           <li className="dib">
             <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Contact'}>Contact</Link>
           </li>
