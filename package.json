@@ -33,8 +33,7 @@
     "start": "better-npm-run start",
     "heroku-postbuild": "yarn build",
     "start:heroku": "yarn start:prod",
-    "start:production": "yarn build && yarn start:prod",
-    "start:prod": "better-npm-run start:prod",
+    "start:production": "yarn build && better-npm-run start:prodlocal",
     "build": "yarn clean:build && better-npm-run build",
     "lint": "yarn lint:js && yarn lint:style",
     "lint:js": "better-npm-run lint:js",
@@ -63,6 +62,14 @@
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
         "BROWSER": "none"
+      }
+    },
+    "start:prodlocal": {
+      "command": "node ./index.js",
+      "env": {
+        "NODE_PATH": "./src",
+        "NODE_ENV": "production",
+        "PORT": 8080
       }
     },
     "build": {
