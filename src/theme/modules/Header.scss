@@ -48,13 +48,10 @@ header {
 
 .nav__link {
   @media only screen and (max-width: $md - 1px) {
-    font-size: 16px;
-    padding-top: 2px;
-    color: palette(white);
-  }
-  @media only screen and (max-width: $sm - 1px) {
     padding-top: 4px;
     font-size: 14px;
+    color: palette(white);
+    text-transform: uppercase;
   }
 }
 
