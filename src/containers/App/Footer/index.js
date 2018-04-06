@@ -11,7 +11,7 @@ export class Footer extends React.Component {
     return (
       <div className="pt4">
         <div className="rel  bt  bw1  z9  pv2  footer">
-          <footer className="container  footer">
+          <footer className="container-fluid  footer">
             <div className="row">
               <div className="col-sm-12">
                 <p className="pt2  mt1  tac-sm  pb2-sm">Rendah Mag 2018</p>
