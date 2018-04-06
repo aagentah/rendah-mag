@@ -36,9 +36,7 @@ export class Seo extends PureComponent {
           <meta property="og:image" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${author.img}`} />
           <meta property="og:description" content={author.description} />
           <meta property="og:site_name" content="Rendah" />
-          <meta property="author:section" content="Article Section" />
-          <meta property="author:tag" content="Article Tag" />
-          <meta property="fb:admins" content="Facebook numberic ID" />
+          <meta property="author:section" content="author" />
         </Helmet>
       </div>
     );
