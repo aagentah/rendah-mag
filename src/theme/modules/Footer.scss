@@ -4,17 +4,25 @@
   height: 50px;
 }
 
-// .footer__ul {
-//   list-style: none;
-//   display: block;
-//   @media only screen and (max-width: $md) {
-//     margin: 0 auto;
-//     text-align: center;
-//   }
-//
-//   li {
-//     display: inline-block;
-//     line-height: 50px;
-//     vertical-align: middle;
-//   }
-// }
+.footer__social--cont {
+  float: right;
+  display: flex;
+  justify-content: center;
+  @media only screen and (max-width: $sm - 1px) {
+    width: 100%;
+  }
+}
+
+.footer__social {
+  align-self: center;
+  padding-top: 4px;
+
+  img {
+    width: 30px;
+    height: auto;
+    @media only screen and (max-width: $sm - 1px) {
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+}
