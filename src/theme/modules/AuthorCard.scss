@@ -14,7 +14,7 @@
   .authorCard__img {
     height: 120px;
     width: 100%;
-    object-fit: cover;
+    object-fit: center;
     object-position: top;
 
     @media only screen and (max-width: $md - 1px) {
