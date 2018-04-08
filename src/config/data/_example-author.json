@@ -1,17 +1,19 @@
 {
   "name": "Dan Jones",
   "alias": "Aagentah",
-  "description": "Commodo proident mollit ex esse qui aliquip excepteur voluptate cupidatat qui voluptate.",
-  "img": "authors/clubbing.jpg",
-  "keywords": "Dan, Jones, Aagentah, Producer, Author",
-  "links": [
-    {
+  "description": "Owner of Rendah. Developing in Javascript & producing in Ableton, constantly looking for new ways to bring exposure to the scene.",
+  "img": "authors/dan-jones.jpg",
+  "links": [{
       "text": "Soundcloud",
-      "url": "ww/blahyoyoyoyoy"
+      "url": "https://soundcloud.com/aagentah"
     },
     {
-      "text": "Soundcloud",
-      "url": "ww/blahyoyoyoyoy"
+      "text": "Facebook",
+      "url": "https://www.facebook.com/aagentah/"
+    },
+    {
+      "text": "Twitter",
+      "url": "https://twitter.com/aagentah?lang=en"
     }
   ]
 }
