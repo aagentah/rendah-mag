@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-// Export this for unit testing more easily
+
 export class SearchInput extends PureComponent {
   constructor() {
     super();

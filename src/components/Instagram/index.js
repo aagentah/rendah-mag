@@ -5,7 +5,7 @@ react/self-closing-comp, react/prefer-stateless-function */
 import React from 'react';
 import Instafeed from 'react-instafeed';
 
-// Export this for unit testing more easily
+
 export class Instagram extends React.Component {
   shouldComponentUpdate() {
     return false;

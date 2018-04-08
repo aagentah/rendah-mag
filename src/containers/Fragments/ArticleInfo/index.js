@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as action from './action';
 import ArticleCard from '../../../components/ArticleCard';
 
-// Export this for unit testing more easily
+
 export class ArticleInfo extends PureComponent {
   componentDidMount() {
     const { fetchArticleIfNeeded, match: { params } } = this.props;

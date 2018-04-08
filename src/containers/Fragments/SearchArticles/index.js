@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as action from './action';
 import SearchArticleList from '../../../components/ArticleList/Search';
 
-// Export this for unit testing more easily
+
 export class SearchArticles extends PureComponent {
   componentDidMount() {
     const query = this.props.match.params.query;

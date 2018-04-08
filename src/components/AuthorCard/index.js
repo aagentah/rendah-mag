@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import Seo from './Seo';
 
-// Export this for unit testing more easily
+
 export class ArticleCard extends PureComponent {
   render() {
     const author = this.props.info;

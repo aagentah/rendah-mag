@@ -6,7 +6,7 @@ export const AUTHOR_SUCCESS = 'AUTHOR_SUCCESS';
 // export const API_URL = 'https://jsonplaceholder.typicode.com/authors';
 export const API_URL = '/api/author';
 
-// Export this for unit testing more easily
+
 export const fetchAuthor = (authorId: string, axios: any, URL: string = API_URL) =>
   (dispatch) => {
     dispatch({ type: AUTHOR_REQUESTING, authorId });

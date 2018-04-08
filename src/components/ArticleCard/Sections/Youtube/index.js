@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import YouTube from 'react-youtube';
 
-// Export this for unit testing more easily
+
 export class Link extends PureComponent {
   render() {
     return (

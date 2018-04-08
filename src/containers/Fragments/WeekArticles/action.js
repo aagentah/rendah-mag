@@ -6,7 +6,7 @@ export const WEEKARTICLES_SUCCESS = 'WEEKARTICLES_SUCCESS';
 
 export const API_URL = '/api/week';
 
-// Export this for unit testing more easily
+
 export const fetchWeekArticles = (axios: any, URL: string = API_URL) =>
   (dispatch) => {
     dispatch({ type: WEEKARTICLES_REQUESTING });

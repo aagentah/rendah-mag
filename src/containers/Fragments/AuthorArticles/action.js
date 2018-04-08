@@ -6,7 +6,7 @@ export const AUTHORARTICLES_SUCCESS = 'AUTHORARTICLES_SUCCESS';
 
 export const API_URL = '/api/authorArticles';
 
-// Export this for unit testing more easily
+
 export const fetchAuthorArticles = (query: string, axios: any, URL: string = API_URL) =>
   (dispatch) => {
     dispatch({ type: AUTHORARTICLES_REQUESTING });

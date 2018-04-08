@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as action from './action';
 import LatestArticleList from '../../../components/ArticleList/Latest';
 
-// Export this for unit testing more easily
+
 export class LatestArticles extends PureComponent {
   componentDidMount() {
     this.props.fetchLatestArticlesIfNeeded();
