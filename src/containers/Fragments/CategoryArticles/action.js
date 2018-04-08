@@ -6,7 +6,7 @@ export const CATEGORYARTICLES_SUCCESS = 'CATEGORYARTICLES_SUCCESS';
 
 export const API_URL = '/api/category';
 
-// Export this for unit testing more easily
+
 export const fetchCategoryArticles = (query: string, axios: any, URL: string = API_URL) =>
   (dispatch) => {
     dispatch({ type: CATEGORYARTICLES_REQUESTING });

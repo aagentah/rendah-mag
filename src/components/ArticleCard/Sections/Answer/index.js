@@ -4,7 +4,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-// Export this for unit testing more easily
+
 export class Answer extends PureComponent {
   render() {
     return (
