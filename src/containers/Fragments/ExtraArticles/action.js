@@ -6,7 +6,7 @@ export const EXTRAARTICLES_SUCCESS = 'EXTRAARTICLES_SUCCESS';
 
 export const API_URL = '/api/extra';
 
-// Export this for unit testing more easily
+
 export const fetchExtraArticles = (axios: any, URL: string = API_URL) =>
   (dispatch) => {
     dispatch({ type: EXTRAARTICLES_REQUESTING });

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as action from './action';
 import AuthorArticleList from '../../../components/ArticleList/Latest';
 
-// Export this for unit testing more easily
+
 export class AuthorArticles extends PureComponent {
   componentDidMount() {
     const id = this.props.match.params.id;

@@ -6,7 +6,7 @@ export const SEARCHARTICLES_SUCCESS = 'SEARCHARTICLES_SUCCESS';
 
 export const API_URL = '/api/search';
 
-// Export this for unit testing more easily
+
 export const fetchSearchArticles = (query: string, axios: any, URL: string = API_URL) =>
   (dispatch) => {
     dispatch({ type: SEARCHARTICLES_REQUESTING });

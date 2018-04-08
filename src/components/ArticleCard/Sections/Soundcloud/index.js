@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import Player from 'react-soundcloud-player';
 
-// Export this for unit testing more easily
+
 export class Soundcloud extends PureComponent {
   render() {
     return (
