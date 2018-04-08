@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as action from './action';
 import LatestAuthorList from '../../../components/AuthorList';
 
-// Export this for unit testing more easily
+
 export class Authors extends PureComponent {
   componentDidMount() {
     this.props.fetchAuthorsIfNeeded();

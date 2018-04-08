@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import AuthorInfo from '../../../containers/Fragments/AuthorInfo';
 import AuthorArticles from '../../../containers/Fragments/AuthorArticles';
 
-// Export this for unit testing more easily
+
 export class Author extends PureComponent {
   componentDidMount() {
     window.scrollTo(0, 0);

@@ -6,12 +6,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-// import GetImage from '../Helpers/GetImage';
-
 import Seo from './Seo';
 
-// import Standard from './Sections/Standard';
-// import QA from './Sections/QA';
 import Heading from './Sections/Heading';
 import Paragraph from './Sections/Paragraph';
 import Image from './Sections/Image';
@@ -19,13 +15,13 @@ import Question from './Sections/Question';
 import Answer from './Sections/Answer';
 import BulletList from './Sections/BulletList';
 import NumberedList from './Sections/NumberedList';
-import Soundcloud from './Sections/Soundcloud';
+// import Soundcloud from './Sections/Soundcloud';
 import Youtube from './Sections/Youtube';
 import ArticleLink from './Sections/Link';
 
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 
-// Export this for unit testing more easily
+
 export class ArticleCard extends PureComponent {
   heading = () => {
     const title = this.props.info.title;
@@ -105,16 +101,16 @@ export class ArticleCard extends PureComponent {
               />
             </div>
           );
-        case 'soundcloud':
-          return (
-            <div className="pv3">
-              <Soundcloud
-                key={i}
-                text={item.section.text}
-                id={item.section.id}
-              />
-            </div>
-          );
+        // case 'soundcloud':
+        //   return (
+        //     <div className="pv3">
+        //       <Soundcloud
+        //         key={i}
+        //         text={item.section.text}
+        //         id={item.section.id}
+        //       />
+        //     </div>
+        //   );
         case 'youtube':
           return (
             <div className="pv3">

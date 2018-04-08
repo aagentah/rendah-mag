@@ -4,7 +4,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
-// Export this for unit testing more easily
+
 export class CategoryGrid extends PureComponent {
   render() {
     return (

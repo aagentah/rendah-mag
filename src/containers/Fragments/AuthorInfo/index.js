@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as action from './action';
 import AuthorCard from '../../../components/AuthorCard';
 
-// Export this for unit testing more easily
+
 export class AuthorInfo extends PureComponent {
   componentDidMount() {
     const { fetchAuthorIfNeeded, match: { params } } = this.props;

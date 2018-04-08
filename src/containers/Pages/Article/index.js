@@ -7,7 +7,7 @@ import FacebookProvider, { Comments } from 'react-facebook';
 import ArticleInfo from '../../../containers/Fragments/ArticleInfo';
 import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
 
-// Export this for unit testing more easily
+
 export class Article extends PureComponent {
   componentDidMount() {
     window.scrollTo(0, 0);
