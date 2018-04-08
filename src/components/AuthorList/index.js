@@ -25,7 +25,7 @@ export class AuthorList extends PureComponent {
                 <h2 className="authorList__title link  dark-grey  t7  pt1  tac  cp  title-font">
                   <span>{author.name}</span>
                   <br />
-                  <span className="grey  t8">({author.alias})</span></h2>
+                  <span className="t8">({author.alias})</span></h2>
               </div>
             </Link>
           ))}
