@@ -22,13 +22,13 @@ export class ArticleCard extends PureComponent {
                 <div className="link  w-100  authorCard__cont">
                   <div className="center  pt3">
 
-                    <div className="col-md-6">
+                    <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="col-md-6">
                       <figure className="rel  pb3  center">
                         <div className="shadow2  authorCard__img--cont">
                           <img className="mb3  center  w4  zoom-in-fade-in-iteration--item  authorCard__img" alt={author.name} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${author.img}`} />
                         </div>
                       </figure>
-                    </div>
+                    </Link>
 
                     <div className="col-md-18">
                       <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="link  dark-grey  t7  pt2  db  tac-md  cp  title-font  no-underline"><span>{author.name}</span><span className="pl1  grey  t8">({author.alias})</span></Link>
