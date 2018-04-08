@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import Seo from './Seo';
 
-
+// Export this for unit testing more easily
 export class ArticleCard extends PureComponent {
   render() {
     const author = this.props.info;
@@ -19,21 +19,19 @@ export class ArticleCard extends PureComponent {
           <div className="row">
             <div className="col-xs-20  col-xs-offset-2  col-md-16  col-md-offset-4">
               <div className="row  shadow2  br2">
-                <div className="w-100  authorCard__cont">
+                <div className="link  w-100  authorCard__cont">
                   <div className="center  pt3">
 
-                    <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="col-md-6">
+                    <div className="col-md-6">
                       <figure className="rel  pb3  center">
                         <div className="shadow2  authorCard__img--cont">
-                          <img className="mb3  center  w4  zoom-in-fade-in-iteration--item  authorCard__img" alt={author.name} src={`http://res.cloudinary.com/${author.img}`} />
+                          <img className="mb3  center  w4  zoom-in-fade-in-iteration--item  authorCard__img" alt={author.name} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
                         </div>
                       </figure>
-                    </Link>
+                    </div>
 
                     <div className="col-md-18">
-                      <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="link  dark-grey  t7  pt2  db  tac-md  cp  title-font  no-underline">
-                        <span>{author.name}<span className="pl1  t8">({author.alias})</span></span>
-                      </Link>
+                      <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="link  dark-grey  t7  pt2  db  tac-md  cp  title-font  no-underline"><span>{author.name}</span><span className="pl1  grey  t8">({author.alias})</span></Link>
                       <p className="grey  t8  pv2  tac-md">{author.description}</p>
                       <hr />
                       <div className="tac-md  pb2">
