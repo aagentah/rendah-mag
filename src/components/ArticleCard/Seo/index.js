@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 
-// Export this for unit testing more easily
+
 export class Seo extends PureComponent {
   render() {
     const article = this.props.data;

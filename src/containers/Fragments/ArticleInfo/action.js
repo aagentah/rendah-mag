@@ -6,7 +6,7 @@ export const ARTICLE_SUCCESS = 'ARTICLE_SUCCESS';
 // export const API_URL = 'https://jsonplaceholder.typicode.com/articles';
 export const API_URL = '/api/article';
 
-// Export this for unit testing more easily
+
 export const fetchArticle = (articleId: string, axios: any, URL: string = API_URL) =>
   (dispatch) => {
     dispatch({ type: ARTICLE_REQUESTING, articleId });
