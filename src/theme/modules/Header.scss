@@ -37,6 +37,9 @@ header {
     background: palette(black);
     color: palette(white);
   }
+  ul {
+    list-style: none;
+  }
 }
 
 .nav__list {
