@@ -6,7 +6,7 @@ export const LATESTARTICLES_SUCCESS = 'LATESTARTICLES_SUCCESS';
 
 export const API_URL = '/api/articles';
 
-// Export this for unit testing more easily
+
 export const fetchLatestArticles = (axios: any, URL: string = API_URL) =>
   (dispatch) => {
     dispatch({ type: LATESTARTICLES_REQUESTING });

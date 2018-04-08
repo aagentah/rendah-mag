@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as action from './action';
 import WeekArticleList from '../../../components/ArticleList/Week';
 
-// Export this for unit testing more easily
+
 export class WeekArticles extends PureComponent {
   componentDidMount() {
     this.props.fetchWeekArticlesIfNeeded();

@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 
 import SubscribeFrom from 'react-mailchimp-subscribe';
 
-// Export this for unit testing more easily
+
 export class SubscribeBanner extends PureComponent {
   renderForm = () => {
     const formProps = {

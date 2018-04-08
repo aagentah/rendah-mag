@@ -6,12 +6,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-// import GetImage from '../Helpers/GetImage';
-
 import Seo from './Seo';
 
-// import Standard from './Sections/Standard';
-// import QA from './Sections/QA';
 import Heading from './Sections/Heading';
 import Paragraph from './Sections/Paragraph';
 import Image from './Sections/Image';
@@ -25,7 +21,7 @@ import ArticleLink from './Sections/Link';
 
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 
-// Export this for unit testing more easily
+
 export class ArticleCard extends PureComponent {
   heading = () => {
     const title = this.props.info.title;

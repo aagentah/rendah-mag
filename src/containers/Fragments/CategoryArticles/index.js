@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as action from './action';
 import LatestArticleList from '../../../components/ArticleList/Latest';
 
-// Export this for unit testing more easily
+
 export class CategoryArticles extends PureComponent {
   componentDidMount() {
     const query = this.props.match.params.query;
