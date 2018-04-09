@@ -15,7 +15,7 @@ export class AuthorList extends PureComponent {
         <div className="row">
           {this.props.list.map((author, i) => (
             <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} key={i} className="link  w-100  zoom-in-fade-in-iteration--cont">
-              <div className="col-sm-12  col-md-6  pv3  authorList__col">
+              <div className="col-sm-8  col-md-6  pv3  authorList__col">
 
                 <figure className="rel  pb3">
                   <div className="shadow2  authorList__img--cont">
