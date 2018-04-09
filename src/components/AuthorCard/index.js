@@ -9,8 +9,46 @@ import Seo from './Seo';
 
 // Export this for unit testing more easily
 export class ArticleCard extends PureComponent {
+  authorLinks = (i, link, text) => {
+    switch (text) {
+      case 'Facebook':
+        return (
+          <a key={i} className="" href={link} target="_blank">
+            <img className="dib  pr3  authorCard__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt={text} />
+          </a>
+        );
+      case 'Twitter':
+        return (
+          <a key={i} className="" href={link} target="_blank">
+            <img className="dib  pr3  authorCard__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-twitter-5.png')} alt={text} />
+          </a>
+        );
+      case 'Instagram':
+        return (
+          <a key={i} className="" href={link} target="_blank">
+            <img className="dib  pr3  authorCard__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-instagram-5.png')} alt={text} />
+          </a>
+        );
+      case 'Youtube':
+        return (
+          <a key={i} className="" href={link} target="_blank">
+            <img className="dib  pr3  authorCard__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-youtube-5.png')} alt={text} />
+          </a>
+        );
+      case 'Soundcloud':
+        return (
+          <a key={i} className="" href={link} target="_blank">
+            <img className="dib  pr3  authorCard__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-soundcloud-5.png')} alt={text} />
+          </a>
+        );
+      default:
+        return <a key={i} className="link  pr3  t8  fornt-normal-a  dark-grey  authorCard__social-link" href={link} target="_blank">{text}</a>;
+    }
+  }
+
   render() {
     const author = this.props.info;
+    const authorLinks = this.authorLinks;
 
     return (
       <div>
@@ -23,7 +61,7 @@ export class ArticleCard extends PureComponent {
                   <div className="center  pt3">
 
                     <div className="col-md-6">
-                      <figure className="rel  center  link  w-100  zoom-in-fade-in-iteration--cont">
+                      <figure className="rel  center  link  w-100  zoom-in-fade-in-iteration--cont  pb2-md">
                         <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="shadow2  authorCard__img--cont  db">
                           <img className="mb3  center  w4  zoom-in-fade-in-iteration--item  authorCard__img" alt={author.name} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
                         </Link>
@@ -31,7 +69,7 @@ export class ArticleCard extends PureComponent {
                     </div>
 
                     <div className="col-md-18">
-                      <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="link  dark-grey  t7  pt2  db  tac-md  cp  title-font  no-underline">
+                      <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="link  black  t7  pt2  db  tac-md  cp  title-font  no-underline">
                         <span>{author.name}</span>
                         <span className="pl1  grey  t8">({author.alias})</span>
                       </Link>
@@ -39,7 +77,7 @@ export class ArticleCard extends PureComponent {
                       <hr />
                       <div className="tac-md  pb2">
                         {author.links.map((link, i) => (
-                          <a key={i} className="link  pr3  t8  fornt-normal-a  dark-grey  authorCard__social-link" href={link.url} target="_blank">{link.text}</a>
+                          authorLinks(i, link.url, link.text)
                         ))}
                       </div>
                     </div>
