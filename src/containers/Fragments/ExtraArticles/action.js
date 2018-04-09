@@ -16,25 +16,6 @@ export const fetchExtraArticles = (axios: any, URL: string = API_URL) =>
       .catch(err => dispatch({ type: EXTRAARTICLES_FAILURE, err: err.message }));
   };
 
-// Preventing dobule fetching data
-/* istanbul ignore next */
-const shouldFetchExtraArticles = (state): boolean => {
-  // In development, we will allow action dispatching
-  // or your reducer hot reloading won't updated on the view
-  if (__DEV__) return true; // Next line = Preventing double fetching data
-  if (state.extraArticles.readyStatus === EXTRAARTICLES_SUCCESS) return false;
-  return true;
-};
-
 /* istanbul ignore next */
 export const fetchExtraArticlesIfNeeded = () =>
-  (dispatch, getState, axios: any) => {
-    /* istanbul ignore next */
-    if (shouldFetchExtraArticles(getState())) {
-      /* istanbul ignore next */
-      return dispatch(fetchExtraArticles(axios));
-    }
-
-    /* istanbul ignore next */
-    return null;
-  };
+  (dispatch, getState, axios: any) => { dispatch(fetchExtraArticles(axios)); };
