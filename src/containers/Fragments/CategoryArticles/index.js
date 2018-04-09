@@ -22,7 +22,13 @@ export class CategoryArticles extends PureComponent {
       categoryArticles.readyStatus === action.CATEGORYARTICLES_INVALID ||
       categoryArticles.readyStatus === action.CATEGORYARTICLES_REQUESTING
     ) {
-      return <div className="vh-100" />;
+      return (
+        <div className="loader">
+          <span className="spinner1" />
+          <span className="spinner2" />
+          <span className="spinner3" />
+        </div>
+      );
     }
 
     if (categoryArticles.readyStatus === action.CATEGORYARTICLES_FAILURE) {
