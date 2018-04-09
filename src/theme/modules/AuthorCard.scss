@@ -4,7 +4,7 @@
   }
 
   .authorCard__img--cont {
-    height: 120px;
+    height: 135px;
     overflow: hidden;
     @media only screen and (max-width: $md - 1px) {
       height: 300px;
@@ -12,7 +12,7 @@
   }
 
   .authorCard__img {
-    height: 120px;
+    height: 135px;
     width: 100%;
     object-fit: cover;
     object-position: center;
@@ -24,4 +24,11 @@
 
   .authorCard__social-link {
     line-height: 30px;
+    vertical-align: text-bottom;
+  }
+
+  .authorCard__social-link--icon {
+    margin-top: 8px;
+    height: 28px;
+    width: auto;
   }
