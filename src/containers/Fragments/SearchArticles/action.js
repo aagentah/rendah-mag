@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 
 export const SEARCHARTICLES_INVALID = 'SEARCHARTICLES_INVALID';
 export const SEARCHARTICLES_REQUESTING = 'SEARCHARTICLES_REQUESTING';
@@ -18,11 +19,11 @@ export const fetchSearchArticles = (query: string, axios: any, URL: string = API
 
 // Preventing dobule fetching data
 /* istanbul ignore next */
-const shouldFetchSearchArticles = (state): boolean => {
+const shouldFetchSearchArticles = () => {
   // In development, we will allow action dispatching
   // or your reducer hot reloading won't updated on the view
-  if (__DEV__) return true; // Next line = Preventing double fetching data
-  if (state.searchArticles.readyStatus === SEARCHARTICLES_SUCCESS) return false;
+  // if (__DEV__) return true; // Next line = Preventing double fetching data
+  // if (state.searchArticles.readyStatus === SEARCHARTICLES_SUCCESS) return false;
   return true;
 };
 

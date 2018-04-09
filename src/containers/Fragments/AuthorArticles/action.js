@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 
 export const AUTHORARTICLES_INVALID = 'AUTHORARTICLES_INVALID';
 export const AUTHORARTICLES_REQUESTING = 'AUTHORARTICLES_REQUESTING';
@@ -18,11 +19,11 @@ export const fetchAuthorArticles = (query: string, axios: any, URL: string = API
 
 // Preventing dobule fetching data
 /* istanbul ignore next */
-const shouldFetchAuthorArticles = (state): boolean => {
+const shouldFetchAuthorArticles = () => {
   // In development, we will allow action dispatching
   // or your reducer hot reloading won't updated on the view
-  if (__DEV__) return true; // Next line = Preventing double fetching data
-  if (state.authorArticles.readyStatus === AUTHORARTICLES_SUCCESS) return false;
+  // if (__DEV__) return true; // Next line = Preventing double fetching data
+  // if (state.authorArticles.readyStatus === AUTHORARTICLES_SUCCESS) return false;
   return true;
 };
 
