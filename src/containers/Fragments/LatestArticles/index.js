@@ -21,7 +21,13 @@ export class LatestArticles extends PureComponent {
       latestArticles.readyStatus === action.LATESTARTICLES_INVALID ||
       latestArticles.readyStatus === action.LATESTARTICLES_REQUESTING
     ) {
-      return <div className="vh-100" />;
+      return (
+        <div className="loader">
+          <span className="spinner1" />
+          <span className="spinner2" />
+          <span className="spinner3" />
+        </div>
+      );
     }
 
     if (latestArticles.readyStatus === action.LATESTARTICLES_FAILURE) {
