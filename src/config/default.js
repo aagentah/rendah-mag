@@ -58,10 +58,10 @@ module.exports = {
         property: 'og:description',
         content: 'Beats, Halftime & Future Bass Magazine',
       },
-      // {
-      //   property: 'og:image',
-      //   content: 'https://files.sliips.com/images/ogicon.png',
-      // },
+      {
+        property: 'og:image',
+        content: 'http://res.cloudinary.com/dzz8ji5lj/image/upload/v1523314127/brand/rendah.png',
+      },
     ],
   },
 };
