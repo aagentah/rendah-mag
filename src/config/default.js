@@ -52,7 +52,7 @@ module.exports = {
       },
       {
         property: 'og:title',
-        content: 'Rendah - %s',
+        content: 'Rendah - Home',
       },
       {
         property: 'og:description',
