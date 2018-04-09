@@ -22,7 +22,13 @@ export class SearchArticles extends PureComponent {
       searchArticles.readyStatus === action.SEARCHARTICLES_INVALID ||
       searchArticles.readyStatus === action.SEARCHARTICLES_REQUESTING
     ) {
-      return <div className="vh-100" />;
+      return (
+        <div className="loader  loader--low">
+          <span className="spinner1" />
+          <span className="spinner2" />
+          <span className="spinner3" />
+        </div>
+      );
     }
 
     if (searchArticles.readyStatus === action.SEARCHARTICLES_FAILURE) {

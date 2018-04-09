@@ -23,7 +23,7 @@ export class CategoryArticles extends PureComponent {
       categoryArticles.readyStatus === action.CATEGORYARTICLES_REQUESTING
     ) {
       return (
-        <div className="loader">
+        <div className="loader  loader--low">
           <span className="spinner1" />
           <span className="spinner2" />
           <span className="spinner3" />
