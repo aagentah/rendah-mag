@@ -1,4 +1,3 @@
-/* eslint-disable arrow-body-style */
 
 export const SEARCHARTICLES_INVALID = 'SEARCHARTICLES_INVALID';
 export const SEARCHARTICLES_REQUESTING = 'SEARCHARTICLES_REQUESTING';
@@ -17,25 +16,6 @@ export const fetchSearchArticles = (query: string, axios: any, URL: string = API
       .catch(err => dispatch({ type: SEARCHARTICLES_FAILURE, err: err.message }));
   };
 
-// Preventing dobule fetching data
-/* istanbul ignore next */
-const shouldFetchSearchArticles = () => {
-  // In development, we will allow action dispatching
-  // or your reducer hot reloading won't updated on the view
-  // if (__DEV__) return true; // Next line = Preventing double fetching data
-  // if (state.searchArticles.readyStatus === SEARCHARTICLES_SUCCESS) return false;
-  return true;
-};
-
 /* istanbul ignore next */
 export const fetchSearchArticlesIfNeeded = (query: string) =>
-  (dispatch, getState, axios: any) => {
-    /* istanbul ignore next */
-    if (shouldFetchSearchArticles(getState())) {
-      /* istanbul ignore next */
-      return dispatch(fetchSearchArticles(query, axios));
-    }
-
-    /* istanbul ignore next */
-    return null;
-  };
+  (dispatch, getState, axios: any) => { dispatch(fetchSearchArticles(query, axios)); };
