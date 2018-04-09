@@ -62,6 +62,18 @@ module.exports = {
         property: 'og:image',
         content: 'http://res.cloudinary.com/dzz8ji5lj/image/upload/v1523314127/brand/rendah.png',
       },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'fb:admins',
+        content: 'danjonesaagentah',
+      },
+      {
+        property: 'fb:app_id',
+        content: '154881868603516',
+      },
     ],
   },
 };
