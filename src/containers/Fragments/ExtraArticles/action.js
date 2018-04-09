@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 
 export const EXTRAARTICLES_INVALID = 'EXTRAARTICLES_INVALID';
 export const EXTRAARTICLES_REQUESTING = 'EXTRAARTICLES_REQUESTING';
@@ -18,11 +19,11 @@ export const fetchExtraArticles = (axios: any, URL: string = API_URL) =>
 
 // Preventing dobule fetching data
 /* istanbul ignore next */
-const shouldFetchExtraArticles = (state): boolean => {
+const shouldFetchExtraArticles = () => {
   // In development, we will allow action dispatching
   // or your reducer hot reloading won't updated on the view
-  if (__DEV__) return true; // Next line = Preventing double fetching data
-  if (state.extraArticles.readyStatus === EXTRAARTICLES_SUCCESS) return false;
+  // if (__DEV__) return true; // Next line = Preventing double fetching data
+  // if (state.extraArticles.readyStatus === EXTRAARTICLES_SUCCESS) return false;
   return true;
 };
 
