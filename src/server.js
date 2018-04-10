@@ -56,8 +56,7 @@ if (__DEV__) {
 let db;
 const mongoUsername = process.env.MONGO_USERNAME;
 const mongoPassword = process.env.MONGO_PASSWORD;
-
-const MongoClient = require('mongodb').MongoClient
+const MongoClient = require('mongodb').MongoClient;
 
 if (mongoUsername) {
   MongoClient.connect(`mongodb://${mongoUsername}:${mongoPassword}@ds019996.mlab.com:19996/rendah`, (err, database) => {
@@ -73,7 +72,7 @@ if (mongoUsername) {
   });
 }
 
-//GET week
+// GET week
 app.get('/api/week', (req, res) => {
   let articles = [];
 
@@ -84,15 +83,17 @@ app.get('/api/week', (req, res) => {
     .toArray()
     .then((result) => {
       articles = articles.concat(result);
-    }).then(() => {
+    })
+    .then(() => {
       // console.log(articles);
       res.send(articles);
-    }).catch((e) => {
+    })
+    .catch((e) => {
       console.error(e);
     });
 });
 
-//GET articles
+// GET articles
 app.get('/api/articles', (req, res) => {
   let articles = [];
 
@@ -104,28 +105,27 @@ app.get('/api/articles', (req, res) => {
     .toArray()
     .then((result) => {
       articles = articles.concat(result);
-    }).then(() => {
+    })
+    .then(() => {
       // console.log(articles);
       res.send(articles);
-    }).catch((e) => {
+    })
+    .catch((e) => {
       console.error(e);
     });
 });
 
-//GET authorArticles
+// GET authorArticles
 app.get('/api/authorArticles', (req, res) => {
   let articles = [];
-
-  var ObjectId = require('mongodb').ObjectID;
-  var author = {};
-  var param = req.query.authorQuery;
+  let param = req.query.authorQuery;
   param = param.replace(/-/g, ' ');
 
   db.collection('articles')
     // .find()
     .find({
-      'author': {
-        $regex: '.*' + param + '.*',
+      author: {
+        $regex: `.*${param}.*`,
       },
     })
     .limit(12)
@@ -133,15 +133,17 @@ app.get('/api/authorArticles', (req, res) => {
     .toArray()
     .then((result) => {
       articles = articles.concat(result);
-    }).then(() => {
+    })
+    .then(() => {
       // console.log(articles);
       res.send(articles);
-    }).catch((e) => {
+    })
+    .catch((e) => {
       console.error(e);
     });
 });
 
-//GET extra
+// GET extra
 app.get('/api/extra', (req, res) => {
   let articles = [];
 
@@ -154,15 +156,17 @@ app.get('/api/extra', (req, res) => {
     .toArray()
     .then((result) => {
       articles = articles.concat(result);
-    }).then(() => {
+    })
+    .then(() => {
       // console.log(articles);
       res.send(articles);
-    }).catch((e) => {
+    })
+    .catch((e) => {
       console.error(e);
     });
 });
 
-//GET authors
+// GET authors
 app.get('/api/authors', (req, res) => {
   let authors = [];
 
@@ -173,119 +177,130 @@ app.get('/api/authors', (req, res) => {
     .then((result) => {
       // console.log(result);
       authors = authors.concat(result);
-    }).then(() => {
+    })
+    .then(() => {
       res.send(authors);
-    }).catch((e) => {
+    })
+    .catch((e) => {
       console.error(e);
     });
 });
 
-//GET search
+// GET search
 app.get('/api/search', (req, res) => {
   let articles = [];
 
   db.collection('articles')
     .find({
-      $or: [{
+      $or: [
+        {
           title: {
-            $regex: '.*' + req.query.searchQuery + '.*',
-            '$options': 'i',
-          }
+            $regex: `.*${req.query.searchQuery}.*`,
+            $options: 'i',
+          },
         },
         {
           description: {
-            $regex: ".*" + req.query.searchQuery + ".*",
-            '$options': 'i'
-          }
+            $regex: `.*${req.query.searchQuery}.*`,
+            $options: 'i',
+          },
         },
         {
           author: {
-            $regex: ".*" + req.query.searchQuery + ".*",
-            '$options': 'i'
-          }
+            $regex: `.*${req.query.searchQuery}.*`,
+            $options: 'i',
+          },
         },
         {
           keywords: {
-            $regex: ".*" + req.query.searchQuery + ".*",
-            '$options': 'i'
-          }
-        }
-      ]
+            $regex: `.*${req.query.searchQuery}.*`,
+            $options: 'i',
+          },
+        },
+      ],
     })
     .limit(24)
     .sort('date', -1)
     .toArray()
     .then((result) => {
       articles = articles.concat(result);
-    }).then(() => {
+    })
+    .then(() => {
       // console.log(articles);
       res.send(articles);
-    }).catch((e) => {
+    })
+    .catch((e) => {
       console.error(e);
     });
 });
 
-//GET category
+// GET category
 app.get('/api/category', (req, res) => {
   let articles = [];
 
   db.collection('articles')
     .find({
-      $or: [{
-        category: {
-          $regex: '.*' + req.query.categoryQuery + '.*',
+      $or: [
+        {
+          category: {
+            $regex: `.*${req.query.categoryQuery}.*`,
+          },
         },
-      }]
+      ],
     })
     .limit(12)
     .sort('date', -1)
     .toArray()
     .then((result) => {
       articles = articles.concat(result);
-    }).then(() => {
+    })
+    .then(() => {
       // console.log(articles);
       res.send(articles);
-    }).catch((e) => {
+    })
+    .catch((e) => {
       console.error(e);
     });
 });
 
-//GET article
+// GET article
 app.get('/api/article', (req, res) => {
-  var ObjectId = require('mongodb').ObjectID;
   let article = {};
-  var param = req.query.title;
+  let param = req.query.title;
   param = param.replace(/-/g, ' ');
 
   db.collection('articles')
     .findOne({
-      'title': param,
+      title: param,
     })
     .then((result) => {
       article = result;
-    }).then(() => {
+    })
+    .then(() => {
       res.send(article);
-    }).catch((e) => {
+    })
+    .catch((e) => {
       console.error(e);
     });
 });
 
-//GET author
+// GET author
 app.get('/api/author', (req, res) => {
-  var ObjectId = require('mongodb').ObjectID;
   let article = {};
-  var param = req.query.title;
+  let param = req.query.title;
   param = param.replace(/-/g, ' ');
 
   db.collection('authors')
     .findOne({
-      'name': param,
+      name: param,
     })
     .then((result) => {
       article = result;
-    }).then(() => {
+    })
+    .then(() => {
       res.send(article);
-    }).catch((e) => {
+    })
+    .catch((e) => {
       console.error(e);
     });
 });
