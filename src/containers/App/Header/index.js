@@ -21,24 +21,19 @@ const Header = (): Element<'div'> => (
           <li className="dib">
             <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Authors'}>Authors</Link>
           </li>
-          {
-          // <li className="dib">
-          //   <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/About'}>About Us</Link>
-          // </li>
-          }
           <li className="dib">
             <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Contact'}>Contact</Link>
           </li>
-          <li data-nav-category="1" className="abs">
+          <li data-nav-category="1" className="abs  dn-md">
             <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Category/Interviews'}>Interviews</Link>
           </li>
-          <li data-nav-category="2" className="abs">
+          <li data-nav-category="2" className="abs  dn-md">
             <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Category/Insights'}>Insights</Link>
           </li>
-          <li data-nav-category="3" className="abs">
+          <li data-nav-category="3" className="abs  dn-md">
             <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Category/News'}>News</Link>
           </li>
-          <li data-nav-category="4" className="abs">
+          <li data-nav-category="4" className="abs  dn-md">
             <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Category/Mixes'}>Mixes</Link>
           </li>
         </ul>
