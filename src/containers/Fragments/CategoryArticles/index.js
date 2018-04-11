@@ -35,7 +35,7 @@ export class CategoryArticles extends PureComponent {
       return <div />;
     }
 
-    return <LatestArticleList list={categoryArticles.list} />;
+    return <LatestArticleList param={categoryArticles.params.query} list={categoryArticles.list} />;
   };
 
   render() {
@@ -60,6 +60,7 @@ CategoryArticles.propTypes = {
     readyStatus: PropTypes.string,
     err: PropTypes.any,
     list: PropTypes.arrayOf(PropTypes.object),
+    param: PropTypes.arrayOf(PropTypes.object),
   }),
   match: PropTypes.shape(),
   fetchCategoryArticlesIfNeeded: PropTypes.func,
@@ -70,6 +71,7 @@ CategoryArticles.defaultProps = {
     readyStatus: '',
     err: '',
     list: [{}],
+    param: [{}],
   },
   match: [],
   fetchCategoryArticlesIfNeeded: () => {},
