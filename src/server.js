@@ -62,13 +62,13 @@ if (mongoUsername) {
   MongoClient.connect(`mongodb://${mongoUsername}:${mongoPassword}@ds019996.mlab.com:19996/rendah`, (err, database) => {
     if (err) return console.log(err);
     db = database;
-    console.log('db connected');
+    return console.log('db connected');
   });
 } else {
   MongoClient.connect('mongodb://Rendah-staging:test@ds123930.mlab.com:23930/halftimefront', (err, database) => {
     if (err) return console.log(err);
     db = database;
-    console.log('db connected');
+    return console.log('db connected');
   });
 }
 
