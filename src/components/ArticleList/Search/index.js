@@ -10,6 +10,9 @@ import PropTypes from 'prop-types';
 
 export class SearchArticleList extends PureComponent {
   render() {
+    if (!this.props.list.length) {
+      return <p className="black  tac  mv3  mv2-sm">Nothing found, try a different search.</p>;
+    }
     return (
       <div className="container  mv3  mv2-sm">
         <div className="row">
