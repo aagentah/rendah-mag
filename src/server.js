@@ -52,202 +52,257 @@ if (__DEV__) {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-//GET week
+// connect to mongo db
+let db;
+const mongoUsername = process.env.MONGO_USERNAME;
+const mongoPassword = process.env.MONGO_PASSWORD;
+const MongoClient = require('mongodb').MongoClient;
+
+if (mongoUsername) {
+  MongoClient.connect(`mongodb://${mongoUsername}:${mongoPassword}@ds019996.mlab.com:19996/rendah`, (err, database) => {
+    if (err) return console.log(err);
+    db = database;
+    return console.log('db connected');
+  });
+} else {
+  MongoClient.connect('mongodb://Rendah-staging:test@ds123930.mlab.com:23930/halftimefront', (err, database) => {
+    if (err) return console.log(err);
+    db = database;
+    return console.log('db connected');
+  });
+}
+
+// GET week
 app.get('/api/week', (req, res) => {
+  let articles = [];
 
-    var articles = [];
-
-    db.collection('articles')
-        .find()
-        .limit(2)
-        .sort("date", -1)
-        .toArray()
-        .then(result => {
-            articles = articles.concat(result);
-        }).then(() => {
-            // console.log(articles);
-            res.send(articles);
-        }).catch(e => {
-            console.error(e);
-        });
-
+  db.collection('articles')
+    .find()
+    .limit(2)
+    .sort('date', -1)
+    .toArray()
+    .then((result) => {
+      articles = articles.concat(result);
+    })
+    .then(() => {
+      // console.log(articles);
+      res.send(articles);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 });
 
-//GET articles
+// GET articles
 app.get('/api/articles', (req, res) => {
+  let articles = [];
 
-    var articles = [];
-
-    db.collection('articles')
-        .find()
-        .skip(2)
-        .limit(12)
-        .sort("date", -1)
-        .toArray()
-        .then(result => {
-            articles = articles.concat(result);
-        }).then(() => {
-            // console.log(articles);
-            res.send(articles);
-        }).catch(e => {
-            console.error(e);
-        });
-
+  db.collection('articles')
+    .find()
+    .skip(2)
+    .limit(12)
+    .sort('date', -1)
+    .toArray()
+    .then((result) => {
+      articles = articles.concat(result);
+    })
+    .then(() => {
+      // console.log(articles);
+      res.send(articles);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 });
 
-//GET authorArticles
+// GET authorArticles
 app.get('/api/authorArticles', (req, res) => {
+  let articles = [];
+  let param = req.query.authorQuery;
+  param = param.replace(/-/g, ' ');
 
-    var articles = [];
-
-    var ObjectId = require('mongodb').ObjectID;
-    var author = {};
-    var param = req.query.authorQuery;
-    param = param.replace(/-/g, ' ');
-
-    db.collection('articles')
-        // .find()
-        .find({"author" : {$regex : ".*" + param + ".*"}})
-        .limit(12)
-        .sort("date", -1)
-        .toArray()
-        .then(result => {
-            articles = articles.concat(result);
-        }).then(() => {
-            // console.log(articles);
-            res.send(articles);
-        }).catch(e => {
-            console.error(e);
-        });
-
+  db.collection('articles')
+    // .find()
+    .find({
+      author: {
+        $regex: `.*${param}.*`,
+      },
+    })
+    .limit(12)
+    .sort('date', -1)
+    .toArray()
+    .then((result) => {
+      articles = articles.concat(result);
+    })
+    .then(() => {
+      // console.log(articles);
+      res.send(articles);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 });
 
-//GET extra
+// GET extra
 app.get('/api/extra', (req, res) => {
+  let articles = [];
 
-    var articles = [];
-
-    db.collection('articles')
-        .aggregate([{ $sample: { size: 4 } }])
-        .toArray()
-        .then(result => {
-            articles = articles.concat(result);
-        }).then(() => {
-            // console.log(articles);
-            res.send(articles);
-        }).catch(e => {
-            console.error(e);
-        });
-
+  db.collection('articles')
+    .aggregate([{
+      $sample: {
+        size: 4,
+      },
+    }])
+    .toArray()
+    .then((result) => {
+      articles = articles.concat(result);
+    })
+    .then(() => {
+      // console.log(articles);
+      res.send(articles);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 });
 
-//GET authors
+// GET authors
 app.get('/api/authors', (req, res) => {
+  let authors = [];
 
-    var authors = [];
-
-    db.collection('authors')
-        .find()
-        .limit(24)
-        .toArray()
-        .then(result => {
-            // console.log(result);
-            authors = authors.concat(result);
-        }).then(() => {
-            res.send(authors);
-        }).catch(e => {
-            console.error(e);
-        });
-
+  db.collection('authors')
+    .find()
+    .limit(24)
+    .toArray()
+    .then((result) => {
+      // console.log(result);
+      authors = authors.concat(result);
+    })
+    .then(() => {
+      res.send(authors);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 });
 
-//GET search
+// GET search
 app.get('/api/search', (req, res) => {
+  let articles = [];
 
-    var articles = [];
-
-    db.collection('articles')
-        .find({$or:[
-                {title: {$regex : ".*" + req.query.searchQuery + ".*", '$options' : 'i'}},
-                {description: {$regex : ".*" + req.query.searchQuery + ".*", '$options' : 'i'}},
-                {author: {$regex : ".*" + req.query.searchQuery + ".*", '$options' : 'i'}},
-                {keywords: {$regex : ".*" + req.query.searchQuery + ".*", '$options' : 'i'}}
-              ]})
-        .limit(24)
-        .sort("date", -1)
-        .toArray()
-        .then(result => {
-            articles = articles.concat(result);
-        }).then(() => {
-            // console.log(articles);
-            res.send(articles);
-        }).catch(e => {
-            console.error(e);
-        });
-
+  db.collection('articles')
+    .find({
+      $or: [
+        {
+          title: {
+            $regex: `.*${req.query.searchQuery}.*`,
+            $options: 'i',
+          },
+        },
+        {
+          description: {
+            $regex: `.*${req.query.searchQuery}.*`,
+            $options: 'i',
+          },
+        },
+        {
+          author: {
+            $regex: `.*${req.query.searchQuery}.*`,
+            $options: 'i',
+          },
+        },
+        {
+          keywords: {
+            $regex: `.*${req.query.searchQuery}.*`,
+            $options: 'i',
+          },
+        },
+      ],
+    })
+    .limit(24)
+    .sort('date', -1)
+    .toArray()
+    .then((result) => {
+      articles = articles.concat(result);
+    })
+    .then(() => {
+      // console.log(articles);
+      res.send(articles);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 });
 
-//GET category
+// GET category
 app.get('/api/category', (req, res) => {
+  let articles = [];
 
-    var articles = [];
-
-    db.collection('articles')
-        .find({$or:[
-                {category: {$regex : ".*" + req.query.categoryQuery + ".*"}}
-              ]})
-        .limit(12)
-        .sort("date", -1)
-        .toArray()
-        .then(result => {
-            articles = articles.concat(result);
-        }).then(() => {
-            // console.log(articles);
-            res.send(articles);
-        }).catch(e => {
-            console.error(e);
-        });
-
+  db.collection('articles')
+    .find({
+      $or: [
+        {
+          category: {
+            $regex: `.*${req.query.categoryQuery}.*`,
+          },
+        },
+      ],
+    })
+    .limit(12)
+    .sort('date', -1)
+    .toArray()
+    .then((result) => {
+      articles = articles.concat(result);
+    })
+    .then(() => {
+      // console.log(articles);
+      res.send(articles);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 });
 
-//GET article
+// GET article
 app.get('/api/article', (req, res) => {
+  let article = {};
+  let param = req.query.title;
+  param = param.replace(/-/g, ' ');
 
-    var ObjectId = require('mongodb').ObjectID;
-    var article = {};
-    var param = req.query.title;
-    param = param.replace(/-/g, ' ');
-
-    db.collection('articles')
-        .findOne({"title": param})
-        .then(result => {
-            article = result;
-        }).then(() => {
-            res.send(article);
-        }).catch(e => {
-            console.error(e);
-        });
-
+  db.collection('articles')
+    .findOne({
+      title: param,
+    })
+    .then((result) => {
+      article = result;
+    })
+    .then(() => {
+      res.send(article);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 });
 
-//GET author
+// GET author
 app.get('/api/author', (req, res) => {
+  let article = {};
+  let param = req.query.title;
+  param = param.replace(/-/g, ' ');
 
-    var ObjectId = require('mongodb').ObjectID;
-    var article = {};
-    var param = req.query.title;
-    param = param.replace(/-/g, ' ');
-
-    db.collection('authors')
-        .findOne({"name": param})
-        .then(result => {
-            article = result;
-        }).then(() => {
-            res.send(article);
-        }).catch(e => {
-            console.error(e);
-        });
-
+  db.collection('authors')
+    .findOne({
+      name: param,
+    })
+    .then((result) => {
+      article = result;
+    })
+    .then(() => {
+      res.send(article);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 });
 
 // Register server-side rendering middleware
@@ -302,50 +357,25 @@ app.get('*', (req, res) => {
       if (routerContext.url) {
         res.status(301).setHeader('Location', routerContext.url);
         res.end();
-
         return;
       }
 
       // Checking is page is 404
       const status = routerContext.status === '404' ? 404 : 200;
-
       // Pass the route and initial state into html template
       res.status(status).send(renderHtml(store, htmlContent));
     })
     .catch((err) => {
       res.status(404).send('Not Found :(');
-
       console.error(`==> 😭  Rendering routes error: ${err}`);
     });
 });
 
-// connect to mongo db
-var db
-var mongoUsername = process.env.MONGO_USERNAME;
-var mongoPassword = process.env.MONGO_PASSWORD;
-
-const MongoClient = require('mongodb').MongoClient
-
-if (mongoUsername) {
-  MongoClient.connect(`mongodb://${mongoUsername}:${mongoPassword}@ds019996.mlab.com:19996/rendah`, (err, database) => {
-      if (err) return console.log(err);
-      db = database
-      console.log('db connected');
-  })
-} else {
-  MongoClient.connect('mongodb://Rendah-staging:test@ds123930.mlab.com:23930/halftimefront', (err, database) => {
-      if (err) return console.log(err);
-      db = database
-      console.log('db connected');
-  })
-}
 
 if (port) {
   app.listen(port, host, (err) => {
     const url = `http://${host}:${port}`;
-
     if (err) console.error(`==> 😭  OMG!!! ${err}`);
-
     console.info(chalk.green(`==> 🌎  Listening at ${url}`));
 
     // Open Chrome
