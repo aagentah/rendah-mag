@@ -7,8 +7,28 @@ module.exports = {
     titleTemplate: 'Rendah - %s',
     meta: [
       {
+        name: 'keywords',
+        content: 'Beats, Halftime, Footwork, Trap, Future Bass, Drum & Bass, Dance Music, DnB, Magazine, Blog, News, Review, Mixes, Aagentah',
+      },
+      {
         name: 'description',
         content: 'Beats, Halftime & Future Bass Magazine',
+      },
+      {
+        name: 'owner',
+        content: 'Dan Jones (Aagentah)',
+      },
+      {
+        name: 'coverage',
+        content: 'Worldwide',
+      },
+      {
+        name: 'coverage',
+        content: 'Global',
+      },
+      {
+        name: 'url',
+        content: 'http://www.rendahmag.com',
       },
       {
         name: 'apple-mobile-web-app-title',
@@ -52,7 +72,7 @@ module.exports = {
       },
       {
         property: 'og:title',
-        content: 'Rendah - Home',
+        content: 'Rendah',
       },
       {
         property: 'og:description',
@@ -65,6 +85,10 @@ module.exports = {
       {
         property: 'og:type',
         content: 'website',
+      },
+      {
+        property: 'og:site_name',
+        content: 'Rendah Mag',
       },
       {
         property: 'fb:admins',
