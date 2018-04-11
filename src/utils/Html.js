@@ -44,7 +44,7 @@ const Html = ({ store, htmlContent }: Props): Element<'html'> => {
         {/* Styles will be presented in development mode */}
         {/* I put all of the styles here to smoothen the flick */}
         {
-          _.keys(assets.styles).length === 0 ? null: null
+          _.keys(assets.styles).length === 0 ? null : null
         }
       </head>
       <body>
