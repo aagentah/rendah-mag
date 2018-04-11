@@ -23,6 +23,7 @@ export class Home extends PureComponent {
     return (
       <main className="page-fade-in">
         <Helmet title="Home" />
+        <h1 className="dn">Home</h1>
         <WeekArticles />
         <p className="pt3  t6  fw6  black  tac  title-font">Subscribe to Rendah</p>
         <div className="pt1  pb2"><SubscribeBanner /></div>
