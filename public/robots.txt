@@ -1,1 +1,1 @@
-SITEMAP: http://www.rendahmag.com/sitemap.txt
+SITEMAP: http://www.rendahmag.com/sitemap.xml
