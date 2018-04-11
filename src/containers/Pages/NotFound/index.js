@@ -17,8 +17,9 @@ export class NotFound extends PureComponent {
   render() {
     return (
       <main className="page-fade-in">
-        <Helmet title="You got 404" />
-        <p className="tac  black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">You just got 404&#39;d, this page does not exist.</p>
+        <Helmet title="404" />
+        <h1 className="dn">404</h1>
+        <p className="tac  black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">404, this page does not exist.</p>
         <p className="pt4  t6  fw6  black  tac  title-font">Search the site for something else?</p>
         <div className="pt1  pb2"><SearchInput textAlign="tac" /></div>
         <CategoryGrid />
