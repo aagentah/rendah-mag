@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+
+  <url>
+    <loc>http://www.rendahmag.com/</loc>
+  </url>
+  <url>
+    <loc>http://www.rendahmag.com/Authors</loc>
+  </url>
+  <url>
+    <loc>http://www.rendahmag.com/Contact</loc>
+  </url>
+  <url>
+    <loc>http://www.rendahmag.com/Category/Interviews</loc>
+  </url>
+  <url>
+    <loc>http://www.rendahmag.com/Category/Insights</loc>
+  </url>
+  <url>
+    <loc>http://www.rendahmag.com/Category/News</loc>
+  </url>
+  <url>
+    <loc>http://www.rendahmag.com/Category/Mixes</loc>
+  </url>
+
+</urlset>
