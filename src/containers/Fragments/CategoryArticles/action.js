@@ -18,4 +18,4 @@ export const fetchCategoryArticles = (query: string, axios: any, URL: string = A
 
 /* istanbul ignore next */
 export const fetchCategoryArticlesIfNeeded = (query: string) =>
-  (dispatch, getState, axios: any) => { dispatch(fetchCategoryArticles(query, axios)); }
+  (dispatch, getState, axios: any) => { dispatch(fetchCategoryArticles(query, axios)); };
