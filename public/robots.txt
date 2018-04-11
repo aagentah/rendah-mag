@@ -1,1 +1,4 @@
+User-agent: *
+Disallow:
+
 SITEMAP: http://www.rendahmag.com/sitemap.xml
