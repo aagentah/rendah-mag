@@ -16,25 +16,6 @@ export const fetchCategoryArticles = (query: string, axios: any, URL: string = A
       .catch(err => dispatch({ type: CATEGORYARTICLES_FAILURE, err: err.message }));
   };
 
-// Preventing dobule fetching data
-/* istanbul ignore next */
-const shouldFetchCategoryArticles = (state): boolean => {
-  // In development, we will allow action dispatching
-  // or your reducer hot reloading won't updated on the view
-  if (__DEV__) return true; // Next line = Preventing double fetching data
-  if (state.categoryArticles.readyStatus === CATEGORYARTICLES_SUCCESS) return false;
-  return true;
-};
-
 /* istanbul ignore next */
 export const fetchCategoryArticlesIfNeeded = (query: string) =>
-  (dispatch, getState, axios: any) => {
-    /* istanbul ignore next */
-    if (shouldFetchCategoryArticles(getState())) {
-      /* istanbul ignore next */
-      return dispatch(fetchCategoryArticles(query, axios));
-    }
-
-    /* istanbul ignore next */
-    return null;
-  };
+  (dispatch, getState, axios: any) => { dispatch(fetchCategoryArticles(query, axios)); }
