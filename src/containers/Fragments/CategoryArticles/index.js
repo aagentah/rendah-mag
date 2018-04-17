@@ -20,7 +20,8 @@ export class CategoryArticles extends PureComponent {
     if (
       !categoryArticles.readyStatus ||
       categoryArticles.readyStatus === action.CATEGORYARTICLES_INVALID ||
-      categoryArticles.readyStatus === action.CATEGORYARTICLES_REQUESTING
+      categoryArticles.readyStatus === action.CATEGORYARTICLES_REQUESTING ||
+      categoryArticles.readyStatus === action.CATEGORYARTICLES_FAILURE
     ) {
       return (
         <div className="loader  loader--low">
@@ -29,10 +30,6 @@ export class CategoryArticles extends PureComponent {
           <span className="spinner3" />
         </div>
       );
-    }
-
-    if (categoryArticles.readyStatus === action.CATEGORYARTICLES_FAILURE) {
-      return <div />;
     }
 
     return <LatestArticleList list={categoryArticles.list} />;

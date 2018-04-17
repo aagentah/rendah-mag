@@ -32,8 +32,7 @@ I use [better-npm-run](https://github.com/benoror/better-npm-run) to manage the 
 `yarn <script>`|Description
 ------------------|-----------
 `start`|Run your app on the development server at `localhost:3000`. HMR will be enabled.
-`start:production`|Bundle files to `./public/assets` and run it on the production server at `localhost:8080`.
-`start:prod`|Run your app on the production server only at `localhost:8080`.
+`start:prodlocal`|Bundle files to `./public/assets` and run it on the production server at `localhost:8080`.
 `build`|Remove the previous bundled files and bundle it to `./public/assets`.
 `clean:all`|Remove the client/server bundled stuff and the coverage report.
 `clean:build`|Remove the `./public/assets` folder to clean the client bundled files.
