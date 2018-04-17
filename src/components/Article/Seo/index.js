@@ -22,7 +22,7 @@ export class Seo extends PureComponent {
           <meta itemprop="description" content={article.description} />
           <meta itemprop="image" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
 
-          {/* Twitter Card */}
+          {/* Twitter  */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@RendahMag" />
           <meta name="twitter:title" content={article.title} />

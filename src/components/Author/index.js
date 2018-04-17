@@ -8,41 +8,41 @@ import PropTypes from 'prop-types';
 import Seo from './Seo';
 
 // Export this for unit testing more easily
-export class ArticleCard extends PureComponent {
+export class Article extends PureComponent {
   authorLinks = (i, link, text) => {
     switch (text) {
       case 'Facebook':
         return (
           <a key={i} className="" href={link} target="_blank">
-            <img className="dib  pr3  authorCard__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt={text} />
+            <img className="dib  pr3  author__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt={text} />
           </a>
         );
       case 'Twitter':
         return (
           <a key={i} className="" href={link} target="_blank">
-            <img className="dib  pr3  authorCard__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-twitter-5.png')} alt={text} />
+            <img className="dib  pr3  author__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-twitter-5.png')} alt={text} />
           </a>
         );
       case 'Instagram':
         return (
           <a key={i} className="" href={link} target="_blank">
-            <img className="dib  pr3  authorCard__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-instagram-5.png')} alt={text} />
+            <img className="dib  pr3  author__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-instagram-5.png')} alt={text} />
           </a>
         );
       case 'Youtube':
         return (
           <a key={i} className="" href={link} target="_blank">
-            <img className="dib  pr3  authorCard__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-youtube-5.png')} alt={text} />
+            <img className="dib  pr3  author__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-youtube-5.png')} alt={text} />
           </a>
         );
       case 'Soundcloud':
         return (
           <a key={i} className="" href={link} target="_blank">
-            <img className="dib  pr3  authorCard__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-soundcloud-5.png')} alt={text} />
+            <img className="dib  pr3  author__social-link--icon" width="50" src={require('../../containers/App/assets/social/iconmonstr-soundcloud-5.png')} alt={text} />
           </a>
         );
       default:
-        return <a key={i} className="link  pr3  t8  fornt-normal-a  dark-grey  authorCard__social-link" href={link} target="_blank">{text}</a>;
+        return <a key={i} className="link  pr3  t8  fornt-normal-a  dark-grey  author__social-link" href={link} target="_blank">{text}</a>;
     }
   }
 
@@ -57,13 +57,13 @@ export class ArticleCard extends PureComponent {
           <div className="row">
             <div className="col-xs-20  col-xs-offset-2  col-md-16  col-md-offset-4">
               <div className="row  shadow2  br2">
-                <div className="link  w-100  authorCard__cont">
+                <div className="link  w-100  author__cont">
                   <div className="center  pt3">
 
                     <div className="col-md-6">
                       <figure className="rel  center  link  w-100  zoom-in-fade-in-iteration--cont  pb2-md">
-                        <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="shadow2  authorCard__img--cont  db">
-                          <img className="mb3  center  w4  zoom-in-fade-in-iteration--item  authorCard__img" alt={author.name} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
+                        <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="shadow2  author__img--cont  db">
+                          <img className="mb3  center  w4  zoom-in-fade-in-iteration--item  author__img" alt={author.name} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
                         </Link>
                       </figure>
                     </div>
@@ -93,12 +93,12 @@ export class ArticleCard extends PureComponent {
   }
 }
 
-ArticleCard.propTypes = {
+Article.propTypes = {
   info: PropTypes.shape(),
 };
 
-ArticleCard.defaultProps = {
+Article.defaultProps = {
   info: {},
 };
 
-export default ArticleCard;
+export default Article;

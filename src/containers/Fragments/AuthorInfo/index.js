@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
-import AuthorCard from '../../../components/AuthorCard';
+import Author from '../../../components/Author';
 
 
 export class AuthorInfo extends PureComponent {
@@ -18,25 +18,25 @@ export class AuthorInfo extends PureComponent {
     this.props.fetchAuthorIfNeeded(id);
   }
 
-  renderAuthorCard = () => {
+  renderAuthor = () => {
     const { authorInfo, match: { params } } = this.props;
     const authorInfoById = authorInfo[params.id];
 
-    if (!authorInfoById || authorInfoById.readyStatus === action.AUTHOR_REQUESTING) {
+    if (
+      !authorInfoById ||
+      authorInfoById.readyStatus === action.AUTHOR_REQUESTING ||
+      authorInfoById.readyStatus === action.AUTHOR_FAILURE
+    ) {
       return <div className="vh-100" />;
     }
 
-    if (authorInfoById.readyStatus === action.AUTHOR_FAILURE) {
-      return <p>Oops, Failed to load info!</p>;
-    }
-
-    return <AuthorCard info={authorInfoById.info} />;
+    return <Author info={authorInfoById.info} />;
   }
 
   render() {
     return (
       <div>
-        {this.renderAuthorCard()}
+        {this.renderAuthor()}
       </div>
     );
   }

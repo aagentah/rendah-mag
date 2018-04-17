@@ -19,13 +19,10 @@ export class Authors extends PureComponent {
     if (
       !authors.readyStatus ||
       authors.readyStatus === action.AUTHORS_INVALID ||
-      authors.readyStatus === action.AUTHORS_REQUESTING
+      authors.readyStatus === action.AUTHORS_REQUESTING ||
+      authors.readyStatus === action.AUTHORS_FAILURE
     ) {
       return <div className="vh-100" />;
-    }
-
-    if (authors.readyStatus === action.AUTHORS_FAILURE) {
-      return <div />;
     }
 
     return <LatestAuthorList list={authors.list} />;
