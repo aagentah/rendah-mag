@@ -22,12 +22,12 @@ export class AuthorInfo extends PureComponent {
     const { authorInfo, match: { params } } = this.props;
     const authorInfoById = authorInfo[params.id];
 
-    if (!authorInfoById || authorInfoById.readyStatus === action.AUTHOR_REQUESTING) {
+    if (
+      !authorInfoById ||
+      authorInfoById.readyStatus === action.AUTHOR_REQUESTING ||
+      authorInfoById.readyStatus === action.AUTHOR_FAILURE
+    ) {
       return <div className="vh-100" />;
-    }
-
-    if (authorInfoById.readyStatus === action.AUTHOR_FAILURE) {
-      return <p>Oops, Failed to load info!</p>;
     }
 
     return <AuthorCard info={authorInfoById.info} />;
