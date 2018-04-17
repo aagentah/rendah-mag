@@ -20,7 +20,8 @@ export class SearchArticles extends PureComponent {
     if (
       !searchArticles.readyStatus ||
       searchArticles.readyStatus === action.SEARCHARTICLES_INVALID ||
-      searchArticles.readyStatus === action.SEARCHARTICLES_REQUESTING
+      searchArticles.readyStatus === action.SEARCHARTICLES_REQUESTING ||
+      searchArticles.readyStatus === action.SEARCHARTICLES_FAILURE
     ) {
       return (
         <div className="loader  loader--low">
@@ -29,10 +30,6 @@ export class SearchArticles extends PureComponent {
           <span className="spinner3" />
         </div>
       );
-    }
-
-    if (searchArticles.readyStatus === action.SEARCHARTICLES_FAILURE) {
-      return <div />;
     }
 
     return <SearchArticleList list={searchArticles.list} />;

@@ -19,7 +19,8 @@ export class WeekArticles extends PureComponent {
     if (
       !weekArticles.readyStatus ||
       weekArticles.readyStatus === action.WEEKARTICLES_INVALID ||
-      weekArticles.readyStatus === action.WEEKARTICLES_REQUESTING
+      weekArticles.readyStatus === action.WEEKARTICLES_REQUESTING ||
+      weekArticles.readyStatus === action.WEEKARTICLES_FAILURE
     ) {
       return (
         <div className="loader">
@@ -28,10 +29,6 @@ export class WeekArticles extends PureComponent {
           <span className="spinner3" />
         </div>
       );
-    }
-
-    if (weekArticles.readyStatus === action.WEEKARTICLES_FAILURE) {
-      return <div />;
     }
 
     return <WeekArticleList list={weekArticles.list} />;

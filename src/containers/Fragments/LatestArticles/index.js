@@ -19,7 +19,8 @@ export class LatestArticles extends PureComponent {
     if (
       !latestArticles.readyStatus ||
       latestArticles.readyStatus === action.LATESTARTICLES_INVALID ||
-      latestArticles.readyStatus === action.LATESTARTICLES_REQUESTING
+      latestArticles.readyStatus === action.LATESTARTICLES_REQUESTING ||
+      latestArticles.readyStatus === action.LATESTARTICLES_FAILURE
     ) {
       return (
         <div className="loader">
@@ -28,10 +29,6 @@ export class LatestArticles extends PureComponent {
           <span className="spinner3" />
         </div>
       );
-    }
-
-    if (latestArticles.readyStatus === action.LATESTARTICLES_FAILURE) {
-      return <div />;
     }
 
     return <LatestArticleList list={latestArticles.list} />;

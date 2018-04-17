@@ -19,13 +19,10 @@ export class ExtraArticles extends PureComponent {
     if (
       !extraArticles.readyStatus ||
       extraArticles.readyStatus === action.EXTRAARTICLES_INVALID ||
-      extraArticles.readyStatus === action.EXTRAARTICLES_REQUESTING
+      extraArticles.readyStatus === action.EXTRAARTICLES_REQUESTING ||
+      extraArticles.readyStatus === action.EXTRAARTICLES_FAILURE
     ) {
       return <div className="vh-100" />;
-    }
-
-    if (extraArticles.readyStatus === action.EXTRAARTICLES_FAILURE) {
-      return <div />;
     }
 
     return <LatestArticleList list={extraArticles.list} />;

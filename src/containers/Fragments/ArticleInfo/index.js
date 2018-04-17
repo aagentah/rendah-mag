@@ -22,12 +22,12 @@ export class ArticleInfo extends PureComponent {
     const { articleInfo, match: { params } } = this.props;
     const articleInfoById = articleInfo[params.id];
 
-    if (!articleInfoById || articleInfoById.readyStatus === action.ARTICLE_REQUESTING) {
+    if (
+      !articleInfoById ||
+      articleInfoById.readyStatus === action.ARTICLE_REQUESTING ||
+      articleInfoById.readyStatus === action.ARTICLE_FAILURE
+    ) {
       return <div className="vh-100" />;
-    }
-
-    if (articleInfoById.readyStatus === action.ARTICLE_FAILURE) {
-      return <p>Oops, Failed to load info!</p>;
     }
 
     return <ArticleCard info={articleInfoById.info} />;
