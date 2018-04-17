@@ -22,7 +22,7 @@ import ArticleLink from './Sections/Link';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 
 
-export class ArticleCard extends PureComponent {
+export class Article extends PureComponent {
   heading = () => {
     const title = this.props.info.title;
 
@@ -31,7 +31,7 @@ export class ArticleCard extends PureComponent {
         <h1 className="pb3  pt2  title-font">{title}</h1>
       );
     }
-    console.log('Not Returned: ArticleCard.heading');
+    console.log('Not Returned: Article.heading');
     return false;
   };
 
@@ -131,11 +131,11 @@ export class ArticleCard extends PureComponent {
             </div>
           );
         default:
-          console.log('Not Returned: ArticleCard.section.switch');
+          console.log('Not Returned: Article.section.switch');
           return false;
       }
     }
-    console.log('Not Returned: ArticleCard.sections');
+    console.log('Not Returned: Article.sections');
     return false;
   }
 
@@ -148,15 +148,15 @@ export class ArticleCard extends PureComponent {
       <div>
         <Seo data={article} />
         <div>
-          <div className="articleCard">
+          <div className="article">
 
-            <figure className="rel  articleCard__hero">
-              <div className="articleCard__hero--background" style={{ backgroundImage: `url(http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img})` }}></div>
-              <img className="articleCard__hero--img" alt={article.title} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
+            <figure className="rel  article__hero">
+              <div className="article__hero--background" style={{ backgroundImage: `url(http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img})` }}></div>
+              <img className="article__hero--img" alt={article.title} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
             </figure>
 
             <section className="rel">
-              <article className="container  articleCard__content">
+              <article className="container  article__content">
                 <div className="row">
                   <div className="col-md-16  col-md-offset-4  ph4-sm">
                     <span className="grey  t8">{article.created} | </span>
@@ -178,12 +178,12 @@ export class ArticleCard extends PureComponent {
   }
 }
 
-ArticleCard.propTypes = {
+Article.propTypes = {
   info: PropTypes.shape(),
 };
 
-ArticleCard.defaultProps = {
+Article.defaultProps = {
   info: {},
 };
 
-export default ArticleCard;
+export default Article;

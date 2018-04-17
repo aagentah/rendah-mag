@@ -1,9 +1,9 @@
 /* stylelint-disable */
-  .authorCard__cont {
+  .author__cont {
     min-height: 170px;
   }
 
-  .authorCard__img--cont {
+  .author__img--cont {
     height: 135px;
     overflow: hidden;
     @media only screen and (max-width: $md - 1px) {
@@ -11,7 +11,7 @@
     }
   }
 
-  .authorCard__img {
+  .author__img {
     height: 135px;
     width: 100%;
     object-fit: cover;
@@ -22,12 +22,12 @@
     }
   }
 
-  .authorCard__social-link {
+  .author__social-link {
     line-height: 30px;
     vertical-align: text-bottom;
   }
 
-  .authorCard__social-link--icon {
+  .author__social-link--icon {
     margin-top: 8px;
     height: 28px;
     width: auto;

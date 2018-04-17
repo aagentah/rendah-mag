@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
-import ArticleCard from '../../../components/ArticleCard';
+import Article from '../../../components/Article';
 
 
 export class ArticleInfo extends PureComponent {
@@ -18,7 +18,7 @@ export class ArticleInfo extends PureComponent {
     this.props.fetchArticleIfNeeded(id);
   }
 
-  renderArticleCard = () => {
+  renderArticle = () => {
     const { articleInfo, match: { params } } = this.props;
     const articleInfoById = articleInfo[params.id];
 
@@ -30,13 +30,13 @@ export class ArticleInfo extends PureComponent {
       return <div className="vh-100" />;
     }
 
-    return <ArticleCard info={articleInfoById.info} />;
+    return <Article info={articleInfoById.info} />;
   }
 
   render() {
     return (
       <div>
-        {this.renderArticleCard()}
+        {this.renderArticle()}
       </div>
     );
   }
