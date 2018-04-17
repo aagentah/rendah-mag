@@ -1,17 +1,17 @@
 /* stylelint-disable */
 
-  .articleCard {
+  .article {
     opacity: 0;
-    animation: articleCard 0.4s ease both;
+    animation: article 0.4s ease both;
   }
 
-  .articleCard__hero {
+  .article__hero {
     height: 50vh;
     width: 100%;
     overflow: hidden;
   }
 
-  .articleCard__hero--background {
+  .article__hero--background {
     height: 50vh;
     width: 100%;
     filter: blur(8px);
@@ -20,10 +20,10 @@
     animation-delay: 0s;
     background-size: cover;
     transform: scale(1.5);
-    animation: articleCard__hero--background--zoomIn 0.6s ease both;
+    animation: article__hero--background--zoomIn 0.6s ease both;
   }
 
-  .articleCard__hero--img {
+  .article__hero--img {
     margin: 0 auto;
     position: absolute;
     left: 0;
@@ -32,12 +32,12 @@
     object-fit: cover;
     object-position: center;
     height: 50vh;
-    animation: articleCard__hero--img--zoomIn 0.6s ease both;
+    animation: article__hero--img--zoomIn 0.6s ease both;
   }
 
-  .articleCard__content {
+  .article__content {
     margin-top: 40px;
-    animation: articleCard__content--appear 0.4s ease both;
+    animation: article__content--appear 0.4s ease both;
     animation-delay: 0.4s;
 
         p {
@@ -47,7 +47,7 @@
 
   // anims
 
-  @keyframes articleCard__hero--background--zoomIn {
+  @keyframes article__hero--background--zoomIn {
     0% {
       transform: scale(1.1);
     }
@@ -57,7 +57,7 @@
     }
   }
 
-  @keyframes articleCard__hero--img--zoomIn {
+  @keyframes article__hero--img--zoomIn {
     0% {
       transform: scale(1.1);
     }
@@ -67,7 +67,7 @@
     }
   }
 
-  @keyframes articleCard {
+  @keyframes article {
     0% {
       opacity: 0;
     }
@@ -77,7 +77,7 @@
     }
   }
 
-  @keyframes articleCard__content--appear {
+  @keyframes article__content--appear {
       0% {
         opacity: 0;
       }
