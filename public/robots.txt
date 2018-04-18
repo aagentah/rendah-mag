@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-SITEMAP: http://www.rendahmag.com/sitemap.xml
+SITEMAP: http://www.rendahmag.com/feeds/sitemap.xml
