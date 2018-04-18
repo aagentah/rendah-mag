@@ -88,6 +88,7 @@
 @import "modules/CategoryGrid";
 @import "modules/FacebookComments";
 @import "modules/Soundcloud";
+@import "modules/Loading";
 
 .page-fade-in {
   -webkit-animation: page-fade-in 0.5s ease-in-out; /* Safari, Chrome and Opera > 12.1 */
@@ -100,52 +101,4 @@
 @keyframes page-fade-in {
     from { opacity: 0; }
     to   { opacity: 1; }
-}
-
-
-.loader {
-  padding-top: 140px;
-  height: 300px;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  width: 50px;
-}
-
-.loader--low {
-  padding-top: 80px;
-  height: 200px;
-}
-
-.loader span {
-  margin: 0 auto;
-  background: palette(grey);
-  border-color: palette(dark-grey);
-  height: 20px;
-  width: 8px;
-  margin-left: 4px;
-  transform-origin: center center;
-  animation: 1.5s ease spinner1 999;
-}
-
-.loader .spinner2 {
-  animation-delay: 0.1s;
-}
-
-.loader .spinner3 {
-  animation-delay: 0.2s;
-}
-@keyframes spinner1 {
-  0%,
-  100%,
-  50% {
-    transform: scaleX(1) scaleY(1);
-  }
-
-  25% {
-    transform: scaleX(1.2) scaleY(1.6);
-    background: palette(dark-grey);
-    border: palette(grey);
-  }
 }

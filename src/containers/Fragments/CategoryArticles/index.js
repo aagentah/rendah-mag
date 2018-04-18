@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
+import Loading from '../../../components/Loading';
 import LatestArticleList from '../../../components/ArticleList/Latest';
 
 
@@ -23,13 +24,7 @@ export class CategoryArticles extends PureComponent {
       categoryArticles.readyStatus === action.CATEGORYARTICLES_REQUESTING ||
       categoryArticles.readyStatus === action.CATEGORYARTICLES_FAILURE
     ) {
-      return (
-        <div className="loader  loader--low">
-          <span className="spinner1" />
-          <span className="spinner2" />
-          <span className="spinner3" />
-        </div>
-      );
+      return <Loading type="CategoryArticles" />;
     }
 
     return <LatestArticleList list={categoryArticles.list} />;

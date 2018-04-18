@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
+import Loading from '../../../components/Loading';
 import LatestAuthorList from '../../../components/AuthorList';
 
 
@@ -22,7 +23,7 @@ export class Authors extends PureComponent {
       authors.readyStatus === action.AUTHORS_REQUESTING ||
       authors.readyStatus === action.AUTHORS_FAILURE
     ) {
-      return <div className="vh-100" />;
+      return <Loading type="Authors" />;
     }
 
     return <LatestAuthorList list={authors.list} />;
