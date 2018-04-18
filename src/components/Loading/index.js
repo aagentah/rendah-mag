@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 
-export class Heading extends PureComponent {
+export class Loading extends PureComponent {
   renderLoading = () => {
     return (
       <div className={`Loading  Loading--${this.props.type}`}>
@@ -25,12 +25,12 @@ export class Heading extends PureComponent {
   }
 }
 
-Heading.propTypes = {
+Loading.propTypes = {
   type: PropTypes.string,
 };
 
-Heading.defaultProps = {
+Loading.defaultProps = {
   type: '',
 };
 
-export default Heading;
+export default Loading;
