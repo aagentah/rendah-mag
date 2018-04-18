@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
+import Loading from '../../../components/Loading';
 import Author from '../../../components/Author';
 
 
@@ -27,7 +28,7 @@ export class AuthorInfo extends PureComponent {
       authorInfoById.readyStatus === action.AUTHOR_REQUESTING ||
       authorInfoById.readyStatus === action.AUTHOR_FAILURE
     ) {
-      return <div className="vh-100" />;
+      return <Loading type="AuthorInfo" />;
     }
 
     return <Author info={authorInfoById.info} seo={this.props.seo} />;
