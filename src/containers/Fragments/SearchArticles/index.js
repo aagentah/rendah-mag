@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
+import Loading from '../../../components/Loading';
 import SearchArticleList from '../../../components/ArticleList/Search';
 
 
@@ -23,13 +24,7 @@ export class SearchArticles extends PureComponent {
       searchArticles.readyStatus === action.SEARCHARTICLES_REQUESTING ||
       searchArticles.readyStatus === action.SEARCHARTICLES_FAILURE
     ) {
-      return (
-        <div className="loader  loader--low">
-          <span className="spinner1" />
-          <span className="spinner2" />
-          <span className="spinner3" />
-        </div>
-      );
+      return <Loading type="SearchArticles" />;
     }
 
     return <SearchArticleList list={searchArticles.list} />;
