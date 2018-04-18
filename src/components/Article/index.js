@@ -170,7 +170,7 @@ export class Article extends PureComponent {
               </article>
             </section>
 
-            <AuthorInfo match={authorInfoMatch} />
+            <AuthorInfo match={authorInfoMatch} seo={'false'} />
           </div>
         </div>
       </div>
