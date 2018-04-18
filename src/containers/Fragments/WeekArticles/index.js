@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
+import Loading from '../../../components/Loading';
 import WeekArticleList from '../../../components/ArticleList/Week';
 
 
@@ -22,13 +23,7 @@ export class WeekArticles extends PureComponent {
       weekArticles.readyStatus === action.WEEKARTICLES_REQUESTING ||
       weekArticles.readyStatus === action.WEEKARTICLES_FAILURE
     ) {
-      return (
-        <div className="loader">
-          <span className="spinner1" />
-          <span className="spinner2" />
-          <span className="spinner3" />
-        </div>
-      );
+      return <Loading type="WeekArticles" />;
     }
 
     return <WeekArticleList list={weekArticles.list} />;

@@ -1,12 +1,13 @@
-/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default,
+import/no-named-as-default-member */
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
+import Loading from '../../../components/Loading';
 import Article from '../../../components/Article';
-
 
 export class ArticleInfo extends PureComponent {
   componentDidMount() {
@@ -27,7 +28,7 @@ export class ArticleInfo extends PureComponent {
       articleInfoById.readyStatus === action.ARTICLE_REQUESTING ||
       articleInfoById.readyStatus === action.ARTICLE_FAILURE
     ) {
-      return <div className="vh-100" />;
+      return <Loading type="ArticleInfo" />;
     }
 
     return <Article info={articleInfoById.info} />;
