@@ -211,12 +211,6 @@ app.get('/api/search', (req, res) => {
             $options: 'i',
           },
         },
-        {
-          keywords: {
-            $regex: `.*${req.query.searchQuery}.*`,
-            $options: 'i',
-          },
-        },
       ],
     })
     .limit(24)
