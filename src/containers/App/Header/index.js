@@ -40,9 +40,21 @@ const Header = (): Element<'div'> => (
       </nav>
       <div className="header__social--cont  pr0-sm">
         <SearchInput textAlign="inherit" />
-        <a className="header__social  ph1  dn-sm" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank"><img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" /></a>
-        <a className="header__social  ph1  dn-sm" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank"><img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" /></a>
-        <a className="header__social  ph1  dn-sm" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank"><img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" /></a>
+        <a className="header__social  ph1  dn-sm" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+          <img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
+        </a>
+        <a className="header__social  ph1  dn-sm" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
+          <img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
+        </a>
+        <a className="header__social  ph1  dn-sm" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+          <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
+        </a>
+        <a className="header__social  ph1  dn-sm" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+          <img src={require('../assets/social/iconmonstr-soundcloud-5.png')} alt="soundcloud" />
+        </a>
+        <a className="header__social  ph1  dn-sm" href="https://www.youtube.com/channel/UCFpU3WYYWy5qWSYf306_m3A" rel="noopener noreferrer" target="_blank">
+          <img src={require('../assets/social/iconmonstr-youtube-5.png')} alt="youtube" />
+        </a>
       </div>
     </header>
   </div>
