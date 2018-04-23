@@ -49,7 +49,7 @@ export class Article extends PureComponent {
   render() {
     const author = this.props.info;
     const authorLinks = this.authorLinks;
-    const renderSeo = (this.props.seo.length) ? <Seo data={author} /> : null;
+    const renderSeo = (this.props.seo) ? <Seo data={author} /> : null;
     return (
       <div>
         {renderSeo}
@@ -100,7 +100,7 @@ Article.propTypes = {
 
 Article.defaultProps = {
   info: {},
-  seo: true,
+  seo: false,
 };
 
 export default Article;
