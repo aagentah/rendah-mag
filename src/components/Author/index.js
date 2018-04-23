@@ -49,10 +49,10 @@ export class Article extends PureComponent {
   render() {
     const author = this.props.info;
     const authorLinks = this.authorLinks;
-
+    const renderSeo = (this.props.seo === 'true') ? <Seo data={author} /> : null;
     return (
       <div>
-        <Seo data={author} />
+        {renderSeo}
         <div className="container  mv4  zoom-in-fade-in-iteration--cont">
           <div className="row">
             <div className="col-xs-20  col-xs-offset-2  col-md-16  col-md-offset-4">
@@ -95,10 +95,12 @@ export class Article extends PureComponent {
 
 Article.propTypes = {
   info: PropTypes.shape(),
+  seo: PropTypes.bool,
 };
 
 Article.defaultProps = {
   info: {},
+  seo: true,
 };
 
 export default Article;

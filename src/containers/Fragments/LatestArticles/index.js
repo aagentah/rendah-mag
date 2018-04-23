@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
+import Loading from '../../../components/Loading';
 import LatestArticleList from '../../../components/ArticleList/Latest';
 
 
@@ -22,13 +23,7 @@ export class LatestArticles extends PureComponent {
       latestArticles.readyStatus === action.LATESTARTICLES_REQUESTING ||
       latestArticles.readyStatus === action.LATESTARTICLES_FAILURE
     ) {
-      return (
-        <div className="loader">
-          <span className="spinner1" />
-          <span className="spinner2" />
-          <span className="spinner3" />
-        </div>
-      );
+      return <Loading type="LatestArticles" />;
     }
 
     return <LatestArticleList list={latestArticles.list} />;
