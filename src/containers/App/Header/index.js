@@ -49,7 +49,7 @@ const Header = (): Element<'div'> => (
         <a className="header__social  ph1  dn-sm" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
           <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
         </a>
-        <a className="header__social  ph1  dn-sm" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+        <a className="header__social  ph1  dn-sm" href="https://www.soundcloud.com/rendahmag/" rel="noopener noreferrer" target="_blank">
           <img src={require('../assets/social/iconmonstr-soundcloud-5.png')} alt="soundcloud" />
         </a>
         <a className="header__social  ph1  dn-sm" href="https://www.youtube.com/channel/UCFpU3WYYWy5qWSYf306_m3A" rel="noopener noreferrer" target="_blank">
