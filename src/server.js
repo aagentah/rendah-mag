@@ -261,11 +261,11 @@ app.get('/api/category', (req, res) => {
 app.get('/api/article', (req, res) => {
   let article = {};
   let param = req.query.title;
-  param = param.replace(/-/g, ' ');
+  // param = param.replace(/-/g, ' ');
 
   db.collection('articles')
     .findOne({
-      title: param,
+      url: param,
     })
     .then((result) => {
       article = result;
