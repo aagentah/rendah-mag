@@ -21,15 +21,16 @@ export class Contact extends PureComponent {
           <div className="row">
             <div className="col-sm-14">
               <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">Contact</h1>
-              <p>Get involved. We&apos;re constantly on the look out for new members for the Rendah team.</p>
-              <ul>
-                <li className="pv1">Are you a listener and want to start writing articles?</li>
-                <li className="pv1">Are you a developer and want to help us code the site/side projects?</li>
-                <li className="pv1">Are you an artist and want a Rendah feature/review/interview?</li>
-                <li className="pv1">Are you a visual artist and want to promote artwork on the site?</li>
-              </ul>
-              <p>Even if you&apos;re none of the above and want to get involved, we encourage you to get in touch!<br /><br /></p>
-              <p>Please email: <a href="mailto:info@rendahmag.com">info@rendahmag.com</a></p>
+              <p className="pb3">
+                Rendah exists to bring exposure to a somewhat small community, with so much new talent emerging,
+                The future of the Beats movement is looking very promising. Rendah is built from within the community.
+                Get involved. We&apos;re constantly on the look out for new members for the Rendah team. Whether
+                you&apos;re a writer, a developer, an artist, a label or even just a fan, we encourage you to get in touch!
+              </p>
+              <a href="mailto:info@rendahmag.com">
+                <img className="w2  dib  pr2" src={require('../../App/assets/social/iconmonstr-email-11.png')} alt="facebook" />
+                <span className="contact__email--link  dib  pb3  black  no-underline">info@rendahmag.com</span>
+              </a>
             </div>
             <div className="col-sm-10">
               <div className="container-fluid  pv4">
