@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
+import Loading from '../../../components/Loading';
 import LatestArticleList from '../../../components/ArticleList/Latest';
 
 
@@ -22,7 +23,7 @@ export class ExtraArticles extends PureComponent {
       extraArticles.readyStatus === action.EXTRAARTICLES_REQUESTING ||
       extraArticles.readyStatus === action.EXTRAARTICLES_FAILURE
     ) {
-      return <div className="vh-100" />;
+      return <Loading type="ExtraArticles" />;
     }
 
     return <LatestArticleList list={extraArticles.list} />;

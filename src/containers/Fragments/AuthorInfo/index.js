@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
+import Loading from '../../../components/Loading';
 import Author from '../../../components/Author';
 
 
@@ -27,10 +28,10 @@ export class AuthorInfo extends PureComponent {
       authorInfoById.readyStatus === action.AUTHOR_REQUESTING ||
       authorInfoById.readyStatus === action.AUTHOR_FAILURE
     ) {
-      return <div className="vh-100" />;
+      return <Loading type="AuthorInfo" />;
     }
 
-    return <Author info={authorInfoById.info} />;
+    return <Author info={authorInfoById.info} seo={this.props.seo} />;
   }
 
   render() {
@@ -58,6 +59,7 @@ AuthorInfo.propTypes = {
   }),
   match: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   fetchAuthorIfNeeded: PropTypes.func,
+  seo: PropTypes.bool,
 };
 
 AuthorInfo.defaultProps = {
@@ -69,6 +71,7 @@ AuthorInfo.defaultProps = {
   },
   match: [],
   fetchAuthorIfNeeded: () => {},
+  seo: true,
 };
 
 export default connector(AuthorInfo);
