@@ -14,25 +14,30 @@ export class Seo extends PureComponent {
     return (
       <div>
         <Helmet>
-          <title>{article.name}</title>
-          <meta name="description" content={article.name} />
+          <title>{article.title}</title>
+          <meta name="description" content={article.description} />
 
           {/* Google+ */}
-          <meta itemprop="name" content={article.name} />
-          <meta itemprop="description" content={article.name} />
+          <meta itemprop="name" content={article.title} />
+          <meta itemprop="description" content={article.description} />
+          <meta itemprop="image" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
+
           {/* Twitter  */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@RendahMag" />
-          <meta name="twitter:title" content={article.name} />
-          <meta name="twitter:description" content={article.name} />
+          <meta name="twitter:title" content={article.title} />
+          <meta name="twitter:description" content={article.description} />
+          <meta name="twitter:image:src" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
 
           {/* Open Graph data */}
-          <meta property="og:title" content={article.name} />
+          <meta property="og:title" content={article.title} />
           <meta property="og:type" content="article" />
-          <meta property="og:description" content={article.name} />
+          <meta property="og:url" content="http://www.RendahMag.com/" />
+          <meta property="og:image" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
+          <meta property="og:description" content={article.description} />
           <meta property="og:site_name" content="Rendah" />
-          <meta property="article:published_time" content={article.name} />
-          <meta property="article:modified_time" content={article.name} />
+          <meta property="article:published_time" content={article.created} />
+          <meta property="article:modified_time" content={article.created} />
           <meta property="article:section" content="article" />
         </Helmet>
       </div>
