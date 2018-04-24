@@ -4,14 +4,14 @@ export const ARTICLE_FAILURE = 'ARTICLE_FAILURE';
 export const ARTICLE_SUCCESS = 'ARTICLE_SUCCESS';
 
 // export const API_URL = 'https://jsonplaceholder.typicode.com/articles';
-export const API_URL = '/api/article';
+export const API_URL = 'https://jsonplaceholder.typicode.com/users/2';
 
 
 export const fetchArticle = (articleId: string, axios: any, URL: string = API_URL) =>
   (dispatch) => {
     dispatch({ type: ARTICLE_REQUESTING, articleId });
 
-    return axios.get(URL, { params: { title: articleId } })
+    return axios.get(URL)
       .then(res => dispatch({ type: ARTICLE_SUCCESS, articleId, data: res.data }))
       .catch(err => dispatch({ type: ARTICLE_FAILURE, articleId, err: err.message }));
   };
