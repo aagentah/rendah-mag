@@ -5,9 +5,6 @@ jsx-a11y/no-static-element-interactions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
-import Seo from './Seo';
-
 import Heading from './Sections/Heading';
 import Paragraph from './Sections/Paragraph';
 import Image from './Sections/Image';
@@ -146,7 +143,6 @@ export class Article extends PureComponent {
 
     return (
       <div>
-        <Seo data={article} />
         <div>
           <div className="article">
 

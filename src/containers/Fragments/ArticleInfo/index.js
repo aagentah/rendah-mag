@@ -4,7 +4,7 @@ import/no-named-as-default-member */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import Helmet from 'react-helmet';
 import * as action from './action';
 import Loading from '../../../components/Loading';
 import Article from '../../../components/Article';
@@ -35,8 +35,20 @@ export class ArticleInfo extends PureComponent {
   }
 
   render() {
+    const dataArray = this.renderArticle().props.info;
+    let renderData;
+    if (dataArray) {
+      renderData = (
+        <Helmet>
+          <meta data-react-helmet="true" property="og:title" content={dataArray.title} />
+          <meta data-react-helmet="true" property="og:description" content={dataArray.description} />
+          <meta data-react-helmet="true" property="og:image" content={`http://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${dataArray.img}`} />
+        </Helmet>
+      );
+    }
     return (
       <div>
+        {renderData}
         {this.renderArticle()}
       </div>
     );
