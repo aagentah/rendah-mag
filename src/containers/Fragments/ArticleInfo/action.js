@@ -11,7 +11,7 @@ export const fetchArticle = (articleId: string, axios: any, URL: string = API_UR
   (dispatch) => {
     dispatch({ type: ARTICLE_REQUESTING, articleId });
 
-    return axios.get(URL, { params: { title: articleId } })
+    return axios.get(URL)
       .then(res => dispatch({ type: ARTICLE_SUCCESS, articleId, data: res.data }))
       .catch(err => dispatch({ type: ARTICLE_FAILURE, articleId, err: err.message }));
   };
