@@ -240,7 +240,7 @@
     "identity-obj-proxy": "^3.0.0",
     "image-webpack-loader": "^3.4.2",
     "nock": "9.0.27",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.9.0",
     "nodemon": "^1.12.1",
     "postcss": "^6.0.13",
     "postcss-loader": "^2.0.8",
