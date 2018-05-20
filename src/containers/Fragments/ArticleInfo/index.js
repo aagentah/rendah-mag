@@ -4,6 +4,7 @@ import/no-named-as-default-member */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
@@ -31,7 +32,12 @@ export class ArticleInfo extends PureComponent {
       return <Loading type="ArticleInfo" />;
     }
 
-    return <Article info={articleInfoById.info} />;
+    return (
+      <React.Fragment>
+        <Helmet title={articleInfoById.info.title} />
+        <Article info={articleInfoById.info} />
+      </React.Fragment>
+    );
   }
 
   render() {
