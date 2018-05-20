@@ -4,7 +4,7 @@ export const ARTICLE_FAILURE = 'ARTICLE_FAILURE';
 export const ARTICLE_SUCCESS = 'ARTICLE_SUCCESS';
 
 // export const API_URL = 'https://jsonplaceholder.typicode.com/articles';
-export const API_URL = 'https://storage.googleapis.com/rendah-articles/test.json';
+export const API_URL = 'http://www.rendahmag.com/api/article';
 
 
 export const fetchArticle = (articleId: string, axios: any, URL: string = API_URL) =>
