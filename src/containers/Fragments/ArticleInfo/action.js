@@ -4,7 +4,7 @@ export const ARTICLE_FAILURE = 'ARTICLE_FAILURE';
 export const ARTICLE_SUCCESS = 'ARTICLE_SUCCESS';
 
 // export const API_URL = 'https://jsonplaceholder.typicode.com/articles';
-export const API_URL = 'http://rendahmag.com/api/article';
+export const API_URL = 'https://rendah-mag.herokuapp.com/api/article';
 
 
 export const fetchArticle = (articleId: string, axios: any, URL: string = API_URL) =>
