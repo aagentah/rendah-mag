@@ -33,10 +33,10 @@ export class ArticleInfo extends PureComponent {
     }
 
     return (
-      <React.Fragment>
+      <div>
         <Helmet title={articleInfoById.info.title} />
-        <Article info={articleInfoById.info} />
-      </React.Fragment>
+        <Article info={articleInfoById.info} />;
+      </div>
     );
   }
 
