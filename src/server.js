@@ -12,7 +12,7 @@ import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import chalk from 'chalk';
-
+import cors from 'cors';
 import createHistory from 'history/createMemoryHistory';
 import configureStore from './redux/store';
 import Html from './utils/Html';
@@ -28,6 +28,8 @@ app.use(helmet());
 app.use(hpp());
 // Compress all requests
 app.use(compression());
+// begin CORS
+app.use(cors());
 
 // Use morgan for http request debug (only show error)
 app.use(morgan('dev', { skip: (req, res) => res.statusCode < 400 }));
