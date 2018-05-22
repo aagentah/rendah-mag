@@ -34,7 +34,20 @@ export class ArticleInfo extends PureComponent {
 
     return (
       <div>
-        <Helmet title={articleInfoById.info.title} />
+        <Helmet>
+          <title>{articleInfoById.info.title}</title>
+          <meta name="description" content={articleInfoById.info.title} />
+
+          {/* Open Graph data */}
+          <meta property="og:title" content={articleInfoById.info.title} />
+          <meta property="og:type" content="article" />
+          <meta property="og:url" content="http://www.RendahMag.com/" />
+          <meta property="og:description" content={articleInfoById.info.title} />
+          <meta property="og:site_name" content="Rendah" />
+          <meta property="article:published_time" content={articleInfoById.info.title} />
+          <meta property="article:modified_time" content={article.created} />
+          <meta property="article:section" content="article" />
+        </Helmet>
         <Article info={articleInfoById.info} />;
       </div>
     );
