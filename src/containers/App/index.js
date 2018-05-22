@@ -7,7 +7,6 @@ import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import _ from 'lodash';
 
-import config from '../../config';
 import routes from '../../routes';
 import '../../theme/main.scss';
 
@@ -31,7 +30,6 @@ const App = (): Element<'div'> => {
 
   return (
     <div>
-      <Helmet {...config.app} />
       <div className="App">
         <Header />
         <Switch>{routes.map(route => routeWithSubRoutes(route))}</Switch>
