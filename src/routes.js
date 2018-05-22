@@ -16,7 +16,6 @@ import CategoryPage from './containers/Pages/Category';
 import ArticlePage from './containers/Pages/Article';
 import AuthorPage from './containers/Pages/Author';
 import NotFoundPage from './containers/Pages/NotFound';
-import AboutPage from './containers/Pages/About';
 import ContactPage from './containers/Pages/Contact';
 import AuthorsPage from './containers/Pages/Authors';
 
@@ -66,10 +65,6 @@ export default [
     loadData: (dispatch: Dispatch) => Promise.all([
       dispatch(fetchAuthorsIfNeeded()),
     ]),
-  },
-  {
-    path: '/About',
-    component: AboutPage,
   },
   {
     path: '/Contact',
