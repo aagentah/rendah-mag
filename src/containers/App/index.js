@@ -4,7 +4,6 @@
 import React from 'react';
 import type { Element } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Helmet from 'react-helmet';
 import _ from 'lodash';
 
 import routes from '../../routes';
