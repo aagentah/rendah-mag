@@ -6,6 +6,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import Seo from './Seo';
+
 import Heading from './Sections/Heading';
 import Paragraph from './Sections/Paragraph';
 import Image from './Sections/Image';
@@ -16,9 +18,7 @@ import NumberedList from './Sections/NumberedList';
 // import Soundcloud from './Sections/Soundcloud';
 import Youtube from './Sections/Youtube';
 import ArticleLink from './Sections/Link';
-
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
-
 
 export class Article extends PureComponent {
   heading = () => {
@@ -144,6 +144,7 @@ export class Article extends PureComponent {
 
     return (
       <div>
+        <Seo data={article} />
         <div>
           <div className="article">
 
