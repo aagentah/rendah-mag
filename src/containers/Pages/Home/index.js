@@ -20,6 +20,9 @@ export class Home extends PureComponent {
   render() {
     return (
       <main className="page-fade-in">
+        <Helmet>
+          <meta name="description" content="Nested component" />
+        </Helmet>
         <h1 className="dn">Home</h1>
         <WeekArticles />
         <p className="pt3  t6  fw6  black  tac  title-font">Subscribe to Rendah</p>

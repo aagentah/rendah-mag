@@ -28,7 +28,6 @@ const Html = ({ store, htmlContent }: Props): Element<'html'> => {
 
         {head.title.toComponent()}
         {head.base.toComponent()}
-        {head.meta.toComponent()}
         {head.link.toComponent()}
 
         {/* Styles will be presented in production with webpack extract text plugin */}
