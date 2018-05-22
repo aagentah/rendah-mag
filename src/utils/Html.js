@@ -25,18 +25,11 @@ const Html = ({ store, htmlContent }: Props): Element<'html'> => {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <meta name="description" content="Beats, Halftime & Future Bass Magazine" />
-        <meta property="fb:app_id" content="154881868603516" />
-        <meta property="og:type" content="website" />
-        <meta property="og:description" content="Beats, Halftime & Future Bass Magazine" />
-        <meta property="og:site_name" content="Rendah Mag" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@RendahMag" />
-        <meta name="twitter:description" content="Beats, Halftime & Future Bass Magazine" />
 
         {head.title.toComponent()}
         {head.base.toComponent()}
         {head.link.toComponent()}
+        {head.meta.toComponent()}
 
         {/* Styles will be presented in production with webpack extract text plugin */}
         {_.keys(assets.styles).map(style => (
