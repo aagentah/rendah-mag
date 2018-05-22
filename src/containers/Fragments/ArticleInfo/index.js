@@ -45,7 +45,7 @@ export class ArticleInfo extends PureComponent {
           <meta property="og:description" content={articleInfoById.info.title} />
           <meta property="og:site_name" content="Rendah" />
           <meta property="article:published_time" content={articleInfoById.info.title} />
-          <meta property="article:modified_time" content={article.created} />
+          <meta property="article:modified_time" content={articleInfoById.info.title} />
           <meta property="article:section" content="article" />
         </Helmet>
         <Article info={articleInfoById.info} />;
