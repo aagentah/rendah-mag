@@ -4,7 +4,7 @@ module.exports = {
   app: {
     htmlAttributes: { lang: 'en' },
     title: 'Rendah',
-    titleTemplate: '%s - Rendah',
+    titleTemplate: '%s | Rendah',
     meta: [
       {
         name: 'keywords',
