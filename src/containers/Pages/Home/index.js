@@ -8,6 +8,7 @@ import LatestArticles from '../../../containers/Fragments/LatestArticles';
 import SearchInput from '../../../components/SearchInput';
 import SubscribeBanner from '../../../components/SubscribeBanner';
 import CategoryGrid from '../../../components/CategoryGrid';
+import Helmet from 'react-helmet';
 
 export class Home extends PureComponent {
   componentDidMount() {
