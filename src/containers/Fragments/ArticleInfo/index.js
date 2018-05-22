@@ -1,5 +1,5 @@
 /* eslint-disable import/no-named-as-default,
-import/no-named-as-default-member */
+import/no-named-as-default-member, react/no-unknown-property */
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
