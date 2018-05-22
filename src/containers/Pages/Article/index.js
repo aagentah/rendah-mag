@@ -3,7 +3,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FacebookProvider, { Comments } from 'react-facebook';
-import Helmet from 'react-helmet';
 
 import ArticleInfo from '../../../containers/Fragments/ArticleInfo';
 import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
@@ -20,17 +19,6 @@ export class Article extends PureComponent {
   render() {
     return (
       <main className="page-fade-in">
-        <Helmet>
-          {/* Twitter  */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@RendahMag" />
-
-          {/* Open Graph data */}
-          <meta property="og:type" content="article" />
-          <meta property="og:site_name" content="Rendah" />
-          <meta property="article:section" content="article" />
-        </Helmet>
-
         <ArticleInfo match={this.props.match} />
         <div className="container  tac">
           <div className="row  rel">
