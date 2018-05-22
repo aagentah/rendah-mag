@@ -1,5 +1,5 @@
 /* eslint-disable react/sort-comp */
-/* eslint-disable import/no-named-as-default, max-len */
+/* eslint-disable import/no-named-as-default */
 
 
 import React, { PureComponent } from 'react';
@@ -22,10 +22,7 @@ export class Home extends PureComponent {
   render() {
     return (
       <main className="page-fade-in">
-        <Helmet>
-          <title>Home</title>
-          <meta property="og:image" content="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1523314127/brand/rendah.png" />
-        </Helmet>
+        <Helmet title="Home" />
         <h1 className="dn">Home</h1>
         <WeekArticles />
         <p className="pt3  t6  fw6  black  tac  title-font">Subscribe to Rendah</p>
