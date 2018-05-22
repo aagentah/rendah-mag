@@ -5,8 +5,9 @@ import React from 'react';
 import type { Element } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import _ from 'lodash';
-import config from '../../config';
+import Helmet from 'react-helmet';
 
+import config from '../../config';
 import routes from '../../routes';
 import '../../theme/main.scss';
 
