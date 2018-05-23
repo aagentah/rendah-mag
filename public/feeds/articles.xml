@@ -3,50 +3,41 @@
   <channel>
     <title>Rendah Weekly</title>
     <link>http://www.rendahmag.com/</link>
-    <description>Weekly updates from Rendah Mag.</description>
+    <description>Weekly updates from Rendah</description>
     <lastBuildDate>*|RSSFEED:DATE|*</lastBuildDate>
     <item>
-      <title>test Raaz enim aliqua duis Duis in adipisicing commodo officia</title>
+      <title>xxxxxxxxxx 4</title>
       <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
-      <comments>*|RSSITEM:COMMENTS_URL|*</comments>
       <pubDate>10/20/2017</pubDate>
-      <author>Dan Jones</author>
-      <category>*|RSSITEM:CATEGORIES|*</category>
-      <description>*|RSSITEM:CONTENT|*</description>
-      <content:encoded>*|RSSITEM:CONTENT_FULL|*</content:encoded>
+      <author>Dan Jadaadones</author>
       <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
     </item>
     <item>
-      <title>article 2</title>
+      <title>xxxxxxxxxxxxxx gege4</title>
       <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
-      <comments>*|RSSITEM:COMMENTS_URL|*</comments>
       <pubDate>10/20/2017</pubDate>
-      <author>Dan Jones</author>
-      <category>*|RSSITEM:CATEGORIES|*</category>
-      <description>*|RSSITEM:CONTENT|*</description>
-      <content:encoded>*|RSSITEM:CONTENT_FULL|*</content:encoded>
+      <author>Dan Joneaaaaaaaaaaaas</author>
       <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
     </item>
     <item>
-      <title>article 3</title>
+      <title>xxxxsdsfsfxxxxxxxxxx 4</title>
       <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
-      <comments>*|RSSITEM:COMMENTS_URL|*</comments>
       <pubDate>10/20/2017</pubDate>
-      <author>Dan Jones</author>
-      <category>*|RSSITEM:CATEGORIES|*</category>
-      <description>*|RSSITEM:CONTENT|*</description>
-      <content:encoded>*|RSSITEM:CONTENT_FULL|*</content:encoded>
+      <author>Dan Joneaaaaaaaaaaaas</author>
       <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
     </item>
     <item>
-      <title>article 4</title>
+      <title>xxxadadfafgxxxxxxxxxxx 4</title>
       <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
-      <comments>*|RSSITEM:COMMENTS_URL|*</comments>
       <pubDate>10/20/2017</pubDate>
-      <author>Dan Jones</author>
-      <category>*|RSSITEM:CATEGORIES|*</category>
-      <description>*|RSSITEM:CONTENT|*</description>
-      <content:encoded>*|RSSITEM:CONTENT_FULL|*</content:encoded>
+      <author>Dan Joneaaaaaasgaaaaaaas</author>
+      <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+    </item>
+    <item>
+      <title>xxxxxxxxeagegexxxxxx 4</title>
+      <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
+      <pubDate>10/20/2017</pubDate>
+      <author>Dan Joneaaaaaaaaaaaas</author>
       <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
     </item>
   </channel>
