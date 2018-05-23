@@ -28,7 +28,7 @@ module.exports = {
       },
       {
         name: 'url',
-        content: 'http://www.rendahmag.com',
+        content: 'https://www.rendahmag.com',
       },
       {
         name: 'apple-mobile-web-app-title',
@@ -80,7 +80,7 @@ module.exports = {
       },
       {
         property: 'og:image',
-        content: 'http://res.cloudinary.com/dzz8ji5lj/image/upload/v1523314127/brand/rendah.png',
+        content: 'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1523314127/brand/rendah.png',
       },
       {
         property: 'og:type',
