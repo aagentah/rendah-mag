@@ -17,7 +17,7 @@ export class AuthorList extends PureComponent {
             <div key={i} className="col-sm-8  col-md-6  pv3  authorList__col">
               <figure className="rel  pb3  link  w-100  zoom-in-fade-in-iteration--cont">
                 <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="shadow2  authorList__img--cont  db">
-                  <img className="mb3  center  zoom-in-fade-in-iteration--item  authorList__img" alt={author.name} src={`http://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
+                  <img className="mb3  center  zoom-in-fade-in-iteration--item  authorList__img" alt={author.name} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
                 </Link>
               </figure>
               <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="authorList__title  link  black  t7  pt1  tac  cp  title-font">
