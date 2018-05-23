@@ -26,7 +26,7 @@ export class Article extends PureComponent {
 
     if (title) {
       return (
-        <h1 className="pb3  pt2  title-font">{title}</h1>
+        <h1 className="pb3  pt4  title-font">{title}</h1>
       );
     }
     console.log('Not Returned: Article.heading');
