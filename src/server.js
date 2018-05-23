@@ -175,6 +175,7 @@ app.get('/api/authors', (req, res) => {
   db.collection('authors')
     .find()
     .limit(24)
+    .sort('name', 1)
     .toArray()
     .then((result) => {
       // console.log(result);
