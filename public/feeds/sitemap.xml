@@ -3,25 +3,25 @@
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 
   <url>
-    <loc>http://www.rendahmag.com/</loc>
+    <loc>https://www.rendahmag.com/</loc>
   </url>
   <url>
-    <loc>http://www.rendahmag.com/Authors</loc>
+    <loc>https://www.rendahmag.com/Authors</loc>
   </url>
   <url>
-    <loc>http://www.rendahmag.com/Contact</loc>
+    <loc>https://www.rendahmag.com/Contact</loc>
   </url>
   <url>
-    <loc>http://www.rendahmag.com/Category/Interviews</loc>
+    <loc>https://www.rendahmag.com/Category/Interviews</loc>
   </url>
   <url>
-    <loc>http://www.rendahmag.com/Category/Insights</loc>
+    <loc>https://www.rendahmag.com/Category/Insights</loc>
   </url>
   <url>
-    <loc>http://www.rendahmag.com/Category/News</loc>
+    <loc>https://www.rendahmag.com/Category/News</loc>
   </url>
   <url>
-    <loc>http://www.rendahmag.com/Category/Mixes</loc>
+    <loc>https://www.rendahmag.com/Category/Mixes</loc>
   </url>
 
 </urlset>
