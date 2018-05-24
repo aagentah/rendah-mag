@@ -9,8 +9,10 @@ export class Link extends PureComponent {
   render() {
     return (
       <div>
-        <p className="pb1  fornt-normal-a  dark-grey">{this.props.text}</p>
-        <a className="normal-font" href={this.props.url} target="_blank">{this.props.url}</a>
+        <p className="pb1  fornt-normal-a  dark-grey">
+          {this.props.text}&nbsp;
+          <a className="link  rendah-red  normal-font" href={this.props.url} target="_blank">{this.props.url}</a>
+        </p>
       </div>
     );
   }
