@@ -5,6 +5,7 @@ jsx-a11y/no-static-element-interactions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import FacebookProvider, { Like } from 'react-facebook';
 
 import Seo from './Seo';
 
@@ -157,6 +158,11 @@ export class Article extends PureComponent {
               <article className="container  article__content">
                 <div className="row">
                   <div className="col-md-16  col-md-offset-4  ph4-sm">
+                    <div className="pb3">
+                      <FacebookProvider appId="154881868603516">
+                        <Like href={`https://www.rendahmag.com/Article/${article.url}`} colorScheme="dark" />
+                      </FacebookProvider>
+                    </div>
                     <span className="grey  t8">{article.created} | </span>
                     <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="grey  t8  cp  link">{article.author}</span></Link>
                     {this.heading()}
