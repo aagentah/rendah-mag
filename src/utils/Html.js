@@ -31,14 +31,25 @@ const Html = ({ store, htmlContent }: Props): Element<'html'> => {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Rendah" />
+        <meta name="coverage" content="Global" />
+        <meta name="owner" content="Dan Jones (Aagentah)" />
 
         <meta name="description" content="Beats, Halftime & Future Bass Magazine" />
+        <meta name="keywords" content="Beats, Halftime, Footwork, Trap, Future Bass, Drum & Bass, Dance Music, DnB, Magazine, Blog, News, Review, Mixes, Aagentah" />
+
         <meta property="fb:app_id" content="154881868603516" />
-        <meta property="og:type" content="website" />
+        <meta property="fb:admins" content="danjonesaagentah" />
+        <meta property="og:type" content="article" />
         <meta property="og:description" content="Beats, Halftime & Future Bass Magazine" />
         <meta property="og:site_name" content="Rendah Mag" />
+
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@RendahMag" />
+        <meta name="twitter:creator" content="@RendahMag" />
         <meta name="twitter:description" content="Beats, Halftime & Future Bass Magazine" />
 
         {head.title.toComponent()}
