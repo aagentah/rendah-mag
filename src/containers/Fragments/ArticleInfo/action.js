@@ -3,7 +3,6 @@ export const ARTICLE_REQUESTING = 'ARTICLE_REQUESTING';
 export const ARTICLE_FAILURE = 'ARTICLE_FAILURE';
 export const ARTICLE_SUCCESS = 'ARTICLE_SUCCESS';
 
-// export const API_URL = 'https://jsonplaceholder.typicode.com/articles';
 export const API_URL = 'https://rendah-mag.herokuapp.com/api/article';
 
 
