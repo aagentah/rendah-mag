@@ -1,73 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
-<channel>
- <title>RSS Title</title>
- <description>This is an example of an RSS feed</description>
- <link>https://www.rendahmag.com/</link>
- <lastBuildDate>Mon, 06 Sep 2010 00:01:00 +0000 </lastBuildDate>
- <pubDate>Sun, 06 Sep 2009 16:20:00 +0000</pubDate>
- <ttl>1800</ttl>
-
- <item>
-  <title>Example entry</title>
-  <description>Here is some text containing an interesting description.</description>
-  <link>https://www.example.com/blog/post/1</link>
-  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
-  <pubDate>Sun, 06 Sep 2009 16:20:00 +0000</pubDate>
- </item>
- <item>
-  <title>Example entry1</title>
-  <description>Here is some text containing an interesting description.</description>
-  <link>https://www.example.com/blog/post/1</link>
-  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
-  <pubDate>Sun, 06 Sep 2009 16:20:00 +0000</pubDate>
- </item>
- <item>
-  <title>Example entry2</title>
-  <description>Here is some text containing an interesting description.</description>
-  <link>https://www.example.com/blog/post/1</link>
-  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
-  <pubDate>Sun, 06 Sep 2009 16:20:00 +0000</pubDate>
- </item>
- <item>
-  <title>Example entry3</title>
-  <description>Here is some text containing an interesting description.</description>
-  <link>https://www.example.com/blog/post/1</link>
-  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
-  <pubDate>Sun, 06 Sep 2009 16:20:00 +0000</pubDate>
- </item>
- <item>
-  <title>Example entry5</title>
-  <description>Here is some text containing an interesting description.</description>
-  <link>https://www.example.com/blog/post/1</link>
-  <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
-  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
-  <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
- </item>
- <item>
-  <title>Rendah Test article</title>
-  <description>Here is some text containing an interesting description.</description>
-  <link>https://www.example.com/blog/post/1</link>
-  <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
-  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
-  <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
- </item>
- <item>
-  <title>Rendah Test article 2</title>
-  <description>Here is some text containing an interesting description.</description>
-  <link>https://www.example.com/blog/post/1</link>
-  <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
-  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
-  <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
- </item>
- <item>
-  <title>Rendah Test article 3</title>
-  <description>Here is some text containing an interesting description.</description>
-  <link>https://www.example.com/blog/post/1</link>
-  <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
-  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
-  <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
- </item>
-
-</channel>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Rendah Weekly</title>
+    <link>http://www.rendahmag.com/</link>
+    <description>Weekly updates from Rendah</description>
+    <item>
+      <title>xxxxxxxxxx 4</title>
+      <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
+      <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
+      <author>Dan Jadaadones</author>
+      <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+    </item>
+    <item>
+      <title>xxxxxxxxxxxxxx gege4</title>
+      <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
+      <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
+      <author>Dan Joneaaaaaaaaaaaas</author>
+      <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+    </item>
+    <item>
+      <title>xxxxsdsfsfxxxxxxxxxx 4</title>
+      <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
+      <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
+      <author>Dan Joneaaaaaaaaaaaas</author>
+      <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+    </item>
+    <item>
+      <title>xxxadadfafgxxxxxxxxxxx 4</title>
+      <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
+      <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
+      <author>Dan Joneaaaaaasgaaaaaaas</author>
+      <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+    </item>
+    <item>
+      <title>xxxxxxxxeagegexxxxxx 4</title>
+      <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
+      <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
+      <author>Dan Joneaaaaaaaaaaaas</author>
+      <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+    </item>
+  </channel>
 </rss>
