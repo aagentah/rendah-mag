@@ -40,8 +40,33 @@
   <title>Example entry5</title>
   <description>Here is some text containing an interesting description.</description>
   <link>https://www.example.com/blog/post/1</link>
+  <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
   <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
-  <pubDate>Sun, 06 Sep 2009 16:20:00 +0000</pubDate>
+  <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
+ </item>
+ <item>
+  <title>Rendah Test article</title>
+  <description>Here is some text containing an interesting description.</description>
+  <link>https://www.example.com/blog/post/1</link>
+  <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
+  <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
+ </item>
+ <item>
+  <title>Rendah Test article 2</title>
+  <description>Here is some text containing an interesting description.</description>
+  <link>https://www.example.com/blog/post/1</link>
+  <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
+  <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
+ </item>
+ <item>
+  <title>Rendah Test article 3</title>
+  <description>Here is some text containing an interesting description.</description>
+  <link>https://www.example.com/blog/post/1</link>
+  <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
+  <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
  </item>
 
 </channel>
