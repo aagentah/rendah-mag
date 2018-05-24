@@ -4,7 +4,7 @@ export const WEEKARTICLES_REQUESTING = 'WEEKARTICLES_REQUESTING';
 export const WEEKARTICLES_FAILURE = 'WEEKARTICLES_FAILURE';
 export const WEEKARTICLES_SUCCESS = 'WEEKARTICLES_SUCCESS';
 
-export const API_URL = '/api/week';
+export const API_URL = 'https://rendah-mag.herokuapp.com/api/week';
 
 
 export const fetchWeekArticles = (axios: any, URL: string = API_URL) =>
