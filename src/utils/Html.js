@@ -38,19 +38,19 @@ const Html = ({ store, htmlContent }: Props): Element<'html'> => {
         <meta name="coverage" content="Global" />
         <meta name="owner" content="Dan Jones (Aagentah)" />
 
-        <meta name="description" content="Beats, Halftime & Future Bass Magazine" />
+        <meta name="description" content="Beats, Halftime & Future Bass Magazine focused on the latest news & releases." />
         <meta name="keywords" content="Beats, Halftime, Footwork, Trap, Future Bass, Drum & Bass, Dance Music, DnB, Magazine, Blog, News, Review, Mixes, Aagentah" />
 
         <meta property="fb:app_id" content="154881868603516" />
         <meta property="fb:admins" content="danjonesaagentah" />
         <meta property="og:type" content="article" />
-        <meta property="og:description" content="Beats, Halftime & Future Bass Magazine" />
+        <meta property="og:description" content="Beats, Halftime & Future Bass Magazine focused on the latest news & releases." />
         <meta property="og:site_name" content="Rendah Mag" />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@RendahMag" />
         <meta name="twitter:creator" content="@RendahMag" />
-        <meta name="twitter:description" content="Beats, Halftime & Future Bass Magazine" />
+        <meta name="twitter:description" content="Beats, Halftime & Future Bass Magazine focused on the latest news & releases." />
 
         {head.title.toComponent()}
         {head.base.toComponent()}
