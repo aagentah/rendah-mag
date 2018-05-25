@@ -21,10 +21,10 @@ export class Contact extends PureComponent {
           <div className="row">
             <div className="col-sm-14">
               <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">Contact</h1>
-              <p className="pb3">
+              <p className="pb4">
                 Rendah exists to bring exposure to a somewhat small community, with so much new talent emerging,
                 The future of the Beats movement is looking very promising. Rendah is built from within the community.
-                <br />
+                <br /><br />
                 Get involved. We&apos;re constantly on the look out for new members for the Rendah team. Whether
                 you&apos;re a writer, a developer, an artist, a label or even just a fan, we encourage you to get in touch!
               </p>
