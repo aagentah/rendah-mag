@@ -158,7 +158,7 @@ export class Article extends PureComponent {
               <article className="container  article__content">
                 <div className="row">
                   <div className="col-md-16  col-md-offset-4  ph4-sm">
-                    <div className="pb3">
+                    <div className="article__fb-like  pb2">
                       <FacebookProvider appId="154881868603516">
                         <Like href={`https://www.rendahmag.com/Article/${article.url}`} colorScheme="dark" />
                       </FacebookProvider>
