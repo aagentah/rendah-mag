@@ -4,7 +4,8 @@ export const AUTHORARTICLES_REQUESTING = 'AUTHORARTICLES_REQUESTING';
 export const AUTHORARTICLES_FAILURE = 'AUTHORARTICLES_FAILURE';
 export const AUTHORARTICLES_SUCCESS = 'AUTHORARTICLES_SUCCESS';
 
-export const API_URL = 'https://rendah-mag.herokuapp.com/api/authorArticles';
+export const API_URL = (__DEV__) ?
+  '/api/authorArticles' : 'https://rendah-mag.herokuapp.com/api/authorArticles';
 
 
 export const fetchAuthorArticles = (query: string, axios: any, URL: string = API_URL) =>

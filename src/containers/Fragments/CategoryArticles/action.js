@@ -4,8 +4,8 @@ export const CATEGORYARTICLES_REQUESTING = 'CATEGORYARTICLES_REQUESTING';
 export const CATEGORYARTICLES_FAILURE = 'CATEGORYARTICLES_FAILURE';
 export const CATEGORYARTICLES_SUCCESS = 'CATEGORYARTICLES_SUCCESS';
 
-export const API_URL = 'https://rendah-mag.herokuapp.com/api/category';
-
+export const API_URL = (__DEV__) ?
+  '/api/category' : 'https://rendah-mag.herokuapp.com/api/category';
 
 export const fetchCategoryArticles = (query: string, axios: any, URL: string = API_URL) =>
   (dispatch) => {

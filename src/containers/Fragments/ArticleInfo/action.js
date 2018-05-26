@@ -3,7 +3,8 @@ export const ARTICLE_REQUESTING = 'ARTICLE_REQUESTING';
 export const ARTICLE_FAILURE = 'ARTICLE_FAILURE';
 export const ARTICLE_SUCCESS = 'ARTICLE_SUCCESS';
 
-export const API_URL = 'https://rendah-mag.herokuapp.com/api/article';
+export const API_URL = (__DEV__) ?
+  '/api/article' : 'https://rendah-mag.herokuapp.com/api/article';
 
 
 export const fetchArticle = (articleId: string, axios: any, URL: string = API_URL) =>

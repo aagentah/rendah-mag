@@ -4,7 +4,8 @@ export const SEARCHARTICLES_REQUESTING = 'SEARCHARTICLES_REQUESTING';
 export const SEARCHARTICLES_FAILURE = 'SEARCHARTICLES_FAILURE';
 export const SEARCHARTICLES_SUCCESS = 'SEARCHARTICLES_SUCCESS';
 
-export const API_URL = 'https://rendah-mag.herokuapp.com/api/search';
+export const API_URL = (__DEV__) ?
+  '/api/search' : 'https://rendah-mag.herokuapp.com/api/search';
 
 
 export const fetchSearchArticles = (query: string, axios: any, URL: string = API_URL) =>
