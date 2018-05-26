@@ -1,1 +1,25 @@
 /* stylelint-disable */
+
+.facebook-comments__panel--top {
+  position: absolute;
+  background: palette(white);
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 65px;
+  z-index: 100;
+}
+
+.facebook-comments__panel--bottom {
+  position: absolute;
+  background: palette(white);
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 40px;
+  z-index: 100;
+}
