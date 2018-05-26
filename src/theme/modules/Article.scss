@@ -35,6 +35,12 @@
     animation: article__hero--img--zoomIn 0.6s ease both;
   }
 
+  .article__fb-like {
+    opacity: 0;
+    animation: article__fb-like 0.4s ease both;
+    animation-delay: 2.2s;
+  }
+
   .article__content {
     margin-top: 40px;
     animation: article__content--appear 0.4s ease both;
@@ -64,6 +70,18 @@
 
     100% {
       transform: scale(1);
+    }
+  }
+
+  @keyframes article__fb-like {
+    0% {
+      opacity: 0;
+      margin-left: -15px;
+    }
+
+    100% {
+      opacity: 1;
+      margin-left: 0;
     }
   }
 
