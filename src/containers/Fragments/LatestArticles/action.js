@@ -4,7 +4,8 @@ export const LATESTARTICLES_REQUESTING = 'LATESTARTICLES_REQUESTING';
 export const LATESTARTICLES_FAILURE = 'LATESTARTICLES_FAILURE';
 export const LATESTARTICLES_SUCCESS = 'LATESTARTICLES_SUCCESS';
 
-export const API_URL = 'https://rendah-mag.herokuapp.com/api/articles';
+export const API_URL = (__DEV__) ?
+  '/api/articles' : 'https://rendah-mag.herokuapp.com/api/articles';
 
 
 export const fetchLatestArticles = (axios: any, URL: string = API_URL) =>
