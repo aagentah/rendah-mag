@@ -1,5 +1,22 @@
 /* stylelint-disable */
-#instaFeed {}
+
+#instaFeed {
+  opacity: 0;
+  animation: instaFeed 0.4s ease both;
+  animation-delay: 2.2s;
+}
+
+@keyframes instaFeed {
+  0% {
+    opacity: 0;
+    margin-left: 30px;
+  }
+
+  100% {
+    opacity: 1;
+    margin-left: 0;
+  }
+}
 
 .instafeed__item {
   @extend .col-xs-8;
