@@ -66,7 +66,7 @@ export class Article extends PureComponent {
           );
         case 'question':
           return (
-            <div className="pv3">
+            <div className="pt3">
               <Question
                 key={i}
                 text={item.section.text}
@@ -87,6 +87,7 @@ export class Article extends PureComponent {
             <div className="pb3">
               <BulletList
                 key={i}
+                text={item.section.text}
                 list={item.section.list}
               />
             </div>
@@ -96,6 +97,7 @@ export class Article extends PureComponent {
             <div className="pb3">
               <NumberedList
                 key={i}
+                text={item.section.text}
                 list={item.section.list}
               />
             </div>
