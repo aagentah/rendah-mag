@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Rendah Weekly</title>
-    <link>http://www.rendahmag.com/</link>
+    <link>https://www.rendahmag.com/</link>
+    <atom:link href="https://www.rendahmag.com/feeds/articles.xml" rel="self" type="application/rss+xml" />
     <description>Weekly updates from Rendah</description>
     <item>
       <title>xxxxxxxxxx 4</title>
-      <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
-      <pubDate>Thurs, 24 May 2018 10:00:00 +0000</pubDate>
-      <author>Dan Jadaadones</author>
+      <link>https://www.rendahmag.com/Article/6arktkts-tesseract-ep-is-not-one-to-be-missed-2</link>
+      <guid>https://www.rendahmag.com/Article/6arktkts-tesseract-ep-is-not-one-to-be-missed-2</guid>
+      <pubDate>Sun, 27 May 2018 10:00:00 GMT</pubDate>
       <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
     </item>
     <item>
       <title>Next 1</title>
-      <link>http://www.rendahmag.com/Article/test-Raaz-enim-aliqua-duis-Duis-in-adipisicing-commodo-officia</link>
-      <pubDate>Fri, 25 May 2018 10:00:00 +0000</pubDate>
-      <author>Dan Jones</author>
+      <link>https://www.rendahmag.com/Article/arktkts-tesseract-ep-is-not-one-34to-be-missed-2</link>
+      <guid>https://www.rendahmag.com/Article/arktkts-tesseract-ep-is-not-one-34to-be-missed-2</guid>
+      <pubDate>Sun, 27 May 2018 10:30:00 GMT</pubDate>
       <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
     </item>
   </channel>
