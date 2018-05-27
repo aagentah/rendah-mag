@@ -7,17 +7,19 @@
     <description>Weekly updates from Rendah</description>
     <item>
       <title>xxxxxxxxxx 4</title>
+      <description>Test desc blah blah blah</description>
       <link>https://www.rendahmag.com/Article/6arktkts-tesseract-ep-is-not-one-to-be-missed-2</link>
       <guid>https://www.rendahmag.com/Article/6arktkts-tesseract-ep-is-not-one-to-be-missed-2</guid>
       <pubDate>Sun, 27 May 2018 10:00:00 GMT</pubDate>
-      <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+      <media:content url="https://res.cloudinary.com/dzz8ji5lj/image/upload/c_scale,w_300/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
     </item>
     <item>
       <title>Next 1</title>
+      <description>Test desc blah blah blah</description>
       <link>https://www.rendahmag.com/Article/arktkts-tesseract-ep-is-not-one-34to-be-missed-2</link>
       <guid>https://www.rendahmag.com/Article/arktkts-tesseract-ep-is-not-one-34to-be-missed-2</guid>
       <pubDate>Sun, 27 May 2018 10:30:00 GMT</pubDate>
-      <media:content url="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+      <media:content url="https://res.cloudinary.com/dzz8ji5lj/image/upload/c_scale,w_300/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
     </item>
   </channel>
 </rss>
