@@ -8,7 +8,11 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { convertDate } from '../../../functions';
+
 export class LatestArticleListLoaded extends PureComponent {
+  date = date => convertDate(date);
+
   render() {
     return (
       <div className="container  mv3  mv2-sm">
@@ -22,7 +26,7 @@ export class LatestArticleListLoaded extends PureComponent {
                     <img className="mb3  w-100  zoom-in-fade-in-iteration--item  cp  latestArticleList__img" alt={article.title} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
                   </Link>
                 </figure>
-                <span className="grey  t8">{article.created} | </span>
+                <span className="grey  t8">{this.date(article.created)} | </span>
                 <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="grey  t8  cp  link">{article.author}</span></Link>
                 <Link to={`/Article/${article.url}`} className="no-underline">
                   <p className="black  t7  pt2  cp  title-font  over-hidden  link  latestArticleList__title">{article.title}</p>

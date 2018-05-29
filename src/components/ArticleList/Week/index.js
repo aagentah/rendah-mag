@@ -8,7 +8,11 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { convertDate } from '../../../functions';
+
 export class WeekArticleListLoaded extends PureComponent {
+  date = date => convertDate(date);
+
   render() {
     return (
       <div className="container  mt4  mb3  mb2-sm">
@@ -23,7 +27,7 @@ export class WeekArticleListLoaded extends PureComponent {
                   </Link>
                 </figure>
                 <div className="abs  weekArticleList__title--cont">
-                  <span className="white  bg-black  pv1  pl2  mv2  t8">{article.created} | </span>
+                  <span className="white  bg-black  pv1  pl2  mv2  t8">{this.date(article.created)} | </span>
                   <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="white  bg-black  pv1  pr2  mv2  t8  cp  link" onClick={() => this.handleClick(article.author, 'author')}>{article.author}</span></Link>
                   <Link to={`/Article/${article.url}`} className="no-underline">
                     <p onClick={() => this.handleClick(article.title, 'article')} className="white  bg-black  pv1  ph2  mv2  t7  pt2  cp  title-font  over-hidden  w-90  link  weekArticleList__title">{article.title}</p>
