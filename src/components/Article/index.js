@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import FacebookProvider, { Like } from 'react-facebook';
 
 import Seo from './Seo';
+import { convertDate } from '../../functions';
 
 import Heading from './Sections/Heading';
 import Paragraph from './Sections/Paragraph';
@@ -22,6 +23,8 @@ import ArticleLink from './Sections/Link';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 
 export class Article extends PureComponent {
+  date = date => convertDate(date);
+
   heading = () => {
     const title = this.props.info.title;
 
@@ -165,7 +168,7 @@ export class Article extends PureComponent {
                         <Like href={`https://www.rendahmag.com/Article/${article.url}`} colorScheme="dark" />
                       </FacebookProvider>
                     </div>
-                    <span className="grey  t8">{article.created} | </span>
+                    <span className="grey  t8">{this.date(article.created)} | </span>
                     <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="grey  t8  cp  link">{article.author}</span></Link>
                     {this.heading()}
                     {article.body.map((item, i) => (

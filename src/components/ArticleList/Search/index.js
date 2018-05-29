@@ -8,7 +8,11 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { convertDate } from '../../../functions';
+
 export class SearchArticleList extends PureComponent {
+  date = date => convertDate(date);
+
   render() {
     if (!this.props.list.length) {
       return <p className="black  tac  mv3  mv2-sm">Nothing found, try a different search.</p>;
@@ -29,7 +33,7 @@ export class SearchArticleList extends PureComponent {
                     </figure>
                   </div>
                   <div className="col-sm-12">
-                    <span className="grey  t8"><time dateTime="10/17/09">10/17/09</time> | </span>
+                    <span className="grey  t8">{this.date(article.created)} | </span>
                     <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="grey  t8  cp  link">{article.author}</span></Link>
                     <Link to={`/Article/${article.url}`} className="no-underline">
                       <p className="black  t7  pt2  cp  title-font  over-hidden  link  searchArticleList__title">{article.title}</p>
