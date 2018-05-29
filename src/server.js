@@ -81,7 +81,7 @@ app.get('/api/week', (req, res) => {
   db.collection('articles')
     .find()
     .limit(2)
-    .sort('date', -1)
+    .sort('created', -1)
     .toArray()
     .then((result) => {
       articles = articles.concat(result);
@@ -103,7 +103,7 @@ app.get('/api/articles', (req, res) => {
     .find()
     .skip(2)
     .limit(12)
-    .sort('date', -1)
+    .sort('created', -1)
     .toArray()
     .then((result) => {
       articles = articles.concat(result);
@@ -131,7 +131,7 @@ app.get('/api/authorArticles', (req, res) => {
       },
     })
     .limit(12)
-    .sort('date', -1)
+    .sort('created', -1)
     .toArray()
     .then((result) => {
       articles = articles.concat(result);
@@ -217,7 +217,7 @@ app.get('/api/search', (req, res) => {
       ],
     })
     .limit(24)
-    .sort('date', -1)
+    .sort('created', -1)
     .toArray()
     .then((result) => {
       articles = articles.concat(result);
@@ -246,7 +246,7 @@ app.get('/api/category', (req, res) => {
       ],
     })
     .limit(12)
-    .sort('date', -1)
+    .sort('created', -1)
     .toArray()
     .then((result) => {
       articles = articles.concat(result);
