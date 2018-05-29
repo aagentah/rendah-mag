@@ -165,7 +165,7 @@ export class Article extends PureComponent {
                   <div className="col-md-16  col-md-offset-4  ph4-sm">
                     <div className="article__fb-like  pb2">
                       <FacebookProvider appId="154881868603516">
-                        <Like href={`https://www.rendahmag.com/Article/${article.url}`} colorScheme="dark" />
+                        <Like href={`https://www.rendahmag.com/Article/${article.url}`} width="350" colorScheme="dark" />
                       </FacebookProvider>
                     </div>
                     <span className="grey  t8">{this.date(article.created)} | </span>
