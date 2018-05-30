@@ -38,10 +38,14 @@
 }
 
 .weekArticleList__intro {
-  height: 70px;
+  height: 50px;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   font-family: $normal-font;
+  @media only screen and (max-width: $sm - 1px) {
+    height: 70px;
+    -webkit-line-clamp: 3;
+  }
 }
