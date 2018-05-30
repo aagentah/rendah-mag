@@ -1,7 +1,7 @@
 /* stylelint-disable */
 
 .weekArticleList__col--week {
-  height: 290px;
+  height: 300px;
 }
 
 .weekArticleList__col--search {
@@ -10,26 +10,38 @@
 
 .weekArticleList__col--leaving {
   animation: weekArticleList__img--zoomOut 0.2s ease both, weekArticleList__cont--fadeOut 0.2s ease both;
-  }
+}
 
 .weekArticleList__img--cont {
-  height: 250px;
+  height: 230px;
+  @media only screen and (max-width: $sm - 1px) {
+    height: 150px;
+  }
 }
 
 .weekArticleList__img {
-  height: 250px;
+  height: 230px;
   object-fit: cover;
   object-position: center;
-}
-
-.weekArticleList__title--cont {
-  left: 30px;
-  bottom: 60px;
+  @media only screen and (max-width: $sm - 1px) {
+    height: 150px;
+  }
 }
 
 .weekArticleList__title {
+  height: auto;
+  max-height: 55px;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+.weekArticleList__intro {
+  height: 70px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-family: $normal-font;
 }
