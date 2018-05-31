@@ -129,6 +129,7 @@ export class Article extends PureComponent {
             <div className="pv3">
               <ArticleLink
                 key={i}
+                linkType={item.section.linkType}
                 text={item.section.text}
                 url={item.section.url}
               />
