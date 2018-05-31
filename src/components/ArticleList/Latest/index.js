@@ -15,7 +15,7 @@ export class LatestArticleListLoaded extends PureComponent {
 
   render() {
     return (
-      <div className="container  mv3  mv2-sm">
+      <div className="container">
         <div className="row">
           {this.props.list.map((article, i) => (
             <div key={i} className="link  w-100  zoom-in-fade-in-iteration--cont">

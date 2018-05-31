@@ -15,7 +15,7 @@ export class WeekArticleListLoaded extends PureComponent {
 
   render() {
     return (
-      <div className="container  mt3  mb5  mv2-sm">
+      <div className="container  mt3  mt2-sm">
         <div className="row">
           {this.props.list.map((article, i) => (
             <div key={i} className="link  w-100  zoom-in-fade-in-iteration--cont">
