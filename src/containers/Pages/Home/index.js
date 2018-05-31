@@ -27,7 +27,7 @@ export class Home extends PureComponent {
         <div className="pt4  mt2  pb3"><SubscribeBanner /></div>
         <WeekArticles />
         <LatestArticles />
-        <div className="pt1  pb2"><SearchInput textAlign="tac" /></div>
+        <div className="pt4  pb3"><SearchInput textAlign="tac" /></div>
         <CategoryGrid />
       </main>
     );
