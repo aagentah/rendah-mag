@@ -1,7 +1,11 @@
+
 /* stylelint-disable */
 
 .weekArticleList__col--week {
-  height: 300px;
+  height: 415px;
+    @media only screen and (max-width: $sm - 1px) {
+      height: 330px;
+    }
 }
 
 .weekArticleList__col--search {
@@ -10,17 +14,17 @@
 
 .weekArticleList__col--leaving {
   animation: weekArticleList__img--zoomOut 0.2s ease both, weekArticleList__cont--fadeOut 0.2s ease both;
-}
+  }
 
 .weekArticleList__img--cont {
-  height: 230px;
+  height: 250px;
   @media only screen and (max-width: $sm - 1px) {
     height: 150px;
   }
 }
 
 .weekArticleList__img {
-  height: 230px;
+  height: 250px;
   object-fit: cover;
   object-position: center;
   @media only screen and (max-width: $sm - 1px) {
@@ -38,7 +42,7 @@
 }
 
 .weekArticleList__intro {
-  height: 50px;
+  height: 55px;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
