@@ -22,7 +22,7 @@ const Header = (): Element<'div'> => (
             <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Authors'}>Authors</Link>
           </li>
           <li className="dib">
-            <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Contact'}>Contact</Link>
+            <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/GetInvolved'}>Get Involved</Link>
           </li>
           <li data-nav-category="1" className="abs  dn-md">
             <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Category/Interviews'}>Interviews</Link>

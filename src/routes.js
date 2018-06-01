@@ -16,7 +16,7 @@ import CategoryPage from './containers/Pages/Category';
 import ArticlePage from './containers/Pages/Article';
 import AuthorPage from './containers/Pages/Author';
 import NotFoundPage from './containers/Pages/NotFound';
-import ContactPage from './containers/Pages/Contact';
+import GetInvolvedPage from './containers/Pages/GetInvolved';
 import AuthorsPage from './containers/Pages/Authors';
 
 export default [
@@ -67,8 +67,8 @@ export default [
     ]),
   },
   {
-    path: '/Contact',
-    component: ContactPage,
+    path: '/GetInvolved',
+    component: GetInvolvedPage,
   },
   {
     path: '*',

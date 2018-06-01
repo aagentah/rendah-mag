@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 
 import Instagram from '../../../components/Instagram';
 
-export class Contact extends PureComponent {
+export class GetInvolved extends PureComponent {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -16,11 +16,11 @@ export class Contact extends PureComponent {
   render() {
     return (
       <main className="page-fade-in">
-        <Helmet title="Contact" />
+        <Helmet title="Get Involved" />
         <div className="container  tal  ph4-sm">
           <div className="row">
             <div className="col-sm-14">
-              <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">Contact</h1>
+              <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">Get Involved</h1>
               <p className="pb4">
                 Rendah Mag exists to bring exposure to an ever-growing community, foccusing on the latest Halftime,
                 Beats & Experimental news & releases.
@@ -30,7 +30,7 @@ export class Contact extends PureComponent {
               </p>
               <a href="mailto:info@rendahmag.com">
                 <img className="w2  dib  pr2" src={require('../../App/assets/social/iconmonstr-email-11.png')} alt="facebook" />
-                <span className="contact__email--link  dib  pb3  black  no-underline">info@rendahmag.com</span>
+                <span className="GetInvolved__email--link  dib  pb3  black  no-underline">info@rendahmag.com</span>
               </a>
             </div>
             <div className="col-sm-10">
@@ -49,4 +49,4 @@ export class Contact extends PureComponent {
   }
 }
 
-export default Contact;
+export default GetInvolved;
