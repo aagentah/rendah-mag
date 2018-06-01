@@ -17,7 +17,7 @@ import Question from './Sections/Question';
 import Answer from './Sections/Answer';
 import BulletList from './Sections/BulletList';
 import NumberedList from './Sections/NumberedList';
-// import Soundcloud from './Sections/Soundcloud';
+import Soundcloud from './Sections/Soundcloud';
 import Youtube from './Sections/Youtube';
 import ArticleLink from './Sections/Link';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
@@ -105,16 +105,15 @@ export class Article extends PureComponent {
               />
             </div>
           );
-        // case 'soundcloud':
-        //   return (
-        //     <div className="pv3">
-        //       <Soundcloud
-        //         key={i}
-        //         text={item.section.text}
-        //         id={item.section.id}
-        //       />
-        //     </div>
-        //   );
+        case 'soundcloud':
+          return (
+            <div className="pv3">
+              <Soundcloud
+                key={i}
+                url={item.section.url}
+              />
+            </div>
+          );
         case 'youtube':
           return (
             <div className="pv3">
