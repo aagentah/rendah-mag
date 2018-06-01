@@ -126,7 +126,7 @@ export class Article extends PureComponent {
           );
         case 'link':
           return (
-            <div className="pv3">
+            <div className="pt3  pb1">
               <ArticleLink
                 key={i}
                 linkType={item.section.linkType}
