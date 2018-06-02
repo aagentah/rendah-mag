@@ -9,6 +9,7 @@ import FacebookProvider, { Like } from 'react-facebook';
 
 import Seo from './Seo';
 import { convertDate } from '../../functions';
+import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 
 import Heading from './Sections/Heading';
 import Paragraph from './Sections/Paragraph';
@@ -20,7 +21,7 @@ import NumberedList from './Sections/NumberedList';
 import Soundcloud from './Sections/Soundcloud';
 import Youtube from './Sections/Youtube';
 import ArticleLink from './Sections/Link';
-import AuthorInfo from '../../containers/Fragments/AuthorInfo';
+
 
 export class Article extends PureComponent {
   date = date => convertDate(date);
@@ -119,7 +120,7 @@ export class Article extends PureComponent {
             <div className="pv3">
               <Youtube
                 key={i}
-                videoId="XxVg_s8xAms"
+                videoId={item.section.url}
               />
             </div>
           );
