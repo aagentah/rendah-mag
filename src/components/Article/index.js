@@ -26,18 +26,6 @@ import ArticleLink from './Sections/Link';
 export class Article extends PureComponent {
   date = date => convertDate(date);
 
-  heading = () => {
-    const title = this.props.info.title;
-
-    if (title) {
-      return (
-        <h1 className="pb3  pt4  title-font">{title}</h1>
-      );
-    }
-    console.log('Not Returned: Article.heading');
-    return false;
-  };
-
   sections = (item, i) => {
     if (item) {
       switch (item.section.type) {
@@ -171,7 +159,8 @@ export class Article extends PureComponent {
                     </div>
                     <span className="grey  t8">{this.date(article.created)} | </span>
                     <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="grey  t8  cp  link">{article.author}</span></Link>
-                    {this.heading()}
+                    <h1 className="pb3  pt4  title-font">{article.title}</h1>
+                    <p className="pv3  normal-font  grey">{article.description}</p>
                     {article.body.map((item, i) => (
                       sections(item, i)
                     ))}
