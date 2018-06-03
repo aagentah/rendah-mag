@@ -1,5 +1,5 @@
 /* eslint-disable react/sort-comp */
-/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default, max-len */
 
 import React from 'react';
 
@@ -27,12 +27,14 @@ export class Footer extends React.Component {
                   <a className="footer__social  ph1" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
                     <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
                   </a>
-                  <a className="footer__social  ph1" href="https://www.soundcloud.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                    <img src={require('../assets/social/iconmonstr-soundcloud-5.png')} alt="soundcloud" />
-                  </a>
-                  <a className="footer__social  ph1" href="https://www.youtube.com/channel/UCFpU3WYYWy5qWSYf306_m3A" rel="noopener noreferrer" target="_blank">
-                    <img src={require('../assets/social/iconmonstr-youtube-5.png')} alt="youtube" />
-                  </a>
+                  {
+                    // <a className="footer__social  ph1" href="https://www.soundcloud.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+                    //   <img src={require('../assets/social/iconmonstr-soundcloud-5.png')} alt="soundcloud" />
+                    // </a>
+                    // <a className="footer__social  ph1" href="https://www.youtube.com/channel/UCFpU3WYYWy5qWSYf306_m3A" rel="noopener noreferrer" target="_blank">
+                    //   <img src={require('../assets/social/iconmonstr-youtube-5.png')} alt="youtube" />
+                    // </a>
+                  }
                 </div>
               </div>
             </div>
