@@ -6,20 +6,52 @@
     <atom:link href="https://www.rendahmag.com/feeds/articles.xml" rel="self" type="application/rss+xml" />
     <description>Weekly updates from Rendah</description>
     <item>
-      <title>xxxxxxxxxx 4</title>
-      <description>Test desc blah blah blah</description>
-      <link>https://www.rendahmag.com/Article/6arktkts-tesseract-ep-is-not-one-to-be-missed-2</link>
-      <guid>https://www.rendahmag.com/Article/6arktkts-tesseract-ep-is-not-one-to-be-missed-2</guid>
-      <pubDate>Sun, 27 May 2018 10:00:00 GMT</pubDate>
-      <media:content url="https://res.cloudinary.com/dzz8ji5lj/image/upload/c_scale,w_300/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+      <title>Matthew Smith on Visual Art, Sound Museum and plans for the future</title>
+      <description></description>
+      <link>https://www.rendahmag.com/Article/matthew-smith-on-visual-art-sound-museum-and-plans-for-the-future</link>
+      <guid>https://www.rendahmag.com/Article/matthew-smith-on-visual-art-sound-museum-and-plans-for-the-future</guid>
+      <pubDate>Mon, 04 Jun 2018 17:30:00 GMT</pubDate>
+      <media:content url="https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/articles/2018/06/mathew-smith-1.jpg" type="image/jpg"/>
     </item>
     <item>
-      <title>Next 1</title>
-      <description>Test desc blah blah blah</description>
-      <link>https://www.rendahmag.com/Article/arktkts-tesseract-ep-is-not-one-34to-be-missed-2</link>
-      <guid>https://www.rendahmag.com/Article/arktkts-tesseract-ep-is-not-one-34to-be-missed-2</guid>
-      <pubDate>Sun, 27 May 2018 10:30:00 GMT</pubDate>
-      <media:content url="https://res.cloudinary.com/dzz8ji5lj/image/upload/c_scale,w_300/v1513159093/articles/2018/04/djspinners_0.jpg" type="image/jpg"/>
+      <title>A chat with Corrupted about Audio Visual and Music</title>
+      <description></description>
+      <link>https://www.rendahmag.com/Article/a-chat-with-corrupted-about-audio-visual-and-music</link>
+      <guid>https://www.rendahmag.com/Article/a-chat-with-corrupted-about-audio-visual-and-music</guid>
+      <pubDate>Mon, 04 Jun 2018 17:30:00 GMT</pubDate>
+      <media:content url="https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/v1527778054/articles/2018/06/corrupted-1.jpg" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Thenticy's Top 5 most influential halftime beats</title>
+      <description></description>
+      <link>https://www.rendahmag.com/Article/thenticys-top-5-most-influential-halftime-beats</link>
+      <guid>https://www.rendahmag.com/Article/thenticys-top-5-most-influential-halftime-beats</guid>
+      <pubDate>Mon, 04 Jun 2018 17:30:00 GMT</pubDate>
+      <media:content url="https://www.rendahmag.com/Article/thenticys-top-5-most-influential-halftime-beats" type="image/jpg"/>
+    </item>
+    <item>
+      <title>VALE shed some light on their darkness</title>
+      <description></description>
+      <link>https://www.rendahmag.com/Article/vale-shed-some-light-on-their-darkness</link>
+      <guid>https://www.rendahmag.com/Article/vale-shed-some-light-on-their-darkness</guid>
+      <pubDate>Mon, 04 Jun 2018 17:30:00 GMT</pubDate>
+      <media:content url="https://www.rendahmag.com/Article/vale-shed-some-light-on-their-darkness" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Catching up with FRQ NCY at his end of the spectrum</title>
+      <description></description>
+      <link>https://www.rendahmag.com/Article/catching-up-with-frq-ncy-at-his-end-of-the-spectrum</link>
+      <guid>https://www.rendahmag.com/Article/catching-up-with-frq-ncy-at-his-end-of-the-spectrum</guid>
+      <pubDate>Mon, 04 Jun 2018 17:30:00 GMT</pubDate>
+      <media:content url="https://www.rendahmag.com/Article/catching-up-with-frq-ncy-at-his-end-of-the-spectrum" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Dreamers Recordings and some insights into the italian drum and bass scene</title>
+      <description></description>
+      <link>https://www.rendahmag.com/Article/dreamers-recordings-and-some-insights-into-the-italian-drum-and-bass-scene</link>
+      <guid>https://www.rendahmag.com/Article/dreamers-recordings-and-some-insights-into-the-italian-drum-and-bass-scene</guid>
+      <pubDate>Mon, 04 Jun 2018 17:30:00 GMT</pubDate>
+      <media:content url="https://www.rendahmag.com/Article/dreamers-recordings-and-some-insights-into-the-italian-drum-and-bass-scene" type="image/jpg"/>
     </item>
   </channel>
 </rss>
