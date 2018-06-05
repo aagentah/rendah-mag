@@ -1,8 +1,4 @@
-/* eslint-disable import/no-named-as-default,
-  react/no-array-index-key,
-  jsx-a11y/no-static-element-interactions,
-  react/no-array-index-key,
-  jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
@@ -17,8 +13,8 @@ export class WeekArticleListLoaded extends PureComponent {
     return (
       <div className="container  mt3  mt2-sm">
         <div className="row">
-          {this.props.list.map((article, i) => (
-            <div key={i} className="link  w-100  zoom-in-fade-in-iteration--cont">
+          {this.props.list.map(article => (
+            <div key={article.title} className="link  w-100  zoom-in-fade-in-iteration--cont">
               <article className="col-sm-12  pv3  weekArticleList__col--week">
 
                 <figure className="rel  pb3">

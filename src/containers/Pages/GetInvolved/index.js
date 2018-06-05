@@ -1,4 +1,4 @@
-/* eslint-disable max-len, import/no-named-as-default */
+/* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
@@ -22,11 +22,12 @@ export class GetInvolved extends PureComponent {
             <div className="col-sm-14">
               <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">Get Involved</h1>
               <p className="pb4">
-                Rendah Mag exists to bring exposure to an ever-growing community, foccusing on the latest Halftime,
-                Beats & Experimental news & releases.
+                Rendah Mag exists to bring exposure to an ever-growing community,
+                focusing on the latest Halftime, Beats & Experimental news & releases.
                 <br /><br />
-                Get involved. We&apos;re constantly on the look out for new members for the Rendah team. Whether
-                you&apos;re a writer, a developer, an artist, a label or even just a fan, we invite you to get in touch!
+                Get involved. We&apos;re constantly on the look out for new members for
+                the Rendah team. Whether you&apos;re a writer, a developer, an artist, a
+                label or even just a fan, we invite you to get in touch!
               </p>
               <a href="mailto:info@rendahmag.com">
                 <img className="w2  dib  pr2" src={require('../../App/assets/social/iconmonstr-email-11.png')} alt="facebook" />

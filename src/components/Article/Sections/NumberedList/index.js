@@ -1,5 +1,5 @@
 /* @flow */
-/* eslint-disable import/no-named-as-default, react/no-array-index-key */
+/* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
@@ -18,8 +18,8 @@ export class NumberedList extends PureComponent {
       <div>
         {this.text()}
         <ol className="mb0">
-          {this.props.list.map((item, i) => (
-            <li className="pv1  normal-font  grey" key={i}><p>{item}</p></li>
+          {this.props.list.map(item => (
+            <li key={item} className="pv1  normal-font  grey"><p>{item}</p></li>
           ))}
         </ol>
       </div>
