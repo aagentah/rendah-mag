@@ -18,6 +18,7 @@ import AuthorPage from './containers/Pages/Author';
 import NotFoundPage from './containers/Pages/NotFound';
 import GetInvolvedPage from './containers/Pages/GetInvolved';
 import AuthorsPage from './containers/Pages/Authors';
+import PrivacyPolicyPage from './containers/Pages/PrivacyPolicy';
 
 export default [
   {
@@ -69,6 +70,10 @@ export default [
   {
     path: '/GetInvolved',
     component: GetInvolvedPage,
+  },
+  {
+    path: '/PrivacyPolicy',
+    component: PrivacyPolicyPage,
   },
   {
     path: '*',
