@@ -1,6 +1,4 @@
-/* @flow */
-/* eslint-disable import/no-named-as-default, react/no-array-index-key, react/self-closing-comp,
-jsx-a11y/no-static-element-interactions */
+/* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
@@ -100,11 +98,9 @@ export class Article extends PureComponent {
             </div>
           );
         default:
-          console.log('Not Returned: Article.section.switch');
           return false;
       }
     }
-    console.log('Not Returned: Article.sections');
     return false;
   }
 
@@ -120,7 +116,7 @@ export class Article extends PureComponent {
           <div className="article">
 
             <figure className="rel  article__hero">
-              <div className="article__hero--background" style={{ backgroundImage: `url(https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img})` }}></div>
+              <div className="article__hero--background" style={{ backgroundImage: `url(https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img})` }} />
               <img className="article__hero--img" alt={article.title} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
             </figure>
 
