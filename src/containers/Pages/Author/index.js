@@ -1,4 +1,4 @@
-/* eslint-disable import/no-named-as-default, react/no-array-index-key */
+/* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
