@@ -31,54 +31,38 @@ export class Article extends PureComponent {
       switch (item.section.type) {
         case 'heading':
           return (
-            <div className="pv3">
-              <Heading
-                key={i}
-                text={item.section.text}
-              />
+            <div key={i} className="pv3">
+              <Heading text={item.section.text} />
             </div>
           );
         case 'paragraph':
           return (
-            <div className="pv3">
-              <Paragraph
-                key={i}
-                text={item.section.text}
-              />
+            <div key={i} className="pv3">
+              <Paragraph text={item.section.text} />
             </div>
           );
         case 'image':
           return (
-            <div className="pv3">
-              <Image
-                key={i}
-                img={item.section.img}
-              />
+            <div key={i} className="pv3">
+              <Image img={item.section.img} />
             </div>
           );
         case 'question':
           return (
-            <div className="pt3">
-              <Question
-                key={i}
-                text={item.section.text}
-              />
+            <div key={i} className="pt3">
+              <Question text={item.section.text} />
             </div>
           );
         case 'answer':
           return (
-            <div className="pv3">
-              <Answer
-                key={i}
-                text={item.section.text}
-              />
+            <div key={i} className="pv3">
+              <Answer text={item.section.text} />
             </div>
           );
         case 'bulletList':
           return (
-            <div className="pb3">
+            <div key={i} className="pb3">
               <BulletList
-                key={i}
                 text={item.section.text}
                 list={item.section.list}
               />
@@ -86,9 +70,8 @@ export class Article extends PureComponent {
           );
         case 'numberedList':
           return (
-            <div className="pb3">
+            <div key={i} className="pb3">
               <NumberedList
-                key={i}
                 text={item.section.text}
                 list={item.section.list}
               />
@@ -96,27 +79,20 @@ export class Article extends PureComponent {
           );
         case 'soundcloud':
           return (
-            <div className="pv3">
-              <Soundcloud
-                key={i}
-                url={item.section.url}
-              />
+            <div key={i} className="pv3">
+              <Soundcloud url={item.section.url} />
             </div>
           );
         case 'youtube':
           return (
-            <div className="pv3">
-              <Youtube
-                key={i}
-                videoId={item.section.url}
-              />
+            <div key={i} className="pv3">
+              <Youtube videoId={item.section.url} />
             </div>
           );
         case 'link':
           return (
-            <div className="pt3  pb1">
+            <div key={i} className="pt3  pb1">
               <ArticleLink
-                key={i}
                 linkType={item.section.linkType}
                 text={item.section.text}
                 url={item.section.url}
