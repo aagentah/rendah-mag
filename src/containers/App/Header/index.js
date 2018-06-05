@@ -97,7 +97,7 @@ export class Header extends PureComponent {
                 <Link className="db  tac  white  link  pv2" to={'/Authors'}>Authors</Link>
               </div>
               <div>
-                <Link className="db  tac  white  link  pv2" to={'/GetInvolved'}>Contact</Link>
+                <Link className="db  tac  white  link  pv2" to={'/GetInvolved'}>Join Us</Link>
               </div>
               <div>
                 <Link className="db  tac  white  link  pv2" to={'/Category/Interviews'}>Interviews</Link>
