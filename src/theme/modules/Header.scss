@@ -3,9 +3,9 @@
 header {
   height: 90px;
   width: 100%;
-  @media only screen and (max-width: $md - 1px) {
-    height: 126px;
-  }
+  // @media only screen and (max-width: $md - 1px) {
+  //   height: 126px;
+  // }
 }
 
 .logo {
@@ -27,15 +27,18 @@ header {
   z-index: 2000;
   top: 5px;
   left: 85px;
-  @media only screen and (max-width: $md - 1px) {
-    width: 100%;
-    height: 38px;
-    top: 88px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    background: palette(black);
-    color: palette(white);
+  // @media only screen and (max-width: $md - 1px) {
+  //   width: 100%;
+  //   height: 38px;
+  //   top: 88px;
+  //   left: 0;
+  //   right: 0;
+  //   text-align: center;
+  //   background: palette(black);
+  //   color: palette(white);
+  // }
+  @media only screen and (max-width: $sm - 1px) {
+    display: none;
   }
   ul {
     list-style: none;
@@ -43,21 +46,21 @@ header {
 }
 
 .nav__list {
-  @media only screen and (max-width: $md - 1px) {
-    position: absolute;
-    top: 8px;
-    left: 0;
-    right: 0;
-  }
+  // @media only screen and (max-width: $md - 1px) {
+  //   position: absolute;
+  //   top: 8px;
+  //   left: 0;
+  //   right: 0;
+  // }
 }
 
 .nav__link {
-  @media only screen and (max-width: $md - 1px) {
-    padding-top: 4px;
-    font-size: 14px;
-    color: palette(white);
-    text-transform: uppercase;
-  }
+  // @media only screen and (max-width: $md - 1px) {
+  //   padding-top: 4px;
+  //   font-size: 14px;
+  //   color: palette(white);
+  //   text-transform: uppercase;
+  // }
 }
 
 .header__social--cont {
