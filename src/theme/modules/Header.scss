@@ -123,21 +123,16 @@ header {
 
 [data-nav-category="1"] {
   opacity: 0;
-  animation: categoryTransition 12s infinite;
+  animation: categoryTransition 9s infinite;
   animation-delay: 0s;
 }
 [data-nav-category="2"] {
   opacity: 0;
-  animation: categoryTransition 12s infinite;
+  animation: categoryTransition 9s infinite;
   animation-delay: 3s;
 }
 [data-nav-category="3"] {
   opacity: 0;
-  animation: categoryTransition 12s infinite;
+  animation: categoryTransition 9s infinite;
   animation-delay: 6s;
-}
-[data-nav-category="4"] {
-  opacity: 0;
-  animation: categoryTransition 12s infinite;
-  animation-delay: 9s;
 }
