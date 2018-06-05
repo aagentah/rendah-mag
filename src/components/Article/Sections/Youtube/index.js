@@ -11,7 +11,7 @@ export class Link extends PureComponent {
   render() {
     return (
       <div>
-        <YouTube className="center  tac  db w-100" videoId={this.props.videoId} />
+        <YouTube className="center  tac  db  w-100  h5" videoId={this.props.videoId} />
       </div>
     );
   }
