@@ -32,9 +32,6 @@ const Header = (): Element<'div'> => (
           <li data-nav-category="3" className="abs  dn-md">
             <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Category/News'}>News</Link>
           </li>
-          <li data-nav-category="4" className="abs  dn-md">
-            <Link className="nav__link  title-font  black  dib  ph2  t6  link" to={'/Category/Mixes'}>Mixes</Link>
-          </li>
         </ul>
       </nav>
       <div className="header__social--cont  pr0-sm">
