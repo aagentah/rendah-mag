@@ -1,10 +1,8 @@
 /* eslint-disable react/sort-comp */
 
 import React, { PureComponent } from 'react';
-// import PropTypes from 'prop-types';
 
 import SubscribeFrom from 'react-mailchimp-subscribe';
-
 
 export class SubscribeBanner extends PureComponent {
   renderForm = () => {
@@ -44,17 +42,5 @@ export class SubscribeBanner extends PureComponent {
     );
   }
 }
-
-// SubscribeBanner.propTypes = {
-//   type: PropTypes.string,
-//   color: PropTypes.string,
-//   text: PropTypes.string,
-// };
-//
-// SubscribeBanner.defaultProps = {
-//   type: '',
-//   color: '',
-//   text: '',
-// };
 
 export default SubscribeBanner;

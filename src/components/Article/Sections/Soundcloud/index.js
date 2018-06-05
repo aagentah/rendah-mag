@@ -3,22 +3,15 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Iframe from 'react-iframe';
+
+import Player from 'react-soundcloud-player';
 
 
 export class Soundcloud extends PureComponent {
   render() {
     return (
       <div>
-        <Iframe
-          url={this.props.url}
-          width="100%"
-          height="166"
-          id="myId"
-          className="w-100"
-          display="initial"
-          position="relative"
-        />
+        <Player audio_id={this.props.url} />
       </div>
     );
   }
