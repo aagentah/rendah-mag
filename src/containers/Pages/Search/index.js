@@ -1,4 +1,3 @@
-/* eslint-disable react/sort-comp */
 /* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';

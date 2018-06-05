@@ -1,4 +1,3 @@
-/* eslint-disable react/sort-comp */
 /* eslint-disable import/no-named-as-default, max-len */
 
 import React from 'react';

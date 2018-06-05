@@ -263,7 +263,7 @@ app.get('/api/category', (req, res) => {
 // GET article
 app.get('/api/article', (req, res) => {
   let article = {};
-  let param = req.query.title;
+  const param = req.query.title;
   // param = param.replace(/-/g, ' ');
 
   db.collection('articles')

@@ -1,5 +1,5 @@
 /* @flow */
-/* eslint-disable import/no-named-as-default, react/prefer-stateless-function, max-len */
+/* eslint-disable import/no-named-as-default, react/prefer-stateless-function */
 
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';

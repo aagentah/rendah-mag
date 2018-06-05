@@ -1,10 +1,7 @@
-/* @flow */
-/* eslint-disable import/no-named-as-default, react/no-array-index-key,
-react/self-closing-comp, react/prefer-stateless-function */
+/* eslint-disable import/no-named-as-default */
 
 import React from 'react';
 import Instafeed from 'react-instafeed';
-
 
 export class Instagram extends React.Component {
   shouldComponentUpdate() {

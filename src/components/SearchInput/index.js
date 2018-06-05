@@ -1,5 +1,4 @@
-/* @flow */
-/* eslint-disable import/no-named-as-default, react/no-array-index-key, react/self-closing-comp */
+/* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
