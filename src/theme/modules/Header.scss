@@ -139,3 +139,23 @@ header {
   animation: categoryTransition 9s infinite;
   animation-delay: 6s;
 }
+
+.slick-arrow {
+  height: 15px;
+  width: auto;
+  top: 10px;
+  position: absolute !important;
+  cursor: pointer !important;
+}
+
+.slick-prev {
+  padding-left: 15px;
+  padding-right: 10px;
+  left: -45px !important;
+}
+
+.slick-next {
+  padding-right: 15px;
+  padding-left: 10px;
+  right: -45px !important;
+}
