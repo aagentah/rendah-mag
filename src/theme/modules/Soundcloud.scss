@@ -1,10 +1,11 @@
 /* stylelint-disable */
+
 .player {
   border: 1px solid #444;
   transition: color 125ms ease-in-out;
   background: white;
   position: relative;
-  padding: 1rem;
+  padding: 1rem 1rem 0.8rem;
   z-index: 5;
   font-size: 1rem;
   display: flex;
@@ -44,6 +45,7 @@
 .player__display {
   flex: 1 1 100%;
   margin-bottom: 0;
+  padding-bottom: 3px;
 }
 
 .player__progress {
