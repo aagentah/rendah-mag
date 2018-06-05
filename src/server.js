@@ -14,6 +14,8 @@ import { Provider } from 'react-redux';
 import chalk from 'chalk';
 import cors from 'cors';
 import createHistory from 'history/createMemoryHistory';
+import MongoClient from 'mongodb';
+
 import configureStore from './redux/store';
 import Html from './utils/Html';
 import App from './containers/App';
@@ -40,7 +42,6 @@ app.use(express.static(path.join(process.cwd(), './public')));
 if (__DEV__) {
   const webpack = require('webpack');
   const webpackConfig = require('../tools/webpack/config.babel');
-
   const compiler = webpack(webpackConfig);
 
   app.use(require('webpack-dev-middleware')(compiler, {
@@ -58,19 +59,18 @@ if (__DEV__) {
 let db;
 const mongoUsername = process.env.MONGO_USERNAME;
 const mongoPassword = process.env.MONGO_PASSWORD;
-const MongoClient = require('mongodb').MongoClient;
 
-if (mongoUsername) {
-  MongoClient.connect(`mongodb://${mongoUsername}:${mongoPassword}@ds019996.mlab.com:19996/rendah`, (err, database) => {
-    if (err) return console.log(err);
-    db = database;
-    return console.log('db connected');
-  });
-} else {
+if (__DEV__) {
   MongoClient.connect('mongodb://Rendah-staging:test@ds123930.mlab.com:23930/halftimefront', (err, database) => {
     if (err) return console.log(err);
     db = database;
-    return console.log('db connected');
+    return console.log('staging db connected');
+  });
+} else {
+  MongoClient.connect(`mongodb://${mongoUsername}:${mongoPassword}@ds019996.mlab.com:19996/rendah`, (err, database) => {
+    if (err) return console.log(err);
+    db = database;
+    return console.log('production db connected');
   });
 }
 
