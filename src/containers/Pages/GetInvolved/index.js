@@ -22,7 +22,7 @@ export class GetInvolved extends PureComponent {
             <div className="col-sm-14">
               <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">Get Involved</h1>
               <p className="pb4">
-                Rendah Mag exists to bring exposure to an ever-growing community, foccusing on the latest Halftime,
+                Rendah Mag exists to bring exposure to an ever-growing community, focusing on the latest Halftime,
                 Beats & Experimental news & releases.
                 <br /><br />
                 Get involved. We&apos;re constantly on the look out for new members for the Rendah team. Whether
