@@ -4,7 +4,7 @@
   height: 50px;
 }
 
-.footer__social--cont {
+.footer__social {
   float: right;
   display: flex;
   justify-content: center;
@@ -13,7 +13,7 @@
   }
 }
 
-.footer__social {
+.footer__social__item {
   align-self: center;
   padding-top: 4px;
 
