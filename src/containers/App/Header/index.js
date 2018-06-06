@@ -69,15 +69,15 @@ export class Header extends PureComponent {
             </ul>
           </nav>
 
-          <div className="header__desktop__social__cont  pr0-sm">
+          <div className="header--desktop__social  pr0-sm">
             <SearchInput textAlign="inherit" />
-            <a className="header__desktop__social  ph1  dn-sm" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+            <a className="header--desktop__social__item  ph1  dn-sm" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
               <img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
             </a>
-            <a className="header__desktop__social  ph1  dn-sm" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
+            <a className="header--desktop__social__item  ph1  dn-sm" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
               <img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
             </a>
-            <a className="header__desktop__social  ph1  dn-sm" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+            <a className="header--desktop__social__item  ph1  dn-sm" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
               <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
             </a>
             {
