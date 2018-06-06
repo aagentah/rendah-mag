@@ -76,14 +76,11 @@ export class Article extends PureComponent {
             </div>
           );
         case 'soundcloud':
-          if (!__DEV__) {
-            return (
-              <div key={i} className="pv3">
-                <Soundcloud url={item.section.url} />
-              </div>
-            );
-          }
-          return false;
+          return (
+            <div key={i} className="pv3">
+              <Soundcloud url={item.section.url} />
+            </div>
+          );
         case 'youtube':
           return (
             <div key={i} className="pv3">
