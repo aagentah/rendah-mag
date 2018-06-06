@@ -1,11 +1,8 @@
 /* stylelint-disable */
 
-header {
+.header__desktop {
   height: 90px;
   width: 100%;
-  // @media only screen and (max-width: $md - 1px) {
-  //   height: 126px;
-  // }
 }
 
 .logo {
@@ -21,22 +18,12 @@ header {
   }
 }
 
-.nav {
+.nav__desktop {
   height: auto;
   position: absolute;
   z-index: 2000;
   top: 5px;
   left: 85px;
-  // @media only screen and (max-width: $md - 1px) {
-  //   width: 100%;
-  //   height: 38px;
-  //   top: 88px;
-  //   left: 0;
-  //   right: 0;
-  //   text-align: center;
-  //   background: palette(black);
-  //   color: palette(white);
-  // }
   @media only screen and (max-width: $sm - 1px) {
     display: none;
   }
@@ -45,25 +32,7 @@ header {
   }
 }
 
-.nav__list {
-  // @media only screen and (max-width: $md - 1px) {
-  //   position: absolute;
-  //   top: 8px;
-  //   left: 0;
-  //   right: 0;
-  // }
-}
-
-.nav__link {
-  // @media only screen and (max-width: $md - 1px) {
-  //   padding-top: 4px;
-  //   font-size: 14px;
-  //   color: palette(white);
-  //   text-transform: uppercase;
-  // }
-}
-
-.header__social--cont {
+.header__desktop__social__cont {
   float: right;
   display: flex;
   justify-content: center;
@@ -77,7 +46,7 @@ header {
   }
 }
 
-.header__social {
+.header__desktop__social {
   align-self: center;
   padding-top: 4px;
 
