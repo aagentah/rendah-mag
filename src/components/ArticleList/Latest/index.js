@@ -22,13 +22,13 @@ export class LatestArticleListLoaded extends PureComponent {
       autoplaySpeed: 2000,
       cssEase: 'ease-in-out',
       swipeToSlide: false,
-      prevArrow: <span />,
-      nextArrow: <span />,
+      prevArrow: <div />,
+      nextArrow: <div />,
     };
 
     if (isMobile && this.props.extra) {
       return (
-        <div className="ph3  center">
+        <div className="mw-100  ph3  center">
           <Slider {...settings}>
             {this.props.list.map(article => (
               <div key={article.title} className="link  w-100  zoom-in-fade-in-iteration--cont">

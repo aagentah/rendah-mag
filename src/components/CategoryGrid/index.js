@@ -18,13 +18,13 @@ export class CategoryGrid extends PureComponent {
       autoplaySpeed: 2000,
       cssEase: 'ease-in-out',
       swipeToSlide: false,
-      prevArrow: <span />,
-      nextArrow: <span />,
+      prevArrow: <div />,
+      nextArrow: <div />,
     };
 
     if (isMobile) {
       return (
-        <div className="ph3  center">
+        <div className="mw-100  ph3  center">
           <Slider {...settings}>
             <div>
               <Link className="link" to={'/Category/Interviews'}>
