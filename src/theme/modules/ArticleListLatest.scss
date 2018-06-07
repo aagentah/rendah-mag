@@ -1,4 +1,9 @@
 /* stylelint-disable */
+.latestArticleList {
+  .slick-arrow {
+    display: none !important;
+  }
+}
 
 .latestArticleList__col--latest {
   height: 360px;
