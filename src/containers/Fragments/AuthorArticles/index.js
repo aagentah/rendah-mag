@@ -32,9 +32,9 @@ export class AuthorArticles extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderAuthorArticleList()}
-      </div>
+      </React.Fragment>
     );
   }
 }

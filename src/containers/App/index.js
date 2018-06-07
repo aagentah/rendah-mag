@@ -30,14 +30,14 @@ const App = (): Element<'div'> => {
   );
 
   return (
-    <div>
+    <React.Fragment>
       <Helmet {...config.app} />
       <div className="App">
         <Header />
         <Switch>{routes.map(route => routeWithSubRoutes(route))}</Switch>
         <Footer />
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

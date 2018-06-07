@@ -8,9 +8,9 @@ import PropTypes from 'prop-types';
 export class Answer extends PureComponent {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <p><em className="normal-font  grey">{this.props.text}</em></p>
-      </div>
+      </React.Fragment>
     );
   }
 }

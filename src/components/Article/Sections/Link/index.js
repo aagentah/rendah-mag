@@ -30,12 +30,12 @@ export class Link extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <a className="link  black  normal-font" href={this.props.url} target="_blank">
           {this.linkType()}
           <span className="Article__link--span  pb2">{this.props.text}</span>
         </a>
-      </div>
+      </React.Fragment>
     );
   }
 }
