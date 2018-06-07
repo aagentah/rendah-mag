@@ -28,7 +28,7 @@ export class LatestArticleListLoaded extends PureComponent {
 
     if (isMobile && this.props.extra) {
       return (
-        <div className="mw-100  ph3  center">
+        <div className="container  ph3  center">
           <Slider {...settings}>
             {this.props.list.map(article => (
               <div key={article.title} className="link  w-100  zoom-in-fade-in-iteration--cont">
