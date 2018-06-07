@@ -25,7 +25,7 @@ export class Article extends PureComponent {
             <div className="facebook-comments__panel--top  pt4">
               <span className="tac  fw6  grey">Add a comment</span>
             </div>
-            <div className="col-md-16  col-md-offset-4  facebook-comments">
+            <div className="col-md-16  offset-md-4  facebook-comments">
               <FacebookProvider appId="154881868603516">
                 <Comments href={`https://www.rendahmag.com${this.props.match.url}`} numPosts={3} width="100%" mobile />
               </FacebookProvider>
