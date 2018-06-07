@@ -3,7 +3,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -16,8 +15,6 @@ const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('.
 const CSSModules = false;
 // Disable js lint error terminating here
 const eslint = true;
-// Disable style lint error terminating here
-const stylelint = false;
 // Register vendors here
 const vendor = [
   'react',
@@ -55,8 +52,6 @@ const getPlugins = () => {
         minimize: !isDev,
       },
     }),
-    // Style lint
-    new StyleLintPlugin({ syntax: 'scss', failOnError: stylelint }),
     // Setup enviorment variables for client
     new webpack.EnvironmentPlugin({ NODE_ENV: JSON.stringify(nodeEnv) }),
     // Setup global variables for client

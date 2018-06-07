@@ -68,11 +68,11 @@ export default [
     ]),
   },
   {
-    path: '/GetInvolved',
+    path: '/Get-Involved',
     component: GetInvolvedPage,
   },
   {
-    path: '/PrivacyPolicy',
+    path: '/Privacy-Policy',
     component: PrivacyPolicyPage,
   },
   {
