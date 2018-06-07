@@ -56,23 +56,23 @@ export class Article extends PureComponent {
           <div className="row">
             <div className="col-20  offset-2  col-md-16  offset-md-4">
               <div className="link  w-100  author__cont">
-                <div className="center  pt3">
+                <div className="center">
                   <div className="row  shadow2  br2">
 
-                    <div className="col-md-6">
-                      <figure className="rel  center  link  w-100  zoom-in-fade-in-iteration--cont  pb2-md">
+                    <div className="col-md-6  pl0">
+                      <figure className="rel  center  link  w-100  zoom-in-fade-in-iteration--cont  mv3  pl3">
                         <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="shadow2  author__img--cont  db">
-                          <img className="mb3  center  w4  zoom-in-fade-in-iteration--item  author__img" alt={author.name} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
+                          <img className="center  w4  zoom-in-fade-in-iteration--item  author__img" alt={author.name} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
                         </Link>
                       </figure>
                     </div>
 
                     <div className="col-md-18">
-                      <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="link  black  t7  pt2  db  tac-md  cp  title-font  no-underline">
+                      <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="link  black  t7  pt3  db  tac-md  cp  title-font  no-underline">
                         <span>{author.name}</span>
                         <span className="pl1  grey  t8">({author.alias})</span>
                       </Link>
-                      <p className="grey  t8  pv2  tac-md">{author.description}</p>
+                      <p className="author__info  grey  t8  pv2  tac-md">{author.description}</p>
                       <hr />
                       <div className="tac-md  pb2">
                         {author.links.map((link, i) => (
