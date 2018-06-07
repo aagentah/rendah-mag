@@ -15,14 +15,14 @@ export class NumberedList extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.text()}
         <ol className="mb0">
           {this.props.list.map(item => (
             <li key={item} className="pv1  normal-font  grey"><p>{item}</p></li>
           ))}
         </ol>
-      </div>
+      </React.Fragment>
     );
   }
 }

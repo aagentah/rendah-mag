@@ -31,9 +31,9 @@ export class Authors extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderLatestAuthorList()}
-      </div>
+      </React.Fragment>
     );
   }
 }

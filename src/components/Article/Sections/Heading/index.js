@@ -8,9 +8,9 @@ import PropTypes from 'prop-types';
 export class Heading extends PureComponent {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <h2 className="title-font  dark-grey">{this.props.text}</h2>
-      </div>
+      </React.Fragment>
     );
   }
 }
