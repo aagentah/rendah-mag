@@ -57,27 +57,27 @@ export class Header extends PureComponent {
               <li className="dib">
                 <Link className="title-font  black  dib  ph2  t6  link" to={'/GetInvolved'}>Get Involved</Link>
               </li>
-              <li data-nav-category="1" className="abs  dn-sm">
+              <li data-nav-category="1" className="abs  dn-md">
                 <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/Interviews'}>Interviews</Link>
               </li>
-              <li data-nav-category="2" className="abs  dn-sm">
+              <li data-nav-category="2" className="abs  dn-md">
                 <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/Insights'}>Insights</Link>
               </li>
-              <li data-nav-category="3" className="abs  dn-sm">
+              <li data-nav-category="3" className="abs  dn-md">
                 <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/News'}>News</Link>
               </li>
             </ul>
           </nav>
 
-          <div className="header--desktop__social  pr0-sm">
+          <div className="header--desktop__social  pr0-md">
             <SearchInput textAlign="inherit" />
-            <a className="header--desktop__social__item  ph1  dn-sm" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+            <a className="header--desktop__social__item  ph1  dn-md" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
               <img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
             </a>
-            <a className="header--desktop__social__item  ph1  dn-sm" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
+            <a className="header--desktop__social__item  ph1  dn-md" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
               <img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
             </a>
-            <a className="header--desktop__social__item  ph1  dn-sm" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+            <a className="header--desktop__social__item  ph1  dn-md" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
               <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
             </a>
             {
@@ -92,7 +92,7 @@ export class Header extends PureComponent {
         </header>
 
         <header>
-          <div className="dn  db-sm  bg-black">
+          <div className="dn  db-md  bg-black">
             <div className="w-70  center  white">
               <Slider {...settings}>
                 <div>

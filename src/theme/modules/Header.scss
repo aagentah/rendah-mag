@@ -12,7 +12,7 @@
   z-index: 2000;
   top: 15px;
   left: 15px;
-  @media only screen and (max-width: $sm - 1px) {
+  @media only screen and (max-width: $md - 1px) {
     left: auto;
     right: 15px;
   }
@@ -24,7 +24,7 @@
   z-index: 2000;
   top: 5px;
   left: 85px;
-  @media only screen and (max-width: $sm - 1px) {
+  @media only screen and (max-width: $md - 1px) {
     display: none;
   }
   ul {
@@ -38,7 +38,7 @@
   justify-content: center;
   height: 90px;
   padding-right: 15px;
-  @media only screen and (max-width: $sm - 1px) {
+  @media only screen and (max-width: $md - 1px) {
     padding-bottom: 5px;
     text-align: left;
     float: left;
