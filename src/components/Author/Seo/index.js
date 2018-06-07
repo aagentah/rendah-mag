@@ -12,7 +12,7 @@ export class Seo extends PureComponent {
     console.log('SEO');
     console.log(author);
     return (
-      <div>
+      <React.Fragment>
         <Helmet>
           <title>{author.name}</title>
           <meta name="description" content={author.description} />
@@ -38,7 +38,7 @@ export class Seo extends PureComponent {
           <meta property="og:site_name" content="Rendah" />
           <meta property="author:section" content="author" />
         </Helmet>
-      </div>
+      </React.Fragment>
     );
   }
 }

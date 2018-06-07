@@ -31,9 +31,9 @@ export class ExtraArticles extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderExtraArticleList()}
-      </div>
+      </React.Fragment>
     );
   }
 }

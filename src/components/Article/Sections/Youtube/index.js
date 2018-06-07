@@ -10,9 +10,9 @@ import YouTube from 'react-youtube';
 export class Link extends PureComponent {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <YouTube className="center  tac  db  w-100  h5" videoId={this.props.videoId} />
-      </div>
+      </React.Fragment>
     );
   }
 }
