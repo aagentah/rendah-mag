@@ -55,7 +55,7 @@ export class Header extends PureComponent {
                 <Link className="title-font  black  dib  ph2  t6  link" to={'/Authors'}>Authors</Link>
               </li>
               <li className="dib">
-                <Link className="title-font  black  dib  ph2  t6  link" to={'/GetInvolved'}>Get Involved</Link>
+                <Link className="title-font  black  dib  ph2  t6  link" to={'/Get-Involved'}>Get Involved</Link>
               </li>
               <li data-nav-category="1" className="abs  dn-md">
                 <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/Interviews'}>Interviews</Link>
@@ -102,7 +102,7 @@ export class Header extends PureComponent {
                   <Link className="db  tac  white  link  pv2" to={'/Authors'}>Authors</Link>
                 </div>
                 <div>
-                  <Link className="db  tac  white  link  pv2" to={'/GetInvolved'}>Join Us</Link>
+                  <Link className="db  tac  white  link  pv2" to={'/Get-Involved'}>Join Us</Link>
                 </div>
                 <div>
                   <Link className="db  tac  white  link  pv2" to={'/Category/Interviews'}>Interviews</Link>
