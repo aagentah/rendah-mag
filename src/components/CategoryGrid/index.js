@@ -24,7 +24,7 @@ export class CategoryGrid extends PureComponent {
 
     if (isMobile) {
       return (
-        <div className="mw-100  ph3  center">
+        <div className="container  ph3  center">
           <Slider {...settings}>
             <div>
               <Link className="link" to={'/Category/Interviews'}>
