@@ -18,8 +18,8 @@ export class CategoryGrid extends PureComponent {
       autoplaySpeed: 2000,
       cssEase: 'ease-in-out',
       swipeToSlide: false,
-      prevArrow: false,
-      nextArrow: false,
+      prevArrow: <div />,
+      nextArrow: <div />,
     };
 
     if (isMobile) {

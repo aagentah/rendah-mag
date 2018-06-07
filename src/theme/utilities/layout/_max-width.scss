@@ -12,3 +12,9 @@
     }
   }
 }
+
+@for $i from 1 through 10 {
+  .mw-#{$i}0 {
+    max-width: #{$i}0%;
+  }
+}
