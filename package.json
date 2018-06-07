@@ -154,21 +154,6 @@
       "webpackIsomorphicTools": true
     }
   },
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "rules": {
-      "string-quotes": "single",
-      "selector-pseudo-class-no-unknown": [
-        true,
-        {
-          "ignorePseudoClasses": [
-            "global",
-            "local"
-          ]
-        }
-      ]
-    }
-  },
   "browserslist": [
     "last 2 versions",
     "not ie <= 8"
