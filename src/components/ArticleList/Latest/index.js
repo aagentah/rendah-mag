@@ -28,8 +28,8 @@ export class LatestArticleListLoaded extends PureComponent {
 
     if (isMobile && this.props.extra) {
       return (
-        <div className="mw-90  db  center">
-          <div className="w-90  center">
+        <div className="mw-80  db  center">
+          <div className="w-80  center">
             <Slider {...settings}>
               {this.props.list.map(article => (
                 <div key={article.title} className="link">
