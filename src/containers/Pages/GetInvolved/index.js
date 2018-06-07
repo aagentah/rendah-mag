@@ -19,7 +19,7 @@ export class GetInvolved extends PureComponent {
         <Helmet title="Get Involved" />
         <div className="container  tal  ph4-sm">
           <div className="row">
-            <div className="col-sm-14">
+            <div className="col-md-14">
               <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">Get Involved</h1>
               <p className="pb4">
                 Rendah Mag exists to bring exposure to an ever-growing community,
@@ -34,10 +34,10 @@ export class GetInvolved extends PureComponent {
                 <span className="GetInvolved__email--link  dib  pb3  black  no-underline">info@rendahmag.com</span>
               </a>
             </div>
-            <div className="col-sm-10">
+            <div className="col-md-10">
               <div className="container-fluid  pv4">
                 <div className="row">
-                  <div className="col-sm-24  pt4">
+                  <div className="col-24  pt4">
                     <Instagram />
                   </div>
                 </div>

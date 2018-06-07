@@ -54,10 +54,10 @@ export class Article extends PureComponent {
         {renderSeo}
         <div className="container  mv4  zoom-in-fade-in-iteration--cont">
           <div className="row">
-            <div className="col-xs-20  col-xs-offset-2  col-md-16  col-md-offset-4">
-              <div className="row  shadow2  br2">
-                <div className="link  w-100  author__cont">
-                  <div className="center  pt3">
+            <div className="col-20  offset-2  col-md-16  offset-md-4">
+              <div className="link  w-100  author__cont">
+                <div className="center  pt3">
+                  <div className="row  shadow2  br2">
 
                     <div className="col-md-6">
                       <figure className="rel  center  link  w-100  zoom-in-fade-in-iteration--cont  pb2-md">
