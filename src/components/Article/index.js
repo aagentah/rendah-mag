@@ -110,41 +110,39 @@ export class Article extends PureComponent {
     const authorInfoMatch = { params: { id: article.author } };
 
     return (
-      <div>
+      <React.Fragment>
         <Seo data={article} />
-        <div>
-          <div className="article">
+        <div className="article">
 
-            <figure className="rel  article__hero">
-              <div className="article__hero--background" style={{ backgroundImage: `url(https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img})` }} />
-              <img className="article__hero--img" alt={article.title} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
-            </figure>
+          <figure className="rel  article__hero">
+            <div className="article__hero--background" style={{ backgroundImage: `url(https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img})` }} />
+            <img className="article__hero--img" alt={article.title} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
+          </figure>
 
-            <section className="rel">
-              <article className="container  article__content">
-                <div className="row">
-                  <div className="col-md-16  offset-md-4  ph4-sm">
-                    <div className="article__fb-like  pb2">
-                      <FacebookProvider appId="154881868603516">
-                        <Like href={`https://www.rendahmag.com/Article/${article.url}`} width="320" colorScheme="dark" />
-                      </FacebookProvider>
-                    </div>
-                    <span className="grey  t8">{this.date(article.created)} | </span>
-                    <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="grey  t8  cp  link">{article.author}</span></Link>
-                    <h1 className="pb3  pt4  title-font">{article.title}</h1>
-                    <p className="pv3  normal-font  grey">{article.description}</p>
-                    {article.body.map((item, i) => (
-                      sections(item, i)
-                    ))}
+          <section className="rel">
+            <article className="container  article__content">
+              <div className="row">
+                <div className="col-md-16  offset-md-4  ph4-sm">
+                  <div className="article__fb-like  pb2">
+                    <FacebookProvider appId="154881868603516">
+                      <Like href={`https://www.rendahmag.com/Article/${article.url}`} width="320" colorScheme="dark" />
+                    </FacebookProvider>
                   </div>
+                  <span className="grey  t8">{this.date(article.created)} | </span>
+                  <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="grey  t8  cp  link">{article.author}</span></Link>
+                  <h1 className="pb3  pt4  title-font">{article.title}</h1>
+                  <p className="pv3  normal-font  grey">{article.description}</p>
+                  {article.body.map((item, i) => (
+                    sections(item, i)
+                  ))}
                 </div>
-              </article>
-            </section>
+              </div>
+            </article>
+          </section>
 
-            <AuthorInfo match={authorInfoMatch} seo={false} />
-          </div>
+          <AuthorInfo match={authorInfoMatch} seo={false} />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

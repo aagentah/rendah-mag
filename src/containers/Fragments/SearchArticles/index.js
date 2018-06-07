@@ -32,9 +32,9 @@ export class SearchArticles extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderSearchArticleList()}
-      </div>
+      </React.Fragment>
     );
   }
 }

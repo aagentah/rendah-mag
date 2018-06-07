@@ -15,9 +15,9 @@ export class Loading extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderLoading()}
-      </div>
+      </React.Fragment>
     );
   }
 }

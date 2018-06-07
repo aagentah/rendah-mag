@@ -31,9 +31,9 @@ export class WeekArticles extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderWeekArticleList()}
-      </div>
+      </React.Fragment>
     );
   }
 }
