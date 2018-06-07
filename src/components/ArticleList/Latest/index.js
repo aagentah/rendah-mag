@@ -14,8 +14,8 @@ export class LatestArticleListLoaded extends PureComponent {
       <div className="container">
         <div className="row">
           {this.props.list.map(article => (
-            <div key={article.title} className="link  w-100  zoom-in-fade-in-iteration--cont">
-              <article className="col-sm-12  col-md-6  pv3  latestArticleList__col--latest">
+            <div key={article.title} className="col-sm-12  col-md-6  link  w-100  zoom-in-fade-in-iteration--cont">
+              <article className="pv3  latestArticleList__col--latest">
 
                 <figure className="rel  pb3">
                   <Link to={`/Article/${article.url}`} className="shadow2  db  over-hidden  latestArticleList__img--cont">

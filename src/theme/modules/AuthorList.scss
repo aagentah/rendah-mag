@@ -1,14 +1,12 @@
-/* stylelint-disable */
-
 .authorList__col {
   height: 310px;
   @media only screen and (max-width: $sm - 1px) {
     width: 50%;
-    margin: 0 auto;
-    text-align: center;
   }
   @media only screen and (max-width: $xs - 1px) {
     width: 80%;
+    margin: 0 auto;
+    text-align: center;
   }
 }
 
@@ -26,4 +24,8 @@
 
 .authorList__title {
   line-height: 22px;
+  @media only screen and (max-width: $sm - 1px) {
+    margin: 0 auto;
+    text-align: center;
+  }
 }

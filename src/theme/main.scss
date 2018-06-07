@@ -3,7 +3,7 @@
 // Vendor
 @import 'vendor/normalize';
 @import 'vendor/react-slick';
-// @import 'vendor/prism';
+@import 'vendor/bootstrap/bootstrap-grid';
 
 // Variables
 @import 'vars/index';
@@ -23,8 +23,6 @@
 // @import 'utilities/debug';
 @import 'utilities/helper';
 @import 'utilities/state';
-
-@import 'vendor/bootstrap-grid';
 
 @import 'utilities/layout/clearfix';
 @import 'utilities/layout/display';
