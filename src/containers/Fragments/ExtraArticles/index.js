@@ -26,7 +26,7 @@ export class ExtraArticles extends PureComponent {
       return <Loading type="ExtraArticles" />;
     }
 
-    return <LatestArticleList list={extraArticles.list} />;
+    return <LatestArticleList list={extraArticles.list} extra />;
   };
 
   render() {
