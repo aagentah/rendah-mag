@@ -2,7 +2,6 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import FacebookProvider, { Comments } from 'react-facebook';
 
 import ArticleInfo from '../../../containers/Fragments/ArticleInfo';
 import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
@@ -20,17 +19,7 @@ export class Article extends PureComponent {
     return (
       <main className="page-fade-in">
         <ArticleInfo match={this.props.match} />
-        <div className="container  tac">
-          <div className="row  rel">
-            <div className="facebook-comments__panel--top" />
-            <div className="col-md-16  offset-md-4  facebook-comments">
-              <FacebookProvider appId="154881868603516">
-                <Comments href={`https://www.rendahmag.com${this.props.match.url}`} numPosts={3} width="100%" mobile />
-              </FacebookProvider>
-            </div>
-            <div className="facebook-comments__panel--bottom" />
-          </div>
-        </div>
+        <p className="t7  tac  grey  pv3">MORE ARTICLES</p>
         <ExtraArticles />
       </main>
     );
