@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import ArticleInfo from '../../../containers/Fragments/ArticleInfo';
 import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
-
+import CategoryGrid from '../../../components/CategoryGrid';
 
 export class Article extends PureComponent {
   componentDidMount() {
@@ -21,6 +21,7 @@ export class Article extends PureComponent {
         <ArticleInfo match={this.props.match} />
         <p className="t7  tac  grey  pv3-sm  pv4">MORE ARTICLES</p>
         <ExtraArticles />
+        <CategoryGrid />
       </main>
     );
   }
