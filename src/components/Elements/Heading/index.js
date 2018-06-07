@@ -27,9 +27,9 @@ export class Heading extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderHeading()}
-      </div>
+      </React.Fragment>
     );
   }
 }

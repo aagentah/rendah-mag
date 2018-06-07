@@ -15,14 +15,14 @@ export class BulletList extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.text()}
         <ul className="mb0">
           {this.props.list.map(item => (
             <li key={item} className="pv1  normal-font  grey"><p>{item}</p></li>
           ))}
         </ul>
-      </div>
+      </React.Fragment>
     );
   }
 }

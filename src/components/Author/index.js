@@ -50,9 +50,9 @@ export class Article extends PureComponent {
     const authorLinks = this.authorLinks;
     const renderSeo = (this.props.seo) ? <Seo data={author} /> : null;
     return (
-      <div>
+      <React.Fragment>
         {renderSeo}
-        <div className="container  mv4  zoom-in-fade-in-iteration--cont">
+        <div className="container  mt4  zoom-in-fade-in-iteration--cont">
           <div className="row">
             <div className="col-20  offset-2  col-md-16  offset-md-4">
               <div className="link  w-100  author__cont">
@@ -87,7 +87,7 @@ export class Article extends PureComponent {
             </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

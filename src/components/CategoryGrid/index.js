@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export class CategoryGrid extends PureComponent {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <div className="container  pt3  pb5">
           <div className="row">
             <div className="col-sm-24  col-lg-8">
@@ -34,7 +34,7 @@ export class CategoryGrid extends PureComponent {
             </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

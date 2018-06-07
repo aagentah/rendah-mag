@@ -36,9 +36,9 @@ export class AuthorInfo extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderAuthor()}
-      </div>
+      </React.Fragment>
     );
   }
 }
