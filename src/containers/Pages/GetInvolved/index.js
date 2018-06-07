@@ -34,6 +34,12 @@ export class GetInvolved extends PureComponent {
                 <img className="w2  dib  pr2" src={require('../../App/assets/social/iconmonstr-email-11.png')} alt="facebook" />
                 <span className="GetInvolved__email--link  dib  pb3  black  no-underline">info@rendahmag.com</span>
               </a>
+              <p className="pt3">
+                Rendah is written in <a href="https://reactjs.org/" rel="noopener noreferrer" target="_blank" className="black  link  underline">React.js</a>
+                &nbsp;&&nbsp;<a href="https://nodejs.org/en/" rel="noopener noreferrer" target="_blank" className="black  link  underline">Node.js</a>.
+                <br />
+                You can check our <a href="https://github.com/danjonesdev/rendah-mag" rel="noopener noreferrer" target="_blank" className="black  link  underline">Github repository</a>
+              </p>
             </div>
             <div className="col-lg-10">
               <div className="container-fluid  pv4">
