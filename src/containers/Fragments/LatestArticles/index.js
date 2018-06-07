@@ -31,9 +31,9 @@ export class LatestArticles extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderLatestArticleList()}
-      </div>
+      </React.Fragment>
     );
   }
 }

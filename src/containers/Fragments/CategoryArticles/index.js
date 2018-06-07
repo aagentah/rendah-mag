@@ -32,9 +32,9 @@ export class CategoryArticles extends PureComponent {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderCategoryArticleList()}
-      </div>
+      </React.Fragment>
     );
   }
 }
