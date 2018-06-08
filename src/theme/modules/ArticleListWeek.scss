@@ -1,11 +1,8 @@
-
-/* stylelint-disable */
-
 .weekArticleList__col--week {
   height: 415px;
-    @media only screen and (max-width: $sm - 1px) {
-      height: 360px;
-    }
+  @include breakpoint-up(sm) {
+    height: 360px;
+  }
 }
 
 .weekArticleList__col--search {
@@ -14,11 +11,11 @@
 
 .weekArticleList__col--leaving {
   animation: weekArticleList__img--zoomOut 0.2s ease both, weekArticleList__cont--fadeOut 0.2s ease both;
-  }
+}
 
 .weekArticleList__img--cont {
   height: 250px;
-  @media only screen and (max-width: $sm - 1px) {
+  @include breakpoint-up(sm) {
     height: 180px;
   }
 }
@@ -27,7 +24,7 @@
   height: 250px;
   object-fit: cover;
   object-position: center;
-  @media only screen and (max-width: $sm - 1px) {
+  @include breakpoint-up(sm) {
     height: 180px;
   }
 }
@@ -48,7 +45,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   font-family: $normal-font;
-  @media only screen and (max-width: $sm - 1px) {
+  @include breakpoint-up(sm) {
     height: 70px;
     -webkit-line-clamp: 3;
   }

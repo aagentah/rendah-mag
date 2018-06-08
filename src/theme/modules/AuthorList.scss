@@ -1,9 +1,9 @@
 .authorList__col {
   height: 310px;
-  @media only screen and (max-width: $sm - 1px) {
+  @include breakpoint-up(md) {
     width: 50%;
   }
-  @media only screen and (max-width: $xs - 1px) {
+  @include breakpoint-up(sm) {
     width: 80%;
     margin: 0 auto;
     text-align: center;
@@ -24,7 +24,7 @@
 
 .authorList__title {
   line-height: 22px;
-  @media only screen and (max-width: $sm - 1px) {
+  @include breakpoint-up(sm) {
     margin: 0 auto;
     text-align: center;
   }
