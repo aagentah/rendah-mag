@@ -1,4 +1,4 @@
-/* stylelint-disable */
+
 
 @each $i, $value in $max-widths {
   .mw#{$i} { max-width: $value; }
