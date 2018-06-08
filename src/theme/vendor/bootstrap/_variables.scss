@@ -204,7 +204,7 @@ $link-hover-decoration: underline !default;
 
 $grid-breakpoints: (
   xs: 0,
-  sm: 476px,
+  sm: 576px,
   md: 768px,
   lg: 992px,
   xl: 1200px
@@ -218,7 +218,7 @@ $grid-breakpoints: (
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
-  sm: 440px,
+  sm: 540px,
   md: 720px,
   lg: 960px,
   xl: 1140px
