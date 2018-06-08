@@ -1,4 +1,4 @@
-/* stylelint-disable */
+
   .author__cont {
     min-height: 170px;
   }
@@ -6,7 +6,7 @@
   .author__img--cont {
     height: 135px;
     overflow: hidden;
-    @media only screen and (max-width: $md - 1px) {
+    @include breakpoint-up(md) {
       height: 300px;
     }
   }
@@ -17,14 +17,14 @@
     object-fit: cover;
     object-position: center;
 
-    @media only screen and (max-width: $md - 1px) {
+    @include breakpoint-up(md) {
       height: 300px;
     }
   }
 
   .author__info {
     min-height: 60px;
-    @media only screen and (max-width: $md - 1px) {
+    @include breakpoint-up(md) {
       min-height: auto;
     }
   }

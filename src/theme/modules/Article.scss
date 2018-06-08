@@ -1,4 +1,4 @@
-/* stylelint-disable */
+
 .article {
   opacity: 0;
   animation: article 0.4s ease both;
@@ -43,13 +43,13 @@
 
 .article__content {
   margin-top: 40px;
-  animation: article__content--appear 0.4s ease both;
-  animation-delay: 0.4s;
+
 
   p {
     line-height: 28px;
   }
 }
+
 // anims
 @keyframes article__hero--background--zoomIn {
   0% {
