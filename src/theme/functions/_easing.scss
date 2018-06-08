@@ -1,4 +1,4 @@
-/* stylelint-disable */
+
 
 @function easing($key) {
   @if map-has-key($easings, $key) {
