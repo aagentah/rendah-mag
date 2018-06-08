@@ -1,5 +1,7 @@
 /* stylelint-disable */
-.latestArticleList {
+.latestArticleList--mobile {
+  max-height: 360px;
+  
   .slick-arrow {
     display: none !important;
   }

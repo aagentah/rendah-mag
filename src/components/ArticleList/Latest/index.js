@@ -28,26 +28,28 @@ export class LatestArticleListLoaded extends PureComponent {
 
     if (isMobile && this.props.extra) {
       return (
-        <div className="latestArticleList  mw-100  db  center">
-          <div className="w-100  center  ph3">
+        <div className="latestArticleList--mobile  mw-100  db  center">
+          <div className="w-100  center">
             <Slider {...settings}>
               {this.props.list.map(article => (
-                <div key={article.title} className="link  w-100  zoom-in-fade-in-iteration--cont">
-                  <article className="pv3  latestArticleList__col--latest">
+                <div className="ph3">
+                  <div key={article.title} className="link  w-100  zoom-in-fade-in-iteration--cont">
+                    <article className="pv3  latestArticleList__col--latest">
 
-                    <figure className="rel  pb3">
-                      <Link to={`/Article/${article.url}`} className="shadow2  db  over-hidden  latestArticleList__img--cont">
-                        <img className="mb3  w-100  zoom-in-fade-in-iteration--item  cp  latestArticleList__img" alt={article.title} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
+                      <figure className="rel  pb3">
+                        <Link to={`/Article/${article.url}`} className="shadow2  db  over-hidden  latestArticleList__img--cont">
+                          <img className="mb3  w-100  zoom-in-fade-in-iteration--item  cp  latestArticleList__img" alt={article.title} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
+                        </Link>
+                      </figure>
+                      <span className="grey  t8">{this.date(article.created)} | </span>
+                      <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="grey  t8  cp  link">{article.author}</span></Link>
+                      <Link to={`/Article/${article.url}`} className="no-underline">
+                        <p className="black  t7  pt2  cp  title-font  over-hidden  link  latestArticleList__title">{article.title}</p>
                       </Link>
-                    </figure>
-                    <span className="grey  t8">{this.date(article.created)} | </span>
-                    <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="grey  t8  cp  link">{article.author}</span></Link>
-                    <Link to={`/Article/${article.url}`} className="no-underline">
-                      <p className="black  t7  pt2  cp  title-font  over-hidden  link  latestArticleList__title">{article.title}</p>
-                    </Link>
-                    <p className="grey  t8  pv2  over-hidden  latestArticleList__intro">{article.description}</p>
+                      <p className="grey  t8  pv2  over-hidden  latestArticleList__intro">{article.description}</p>
 
-                  </article>
+                    </article>
+                  </div>
                 </div>
               ))}
             </Slider>
