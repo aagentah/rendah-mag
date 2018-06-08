@@ -1,4 +1,4 @@
-/* stylelint-disable */
+
 
 .footer {
   height: 50px;
@@ -8,7 +8,7 @@
   float: right;
   display: flex;
   justify-content: center;
-  @media only screen and (max-width: $sm - 1px) {
+  @include breakpoint-up(sm) {
     width: 100%;
   }
 }
@@ -20,7 +20,7 @@
   img {
     width: 30px;
     height: auto;
-    @media only screen and (max-width: $sm - 1px) {
+    @include breakpoint-up(sm) {
       text-align: center;
       margin: 0 auto;
     }
