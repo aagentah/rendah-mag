@@ -35,10 +35,10 @@ export class GetInvolved extends PureComponent {
                 <span className="GetInvolved__email--link  dib  pb3  black  no-underline">info@rendahmag.com</span>
               </a>
               <p className="pt3">
-                Rendah is written in <a href="https://reactjs.org/" rel="noopener noreferrer" target="_blank" className="black  link  underline">React.js</a>
-                &nbsp;&&nbsp;<a href="https://nodejs.org/en/" rel="noopener noreferrer" target="_blank" className="black  link  underline">Node.js</a>.
+                Rendah is written in <a href="https://reactjs.org/" rel="noopener noreferrer" target="_blank" className="black  fw6  link  no-underline">React.js</a>
+                &nbsp;&&nbsp;<a href="https://nodejs.org/en/" rel="noopener noreferrer" target="_blank" className="black  fw6  link  no-underline">Node.js</a>.
                 <br />
-                You can check our <a href="https://github.com/danjonesdev/rendah-mag" rel="noopener noreferrer" target="_blank" className="black  link  underline">Github repository</a>
+                You can check our <a href="https://github.com/danjonesdev/rendah-mag" rel="noopener noreferrer" target="_blank" className="black  fw6  link  no-underline">Github repository</a>
               </p>
             </div>
             <div className="col-lg-10">
