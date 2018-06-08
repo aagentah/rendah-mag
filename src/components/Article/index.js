@@ -6,107 +6,15 @@ import { Link } from 'react-router-dom';
 import FacebookProvider, { Like } from 'react-facebook';
 
 import Seo from './Seo';
+import Sections from './Sections';
 import { convertDate } from '../../functions';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
-
-import Heading from './Sections/Heading';
-import Paragraph from './Sections/Paragraph';
-import Image from './Sections/Image';
-import Question from './Sections/Question';
-import Answer from './Sections/Answer';
-import BulletList from './Sections/BulletList';
-import NumberedList from './Sections/NumberedList';
-import Soundcloud from './Sections/Soundcloud';
-import Youtube from './Sections/Youtube';
-import ArticleLink from './Sections/Link';
-
 
 export class Article extends PureComponent {
   date = date => convertDate(date);
 
-  sections = (item, i) => {
-    if (item) {
-      switch (item.section.type) {
-        case 'heading':
-          return (
-            <div key={i} className="pv3">
-              <Heading text={item.section.text} />
-            </div>
-          );
-        case 'paragraph':
-          return (
-            <div key={i} className="pv3">
-              <Paragraph text={item.section.text} />
-            </div>
-          );
-        case 'image':
-          return (
-            <div key={i} className="pv3">
-              <Image img={item.section.img} />
-            </div>
-          );
-        case 'question':
-          return (
-            <div key={i} className="pt3">
-              <Question text={item.section.text} />
-            </div>
-          );
-        case 'answer':
-          return (
-            <div key={i} className="pv3">
-              <Answer text={item.section.text} />
-            </div>
-          );
-        case 'bulletList':
-          return (
-            <div key={i} className="pb3">
-              <BulletList
-                text={item.section.text}
-                list={item.section.list}
-              />
-            </div>
-          );
-        case 'numberedList':
-          return (
-            <div key={i} className="pb3">
-              <NumberedList
-                text={item.section.text}
-                list={item.section.list}
-              />
-            </div>
-          );
-        case 'soundcloud':
-          return (
-            <div key={i} className="pv3">
-              <Soundcloud url={item.section.url} />
-            </div>
-          );
-        case 'youtube':
-          return (
-            <div key={i} className="pv3">
-              <Youtube videoId={item.section.url} />
-            </div>
-          );
-        case 'link':
-          return (
-            <div key={i} className="pt3  pb1">
-              <ArticleLink
-                linkType={item.section.linkType}
-                text={item.section.text}
-                url={item.section.url}
-              />
-            </div>
-          );
-        default:
-          return false;
-      }
-    }
-    return false;
-  }
-
   render() {
     const article = this.props.info;
-    const sections = this.sections;
     const authorInfoMatch = { params: { id: article.author } };
 
     return (
@@ -132,9 +40,8 @@ export class Article extends PureComponent {
                   <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="grey  t8  cp  link">{article.author}</span></Link>
                   <h1 className="pb3  pt4  title-font">{article.title}</h1>
                   <p className="pv3  normal-font  grey">{article.description}</p>
-                  {article.body.map((item, i) => (
-                    sections(item, i)
-                  ))}
+
+                  <Sections data={article.body} />
                 </div>
               </div>
             </article>

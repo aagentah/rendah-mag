@@ -1,4 +1,4 @@
-/* stylelint-disable */
+
 
 @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
   $max: map-get($breakpoints, $name);

@@ -1,0 +1,80 @@
+
+
+.zoom-in-fade-in-iteration--cont {
+  &:nth-child(1),
+  &:nth-child(2),
+  &:nth-child(3),
+  &:nth-child(4) {
+    .zoom-in-fade-in-iteration--item {
+      animation: zoomIn 0.6s ease both, fadeIn 0.4s ease both;
+      animation-delay: 0s;
+      animation-delay: 0s;
+    }
+  }
+
+  &:nth-child(5),
+  &:nth-child(6),
+  &:nth-child(7),
+  &:nth-child(8) {
+    .zoom-in-fade-in-iteration--item {
+      animation: zoomIn 0.6s ease both, fadeIn 0.4s ease both;
+      animation-delay: 0.4s;
+      animation-delay: 0.4s;
+    }
+  }
+
+  &:nth-child(10),
+  &:nth-child(11),
+  &:nth-child(12),
+  &:nth-child(9) {
+    .zoom-in-fade-in-iteration--item {
+      animation: zoomIn 0.6s ease both, fadeIn 0.4s ease both;
+      animation-delay: 0.8s;
+      animation-delay: 0.8s;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.2s ease both;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.95);
+  }
+}
