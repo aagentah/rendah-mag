@@ -20,7 +20,9 @@ export class Article extends PureComponent {
       <main className="page-fade-in">
         <ArticleInfo match={this.props.match} />
         <p className="t7  tac  grey  pv3-sm  pv4">MORE ARTICLES</p>
-        <ExtraArticles />
+        <div className="pb2">
+          <ExtraArticles />
+        </div>
         <CategoryGrid />
       </main>
     );
