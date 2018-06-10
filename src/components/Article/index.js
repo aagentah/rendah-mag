@@ -31,9 +31,9 @@ export class Article extends PureComponent {
             <article className="container  article__content">
               <div className="row">
                 <div className="col-md-16  offset-md-4  ph4-sm">
-                  <div className="article__fb-like  pb2">
+                  <div className="article__fb-like  h2">
                     <FacebookProvider appId="154881868603516">
-                      <Like href={`https://www.rendahmag.com/Article/${article.url}`} width="320" colorScheme="dark" />
+                      <Like href={`https://www.rendahmag.com/Article/${article.url}`} layout="button_count" width="200" share />
                     </FacebookProvider>
                   </div>
                   <span className="grey  t8">{this.date(article.created)} | </span>
@@ -42,6 +42,11 @@ export class Article extends PureComponent {
                   <p className="pv3  normal-font  grey">{article.description}</p>
 
                   <Sections data={article.body} />
+                  <div className="article__fb-like  h2  mt4">
+                    <FacebookProvider appId="154881868603516">
+                      <Like href={`https://www.rendahmag.com/Article/${article.url}`} layout="button_count" width="200" share />
+                    </FacebookProvider>
+                  </div>
                 </div>
               </div>
             </article>
