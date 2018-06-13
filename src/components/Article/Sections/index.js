@@ -12,6 +12,7 @@ import Answer from './Answer';
 import BulletList from './BulletList';
 import NumberedList from './NumberedList';
 import Soundcloud from './Soundcloud';
+import Spotify from './Spotify';
 import Youtube from './Youtube';
 import ArticleLink from './Link';
 
@@ -71,6 +72,12 @@ export class Seo extends PureComponent {
           return (
             <div key={i} className="pv3">
               <Soundcloud url={item.section.url} />
+            </div>
+          );
+        case 'spotify':
+          return (
+            <div key={i} className="pv3">
+              <Spotify uri={item.section.uri} />
             </div>
           );
         case 'youtube':

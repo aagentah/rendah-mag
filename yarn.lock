@@ -6547,6 +6547,10 @@ react-spinner-children@^1.0.8:
     prop-types "^15.6.0"
     spin.js "^2.3.2"
 
+react-spotify-player@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-spotify-player/-/react-spotify-player-1.0.4.tgz#b840821223b959795f51cbe65759d0966ee326a7"
+
 react-test-renderer@16.0.0:
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.0.0.tgz#9fe7b8308f2f71f29fc356d4102086f131c9cb15"
