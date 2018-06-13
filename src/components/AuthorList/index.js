@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 export class AuthorList extends PureComponent {
   render() {
     return (
-      <div className="container  mv4">
+      <div className="container">
         <div className="row">
           {this.props.list.map(author => (
             <div key={author.name} className="col-sm-8  col-md-6  pv3  authorList__col">
