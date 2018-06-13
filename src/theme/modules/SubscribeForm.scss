@@ -18,7 +18,7 @@
     display: none;
   }
 
-  p {
+  .message {
     // position: absolute;
     text-align: center;
     padding-top: spacing(2);
@@ -35,7 +35,6 @@
   width: 280px;
   display: inline-block;
   border: 0;
-  line-height: 25px;
   -webkit-appearance: none;
   outline: none;
   text-align: center;

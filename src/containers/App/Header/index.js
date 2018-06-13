@@ -57,15 +57,17 @@ export class Header extends PureComponent {
               <li className="dib">
                 <Link className="title-font  black  dib  ph2  t6  link" to={'/Get-Involved'}>Get Involved</Link>
               </li>
-              <li data-nav-category="1" className="abs  dn-md">
-                <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/Interviews'}>Interviews</Link>
-              </li>
-              <li data-nav-category="2" className="abs  dn-md">
-                <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/Insights'}>Insights</Link>
-              </li>
-              <li data-nav-category="3" className="abs  dn-md">
-                <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/News'}>News</Link>
-              </li>
+              <div className="nav__desktop__category">
+                <li data-nav-category="1" className="abs  dn-md">
+                  <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/Interviews'}>Interviews</Link>
+                </li>
+                <li data-nav-category="2" className="abs  dn-md">
+                  <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/Insights'}>Insights</Link>
+                </li>
+                <li data-nav-category="3" className="abs  dn-md">
+                  <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/News'}>News</Link>
+                </li>
+              </div>
             </ul>
           </nav>
 

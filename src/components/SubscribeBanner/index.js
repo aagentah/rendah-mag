@@ -1,43 +1,72 @@
-/* eslint-disable react/sort-comp */
+/* eslint-disable react/sort-comp, react/prefer-stateless-function, no-return-assign,
+react/no-danger */
 
 import React, { PureComponent } from 'react';
-
-import SubscribeFrom from 'react-mailchimp-subscribe';
+import MailchimpSubscribe from 'react-mailchimp-subscribe';
 
 export class SubscribeBanner extends PureComponent {
-  renderForm = () => {
-    const formProps = {
-      action: 'https://rendahmag.us17.list-manage.com/subscribe/post?u=df0d549f92845c8dfc4d99dde&amp;id=2904b740be',
-      messages: {
-        inputPlaceholder: 'SUBSCRIBE TO RENDAH WEEKLY',
-        btnLabel: 'SUBSCRIBE',
-        sending: 'SUBSCRIBING',
-        success: 'SUBSCRIBED',
-        error: 'NOT A VALID EMAIL',
-      },
-      styles: {
-        sending: {
-          fontSize: 16,
-          color: 'black',
-        },
-        success: {
-          fontSize: 16,
-          color: 'black',
-        },
-        error: {
-          fontSize: 16,
-          color: 'black',
-        },
-      },
-    };
-
-    return <SubscribeFrom {...formProps} />;
-  };
+  constructor(props) {
+    super(props);
+    this.state = { inputPlaceHolder: 'SUBSCRIBE TO RENDAH WEEKLY' };
+  }
 
   render() {
+    const CustomForm = ({ status, message, onValidated }) => {
+      let email;
+
+      const onFocus = () => {
+        this.setState({
+          inputPlaceHolder: 'ENTER YOUR EMAIL',
+        });
+      };
+
+      const submit = () =>
+        email &&
+        email.value.indexOf('@') > -1 &&
+        onValidated({
+          EMAIL: email.value,
+        });
+
+      const submitInit = (e) => {
+        e.preventDefault();
+        submit();
+      };
+
+      return (
+        <div>
+          <form onSubmit={submitInit} action="" noValidate>
+            <input
+              onFocus={onFocus}
+              ref={node => (email = node)}
+              type="email"
+              placeholder={this.state.inputPlaceHolder}
+            />
+            <br />
+          </form>
+          {status === 'sending' && <div className="message">sending...</div>}
+          {status === 'error' && (
+            <div className="message" dangerouslySetInnerHTML={{ __html: message }} />
+          )}
+          {status === 'success' && (
+            <div className="message" dangerouslySetInnerHTML={{ __html: message }} />
+          )}
+        </div>
+      );
+    };
+
+    const url = 'https://rendahmag.us17.list-manage.com/subscribe/post?u=df0d549f92845c8dfc4d99dde&amp;id=2904b740be';
     return (
       <div className="subscribeBanner">
-        {this.renderForm()}
+        <MailchimpSubscribe
+          url={url}
+          render={({ subscribe, status, message }) => (
+            <CustomForm
+              status={status}
+              message={message}
+              onValidated={formData => subscribe(formData)}
+            />
+          )}
+        />
       </div>
     );
   }
