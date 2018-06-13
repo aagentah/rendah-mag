@@ -6464,12 +6464,13 @@ react-instafeed@^0.4.0:
     instafeed.js "1.4.1"
     prop-types "^15.6.0"
 
-react-mailchimp-subscribe@^1.0.3:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-mailchimp-subscribe/-/react-mailchimp-subscribe-1.1.0.tgz#32c340b9bf734b703033f629bc31e3988f3baeac"
+react-mailchimp-subscribe@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-mailchimp-subscribe/-/react-mailchimp-subscribe-2.0.2.tgz#64c86e9eb0282b3842f95dcf58446fe06feabd1b"
   dependencies:
     jsonp "^0.2.1"
     prop-types "^15.5.10"
+    to-querystring "^1.0.4"
 
 react-proxy@^3.0.0-alpha.0:
   version "3.0.0-alpha.1"
@@ -7814,6 +7815,10 @@ to-fast-properties@^1.0.3:
 to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
+
+to-querystring@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/to-querystring/-/to-querystring-1.0.4.tgz#17454b79f45b3116a6f7fd3b153b01e6bc063b96"
 
 touch@^3.1.0:
   version "3.1.0"
