@@ -18,8 +18,8 @@ export class Header extends PureComponent {
       autoplaySpeed: 2000,
       cssEase: 'ease-in-out',
       swipeToSlide: false,
-      prevArrow: <img src="https://res.cloudinary.com/dzz8ji5lj/image/upload/a_180/v1528232128/brand/util/iconmonstr-arrow-48-240.png" alt="<<" />,
-      nextArrow: <img src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1528232128/brand/util/iconmonstr-arrow-48-240.png" alt=">>" />,
+      prevArrow: <span>&#8249;</span>,
+      nextArrow: <span>&#8250;</span>,
       responsive: [
         {
           breakpoint: 1024,
