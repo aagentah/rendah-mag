@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
 import Instagram from '../../../components/Instagram';
+import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
 
 export class GetInvolved extends PureComponent {
   componentDidMount() {
@@ -51,6 +52,7 @@ export class GetInvolved extends PureComponent {
             </div>
           </div>
         </div>
+        <ExtraArticles />
       </main>
     );
   }
