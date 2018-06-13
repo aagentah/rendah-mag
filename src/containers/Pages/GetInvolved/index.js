@@ -4,7 +4,6 @@ import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
 import Instagram from '../../../components/Instagram';
-import CategoryGrid from '../../../components/CategoryGrid';
 
 export class GetInvolved extends PureComponent {
   componentDidMount() {
@@ -21,7 +20,7 @@ export class GetInvolved extends PureComponent {
         <div className="container  tal  ph4-sm">
           <div className="row">
             <div className="col-lg-14">
-              <h1 className="black  title-font  t5  pt5  pt4-sm  pv4  pb3-sm">Get Involved</h1>
+              <h1 className="tal  grey  t7  ttu  mt3  pt4  pt4-sm  pv4  pb3-sm">Get Involved</h1>
               <p className="pb4">
                 Rendah Mag exists to bring exposure to an ever-growing community,
                 focusing on the latest Halftime, Beats & Experimental news & releases.
@@ -52,7 +51,6 @@ export class GetInvolved extends PureComponent {
             </div>
           </div>
         </div>
-        <CategoryGrid />
       </main>
     );
   }
