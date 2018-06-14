@@ -7,18 +7,12 @@ import MailchimpSubscribe from 'react-mailchimp-subscribe';
 export class SubscribeBanner extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = { inputPlaceHolder: 'SUBSCRIBE TO RENDAH WEEKLY' };
+    this.state = { inputPlaceHolder: 'ENTER EMAIL TO SUBSCRIBE' };
   }
 
   render() {
     const CustomForm = ({ status, message, onValidated }) => {
       let email;
-
-      const onFocus = () => {
-        this.setState({
-          inputPlaceHolder: 'ENTER YOUR EMAIL',
-        });
-      };
 
       const submit = () =>
         email &&
@@ -36,7 +30,6 @@ export class SubscribeBanner extends PureComponent {
         <div>
           <form onSubmit={submitInit} action="" noValidate>
             <input
-              onFocus={onFocus}
               ref={node => (email = node)}
               type="email"
               placeholder={this.state.inputPlaceHolder}
