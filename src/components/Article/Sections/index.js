@@ -76,13 +76,13 @@ export class Seo extends PureComponent {
           );
         case 'spotify':
           return (
-            <div key={i} className="pv3">
+            <div key={i} className="pv3  mv2">
               <Spotify uri={item.section.uri} />
             </div>
           );
         case 'youtube':
           return (
-            <div key={i} className="pv3">
+            <div key={i} className="pv3  mv2">
               <Youtube videoId={item.section.url} />
             </div>
           );
