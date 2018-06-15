@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import SpotifyPlayer from 'react-spotify-player';
 
-export class Soundcloud extends PureComponent {
+export class Spotify extends PureComponent {
   render() {
     const size = {
       width: '100%',
@@ -29,12 +29,12 @@ export class Soundcloud extends PureComponent {
   }
 }
 
-Soundcloud.propTypes = {
+Spotify.propTypes = {
   uri: PropTypes.string,
 };
 
-Soundcloud.defaultProps = {
+Spotify.defaultProps = {
   uri: '',
 };
 
-export default Soundcloud;
+export default Spotify;
