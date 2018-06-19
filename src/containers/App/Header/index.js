@@ -60,12 +60,15 @@ export class Header extends PureComponent {
               <div className="nav__desktop__category">
                 <li data-nav-category="1" className="abs  dn-md">
                   <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/Interviews'}>Interviews</Link>
+                  <span className="nav__desktop__category__downArrow">&#9660;</span>
                 </li>
                 <li data-nav-category="2" className="abs  dn-md">
                   <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/Insights'}>Insights</Link>
+                  <span className="nav__desktop__category__downArrow">&#9660;</span>
                 </li>
                 <li data-nav-category="3" className="abs  dn-md">
                   <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/News'}>News</Link>
+                  <span className="nav__desktop__category__downArrow">&#9660;</span>
                 </li>
               </div>
             </ul>
