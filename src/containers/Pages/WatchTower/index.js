@@ -3,9 +3,10 @@
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
-
 import Iframe from 'react-iframe';
 import { isChrome, isAndroid } from 'react-device-detect';
+
+import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
 
 export class WatchTower extends PureComponent {
   componentDidMount() {
@@ -24,7 +25,7 @@ export class WatchTower extends PureComponent {
         <Helmet title="Watch Tower" />
         <div className="container  ph4-sm">
           <div className="row">
-            <div className="col-sm-16  offset-sm-4">
+            <div className="col-sm-18  offset-sm-3">
               <h1 className="tac  grey  t7  ttu  mt3  pt4  pt4-sm  pv4  pb3-sm">Watch Tower</h1>
               <p className="tac  pb1  mw4  db  center">
                 The&nbsp;
@@ -32,27 +33,32 @@ export class WatchTower extends PureComponent {
                   <span className="rendah-red" >Rendah Team</span>
                 </Link>
                 &nbsp;is invested in keeping you up-to-date with
-                the latest Halftime Beats. We compiled our favourite Tracks & Mixes into
-                2 Watch Tower playlists, Updated monthly.
+                the latest Halftime Beats. We&apos;ve compiled our favourite Tracks & Mixes into
+                2 &apos;Watch Tower&apos; playlists to be regularly updated.
               </p>
+            </div>
+          </div>
 
-              <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-sm">Tracks</h2>
+          <div className="row  pv5">
+            <div className="col-md-12">
+              <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-sm  dn">Tracks</h2>
               <div className="w-80  db  center  mb3">
                 <Iframe
-                  url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/500154426&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=false"
+                  url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/543806010&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
                   width="100%"
-                  height="400"
+                  height="420"
                   display="initial"
                   position="relative"
                 />
               </div>
-
-              <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-sm">Mixes</h2>
+            </div>
+            <div className="col-md-12">
+              <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-sm  dn">Mixes</h2>
               <div className="w-80  db  center  mb3">
                 <Iframe
-                  url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/500154426&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=false"
+                  url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/543805866&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
                   width="100%"
-                  height="400"
+                  height="420"
                   display="initial"
                   position="relative"
                 />
@@ -60,6 +66,7 @@ export class WatchTower extends PureComponent {
             </div>
           </div>
         </div>
+        <ExtraArticles />
       </main>
     );
   }
