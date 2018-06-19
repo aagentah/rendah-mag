@@ -40,9 +40,9 @@ export class WatchTower extends PureComponent {
           </div>
 
           <div className="row  pv5">
-            <div className="col-md-12">
-              <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-sm  dn">Tracks</h2>
-              <div className="w-80  db  center  mb3">
+            <div className="col-md-12  pb0  pb4-md">
+              <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-md  dn">Tracks</h2>
+              <div className="w-90  db  center  mb3">
                 <Iframe
                   url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/543806010&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
                   width="100%"
@@ -53,8 +53,8 @@ export class WatchTower extends PureComponent {
               </div>
             </div>
             <div className="col-md-12">
-              <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-sm  dn">Mixes</h2>
-              <div className="w-80  db  center  mb3">
+              <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-md  dn">Mixes</h2>
+              <div className="w-90  db  center  mb3">
                 <Iframe
                   url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/543805866&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
                   width="100%"
