@@ -12,7 +12,7 @@
   z-index: 2000;
   top: 15px;
   left: 15px;
-  @include breakpoint-up(md) {
+  @include breakpoint-up(lg) {
     left: auto;
     right: 15px;
   }
@@ -24,7 +24,7 @@
   z-index: 2000;
   top: 5px;
   left: 85px;
-  @include breakpoint-up(md) {
+  @include breakpoint-up(lg) {
     display: none;
   }
 
@@ -39,7 +39,7 @@
   justify-content: center;
   height: 90px;
   padding-right: 15px;
-  @include breakpoint-up(md) {
+  @include breakpoint-up(lg) {
     padding-bottom: 5px;
     text-align: left;
     float: left;
@@ -60,7 +60,7 @@
 .nav__desktop__category {
   transition: all 0.4s ease-in-out;
   position: absolute;
-  left: 283px;
+  left: 415px;
   top: -5px;
   width: 120px;
   height: 0;
