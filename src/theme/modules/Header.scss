@@ -36,9 +36,10 @@
 .nav__desktop__category__downArrow {
   transition: all 0.2s ease-in-out;
   position: absolute;
-  right: -13px;
+  right: -12px;
   top: 12px;
   font-size: 12px;
+  cursor: pointer;
 }
 
 .nav__desktop__category {
@@ -46,7 +47,7 @@
   position: absolute;
   left: 283px;
   top: -5px;
-  width: 120px;
+  width: 122px;
   height: 0;
   @extend .br3;
 
@@ -64,6 +65,11 @@
       opacity: 1;
       animation: none;
       z-index: 100;
+
+      a {
+        width: 122px;
+        text-align: left;
+      }
     }
 
     [data-nav-category="1"] {
