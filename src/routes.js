@@ -1,6 +1,7 @@
 /* @flow */
 
 import type { Dispatch } from './types';
+
 import { fetchLatestArticlesIfNeeded } from './containers/Fragments/LatestArticles/action';
 import { fetchWeekArticlesIfNeeded } from './containers/Fragments/WeekArticles/action';
 import { fetchExtraArticlesIfNeeded } from './containers/Fragments/ExtraArticles/action';
@@ -10,6 +11,7 @@ import { fetchAuthorArticlesIfNeeded } from './containers/Fragments/AuthorArticl
 import { fetchArticleIfNeeded } from './containers/Fragments/ArticleInfo/action';
 import { fetchAuthorIfNeeded } from './containers/Fragments/AuthorInfo/action';
 import { fetchAuthorsIfNeeded } from './containers/Fragments/Authors/action';
+
 import HomePage from './containers/Pages/Home';
 import SearchPage from './containers/Pages/Search';
 import CategoryPage from './containers/Pages/Category';
@@ -18,6 +20,7 @@ import AuthorPage from './containers/Pages/Author';
 import NotFoundPage from './containers/Pages/NotFound';
 import GetInvolvedPage from './containers/Pages/GetInvolved';
 import AuthorsPage from './containers/Pages/Authors';
+import WatchTowerPage from './containers/Pages/WatchTower';
 import PrivacyPolicyPage from './containers/Pages/PrivacyPolicy';
 
 export default [
@@ -70,6 +73,10 @@ export default [
   {
     path: '/Get-Involved',
     component: GetInvolvedPage,
+  },
+  {
+    path: '/Watch-Tower',
+    component: WatchTowerPage,
   },
   {
     path: '/Privacy-Policy',
