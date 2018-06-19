@@ -33,36 +33,21 @@
   }
 }
 
-.header--desktop__social {
-  float: right;
-  display: flex;
-  justify-content: center;
-  height: 90px;
-  padding-right: 15px;
-  @include breakpoint-up(md) {
-    padding-bottom: 5px;
-    text-align: left;
-    float: left;
-    padding-left: 20px;
-  }
-}
-
-.header--desktop__social__item {
-  align-self: center;
-  padding-top: 4px;
-
-  img {
-    width: 30px;
-    height: auto;
-  }
+.nav__desktop__category__downArrow {
+  transition: all 0.2s ease-in-out;
+  position: absolute;
+  right: -12px;
+  top: 12px;
+  font-size: 12px;
+  cursor: pointer;
 }
 
 .nav__desktop__category {
-  transition: all 0.4s ease-in-out;
+  transition: all 0.2s ease-in-out;
   position: absolute;
   left: 283px;
   top: -5px;
-  width: 120px;
+  width: 122px;
   height: 0;
   @extend .br3;
 
@@ -72,9 +57,19 @@
     background: palette(white);
     @extend .shadow2;
 
+    .nav__desktop__category__downArrow {
+      opacity: 0;
+    }
+
     [data-nav-category] {
       opacity: 1;
       animation: none;
+      z-index: 100;
+
+      a {
+        width: 122px;
+        text-align: left;
+      }
     }
 
     [data-nav-category="1"] {
@@ -99,6 +94,7 @@
     }
   }
 }
+
 [data-nav-category] {
   z-index: 0;
   padding-top: 5px;
@@ -128,11 +124,35 @@
 
 
 @keyframes categoryTransition {
-  0%   { opacity: 0; z-index: 0;}
-  5%   { opacity: 1;  z-index: 10;}
-  20%   { opacity: 1;  z-index: 10;}
-  25%   { opacity: 0; z-index: 0;}
-  100% { opacity: 0; z-index: 0;}
+  0%   { opacity: 0; z-index: 0; }
+  5%   { opacity: 1;  z-index: 10; }
+  20%   { opacity: 1;  z-index: 10; }
+  25%   { opacity: 0; z-index: 0; }
+  100% { opacity: 0; z-index: 0; }
+}
+
+.header--desktop__social {
+  float: right;
+  display: flex;
+  justify-content: center;
+  height: 90px;
+  padding-right: 15px;
+  @include breakpoint-up(md) {
+    padding-bottom: 5px;
+    text-align: left;
+    float: left;
+    padding-left: 20px;
+  }
+}
+
+.header--desktop__social__item {
+  align-self: center;
+  padding-top: 4px;
+
+  img {
+    width: 30px;
+    height: auto;
+  }
 }
 
 .slick-arrow {
