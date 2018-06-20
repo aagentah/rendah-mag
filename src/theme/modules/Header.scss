@@ -12,10 +12,6 @@
   z-index: 2000;
   top: 15px;
   left: 15px;
-  // @include breakpoint-up(md) {
-  //   left: auto;
-  //   right: 15px;
-  // }
 }
 
 .nav__desktop {
@@ -37,7 +33,7 @@
   transition: all 0.2s ease-in-out;
   position: absolute;
   right: -12px;
-  top: 12px;
+  top: 10px;
   font-size: 12px;
   cursor: pointer;
 }
@@ -48,12 +44,6 @@
   justify-content: center;
   height: 90px;
   padding-right: 15px;
-  // @include breakpoint-up(lg) {
-  //   padding-bottom: 5px;
-  //   text-align: left;
-  //   float: left;
-  //   padding-left: 20px;
-  // }
 }
 
 .header--desktop__social__item {
