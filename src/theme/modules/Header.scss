@@ -12,7 +12,7 @@
   z-index: 2000;
   top: 15px;
   left: 15px;
-  @include breakpoint-up(md) {
+  @include breakpoint-up(lg) {
     left: auto;
     right: 15px;
   }
@@ -24,7 +24,7 @@
   z-index: 2000;
   top: 5px;
   left: 85px;
-  @include breakpoint-up(md) {
+  @include breakpoint-up(lg) {
     display: none;
   }
 
@@ -33,6 +33,7 @@
   }
 }
 
+<<<<<<< HEAD
 .nav__desktop__category__downArrow {
   transition: all 0.2s ease-in-out;
   position: absolute;
@@ -40,12 +41,36 @@
   top: 12px;
   font-size: 12px;
   cursor: pointer;
+=======
+.header--desktop__social {
+  float: right;
+  display: flex;
+  justify-content: center;
+  height: 90px;
+  padding-right: 15px;
+  @include breakpoint-up(lg) {
+    padding-bottom: 5px;
+    text-align: left;
+    float: left;
+    padding-left: 20px;
+  }
+}
+
+.header--desktop__social__item {
+  align-self: center;
+  padding-top: 4px;
+
+  img {
+    width: 30px;
+    height: auto;
+  }
+>>>>>>> feature/watch-tower
 }
 
 .nav__desktop__category {
   transition: all 0.2s ease-in-out;
   position: absolute;
-  left: 283px;
+  left: 415px;
   top: -5px;
   width: 122px;
   height: 0;
