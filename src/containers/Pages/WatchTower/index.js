@@ -16,10 +16,42 @@ export class WatchTower extends PureComponent {
     window.scrollTo(0, 0);
   }
 
-  render() {
+  playlistEmbeds = () => {
     if (isAndroid && isChrome) {
-      return <p className="t8  normal-font  grey"><a className="t8  link  rendah-red" rel="noopener noreferrer" target="_blank" href="https://docs.google.com/a/rendahmag.com/forms/d/e/1FAIpQLSfNxc82RJuzC0DnISat7n4H-G7IsPQIdaMpe202iiHZEoso9w/closedform">Soundcloud&#39;s Application API</a> currently does not work with Android (Chrome) To preview, please try another browser.</p>;
+      return <p className="pa4  t8  normal-font  grey  tac"><a className="t8  link  rendah-red" rel="noopener noreferrer" target="_blank" href="https://docs.google.com/a/rendahmag.com/forms/d/e/1FAIpQLSfNxc82RJuzC0DnISat7n4H-G7IsPQIdaMpe202iiHZEoso9w/closedform">Soundcloud&#39;s Application API</a> currently does not work with Android (Chrome) To preview, please try another browser.</p>;
     }
+
+    return (
+      <div className="row  pt5  pb4">
+        <div className="col-md-12  pb0  pb4-md">
+          <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-md  dn">Tracks</h2>
+          <div className="w-90  db  center  mb3">
+            <Iframe
+              url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/543806010&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+              width="100%"
+              height="420"
+              display="initial"
+              position="relative"
+            />
+          </div>
+        </div>
+        <div className="col-md-12">
+          <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-md  dn">Mixes</h2>
+          <div className="w-90  db  center  mb3">
+            <Iframe
+              url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/543805866&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+              width="100%"
+              height="420"
+              display="initial"
+              position="relative"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  render() {
     return (
       <main className="page-fade-in">
         <Helmet title="Watch Tower" />
@@ -34,39 +66,17 @@ export class WatchTower extends PureComponent {
                 </Link>
                 &nbsp;is invested in keeping you up-to-date with
                 the latest Halftime Beats. We&apos;ve compiled our favourite Tracks & Mixes into
-                2 &apos;Watch Tower&apos; playlists to be regularly updated.
+                2 &apos;Watch Tower&apos; playlists which will be updated regularly.
               </p>
             </div>
           </div>
-
-          <div className="row  pv5">
-            <div className="col-md-12  pb0  pb4-md">
-              <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-md  dn">Tracks</h2>
-              <div className="w-90  db  center  mb3">
-                <Iframe
-                  url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/543806010&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
-                  width="100%"
-                  height="420"
-                  display="initial"
-                  position="relative"
-                />
-              </div>
-            </div>
-            <div className="col-md-12">
-              <h2 className="tac  grey  t7  ttu  pt2  pv4  pb3-md  dn">Mixes</h2>
-              <div className="w-90  db  center  mb3">
-                <Iframe
-                  url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/543805866&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
-                  width="100%"
-                  height="420"
-                  display="initial"
-                  position="relative"
-                />
-              </div>
-            </div>
-          </div>
+          {this.playlistEmbeds()}
         </div>
-        <ExtraArticles />
+
+        <p className="t7  tac  grey  pb3-sm  pb4">MORE ARTICLES</p>
+        <div className="pb2">
+          <ExtraArticles />
+        </div>
       </main>
     );
   }
