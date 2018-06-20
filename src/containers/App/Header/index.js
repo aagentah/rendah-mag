@@ -18,6 +18,7 @@ export class Header extends PureComponent {
       autoplaySpeed: 2000,
       cssEase: 'ease-in-out',
       swipeToSlide: false,
+      variableWidth: true,
       prevArrow: <span>&#8249;</span>,
       nextArrow: <span>&#8250;</span>,
       responsive: [
@@ -32,13 +33,6 @@ export class Header extends PureComponent {
           breakpoint: 600,
           settings: {
             slidesToShow: 3,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 440,
-          settings: {
-            slidesToShow: 2,
             slidesToScroll: 1,
           },
         },
@@ -106,29 +100,29 @@ export class Header extends PureComponent {
           </div>
         </header>
 
-        <header>
+        <header className="header__mobile" role="banner">
           <div className="dn  db-lg  bg-black">
             <div className="w-70  center  white">
               <Slider {...settings}>
-                <div>
+                <div style={{ width: 100 }}>
                   <Link className="db  tac  white  link  pv2" to={'/'}>Home</Link>
                 </div>
-                <div>
+                <div style={{ width: 100 }}>
                   <Link className="db  tac  white  link  pv2" to={'/Authors'}>Authors</Link>
                 </div>
-                <div>
+                <div style={{ width: 110 }}>
                   <Link className="db  tac  white  link  pv2" to={'/Get-Involved'}>Join Us</Link>
                 </div>
-                <div>
+                <div style={{ width: 130 }}>
                   <Link className="db  tac  white  link  pv2" to={'/Watch-Tower'}>Watch&nbsp;Tower</Link>
                 </div>
-                <div>
+                <div style={{ width: 100 }}>
                   <Link className="db  tac  white  link  pv2" to={'/Category/Interviews'}>Interviews</Link>
                 </div>
-                <div>
+                <div style={{ width: 100 }}>
                   <Link className="db  tac  white  link  pv2" to={'/Category/Insights'}>Insights</Link>
                 </div>
-                <div>
+                <div style={{ width: 100 }}>
                   <Link className="db  tac  white  link  pv2" to={'/Category/News'}>News</Link>
                 </div>
               </Slider>
