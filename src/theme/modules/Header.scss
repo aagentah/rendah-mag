@@ -146,6 +146,13 @@
 }
 
 
+.header__mobile, .slick-track {
+  * {
+    max-height: 35px;
+    height: 35px;
+  }
+}
+
 .slick-arrow {
   height: 15px;
   width: auto;
