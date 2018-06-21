@@ -99,7 +99,7 @@ const mongoHandle = (app) => {
     db.collection('articles')
       .aggregate([{
         $sample: {
-          size: 4,
+          size: 8,
         },
       }])
       .toArray()
