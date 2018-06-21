@@ -27,7 +27,7 @@ const mongoHandle = (app) => {
 
     db.collection('articles')
       .find()
-      .limit(1)
+      .limit(2)
       .sort('created', -1)
       .toArray()
       .then((result) => {
