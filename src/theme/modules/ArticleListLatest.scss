@@ -1,9 +1,42 @@
 
-.latestArticleList--mobile {
+.latestArticleList--carousel {
+  position: relative;
   max-height: 360px;
-  
+
   .slick-arrow {
-    display: none !important;
+    height: 15px;
+    width: auto;
+    top: 10px;
+    position: absolute !important;
+    cursor: pointer !important;
+    color: palette(grey);
+    @include breakpoint-up(sm) {
+      display: none !important;
+    }
+  }
+
+  .slick-prev {
+    padding-left: 15px;
+    padding-right: 10px;
+    font-size: 50px;
+    top: 168px;
+    left: -40px !important;
+
+    @include breakpoint-up(md) {
+      left: -30px !important;
+    }
+  }
+
+  .slick-next {
+    padding-right: 15px;
+    padding-left: 10px;
+    font-size: 50px;
+    top: 168px;
+    right: -40px !important;
+
+    @include breakpoint-up(md) {
+      right: -30px !important;
+    }
   }
 }
 
