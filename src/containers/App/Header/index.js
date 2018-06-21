@@ -17,7 +17,7 @@ export class Header extends PureComponent {
       autoplay: true,
       autoplaySpeed: 2000,
       cssEase: 'ease-in-out',
-      swipeToSlide: false,
+      swipeToSlide: true,
       variableWidth: true,
       prevArrow: <span>&#8249;</span>,
       nextArrow: <span>&#8250;</span>,
