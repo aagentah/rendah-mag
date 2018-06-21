@@ -27,7 +27,7 @@ const mongoHandle = (app) => {
 
     db.collection('articles')
       .find()
-      .limit(2)
+      .limit(1)
       .sort('created', -1)
       .toArray()
       .then((result) => {
@@ -99,7 +99,7 @@ const mongoHandle = (app) => {
     db.collection('articles')
       .aggregate([{
         $sample: {
-          size: 4,
+          size: 8,
         },
       }])
       .toArray()
