@@ -3,7 +3,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import { isMobile } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 import Slider from 'react-slick';
 
 import { convertDate } from '../../../functions';
@@ -16,36 +16,20 @@ export class LatestArticleListLoaded extends PureComponent {
       dots: false,
       infinite: true,
       speed: 380,
-      slidesToShow: 4,
+      slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,
       cssEase: 'ease-in-out',
-      swipeToSlide: true,
-      prevArrow: <span>&#8249;</span>,
-      nextArrow: <span>&#8250;</span>,
-      responsive: [
-        {
-          breakpoint: 798,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 576,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-      ],
+      swipeToSlide: false,
+      prevArrow: <div />,
+      nextArrow: <div />,
     };
 
-    if (this.props.extra) {
+    if (isMobile && this.props.extra) {
       return (
-        <div className="latestArticleList--carousel  container">
-          <div className="">
+        <div className="latestArticleList--mobile  mw-100  db  center">
+          <div className="w-100  center">
             <Slider {...settings}>
               {this.props.list.map(article => (
                 <div className="ph3">
