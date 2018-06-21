@@ -1,9 +1,32 @@
 
 .latestArticleList--mobile {
+  position: relative;
   max-height: 360px;
-  
+
   .slick-arrow {
-    display: none !important;
+    height: 15px;
+    width: auto;
+    top: 100px;
+    position: absolute !important;
+    cursor: pointer !important;
+
+    @include breakpoint-up(sm) {
+      display: none !important;
+    }
+  }
+
+  .slick-prev {
+    padding-left: 15px;
+    padding-right: 10px;
+    left: -35px !important;
+    font-size: 35px;
+  }
+
+  .slick-next {
+    padding-right: 15px;
+    padding-left: 10px;
+    right: -35px !important;
+    font-size: 35px;
   }
 }
 
