@@ -43,7 +43,7 @@ export class LatestArticleListLoaded extends PureComponent {
 
     if (this.props.extra) {
       return (
-        <div className="latestArticleList--mobile  container">
+        <div className="container  latestArticleList--extra">
           <div className="">
             <Slider {...settings}>
               {this.props.list.map(article => (
