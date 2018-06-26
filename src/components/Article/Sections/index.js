@@ -40,7 +40,7 @@ export class Seo extends PureComponent {
           );
         case 'question':
           return (
-            <div key={i} className="pt3">
+            <div key={i} className="pt3  pb2">
               <Question text={item.section.text} />
             </div>
           );
