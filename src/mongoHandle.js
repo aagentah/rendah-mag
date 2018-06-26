@@ -20,6 +20,28 @@ const mongoHandle = (app) => {
     });
   }
 
+  // Checks if article created date is before now
+  const checkDateAndReturn = (articles, limit) => {
+    const data = [];
+    let article;
+
+    const dateToday = new Date();
+    let dateArticle;
+
+    let i;
+    for (i = 0; i < articles.length; i++) {
+      dateArticle = new Date(articles[i].created);
+
+      if (dateToday >= dateArticle) {
+        article = articles[i];
+        data.push(article);
+      }
+
+      if (data.length === limit) return data;
+    }
+    return data;
+  }
+
 
   // GET week
   app.get('/api/week', (req, res) => {
@@ -27,15 +49,15 @@ const mongoHandle = (app) => {
 
     db.collection('articles')
       .find()
-      .limit(2)
+      .limit(12)
       .sort('created', -1)
       .toArray()
       .then((result) => {
         articles = articles.concat(result);
       })
       .then(() => {
-        // console.log(articles);
-        res.send(articles);
+        const data = checkDateAndReturn(articles, 2);
+        res.send(data);
       })
       .catch((e) => {
         console.error(e);
@@ -56,8 +78,8 @@ const mongoHandle = (app) => {
         articles = articles.concat(result);
       })
       .then(() => {
-        // console.log(articles);
-        res.send(articles);
+        const data = checkDateAndReturn(articles, 12);
+        res.send(data);
       })
       .catch((e) => {
         console.error(e);
@@ -84,8 +106,8 @@ const mongoHandle = (app) => {
         articles = articles.concat(result);
       })
       .then(() => {
-        // console.log(articles);
-        res.send(articles);
+        const data = checkDateAndReturn(articles, 12);
+        res.send(data);
       })
       .catch((e) => {
         console.error(e);
@@ -107,8 +129,8 @@ const mongoHandle = (app) => {
         articles = articles.concat(result);
       })
       .then(() => {
-        // console.log(articles);
-        res.send(articles);
+        const data = checkDateAndReturn(articles, 8);
+        res.send(data);
       })
       .catch((e) => {
         console.error(e);
@@ -169,8 +191,8 @@ const mongoHandle = (app) => {
         articles = articles.concat(result);
       })
       .then(() => {
-        // console.log(articles);
-        res.send(articles);
+        const data = checkDateAndReturn(articles, 24);
+        res.send(data);
       })
       .catch((e) => {
         console.error(e);
@@ -196,8 +218,8 @@ const mongoHandle = (app) => {
         articles = articles.concat(result);
       })
       .then(() => {
-        // console.log(articles);
-        res.send(articles);
+        const data = checkDateAndReturn(articles, 12);
+        res.send(data);
       })
       .catch((e) => {
         console.error(e);
