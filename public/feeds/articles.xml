@@ -6,15 +6,12 @@
     <atom:link href="https://www.rendahmag.com/feeds/articles.xml" rel="self" type="application/rss+xml" />
     <description>Weekly updates from Rendah</description>
     <item>
-      <title>A glimpse into Halogenix's Deep News EP review</title>
+      <title>Shades release the second track of their debut LP ‘In Praise of Darkness’</title>
       <description></description>
-    <item>
-      <title>A glimpse into Halogenix's Deep News EP review</title>
-      <description></description>
-      <link>https://www.rendahmag.com/Article/a-glimpse-into-halogenixs-deep-news-ep</link>
-      <guid>https://www.rendahmag.com/Article/a-glimpse-into-halogenixs-deep-news-ep</guid>
-      <pubDate>Fri, 15 Jun 2018 17:30:00 GMT</pubDate>
-      <media:content url="https://res.cloudinary.com/dzz8ji5lj/image/upload/c_scale,w_300/v1529051926/articles/2018/06/halogenix-1.jpg" type="image/jpg"/>
+      <link>https://www.rendahmag.com/Article/shades-release-the-second-track-of-their-debut-lp-in-praise-of-darkness</link>
+      <guid>https://www.rendahmag.com/Article/shades-release-the-second-track-of-their-debut-lp-in-praise-of-darkness</guid>
+      <pubDate>Mon, 25 Jun 2018 17:30:00 GMT</pubDate>
+      <media:content url="https://res.cloudinary.com/dzz8ji5lj/image/upload/c_scale,w_300/v1529931336/articles/2018/06/shades-1.jpg" type="image/jpg"/>
     </item>
   </channel>
 </rss>
