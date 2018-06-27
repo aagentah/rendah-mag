@@ -14,6 +14,7 @@ import NumberedList from './NumberedList';
 import Soundcloud from './Soundcloud';
 import Spotify from './Spotify';
 import Youtube from './Youtube';
+import FacebookVideo from './FacebookVideo';
 import ArticleLink from './Link';
 
 export class Seo extends PureComponent {
@@ -84,6 +85,12 @@ export class Seo extends PureComponent {
           return (
             <div key={i} className="pv3  mv2">
               <Youtube videoId={item.section.url} />
+            </div>
+          );
+        case 'FacebookVideo':
+          return (
+            <div key={i} className="pv3  mv2">
+              <FacebookVideo url={item.section.url} />
             </div>
           );
         case 'link':
