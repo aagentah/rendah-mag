@@ -22,12 +22,19 @@ const mongoHandle = (app) => {
 
   // Checks if article created date is before now
   const checkDateAndReturn = (articles, limit) => {
+    // Article data
     const data = [];
     let article;
 
-    const dateToday = new Date();
-    let dateArticle;
+    Date.prototype.addHours = function(h) {
+      this.setHours(this.getHours()+h);
+      return this;
+    }
 
+    // Dates
+    const dateToday = new Date().addHours(1)
+    let dateArticle;
+    
     let i;
     for (i = 0; i < articles.length; i++) {
       dateArticle = new Date(articles[i].created);
@@ -39,6 +46,7 @@ const mongoHandle = (app) => {
 
       if (data.length === limit) return data;
     }
+
     return data;
   }
 
