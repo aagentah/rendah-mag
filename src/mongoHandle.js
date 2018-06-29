@@ -22,8 +22,6 @@ const mongoHandle = (app) => {
 
   // Checks if article created date is before now
   const checkDateAndReturn = (articles, limit) => {
-    // Don't check date on __DEV__
-    if (__DEV__) return articles;
 
     // Article data
     const data = [];
@@ -42,7 +40,10 @@ const mongoHandle = (app) => {
     for (i = 0; i < articles.length; i++) {
       dateArticle = new Date(articles[i].created);
 
-      if (dateToday >= dateArticle) {
+      if (!__DEV__ && dateToday >= dateArticle) {
+        article = articles[i];
+        data.push(article);
+      } else {
         article = articles[i];
         data.push(article);
       }
