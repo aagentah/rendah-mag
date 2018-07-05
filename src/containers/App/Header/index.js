@@ -53,25 +53,25 @@ export class Header extends PureComponent {
                 <Link className="title-font  black  dib  ph2  t6  link" to={'/'}>Home</Link>
               </li>
               <li className="dib">
-                <Link className="title-font  black  dib  ph2  t6  link" to={'/Authors'}>Authors</Link>
+                <Link className="title-font  black  dib  ph2  t6  link" to={'/authors'}>Authors</Link>
               </li>
               <li className="dib">
-                <Link className="title-font  black  dib  ph2  t6  link" to={'/Get-Involved'}>Get Involved</Link>
+                <Link className="title-font  black  dib  ph2  t6  link" to={'/get-involved'}>Get Involved</Link>
               </li>
               <li className="dib">
-                <Link className="title-font  black  dib  ph2  t6  link" to={'/Watch-Tower'}>Watch Tower</Link>
+                <Link className="title-font  black  dib  ph2  t6  link" to={'/watch-tower'}>Watch Tower</Link>
               </li>
               <div className="nav__desktop__category">
                 <li data-nav-category="1" className="abs  dn-lg">
-                  <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/Interviews'}>Interviews</Link>
+                  <Link className="title-font  black  dib  ph2  t6  link" to={'/category/interviews'}>Interviews</Link>
                   <span className="nav__desktop__category__downArrow">&#9660;</span>
                 </li>
                 <li data-nav-category="2" className="abs  dn-lg">
-                  <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/Insights'}>Insights</Link>
+                  <Link className="title-font  black  dib  ph2  t6  link" to={'/category/insights'}>Insights</Link>
                   <span className="nav__desktop__category__downArrow">&#9660;</span>
                 </li>
                 <li data-nav-category="3" className="abs  dn-lg">
-                  <Link className="title-font  black  dib  ph2  t6  link" to={'/Category/News'}>News</Link>
+                  <Link className="title-font  black  dib  ph2  t6  link" to={'/category/news'}>News</Link>
                   <span className="nav__desktop__category__downArrow">&#9660;</span>
                 </li>
               </div>
@@ -108,22 +108,22 @@ export class Header extends PureComponent {
                   <Link className="db  tac  white  link  pv2" to={'/'}>Home</Link>
                 </div>
                 <div style={{ width: 100 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/Authors'}>Authors</Link>
+                  <Link className="db  tac  white  link  pv2" to={'/authors'}>Authors</Link>
                 </div>
                 <div style={{ width: 110 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/Get-Involved'}>Join Us</Link>
+                  <Link className="db  tac  white  link  pv2" to={'/get-involved'}>Join Us</Link>
                 </div>
                 <div style={{ width: 130 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/Watch-Tower'}>Watch&nbsp;Tower</Link>
+                  <Link className="db  tac  white  link  pv2" to={'/watch-tower'}>Watch&nbsp;Tower</Link>
                 </div>
                 <div style={{ width: 100 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/Category/Interviews'}>Interviews</Link>
+                  <Link className="db  tac  white  link  pv2" to={'/category/interviews'}>Interviews</Link>
                 </div>
                 <div style={{ width: 100 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/Category/Insights'}>Insights</Link>
+                  <Link className="db  tac  white  link  pv2" to={'/category/insights'}>Insights</Link>
                 </div>
                 <div style={{ width: 100 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/Category/News'}>News</Link>
+                  <Link className="db  tac  white  link  pv2" to={'/category/news'}>News</Link>
                 </div>
               </Slider>
             </div>

@@ -31,7 +31,7 @@ export class SearchInput extends PureComponent {
       if (this.state.inputValue) {
         this.setState({ placeholder: 'SEARCH SITE' });
         this.setState({ inputValue: '' });
-        return <Redirect push to={from || `/Search/${this.state.inputValue}`} />;
+        return <Redirect push to={from || `/search/${this.state.inputValue}`} />;
       }
       this.setState({ placeholder: 'SEARCH SITE' });
       return false;
