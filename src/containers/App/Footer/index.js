@@ -16,7 +16,7 @@ export class Footer extends React.Component {
 
               <div className="col-sm-12">
                 <p className="pt2  mt1  tac-sm  pb2-sm  dib  db-sm  t8">Rendah Mag 2018 <span className="dib dn-sm">|</span></p>
-                <Link className="title-font tac-sm  black  dib db-sm  ph2  pb2-sm  mv1-sm  t8  link" to={'/Privacy-Policy'}>Privacy Policy</Link>
+                <Link className="title-font tac-sm  black  dib db-sm  ph2  pb2-sm  mv1-sm  t8  link" to={'/privacy-policy'}>Privacy Policy</Link>
               </div>
 
               <div className="col-sm-12">
