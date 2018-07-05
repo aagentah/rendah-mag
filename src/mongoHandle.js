@@ -104,7 +104,6 @@ const mongoHandle = (app) => {
   app.get('/api/authorArticles', (req, res) => {
     let articles = [];
     let param = req.query.authorQuery;
-    param = param.replace(/-/g, ' ');
 
     db.collection('articles')
       // .find()
@@ -265,11 +264,10 @@ const mongoHandle = (app) => {
   app.get('/api/author', (req, res) => {
     let article = {};
     let param = req.query.title;
-    param = param.replace(/-/g, ' ');
 
     db.collection('authors')
       .findOne({
-        name: param,
+        url: param,
       })
       .then((result) => {
         article = result;
