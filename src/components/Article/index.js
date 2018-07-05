@@ -7,7 +7,7 @@ import FacebookProvider, { Like } from 'react-facebook';
 
 import Seo from './Seo';
 import Sections from './Sections';
-import { convertDate } from '../../functions';
+import { convertDate, toTitleCase, toUrlCase } from '../../functions';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 
 export class Article extends PureComponent {
@@ -15,7 +15,7 @@ export class Article extends PureComponent {
 
   render() {
     const article = this.props.info;
-    const authorInfoMatch = { params: { id: article.author } };
+    const authorInfoMatch = { params: { id: toUrlCase(article.author) } };
 
     return (
       <React.Fragment>
@@ -33,18 +33,18 @@ export class Article extends PureComponent {
                 <div className="col-md-16  offset-md-4  ph4-sm">
                   <div className="article__fb-like  h2">
                     <FacebookProvider appId="154881868603516">
-                      <Like href={`https://www.rendahmag.com/Article/${article.url}`} layout="button_count" width="200" share />
+                      <Like href={`https://www.rendahmag.com/article/${article.url}`} layout="button_count" width="200" share />
                     </FacebookProvider>
                   </div>
                   <span className="grey  t8">{this.date(article.created)} | </span>
-                  <Link to={`/Author/${article.author.replace(/\s+/g, '-')}`} className="no-underline"><span className="grey  t8  cp  link">{article.author}</span></Link>
+                  <Link to={`/author/${article.author}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
                   <h1 className="pb3  pt4  title-font">{article.title}</h1>
                   <p className="pv3  normal-font  grey">{article.description}</p>
 
                   <Sections data={article.body} />
                   <div className="article__fb-like  h2  mt4">
                     <FacebookProvider appId="154881868603516">
-                      <Like href={`https://www.rendahmag.com/Article/${article.url}`} layout="button_count" width="200" share />
+                      <Like href={`https://www.rendahmag.com/article/${article.url}`} layout="button_count" width="200" share />
                     </FacebookProvider>
                   </div>
                 </div>

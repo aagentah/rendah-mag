@@ -61,14 +61,14 @@ export class Article extends PureComponent {
 
                     <div className="col-md-6  pl0">
                       <figure className="rel  center  link  w-100  zoom-in-fade-in-iteration--cont  mv3  pl3">
-                        <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="shadow2  author__img--cont  db">
+                        <Link to={`/author/${author.url}`} className="shadow2  author__img--cont  db">
                           <img className="center  w4  zoom-in-fade-in-iteration--item  author__img" alt={author.name} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
                         </Link>
                       </figure>
                     </div>
 
                     <div className="col-md-18">
-                      <Link to={`/Author/${author.name.replace(/\s+/g, '-')}`} className="link  black  t7  pt3  db  tac-md  cp  title-font  no-underline">
+                      <Link to={`/author/${author.url}`} className="link  black  t7  pt3  db  tac-md  cp  title-font  no-underline">
                         <span>{author.name}</span>
                         <span className="pl1  grey  t8">({author.alias})</span>
                       </Link>
