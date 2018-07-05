@@ -35,21 +35,21 @@ export default [
     ]),
   },
   {
-    path: '/Search/:query',
+    path: '/search/:query',
     component: SearchPage,
     loadData: (dispatch: Dispatch, params: Object) => Promise.all([
       dispatch(fetchSearchArticlesIfNeeded(params.query)),
     ]),
   },
   {
-    path: '/Category/:query',
+    path: '/category/:query',
     component: CategoryPage,
     loadData: (dispatch: Dispatch, params: Object) => Promise.all([
       dispatch(fetchCategoryArticlesIfNeeded(params.query)),
     ]),
   },
   {
-    path: '/Article/:id',
+    path: '/article/:id',
     component: ArticlePage,
     loadData: (dispatch: Dispatch, params: Object) => Promise.all([
       dispatch(fetchArticleIfNeeded(params.id)),
@@ -57,29 +57,29 @@ export default [
     ]),
   },
   {
-    path: '/Author/:id',
+    path: '/author/:id',
     component: AuthorPage,
     loadData: (dispatch: Dispatch, params: Object) => Promise.all([
       dispatch(fetchAuthorIfNeeded(params.id)),
     ]),
   },
   {
-    path: '/Authors',
+    path: '/authors',
     component: AuthorsPage,
     loadData: (dispatch: Dispatch) => Promise.all([
       dispatch(fetchAuthorsIfNeeded()),
     ]),
   },
   {
-    path: '/Get-Involved',
+    path: '/get-involved',
     component: GetInvolvedPage,
   },
   {
-    path: '/Watch-Tower',
+    path: '/watch-tower',
     component: WatchTowerPage,
   },
   {
-    path: '/Privacy-Policy',
+    path: '/privacy-policy',
     component: PrivacyPolicyPage,
   },
   {
