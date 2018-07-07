@@ -34,11 +34,23 @@
   animation: article__hero--img--zoomIn 0.6s ease both;
 }
 
-.article__fb-like {
-  max-width: 450px;
+.article__social {
+  max-width: 300px;
   opacity: 0;
+  display: flex;
+  height: 40px;
+  padding-right: 15px;
   animation: article__fb-like 0.4s ease both;
-  animation-delay: 1s;
+  animation-delay: .5s;
+  a {
+    align-self: center;
+    padding-top: 4px;
+
+    img {
+      width: 30px;
+      height: auto;
+    }
+  }
 }
 
 .article__content {
