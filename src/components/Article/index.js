@@ -30,7 +30,7 @@ export class Article extends PureComponent {
             <article className="container  article__content">
               <div className="row">
                 <div className="col-md-16  offset-md-4  ph4-sm">
-                  <div className="article__fb-like  pb4">
+                  <div className="article__social  pb4">
                     <a className="ph1" href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.url}`} rel="noopener noreferrer" target="_blank">
                       <img src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
                     </a>
