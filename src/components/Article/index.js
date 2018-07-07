@@ -3,7 +3,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import FacebookProvider, { Like } from 'react-facebook';
 
 import Seo from './Seo';
 import Sections from './Sections';
@@ -31,10 +30,13 @@ export class Article extends PureComponent {
             <article className="container  article__content">
               <div className="row">
                 <div className="col-md-16  offset-md-4  ph4-sm">
-                  <div className="article__fb-like  h2">
-                    <FacebookProvider appId="154881868603516">
-                      <Like href={`https://www.rendahmag.com/article/${article.url}`} layout="button_count" width="200" share />
-                    </FacebookProvider>
+                  <div className="article__social  pb4">
+                    <a className="ph1" href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.url}`} rel="noopener noreferrer" target="_blank">
+                      <img src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
+                    </a>
+                    <a className="ph1" href={`https://twitter.com/share?url=https://www.rendahmag.com/article/${article.url}`} rel="noopener noreferrer" target="_blank">
+                      <img src={require('../../containers/App/assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
+                    </a>
                   </div>
                   <span className="grey  t8">{this.date(article.created)} | </span>
                   <Link to={`/author/${article.author}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
@@ -42,11 +44,6 @@ export class Article extends PureComponent {
                   <p className="pv3  normal-font  grey">{article.description}</p>
 
                   <Sections data={article.body} />
-                  <div className="article__fb-like  h2  mt4">
-                    <FacebookProvider appId="154881868603516">
-                      <Like href={`https://www.rendahmag.com/article/${article.url}`} layout="button_count" width="200" share />
-                    </FacebookProvider>
-                  </div>
                 </div>
               </div>
             </article>
