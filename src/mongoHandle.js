@@ -109,7 +109,6 @@ const mongoHandle = (app) => {
         }
 
         var sitemapXML = builder.create('urlset')
-          .ele('xmlbuilder')
           .att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9')
           .att('xmlns:news', 'http://www.google.com/schemas/sitemap-news/0.9');
 
@@ -119,9 +118,9 @@ const mongoHandle = (app) => {
           sitemapXML.importDocument(item);
         }
 
-        console.log(sitemapXML.toString({
-          pretty: true
-        }));
+        // console.log(sitemapXML.toString({
+        //   pretty: true
+        // }));
 
         res.header('Content-Type', 'application/xml');
         res.send(sitemapXML.toString({
@@ -208,9 +207,9 @@ const mongoHandle = (app) => {
 
         articlesFeedXML.importDocument(articlesFeedBody);
 
-        console.log(articlesFeedXML.toString({
-          pretty: true
-        }));
+        // console.log(articlesFeedXML.toString({
+        //   pretty: true
+        // }));
 
         res.header('Content-Type', 'application/xml');
         res.send(articlesFeedXML.toString({
