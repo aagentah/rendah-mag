@@ -203,10 +203,7 @@ const mongoHandle = (app) => {
             .ele('link').txt(`https://www.rendahmag.com/article/${data[i].url}`).up()
             .ele('guid').txt(`https://www.rendahmag.com/article/${data[i].url}`).up()
             .ele('pubDate').txt(created).up()
-            .ele('media:content').txt(created)
-
-
-
+            .ele('media:content')
             .att('url', `https://res.cloudinary.com/dzz8ji5lj/image/upload/c_fill,g_faces:center,h_230,q_auto:eco,w_300/${data[i].img}`)
             .att('type', 'image/jpg').up()
           articlesFeedBody.importDocument(item);
