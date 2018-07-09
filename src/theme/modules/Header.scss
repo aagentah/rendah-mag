@@ -1,17 +1,21 @@
 
 
-.header__desktop {
+.header--desktop {
   height: 90px;
   width: 100%;
 }
 
-.logo {
-  width: 60px;
-  height: auto;
-  position: absolute;
-  z-index: 2000;
-  top: 15px;
-  left: 15px;
+.logo--desktop {
+    width: 60px;
+  img {
+
+        width: 60px;
+    height: auto;
+    position: absolute;
+    z-index: 2000;
+    top: 15px;
+    left: 15px;
+  }
 }
 
 .nav__desktop {
@@ -145,31 +149,54 @@
   100% { opacity: 0; z-index: 0; }
 }
 
+.header--mobile {
+  height: 90px;
+  width: 100%;
 
-.header__mobile {
-  * {
-    max-height: 35px;
-    height: 35px;
-  }
-  
-  .slick-arrow {
-    height: 15px;
-    width: auto;
-    top: -2px;
-    position: absolute !important;
-    cursor: pointer !important;
-    font-size: 30px;
-  }
+}
 
-  .slick-prev {
-    padding-left: 15px;
-    padding-right: 10px;
-    left: -45px !important;
-  }
+.header__float-wrapper {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  transition: all .3s ease-in-out;
+}
 
-  .slick-next {
-    padding-right: 15px;
-    padding-left: 10px;
-    right: -45px !important;
+.header__float-wrapper--searchExpand {
+  left: -300px;
+}
+
+
+
+.header__search-trigger {
+  position: absolute;
+  right: 20px;
+  top: 35px;
+  width: 20px;
+  height: auto;
+  cursor: pointer;
+}
+
+.header__search--mobile {
+  position: absolute;
+  right: -145px;
+  top: 25px;
+}
+
+.logo--mobile {
+    width: 60px;
+  height: auto;
+  position: absolute;
+  z-index: 2000;
+  top: 15px;
+  left: 0;
+  right: 0;
+    margin: 0 auto;
+  img {
+    width: 60px;
+
   }
 }
