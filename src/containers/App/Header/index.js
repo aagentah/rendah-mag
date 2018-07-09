@@ -2,49 +2,44 @@
 
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
+import classNames from 'classnames';
 
 import SearchInput from '../../../components/SearchInput';
 
 export class Header extends PureComponent {
-  render() {
-    const settings = {
-      dots: false,
-      infinite: true,
-      speed: 380,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      cssEase: 'ease-in-out',
-      swipeToSlide: false,
-      variableWidth: true,
-      prevArrow: <span>&#8249;</span>,
-      nextArrow: <span>&#8250;</span>,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-          },
-        },
-      ],
+  constructor() {
+    super();
+    this.state = {
+      searchExpand: false,
+      navExpand: false,
     };
+  }
+
+  searchExpandToggle = () => {
+    if (this.state.searchExpand) {
+      this.setState({ searchExpand: false });
+    } else {
+      this.setState({ searchExpand: true });
+    }
+  }
+
+  navExpandToggle = () => {
+    this.setState({ navExpand: false });
+  }
+
+  render() {
+    const navMobileWrapper = classNames({
+      'header__float-wrapper': true,
+      'header__float-wrapper--searchExpand': this.state.searchExpand,
+      'header__float-wrapper--navExpand': this.state.navExpand,
+    });
 
     return (
       <div className="rel  shadow2  z9">
-        <header className="header__desktop" role="banner">
+        <header className="header--desktop  dn-md  db" role="banner">
 
-          <Link className="link" to={'/'}>
-            <img className="logo" width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
+          <Link className="logo--desktop  link" to={'/'}>
+            <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
           </Link>
 
           <nav className="nav__desktop  tal  pt4">
@@ -99,33 +94,16 @@ export class Header extends PureComponent {
             }
           </div>
         </header>
+        <header className="header--mobile  db-md  dn" role="banner">
+          <div className={navMobileWrapper}>
+            <Link className="logo--mobile  link" to={'/'}>
+              <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
+            </Link>
 
-        <header className="header__mobile" role="banner">
-          <div className="dn  db-lg  bg-black">
-            <div className="w-70  center  white">
-              <Slider {...settings}>
-                <div style={{ width: 100 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/'}>Home</Link>
-                </div>
-                <div style={{ width: 100 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/authors'}>Authors</Link>
-                </div>
-                <div style={{ width: 110 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/get-involved'}>Join Us</Link>
-                </div>
-                <div style={{ width: 130 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/watch-tower'}>Watch&nbsp;Tower</Link>
-                </div>
-                <div style={{ width: 100 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/category/interviews'}>Interviews</Link>
-                </div>
-                <div style={{ width: 100 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/category/insights'}>Insights</Link>
-                </div>
-                <div style={{ width: 100 }}>
-                  <Link className="db  tac  white  link  pv2" to={'/category/news'}>News</Link>
-                </div>
-              </Slider>
+            <img onClick={this.searchExpandToggle} className="header__search-trigger" width="12" src={require('../assets/search.png')} alt="Logo" role="presentation" />
+
+            <div className="header__search--mobile">
+              <SearchInput textAlign="inherit" />
             </div>
           </div>
         </header>
