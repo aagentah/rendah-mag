@@ -197,7 +197,8 @@
     "redux-thunk": "^2.2.0",
     "serialize-javascript": "^1.4.0",
     "serve-favicon": "2.4.5",
-    "webpack-isomorphic-tools": "^3.0.5"
+    "webpack-isomorphic-tools": "^3.0.5",
+    "xmlbuilder": "^10.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
