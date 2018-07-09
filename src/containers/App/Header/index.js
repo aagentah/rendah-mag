@@ -10,9 +10,17 @@ export class Header extends PureComponent {
   constructor() {
     super();
     this.state = {
-      searchExpand: false,
       navExpand: false,
+      searchExpand: false,
     };
+  }
+
+  navExpandToggle = () => {
+    if (this.state.navExpand) {
+      this.setState({ navExpand: false });
+    } else {
+      this.setState({ navExpand: true });
+    }
   }
 
   searchExpandToggle = () => {
@@ -23,15 +31,20 @@ export class Header extends PureComponent {
     }
   }
 
-  navExpandToggle = () => {
-    this.setState({ navExpand: false });
-  }
-
   render() {
-    const navMobileWrapper = classNames({
+    const mobileHeaderWrapper = classNames({
       'header__float-wrapper': true,
       'header__float-wrapper--searchExpand': this.state.searchExpand,
-      'header__float-wrapper--navExpand': this.state.navExpand,
+    });
+
+    const mobileNavMenu = classNames({
+      'nav--mobile': true,
+      'nav--mobile--expanded': this.state.navExpand,
+    });
+
+    const mobileNavMenuTrigger = classNames({
+      'header__menu-trigger': true,
+      'header__menu-trigger--rotated': this.state.navExpand,
     });
 
     return (
@@ -42,7 +55,7 @@ export class Header extends PureComponent {
             <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
           </Link>
 
-          <nav className="nav__desktop  tal  pt4">
+          <nav className="nav--desktop  tal  pt4">
             <ul className="ma0  pa0  tac  center  rel">
               <li className="dib">
                 <Link className="title-font  black  dib  ph2  t6  link" to={'/'}>Home</Link>
@@ -95,16 +108,44 @@ export class Header extends PureComponent {
           </div>
         </header>
         <header className="header--mobile  db-md  dn" role="banner">
-          <div className={navMobileWrapper}>
+          <div className={mobileHeaderWrapper}>
             <Link className="logo--mobile  link" to={'/'}>
               <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
             </Link>
+
+            <img onClick={this.navExpandToggle} className={mobileNavMenuTrigger} width="12" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1531175182/brand/util/iconmonstr-menu-1-240_1.png" alt="Logo" role="presentation" />
 
             <img onClick={this.searchExpandToggle} className="header__search-trigger" width="12" src={require('../assets/search.png')} alt="Logo" role="presentation" />
 
             <div className="header__search--mobile">
               <SearchInput textAlign="inherit" />
             </div>
+
+            <nav className={`${mobileNavMenu}  shadow2`}>
+              <ul className="ma0  pa0  tac  center  rel">
+                <li className="db">
+                  <Link className="title-font  black  db  pv2  t6  link" to={'/'}>Home</Link>
+                </li>
+                <li className="db">
+                  <Link className="title-font  black  db  pv2  t6  link" to={'/authors'}>Authors</Link>
+                </li>
+                <li className="db">
+                  <Link className="title-font  black  db  pv2  t6  link" to={'/get-involved'}>Get Involved</Link>
+                </li>
+                <li className="db">
+                  <Link className="title-font  black  db  pv2  t6  link" to={'/watch-tower'}>Watch Tower</Link>
+                </li>
+                <li className="db">
+                  <Link className="title-font  black  db  pv2  t6  link" to={'/interviews'}>Interviews</Link>
+                </li>
+                <li className="db">
+                  <Link className="title-font  black  db  pv2  t6  link" to={'/insights'}>Insights</Link>
+                </li>
+                <li className="db">
+                  <Link className="title-font  black  db  pv2  t6  link" to={'/news'}>News</Link>
+                </li>
+              </ul>
+            </nav>
           </div>
         </header>
       </div>
