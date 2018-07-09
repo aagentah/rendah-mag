@@ -102,7 +102,7 @@ const mongoHandle = (app) => {
         articles = articles.concat(result);
       })
       .then(() => {
-        const data = checkDateAndReturn(articles, 12);
+        const data = checkDateAndReturn(articles, 500);
         var i;
         for (i = 0; i < data.length; i++) {
           sitemap.push(`https://www.rendahmag.com/article/${data[i].url}`);
@@ -193,13 +193,20 @@ const mongoHandle = (app) => {
             return parts.join(' ');
           }
 
+          var created = pubDate(data[i].created);
+          created = created.slice(0, -5);
+          created += 'GMT';
+
           var item = builder.create('item')
             .ele('title').txt(data[i].title.replace("&", "and")).up()
             .ele('description').txt(data[i].description.replace("&", "and")).up()
             .ele('link').txt(`https://www.rendahmag.com/article/${data[i].url}`).up()
             .ele('guid').txt(`https://www.rendahmag.com/article/${data[i].url}`).up()
-            .ele('pubDate').txt(pubDate(`${data[i].created}`)).up()
-            .ele('media:content').txt(pubDate(`${data[i].created}`))
+            .ele('pubDate').txt(created).up()
+            .ele('media:content').txt(created)
+
+
+
             .att('url', `https://res.cloudinary.com/dzz8ji5lj/image/upload/c_fill,g_faces:center,h_230,q_auto:eco,w_300/${data[i].img}`)
             .att('type', 'image/jpg').up()
           articlesFeedBody.importDocument(item);
