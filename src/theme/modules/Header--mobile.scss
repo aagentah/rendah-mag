@@ -26,8 +26,8 @@
     background: palette(white);
     height: 90px;
     @extend .shadow2;
-    border-bottom: 1px solid palette(dark-grey);
     content: '';
+    border-bottom: 1px solid palette(dark-gray);
   }
 }
 
