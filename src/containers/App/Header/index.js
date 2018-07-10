@@ -15,13 +15,13 @@ export class Header extends PureComponent {
     };
   }
 
-  navExpandToggle = (hide) => {
-    console.log(hide);
+  navExpandToggle = () => {
     if (this.state.navExpand) {
       this.setState({ navExpand: false });
     } else {
       this.setState({ navExpand: true });
     }
+    this.setState({ searchExpand: false });
   }
 
   searchExpandToggle = () => {
@@ -115,31 +115,31 @@ export class Header extends PureComponent {
             <img onClick={this.searchExpandToggle} className="header__search-trigger" width="12" src={require('../assets/search.png')} alt="Logo" role="presentation" />
 
             <div className="header__search--mobile">
-              <SearchInput textAlign="inherit" />
+              <SearchInput textAlign="inherit" onSearch={this.searchExpandToggle} />
             </div>
 
             <nav className={`${mobileNavMenu}  shadow2`}>
               <ul className="ma0  pa0  tac  center  rel">
                 <li className="db">
-                  <Link onClick={() => { this.navExpandToggle(true); }} className="title-font  black  db  pv2  t6  link" to={'/'}>Home</Link>
+                  <Link onClick={this.navExpandToggle} className="title-font  black  db  pv2  t6  link" to={'/'}>Home</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={() => { this.navExpandToggle(true); }} className="title-font  black  db  pv2  t6  link" to={'/authors'}>Authors</Link>
+                  <Link onClick={this.navExpandToggle} className="title-font  black  db  pv2  t6  link" to={'/authors'}>Authors</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={() => { this.navExpandToggle(true); }} className="title-font  black  db  pv2  t6  link" to={'/get-involved'}>Get Involved</Link>
+                  <Link onClick={this.navExpandToggle} className="title-font  black  db  pv2  t6  link" to={'/get-involved'}>Get Involved</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={() => { this.navExpandToggle(true); }} className="title-font  black  db  pv2  t6  link" to={'/watch-tower'}>Watch Tower</Link>
+                  <Link onClick={this.navExpandToggle} className="title-font  black  db  pv2  t6  link" to={'/watch-tower'}>Watch Tower</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={() => { this.navExpandToggle(true); }} className="title-font  black  db  pv2  t6  link" to={'/category/interviews'}>Interviews</Link>
+                  <Link onClick={this.navExpandToggle} className="title-font  black  db  pv2  t6  link" to={'/category/interviews'}>Interviews</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={() => { this.navExpandToggle(true); }} className="title-font  black  db  pv2  t6  link" to={'/category/insights'}>Insights</Link>
+                  <Link onClick={this.navExpandToggle} className="title-font  black  db  pv2  t6  link" to={'/category/insights'}>Insights</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={() => { this.navExpandToggle(true); }} className="title-font  black  db  pv2  t6  link" to={'/category/news'}>News</Link>
+                  <Link onClick={this.navExpandToggle} className="title-font  black  db  pv2  t6  link" to={'/category/news'}>News</Link>
                 </li>
               </ul>
               <div className="header--mobile__social pt3">

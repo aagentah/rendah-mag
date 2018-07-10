@@ -1,4 +1,4 @@
-/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default, arrow-body-style */
 
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
@@ -31,6 +31,7 @@ export class SearchInput extends PureComponent {
       if (this.state.inputValue) {
         this.setState({ placeholder: 'SEARCH SITE' });
         this.setState({ inputValue: '' });
+        this.props.onSearch();
         return <Redirect push to={from || `/search/${this.state.inputValue}`} />;
       }
       this.setState({ placeholder: 'SEARCH SITE' });
@@ -55,11 +56,13 @@ export class SearchInput extends PureComponent {
 SearchInput.propTypes = {
   location: PropTypes.shape(),
   textAlign: PropTypes.string,
+  onSearch: PropTypes.func,
 };
 
 SearchInput.defaultProps = {
   location: {},
   textAlign: '',
+  onSearch: () => { return false; },
 };
 
 export default SearchInput;
