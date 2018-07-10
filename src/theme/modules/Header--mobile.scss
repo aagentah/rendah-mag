@@ -3,6 +3,7 @@
   width: 100%;
   position: relative;
   overflow-x: hidden;
+  background: palette(white);
 }
 
 .header__float-wrapper {
@@ -12,7 +13,22 @@
   margin: 0 auto;
   left: 0;
   right: 0;
+  background: palette(white);
+  height: 90px;
   transition: left 0.3s ease-in-out;
+  &::before {
+    width: 200vw;
+    position: fixed;
+    top: 0;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    background: palette(white);
+    height: 90px;
+    @extend .shadow2;
+    border-bottom: 1px solid palette(dark-grey);
+    content: '';
+  }
 }
 
 .header__float-wrapper--searchExpand {
@@ -65,7 +81,7 @@
 
 .nav--mobile {
   position: absolute;
-  top: 95px;
+  top: 89px;
   left: 0;
   right: 0;
   z-index: 100;
