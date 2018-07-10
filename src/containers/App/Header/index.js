@@ -50,8 +50,8 @@ export class Header extends PureComponent {
     });
 
     return (
-      <div className="rel  shadow2  z9">
-        <header className="header--desktop  dn-lg  db" role="banner">
+      <div className="rel  z9">
+        <header className="header--desktop  dn-lg  db  shadow2" role="banner">
 
           <Link className="logo--desktop  link" to={'/'}>
             <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
