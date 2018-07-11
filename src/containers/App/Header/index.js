@@ -105,6 +105,7 @@ export class Header extends PureComponent {
           </div>
         </header>
         <header className="header--mobile  db-lg  dn" role="banner">
+          <div className="header__border--mobile" />
           <div className={mobileHeaderWrapper}>
             <Link className="logo--mobile  link" to={'/'}>
               <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
@@ -119,7 +120,7 @@ export class Header extends PureComponent {
             </div>
 
             <nav className={`${mobileNavMenu}  shadow2`}>
-              <ul className="ma0  pa0  tac  center  rel">
+              <ul className="ma0  pa0  pt2  tac  center  rel">
                 <li className="db">
                   <Link onClick={this.navExpandToggle} className="title-font  black  db  pv2  t6  link" to={'/'}>Home</Link>
                 </li>
