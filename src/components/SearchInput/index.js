@@ -1,4 +1,4 @@
-/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default, arrow-body-style */
 
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
@@ -31,6 +31,7 @@ export class SearchInput extends PureComponent {
       if (this.state.inputValue) {
         this.setState({ placeholder: 'SEARCH SITE' });
         this.setState({ inputValue: '' });
+        this.props.onSearch();
         return <Redirect push to={from || `/search/${this.state.inputValue}`} />;
       }
       this.setState({ placeholder: 'SEARCH SITE' });
@@ -43,8 +44,8 @@ export class SearchInput extends PureComponent {
     return (
       <div className="searchInput">
         <form className="searchInput__form" action="#" onSubmit={this.submitForm}>
-          <button className="searchInput__submit  cp" tyle="submit"><img className="di  searchInput__search-icon" width="50" src={require('../../containers/App/assets/search.png')} alt="Logo" role="presentation" /></button>
           <input className={`ph2  ${this.props.textAlign}  searchInput__input`} type="search" placeholder={this.state.placeholder} value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} />
+          <button className="searchInput__submit  cp" tyle="submit"><img className="di  searchInput__search-icon" width="50" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:eco/v1531221670/brand/util/iconmonstr-arrow-20-240.png" alt="Logo" role="presentation" /></button>
         </form>
         {this.redir()}
       </div>
@@ -55,11 +56,13 @@ export class SearchInput extends PureComponent {
 SearchInput.propTypes = {
   location: PropTypes.shape(),
   textAlign: PropTypes.string,
+  onSearch: PropTypes.func,
 };
 
 SearchInput.defaultProps = {
   location: {},
   textAlign: '',
+  onSearch: () => { return false; },
 };
 
 export default SearchInput;
