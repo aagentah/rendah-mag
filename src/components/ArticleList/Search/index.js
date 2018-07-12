@@ -17,7 +17,7 @@ export class SearchArticleList extends PureComponent {
       <div className="container">
         <div className="row">
           {this.props.list.map(article => (
-            <div key={article.title} className="col-md-12  link  w-100  zoom-in-fade-in-iteration--cont">
+            <div key={article.title} className="col-md-12  w-100  zoom-in-fade-in-iteration--cont">
               <article className="pv3  searchArticleList__col--search">
 
                 <div className="row">

@@ -3,7 +3,24 @@
   width: 280px;
   align-self: center;
   padding-top: 8px;
-  // position: relative;
+
+  * {
+    color: palette(dark-grey);
+
+    ::placeholder {
+      color: palette(dark-grey);
+      opacity: 1;
+    }
+
+    :-ms-input-placeholder {
+      color: palette(dark-grey);
+    }
+
+    ::-ms-input-placeholder {
+      color: palette(dark-grey);
+    }
+  }
+
   form {
     @extend .subscribeBanner__form;
   }
@@ -44,19 +61,6 @@
   @extend .t7;
   @extend .khula-bold;
   color: palette(dark-grey);
-
-  ::placeholder {
-    color: palette(dark-grey);
-    opacity: 1;
-  }
-
-  :-ms-input-placeholder {
-    color: palette(dark-grey);
-  }
-
-  ::-ms-input-placeholder {
-    color: palette(dark-grey);
-  }
 
   &:focus {
     outline: none;

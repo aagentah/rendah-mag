@@ -14,7 +14,7 @@ export class WeekArticleListLoaded extends PureComponent {
       <div className="container  mt3  mt2-sm">
         <div className="row">
           {this.props.list.map(article => (
-            <div key={article.title} className="col-sm-12  link  w-100  zoom-in-fade-in-iteration--cont">
+            <div key={article.title} className="col-sm-12  w-100  zoom-in-fade-in-iteration--cont">
               <article className="pv3  weekArticleList__col--week">
 
                 <figure className="rel  pb3">
