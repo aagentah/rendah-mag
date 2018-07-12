@@ -16,7 +16,7 @@ export class Authors extends PureComponent {
     return (
       <main className="page-fade-in">
         <Helmet title="Authors" />
-        <h1 className="tac  dark-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Authors</h1>
+        <h1 className="tac  mid-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Authors</h1>
         <AuthorsFragment />
       </main>
     );

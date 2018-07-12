@@ -21,7 +21,7 @@ export class GetInvolved extends PureComponent {
         <div className="container  tal  ph4-sm">
           <div className="row">
             <div className="col-lg-14">
-              <h1 className="tal  dark-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Get Involved</h1>
+              <h1 className="tal  mid-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Get Involved</h1>
               <p className="pb4">
                 Rendah Mag exists to bring exposure to an ever-growing community,
                 focusing on the latest Halftime, Beats & Experimental news & releases.
