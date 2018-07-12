@@ -90,7 +90,7 @@ export class Header extends PureComponent {
 
           <div className="header--desktop__social  pr0-lg">
             <SearchInput textAlign="inherit" />
-            <a className="header--desktop__social__item  ph1" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+            <a className="header--desktop__social__item  pr1  pl2" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
               <img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
             </a>
             <a className="header--desktop__social__item  ph1" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
