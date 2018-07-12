@@ -48,7 +48,7 @@ export class LatestArticleListLoaded extends PureComponent {
             <Slider {...settings}>
               {this.props.list.map(article => (
                 <div className="ph3">
-                  <div key={article.title} className="link  w-100  zoom-in-fade-in-iteration--cont">
+                  <div key={article.title} className="w-100  zoom-in-fade-in-iteration--cont">
                     <article className="pv3  latestArticleList__col--latest">
 
                       <figure className="rel  pb3">
@@ -77,7 +77,7 @@ export class LatestArticleListLoaded extends PureComponent {
       <div className="container">
         <div className="row">
           {this.props.list.map(article => (
-            <div key={article.title} className="col-sm-12  col-md-6  link  w-100  zoom-in-fade-in-iteration--cont">
+            <div key={article.title} className="col-sm-12  col-md-6  w-100  zoom-in-fade-in-iteration--cont">
               <article className="pv3  latestArticleList__col--latest">
 
                 <figure className="rel  pb3">
