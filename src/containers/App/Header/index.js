@@ -74,15 +74,15 @@ export class Header extends PureComponent {
               <div className="nav__desktop__category">
                 <li data-nav-category="1" className="abs">
                   <Link className="ttu  khula-bold  mid-grey  dib  ph2  t7  link" to={'/category/interviews'}>Interviews</Link>
-                  <span className="nav__desktop__category__downArrow">&#9660;</span>
+                  <span className="nav__desktop__category__downArrow"><img alt="arrow" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/c_scale,h_10,q_auto:eco,w_10/v1531410675/brand/util/iconmonstr-arrow-65-240.png" /></span>
                 </li>
                 <li data-nav-category="2" className="abs">
                   <Link className="ttu  khula-bold  mid-grey  dib  ph2  t7  link" to={'/category/insights'}>Insights</Link>
-                  <span className="nav__desktop__category__downArrow">&#9660;</span>
+                  <span className="nav__desktop__category__downArrow"><img alt="arrow" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/c_scale,h_10,q_auto:eco,w_10/v1531410675/brand/util/iconmonstr-arrow-65-240.png" /></span>
                 </li>
                 <li data-nav-category="3" className="abs">
                   <Link className="ttu  khula-bold  mid-grey  dib  ph2  t7  link" to={'/category/news'}>News</Link>
-                  <span className="nav__desktop__category__downArrow">&#9660;</span>
+                  <span className="nav__desktop__category__downArrow"><img alt="arrow" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/c_scale,h_10,q_auto:eco,w_10/v1531410675/brand/util/iconmonstr-arrow-65-240.png" /></span>
                 </li>
               </div>
             </ul>

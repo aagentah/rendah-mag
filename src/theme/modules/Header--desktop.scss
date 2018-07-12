@@ -31,13 +31,15 @@
   }
 }
 
-.nav__desktop__category__downArrow {
+.nav__desktop__category__downArrow img {
   transition: all 0.2s ease-in-out;
   position: absolute;
   right: -12px;
-  top: 10px;
+  top: 11px;
   font-size: 12px;
   cursor: pointer;
+  height: 10px;
+  width: 10px;
 }
 
 .header--desktop__social {
@@ -61,7 +63,7 @@
 .nav__desktop__category {
   transition: all 0.2s ease-in-out;
   position: absolute;
-  left: 434px;
+  left: 415px;
   top: -5px;
   width: 138px;
   height: 0;
