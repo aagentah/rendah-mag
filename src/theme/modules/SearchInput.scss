@@ -4,16 +4,16 @@
   align-self: center;
 
   ::placeholder {
-    color: palette(dark-grey);
+    color: palette(mid-grey);
     opacity: 1;
   }
 
   :-ms-input-placeholder {
-    color: palette(dark-grey);
+    color: palette(mid-grey);
   }
 
   ::-ms-input-placeholder {
-    color: palette(dark-grey);
+    color: palette(mid-grey);
   }
 }
 
@@ -47,7 +47,6 @@
 
   &:focus {
     outline: none;
-    // border-bottom: 2px solid black;
   }
 
   &::-moz-focus-inner {

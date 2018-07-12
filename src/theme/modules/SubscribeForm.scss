@@ -5,19 +5,19 @@
   padding-top: 8px;
 
   * {
-    color: palette(dark-grey);
+    color: palette(mid-grey);
 
     ::placeholder {
-      color: palette(dark-grey);
+      color: palette(mid-grey);
       opacity: 1;
     }
 
     :-ms-input-placeholder {
-      color: palette(dark-grey);
+      color: palette(mid-grey);
     }
 
     ::-ms-input-placeholder {
-      color: palette(dark-grey);
+      color: palette(mid-grey);
     }
   }
 
@@ -39,7 +39,7 @@
     padding-top: spacing(2);
     width: 100%;
     text-transform: uppercase;
-    color: palette(dark-grey);
+    color: palette(mid-grey);
     font-size: 12px;
   }
 }
@@ -60,7 +60,7 @@
   text-transform: uppercase;
   @extend .t7;
   @extend .khula-bold;
-  color: palette(dark-grey);
+  color: palette(mid-grey);
 
   &:focus {
     outline: none;
