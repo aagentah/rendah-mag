@@ -1,14 +1,24 @@
-
-
 .searchInput {
   margin: 0 auto;
-  width: 150px;
+  width: 110px;
   align-self: center;
-  padding-top: 8px;
+
+  ::placeholder {
+    color: palette(dark-grey);
+    opacity: 1;
+  }
+
+  :-ms-input-placeholder {
+    color: palette(dark-grey);
+  }
+
+  ::-ms-input-placeholder {
+    color: palette(dark-grey);
+  }
 }
 
 .searchInput__form {
-  width: 150px;
+  width: 110px;
   display: inline-block;
 }
 
@@ -27,10 +37,10 @@
 }
 
 .searchInput__input {
-  width: 125px;
+  width: 85px;
   display: inline-block;
   border: 0;
-  line-height: 25px;
+  padding-top: 12px;
   -webkit-appearance: none;
   outline: none;
   background: none;

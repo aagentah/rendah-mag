@@ -1,11 +1,9 @@
-
 .subscribeBanner {
   margin: 0 auto;
   width: 280px;
   align-self: center;
   padding-top: 8px;
   // position: relative;
-
   form {
     @extend .subscribeBanner__form;
   }
@@ -24,24 +22,41 @@
     padding-top: spacing(2);
     width: 100%;
     text-transform: uppercase;
-    color: palette(grey);
+    color: palette(dark-grey);
     font-size: 12px;
   }
 }
 
 .subscribeBanner__form {
-  width: 280px;
+  width: 320px;
   display: inline-block;
 }
 
 .subscribeBanner__input {
-  width: 280px;
+  width: 250px;
   display: inline-block;
   border: 0;
   -webkit-appearance: none;
   outline: none;
   text-align: center;
   background: none;
+  text-transform: uppercase;
+  @extend .t7;
+  @extend .khula-bold;
+  color: palette(dark-grey);
+
+  ::placeholder {
+    color: palette(dark-grey);
+    opacity: 1;
+  }
+
+  :-ms-input-placeholder {
+    color: palette(dark-grey);
+  }
+
+  ::-ms-input-placeholder {
+    color: palette(dark-grey);
+  }
 
   &:focus {
     outline: none;

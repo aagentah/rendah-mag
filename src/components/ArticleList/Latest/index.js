@@ -52,7 +52,7 @@ export class LatestArticleListLoaded extends PureComponent {
                     <article className="pv3  latestArticleList__col--latest">
 
                       <figure className="rel  pb3">
-                        <Link to={`/article/${article.url}`} className="shadow2  db  over-hidden  latestArticleList__img--cont">
+                        <Link to={`/article/${article.url}`} className="shadow2  shadow3-hover  db  over-hidden  latestArticleList__img--cont">
                           <img className="mb3  w-100  zoom-in-fade-in-iteration--item  cp  latestArticleList__img" alt={article.title} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
                         </Link>
                       </figure>
@@ -81,7 +81,7 @@ export class LatestArticleListLoaded extends PureComponent {
               <article className="pv3  latestArticleList__col--latest">
 
                 <figure className="rel  pb3">
-                  <Link to={`/article/${article.url}`} className="shadow2  db  over-hidden  latestArticleList__img--cont">
+                  <Link to={`/article/${article.url}`} className="shadow2  shadow3-hover  db  over-hidden  latestArticleList__img--cont">
                     <img className="mb3  w-100  zoom-in-fade-in-iteration--item  cp  latestArticleList__img" alt={article.title} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
                   </Link>
                 </figure>
