@@ -34,12 +34,11 @@ export class SubscribeBanner extends PureComponent {
               type="email"
               placeholder={this.state.inputPlaceHolder}
             />
+            <img onClick={submitInit} className="di  link  searchInput__search-icon" width="50" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:eco/v1531397812/brand/util/iconmonstr-arrow-31-240.png" alt="Email" role="presentation" />
             <br />
           </form>
           {status === 'sending' && <div className="message">sending...</div>}
-          {status === 'error' && (
-            <div className="message" dangerouslySetInnerHTML={{ __html: message }} />
-          )}
+          {status === 'error' && <div className="message">Please enter a valid email...</div>}
           {status === 'success' && (
             <div className="message" dangerouslySetInnerHTML={{ __html: message }} />
           )}
