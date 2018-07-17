@@ -4,6 +4,8 @@ import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { ArrowRight } from '../Elements/Svg';
+
 
 export class SearchInput extends PureComponent {
   constructor() {
@@ -44,8 +46,8 @@ export class SearchInput extends PureComponent {
     return (
       <div className="searchInput">
         <form className="searchInput__form" action="#" onSubmit={this.submitForm}>
-          <input className={`ttu  khula-bold  mid-grey  t7  ph2  ${this.props.textAlign}  searchInput__input`} type="search" placeholder={this.state.placeholder} value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} />
-          <button className="searchInput__submit  cp" type="submit"><img className="di  searchInput__search-icon" width="50" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:eco/v1531401328/brand/util/iconmonstr-arrow-31-240_1.png" alt="Search" role="presentation" /></button>
+          <input className={`ttumid-grey  t8  ph2  ${this.props.textAlign}  searchInput__input`} type="search" placeholder={this.state.placeholder} value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} />
+          <button className="searchInput__submit  cp" type="submit"><ArrowRight /></button>
         </form>
         {this.redir()}
       </div>

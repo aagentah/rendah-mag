@@ -1,6 +1,6 @@
 .subscribeBanner {
   margin: 0 auto;
-  width: 236px;
+  width: 226px;
   align-self: center;
   padding-top: 8px;
 
@@ -50,7 +50,7 @@
 }
 
 .subscribeBanner__input {
-  width: 236px;
+  width: 226px;
   display: inline-block;
   border: 0;
   -webkit-appearance: none;
@@ -58,8 +58,7 @@
   text-align: center;
   background: none;
   text-transform: uppercase;
-  @extend .t7;
-  @extend .khula-bold;
+  @extend .t8;
   color: palette(mid-grey);
 
   &:focus {
