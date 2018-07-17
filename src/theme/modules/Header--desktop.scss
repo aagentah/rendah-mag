@@ -20,7 +20,7 @@
   height: auto;
   position: absolute;
   z-index: 2000;
-  top: 5px;
+  top: 4px;
   left: 85px;
   @include breakpoint-up(lg) {
     display: none;
