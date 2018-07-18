@@ -27,3 +27,15 @@
     display: inline;
   }
 }
+
+[data-svg="CaretDown"] {
+  color: #555555;
+  fill: #555555;
+  width: 12px;
+  display: inline;
+  @extend .link;
+
+  svg {
+    display: inline;
+  }
+}
