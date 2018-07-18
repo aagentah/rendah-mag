@@ -1,0 +1,19 @@
+.UpdatesBanner__bg {
+  height: 150px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 150%;
+  background-position: top center;
+}
+
+
+.UpdatesBanner__title {
+  width: 250px;
+  max-width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

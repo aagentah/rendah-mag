@@ -104,6 +104,24 @@ export const Logo = (): Element<'div'> => (
   </div>
 );
 
+export const ArrowRight = (): Element<'div'> => (
+  <div data-svg="ArrowRight">
+    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
+  </div>
+);
+
+export const CaretDown = (): Element<'div'> => (
+  <div data-svg="CaretDown">
+    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" /></svg>
+  </div>
+);
+
+export const Menu = (): Element<'div'> => (
+  <div data-svg="Menu">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" /></svg>
+  </div>
+);
+
 export const NULL = ({ text }: Props): Element<'div'> => (
   <div>{text}</div>
 );
