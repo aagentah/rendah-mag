@@ -12,22 +12,22 @@ export class CategoryGrid extends PureComponent {
           <div className="row">
             <div className="col-sm-24  col-lg-8">
               <Link className="link" to={'/category/interviews'}>
-                <div className="mv3  shadow2  CategoryGrid__bg" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/categories/interviews.jpg)' }}>
-                  <h4 className="rel  tac  white  t6  title-font  bg-black  pv1  CategoryGrid__title">Interviews</h4>
+                <div className="mv3  shadow2  shadow3-hover  CategoryGrid__bg  CategoryGrid__bg--1" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/v1529440946/brand/Big_Canvas_Textures.png)' }}>
+                  <h4 className="rel  tac  mid-grey  t5  khula-bold  pb1  pt2  CategoryGrid__title">INTERVIEWS</h4>
                 </div>
               </Link>
             </div>
             <div className="col-sm-24  col-lg-8">
               <Link className="link" to={'/category/insights'}>
-                <div className="mv3  shadow2  CategoryGrid__bg" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/categories/insights.jpg)' }}>
-                  <h4 className="rel  tac  white  t6  title-font  bg-black  pv1  CategoryGrid__title">Insights</h4>
+                <div className="mv3  shadow2  shadow3-hover  CategoryGrid__bg  CategoryGrid__bg--2" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/v1529440946/brand/Big_Canvas_Textures.png)' }}>
+                  <h4 className="rel  tac  mid-grey  t5  khula-bold  pb1  pt2  CategoryGrid__title">INSIGHTS</h4>
                 </div>
               </Link>
             </div>
             <div className="col-sm-24  col-lg-8">
               <Link className="link" to={'/category/news'}>
-                <div className="mv3  shadow2  CategoryGrid__bg" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/categories/news.jpg)' }}>
-                  <h4 className="rel  tac  white  t6  title-font  bg-black  pv1  CategoryGrid__title">News</h4>
+                <div className="mv3  shadow2  shadow3-hover  CategoryGrid__bg  CategoryGrid__bg--3" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/v1529440946/brand/Big_Canvas_Textures.png)' }}>
+                  <h4 className="rel  tac  mid-grey  t5  khula-bold  pb1  pt2  CategoryGrid__title">NEWS</h4>
                 </div>
               </Link>
             </div>
