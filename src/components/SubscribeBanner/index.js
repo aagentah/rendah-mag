@@ -4,6 +4,8 @@ react/no-danger */
 import React, { PureComponent } from 'react';
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
 
+import { ArrowRight } from '../Elements/Svg';
+
 export class SubscribeBanner extends PureComponent {
   constructor(props) {
     super(props);
@@ -34,12 +36,11 @@ export class SubscribeBanner extends PureComponent {
               type="email"
               placeholder={this.state.inputPlaceHolder}
             />
+            <span role="button" tabIndex={0} onClick={submitInit}><ArrowRight /></span>
             <br />
           </form>
           {status === 'sending' && <div className="message">sending...</div>}
-          {status === 'error' && (
-            <div className="message" dangerouslySetInnerHTML={{ __html: message }} />
-          )}
+          {status === 'error' && <div className="message">Please enter a valid email...</div>}
           {status === 'success' && (
             <div className="message" dangerouslySetInnerHTML={{ __html: message }} />
           )}

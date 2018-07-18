@@ -1,14 +1,24 @@
-
-
 .searchInput {
   margin: 0 auto;
-  width: 150px;
+  width: 110px;
   align-self: center;
-  padding-top: 8px;
+
+  ::placeholder {
+    color: palette(mid-grey);
+    opacity: 1;
+  }
+
+  :-ms-input-placeholder {
+    color: palette(mid-grey);
+  }
+
+  ::-ms-input-placeholder {
+    color: palette(mid-grey);
+  }
 }
 
 .searchInput__form {
-  width: 150px;
+  width: 110px;
   display: inline-block;
 }
 
@@ -27,17 +37,16 @@
 }
 
 .searchInput__input {
-  width: 125px;
+  width: 80px;
   display: inline-block;
   border: 0;
-  line-height: 25px;
+  padding-top: 9px;
   -webkit-appearance: none;
   outline: none;
   background: none;
 
   &:focus {
     outline: none;
-    // border-bottom: 2px solid black;
   }
 
   &::-moz-focus-inner {
