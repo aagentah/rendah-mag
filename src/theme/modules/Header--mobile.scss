@@ -59,7 +59,21 @@
   cursor: pointer;
 }
 
-.header__menu-trigger {
+.header__menu-trigger svg {
+  border: 0;
+  background: transparent;
+  -webkit-appearance: none;
+ -webkit-border-radius: 0;
+  box-shadow: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  outline: 0;
+  padding: 0;
+  margin: 0;
   position: absolute;
   left: 20px;
   top: 35px;
@@ -69,7 +83,21 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.header__menu-trigger--rotated {
+.header__menu-trigger--rotated svg {
+  border: 0;
+  background: transparent;
+  -webkit-appearance: none;
+ -webkit-border-radius: 0;
+  box-shadow: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  outline: 0;
+  padding: 0;
+  margin: 0;
   transform: rotate(-90deg);
 }
 

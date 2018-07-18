@@ -1,4 +1,5 @@
-/* eslint-disable import/no-named-as-default, arrow-body-style */
+/* eslint-disable import/no-named-as-default, arrow-body-style,
+jsx-a11y/no-static-element-interactions */
 
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
@@ -47,7 +48,7 @@ export class SearchInput extends PureComponent {
       <div className="searchInput">
         <form className="searchInput__form" action="#" onSubmit={this.submitForm}>
           <input className={`ttumid-grey  t8  ph2  ${this.props.textAlign}  searchInput__input`} type="search" placeholder={this.state.placeholder} value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} />
-          <button className="searchInput__submit  cp" type="submit"><ArrowRight /></button>
+          <span className="searchInput__submit  cp"><ArrowRight /></span>
         </form>
         {this.redir()}
       </div>
