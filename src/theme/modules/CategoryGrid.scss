@@ -1,9 +1,20 @@
-
 .CategoryGrid__bg {
   height: 150px;
   width: 100%;
-  background-position: center;
-  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: 150%;
+}
+
+.CategoryGrid__bg--1 {
+  background-position: left top;
+}
+
+.CategoryGrid__bg--2 {
+  background-position: center top;
+}
+
+.CategoryGrid__bg--3 {
+  background-position: right top;
 }
 
 .CategoryGrid__title {
