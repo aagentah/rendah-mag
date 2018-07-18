@@ -1,11 +1,12 @@
-/* eslint-disable import/no-named-as-default, max-len, react/prefer-stateless-function */
+/* eslint-disable import/no-named-as-default, max-len, react/prefer-stateless-function,
+jsx-a11y/no-static-element-interactions */
 
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import SearchInput from '../../../components/SearchInput';
-import { CaretDown } from '../../../components/Elements/Svg';
+import { CaretDown, Menu } from '../../../components/Elements/Svg';
 
 export class Header extends PureComponent {
   constructor() {
@@ -112,8 +113,7 @@ export class Header extends PureComponent {
               <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
             </Link>
 
-            <img onClick={this.navExpandToggle} className={mobileNavMenuTrigger} width="12" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1531175182/brand/util/iconmonstr-menu-1-240_1.png" alt="Logo" role="presentation" />
-
+            <span onClick={this.navExpandToggle} className={mobileNavMenuTrigger}><Menu /></span>
             <img onClick={this.searchExpandToggle} className="header__search-trigger" width="12" src={require('../assets/search.png')} alt="Logo" role="presentation" />
 
             <div className="header__search--mobile">
