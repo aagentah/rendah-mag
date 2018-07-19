@@ -326,7 +326,7 @@ const mongoHandle = (app) => {
     db.collection('authors')
       .find()
       .limit(24)
-      .sort('name', 1)
+      .sort('order', 1)
       .toArray()
       .then((result) => {
         // console.log(result);
