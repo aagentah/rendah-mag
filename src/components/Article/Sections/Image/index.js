@@ -9,7 +9,7 @@ export class Image extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <img className="w-100  db  center" alt={this.props.img} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${this.props.img}`} />
+        <img className="w-80  db  center" alt={this.props.img} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${this.props.img}`} />
       </React.Fragment>
     );
   }
