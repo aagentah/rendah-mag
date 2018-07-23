@@ -1,5 +1,5 @@
 .weekArticleList__col--week {
-  height: 515px;
+  height: 440px;
   @include breakpoint-up(sm) {
     height: 360px;
   }
@@ -10,14 +10,14 @@
 }
 
 .weekArticleList__img--cont {
-  height: 350px;
+  height: 275px;
   @include breakpoint-up(sm) {
     height: 180px;
   }
 }
 
 .weekArticleList__img {
-  height: 350px;
+  height: 275px;
   object-fit: cover;
   object-position: center;
   @include breakpoint-up(sm) {
