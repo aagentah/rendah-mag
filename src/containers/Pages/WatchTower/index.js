@@ -73,7 +73,7 @@ export class WatchTower extends PureComponent {
           {this.playlistEmbeds()}
         </div>
 
-        <p className="t7  tac  grey  pb3-sm  pb4">MORE ARTICLES</p>
+        <p className="tac  mid-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">MORE ARTICLES</p>
         <div className="pb2">
           <ExtraArticles />
         </div>
