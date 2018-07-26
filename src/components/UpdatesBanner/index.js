@@ -7,7 +7,7 @@ export class UpdatesBanner extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <div className="container  pt3  pb3">
+        <div className="container  pb3">
           <div className="row">
             <div className="col-24">
               <a className="link" href="https://discord.gg/JpVAzuH" rel="noopener noreferrer" target="_blank">

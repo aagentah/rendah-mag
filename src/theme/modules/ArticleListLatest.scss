@@ -2,10 +2,6 @@
   height: 360px;
 }
 
-.latestArticleList__col--search {
-  height: auto;
-}
-
 .latestArticleList__col--leaving {
   animation: latestArticleList__img--zoomOut 0.2s ease both, latestArticleList__cont--fadeOut 0.2s ease both;
   }

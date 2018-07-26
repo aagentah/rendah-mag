@@ -1,12 +1,8 @@
 .weekArticleList__col--week {
-  height: 415px;
+  height: 440px;
   @include breakpoint-up(sm) {
     height: 360px;
   }
-}
-
-.weekArticleList__col--search {
-  height: auto;
 }
 
 .weekArticleList__col--leaving {
@@ -14,14 +10,14 @@
 }
 
 .weekArticleList__img--cont {
-  height: 250px;
+  height: 275px;
   @include breakpoint-up(sm) {
     height: 180px;
   }
 }
 
 .weekArticleList__img {
-  height: 250px;
+  height: 275px;
   object-fit: cover;
   object-position: center;
   @include breakpoint-up(sm) {
