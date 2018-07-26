@@ -48,7 +48,7 @@ export class SearchInput extends PureComponent {
       <div className="searchInput">
         <form className="searchInput__form" action="#" onSubmit={this.submitForm}>
           <input className={`ttumid-grey  t8  ph2  ${this.props.textAlign}  searchInput__input`} type="search" placeholder={this.state.placeholder} value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} />
-          <span className="searchInput__submit  cp"><ArrowRight /></span>
+          <button className="searchInput__submit  cp" tyle="submit"><ArrowRight /></button>
         </form>
         {this.redir()}
       </div>

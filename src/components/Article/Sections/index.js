@@ -36,7 +36,10 @@ export class Seo extends PureComponent {
         case 'image':
           return (
             <div key={i} className="pv3">
-              <Image img={item.section.img} />
+              <Image
+                img={item.section.img}
+                caption={item.section.caption}
+              />
             </div>
           );
         case 'question':
