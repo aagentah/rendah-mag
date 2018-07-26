@@ -92,6 +92,9 @@ const mongoHandle = (app) => {
       'https://www.rendahmag.com/authors/harry-taylor',
       'https://www.rendahmag.com/authors/kieran-may',
       'https://www.rendahmag.com/authors/sam-langley',
+      'https://www.rendahmag.com/authors/blair-mcgloiry',
+      'https://www.rendahmag.com/authors/rosh-parmar',
+      'https://www.rendahmag.com/authors/keelan-rushby',
     ]
 
     db.collection('articles')
@@ -326,7 +329,7 @@ const mongoHandle = (app) => {
     db.collection('authors')
       .find()
       .limit(24)
-      .sort('name', 1)
+      .sort('order', 1)
       .toArray()
       .then((result) => {
         // console.log(result);
