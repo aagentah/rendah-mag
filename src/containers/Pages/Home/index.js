@@ -8,7 +8,6 @@ import LatestArticles from '../../../containers/Fragments/LatestArticles';
 import SearchInput from '../../../components/SearchInput';
 import SubscribeBanner from '../../../components/SubscribeBanner';
 import CategoryGrid from '../../../components/CategoryGrid';
-import UpdatesBanner from '../../../components/UpdatesBanner';
 
 export class Home extends PureComponent {
   componentDidMount() {
@@ -28,7 +27,6 @@ export class Home extends PureComponent {
         <LatestArticles />
         <div className="pt4  pb3"><SearchInput textAlign="tac" /></div>
         <CategoryGrid />
-        <UpdatesBanner />
       </main>
     );
   }
