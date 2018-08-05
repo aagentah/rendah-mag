@@ -23,9 +23,9 @@ export class Home extends PureComponent {
       <main className="page-fade-in">
         <Helmet title="Home" />
         <h1 className="dn">Home</h1>
-        <UpdatesBanner />
+        <div className="pt4  mt2  pb3  over-hidden"><SubscribeBanner /></div>
         <WeekArticles />
-        <div className="pt2  pb4  over-hidden"><SubscribeBanner /></div>
+        <UpdatesBanner />
         <LatestArticles />
         <div className="pt4  pb3"><SearchInput textAlign="tac" /></div>
         <CategoryGrid />
