@@ -25,10 +25,10 @@ export class Home extends PureComponent {
         <h1 className="dn">Home</h1>
         <div className="pt4  mt2  pb3  over-hidden"><SubscribeBanner /></div>
         <WeekArticles />
+        <UpdatesBanner />
         <LatestArticles />
         <div className="pt4  pb3"><SearchInput textAlign="tac" /></div>
         <CategoryGrid />
-        <UpdatesBanner />
       </main>
     );
   }

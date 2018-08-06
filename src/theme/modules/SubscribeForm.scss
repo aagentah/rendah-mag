@@ -50,7 +50,7 @@
 }
 
 .subscribeBanner__input {
-  width: 226px;
+  width: 250px;
   display: inline-block;
   border: 0;
   -webkit-appearance: none;
@@ -58,7 +58,6 @@
   text-align: center;
   background: none;
   text-transform: uppercase;
-  @extend .t8;
   color: palette(mid-grey);
 
   &:focus {
