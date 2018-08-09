@@ -4,16 +4,16 @@
   align-self: center;
 
   ::placeholder {
-    color: palette(mid-grey);
+    color: palette(dark-grey);
     opacity: 1;
   }
 
   :-ms-input-placeholder {
-    color: palette(mid-grey);
+    color: palette(dark-grey);
   }
 
   ::-ms-input-placeholder {
-    color: palette(mid-grey);
+    color: palette(dark-grey);
   }
 }
 
