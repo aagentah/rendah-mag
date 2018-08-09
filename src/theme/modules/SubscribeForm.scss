@@ -1,23 +1,23 @@
 .subscribeBanner {
   margin: 0 auto;
-  width: 226px;
+  width: 270px;
   align-self: center;
   padding-top: 8px;
 
   * {
-    color: palette(mid-grey);
+    color: palette(dark-grey);
 
     ::placeholder {
-      color: palette(mid-grey);
+      color: palette(dark-grey);
       opacity: 1;
     }
 
     :-ms-input-placeholder {
-      color: palette(mid-grey);
+      color: palette(dark-grey);
     }
 
     ::-ms-input-placeholder {
-      color: palette(mid-grey);
+      color: palette(dark-grey);
     }
   }
 
@@ -39,7 +39,7 @@
     padding-top: spacing(2);
     width: 100%;
     text-transform: uppercase;
-    color: palette(mid-grey);
+    color: palette(dark-grey);
     font-size: 12px;
   }
 }
@@ -58,7 +58,7 @@
   text-align: center;
   background: none;
   text-transform: uppercase;
-  color: palette(mid-grey);
+  color: palette(dark-grey);
 
   &:focus {
     outline: none;

@@ -23,7 +23,7 @@ export class Author extends PureComponent {
         <h1 className="dn">{this.props.match.params.id.replace(/\s+/g, '-')}</h1>
         <AuthorInfo match={this.props.match} seo />
         <div className="mt4">
-          <p className="tac  mid-grey  t6  ttu  khula-bold  pv2  mb3  mt3  ttu">LATEST FROM {this.props.match.params.id.split('-')[0]}</p>
+          <p className="tac  dark-grey  t6  ttu  khula-bold  pv2  mb3  mt3  ttu">LATEST FROM {this.props.match.params.id.split('-')[0]}</p>
         </div>
         <AuthorArticles match={this.props.match} />
       </main>
