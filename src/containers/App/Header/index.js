@@ -148,7 +148,7 @@ export class Header extends PureComponent {
                   <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/category/news'}>News</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/mixes'}>News</Link>
+                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/mixes'}>Mixes</Link>
                 </li>
               </ul>
               <div className="header--mobile__social pt2">
