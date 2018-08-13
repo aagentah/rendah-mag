@@ -2,7 +2,6 @@
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
-import { Link } from 'react-router-dom';
 import Iframe from 'react-iframe';
 import { isChrome, isAndroid } from 'react-device-detect';
 
@@ -45,15 +44,10 @@ export class WatchTower extends PureComponent {
         <div className="container  ph4-sm">
           <div className="row">
             <div className="col-sm-18  offset-sm-3">
-              <h1 className="tac  dark-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Watch Tower</h1>
+              <h1 className="tac  dark-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Mixes</h1>
               <p className="tac  pb1  mw4  db  center">
-                The&nbsp;
-                <Link className="link" to={'/Authors'}>
-                  <span className="rendah-red">Rendah Team</span>
-                </Link>
-                &nbsp;is invested in keeping you up-to-date with
-                the latest Halftime Beats. We&apos;ve compiled our favourite Tracks & Mixes into
-                2 &apos;Watch Tower&apos; playlists which will be updated regularly.
+                Check out our &apos;Modules&apos; series featuring
+                guest-mixes from upcomers within the scene.
               </p>
             </div>
           </div>
