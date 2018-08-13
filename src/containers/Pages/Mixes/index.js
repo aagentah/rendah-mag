@@ -22,7 +22,7 @@ export class WatchTower extends PureComponent {
 
     return (
       <div className="row  pt5  pb4">
-        <div className="col-12  offset-6  pb0  pb4-md">
+        <div className="col-24  col-md-12  offset-md-6  pb0  pb4-md">
           <div className="w-90  db  center  mb3">
             <Iframe
               url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/543806010&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
