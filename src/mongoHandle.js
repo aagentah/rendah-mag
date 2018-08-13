@@ -83,6 +83,7 @@ const mongoHandle = (app) => {
       'https://www.rendahmag.com/',
       'https://www.rendahmag.com/get-involved',
       'https://www.rendahmag.com/watch-tower',
+      'https://www.rendahmag.com/mixes',
       'https://www.rendahmag.com/category/interviews',
       'https://www.rendahmag.com/category/insights',
       'https://www.rendahmag.com/category/news',

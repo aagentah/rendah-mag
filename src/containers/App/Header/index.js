@@ -86,6 +86,10 @@ export class Header extends PureComponent {
                   <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/category/news'}>News</Link>
                   <span className="nav__desktop__category__downArrow"><CaretDown /></span>
                 </li>
+                <li data-nav-category="4" className="abs">
+                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/mixes'}>Mixes</Link>
+                  <span className="nav__desktop__category__downArrow"><CaretDown /></span>
+                </li>
               </div>
             </ul>
           </nav>
@@ -142,6 +146,9 @@ export class Header extends PureComponent {
                 </li>
                 <li className="db">
                   <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/category/news'}>News</Link>
+                </li>
+                <li className="db">
+                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/mixes'}>News</Link>
                 </li>
               </ul>
               <div className="header--mobile__social pt2">
