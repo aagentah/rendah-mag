@@ -88,13 +88,13 @@ export class Header extends PureComponent {
 
     return (
       <div className="rel  z9">
-        <header className="header--desktop  dn-lg  db  shadow1" role="banner">
+        <header className="container-large  center  dn  db-lg  shadow1" role="banner">
 
-          <Link className="logo--desktop  link" to={'/'}>
+          <Link className="link" to={'/'}>
             <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
           </Link>
 
-          <nav className="nav--desktop">
+          <nav className="">
             <ul className="ma0  pa0  tac">
               {links.map((link) => {
                 return (
@@ -110,7 +110,8 @@ export class Header extends PureComponent {
             <SearchInput textAlign="inherit" />
           </div>
         </header>
-        <header className="header--mobile  db-lg  dn" role="banner">
+
+        <header className="header--mobile  db  dn-lg" role="banner">
           <div className="header__border--mobile" />
           <div className={mobileHeaderWrapper}>
             <Link className="logo--mobile  link" to={'/'}>

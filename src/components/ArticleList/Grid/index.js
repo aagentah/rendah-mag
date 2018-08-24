@@ -25,7 +25,7 @@ export class ArticleListGrid extends PureComponent {
     }
 
     return (
-      <div className="container-medium">
+      <div className="container-medium  center">
         <div className="flex  flex-wrap">
           {this.props.list.map(article => (
             <div key={article.title} className={`${containerClass}  ph3`}>
