@@ -1,12 +1,12 @@
 /* eslint-disable import/no-named-as-default, max-len, react/prefer-stateless-function,
-jsx-a11y/no-static-element-interactions */
+jsx-a11y/no-static-element-interactions, arrow-body-style */
 
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import SearchInput from '../../../components/SearchInput';
-import { CaretDown, Menu } from '../../../components/Elements/Svg';
+import { Menu } from '../../../components/Elements/Svg';
 
 export class Header extends PureComponent {
   constructor() {
@@ -36,6 +36,41 @@ export class Header extends PureComponent {
   }
 
   render() {
+    const links = [
+      {
+        to: '/',
+        text: 'Home',
+      },
+      {
+        to: '/authors',
+        text: 'Authors',
+      },
+      {
+        to: '/get-involved',
+        text: 'Get Involved',
+      },
+      {
+        to: '/watch-tower',
+        text: 'Watch Tower',
+      },
+      {
+        to: '/category/news',
+        text: 'News',
+      },
+      {
+        to: '/category/interviews',
+        text: 'Interviews',
+      },
+      {
+        to: '/category/news',
+        text: 'News',
+      },
+      {
+        to: '/category/insights',
+        text: 'Insights',
+      },
+    ];
+
     const mobileHeaderWrapper = classNames({
       'header__float-wrapper': true,
       'header__float-wrapper--searchExpand': this.state.searchExpand,
@@ -53,61 +88,26 @@ export class Header extends PureComponent {
 
     return (
       <div className="rel  z9">
-        <header className="header--desktop  dn-lg  db  shadow2" role="banner">
+        <header className="header--desktop  dn-lg  db  shadow1" role="banner">
 
           <Link className="logo--desktop  link" to={'/'}>
             <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
           </Link>
 
-          <nav className="nav--desktop  tal  pt4">
-            <ul className="ma0  pa0  tac  center  rel">
-              <li className="dib">
-                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/'}>Home</Link>
-              </li>
-              <li className="dib">
-                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/authors'}>Authors</Link>
-              </li>
-              <li className="dib">
-                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/get-involved'}>Get Involved</Link>
-              </li>
-              <li className="dib">
-                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/watch-tower'}>Watch Tower</Link>
-              </li>
-              <div className="nav__desktop__category">
-                <li data-nav-category="1" className="abs">
-                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/category/interviews'}>Interviews</Link>
-                  <span className="nav__desktop__category__downArrow"><CaretDown /></span>
-                </li>
-                <li data-nav-category="2" className="abs">
-                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/category/insights'}>Insights</Link>
-                  <span className="nav__desktop__category__downArrow"><CaretDown /></span>
-                </li>
-                <li data-nav-category="3" className="abs">
-                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/category/news'}>News</Link>
-                  <span className="nav__desktop__category__downArrow"><CaretDown /></span>
-                </li>
-                <li data-nav-category="4" className="abs">
-                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/mixes'}>Mixes</Link>
-                  <span className="nav__desktop__category__downArrow"><CaretDown /></span>
-                </li>
-              </div>
+          <nav className="nav--desktop">
+            <ul className="ma0  pa0  tac">
+              {links.map((link) => {
+                return (
+                  <li className="dib  pt3  mt2">
+                    <Link className="t-title  bold  black  ph2  t7  link" to={link.to}>{link.text}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
-          <div className="header--desktop__social  pr0-lg">
+          <div className="header--desktop__search  pr0-lg">
             <SearchInput textAlign="inherit" />
-            <a className="header--desktop__social__item  pr1  pl2" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-              <img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
-            </a>
-            <a className="header--desktop__social__item  ph1" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
-              <img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
-            </a>
-            <a className="header--desktop__social__item  ph1" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-              <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
-            </a>
-            <a className="header--desktop__social__item  ph1" href="https://www.soundcloud.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-              <img src={require('../assets/social/iconmonstr-soundcloud-5.png')} alt="soundcloud" />
-            </a>
           </div>
         </header>
         <header className="header--mobile  db-lg  dn" role="banner">
@@ -126,45 +126,14 @@ export class Header extends PureComponent {
 
             <nav className={`${mobileNavMenu}  shadow2`}>
               <ul className="ma0  pa0  pt2  tac  center  rel">
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/'}>Home</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/authors'}>Authors</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/get-involved'}>Get Involved</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/watch-tower'}>Watch Tower</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/category/interviews'}>Interviews</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/category/insights'}>Insights</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/category/news'}>News</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/mixes'}>Mixes</Link>
-                </li>
+                {links.map((link) => {
+                  return (
+                    <li className="db">
+                      <Link onClick={this.navExpandToggle} className="ttu  t-title-bold  dark-grey  db  pv2  t7  link" to={link.to}>{link.text}</Link>
+                    </li>
+                  );
+                })}
               </ul>
-              <div className="header--mobile__social pt2">
-                <a className="header--mobile__social__item  ph1" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                  <img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
-                </a>
-                <a className="header--mobile__social__item  ph1" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
-                  <img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
-                </a>
-                <a className="header--mobile__social__item  ph1" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                  <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
-                </a>
-                <a className="header--mobile__social__item  ph1" href="https://www.soundcloud.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                  <img src={require('../assets/social/iconmonstr-soundcloud-5.png')} alt="soundcloud" />
-                </a>
-              </div>
             </nav>
           </div>
         </header>

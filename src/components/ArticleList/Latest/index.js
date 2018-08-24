@@ -59,7 +59,7 @@ export class LatestArticleListLoaded extends PureComponent {
                       <span className="grey  t8">{this.date(article.created)} | </span>
                       <Link to={`/author/${article.author}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
                       <Link to={`/article/${article.url}`} className="no-underline">
-                        <p className="black  t7  pt2  cp  title-font  over-hidden  link  latestArticleList__title">{article.title}</p>
+                        <p className="black  t7  pt2  cp  t-title  over-hidden  link  latestArticleList__title">{article.title}</p>
                       </Link>
                       <p className="grey  t8  pv2  over-hidden  latestArticleList__intro">{article.description}</p>
 
@@ -88,7 +88,7 @@ export class LatestArticleListLoaded extends PureComponent {
                 <span className="grey  t8">{this.date(article.created)} | </span>
                 <Link to={`/author/${article.author}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
                 <Link to={`/article/${article.url}`} className="no-underline">
-                  <p className="black  t7  pt2  cp  title-font  over-hidden  link  latestArticleList__title">{article.title}</p>
+                  <p className="black  t7  pt2  cp  t-title  over-hidden  link  latestArticleList__title">{article.title}</p>
                 </Link>
                 <p className="grey  t8  pv2  over-hidden  latestArticleList__intro">{article.description}</p>
 

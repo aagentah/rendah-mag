@@ -40,8 +40,8 @@ export class Article extends PureComponent {
                   </div>
                   <span className="grey  t8">{this.date(article.created)} | </span>
                   <Link to={`/author/${article.author}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
-                  <h1 className="pb3  pt4  title-font">{article.title}</h1>
-                  <p className="pv3  normal-font  grey">{article.description}</p>
+                  <h1 className="pb3  pt4  t-title">{article.title}</h1>
+                  <p className="pv3  t-body  grey">{article.description}</p>
 
                   <Sections data={article.body} />
                 </div>

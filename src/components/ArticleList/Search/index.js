@@ -32,7 +32,7 @@ export class SearchArticleList extends PureComponent {
                     <span className="grey  t8">{this.date(article.created)} | </span>
                     <Link to={`/author/${article.author}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
                     <Link to={`/article/${article.url}`} className="no-underline">
-                      <p className="black  t7  pt2  cp  title-font  over-hidden  link  searchArticleList__title">{article.title}</p>
+                      <p className="black  t7  pt2  cp  t-title  over-hidden  link  searchArticleList__title">{article.title}</p>
                     </Link>
                     <p className="grey  t8  pv2  over-hidden  searchArticleList__intro">{article.description}</p>
                   </div>
