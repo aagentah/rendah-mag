@@ -1,8 +1,6 @@
 // Imports
+@import url('https://fonts.googleapis.com/css?family=Play:400,700');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css?family=Righteous');
-@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i');
-@import url('https://fonts.googleapis.com/css?family=Khula:700');
 
 // Typography
 $system-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'Ubuntu', 'Roboto', 'Noto', 'Segoe Ui', Arial, sans-serif;
@@ -12,9 +10,8 @@ $sans: sans-serif;
 $serif: serif;
 
 // theme
-$khula: 'Khula', sans-serif;
-$title-font: 'Roboto', sans-serif;
-$normal-font: 'Roboto', sans-serif;
+$t-title: 'Play', sans-serif;
+$t-body: 'Roboto', sans-serif;
 
 // Colors
 $colors: (
@@ -31,16 +28,6 @@ $colors: (
   white:              #ffffff,
   rendah-orange:      #ffb84d,
   rendah-red:         #ff817b
-
-  // theme
-  // rendah-green:            #4d5d53, // #dark-sage
-  // rendah-green-light:      #738678, // #light-sage
-  // rendah-pink:             #e0929e, // #pink
-  // rendah-pink-light:       #f1b4bc, // #light-pink
-  // rendah-blue:             #345766, // #teal
-  // rendah-blue-light:       #6e8f9d, // #light-teal
-  // rendah-purple:           #735a9c, // #purple
-  // rendah-purple-light:     #6a6086  // #light-purple
 );
 
 

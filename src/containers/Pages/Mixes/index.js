@@ -17,7 +17,7 @@ export class WatchTower extends PureComponent {
 
   playlistEmbeds = () => {
     if (isAndroid && isChrome) {
-      return <p className="pa4  t8  normal-font  grey  tac"><a className="t8  link  rendah-red" rel="noopener noreferrer" target="_blank" href="https://docs.google.com/a/rendahmag.com/forms/d/e/1FAIpQLSfNxc82RJuzC0DnISat7n4H-G7IsPQIdaMpe202iiHZEoso9w/closedform">Soundcloud&#39;s Application API</a> currently does not work with Android (Chrome) To preview, please try another browser.</p>;
+      return <p className="pa4  t8  t-body  grey  tac"><a className="t8  link  rendah-red" rel="noopener noreferrer" target="_blank" href="https://docs.google.com/a/rendahmag.com/forms/d/e/1FAIpQLSfNxc82RJuzC0DnISat7n4H-G7IsPQIdaMpe202iiHZEoso9w/closedform">Soundcloud&#39;s Application API</a> currently does not work with Android (Chrome) To preview, please try another browser.</p>;
     }
 
     return (
@@ -44,7 +44,7 @@ export class WatchTower extends PureComponent {
         <div className="container  ph4-sm">
           <div className="row">
             <div className="col-sm-18  offset-sm-3">
-              <h1 className="tac  dark-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Mixes</h1>
+              <h1 className="tac  dark-grey  t6  ttu  t-title-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Mixes</h1>
               <p className="tac  pb1  mw4  db  center">
                 Check out our &apos;Modules&apos; series featuring
                 guest-mixes from upcomers within the scene.
@@ -54,7 +54,7 @@ export class WatchTower extends PureComponent {
           {this.playlistEmbeds()}
         </div>
 
-        <p className="tac  dark-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">MORE ARTICLES</p>
+        <p className="tac  dark-grey  t6  ttu  t-title-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">MORE ARTICLES</p>
         <div className="pb2">
           <ExtraArticles />
         </div>

@@ -68,7 +68,7 @@ export class Article extends PureComponent {
                     </div>
 
                     <div className="col-md-18">
-                      <Link to={`/author/${author.url}`} className="link  black  t7  pt3  db  tac-md  cp  title-font  no-underline">
+                      <Link to={`/author/${author.url}`} className="link  black  t7  pt3  db  tac-md  cp  t-title  no-underline">
                         <span>{author.name}</span>
                         <span className="pl1  grey  t8">({author.alias})</span>
                       </Link>

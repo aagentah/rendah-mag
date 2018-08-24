@@ -9,7 +9,7 @@ export class Heading extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <h2 className="title-font  dark-grey">{this.props.text}</h2>
+        <h2 className="t-title  dark-grey">{this.props.text}</h2>
       </React.Fragment>
     );
   }

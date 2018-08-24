@@ -21,7 +21,7 @@ export class GetInvolved extends PureComponent {
         <div className="container  tal  ph4-sm">
           <div className="row">
             <div className="col-lg-14">
-              <h1 className="tal  dark-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Get Involved</h1>
+              <h1 className="tal  dark-grey  t6  ttu  t-title-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Get Involved</h1>
               <p className="pb4">
                 Rendah Mag exists to bring exposure to an ever-growing community,
                 focusing on the latest Halftime, Beats & Experimental news & releases.
@@ -35,10 +35,10 @@ export class GetInvolved extends PureComponent {
                 <span className="GetInvolved__email--link  dib  pb3  black  no-underline">info@rendahmag.com</span>
               </a>
               <p className="pt3">
-                Rendah is written in <a href="https://reactjs.org/" rel="noopener noreferrer" target="_blank" className="black  fw6  link  no-underline">React.js</a>
-                &nbsp;&&nbsp;<a href="https://nodejs.org/en/" rel="noopener noreferrer" target="_blank" className="black  fw6  link  no-underline">Node.js</a>.
+                Rendah is written in <a href="https://reactjs.org/" rel="noopener noreferrer" target="_blank" className="black  bold  link  no-underline">React.js</a>
+                &nbsp;&&nbsp;<a href="https://nodejs.org/en/" rel="noopener noreferrer" target="_blank" className="black  bold  link  no-underline">Node.js</a>.
                 <br />
-                You can check our <a href="https://github.com/danjonesdev/rendah-mag" rel="noopener noreferrer" target="_blank" className="black  fw6  link  no-underline">Github repository</a>
+                You can check our <a href="https://github.com/danjonesdev/rendah-mag" rel="noopener noreferrer" target="_blank" className="black  bold  link  no-underline">Github repository</a>
               </p>
             </div>
             <div className="col-lg-10">

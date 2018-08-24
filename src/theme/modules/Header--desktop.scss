@@ -1,5 +1,5 @@
 .header--desktop {
-  height: 90px;
+  height: 65px;
   width: 100%;
 }
 
@@ -17,15 +17,6 @@
 }
 
 .nav--desktop {
-  height: auto;
-  position: absolute;
-  z-index: 2000;
-  top: 4px;
-  left: 85px;
-  @include breakpoint-up(lg) {
-    display: none;
-  }
-
   ul {
     list-style: none;
   }
@@ -42,12 +33,10 @@
   width: 10px;
 }
 
-.header--desktop__social {
-  float: right;
-  display: flex;
-  justify-content: center;
-  height: 90px;
-  padding-right: 15px;
+.header--desktop__search {
+  position: absolute;
+  right: 15px;
+  top: 17px;
 }
 
 .header--desktop__social__item {
