@@ -1,9 +1,7 @@
-
-
 @mixin breakpoint-up($name, $breakpoints: $grid-breakpoints) {
-  $max: breakpoint-max($name, $breakpoints);
-  @if $max {
-    @media screen and (max-width: $max - 1px) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media screen and (min-width: $min) {
       @content;
     }
   } @else {

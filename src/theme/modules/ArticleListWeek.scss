@@ -34,15 +34,23 @@
   -webkit-box-orient: vertical;
 }
 
-.weekArticleList__intro {
-  height: 55px;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  font-family: $t-body;
-  @include breakpoint-up(sm) {
-    height: 70px;
-    -webkit-line-clamp: 3;
-  }
-}
+// .weekArticleList__intro {
+//   height: 55px;
+//   text-overflow: ellipsis;
+//   display: -webkit-box;
+//   -webkit-line-clamp: 2;
+//   -webkit-box-orient: vertical;
+//   font-family: $t-body;
+//   @include breakpoint-up(sm) {
+//     height: 70px;
+//     -webkit-line-clamp: 3;
+//   }
+// }
+
+// .weekArticleList__intro {
+//   text-overflow: ellipsis;
+//   display: -webkit-box;
+//   -webkit-line-clamp: 3;
+//   -webkit-box-orient: vertical;
+//   @extend .h1;
+// }

@@ -1,12 +1,12 @@
-
-
 .system-sans { font-family: $system-sans; }
 .sans { font-family: $sans; }
 .serif { font-family: $serif; }
 .mono { font-family: $mono; }
 
-// theme
+.t-title {
+  font-family: $t-title;
+}
 
-.t-title-bold { font-family: $t-title; font-weight: 700; line-height: 28px; }
-.t-title { font-family: $t-title; }
-.t-body { font-family: $t-body; }
+.t-body {
+  font-family: $t-body;
+}
