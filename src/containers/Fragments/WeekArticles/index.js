@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
-import WeekArticleList from '../../../components/ArticleList/Week';
+import ArticleListGrid from '../../../components/ArticleList/Grid';
 
 
 export class WeekArticles extends PureComponent {
@@ -26,7 +26,7 @@ export class WeekArticles extends PureComponent {
       return <Loading type="WeekArticles" />;
     }
 
-    return <WeekArticleList list={weekArticles.list} />;
+    return <ArticleListGrid type="week" list={weekArticles.list} />;
   };
 
   render() {
