@@ -8,6 +8,7 @@ import Seo from './Seo';
 import Sections from './Sections';
 import { convertDate, toTitleCase, toUrlCase } from '../../functions';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
+import ExtraArticles from '../../containers/Fragments/ExtraArticles';
 
 export class Article extends PureComponent {
   date = date => convertDate(date);
@@ -27,9 +28,9 @@ export class Article extends PureComponent {
           </figure>
 
           <section className="rel">
-            <article className="container  article__content">
-              <div className="row">
-                <div className="col-md-16  offset-md-4  ph4-sm">
+            <article className="container-medium  center  article__content">
+              <div className="flex  flex-wrap">
+                <div className="col-24  col-16-lg">
                   <div className="article__social  pb4">
                     <a className="ph1" href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.url}`} rel="noopener noreferrer" target="_blank">
                       <img src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
@@ -44,6 +45,9 @@ export class Article extends PureComponent {
                   <p className="pv3  t-body  grey">{article.description}</p>
 
                   <Sections data={article.body} />
+                </div>
+                <div className="col-24 col-8-lg">
+                  <ExtraArticles type="list" />
                 </div>
               </div>
             </article>

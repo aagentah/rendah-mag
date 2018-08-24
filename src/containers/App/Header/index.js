@@ -87,28 +87,29 @@ export class Header extends PureComponent {
     });
 
     return (
-      <div className="rel  z9">
-        <header className="container-large  center  dn  db-lg  shadow1" role="banner">
+      <React.Fragment>
+        <header className="fix  w-100  shadow1  header__desktop">
+          <nav className="container-large  center  dn  db-lg  rel  z9" role="banner">
+            <Link className="link  abs  w3  header__desktop__logo" to={'/'}>
+              <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
+            </Link>
 
-          <Link className="link" to={'/'}>
-            <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
-          </Link>
 
-          <nav className="">
-            <ul className="ma0  pa0  tac">
+            <ul className="tac  pt3  mt3">
               {links.map((link) => {
                 return (
-                  <li className="dib  pt3  mt2">
-                    <Link className="t-title  bold  black  ph2  t7  link" to={link.to}>{link.text}</Link>
+                  <li className="dib">
+                    <Link className="t-title  bold  black  ph2  f5  link" to={link.to}>{link.text}</Link>
                   </li>
                 );
               })}
             </ul>
-          </nav>
 
-          <div className="header--desktop__search  pr0-lg">
-            <SearchInput textAlign="inherit" />
-          </div>
+
+            <div className="abs  header__desktop__search">
+              <SearchInput textAlign="inherit" />
+            </div>
+          </nav>
         </header>
 
         <header className="header--mobile  db  dn-lg" role="banner">
@@ -138,7 +139,7 @@ export class Header extends PureComponent {
             </nav>
           </div>
         </header>
-      </div>
+      </React.Fragment>
     );
   }
 }
