@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
-import LatestArticleList from '../../../components/ArticleList/Latest';
+import ArticleListGrid from '../../../components/ArticleList/Grid';
 
 
 export class CategoryArticles extends PureComponent {
@@ -27,7 +27,7 @@ export class CategoryArticles extends PureComponent {
       return <Loading type="CategoryArticles" />;
     }
 
-    return <LatestArticleList list={categoryArticles.list} />;
+    return <ArticleListGrid type="grid" list={categoryArticles.list} />;
   };
 
   render() {

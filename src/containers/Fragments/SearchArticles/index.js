@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
-import SearchArticleList from '../../../components/ArticleList/Search';
+import ArticleListGrid from '../../../components/ArticleList/Grid';
 
 
 export class SearchArticles extends PureComponent {
@@ -27,7 +27,7 @@ export class SearchArticles extends PureComponent {
       return <Loading type="SearchArticles" />;
     }
 
-    return <SearchArticleList list={searchArticles.list} />;
+    return <ArticleListGrid type="grid" list={searchArticles.list} />;
   };
 
   render() {
