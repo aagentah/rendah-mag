@@ -62,28 +62,32 @@ export class Header extends PureComponent {
           <nav className="nav--desktop  tal  pt4">
             <ul className="ma0  pa0  tac  center  rel">
               <li className="dib">
-                <Link className="ttu  khula-bold  mid-grey  dib  ph2  t7  link" to={'/'}>Home</Link>
+                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/'}>Home</Link>
               </li>
               <li className="dib">
-                <Link className="ttu  khula-bold  mid-grey  dib  ph2  t7  link" to={'/authors'}>Authors</Link>
+                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/authors'}>Authors</Link>
               </li>
               <li className="dib">
-                <Link className="ttu  khula-bold  mid-grey  dib  ph2  t7  link" to={'/get-involved'}>Get Involved</Link>
+                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/get-involved'}>Get Involved</Link>
               </li>
               <li className="dib">
-                <Link className="ttu  khula-bold  mid-grey  dib  ph2  t7  link" to={'/watch-tower'}>Watch Tower</Link>
+                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/watch-tower'}>Watch Tower</Link>
               </li>
               <div className="nav__desktop__category">
                 <li data-nav-category="1" className="abs">
-                  <Link className="ttu  khula-bold  mid-grey  dib  ph2  t7  link" to={'/category/interviews'}>Interviews</Link>
+                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/category/interviews'}>Interviews</Link>
                   <span className="nav__desktop__category__downArrow"><CaretDown /></span>
                 </li>
                 <li data-nav-category="2" className="abs">
-                  <Link className="ttu  khula-bold  mid-grey  dib  ph2  t7  link" to={'/category/insights'}>Insights</Link>
+                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/category/insights'}>Insights</Link>
                   <span className="nav__desktop__category__downArrow"><CaretDown /></span>
                 </li>
                 <li data-nav-category="3" className="abs">
-                  <Link className="ttu  khula-bold  mid-grey  dib  ph2  t7  link" to={'/category/news'}>News</Link>
+                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/category/news'}>News</Link>
+                  <span className="nav__desktop__category__downArrow"><CaretDown /></span>
+                </li>
+                <li data-nav-category="4" className="abs">
+                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/mixes'}>Mixes</Link>
                   <span className="nav__desktop__category__downArrow"><CaretDown /></span>
                 </li>
               </div>
@@ -123,25 +127,28 @@ export class Header extends PureComponent {
             <nav className={`${mobileNavMenu}  shadow2`}>
               <ul className="ma0  pa0  pt2  tac  center  rel">
                 <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  mid-grey  db  pv2  t7  link" to={'/'}>Home</Link>
+                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/'}>Home</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  mid-grey  db  pv2  t7  link" to={'/authors'}>Authors</Link>
+                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/authors'}>Authors</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  mid-grey  db  pv2  t7  link" to={'/get-involved'}>Get Involved</Link>
+                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/get-involved'}>Get Involved</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  mid-grey  db  pv2  t7  link" to={'/watch-tower'}>Watch Tower</Link>
+                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/watch-tower'}>Watch Tower</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  mid-grey  db  pv2  t7  link" to={'/category/interviews'}>Interviews</Link>
+                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/category/interviews'}>Interviews</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  mid-grey  db  pv2  t7  link" to={'/category/insights'}>Insights</Link>
+                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/category/insights'}>Insights</Link>
                 </li>
                 <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  mid-grey  db  pv2  t7  link" to={'/category/news'}>News</Link>
+                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/category/news'}>News</Link>
+                </li>
+                <li className="db">
+                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/mixes'}>Mixes</Link>
                 </li>
               </ul>
               <div className="header--mobile__social pt2">
