@@ -21,6 +21,7 @@ import NotFoundPage from './containers/Pages/NotFound';
 import GetInvolvedPage from './containers/Pages/GetInvolved';
 import AuthorsPage from './containers/Pages/Authors';
 import WatchTowerPage from './containers/Pages/WatchTower';
+import MixesPage from './containers/Pages/Mixes';
 import PrivacyPolicyPage from './containers/Pages/PrivacyPolicy';
 
 export default [
@@ -77,6 +78,10 @@ export default [
   {
     path: '/watch-tower',
     component: WatchTowerPage,
+  },
+  {
+    path: '/mixes',
+    component: MixesPage,
   },
   {
     path: '/privacy-policy',

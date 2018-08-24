@@ -3,12 +3,11 @@
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
+import SubscribeBanner from '../../../components/SubscribeBanner';
 import WeekArticles from '../../../containers/Fragments/WeekArticles';
 import LatestArticles from '../../../containers/Fragments/LatestArticles';
 import SearchInput from '../../../components/SearchInput';
-import SubscribeBanner from '../../../components/SubscribeBanner';
 import CategoryGrid from '../../../components/CategoryGrid';
-import UpdatesBanner from '../../../components/UpdatesBanner';
 
 export class Home extends PureComponent {
   componentDidMount() {
@@ -23,9 +22,10 @@ export class Home extends PureComponent {
       <main className="page-fade-in">
         <Helmet title="Home" />
         <h1 className="dn">Home</h1>
-        <div className="pt4  mt2  pb3  over-hidden"><SubscribeBanner /></div>
+        <div className="pb2  pt4">
+          <SubscribeBanner />
+        </div>
         <WeekArticles />
-        <UpdatesBanner />
         <LatestArticles />
         <div className="pt4  pb3"><SearchInput textAlign="tac" /></div>
         <CategoryGrid />
