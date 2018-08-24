@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Seo from './Seo';
+import AnimatedImage from '../Elements/AnimatedImage';
 
 // Export this for unit testing more easily
 export class Article extends PureComponent {
@@ -52,39 +53,35 @@ export class Article extends PureComponent {
     return (
       <React.Fragment>
         {renderSeo}
-        <div className="container  mt4  zoom-in-fade-in-iteration--cont">
-          <div className="row">
-            <div className="col-20  offset-2  col-md-16  offset-md-4">
-              <div className="link  w-100  author__cont">
-                <div className="center">
-                  <div className="row  shadow2  br2">
+        <div className="container-small  center">
+          <div className="flex  flex-wrap">
 
-                    <div className="col-md-6  pl0">
-                      <figure className="rel  center  link  w-100  zoom-in-fade-in-iteration--cont  mv3  pl3">
-                        <Link to={`/author/${author.url}`} className="shadow2  author__img--cont  db">
-                          <img className="center  w4  zoom-in-fade-in-iteration--item  author__img" alt={author.name} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`} />
-                        </Link>
-                      </figure>
-                    </div>
+            <div className="col-4  ph3">
+              <figure className="">
+                <Link to={`/author/${author.url}`} className="link  db">
+                  <AnimatedImage
+                    lazy
+                    src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`}
+                    alt={author.name}
+                    styles="fade-in-zoom-in  h4  w-100"
+                  />
+                </Link>
+              </figure>
+            </div>
 
-                    <div className="col-md-18">
-                      <Link to={`/author/${author.url}`} className="link  black  t7  pt3  db  tac-md  cp  t-title  no-underline">
-                        <span>{author.name}</span>
-                        <span className="pl1  grey  t8">({author.alias})</span>
-                      </Link>
-                      <p className="author__info  grey  t8  pv2  tac-md">{author.description}</p>
-                      <hr />
-                      <div className="tac-md  pb2">
-                        {author.links.map((link, i) => (
-                          authorLinks(i, link.url, link.text)
-                        ))}
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
+            <div className="col-20  ph3">
+              <Link to={`/author/${author.url}`} className="link  black  t7  pt3  db  cp  t-title  no-underline">
+                <span>{author.name}</span>
+                <span className="pl1  grey  t8">({author.alias})</span>
+              </Link>
+              <p className="grey  t8  pv2">{author.description}</p>
+              <div className="">
+                {author.links.map((link, i) => (
+                  authorLinks(i, link.url, link.text)
+                ))}
               </div>
             </div>
+
           </div>
         </div>
       </React.Fragment>
