@@ -5,30 +5,38 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { convertDate, toTitleCase } from '../../../functions';
+import AnimatedImage from '../../Elements/AnimatedImage';
 
 export class WeekArticleListLoaded extends PureComponent {
   date = date => convertDate(date);
 
   render() {
     return (
-      <div className="container  mt3  mt2-sm">
-        <div className="row">
+      <div className="container-medium">
+        <div className="flex  flex-wrap">
           {this.props.list.map(article => (
-            <div key={article.title} className="col-sm-12  w-100  zoom-in-fade-in-iteration--cont">
-              <article className="pv3  weekArticleList__col--week">
-
-                <figure className="rel  pb3">
-                  <Link to={`/article/${article.url}`} className="shadow2  shadow3-hover  db  over-hidden  weekArticleList__img--cont">
-                    <img className="mb3  w-100  zoom-in-fade-in-iteration--item  cp  weekArticleList__img" alt={article.title} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
+            <div key={article.title} className="col-24  col-12-sm  ph3">
+              <article>
+                <figure>
+                  <Link className="db  shadow2" to={`/article/${article.url}`}>
+                    <AnimatedImage
+                      lazy
+                      src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`}
+                      alt={article.title}
+                      styles="fade-in-zoom-in  h7  h11-sm  w-100"
+                    />
                   </Link>
                 </figure>
-                <span className="grey  t8">{this.date(article.created)} | </span>
-                <Link to={`/author/${article.author}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
-                <Link to={`/article/${article.url}`} className="no-underline">
-                  <p className="black  t7  pt2  cp  t-title  over-hidden  link  weekArticleList__title">{article.title}</p>
-                </Link>
-                <p className="grey  t8  pv2  over-hidden  weekArticleList__intro">{article.description}</p>
 
+                <div className="pv2  mt1">
+                  <span className="t-body  grey  f6">{this.date(article.created)} | </span>
+                  <Link to={`/author/${article.author}`} className="link"><span className="t-body  grey  f6  cp  link">{toTitleCase(article.author)}</span></Link>
+                </div>
+
+                <Link to={`/article/${article.url}`} className="t-body  link  db  pb2">
+                  <p className="t-title  black  f5  bold  cp  over-hidden  link  weekArticleList__title">{article.title}</p>
+                </Link>
+                <p className="t-body  grey  f6  over-hidden  card__line-clamp-3">{article.description}</p>
               </article>
             </div>
           ))}

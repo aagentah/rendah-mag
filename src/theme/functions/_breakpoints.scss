@@ -1,8 +1,6 @@
-
-
-@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
-  $max: map-get($breakpoints, $name);
-  @return if($max != 0, $max, null);
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
 }
 
 @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
