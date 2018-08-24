@@ -2,7 +2,6 @@
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
-import { Link } from 'react-router-dom';
 import Iframe from 'react-iframe';
 import { isChrome, isAndroid } from 'react-device-detect';
 
@@ -23,10 +22,10 @@ export class WatchTower extends PureComponent {
 
     return (
       <div className="row  pt5  pb4">
-        <div className="col-12  offset-6  pb0  pb4-md">
+        <div className="col-24  col-md-12  offset-md-6  pb0  pb4-md">
           <div className="w-90  db  center  mb3">
             <Iframe
-              url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/543806010&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+              url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/484994280&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
               width="100%"
               height="420"
               display="initial"
@@ -45,15 +44,10 @@ export class WatchTower extends PureComponent {
         <div className="container  ph4-sm">
           <div className="row">
             <div className="col-sm-18  offset-sm-3">
-              <h1 className="tac  dark-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Watch Tower</h1>
+              <h1 className="tac  dark-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Mixes</h1>
               <p className="tac  pb1  mw4  db  center">
-                The&nbsp;
-                <Link className="link" to={'/Authors'}>
-                  <span className="rendah-red">Rendah Team</span>
-                </Link>
-                &nbsp;is invested in keeping you up-to-date with
-                the latest Halftime Beats. We&apos;ve compiled our favourite Tracks & Mixes into
-                2 &apos;Watch Tower&apos; playlists which will be updated regularly.
+                Check out our &apos;Modules&apos; series featuring
+                guest-mixes from upcomers within the scene.
               </p>
             </div>
           </div>
