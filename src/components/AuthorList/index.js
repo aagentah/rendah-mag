@@ -24,9 +24,8 @@ export class AuthorList extends PureComponent {
                 </Link>
               </figure>
               <Link to={`/author/${author.url}`} className="t-title  black  f6  link  db  pt1  pb3  tac  cp">
-                <span>{author.name}</span>
-                <br />
-                <span className="t8  grey">({author.alias})</span>
+                <span className="db">{author.name}</span>
+                <span className="db  t8  grey  pt1">({author.alias})</span>
               </Link>
             </div>
           ))}

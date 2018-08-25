@@ -28,10 +28,10 @@ export class ArticleListGrid extends PureComponent {
       <div className="container-medium  center">
         <div className="flex  flex-wrap">
           {this.props.list.map(article => (
-            <div key={article.title} className={`${containerClass}  ph3`}>
+            <div key={article.title} className={`${containerClass}  pa3`}>
               <article>
                 <figure>
-                  <Link className="db  shadow2" to={`/article/${article.url}`}>
+                  <Link className="db  shadow3" to={`/article/${article.url}`}>
                     <AnimatedImage
                       lazy
                       src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`}
@@ -41,16 +41,16 @@ export class ArticleListGrid extends PureComponent {
                   </Link>
                 </figure>
 
-                <div className="pv2  mt1">
+                <div className="pv2  mt2">
                   <span className="t-body  grey  f6">{this.date(article.created)} | </span>
                   <Link to={`/author/${article.author}`} className="link"><span className="t-body  grey  f6  cp  link">{toTitleCase(article.author)}</span></Link>
                 </div>
 
-                <div className="pb3">
+                <div>
                   <Link to={`/article/${article.url}`} className="t-body  db  link  pb2">
-                    <p className="t-title  black  f5  bold  cp  over-hidden  link  grid-card__title">{article.title}</p>
+                    <p className="t-title  black  f5  cp  over-hidden  link  grid-card__title">{article.title}</p>
                   </Link>
-                  <p className="t-body  grey  f6  over-hidden  grid-card__desc">{article.description}</p>
+                  <p className="t-body  grey  f6  over-hidden  mt1  grid-card__desc">{article.description}</p>
                 </div>
               </article>
             </div>
