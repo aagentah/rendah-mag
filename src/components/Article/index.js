@@ -28,9 +28,10 @@ export class Article extends PureComponent {
           </figure>
 
           <section className="rel">
-            <article className="container-medium  center  article__content">
+            <article className="container-large  center  mt5">
               <div className="flex  flex-wrap">
-                <div className="col-24  col-16-lg">
+                <div className="col-24  col-3-lg" />
+                <div className="col-24  col-15-lg  pr5-lg">
                   <div className="article__social  pb4">
                     <a className="ph1" href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.url}`} rel="noopener noreferrer" target="_blank">
                       <img src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
@@ -46,7 +47,8 @@ export class Article extends PureComponent {
 
                   <Sections data={article.body} />
                 </div>
-                <div className="col-24 col-8-lg">
+                <div className="col-24 col-6-lg  mt5  pt4">
+                  <p className="t-title  grey  f5  pl4  pv2">Latest</p>
                   <ExtraArticles type="list" />
                 </div>
               </div>

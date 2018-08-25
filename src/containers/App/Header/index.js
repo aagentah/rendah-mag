@@ -88,18 +88,18 @@ export class Header extends PureComponent {
 
     return (
       <React.Fragment>
-        <header className="fix  w-100  shadow1  header__desktop">
-          <nav className="container-large  center  dn  db-lg  rel  z9" role="banner">
+        <header className="fix  w-100  shadow1  z9  bg-white  header__desktop">
+          <nav className="container-large  center  dn  db-lg  rel" role="banner">
             <Link className="link  abs  w3  header__desktop__logo" to={'/'}>
               <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
             </Link>
 
 
-            <ul className="tac  pt3  mt3">
+            <ul className="tac  abs  header__desktop__navList">
               {links.map((link) => {
                 return (
                   <li className="dib">
-                    <Link className="t-title  bold  black  ph2  f5  link" to={link.to}>{link.text}</Link>
+                    <Link className="t-title  ttu  bold  dark-grey  ph2  f5  link" to={link.to}>{link.text}</Link>
                   </li>
                 );
               })}

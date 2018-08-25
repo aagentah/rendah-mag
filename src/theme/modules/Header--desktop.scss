@@ -1,14 +1,20 @@
 .header__desktop {
   top: 0;
-  height: 60px;
+  height: 80px;
 }
 
 .header__desktop__logo {
   left: 15px;
-  bottom: 15px;
+  top: 15px;
+}
+
+.header__desktop__navList {
+  top: 34px;
+  left: 0;
+  right: 0;
 }
 
 .header__desktop__search {
   right: 15px;
-  bottom: 20px;
+  top: 29px;
 }
