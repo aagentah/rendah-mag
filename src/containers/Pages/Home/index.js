@@ -22,12 +22,10 @@ export class Home extends PureComponent {
       <main className="page-fade-in">
         <Helmet title="Home" />
         <h1 className="dn">Home</h1>
-        <div className="pb2  pt4">
-          <SubscribeBanner />
-        </div>
+        <SubscribeBanner />
         <WeekArticles />
         <LatestArticles />
-        <div className="pt4  pb3"><SearchInput textAlign="tac" /></div>
+        <SearchInput textAlign="tac" />
         <CategoryGrid />
       </main>
     );
