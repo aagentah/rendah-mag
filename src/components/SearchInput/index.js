@@ -45,26 +45,24 @@ export class SearchInput extends PureComponent {
 
   render() {
     return (
-      <div className="searchInput">
-        <form className="searchInput__form" action="#" onSubmit={this.submitForm}>
-          <input className={`ttu  dark-grey  ph2  t7-lg  t8  ${this.props.textAlign}  searchInput__input`} type="search" placeholder={this.state.placeholder} value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} />
-          <button className="searchInput__submit  cp" tyle="submit"><ArrowRight /></button>
+      <React.Fragment>
+        <form className="rel" action="#" onSubmit={this.submitForm}>
+          <input className="t-title  ph2  pb1  w4  search-input__input" type="search" placeholder={this.state.placeholder} value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} />
+          <button className="cp  abs  search-input__submit" tyle="submit"><ArrowRight /></button>
         </form>
         {this.redir()}
-      </div>
+      </React.Fragment>
     );
   }
 }
 
 SearchInput.propTypes = {
   location: PropTypes.shape(),
-  textAlign: PropTypes.string,
   onSearch: PropTypes.func,
 };
 
 SearchInput.defaultProps = {
   location: {},
-  textAlign: '',
   onSearch: () => { return false; },
 };
 

@@ -16,6 +16,8 @@ export class Article extends PureComponent {
   render() {
     const article = this.props.info;
     const authorInfoMatch = { params: { id: toUrlCase(article.author) } };
+    console.log('article');
+    console.log(article);
 
     return (
       <React.Fragment>

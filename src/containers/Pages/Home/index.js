@@ -3,7 +3,6 @@
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
-import SubscribeBanner from '../../../components/SubscribeBanner';
 import WeekArticles from '../../../containers/Fragments/WeekArticles';
 import LatestArticles from '../../../containers/Fragments/LatestArticles';
 import SearchInput from '../../../components/SearchInput';
@@ -22,7 +21,6 @@ export class Home extends PureComponent {
       <main className="page-fade-in">
         <Helmet title="Home" />
         <h1 className="dn">Home</h1>
-        <SubscribeBanner />
         <WeekArticles />
         <LatestArticles />
         <SearchInput textAlign="tac" />
