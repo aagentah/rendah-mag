@@ -56,14 +56,14 @@ export class Article extends PureComponent {
         <div className="container-small  center">
           <div className="flex  flex-wrap">
 
-            <div className="col-4  ph3">
-              <figure className="">
-                <Link to={`/author/${author.url}`} className="link  db">
+            <div className="col-4  pr3">
+              <figure>
+                <Link to={`/author/${author.url}`} className="link  db  shadow2  br-100">
                   <AnimatedImage
                     lazy
                     src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`}
                     alt={author.name}
-                    styles="fade-in-zoom-in  h4  w-100"
+                    styles="fade-in-zoom-in  h5  w5  br-100"
                   />
                 </Link>
               </figure>
