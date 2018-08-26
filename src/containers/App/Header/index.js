@@ -12,27 +12,16 @@ export class Header extends PureComponent {
   constructor() {
     super();
     this.state = {
-      navExpand: false,
-      searchExpand: false,
+      navIsActive: false,
     };
   }
 
-  navExpandToggle = () => {
-    if (this.state.navExpand) {
-      this.setState({ navExpand: false });
+  mobileNavToggle = () => {
+    if (!this.state.navIsActive) {
+      this.setState({ navIsActive: true });
     } else {
-      this.setState({ navExpand: true });
+      this.setState({ navIsActive: false });
     }
-    this.setState({ searchExpand: false });
-  }
-
-  searchExpandToggle = () => {
-    if (this.state.searchExpand) {
-      this.setState({ searchExpand: false });
-    } else {
-      this.setState({ searchExpand: true });
-    }
-    this.setState({ navExpand: false });
   }
 
   render() {
@@ -71,31 +60,20 @@ export class Header extends PureComponent {
       },
     ];
 
-    const mobileHeaderWrapper = classNames({
-      'header__float-wrapper': true,
-      'header__float-wrapper--searchExpand': this.state.searchExpand,
-    });
-
-    const mobileNavMenu = classNames({
-      'nav--mobile': true,
-      'nav--mobile--expanded': this.state.navExpand,
-    });
-
-    const mobileNavMenuTrigger = classNames({
-      'header__menu-trigger': true,
-      'header__menu-trigger--rotated': this.state.navExpand,
+    const navMobile = classNames({
+      'header__mobile__nav  fix  bg-white  z9': true,
+      'header__mobile__nav--active': this.state.navIsActive,
     });
 
     return (
       <React.Fragment>
-        <header className="fix  w-100  shadow1  z9  bg-white  header__desktop">
-          <nav className="container-large  center  dn  db-lg  rel" role="banner">
+        <header className="fix  w-100  shadow1  z9  bg-white  dn  db-lg  header__desktop">
+          <nav className="container-large  center  rel" role="banner">
             <Link className="link  abs  w3  header__desktop__logo" to={'/'}>
-              <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
+              <img className="pt1  mt1" width="38" src="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1535320221/brand/rendah-medium-reversed.jpg" alt="Logo" role="presentation" />
             </Link>
 
-
-            <ul className="tac  abs  header__desktop__navList">
+            <ul className="tac  abs  header__desktop__nav__list">
               {links.map((link) => {
                 return (
                   <li className="dib">
@@ -105,39 +83,30 @@ export class Header extends PureComponent {
               })}
             </ul>
 
-
             <div className="abs  header__desktop__search">
               <SearchInput textAlign="inherit" />
             </div>
           </nav>
         </header>
 
-        <header className="header--mobile  db  dn-lg" role="banner">
-          <div className="header__border--mobile" />
-          <div className={mobileHeaderWrapper}>
-            <Link className="logo--mobile  link" to={'/'}>
-              <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
-            </Link>
+        <header className="fix  w-100  shadow1  z9  bg-white  db  dn-lg  header__mobile">
+          <span onClick={this.mobileNavToggle} className=""><Menu /></span>
 
-            <span onClick={this.navExpandToggle} className={mobileNavMenuTrigger}><Menu /></span>
-            <img onClick={this.searchExpandToggle} className="header__search-trigger" width="12" src={require('../assets/search.png')} alt="Logo" role="presentation" />
+          <Link className="link  abs  w3  center  center  header__mobile__logo" to={'/'}>
+            <img className="pt1  mt1  center" width="38" src="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1535320221/brand/rendah-medium-reversed.jpg" alt="Logo" role="presentation" />
+          </Link>
 
-            <div className="header__search--mobile">
-              <SearchInput textAlign="inherit" onSearch={this.searchExpandToggle} />
-            </div>
-
-            <nav className={`${mobileNavMenu}  shadow2`}>
-              <ul className="ma0  pa0  pt2  tac  center  rel">
-                {links.map((link) => {
-                  return (
-                    <li className="db">
-                      <Link onClick={this.navExpandToggle} className="ttu  t-title-bold  dark-grey  db  pv2  t7  link" to={link.to}>{link.text}</Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-          </div>
+          <nav className={navMobile} role="banner">
+            <ul className="tac  fix  center  header__mobile__nav__list">
+              {links.map((link) => {
+                return (
+                  <li className="db">
+                    <Link onClick={this.mobileNavToggle} className="t-title  ttu  bold  db  dark-grey  pv3  f4  link" to={link.to}>{link.text}</Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
         </header>
       </React.Fragment>
     );
