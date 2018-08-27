@@ -26,7 +26,7 @@ export class LatestArticles extends PureComponent {
       return <Loading type="LatestArticles" />;
     }
 
-    return <ArticleListGrid type="grid" list={latestArticles.list} />;
+    return <ArticleListGrid {...this.props} type="grid" list={latestArticles.list} />;
   };
 
   render() {

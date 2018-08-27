@@ -27,7 +27,7 @@ export class CategoryArticles extends PureComponent {
       return <Loading type="CategoryArticles" />;
     }
 
-    return <ArticleListGrid type="grid" list={categoryArticles.list} />;
+    return <ArticleListGrid {...this.props} type="grid" list={categoryArticles.list} />;
   };
 
   render() {

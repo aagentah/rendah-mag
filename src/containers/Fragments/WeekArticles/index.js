@@ -26,7 +26,7 @@ export class WeekArticles extends PureComponent {
       return <Loading type="WeekArticles" />;
     }
 
-    return <ArticleListGrid type="week" list={weekArticles.list} />;
+    return <ArticleListGrid {...this.props} type="week" list={weekArticles.list} />;
   };
 
   render() {

@@ -27,7 +27,7 @@ export class AuthorArticles extends PureComponent {
       return <Loading type="AuthorArticles" />;
     }
 
-    return <ArticleListGrid type="grid" list={authorArticles.list} />;
+    return <ArticleListGrid {...this.props} type="grid" list={authorArticles.list} />;
   };
 
   render() {

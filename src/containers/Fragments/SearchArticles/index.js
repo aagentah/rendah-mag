@@ -27,7 +27,7 @@ export class SearchArticles extends PureComponent {
       return <Loading type="SearchArticles" />;
     }
 
-    return <ArticleListGrid type="grid" list={searchArticles.list} />;
+    return <ArticleListGrid {...this.props} type="grid" list={searchArticles.list} />;
   };
 
   render() {
