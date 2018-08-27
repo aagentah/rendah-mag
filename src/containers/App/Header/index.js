@@ -6,21 +6,33 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import SearchInput from '../../../components/SearchInput';
+import { Search } from '../../../components/Elements/Svg';
 
 export class Header extends PureComponent {
   constructor() {
     super();
     this.state = {
       navIsActive: false,
+      searchIsActive: false,
     };
   }
 
   mobileNavToggle = () => {
-    if (!this.state.navIsActive) {
+    if (!this.state.navIsActive && !this.state.searchIsActive) {
       this.setState({ navIsActive: true });
     } else {
       this.setState({ navIsActive: false });
     }
+    this.setState({ searchIsActive: false });
+  }
+
+  mobileSearchToggle = () => {
+    if (!this.state.searchIsActive && !this.state.navIsActive) {
+      this.setState({ searchIsActive: true });
+    } else {
+      this.setState({ searchIsActive: false });
+    }
+    this.setState({ navIsActive: false });
   }
 
   render() {
@@ -64,9 +76,14 @@ export class Header extends PureComponent {
       'is-active': this.state.navIsActive,
     });
 
+    const searchMobile = classNames({
+      'fix  bg-white  z8  header__mobile__search': true,
+      'is-active': this.state.searchIsActive,
+    });
+
     const hamburger = classNames({
       'abs  z9  header__mobile__nav__hamburger': true,
-      'is-active': this.state.navIsActive,
+      'is-active': this.state.navIsActive || this.state.searchIsActive,
     });
 
     return (
@@ -117,6 +134,16 @@ export class Header extends PureComponent {
               })}
             </ul>
           </nav>
+
+          <div className={searchMobile}>
+            <div className="abs  w-80  center  header__mobile__search-input">
+              <SearchInput InputtextAlign="inherit" />
+            </div>
+          </div>
+
+          <div onClick={this.mobileSearchToggle} className="abs  header__mobile__search-icon">
+            <Search />
+          </div>
         </header>
       </React.Fragment>
     );

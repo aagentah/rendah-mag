@@ -81,3 +81,27 @@
 .header__mobile__nav__hamburger.is-active span:nth-child(3){
   transform: translateY(-9px) rotate(-45deg);
 }
+
+.header__mobile__search {
+  width: 100vw;
+  height: 100vh;
+  transition: visibility 0.3s, opacity .3s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.header__mobile__search.is-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.header__mobile__search-input {
+  left: 0;
+  right: 0;
+  top: 42vh;
+}
+
+.header__mobile__search-icon {
+  top: 25px;
+  right: 15px;
+}
