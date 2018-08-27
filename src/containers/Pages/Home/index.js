@@ -5,7 +5,6 @@ import Helmet from 'react-helmet';
 
 import WeekArticles from '../../../containers/Fragments/WeekArticles';
 import LatestArticles from '../../../containers/Fragments/LatestArticles';
-import SearchInput from '../../../components/SearchInput';
 import CategoryGrid from '../../../components/CategoryGrid';
 
 export class Home extends PureComponent {
@@ -23,7 +22,6 @@ export class Home extends PureComponent {
         <h1 className="dn">Home</h1>
         <WeekArticles />
         <LatestArticles />
-        <SearchInput textAlign="tac" />
         <CategoryGrid />
       </main>
     );

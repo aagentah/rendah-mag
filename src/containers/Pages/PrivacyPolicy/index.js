@@ -15,8 +15,8 @@ export class PrivacyPolicy extends PureComponent {
     return (
       <main className="page-fade-in">
         <Helmet title="Privacy Policy" />
-        <div className="container  tal  ph4-sm  pv4">
-          <p>
+        <div className="container-small  center  pa4">
+          <p className="t-body  t7">
             Privacy Policy<br /><br />
             This privacy policy has been compiled to better serve those who are concerned
             with how their &apos;Personally Identifiable Information&apos; (PII) is being

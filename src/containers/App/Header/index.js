@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-import SearchInput from '../../../components/SearchInput';
+import SearchInput from '../../../components/Elements/SearchInput';
 import { Search } from '../../../components/Elements/Svg';
 
 export class Header extends PureComponent {
@@ -46,14 +46,6 @@ export class Header extends PureComponent {
         text: 'Authors',
       },
       {
-        to: '/get-involved',
-        text: 'Get Involved',
-      },
-      {
-        to: '/watch-tower',
-        text: 'Watch Tower',
-      },
-      {
         to: '/category/news',
         text: 'News',
       },
@@ -62,12 +54,12 @@ export class Header extends PureComponent {
         text: 'Interviews',
       },
       {
-        to: '/category/news',
-        text: 'News',
-      },
-      {
         to: '/category/insights',
         text: 'Insights',
+      },
+      {
+        to: '/watch-tower',
+        text: 'Watch Tower',
       },
     ];
 
@@ -82,7 +74,7 @@ export class Header extends PureComponent {
     });
 
     const hamburger = classNames({
-      'abs  z9  header__mobile__nav__hamburger': true,
+      'abs  cp  z9  header__mobile__nav__hamburger': true,
       'is-active': this.state.navIsActive || this.state.searchIsActive,
     });
 
@@ -137,11 +129,11 @@ export class Header extends PureComponent {
 
           <div className={searchMobile}>
             <div className="abs  w-80  center  header__mobile__search-input">
-              <SearchInput InputtextAlign="inherit" />
+              <SearchInput onSearch={this.mobileSearchToggle} />
             </div>
           </div>
 
-          <div onClick={this.mobileSearchToggle} className="abs  header__mobile__search-icon">
+          <div onClick={this.mobileSearchToggle} className="abs  cp  header__mobile__search-icon">
             <Search />
           </div>
         </header>

@@ -18,7 +18,6 @@ export class Article extends PureComponent {
     return (
       <main className="page-fade-in">
         <ArticleInfo match={this.props.match} />
-        <p className="tac  dark-grey  t6  ttu  t-title-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">MORE ARTICLES</p>
         <CategoryGrid />
       </main>
     );

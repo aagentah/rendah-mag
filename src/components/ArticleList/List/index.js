@@ -15,8 +15,8 @@ export class ArticleListGrid extends PureComponent {
       <div className="container-medium  center">
         <div className="flex  flex-wrap">
           {this.props.list.map(article => (
-            <div key={article.title} className="col-24  col-12-sm  col-24-lg  mt2  mb3  shadow2">
-              <article className="flex  flex-wrap">
+            <div key={article.title} className="col-24  col-12-sm  col-24-lg  pt2  pb3  ph0  ph3-sm  ph0-lg">
+              <article className="flex  flex-wrap  shadow2">
                 <figure className="col-7">
                   <Link className="db" to={`/article/${article.url}`}>
                     <AnimatedImage

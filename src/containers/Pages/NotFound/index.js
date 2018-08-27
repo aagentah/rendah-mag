@@ -3,7 +3,7 @@
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
-import SearchInput from '../../../components/SearchInput';
+import SearchInput from '../../../components/Elements/SearchInput';
 import CategoryGrid from '../../../components/CategoryGrid';
 
 export class NotFound extends PureComponent {

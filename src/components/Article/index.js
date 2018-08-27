@@ -48,16 +48,15 @@ export class Article extends PureComponent {
                   <p className="pv3  t-body  grey">{article.description}</p>
 
                   <Sections data={article.body} />
+                  <AuthorInfo match={authorInfoMatch} seo={false} />
                 </div>
-                <div className="col-24 col-6-lg  mt5  pt4">
+                <div className="col-24  col-6-lg  mt5  pt4">
                   <p className="t-title  grey  f5  pl4  pv2">Latest</p>
                   <ExtraArticles type="list" />
                 </div>
               </div>
             </article>
           </section>
-
-          <AuthorInfo match={authorInfoMatch} seo={false} />
         </div>
       </React.Fragment>
     );
