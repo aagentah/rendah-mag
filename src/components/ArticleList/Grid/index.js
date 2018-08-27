@@ -31,7 +31,7 @@ export class ArticleListGrid extends PureComponent {
             <div key={article.title} className={`${containerClass}  pa3`}>
               <article>
                 <figure>
-                  <Link className="db  shadow3" to={`/article/${article.url}`}>
+                  <Link className="db  shadow2" to={`/article/${article.url}`}>
                     <AnimatedImage
                       lazy
                       src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`}

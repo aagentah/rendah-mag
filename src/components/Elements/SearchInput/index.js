@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { ArrowRight } from '../Elements/Svg';
+import { ArrowRight } from '../Svg';
 
 
 export class SearchInput extends PureComponent {

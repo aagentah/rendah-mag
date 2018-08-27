@@ -10,39 +10,27 @@ export class Footer extends React.Component {
   render() {
     return (
       <div className="pt4">
-        <div className="rel  bt  bw1  z9  pv2  footer">
-          <footer className="container-fluid  footer">
-            <div className="row">
+        <footer className="container-large  center  rel  bt  bw1  z9  pv3">
+          <div className="flex  flex-wrap">
 
-              <div className="col-sm-12">
-                <p className="pt2  mt1  tac-sm  pb2-sm  dib  db-sm  t8">Rendah Mag 2018 <span className="dib dn-sm">|</span></p>
-                <Link className="t-title tac-sm  black  dib db-sm  ph2  pb2-sm  mv1-sm  t8  link" to={'/privacy-policy'}>Privacy Policy</Link>
-              </div>
-
-              <div className="col-sm-12">
-                <div className="footer__social  pb3-sm">
-                  <a className="footer__social__item  ph1" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                    <img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
-                  </a>
-                  <a className="footer__social__item  ph1" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
-                    <img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
-                  </a>
-                  <a className="footer__social__item  ph1" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                    <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
-                  </a>
-                  {
-                    // <a className="footer__social__item  ph1" href="https://www.soundcloud.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                    //   <img src={require('../assets/social/iconmonstr-soundcloud-5.png')} alt="soundcloud" />
-                    // </a>
-                    // <a className="footer__social__item  ph1" href="https://www.youtube.com/channel/UCFpU3WYYWy5qWSYf306_m3A" rel="noopener noreferrer" target="_blank">
-                    //   <img src={require('../assets/social/iconmonstr-youtube-5.png')} alt="youtube" />
-                    // </a>
-                  }
-                </div>
-              </div>
+            <div className="col-24  col-12-md  pt2">
+              <p className="t-body  f7  di">Rendah Mag 2018 <span>|</span></p>
+              <Link className="t-body  black  link  f7  di  pl1" to={'/privacy-policy'}>Privacy Policy</Link>
             </div>
-          </footer>
-        </div>
+
+            <div className="col-24  col-12-md  flex  justify-end">
+              <a className="w2  mh1" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+                <img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
+              </a>
+              <a className="w2  mh1" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
+                <img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
+              </a>
+              <a className="w2  mh1" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
+                <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
+              </a>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }
