@@ -11,8 +11,10 @@ export class ArticleListGrid extends PureComponent {
   date = date => convertDate(date);
 
   render() {
+    const { padding } = this.props;
+
     return (
-      <div className="container-medium  center">
+      <div className={`container-medium  center  ${padding}`}>
         <div className="flex  flex-wrap">
           {this.props.list.map(article => (
             <div key={article.title} className="col-24  col-12-sm  col-24-lg  pt2  pb3  ph0  ph3-sm  ph0-lg">
@@ -44,10 +46,12 @@ export class ArticleListGrid extends PureComponent {
 
 ArticleListGrid.propTypes = {
   list: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  padding: PropTypes.string,
 };
 
 ArticleListGrid.defaultProps = {
   list: [],
+  padding: '',
 };
 
 export default ArticleListGrid;

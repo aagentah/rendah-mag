@@ -20,9 +20,9 @@ export class Home extends PureComponent {
       <main className="page-fade-in">
         <Helmet title="Home" />
         <h1 className="dn">Home</h1>
-        <WeekArticles />
-        <LatestArticles />
-        <CategoryGrid />
+        <WeekArticles padding="pt4  pb2" />
+        <LatestArticles padding="pb4" />
+        <CategoryGrid padding="" />
       </main>
     );
   }

@@ -29,33 +29,37 @@ export class Article extends PureComponent {
             <img className="article__hero--img" alt={article.title} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
           </figure>
 
-          <section className="rel">
-            <article className="container-large  center  mt5">
-              <div className="flex  flex-wrap">
-                <div className="col-24  col-3-lg" />
-                <div className="col-24  col-15-lg  pr5-lg">
-                  <div className="article__social  pb4">
-                    <a className="ph1" href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.url}`} rel="noopener noreferrer" target="_blank">
-                      <img src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
-                    </a>
-                    <a className="ph1" href={`https://twitter.com/share?url=https://www.rendahmag.com/article/${article.url}`} rel="noopener noreferrer" target="_blank">
-                      <img src={require('../../containers/App/assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
-                    </a>
-                  </div>
-                  <span className="grey  t8">{this.date(article.created)} | </span>
-                  <Link to={`/author/${article.author}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
-                  <h1 className="pb3  pt4  t-title">{article.title}</h1>
-                  <p className="pv3  t-body  grey">{article.description}</p>
+          <section className="container-large  center  ph0  mt5  rel">
+            <div className="flex  flex-wrap">
+              <div className="col-24  col-3-lg" />
+              <article className="col-24  col-15-lg  order-1  pr5-lg">
+                <div className="article__social  pb4">
+                  <a className="ph1" href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.url}`} rel="noopener noreferrer" target="_blank">
+                    <img src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
+                  </a>
+                  <a className="ph1" href={`https://twitter.com/share?url=https://www.rendahmag.com/article/${article.url}`} rel="noopener noreferrer" target="_blank">
+                    <img src={require('../../containers/App/assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
+                  </a>
+                </div>
 
-                  <Sections data={article.body} />
-                  <AuthorInfo match={authorInfoMatch} seo={false} />
-                </div>
-                <div className="col-24  col-6-lg  mt5  pt4">
-                  <p className="t-title  grey  f5  pl4  pv2">Latest</p>
-                  <ExtraArticles type="list" />
-                </div>
+                <span className="grey  t8">{this.date(article.created)} | </span>
+                <Link to={`/author/${article.author}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
+                <h1 className="pb3  pt4  t-title">{article.title}</h1>
+                <p className="pv3  t-body  grey">{article.description}</p>
+
+                <Sections data={article.body} />
+
+              </article>
+
+              <div className="col-24  order-2  order-3-lg">
+                <AuthorInfo padding="pv4" match={authorInfoMatch} seo={false} />
               </div>
-            </article>
+
+              <div className="col-24  col-6-lg  order-3  order-2-lg  mt5-lg  pt4">
+                <p className="t-title  grey  f5  pl4  pv2">Latest</p>
+                <ExtraArticles type="list" />
+              </div>
+            </div>
           </section>
         </div>
       </React.Fragment>

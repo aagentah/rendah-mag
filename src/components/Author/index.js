@@ -47,16 +47,18 @@ export class Article extends PureComponent {
   }
 
   render() {
+    const { padding } = this.props;
     const author = this.props.info;
     const authorLinks = this.authorLinks;
     const renderSeo = (this.props.seo) ? <Seo data={author} /> : null;
+
     return (
       <React.Fragment>
         {renderSeo}
-        <div className="container-small  center">
+        <div className={`container-small  center  ${padding}`}>
           <div className="flex  flex-wrap">
 
-            <div className="col-24  col-4-md  pb3  pb0-md">
+            <div className="col-24  col-4-md">
               <figure>
                 <Link to={`/author/${author.url}`} className="link  db  h4  w4  shadow2  br-100">
                   <AnimatedImage
@@ -94,11 +96,13 @@ export class Article extends PureComponent {
 Article.propTypes = {
   info: PropTypes.shape(),
   seo: PropTypes.bool,
+  padding: PropTypes.string,
 };
 
 Article.defaultProps = {
   info: {},
   seo: false,
+  padding: '',
 };
 
 export default Article;
