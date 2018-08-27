@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import SearchInput from '../../../components/SearchInput';
-import { Menu } from '../../../components/Elements/Svg';
 
 export class Header extends PureComponent {
   constructor() {
@@ -61,12 +60,18 @@ export class Header extends PureComponent {
     ];
 
     const navMobile = classNames({
-      'header__mobile__nav  fix  bg-white  z9': true,
-      'header__mobile__nav--active': this.state.navIsActive,
+      'fix  bg-white  z8  header__mobile__nav': true,
+      'is-active': this.state.navIsActive,
+    });
+
+    const hamburger = classNames({
+      'abs  z9  header__mobile__nav__hamburger': true,
+      'is-active': this.state.navIsActive,
     });
 
     return (
       <React.Fragment>
+        {/* Desktop */}
         <header className="fix  w-100  shadow1  z9  bg-white  dn  db-lg  header__desktop">
           <nav className="container-large  center  rel" role="banner">
             <Link className="link  abs  w3  header__desktop__logo" to={'/'}>
@@ -89,8 +94,13 @@ export class Header extends PureComponent {
           </nav>
         </header>
 
+        {/* Mobile */}
         <header className="fix  w-100  shadow1  z9  bg-white  db  dn-lg  header__mobile">
-          <span onClick={this.mobileNavToggle} className=""><Menu /></span>
+          <div onClick={this.mobileNavToggle} className={hamburger} id="hamburger-11">
+            <span className="bg-black" />
+            <span className="bg-black" />
+            <span className="bg-black" />
+          </div>
 
           <Link className="link  abs  w3  center  center  header__mobile__logo" to={'/'}>
             <img className="pt1  mt1  center" width="38" src="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1535320221/brand/rendah-medium-reversed.jpg" alt="Logo" role="presentation" />
