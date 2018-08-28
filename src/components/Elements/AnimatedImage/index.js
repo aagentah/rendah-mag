@@ -11,7 +11,7 @@ class AnimatedImage extends Component {
     if (lazy) {
       return (
         <React.Fragment>
-          <LazyLoad height={0} offset={0} once>
+          <LazyLoad height={0} offset={300} once>
             <div className="over-hidden">
               <img
                 className={`fadeIn-zoomIn  objf-cover  objp-center  ${styles}`}

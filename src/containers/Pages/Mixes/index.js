@@ -44,7 +44,7 @@ export class WatchTower extends PureComponent {
         <div className="container  ph4-sm">
           <div className="row">
             <div className="col-sm-18  offset-sm-3">
-              <h1 className="tac  dark-grey  t6  ttu  t-title-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Mixes</h1>
+              <h1 className="tac  dark-grey  f5  ttu  t-title-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Mixes</h1>
               <p className="tac  pb1  mw4  db  center">
                 Check out our &apos;Modules&apos; series featuring
                 guest-mixes from upcomers within the scene.
@@ -54,7 +54,7 @@ export class WatchTower extends PureComponent {
           {this.playlistEmbeds()}
         </div>
 
-        <p className="tac  dark-grey  t6  ttu  t-title-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">MORE ARTICLES</p>
+        <p className="tac  dark-grey  f5  ttu  t-title-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">MORE ARTICLES</p>
         <div className="pb2">
           <ExtraArticles />
         </div>

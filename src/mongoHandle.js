@@ -254,18 +254,19 @@ const mongoHandle = (app) => {
   // GET articles
   app.get('/api/articles', (req, res) => {
     let articles = [];
+    const limit = Number(req.query.limit);
 
     db.collection('articles')
       .find()
       .skip(2)
-      .limit(12)
+      .limit(limit)
       .sort('created', -1)
       .toArray()
       .then((result) => {
         articles = articles.concat(result);
       })
       .then(() => {
-        const data = checkDateAndReturn(articles, 12);
+        const data = checkDateAndReturn(articles, limit);
         res.send(data);
       })
       .catch((e) => {
@@ -303,11 +304,12 @@ const mongoHandle = (app) => {
   // GET extra
   app.get('/api/extra', (req, res) => {
     let articles = [];
+    const limit = Number(req.query.limit);
 
     db.collection('articles')
       .aggregate([{
         $sample: {
-          size: 4,
+          size: limit,
         },
       }])
       .toArray()
@@ -315,7 +317,7 @@ const mongoHandle = (app) => {
         articles = articles.concat(result);
       })
       .then(() => {
-        const data = checkDateAndReturn(articles, 8);
+        const data = checkDateAndReturn(articles, limit);
         res.send(data);
       })
       .catch((e) => {

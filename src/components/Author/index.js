@@ -73,11 +73,11 @@ export class Article extends PureComponent {
 
             <div className="col-24  col-20-md">
               <div className="flex  flex-column  justify-center  h4">
-                <Link to={`/author/${author.url}`} className="link  black  t7  pt3  db  cp  t-title  no-underline">
+                <Link to={`/author/${author.url}`} className="link  black  f5  pt3  db  cp  t-title  no-underline">
                   <span>{author.name}</span>
-                  <span className="pl1  grey  t8">({author.alias})</span>
+                  <span className="pl1  grey  f5">({author.alias})</span>
                 </Link>
-                <p className="grey  t8  pt2  pb3">{author.description}</p>
+                <p className="grey  f6  pt2  pb3">{author.description}</p>
                 <div>
                   {author.links.map((link, i) => (
                     authorLinks(i, link.url, link.text)

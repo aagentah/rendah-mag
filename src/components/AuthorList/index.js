@@ -8,18 +8,20 @@ import AnimatedImage from '../Elements/AnimatedImage';
 
 export class AuthorList extends PureComponent {
   render() {
+    const { padding } = this.props;
+
     return (
-      <div className="container-medium  center">
+      <div className={`container-medium  center  ${padding}`}>
         <div className="flex  flex-wrap">
           {this.props.list.map(author => (
             <div key={author.name} className="col-24  col-12-sm  col-6-md  ph3">
               <figure className="rel  pb3  link  w-100">
-                <Link to={`/author/${author.url}`} className="shadow2  db">
+                <Link to={`/author/${author.url}`} className="link  db  h4  w4  shadow2  center  br-100">
                   <AnimatedImage
                     lazy
                     src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`}
                     alt={author.name}
-                    styles="fade-in-zoom-in  h7  h7-sm  w-100"
+                    styles="fade-in-zoom-in  h4  w4  center  br-100"
                   />
                 </Link>
               </figure>
@@ -37,10 +39,12 @@ export class AuthorList extends PureComponent {
 
 AuthorList.propTypes = {
   list: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  padding: PropTypes.string,
 };
 
 AuthorList.defaultProps = {
   list: [],
+  padding: '',
 };
 
 export default AuthorList;

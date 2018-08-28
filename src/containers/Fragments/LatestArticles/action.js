@@ -8,11 +8,11 @@ export const API_URL = (__DEV__) ?
   '/api/articles' : 'https://rendah-mag.herokuapp.com/api/articles';
 
 
-export const fetchLatestArticles = (axios: any, URL: string = API_URL) =>
+export const fetchLatestArticles = (limit: number, axios: any, URL: string = API_URL) =>
   (dispatch) => {
     dispatch({ type: LATESTARTICLES_REQUESTING });
 
-    return axios.get(URL)
+    return axios.get(URL, { params: { limit } })
       .then(res => dispatch({ type: LATESTARTICLES_SUCCESS, data: res.data }))
       .catch(err => dispatch({ type: LATESTARTICLES_FAILURE, err: err.message }));
   };
@@ -28,12 +28,12 @@ const shouldFetchLatestArticles = (state): boolean => {
 };
 
 /* istanbul ignore next */
-export const fetchLatestArticlesIfNeeded = () =>
+export const fetchLatestArticlesIfNeeded = (limit: number) =>
   (dispatch, getState, axios: any) => {
     /* istanbul ignore next */
     if (shouldFetchLatestArticles(getState())) {
       /* istanbul ignore next */
-      return dispatch(fetchLatestArticles(axios));
+      return dispatch(fetchLatestArticles(limit, axios));
     }
 
     /* istanbul ignore next */
