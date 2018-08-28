@@ -8,34 +8,35 @@ import Sections from './Sections';
 import { convertDate, toTitleCase, toUrlCase } from '../../functions';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 import LatestArticles from '../../containers/Fragments/LatestArticles';
+import SubscribeBanner from '../SubscribeBanner';
 import ExtraArticles from '../../containers/Fragments/ExtraArticles';
 
 export class Article extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      extraArticlesLimit: 0,
+      sideBarSize: 0,
     };
   }
 
   componentDidMount() {
     const articleHeight = this.articleElem.clientHeight;
-    switch (true) {
-      case (articleHeight >= 2000):
-        this.setState({ sideBarSize: 4 });
-        break;
-      case (articleHeight >= 1200):
-        this.setState({ sideBarSize: 3 });
-        break;
-      case (articleHeight >= 750):
-        this.setState({ sideBarSize: 2 });
-        break;
-      case (articleHeight < 750):
-        this.setState({ sideBarSize: 1 });
-        break;
-      default:
+    let sideBarSize = 0;
+
+    if (articleHeight < 750) {
+      sideBarSize = 1;
     }
-    console.log(articleHeight);
+    if (articleHeight >= 750) {
+      sideBarSize = 2;
+    }
+    if (articleHeight >= 1000) {
+      sideBarSize = 3;
+    }
+    if (articleHeight >= 2000) {
+      sideBarSize = 4;
+    }
+
+    this.setState({ sideBarSize });
   }
 
   date = date => convertDate(date);
@@ -48,17 +49,16 @@ export class Article extends PureComponent {
     let sideBarExtraArticles2;
     let sideBarAuthorArticles;
 
-    console.log(this.state.sideBarSize);
-
     if (this.state.sideBarSize >= 1) {
       sideBarLatestArticles = (
         <React.Fragment>
           <p className="t-title  grey  f5  pl4  pv2">Latest</p>
           <LatestArticles limit={4} type="list" />
+          <p className="t-title  grey  f5  pl4  pv2">Subscribe to Rendah</p>
+          <SubscribeBanner />
         </React.Fragment>
       );
     }
-
     if (this.state.sideBarSize >= 2) {
       sideBarExtraArticles = (
         <React.Fragment>
@@ -67,16 +67,14 @@ export class Article extends PureComponent {
         </React.Fragment>
       );
     }
-
     if (this.state.sideBarSize >= 3) {
       sideBarExtraArticles2 = (
         <React.Fragment>
-          <p className="t-title  grey  f5  pl4  pv2">Latest</p>
-          <LatestArticles limit={4} type="list" />
+          <p className="t-title  grey  f5  pl4  pv2">More</p>
+          <ExtraArticles limit={4} type="list" />
         </React.Fragment>
       );
     }
-
     if (this.state.sideBarSize >= 4) {
       sideBarAuthorArticles = (
         <React.Fragment>
