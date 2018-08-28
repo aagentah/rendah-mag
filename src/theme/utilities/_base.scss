@@ -49,6 +49,13 @@ svg {
   height: auto;
 }
 
+button, input, select {
+  border: 0;
+  outline: 0;
+  box-shadow: 0;
+  background: 0;
+}
+
 // input,
 // select,
 // textarea {
