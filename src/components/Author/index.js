@@ -58,20 +58,20 @@ export class Article extends PureComponent {
         <div className={`container-small  center  ${padding}`}>
           <div className="flex  flex-wrap">
 
-            <div className="col-24  col-4-md">
+            <div className="col-24  col-6-md  pb3  pb0-md">
               <figure>
-                <Link to={`/author/${author.url}`} className="link  db  h4  w4  shadow2  br-100">
+                <Link to={`/author/${author.url}`} className="link  db  h4  w4  center  shadow2  br-100">
                   <AnimatedImage
                     lazy
                     src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/${author.img}`}
                     alt={author.name}
-                    styles="fade-in-zoom-in  h4  w4  br-100"
+                    styles="fade-in-zoom-in  h4  w4  center  br-100"
                   />
                 </Link>
               </figure>
             </div>
 
-            <div className="col-24  col-20-md">
+            <div className="col-24  col-18-md">
               <div className="flex  flex-column  justify-center  h4">
                 <Link to={`/author/${author.url}`} className="link  black  f5  pt3  db  cp  t-title  no-underline">
                   <span>{author.name}</span>
