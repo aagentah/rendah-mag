@@ -51,14 +51,16 @@ export class Article extends PureComponent {
     const author = this.props.info;
     const authorLinks = this.authorLinks;
     const renderSeo = (this.props.seo) ? <Seo data={author} /> : null;
+    const containerClass = (this.props.article) ? 'w-80-lg' : 'container-small  center';
+    const borderClass = (this.props.article) ? 'bn  bl-sm  bw2  bc-light-grey' : null;
 
     return (
       <React.Fragment>
         {renderSeo}
-        <div className={`container-small  center  ${padding}`}>
-          <div className="flex  flex-wrap">
+        <div className={`${containerClass}  ${padding}`}>
+          <div className={`flex  flex-wrap  ${borderClass}`}>
 
-            <div className="col-24  col-6-md  pb3  pb0-md">
+            <div className="col-24  col-7-sm  col-6-md  pb4  pb0-sm">
               <figure>
                 <Link to={`/author/${author.url}`} className="link  db  h4  w4  center  shadow2  br-100">
                   <AnimatedImage
@@ -71,14 +73,14 @@ export class Article extends PureComponent {
               </figure>
             </div>
 
-            <div className="col-24  col-18-md">
+            <div className="col-22  col-17-sm  col-18-md  center">
               <div className="flex  flex-column  justify-center  h4">
-                <Link to={`/author/${author.url}`} className="link  black  f5  pt3  db  cp  t-title  no-underline">
+                <Link to={`/author/${author.url}`} className="link  black  f5  pt3  db  cp  t-title  no-underline  tac  tal-sm">
                   <span>{author.name}</span>
                   <span className="pl1  grey  f5">({author.alias})</span>
                 </Link>
-                <p className="grey  f6  pt2  pb3">{author.description}</p>
-                <div>
+                <p className="grey  f6  pt2  pb3  tac  tal-sm">{author.description}</p>
+                <div className="tac  tal-sm">
                   {author.links.map((link, i) => (
                     authorLinks(i, link.url, link.text)
                   ))}
@@ -96,12 +98,14 @@ export class Article extends PureComponent {
 Article.propTypes = {
   info: PropTypes.shape(),
   seo: PropTypes.bool,
+  article: PropTypes.bool,
   padding: PropTypes.string,
 };
 
 Article.defaultProps = {
   info: {},
   seo: false,
+  article: false,
   padding: '',
 };
 

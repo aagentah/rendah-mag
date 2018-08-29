@@ -18,7 +18,7 @@ export class Article extends PureComponent {
     return (
       <main className="page-fade-in">
         <ArticleInfo match={this.props.match} />
-        <CategoryGrid />
+        <CategoryGrid padding="pt5" />
       </main>
     );
   }

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 import Sections from './Sections';
 import { convertDate, toTitleCase, toUrlCase } from '../../functions';
-import AnimatedImage from '../Elements/AnimatedImage';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 import LatestArticles from '../../containers/Fragments/LatestArticles';
 import SubscribeBanner from '../SubscribeBanner';
@@ -47,8 +46,6 @@ export class Article extends PureComponent {
     const authorInfoMatch = { params: { id: toUrlCase(article.author) } };
     let sideBarLatestArticles;
     let sideBarExtraArticles;
-    let sideBarExtraArticles2;
-    let sideBarAuthorArticles;
 
     if (this.state.sideBarSize >= 1) {
       sideBarLatestArticles = (
@@ -68,26 +65,6 @@ export class Article extends PureComponent {
         </React.Fragment>
       );
     }
-    if (this.state.sideBarSize >= 3) {
-      sideBarExtraArticles2 = (
-        <div className="container-medium  mv2">
-          <AnimatedImage
-            lazy
-            src="https://via.placeholder.com/350x150"
-            alt="..."
-            styles="fade-in-zoom-in  w-100"
-          />
-        </div>
-      );
-    }
-    if (this.state.sideBarSize >= 4) {
-      sideBarAuthorArticles = (
-        <React.Fragment>
-          <p className="t-title  grey  f5  pl4  pv2">More</p>
-          <ExtraArticles limit={4} type="list" />
-        </React.Fragment>
-      );
-    }
 
     return (
       <React.Fragment>
@@ -101,7 +78,7 @@ export class Article extends PureComponent {
           <section className="container-large  center  ph0  mt5  rel">
             <div className="flex  flex-wrap">
               <div className="col-24  col-3-lg" />
-              <article ref={(articleElem) => { this.articleElem = articleElem; }} className="col-18  center  col-15-lg  order-1  pr5-lg">
+              <article ref={(articleElem) => { this.articleElem = articleElem; }} className="col-18  center  col-15-lg  pr5-lg">
                 <div className="article__social  pb4">
                   <a className="ph1" href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.url}`} rel="noopener noreferrer" target="_blank">
                     <img src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
@@ -117,18 +94,12 @@ export class Article extends PureComponent {
                 <p className="pv3  t-body  f5  dark-grey">{article.description}</p>
 
                 <Sections data={article.body} />
-
+                <AuthorInfo article padding="pt5" match={authorInfoMatch} />
               </article>
 
-              <div className="col-24  order-2  order-3-lg">
-                <AuthorInfo padding="pv4" match={authorInfoMatch} />
-              </div>
-
-              <div className="col-24  col-6-lg  order-3  order-2-lg  mt5-lg  pt4">
+              <div className="col-24  col-6-lg  mt5-lg  pt4">
                 {sideBarLatestArticles}
                 {sideBarExtraArticles}
-                {sideBarExtraArticles2}
-                {sideBarAuthorArticles}
               </div>
             </div>
           </section>
