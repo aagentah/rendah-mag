@@ -22,8 +22,8 @@ export class WatchTower extends PureComponent {
     }
 
     return (
-      <div className="row  pt5  pb4">
-        <div className="col-12  offset-6  pb0  pb4-md">
+      <div className="flex  flex-wrap  pt4">
+        <div className="col-24  col-12-md  center  pb0  pb4-md">
           <div className="w-90  db  center  mb3">
             <Iframe
               url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/543806010&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
@@ -42,11 +42,11 @@ export class WatchTower extends PureComponent {
     return (
       <main className="page-fade-in">
         <Helmet title="Watch Tower" />
-        <div className="container  ph4-sm">
-          <div className="row">
-            <div className="col-sm-18  offset-sm-3">
-              <h1 className="tac  dark-grey  f5  ttu  t-title-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">Watch Tower</h1>
-              <p className="tac  pb1  mw4  db  center">
+        <div className="container-medium  center  pt4">
+          <div className="flex  flex-wrap">
+            <div className="col-24">
+              <h1 className="t-title  bold  tac  f5  pb3">Watch Tower</h1>
+              <p className="tac  pb1  mw6  db  center">
                 The&nbsp;
                 <Link className="link" to={'/Authors'}>
                   <span className="rendah-red">Rendah Team</span>
@@ -60,10 +60,8 @@ export class WatchTower extends PureComponent {
           {this.playlistEmbeds()}
         </div>
 
-        <p className="tac  dark-grey  f5  ttu  t-title-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">MORE ARTICLES</p>
-        <div className="pb2">
-          <ExtraArticles />
-        </div>
+        <p className="t-title  bold  tac  f5">More</p>
+        <ExtraArticles type="grid" limit={4} padding="pt3" />
       </main>
     );
   }

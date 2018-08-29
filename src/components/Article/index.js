@@ -101,7 +101,7 @@ export class Article extends PureComponent {
           <section className="container-large  center  ph0  mt5  rel">
             <div className="flex  flex-wrap">
               <div className="col-24  col-3-lg" />
-              <article ref={(articleElem) => { this.articleElem = articleElem; }} className="col-24  col-15-lg  order-1  pr5-lg">
+              <article ref={(articleElem) => { this.articleElem = articleElem; }} className="col-18  center  col-15-lg  order-1  pr5-lg">
                 <div className="article__social  pb4">
                   <a className="ph1" href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.url}`} rel="noopener noreferrer" target="_blank">
                     <img src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
@@ -114,7 +114,7 @@ export class Article extends PureComponent {
                 <span className="grey  t8">{this.date(article.created)} | </span>
                 <Link to={`/author/${article.author}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
                 <h1 className="pb3  pt4  t-title">{article.title}</h1>
-                <p className="pv3  t-body  grey">{article.description}</p>
+                <p className="pv3  t-body  f5  dark-grey">{article.description}</p>
 
                 <Sections data={article.body} />
 
