@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import Sections from './Sections';
 import { convertDate, toTitleCase, toUrlCase } from '../../functions';
+import AnimatedImage from '../Elements/AnimatedImage';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 import LatestArticles from '../../containers/Fragments/LatestArticles';
 import SubscribeBanner from '../SubscribeBanner';
@@ -69,10 +70,14 @@ export class Article extends PureComponent {
     }
     if (this.state.sideBarSize >= 3) {
       sideBarExtraArticles2 = (
-        <React.Fragment>
-          <p className="t-title  grey  f5  pl4  pv2">More</p>
-          <ExtraArticles limit={4} type="list" />
-        </React.Fragment>
+        <div className="container-medium  mv2">
+          <AnimatedImage
+            lazy
+            src="https://via.placeholder.com/350x150"
+            alt="..."
+            styles="fade-in-zoom-in  w-100"
+          />
+        </div>
       );
     }
     if (this.state.sideBarSize >= 4) {

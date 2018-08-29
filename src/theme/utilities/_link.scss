@@ -1,4 +1,8 @@
 .link {
   text-decoration: none;
-  transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in-out;
+}
+
+.link:hover {
+  color: palette(rendah-red);
 }
