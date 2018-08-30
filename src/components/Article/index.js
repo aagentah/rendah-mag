@@ -22,19 +22,21 @@ export class Article extends PureComponent {
   componentDidMount() {
     const articleHeight = this.articleElem.clientHeight;
     let sideBarSize = 0;
+    console.log('articleHeight');
+    console.log(articleHeight);
 
-    if (articleHeight < 750) {
+    if (articleHeight < 900) {
       sideBarSize = 1;
     }
-    if (articleHeight >= 750) {
+    if (articleHeight >= 900) {
       sideBarSize = 2;
     }
-    if (articleHeight >= 1000) {
-      sideBarSize = 3;
-    }
-    if (articleHeight >= 2000) {
-      sideBarSize = 4;
-    }
+    // if (articleHeight >= 1000) {
+    //   sideBarSize = 3;
+    // }
+    // if (articleHeight >= 2000) {
+    //   sideBarSize = 4;
+    // }
 
     this.setState({ sideBarSize });
   }

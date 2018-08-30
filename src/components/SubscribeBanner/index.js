@@ -48,8 +48,8 @@ export class SubscribeBanner extends PureComponent {
 
     const url = 'https://rendahmag.us17.list-manage.com/subscribe/post?u=df0d549f92845c8dfc4d99dde&amp;id=2904b740be';
     return (
-      <div className="container-medium  center  pv2">
-        <div className="flex">
+      <div className="container-medium  center">
+        <div className="flex  pv2  ph1  ph0-lg">
           <div className="col-24">
             <MailchimpSubscribe
               url={url}
