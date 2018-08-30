@@ -1,0 +1,25 @@
+.hero {
+  background-size: contain;
+  background-size: 100%;
+}
+
+.hero__letter {
+  opacity: 0;
+}
+
+@for $i from 0 through 100 {
+  .hero__letter--#{$i} {
+    animation: hero__letter--show .1s forwards;
+    animation-delay: $i * .1s;
+  }
+}
+
+@keyframes hero__letter--show {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

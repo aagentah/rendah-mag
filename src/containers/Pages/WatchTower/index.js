@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Iframe from 'react-iframe';
 import { isChrome, isAndroid } from 'react-device-detect';
 
+import Hero from '../../../components/Hero';
 import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
 
 export class WatchTower extends PureComponent {
@@ -39,14 +40,16 @@ export class WatchTower extends PureComponent {
   }
 
   render() {
+    const title = 'Watch Tower';
+
     return (
       <main className="page-fade-in">
-        <Helmet title="Watch Tower" />
+        <Helmet title={title} />
+        <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb3" />
         <div className="container-medium  center  pt4">
           <div className="flex  flex-wrap">
             <div className="col-24">
-              <h1 className="t-title  bold  tac  f5  pb3">Watch Tower</h1>
-              <p className="tac  pb1  mw6  db  center">
+              <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb2">
                 The&nbsp;
                 <Link className="link" to={'/Authors'}>
                   <span className="rendah-red">Rendah Team</span>

@@ -97,7 +97,7 @@ export class Header extends PureComponent {
               })}
             </ul>
 
-            <div className="abs  header__desktop__search">
+            <div className="abs  w4  header__desktop__search">
               <SearchInput textAlign="inherit" />
             </div>
           </nav>
@@ -105,7 +105,7 @@ export class Header extends PureComponent {
 
         {/* Mobile */}
         <header className="fix  w-100  shadow1  z9  bg-white  db  dn-lg  header__mobile">
-          <div onClick={this.mobileNavToggle} className={hamburger} id="hamburger-11">
+          <div onClick={this.mobileNavToggle} className={hamburger}>
             <span className="bg-black" />
             <span className="bg-black" />
             <span className="bg-black" />
