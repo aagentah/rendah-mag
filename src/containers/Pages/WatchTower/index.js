@@ -46,7 +46,7 @@ export class WatchTower extends PureComponent {
       <main className="page-fade-in">
         <Helmet title={title} />
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb3" />
-        <div className="container-medium  center  pt4">
+        <div className="container-medium  center  pt4  pb4">
           <div className="flex  flex-wrap">
             <div className="col-24">
               <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb2">
@@ -63,7 +63,7 @@ export class WatchTower extends PureComponent {
           {this.playlistEmbeds()}
         </div>
 
-        <p className="t-title  bold  tac  f5">More</p>
+        <p className="t-title  bold  tac  f6  ttu  pb3">More Articles</p>
         <ExtraArticles type="grid" limit={4} padding="pt3" />
       </main>
     );

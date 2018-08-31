@@ -23,12 +23,15 @@ export class Search extends PureComponent {
     return (
       <main className="page-fade-in">
         <Helmet title={title} />
+
         <Hero type="h1" title={searchQuery} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
+
         <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb4">
           Latest results for:&nbsp;
           <span className="bold">{searchQuery}</span>
         </p>
-        <SearchArticles match={this.props.match} />
+
+        <SearchArticles match={this.props.match} padding="pb5" />
         <CategoryGrid />
       </main>
     );
