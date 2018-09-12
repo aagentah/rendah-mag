@@ -5,12 +5,10 @@ import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 
-
 export class Seo extends PureComponent {
   render() {
-    const article = this.props.data;
-    console.log('SEO');
-    console.log(article);
+    const { article } = this.props;
+
     return (
       <React.Fragment>
         <Helmet>
@@ -46,11 +44,11 @@ export class Seo extends PureComponent {
 }
 
 Seo.propTypes = {
-  data: PropTypes.shape(),
+  article: PropTypes.shape(),
 };
 
 Seo.defaultProps = {
-  data: {},
+  article: {},
 };
 
 export default Seo;
