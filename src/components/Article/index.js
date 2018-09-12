@@ -54,8 +54,11 @@ export class Article extends PureComponent {
         <React.Fragment>
           <p className="t-title  grey  f5  pl4  pv2">Latest</p>
           <LatestArticles limit={4} type="list" />
-          <p className="t-title  grey  f5  pl4  pv2">Subscribe to Rendah</p>
-          <SubscribeBanner />
+
+          <div className="pv3  pv0-lg">
+            <p className="t-title  grey  f5  pl4  pv2">Subscribe to Rendah</p>
+            <SubscribeBanner />
+          </div>
         </React.Fragment>
       );
     }
@@ -99,7 +102,7 @@ export class Article extends PureComponent {
                 <AuthorInfo article padding="pt5" match={authorInfoMatch} />
               </article>
 
-              <div className="col-24  col-6-lg  mt5-lg  pt4">
+              <div className="col-24  col-6-lg  mt4  mt5-lg  pt4">
                 {sideBarLatestArticles}
                 {sideBarExtraArticles}
               </div>

@@ -3,7 +3,8 @@
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
-import SearchInput from '../../../components/Elements/SearchInput';
+import Hero from '../../../components/Hero';
+import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
 
 export class NotFound extends PureComponent {
@@ -15,14 +16,23 @@ export class NotFound extends PureComponent {
   }
 
   render() {
+    const title = '404';
+
     return (
       <main className="page-fade-in">
-        <Helmet title="404" />
-        <h1 className="dn">404</h1>
-        <p className="tac  dark-grey  f5  ttu  t-title-bold  f5  pt5  pt4-sm  pv4  pb3-sm">404, this page does not exist.</p>
-        <p className="pt4  f5  bold  black  tac  t-title">Search the site for something else?</p>
-        <div className="pt1  pb2"><SearchInput textAlign="tac" /></div>
-        <CategoryGrid />
+        <Helmet title={title} />
+        <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
+        <div className="container-medium  center  pt4  pb4">
+          <div className="flex  flex-wrap">
+            <div className="col-24">
+              <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb2">
+                404, this page does not exist.
+              </p>
+            </div>
+          </div>
+        </div>
+        <ExtraArticles type="grid" limit={4} padding="pt3" />
+        <CategoryGrid padding="pt4" />
       </main>
     );
   }

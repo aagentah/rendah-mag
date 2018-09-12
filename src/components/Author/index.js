@@ -50,9 +50,10 @@ export class Article extends PureComponent {
     const { padding } = this.props;
     const author = this.props.info;
     const authorLinks = this.authorLinks;
+    const isArticle = this.props.article;
     const renderSeo = (this.props.seo) ? <Seo data={author} /> : null;
-    const containerClass = (this.props.article) ? 'w-80-lg' : 'container-small  center';
-    const borderClass = (this.props.article) ? 'bn  bl-sm  bw2  bc-light-grey' : null;
+    const containerClass = (isArticle) ? 'w-80-lg' : 'container-small  center';
+    const borderClass = (isArticle) ? 'author__border  bt  bl-sm  bw2  bc-light-grey  pt4  pt0-md' : null;
 
     return (
       <React.Fragment>
