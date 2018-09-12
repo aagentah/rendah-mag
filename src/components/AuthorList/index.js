@@ -14,7 +14,7 @@ export class AuthorList extends PureComponent {
       <div className={`container-medium  center  ${padding}`}>
         <div className="flex  flex-wrap">
           {this.props.list.map(author => (
-            <div key={author.name} className="col-24  col-12-sm  col-6-md  ph3">
+            <div key={author.name} className="col-24  col-12-sm  col-6-md  ph3  pb3">
               <figure className="rel  pb3  link  w-100">
                 <Link to={`/author/${author.url}`} className="link  db  h4  w4  shadow2  center  br-100">
                   <AnimatedImage
