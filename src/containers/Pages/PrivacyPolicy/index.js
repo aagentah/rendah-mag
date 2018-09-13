@@ -122,11 +122,8 @@ export class PrivacyPolicy extends PureComponent {
             If there are any questions regarding this privacy policy, you may
             contact us using the information below.<br /><br />
 
-            https://rendahmag.com<br />
-            16 Carwood Grove<br />
-            Bolton, Lancs BL6 6EY<br />
-            United Kingdom<br />
-            dan@rendahmag.com<br />
+            rendahmag.com<br />
+            info@rendahmag.com
 
             Last Edited on 2018-06-05<br />
           </p>

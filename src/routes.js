@@ -19,7 +19,6 @@ import ArticlePage from './containers/Pages/Article';
 import AuthorPage from './containers/Pages/Author';
 import NotFoundPage from './containers/Pages/NotFound';
 import StorePage from './containers/Pages/Store';
-// import GetInvolvedPage from './containers/Pages/GetInvolved';
 import AuthorsPage from './containers/Pages/Authors';
 import WatchTowerPage from './containers/Pages/WatchTower';
 import MixesPage from './containers/Pages/Mixes';
@@ -72,10 +71,6 @@ export default [
       dispatch(fetchAuthorsIfNeeded()),
     ]),
   },
-  // {
-  //   path: '/get-involved',
-  //   component: GetInvolvedPage,
-  // },
   {
     path: '/store',
     component: StorePage,
