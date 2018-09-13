@@ -22,21 +22,18 @@ export class Store extends PureComponent {
         price: '£7.99',
         img: 'http://via.placeholder.com/500x500',
         paypalValue: '65DCAX8RSCR6J',
-        paypalAction: 'https://www.paypal.com/cgi-bin/webscr',
       },
       {
         name: 'Robert Moog Poster',
         price: '£2.99',
         img: 'http://via.placeholder.com/500x500',
         paypalValue: '65DCAX8RSCR6J',
-        paypalAction: 'https://www.paypal.com/cgi-bin/webscr',
       },
       {
         name: 'Rendah Sticker Pack',
         price: '£2.99',
         img: 'http://via.placeholder.com/500x500',
         paypalValue: '65DCAX8RSCR6J',
-        paypalAction: 'https://www.paypal.com/cgi-bin/webscr',
       },
     ];
 
@@ -56,9 +53,8 @@ export class Store extends PureComponent {
 
               <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                 <input type="hidden" name="cmd" value="_s-xclick" />
-                <input type="hidden" name="hosted_button_id" value="65DCAX8RSCR6J" />
+                <input type="hidden" name="hosted_button_id" value="UG3JVJV7JKHS4" />
                 <input className="btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  db  center" type="submit" value="Subscribe!" />
-                <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1" />
               </form>
             </div>
           </div>
@@ -88,7 +84,7 @@ export class Store extends PureComponent {
                       </div>
                     </div>
 
-                    <form action={product.paypalAction} method="post" target="_top">
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                       <input type="hidden" name="cmd" value="_s-xclick" />
                       <input type="hidden" name="hosted_button_id" value={product.paypalValue} />
                       <input className="btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover" type="submit" value="Buy" />
