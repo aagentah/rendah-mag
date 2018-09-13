@@ -81,13 +81,15 @@ const mongoHandle = (app) => {
     let articles = [];
     var sitemap = [
       'https://www.rendahmag.com/',
-      // 'https://www.rendahmag.com/get-involved',
       'https://www.rendahmag.com/watch-tower',
       'https://www.rendahmag.com/mixes',
+      'https://www.rendahmag.com/authors',
+      'https://www.rendahmag.com/store',
+
       'https://www.rendahmag.com/category/interviews',
       'https://www.rendahmag.com/category/insights',
       'https://www.rendahmag.com/category/news',
-      'https://www.rendahmag.com/authors',
+
       'https://www.rendahmag.com/authors/dan-jones',
       'https://www.rendahmag.com/authors/dayle-hamers',
       'https://www.rendahmag.com/authors/harry-taylor',

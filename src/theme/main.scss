@@ -1,6 +1,5 @@
 // Vendor
 @import 'vendor/normalize';
-// @import 'vendor/react-slick';
 
 // Variables
 @import 'vars/index';
@@ -71,20 +70,8 @@
 // Modules
 @import 'modules/Page';
 @import "modules/Article";
-// @import 'modules/ArticleListLatest';
-// @import 'modules/ArticleListSearch';
-@import 'modules/ArticleListWeek';
-// @import 'modules/AuthorList';
 @import 'modules/Author';
 @import 'modules/Header';
 @import "modules/Hero";
-// @import 'modules/Footer';
-// @import "modules/SearchInput";
-// @import "modules/SubscribeForm";
-// @import "modules/InstaFeed";
 @import "modules/CategoryGrid";
-// @import "modules/FacebookComments";
-// @import "modules/Soundcloud";
 @import "modules/Loading";
-// @import "modules/GetInvolved";
-// @import "modules/UpdatesBanner";
