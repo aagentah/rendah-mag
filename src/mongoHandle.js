@@ -84,7 +84,7 @@ const mongoHandle = (app) => {
       'https://www.rendahmag.com/watch-tower',
       'https://www.rendahmag.com/mixes',
       'https://www.rendahmag.com/authors',
-      'https://www.rendahmag.com/store',
+      // 'https://www.rendahmag.com/store',
 
       'https://www.rendahmag.com/category/interviews',
       'https://www.rendahmag.com/category/insights',
