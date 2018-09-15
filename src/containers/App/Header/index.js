@@ -7,6 +7,7 @@ import classNames from 'classnames';
 
 import SearchInput from '../../../components/Elements/SearchInput';
 import { Search } from '../../../components/Elements/Svg';
+import Logo from '../assets/rendah-medium-reversed.png';
 
 export class Header extends PureComponent {
   constructor() {
@@ -92,7 +93,7 @@ export class Header extends PureComponent {
         <header className="fix  w-100  shadow1  z9  bg-white  dn  db-lg  header__desktop">
           <nav className="container-large  center  rel" role="banner">
             <Link className="link  abs  w3  header__desktop__logo" to={'/'}>
-              <img className="pt1  mt1" width="38" src="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1535320221/brand/rendah-medium-reversed.jpg" alt="Logo" role="presentation" />
+              <img className="pt1  mt1" width="38" src={Logo} alt="Logo" role="presentation" />
             </Link>
 
             <ul className="tac  abs  header__desktop__nav__list">
@@ -120,7 +121,7 @@ export class Header extends PureComponent {
           </div>
 
           <Link className="link  abs  w3  center  center  header__mobile__logo" to={'/'}>
-            <img className="pt1  mt1  center" width="38" src="http://res.cloudinary.com/dzz8ji5lj/image/upload/v1535320221/brand/rendah-medium-reversed.jpg" alt="Logo" role="presentation" />
+            <img className="pt1  mt1  center" width="38" src={Logo} alt="Logo" role="presentation" />
           </Link>
 
           <nav className={navMobile} role="banner">
