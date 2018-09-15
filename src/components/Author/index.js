@@ -4,8 +4,9 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Seo from './Seo';
 import AnimatedImage from '../Elements/AnimatedImage';
+
+import Seo from './Seo';
 
 // Export this for unit testing more easily
 export class Article extends PureComponent {
@@ -51,7 +52,7 @@ export class Article extends PureComponent {
     const author = this.props.info;
     const authorLinks = this.authorLinks;
     const isArticle = this.props.article;
-    const renderSeo = (this.props.seo) ? <Seo data={author} /> : null;
+    const renderSeo = (this.props.seo) ? <Seo author={author} /> : null;
     const containerClass = (isArticle) ? 'w-80-lg' : 'container-small  center';
     const borderClass = (isArticle) ? 'author__border  bt  bl-sm  bw2  bc-light-grey  pt4  pt0-md' : null;
 

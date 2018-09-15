@@ -7,9 +7,12 @@ import { Link } from 'react-router-dom';
 import Sections from './Sections';
 import { convertDate, toTitleCase, toUrlCase } from '../../functions';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
+
 import LatestArticles from '../../containers/Fragments/LatestArticles';
 import SubscribeBanner from '../SubscribeBanner';
 import ExtraArticles from '../../containers/Fragments/ExtraArticles';
+
+import Seo from './Seo';
 
 export class Article extends PureComponent {
   constructor(props) {
@@ -73,8 +76,9 @@ export class Article extends PureComponent {
 
     return (
       <React.Fragment>
-        <div className="article">
+        <Seo article={article} />
 
+        <div className="article">
           <figure className="rel  article__hero">
             <div className="article__hero--background" style={{ backgroundImage: `url(https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img})` }} />
             <img className="article__hero--img" alt={article.title} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`} />
