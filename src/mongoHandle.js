@@ -256,7 +256,8 @@ const mongoHandle = (app) => {
   // GET articles
   app.get('/api/articles', (req, res) => {
     let articles = [];
-    const limit = Number(req.query.limit);
+    // const limit = Number(req.query.limit);
+    const limit = 12;
 
     db.collection('articles')
       .find()
@@ -306,7 +307,8 @@ const mongoHandle = (app) => {
   // GET extra
   app.get('/api/extra', (req, res) => {
     let articles = [];
-    const limit = Number(req.query.limit);
+    // const limit = Number(req.query.limit);
+    const limit = 4;
 
     db.collection('articles')
       .aggregate([{
