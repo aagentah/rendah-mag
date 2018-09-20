@@ -8,7 +8,7 @@ import Sections from './Sections';
 import { convertDate, toTitleCase, toUrlCase } from '../../functions';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 
-import LatestArticles from '../../containers/Fragments/LatestArticles';
+// import LatestArticles from '../../containers/Fragments/LatestArticles';
 import SubscribeBanner from '../SubscribeBanner';
 import ExtraArticles from '../../containers/Fragments/ExtraArticles';
 
@@ -34,12 +34,6 @@ export class Article extends PureComponent {
     if (articleHeight >= 900) {
       sideBarSize = 2;
     }
-    // if (articleHeight >= 1000) {
-    //   sideBarSize = 3;
-    // }
-    // if (articleHeight >= 2000) {
-    //   sideBarSize = 4;
-    // }
 
     this.setState({ sideBarSize });
   }
@@ -55,8 +49,8 @@ export class Article extends PureComponent {
     if (this.state.sideBarSize >= 1) {
       sideBarLatestArticles = (
         <React.Fragment>
-          <p className="t-title  grey  f5  pl4  pv2">Latest</p>
-          <LatestArticles limit={4} type="list" />
+          <p className="t-title  grey  f5  pl4  pv2">More</p>
+          <ExtraArticles limit={4} type="list" />
 
           <div className="pv3  pv0-lg">
             <p className="t-title  grey  f5  pl4  pv2">Subscribe to Rendah</p>
@@ -65,14 +59,14 @@ export class Article extends PureComponent {
         </React.Fragment>
       );
     }
-    if (this.state.sideBarSize >= 2) {
-      sideBarExtraArticles = (
-        <React.Fragment>
-          <p className="t-title  grey  f5  pl4  pv2">More</p>
-          <ExtraArticles limit={4} type="list" />
-        </React.Fragment>
-      );
-    }
+    // if (this.state.sideBarSize >= 2) {
+    //   sideBarExtraArticles = (
+    //     <React.Fragment>
+    //       <p className="t-title  grey  f5  pl4  pv2">More</p>
+    //       <ExtraArticles limit={4} type="list" />
+    //     </React.Fragment>
+    //   );
+    // }
 
     return (
       <React.Fragment>
