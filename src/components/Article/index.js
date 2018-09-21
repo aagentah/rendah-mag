@@ -97,7 +97,7 @@ export class Article extends PureComponent {
                 <p className="pv3  t-body  f5  dark-grey">{article.description}</p>
 
                 <Sections data={article.body} />
-                <AuthorInfo article padding="pt5" match={authorInfoMatch} />
+                <AuthorInfo article padding="pt4  pt5-sm" match={authorInfoMatch} />
               </article>
 
               <div className="col-24  col-6-lg  mt4  mt5-lg  pt4">
