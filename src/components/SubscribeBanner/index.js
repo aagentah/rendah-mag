@@ -32,12 +32,12 @@ export class SubscribeBanner extends PureComponent {
         <div>
           <form className="rel" onSubmit={submitInit} action="" noValidate>
             <input
-              className="t-title  ph2  pb1  w-100  f5  bb bc-black"
+              className="t-title  ph2  pb2  w-100  f5  bb bc-black"
               ref={node => (email = node)}
               type="email"
               placeholder={this.state.inputPlaceHolder}
             />
-            <span className="cp  abs  right" role="button" tabIndex={0} onClick={submitInit}><ArrowRight /></span>
+            <span className="cp  abs  right  pr1" role="button" tabIndex={0} onClick={submitInit}><ArrowRight /></span>
           </form>
           {status === 'sending' && <div className="message">Subscribing...</div>}
           {status === 'error' && <div className="message">Please enter a valid email...</div>}

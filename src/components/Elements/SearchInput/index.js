@@ -47,8 +47,8 @@ export class SearchInput extends PureComponent {
     return (
       <React.Fragment>
         <form className="rel" action="#" onSubmit={this.submitForm}>
-          <input className="t-title  ph2  pb1  w-100  f3  f5-lg  bb bc-black" type="search" placeholder={this.state.placeholder} value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} />
-          <button className="cp  abs  right" tyle="submit"><ArrowRight /></button>
+          <input className="t-title  ph2  pb2  w-100  f3  f5-lg  bb bc-black" type="search" placeholder={this.state.placeholder} value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} />
+          <button className="search-input__arrow  cp  abs  right" tyle="submit"><ArrowRight /></button>
         </form>
         {this.redir()}
       </React.Fragment>

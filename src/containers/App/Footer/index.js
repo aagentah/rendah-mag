@@ -10,7 +10,7 @@ export class Footer extends React.Component {
   render() {
     return (
       <div className="pt4">
-        <footer className="container-large  center  rel  bt  bw1  z9  pv3">
+        <footer className="container-large  center  rel  bt  bw1  pv3">
           <div className="flex  flex-wrap">
 
             <div className="col-14  pt2">

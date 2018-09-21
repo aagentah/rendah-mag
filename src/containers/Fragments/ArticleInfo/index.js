@@ -31,11 +31,7 @@ export class ArticleInfo extends PureComponent {
       return <Loading type="ArticleInfo" />;
     }
 
-    return (
-      <React.Fragment>
-        <Article info={articleInfoById.info} />;
-      </React.Fragment>
-    );
+    return <Article info={articleInfoById.info} />;
   }
 
   render() {
