@@ -9,7 +9,7 @@ export class Question extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <p className="normal-font  fw6  dark-grey">{this.props.text}</p>
+        <p className="t-body  bold  f5  dark-grey">{this.props.text}</p>
       </React.Fragment>
     );
   }

@@ -1,8 +1,15 @@
 
 
 .btn {
-  display: inline-block;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
+}
+
+.btn--primary {
+  @extend .ph3;
+  @extend .pv2;
+  @extend .f6;
+  @extend .br2;
 }
 
 // @include breakpoint-up(sm) {

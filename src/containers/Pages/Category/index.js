@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
+import Hero from '../../../components/Hero';
 import CategoryArticles from '../../../containers/Fragments/CategoryArticles';
 
 export class Category extends PureComponent {
@@ -15,10 +16,12 @@ export class Category extends PureComponent {
   }
 
   render() {
+    const title = this.props.match.params.query;
+
     return (
       <main className="page-fade-in">
-        <Helmet title={this.props.match.params.query} />
-        <h1 className="tac  dark-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">{this.props.match.params.query}</h1>
+        <Helmet title={title} />
+        <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
         <CategoryArticles match={this.props.match} />
       </main>
     );

@@ -9,7 +9,7 @@ export class Paragraph extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <p className="normal-font  grey">{this.props.text}</p>
+        <p className="t-body  f5  dark-grey">{this.props.text}</p>
       </React.Fragment>
     );
   }

@@ -31,7 +31,7 @@ export class AuthorInfo extends PureComponent {
       return <Loading type="AuthorInfo" />;
     }
 
-    return <Author info={authorInfoById.info} seo={this.props.seo} />;
+    return <Author {...this.props} info={authorInfoById.info} />;
   }
 
   render() {
@@ -59,7 +59,6 @@ AuthorInfo.propTypes = {
   }),
   match: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   fetchAuthorIfNeeded: PropTypes.func,
-  seo: PropTypes.bool,
 };
 
 AuthorInfo.defaultProps = {
@@ -71,7 +70,6 @@ AuthorInfo.defaultProps = {
   },
   match: [],
   fetchAuthorIfNeeded: () => {},
-  seo: true,
 };
 
 export default connector(AuthorInfo);

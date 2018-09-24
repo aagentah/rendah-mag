@@ -1,12 +1,12 @@
-
-
 .system-sans { font-family: $system-sans; }
 .sans { font-family: $sans; }
 .serif { font-family: $serif; }
 .mono { font-family: $mono; }
 
-// theme
+.t-title {
+  font-family: $t-title;
+}
 
-.khula-bold { font-family: $khula; font-weight: 700; line-height: 28px; }
-.title-font { font-family: $title-font; }
-.normal-font { font-family: $normal-font; }
+.t-body {
+  font-family: $t-body;
+}

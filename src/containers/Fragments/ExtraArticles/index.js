@@ -6,12 +6,13 @@ import { connect } from 'react-redux';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
-import LatestArticleList from '../../../components/ArticleList/Latest';
-
+import ArticleListGrid from '../../../components/ArticleList/Grid';
+import ArticleListList from '../../../components/ArticleList/List';
 
 export class ExtraArticles extends PureComponent {
   componentDidMount() {
-    this.props.fetchExtraArticlesIfNeeded();
+    const limit = this.props.limit;
+    this.props.fetchExtraArticlesIfNeeded(limit);
   }
 
   renderExtraArticleList = () => {
@@ -26,7 +27,9 @@ export class ExtraArticles extends PureComponent {
       return <Loading type="ExtraArticles" />;
     }
 
-    return <LatestArticleList list={extraArticles.list} extra />;
+    if (this.props.type === 'grid') return <ArticleListGrid {...this.props} list={extraArticles.list} />;
+    if (this.props.type === 'list') return <ArticleListList {...this.props} list={extraArticles.list} />;
+    return true;
   };
 
   render() {
@@ -41,7 +44,8 @@ export class ExtraArticles extends PureComponent {
 const connector = connect(
   ({ extraArticles }) => ({ extraArticles }),
   dispatch => ({
-    fetchExtraArticlesIfNeeded: () => dispatch(action.fetchExtraArticlesIfNeeded()),
+    fetchExtraArticlesIfNeeded: (limit: number) =>
+      dispatch(action.fetchExtraArticlesIfNeeded(limit)),
   }),
 );
 
@@ -52,6 +56,8 @@ ExtraArticles.propTypes = {
     list: PropTypes.arrayOf(PropTypes.object),
   }),
   fetchExtraArticlesIfNeeded: PropTypes.func,
+  type: PropTypes.string,
+  limit: PropTypes.number,
 };
 
 ExtraArticles.defaultProps = {
@@ -61,6 +67,8 @@ ExtraArticles.defaultProps = {
     list: [{}],
   },
   fetchExtraArticlesIfNeeded: () => {},
+  type: '',
+  limit: 0,
 };
 
 export default connector(ExtraArticles);
