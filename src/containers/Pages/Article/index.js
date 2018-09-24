@@ -4,7 +4,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import ArticleInfo from '../../../containers/Fragments/ArticleInfo';
-import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
 
 export class Article extends PureComponent {
@@ -19,11 +18,7 @@ export class Article extends PureComponent {
     return (
       <main className="page-fade-in">
         <ArticleInfo match={this.props.match} />
-        <p className="tac  dark-grey  t6  ttu  khula-bold  mt3  pt4  pt4-sm  pv4  pb3-sm">MORE ARTICLES</p>
-        <div className="pb2">
-          <ExtraArticles />
-        </div>
-        <CategoryGrid />
+        <CategoryGrid padding="pt3  pt5-lg" />
       </main>
     );
   }

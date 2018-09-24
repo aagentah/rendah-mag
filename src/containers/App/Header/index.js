@@ -1,174 +1,152 @@
 /* eslint-disable import/no-named-as-default, max-len, react/prefer-stateless-function,
-jsx-a11y/no-static-element-interactions */
+jsx-a11y/no-static-element-interactions, arrow-body-style */
 
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-import SearchInput from '../../../components/SearchInput';
-import { CaretDown, Menu } from '../../../components/Elements/Svg';
+import SearchInput from '../../../components/Elements/SearchInput';
+import { Search } from '../../../components/Elements/Svg';
+import Logo from '../assets/rendah-medium-reversed.png';
 
 export class Header extends PureComponent {
   constructor() {
     super();
     this.state = {
-      navExpand: false,
-      searchExpand: false,
+      navIsActive: false,
+      searchIsActive: false,
     };
   }
 
-  navExpandToggle = () => {
-    if (this.state.navExpand) {
-      this.setState({ navExpand: false });
+  mobileNavToggle = () => {
+    if (!this.state.navIsActive && !this.state.searchIsActive) {
+      this.setState({ navIsActive: true });
     } else {
-      this.setState({ navExpand: true });
+      this.setState({ navIsActive: false });
     }
-    this.setState({ searchExpand: false });
+    this.setState({ searchIsActive: false });
   }
 
-  searchExpandToggle = () => {
-    if (this.state.searchExpand) {
-      this.setState({ searchExpand: false });
+  mobileSearchToggle = () => {
+    if (!this.state.searchIsActive && !this.state.navIsActive) {
+      this.setState({ searchIsActive: true });
     } else {
-      this.setState({ searchExpand: true });
+      this.setState({ searchIsActive: false });
     }
-    this.setState({ navExpand: false });
+    this.setState({ navIsActive: false });
   }
 
   render() {
-    const mobileHeaderWrapper = classNames({
-      'header__float-wrapper': true,
-      'header__float-wrapper--searchExpand': this.state.searchExpand,
+    const links = [
+      {
+        to: '/',
+        text: 'Home',
+      },
+      {
+        to: '/authors',
+        text: 'Authors',
+      },
+      {
+        to: '/category/news',
+        text: 'News',
+      },
+      {
+        to: '/category/interviews',
+        text: 'Interviews',
+      },
+      {
+        to: '/category/insights',
+        text: 'Insights',
+      },
+      {
+        to: '/mixes',
+        text: 'Mixes',
+      },
+      // {
+      //   to: '/store',
+      //   text: 'Store',
+      // },
+      {
+        to: '/watch-tower',
+        text: 'Watch Tower',
+      },
+    ];
+
+    const navMobile = classNames({
+      'fix  bg-white  z8  header__mobile__nav': true,
+      'is-active': this.state.navIsActive,
     });
 
-    const mobileNavMenu = classNames({
-      'nav--mobile': true,
-      'nav--mobile--expanded': this.state.navExpand,
+    const searchMobile = classNames({
+      'fix  bg-white  z8  header__mobile__search': true,
+      'is-active': this.state.searchIsActive,
     });
 
-    const mobileNavMenuTrigger = classNames({
-      'header__menu-trigger': true,
-      'header__menu-trigger--rotated': this.state.navExpand,
+    const hamburger = classNames({
+      'abs  cp  z9  header__mobile__nav__hamburger': true,
+      'is-active': this.state.navIsActive || this.state.searchIsActive,
     });
 
     return (
-      <div className="rel  z9">
-        <header className="header--desktop  dn-lg  db  shadow2" role="banner">
+      <React.Fragment>
+        {/* Desktop */}
+        <header className="fix  w-100  shadow1  z9  bg-white  dn  db-lg  header__desktop">
+          <nav className="container-large  center  rel" role="banner">
+            <Link className="link  abs  w3  header__desktop__logo" to={'/'}>
+              <img className="pt1  mt1" width="38" src={Logo} alt="Logo" role="presentation" />
+            </Link>
 
-          <Link className="logo--desktop  link" to={'/'}>
-            <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
+            <ul className="tac  abs  header__desktop__nav__list">
+              {links.map((link) => {
+                return (
+                  <li className="dib">
+                    <Link className="t-title  ttu  bold  dark-grey  ph2  f5  link" to={link.to}>{link.text}</Link>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div className="abs  w4  header__desktop__search">
+              <SearchInput textAlign="inherit" />
+            </div>
+          </nav>
+        </header>
+
+        {/* Mobile */}
+        <header className="fix  w-100  shadow1  z9  bg-white  db  dn-lg  header__mobile">
+          <div onClick={this.mobileNavToggle} className={hamburger}>
+            <span className="bg-black" />
+            <span className="bg-black" />
+            <span className="bg-black" />
+          </div>
+
+          <Link className="link  abs  w3  center  center  header__mobile__logo" to={'/'}>
+            <img className="pt1  mt1  center" width="38" src={Logo} alt="Logo" role="presentation" />
           </Link>
 
-          <nav className="nav--desktop  tal  pt4">
-            <ul className="ma0  pa0  tac  center  rel">
-              <li className="dib">
-                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/'}>Home</Link>
-              </li>
-              <li className="dib">
-                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/authors'}>Authors</Link>
-              </li>
-              <li className="dib">
-                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/get-involved'}>Get Involved</Link>
-              </li>
-              <li className="dib">
-                <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/watch-tower'}>Watch Tower</Link>
-              </li>
-              <div className="nav__desktop__category">
-                <li data-nav-category="1" className="abs">
-                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/category/interviews'}>Interviews</Link>
-                  <span className="nav__desktop__category__downArrow"><CaretDown /></span>
-                </li>
-                <li data-nav-category="2" className="abs">
-                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/category/insights'}>Insights</Link>
-                  <span className="nav__desktop__category__downArrow"><CaretDown /></span>
-                </li>
-                <li data-nav-category="3" className="abs">
-                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/category/news'}>News</Link>
-                  <span className="nav__desktop__category__downArrow"><CaretDown /></span>
-                </li>
-                <li data-nav-category="4" className="abs">
-                  <Link className="ttu  khula-bold  dark-grey  dib  ph2  t7  link" to={'/mixes'}>Mixes</Link>
-                  <span className="nav__desktop__category__downArrow"><CaretDown /></span>
-                </li>
-              </div>
+          <nav className={navMobile} role="banner">
+            <ul className="tac  fix  center  header__mobile__nav__list">
+              {links.map((link) => {
+                return (
+                  <li className="db">
+                    <Link onClick={this.mobileNavToggle} className="t-title  ttu  bold  db  dark-grey  pv3  f4  link" to={link.to}>{link.text}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
-          <div className="header--desktop__social  pr0-lg">
-            <SearchInput textAlign="inherit" />
-            <a className="header--desktop__social__item  pr1  pl2" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-              <img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
-            </a>
-            <a className="header--desktop__social__item  ph1" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
-              <img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
-            </a>
-            <a className="header--desktop__social__item  ph1" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-              <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
-            </a>
-            <a className="header--desktop__social__item  ph1" href="https://www.soundcloud.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-              <img src={require('../assets/social/iconmonstr-soundcloud-5.png')} alt="soundcloud" />
-            </a>
-          </div>
-        </header>
-        <header className="header--mobile  db-lg  dn" role="banner">
-          <div className="header__border--mobile" />
-          <div className={mobileHeaderWrapper}>
-            <Link className="logo--mobile  link" to={'/'}>
-              <img width="50" src={require('../assets/Rendah-Logo-Small.png')} alt="Logo" role="presentation" />
-            </Link>
-
-            <span onClick={this.navExpandToggle} className={mobileNavMenuTrigger}><Menu /></span>
-            <img onClick={this.searchExpandToggle} className="header__search-trigger" width="12" src={require('../assets/search.png')} alt="Logo" role="presentation" />
-
-            <div className="header__search--mobile">
-              <SearchInput textAlign="inherit" onSearch={this.searchExpandToggle} />
+          <div className={searchMobile}>
+            <div className="abs  w-80  center  header__mobile__search-input">
+              <SearchInput onSearch={this.mobileSearchToggle} />
             </div>
+          </div>
 
-            <nav className={`${mobileNavMenu}  shadow2`}>
-              <ul className="ma0  pa0  pt2  tac  center  rel">
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/'}>Home</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/authors'}>Authors</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/get-involved'}>Get Involved</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/watch-tower'}>Watch Tower</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/category/interviews'}>Interviews</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/category/insights'}>Insights</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/category/news'}>News</Link>
-                </li>
-                <li className="db">
-                  <Link onClick={this.navExpandToggle} className="ttu  khula-bold  dark-grey  db  pv2  t7  link" to={'/mixes'}>Mixes</Link>
-                </li>
-              </ul>
-              <div className="header--mobile__social pt2">
-                <a className="header--mobile__social__item  ph1" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                  <img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
-                </a>
-                <a className="header--mobile__social__item  ph1" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
-                  <img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
-                </a>
-                <a className="header--mobile__social__item  ph1" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                  <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
-                </a>
-                <a className="header--mobile__social__item  ph1" href="https://www.soundcloud.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                  <img src={require('../assets/social/iconmonstr-soundcloud-5.png')} alt="soundcloud" />
-                </a>
-              </div>
-            </nav>
+          <div onClick={this.mobileSearchToggle} className="abs  cp  header__mobile__search-icon">
+            <Search />
           </div>
         </header>
-      </div>
+      </React.Fragment>
     );
   }
 }

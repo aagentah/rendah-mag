@@ -1,12 +1,6 @@
 .link {
-  outline: 0;
   text-decoration: none;
-  transition: all 0.2s ease-in;
-  cursor: pointer;
-}
-
-.link:focus {
-  outline: 0;
+  transition: all 0.2s ease-in-out;
 }
 
 .link:hover {

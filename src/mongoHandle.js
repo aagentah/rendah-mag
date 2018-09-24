@@ -81,13 +81,15 @@ const mongoHandle = (app) => {
     let articles = [];
     var sitemap = [
       'https://www.rendahmag.com/',
-      'https://www.rendahmag.com/get-involved',
       'https://www.rendahmag.com/watch-tower',
       'https://www.rendahmag.com/mixes',
+      'https://www.rendahmag.com/authors',
+      // 'https://www.rendahmag.com/store',
+
       'https://www.rendahmag.com/category/interviews',
       'https://www.rendahmag.com/category/insights',
       'https://www.rendahmag.com/category/news',
-      'https://www.rendahmag.com/authors',
+
       'https://www.rendahmag.com/authors/dan-jones',
       'https://www.rendahmag.com/authors/dayle-hamers',
       'https://www.rendahmag.com/authors/harry-taylor',
@@ -254,18 +256,20 @@ const mongoHandle = (app) => {
   // GET articles
   app.get('/api/articles', (req, res) => {
     let articles = [];
+    // const limit = Number(req.query.limit);
+    const limit = 12;
 
     db.collection('articles')
       .find()
       .skip(2)
-      .limit(12)
+      .limit(limit)
       .sort('created', -1)
       .toArray()
       .then((result) => {
         articles = articles.concat(result);
       })
       .then(() => {
-        const data = checkDateAndReturn(articles, 12);
+        const data = checkDateAndReturn(articles, limit);
         res.send(data);
       })
       .catch((e) => {
@@ -303,11 +307,13 @@ const mongoHandle = (app) => {
   // GET extra
   app.get('/api/extra', (req, res) => {
     let articles = [];
+    // const limit = Number(req.query.limit);
+    const limit = 4;
 
     db.collection('articles')
       .aggregate([{
         $sample: {
-          size: 8,
+          size: limit,
         },
       }])
       .toArray()
@@ -315,7 +321,7 @@ const mongoHandle = (app) => {
         articles = articles.concat(result);
       })
       .then(() => {
-        const data = checkDateAndReturn(articles, 8);
+        const data = checkDateAndReturn(articles, limit);
         res.send(data);
       })
       .catch((e) => {

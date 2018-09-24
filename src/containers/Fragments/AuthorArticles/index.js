@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
-import AuthorArticleList from '../../../components/ArticleList/Latest';
+import ArticleListGrid from '../../../components/ArticleList/Grid';
 
 
 export class AuthorArticles extends PureComponent {
@@ -27,7 +27,7 @@ export class AuthorArticles extends PureComponent {
       return <Loading type="AuthorArticles" />;
     }
 
-    return <AuthorArticleList list={authorArticles.list} />;
+    return <ArticleListGrid {...this.props} type="grid" list={authorArticles.list} />;
   };
 
   render() {
