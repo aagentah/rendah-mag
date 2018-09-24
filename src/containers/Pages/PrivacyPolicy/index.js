@@ -15,8 +15,8 @@ export class PrivacyPolicy extends PureComponent {
     return (
       <main className="page-fade-in">
         <Helmet title="Privacy Policy" />
-        <div className="container  tal  ph4-sm  pv4">
-          <p>
+        <div className="container-small  center  pa4">
+          <p className="t-body  t7">
             Privacy Policy<br /><br />
             This privacy policy has been compiled to better serve those who are concerned
             with how their &apos;Personally Identifiable Information&apos; (PII) is being
@@ -122,11 +122,8 @@ export class PrivacyPolicy extends PureComponent {
             If there are any questions regarding this privacy policy, you may
             contact us using the information below.<br /><br />
 
-            https://rendahmag.com<br />
-            16 Carwood Grove<br />
-            Bolton, Lancs BL6 6EY<br />
-            United Kingdom<br />
-            dan@rendahmag.com<br />
+            rendahmag.com<br />
+            info@rendahmag.com
 
             Last Edited on 2018-06-05<br />
           </p>

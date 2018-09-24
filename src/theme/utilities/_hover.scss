@@ -1,5 +1,3 @@
-
-
 .underline-hover {
   border-bottom: 1px solid transparent;
 }
@@ -12,5 +10,9 @@
 @each $color, $hex in $colors {
   .#{$color}-hover:hover {
     color: $hex;
+  }
+
+  .bg-#{$color}-hover:hover {
+    background-color: $hex;
   }
 }

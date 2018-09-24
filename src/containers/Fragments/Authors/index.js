@@ -26,7 +26,7 @@ export class Authors extends PureComponent {
       return <Loading type="Authors" />;
     }
 
-    return <LatestAuthorList list={authors.list} />;
+    return <LatestAuthorList {...this.props} list={authors.list} />;
   };
 
   render() {

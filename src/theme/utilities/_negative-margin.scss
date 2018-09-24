@@ -1,5 +1,3 @@
-
-
 @each $i, $value in $spacings {
   .nl#{$i} { margin-left: -$value; }
   .nr#{$i} { margin-right: -$value; }

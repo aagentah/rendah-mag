@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 export class BulletList extends PureComponent {
   text = () => {
     if (this.props.text) {
-      return <p className="pv1  normal-font  grey">{this.props.text}</p>;
+      return <p className="pv1  t-body  f5  dark-grey">{this.props.text}</p>;
     }
     return null;
   };
@@ -17,9 +17,9 @@ export class BulletList extends PureComponent {
     return (
       <React.Fragment>
         {this.text()}
-        <ul className="mb0">
+        <ul className="pl3">
           {this.props.list.map(item => (
-            <li key={item} className="pv1  normal-font  grey"><p>{item}</p></li>
+            <li key={item} className="pv1  t-body  f5  dark-grey"><p>{item}</p></li>
           ))}
         </ul>
       </React.Fragment>

@@ -21,10 +21,8 @@ export class Author extends PureComponent {
       <main className="page-fade-in">
         <Helmet title={this.props.match.params.id.replace(/\s+/g, '-')} />
         <h1 className="dn">{this.props.match.params.id.replace(/\s+/g, '-')}</h1>
-        <AuthorInfo match={this.props.match} seo />
-        <div className="mt4">
-          <p className="tac  dark-grey  t6  ttu  khula-bold  pv2  mb3  mt3  ttu">LATEST FROM {this.props.match.params.id.split('-')[0]}</p>
-        </div>
+        <AuthorInfo padding="pt4  pb5" match={this.props.match} seo />
+        <p className="t-title  bold  tac  f6  ttu  pt2  pb3">LATEST FROM {this.props.match.params.id.split('-')[0]}</p>
         <AuthorArticles match={this.props.match} />
       </main>
     );
