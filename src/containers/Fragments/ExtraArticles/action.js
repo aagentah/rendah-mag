@@ -8,15 +8,17 @@ export const API_URL = (__DEV__) ?
   '/api/extra' : 'https://rendah-mag.herokuapp.com/api/extra';
 
 
-export const fetchExtraArticles = (axios: any, URL: string = API_URL) =>
+export const fetchExtraArticles = (limit: number, axios: any, URL: string = API_URL) =>
   (dispatch) => {
     dispatch({ type: EXTRAARTICLES_REQUESTING });
 
-    return axios.get(URL)
-      .then(res => dispatch({ type: EXTRAARTICLES_SUCCESS, data: res.data }))
-      .catch(err => dispatch({ type: EXTRAARTICLES_FAILURE, err: err.message }));
+    return axios.get(URL, { params: { limit } })
+      .then(res => dispatch({ type: EXTRAARTICLES_SUCCESS, limit, data: res.data }))
+      .catch(err => dispatch({ type: EXTRAARTICLES_FAILURE, limit, err: err.message }));
   };
 
 /* istanbul ignore next */
-export const fetchExtraArticlesIfNeeded = () =>
-  (dispatch, getState, axios: any) => { dispatch(fetchExtraArticles(axios)); };
+export const fetchExtraArticlesIfNeeded = (limit: number) =>
+  (dispatch, getState, axios: any) => {
+    dispatch(fetchExtraArticles(limit, axios));
+  };

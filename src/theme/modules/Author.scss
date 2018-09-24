@@ -1,41 +1,5 @@
-
-  .author__cont {
-    min-height: 170px;
+.author__border {
+  @include breakpoint-up(sm) {
+    border-top: 0;
   }
-
-  .author__img--cont {
-    height: 135px;
-    overflow: hidden;
-    @include breakpoint-up(md) {
-      height: 300px;
-    }
-  }
-
-  .author__img {
-    height: 135px;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-
-    @include breakpoint-up(md) {
-      height: 300px;
-    }
-  }
-
-  .author__info {
-    min-height: 60px;
-    @include breakpoint-up(md) {
-      min-height: auto;
-    }
-  }
-
-  .author__social-link {
-    line-height: 30px;
-    vertical-align: text-bottom;
-  }
-
-  .author__social-link--icon {
-    margin-top: 8px;
-    height: 28px;
-    width: auto;
-  }
+}

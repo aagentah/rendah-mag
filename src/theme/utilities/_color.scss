@@ -1,5 +1,3 @@
-
-
 @each $color, $hex in $colors {
   .#{$color} { color: $hex; }
   .bg-#{$color} { background-color: $hex; }

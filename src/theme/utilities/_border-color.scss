@@ -1,5 +1,3 @@
-
-
 @each $color, $hex in $colors {
   .bc-#{$color} { border-color: $hex; }
 }

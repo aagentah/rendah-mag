@@ -6,12 +6,14 @@ import { connect } from 'react-redux';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
-import LatestArticleList from '../../../components/ArticleList/Latest';
+import ArticleListGrid from '../../../components/ArticleList/Grid';
+import ArticleListList from '../../../components/ArticleList/List';
 
 
 export class LatestArticles extends PureComponent {
   componentDidMount() {
-    this.props.fetchLatestArticlesIfNeeded();
+    const limit = this.props.limit;
+    this.props.fetchLatestArticlesIfNeeded(limit);
   }
 
   renderLatestArticleList = () => {
@@ -26,7 +28,9 @@ export class LatestArticles extends PureComponent {
       return <Loading type="LatestArticles" />;
     }
 
-    return <LatestArticleList list={latestArticles.list} />;
+    if (this.props.type === 'grid') return <ArticleListGrid {...this.props} list={latestArticles.list} />;
+    if (this.props.type === 'list') return <ArticleListList {...this.props} list={latestArticles.list} />;
+    return true;
   };
 
   render() {
@@ -41,7 +45,8 @@ export class LatestArticles extends PureComponent {
 const connector = connect(
   ({ latestArticles }) => ({ latestArticles }),
   dispatch => ({
-    fetchLatestArticlesIfNeeded: () => dispatch(action.fetchLatestArticlesIfNeeded()),
+    fetchLatestArticlesIfNeeded: (limit: number) =>
+      dispatch(action.fetchLatestArticlesIfNeeded(limit)),
   }),
 );
 
@@ -52,6 +57,8 @@ LatestArticles.propTypes = {
     list: PropTypes.arrayOf(PropTypes.object),
   }),
   fetchLatestArticlesIfNeeded: PropTypes.func,
+  type: PropTypes.string,
+  limit: PropTypes.number,
 };
 
 LatestArticles.defaultProps = {
@@ -61,6 +68,8 @@ LatestArticles.defaultProps = {
     list: [{}],
   },
   fetchLatestArticlesIfNeeded: () => {},
+  type: '',
+  limit: 0,
 };
 
 export default connector(LatestArticles);
