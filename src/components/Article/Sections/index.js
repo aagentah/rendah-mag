@@ -4,134 +4,104 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import Heading from './Heading';
+// import Heading from './Heading';
 import Paragraph from './Paragraph';
-import Image from './Image';
-import Question from './Question';
-import Answer from './Answer';
 import BulletList from './BulletList';
 import NumberedList from './NumberedList';
+// import Image from './Image';
+// import Question from './Question';
+// import Answer from './Answer';
 import Soundcloud from './Soundcloud';
 import Spotify from './Spotify';
 import Youtube from './Youtube';
 import FacebookVideo from './FacebookVideo';
-import ArticleLink from './Link';
+// import ArticleLink from './Link';
 
 export class Seo extends PureComponent {
-  sections = (item, i) => {
-    if (item) {
-      switch (item.section.type) {
-        case 'heading':
-          return (
-            <div key={i} className="pv3">
-              <Heading text={item.section.text} />
-            </div>
-          );
-        case 'paragraph':
-          return (
-            <div key={i} className="pv3">
-              <Paragraph text={item.section.text} />
-            </div>
-          );
-        case 'image':
-          return (
-            <div key={i} className="pv3">
-              <Image
-                img={item.section.img}
-                caption={item.section.caption}
-              />
-            </div>
-          );
-        case 'question':
-          return (
-            <div key={i} className="pt3  pb2">
-              <Question text={item.section.text} />
-            </div>
-          );
-        case 'answer':
-          return (
-            <div key={i} className="pv3">
-              <Answer text={item.section.text} />
-            </div>
-          );
-        case 'bulletList':
-          return (
-            <div key={i} className="pb3">
-              <BulletList
-                text={item.section.text}
-                list={item.section.list}
-              />
-            </div>
-          );
-        case 'numberedList':
-          return (
-            <div key={i} className="pb3">
-              <NumberedList
-                text={item.section.text}
-                list={item.section.list}
-              />
-            </div>
-          );
-        case 'soundcloud':
-          return (
-            <div key={i} className="pv3">
-              <Soundcloud url={item.section.url} />
-            </div>
-          );
-        case 'spotify':
-          return (
-            <div key={i} className="pv3  mv2">
-              <Spotify uri={item.section.uri} />
-            </div>
-          );
-        case 'youtube':
-          return (
-            <div key={i} className="pv3  mv2">
-              <Youtube videoId={item.section.url} />
-            </div>
-          );
-        case 'FacebookVideo':
-          return (
-            <div key={i} className="pv3  mv2">
-              <FacebookVideo url={item.section.url} />
-            </div>
-          );
-        case 'link':
-          return (
-            <div key={i} className="pt3  pb1">
-              <ArticleLink
-                linkType={item.section.linkType}
-                text={item.section.text}
-                url={item.section.url}
-              />
-            </div>
-          );
-        default:
-          return false;
-      }
+  renderSections = (section, i) => {
+    // para
+    if (section._type === 'block' && !section.listsection) {
+      return (
+        <div key={i}>
+          <Paragraph text={section.children} />
+        </div>
+      );
     }
+
+    // bullet list
+    if (section._type === 'block' && section.listsection === 'bullet') {
+      return (
+        <ul key={i}>
+          <BulletList text={section.children} />
+        </ul>
+      );
+    }
+
+    // number list
+    if (section._type === 'block' && section.listsection === 'number') {
+      return (
+        <ul key={i}>
+          <NumberedList text={section.children} />
+        </ul>
+      );
+    }
+
+    // soundcloud embed
+    if (section._type === 'soundCloudEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <Soundcloud url={section.soundCloudEmbed} />
+        </div>
+      );
+    }
+
+    // soundcloud embed
+    if (section._type === 'spotifyEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <Spotify uri={section.spotifyEmbed} />
+        </div>
+      );
+    }
+
+    // soundcloud embed
+    if (section._type === 'youTubeEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <Youtube videoId={section.youTubeEmbed} />
+        </div>
+      );
+    }
+
+    // facebook video embed
+    if (section._type === 'facebookVideoEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <FacebookVideo url={section.facebookVideoEmbed} />
+        </div>
+      );
+    }
+
     return false;
-  }
+  };
 
   render() {
-    const sections = this.sections;
+    const { body } = this.props;
 
     return (
       <React.Fragment>
-        {this.props.data.map((item, i) => (
-          sections(item, i)
-        ))}
+        {body.map((section, i) => this.renderSections(section, i))}
       </React.Fragment>
     );
   }
 }
 
 Seo.propTypes = {
-  data: PropTypes.shape(),
+  body: PropTypes.shape(),
 };
 
 Seo.defaultProps = {
-  data: {},
+  body: {},
 };
 
 export default Seo;
