@@ -39,7 +39,7 @@ class Paragraph extends Component {
     if (text[0].text) {
       return (
         <React.Fragment>
-          <p className="db  t-body  f6  black  pv3">
+          <p className="db  t-body  f6  dark-grey  t-body  pv3">
             {text.map((child, i) => this.renderChildren(child, i))}
           </p>
         </React.Fragment>

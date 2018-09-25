@@ -39,10 +39,9 @@ export class Article extends PureComponent {
   date = date => convertDate(date);
 
   render() {
-    console.log('arrrrr');
-    console.log(this.props);
     const article = this.props.info;
 
+    console.log('article yooooooooo');
     console.log(article);
 
     const authorInfoMatch = { params: { id: toUrlCase(article.author) } };

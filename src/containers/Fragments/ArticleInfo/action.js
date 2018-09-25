@@ -29,9 +29,6 @@ export const fetchArticle = (articleId: string) =>
     }`;
 
     sanity.fetch(query, params).then((res) => {
-      console.log('sanity fetch');
-      console.log(res);
-
       if (res) {
         dispatch({ type: ARTICLE_SUCCESS, articleId, data: res });
       } else {
