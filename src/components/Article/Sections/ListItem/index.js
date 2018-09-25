@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class NumberedList extends Component {
+class ListItem extends Component {
   renderChildren = (child, i) => {
     if (child.marks) {
       if (child.marks.includes('stong') && child.marks.includes('em')) {
@@ -39,7 +39,7 @@ class NumberedList extends Component {
     if (text[0].text) {
       return (
         <React.Fragment>
-          <li className="db  t-body  f6  black">
+          <li className="db  t-body  f6  dark-grey  t-body">
             {text.map((child, i) => this.renderChildren(child, i))}
           </li>
         </React.Fragment>
@@ -49,12 +49,12 @@ class NumberedList extends Component {
   }
 }
 
-export default NumberedList;
+export default ListItem;
 
-NumberedList.propTypes = {
+ListItem.propTypes = {
   text: PropTypes.string,
 };
 
-NumberedList.defaultProps = {
+ListItem.defaultProps = {
   text: '',
 };

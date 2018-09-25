@@ -4,10 +4,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-// import Heading from './Heading';
+import Heading from './Heading';
 import Paragraph from './Paragraph';
-import BulletList from './BulletList';
-import NumberedList from './NumberedList';
+import ListItem from './ListItem';
+import Quote from './Quote';
+// import NumberedList from './NumberedList';
 // import Image from './Image';
 // import Question from './Question';
 // import Answer from './Answer';
@@ -15,7 +16,7 @@ import Soundcloud from './Soundcloud';
 import Spotify from './Spotify';
 import Youtube from './Youtube';
 import FacebookVideo from './FacebookVideo';
-// import ArticleLink from './Link';
+import ArticleLink from './Link';
 
 export class Seo extends PureComponent {
   renderSections = (section, i) => {
@@ -32,7 +33,7 @@ export class Seo extends PureComponent {
     if (section._type === 'block' && section.listsection === 'bullet') {
       return (
         <ul key={i}>
-          <BulletList text={section.children} />
+          <ListItem text={section.children} />
         </ul>
       );
     }
@@ -41,7 +42,7 @@ export class Seo extends PureComponent {
     if (section._type === 'block' && section.listsection === 'number') {
       return (
         <ul key={i}>
-          <NumberedList text={section.children} />
+          <ListItem text={section.children} />
         </ul>
       );
     }
@@ -78,6 +79,33 @@ export class Seo extends PureComponent {
       return (
         <div key={i} className="pv4">
           <FacebookVideo url={section.facebookVideoEmbed} />
+        </div>
+      );
+    }
+
+    // subtitleBlock
+    if (section._type === 'subtitleBlock') {
+      return (
+        <div key={i} className="pv2  mb2">
+          <Heading text={section.subtitle} />
+        </div>
+      );
+    }
+
+    // quoteBlock
+    if (section._type === 'quoteBlock') {
+      return (
+        <div key={i} className="pv2  mb2">
+          <Quote quote={section.quote} source={section.source} />
+        </div>
+      );
+    }
+
+    // linkBlock
+    if (section._type === 'linkBlock') {
+      return (
+        <div key={i} className="pv2  mb2">
+          <ArticleLink text={section.text} url={section.url} />
         </div>
       );
     }
