@@ -1,42 +1,60 @@
 /* @flow */
 /* eslint-disable import/no-named-as-default */
 
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-
-export class NumberedList extends PureComponent {
-  text = () => {
-    if (this.props.text) {
-      return <p className="pv1  t-body  f5  dark-grey">{this.props.text}</p>;
+class NumberedList extends Component {
+  renderChildren = (child, i) => {
+    if (child.marks) {
+      if (child.marks.includes('stong') && child.marks.includes('em')) {
+        return (
+          <strong key={i} className="di">
+            <em>{child.text}</em>
+          </strong>
+        );
+      }
+      if (child.marks.includes('strong')) {
+        return (
+          <strong key={i} className="di">
+            {child.text}
+          </strong>
+        );
+      }
+      if (child.marks.includes('em')) {
+        return (
+          <em key={i} className="di">
+            {child.text}
+          </em>
+        );
+      }
     }
-    return null;
+
+    return child.text;
   };
 
   render() {
-    return (
-      <React.Fragment>
-        {this.text()}
-        <ol className="pl3">
-          {this.props.list.map(item => (
-            <li key={item} className="pv1  t-body  f5  dark-grey"><p>{item}</p></li>
-          ))}
-        </ol>
-      </React.Fragment>
-    );
+    const { text } = this.props;
+
+    if (text[0].text) {
+      return (
+        <React.Fragment>
+          <li className="db  t-body  f6  black">
+            {text.map((child, i) => this.renderChildren(child, i))}
+          </li>
+        </React.Fragment>
+      );
+    }
+    return false;
   }
 }
 
+export default NumberedList;
+
 NumberedList.propTypes = {
   text: PropTypes.string,
-  list: PropTypes.arrayOf(PropTypes.string),
 };
 
 NumberedList.defaultProps = {
   text: '',
-  list: [
-    '',
-  ],
 };
-
-export default NumberedList;
