@@ -8,7 +8,6 @@ export const AUTHORARTICLES_SUCCESS = 'AUTHORARTICLES_SUCCESS';
 // export const API_URL = (__DEV__) ?
 //   '/api/authorArticles' : 'https://rendah-mag.herokuapp.com/api/authorArticles';
 
-
 export const fetchAuthorArticles = (id: string) =>
   (dispatch) => {
     dispatch({ type: AUTHORARTICLES_REQUESTING });
@@ -18,48 +17,23 @@ export const fetchAuthorArticles = (id: string) =>
       id,
     };
 
-    // const query =
-    // `*[_type == "post"] | order(publishedAt desc) [${params.limit}] {
-    //   ...,
-    //   author->,
-    //   category->,
-    //   "mainImage": mainImage.asset->url,
-    // }`;
-
-    // const query =
-    // `*[_type == "post"] [${params.limit}] | order(_createdAt desc) {
-    //   title,
-    //   description,
-    //   "slug": slug.current,
-    //   "img": mainImage.asset->url,
-    //   "author": author->name,
-    //   "created": _createdAt,
-    // }`;
-
-    const query2 = `*[_type == "author" && slug.current == $id] [0] {
+    const query = `*[_type == "author" && slug.current == $id] [0] {
     "articles": *[_type == "post" && references(^._id)] [${params.limit}] {
       title,
       description,
       "slug": slug.current,
-      "img": mainImage.asset->url,
+      "img": image.asset->url,
       "author": author->name,
-      "created": _createdAt,
+      "created": publishedAt,
     }
   }`;
 
-    sanity.fetch(query2, params).then((res) => {
-      // dispatch({ type: LATEST_ARTICLES, articlesLatest });
-      // resolve(articlesLatest);
-
+    sanity.fetch(query, params).then((res) => {
       if (res) {
         dispatch({ type: AUTHORARTICLES_SUCCESS, data: res.articles });
       } else {
         dispatch({ type: AUTHORARTICLES_FAILURE, err: 'error' });
       }
-
-      // return axios.get(URL, { params: { limit } })
-      //   .then(res => dispatch({ type: AUTHORARTICLES_SUCCESS, data: res.data }))
-      //   .catch(err => dispatch({ type: AUTHORARTICLES_FAILURE, err: err.message }));
     });
   };
 

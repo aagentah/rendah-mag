@@ -8,7 +8,6 @@ export const EXTRAARTICLES_SUCCESS = 'EXTRAARTICLES_SUCCESS';
 // export const API_URL = (__DEV__) ?
 //   '/api/extra' : 'https://rendah-mag.herokuapp.com/api/extra';
 
-
 export const fetchExtraArticles = (limit: number) =>
   (dispatch) => {
     dispatch({ type: EXTRAARTICLES_REQUESTING });
@@ -16,40 +15,22 @@ export const fetchExtraArticles = (limit: number) =>
     const params = {
       limit: `0..${(limit - 1)}`,
     };
-
-    // const query =
-    // `*[_type == "post"] | order(publishedAt desc) [${params.limit}] {
-    //   ...,
-    //   author->,
-    //   category->,
-    //   "mainImage": mainImage.asset->url,
-    // }`;
-
     const query =
-    `*[_type == "post"] [${params.limit}] | order(_createdAt desc) {
+    `*[_type == "post"] [${params.limit}] | order(publishedAt desc) {
       title,
       description,
       "slug": slug.current,
-      "img": mainImage.asset->url,
+      "img": image.asset->url,
       "author": author->name,
-      "created": _createdAt,
+      "created": publishedAt,
     }`;
 
     sanity.fetch(query).then((res) => {
-      // dispatch({ type: LATEST_ARTICLES, articlesLatest });
-      // resolve(articlesLatest);
-      console.log('radommmm fetch');
-      console.log(res);
-
       if (res) {
         dispatch({ type: EXTRAARTICLES_SUCCESS, data: res });
       } else {
         dispatch({ type: EXTRAARTICLES_FAILURE, err: 'error' });
       }
-
-      // return axios.get(URL, { params: { limit } })
-      //   .then(res => dispatch({ type: EXTRAARTICLES_SUCCESS, data: res.data }))
-      //   .catch(err => dispatch({ type: EXTRAARTICLES_FAILURE, err: err.message }));
     });
   };
 
