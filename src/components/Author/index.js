@@ -24,7 +24,7 @@ export class Article extends PureComponent {
 
     if (socialHandles) {
       facebookLink = socialHandles.facebook ? (
-        <a className="" href={socialHandles.facebook} target="_blank">
+        <a href={`https://soundcloud.com/${socialHandles.facebook}`} target="_blank">
           <img
             className="dib  pr2"
             width="35"
@@ -35,7 +35,7 @@ export class Article extends PureComponent {
       ) : (false);
 
       twitterLink = socialHandles.twitter ? (
-        <a className="" href={socialHandles.twitter} target="_blank">
+        <a href={`https://twitter.com/${socialHandles.twitter}`} target="_blank">
           <img
             className="dib  pr2"
             width="35"
@@ -46,7 +46,7 @@ export class Article extends PureComponent {
       ) : (false);
 
       instagramLink = socialHandles.instagram ? (
-        <a className="" href={socialHandles.instagram} target="_blank">
+        <a href={`https://instagram.com/${socialHandles.instagram}`} target="_blank">
           <img
             className="dib  pr2"
             width="35"
@@ -57,7 +57,7 @@ export class Article extends PureComponent {
       ) : (false);
 
       soundcloudLink = socialHandles.soundcloud ? (
-        <a className="" href={socialHandles.soundcloud} target="_blank">
+        <a href={`https://soundcloud.com/${socialHandles.soundcloud}`} target="_blank">
           <img
             className="dib  pr2"
             width="35"
