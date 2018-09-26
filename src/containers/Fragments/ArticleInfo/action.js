@@ -7,7 +7,6 @@ export const ARTICLE_SUCCESS = 'ARTICLE_SUCCESS';
 // export const API_URL = (__DEV__) ?
 //   '/api/article' : 'https://rendah-mag.herokuapp.com/api/article';
 
-
 export const fetchArticle = (articleId: string) =>
   (dispatch) => {
     dispatch({ type: ARTICLE_REQUESTING, articleId });
@@ -22,24 +21,18 @@ export const fetchArticle = (articleId: string) =>
       title,
       description,
       "slug": slug.current,
-      "img": mainImage.asset->url,
+      "img": image.asset->url,
       "author": author->name,
-      "created": _createdAt,
+      "created": publishedAt,
       ...,
     }`;
 
     sanity.fetch(query, params).then((res) => {
-      console.log('ressssssss');
-      console.log(res);
       if (res) {
         dispatch({ type: ARTICLE_SUCCESS, articleId, data: res });
       } else {
         dispatch({ type: ARTICLE_FAILURE, articleId, err: 'error' });
       }
-
-      // return axios.get(URL, { params: { limit } })
-      //   .then(res => dispatch({ type: LATESTARTICLES_SUCCESS, data: res.data }))
-      //   .catch(err => dispatch({ type: LATESTARTICLES_FAILURE, err: err.message }));
     });
   };
 

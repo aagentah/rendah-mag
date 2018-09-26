@@ -1,21 +1,42 @@
+import sanity from '../../../utils/sanity';
 
 export const CATEGORYARTICLES_INVALID = 'CATEGORYARTICLES_INVALID';
 export const CATEGORYARTICLES_REQUESTING = 'CATEGORYARTICLES_REQUESTING';
 export const CATEGORYARTICLES_FAILURE = 'CATEGORYARTICLES_FAILURE';
 export const CATEGORYARTICLES_SUCCESS = 'CATEGORYARTICLES_SUCCESS';
 
-export const API_URL = (__DEV__) ?
-  '/api/category' : 'https://rendah-mag.herokuapp.com/api/category';
+// export const API_URL = (__DEV__) ?
+//   '/api/category' : 'https://rendah-mag.herokuapp.com/api/category';
 
-export const fetchCategoryArticles = (query: string, axios: any, URL: string = API_URL) =>
+export const fetchCategoryArticles = (id: string) =>
   (dispatch) => {
     dispatch({ type: CATEGORYARTICLES_REQUESTING });
 
-    return axios.get(URL, { params: { categoryQuery: query } })
-      .then(res => dispatch({ type: CATEGORYARTICLES_SUCCESS, data: res.data }))
-      .catch(err => dispatch({ type: CATEGORYARTICLES_FAILURE, err: err.message }));
+    const params = {
+      limit: '0..23',
+      id,
+    };
+
+    const query = `*[_type == "category" && slug.current == $id] [0] {
+      "articles": *[_type == "post" && references(^._id)] [${params.limit}] {
+        title,
+        description,
+        "slug": slug.current,
+        "img": image.asset->url,
+        "author": author->name,
+        "created": publishedAt,
+        }
+      }`;
+
+    sanity.fetch(query, params).then((res) => {
+      if (res) {
+        dispatch({ type: CATEGORYARTICLES_SUCCESS, data: res.articles });
+      } else {
+        dispatch({ type: CATEGORYARTICLES_FAILURE, err: 'error' });
+      }
+    });
   };
 
 /* istanbul ignore next */
-export const fetchCategoryArticlesIfNeeded = (query: string) =>
-  (dispatch, getState, axios: any) => { dispatch(fetchCategoryArticles(query, axios)); };
+export const fetchCategoryArticlesIfNeeded = (id: string) =>
+  (dispatch, getState, axios: any) => { dispatch(fetchCategoryArticles(id, axios)); };

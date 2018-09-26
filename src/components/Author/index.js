@@ -68,7 +68,6 @@ export class Article extends PureComponent {
       ) : (false);
     }
 
-
     return (
       <React.Fragment>
         {renderSeo}

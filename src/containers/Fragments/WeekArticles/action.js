@@ -16,39 +16,22 @@ export const fetchWeekArticles = () =>
       limit: '0..1',
     };
 
-    // const query =
-    // `*[_type == "post"] | order(publishedAt desc) [${params.limit}] {
-    //   ...,
-    //   author->,
-    //   category->,
-    //   "mainImage": mainImage.asset->url,
-    // }`;
-
     const query =
-    `*[_type == "post"] | order(_createdAt desc) [${params.limit}] {
+    `*[_type == "post"] | order(publishedAt desc) [${params.limit}] {
       title,
       description,
       "slug": slug.current,
-      "img": mainImage.asset->url,
+      "img": image.asset->url,
       "author": author->name,
-      "created": _createdAt,
+      "created": publishedAt,
     }`;
 
     sanity.fetch(query).then((res) => {
-      // dispatch({ type: LATEST_ARTICLES, articlesLatest });
-      // resolve(articlesLatest);
-      console.log('sanity fetch');
-      console.log(res);
-
       if (res) {
         dispatch({ type: WEEKARTICLES_SUCCESS, data: res });
       } else {
         dispatch({ type: WEEKARTICLES_FAILURE, err: 'error' });
       }
-
-      // return axios.get(URL, { params: { limit } })
-      //   .then(res => dispatch({ type: LATESTARTICLES_SUCCESS, data: res.data }))
-      //   .catch(err => dispatch({ type: LATESTARTICLES_FAILURE, err: err.message }));
     });
   };
 

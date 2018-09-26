@@ -16,16 +16,8 @@ export const fetchAuthors = () =>
       limit: '0..23',
     };
 
-    // const query =
-    // `*[_type == "post"] | order(publishedAt desc) [${params.limit}] {
-    //   ...,
-    //   author->,
-    //   category->,
-    //   "mainImage": mainImage.asset->url,
-    // }`;
-
     const query =
-    `*[_type == "author"] | order(_createdAt desc) [${params.limit}] {
+    `*[_type == "author"] | order(publishedAt desc) [${params.limit}] {
       name,
       alias,
       description,
@@ -34,20 +26,11 @@ export const fetchAuthors = () =>
     }`;
 
     sanity.fetch(query).then((res) => {
-      // dispatch({ type: LATEST_ARTICLES, articlesLatest });
-      // resolve(articlesLatest);
-      console.log('sanity fetch');
-      console.log(res);
-
       if (res) {
         dispatch({ type: AUTHORS_SUCCESS, data: res });
       } else {
         dispatch({ type: AUTHORS_FAILURE, err: 'error' });
       }
-
-      // return axios.get(URL, { params: { limit } })
-      //   .then(res => dispatch({ type: LATESTARTICLES_SUCCESS, data: res.data }))
-      //   .catch(err => dispatch({ type: LATESTARTICLES_FAILURE, err: err.message }));
     });
   };
 
