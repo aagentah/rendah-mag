@@ -18,7 +18,7 @@ export const fetchArticle = (articleId: string) =>
     };
 
     const query =
-    `*[_type == "post" && slug.current == $articleId][${params.limit}] {
+    `*[_type == "post" && slug.current == $articleId] [${params.limit}] {
       title,
       description,
       "slug": slug.current,
@@ -29,6 +29,8 @@ export const fetchArticle = (articleId: string) =>
     }`;
 
     sanity.fetch(query, params).then((res) => {
+      console.log('ressssssss');
+      console.log(res);
       if (res) {
         dispatch({ type: ARTICLE_SUCCESS, articleId, data: res });
       } else {
