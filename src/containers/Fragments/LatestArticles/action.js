@@ -13,7 +13,7 @@ export const fetchLatestArticles = (limit: number) =>
     dispatch({ type: LATESTARTICLES_REQUESTING });
 
     const params = {
-      limit: `2..${limit}`,
+      limit: `2..${(limit - 1)}`,
     };
 
     // const query =

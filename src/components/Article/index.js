@@ -8,7 +8,7 @@ import Sections from './Sections';
 import { convertDate, toTitleCase, toUrlCase } from '../../functions';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 
-// import LatestArticles from '../../containers/Fragments/LatestArticles';
+import LatestArticles from '../../containers/Fragments/LatestArticles';
 import SubscribeBanner from '../SubscribeBanner';
 import ExtraArticles from '../../containers/Fragments/ExtraArticles';
 
@@ -51,8 +51,8 @@ export class Article extends PureComponent {
     if (this.state.sideBarSize >= 1) {
       sideBarLatestArticles = (
         <React.Fragment>
-          <p className="t-title  grey  f5  pl4  pv2">More</p>
-          <ExtraArticles limit={4} type="list" />
+          <p className="t-title  grey  f5  pl4  pv2">Latest</p>
+          <LatestArticles limit={4} type="list" />
 
           <div className="pv3  pv0-lg">
             <p className="t-title  grey  f5  pl4  pv2">Subscribe to Rendah</p>
@@ -94,7 +94,7 @@ export class Article extends PureComponent {
                 </div>
 
                 <span className="grey  t8">{this.date(article.created)} | </span>
-                <Link to={`/author/${article.author}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
+                <Link to={`/author/${toUrlCase(article.author)}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
                 <h1 className="pb3  pt4  t-title">{article.title}</h1>
                 <p className="pv3  t-body  f5  dark-grey">{article.description}</p>
                 <Sections body={article.body} />
