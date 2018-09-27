@@ -23,6 +23,7 @@ export const fetchArticle = (articleId: string) =>
       "slug": slug.current,
       "img": image.asset->url,
       "author": author->name,
+      "authorSlug": author->slug.current,
       "created": publishedAt,
       ...,
     }`;

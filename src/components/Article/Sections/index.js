@@ -21,7 +21,7 @@ import ArticleLink from './Link';
 export class Seo extends PureComponent {
   renderSections = (section, i) => {
     // para
-    if (section._type === 'block' && !section.listsection) {
+    if (section._type === 'block' && !section.listItem) {
       return (
         <div key={i}>
           <Paragraph text={section.children} />
@@ -30,7 +30,7 @@ export class Seo extends PureComponent {
     }
 
     // bullet list
-    if (section._type === 'block' && section.listsection === 'bullet') {
+    if (section._type === 'block' && section.listItem === 'bullet') {
       return (
         <ul key={i}>
           <ListItem text={section.children} />
@@ -39,7 +39,7 @@ export class Seo extends PureComponent {
     }
 
     // number list
-    if (section._type === 'block' && section.listsection === 'number') {
+    if (section._type === 'block' && section.listItem === 'number') {
       return (
         <ul key={i}>
           <ListItem text={section.children} />

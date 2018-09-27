@@ -17,8 +17,6 @@ export class CategoryArticles extends PureComponent {
 
   renderCategoryArticleList = () => {
     const { categoryArticles } = this.props;
-    console.log('categoryArticles');
-    console.log(categoryArticles);
 
     if (
       !categoryArticles.readyStatus ||
