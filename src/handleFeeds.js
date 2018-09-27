@@ -1,9 +1,7 @@
-import MongoClient from 'mongodb';
 import builder from 'xmlbuilder';
-
 import sanity from './utils/sanity';
 
-const mongoHandle = app => {
+const handleFeeds = app => {
   app.get('/feeds/sitemap.xml', (req, res) => {
     const articles = [];
     const sitemap = [
@@ -153,4 +151,4 @@ const mongoHandle = app => {
   });
 };
 
-export default mongoHandle;
+export default handleFeeds;
