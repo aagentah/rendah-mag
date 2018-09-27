@@ -21,7 +21,7 @@ export class Home extends PureComponent {
         <Helmet title="Home" />
         <h1 className="dn">Home</h1>
         <WeekArticles padding="pt4  pb2" />
-        <LatestArticles limit={12} type="grid" padding="pb4" />
+        <LatestArticles limit={16} type="grid" padding="pb4" />
         <CategoryGrid padding="" />
       </main>
     );
