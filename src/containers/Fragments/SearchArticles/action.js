@@ -18,7 +18,7 @@ export const fetchSearchArticles = (id: string) =>
       id,
     };
 
-    const query = `*[_type == "post" && title match $id] | order(publishedAt desc) [${params.limit}] {
+    const query = `*[_type == "post" && title match $id || _type == "post" && description match $id] | order(publishedAt desc) [${params.limit}] {
       title,
       description,
       "slug": slug.current,
