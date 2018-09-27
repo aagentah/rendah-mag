@@ -8,8 +8,6 @@ import PropTypes from 'prop-types';
 export class Seo extends PureComponent {
   render() {
     const { article } = this.props;
-    console.log('article');
-    console.log(article);
 
     return (
       <React.Fragment>

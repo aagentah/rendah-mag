@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Sections from './Sections';
-import { convertDate, toTitleCase, toUrlCase } from '../../functions';
+import { convertDate, toTitleCase } from '../../functions';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 
 import LatestArticles from '../../containers/Fragments/LatestArticles';
@@ -40,11 +40,7 @@ export class Article extends PureComponent {
 
   render() {
     const article = this.props.info;
-
-    console.log('article yooooooooo');
-    console.log(article);
-
-    const authorInfoMatch = { params: { id: toUrlCase(article.author) } };
+    const authorInfoMatch = { params: { id: article.authorSlug } };
     let sideBarLatestArticles;
     let sideBarExtraArticles;
 
@@ -94,7 +90,7 @@ export class Article extends PureComponent {
                 </div>
 
                 <span className="grey  t8">{this.date(article.created)} | </span>
-                <Link to={`/author/${toUrlCase(article.author)}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
+                <Link to={`/author/${article.authorSlug}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
                 <h1 className="pb3  pt4  t-title">{article.title}</h1>
                 <p className="pv3  t-body  f5  dark-grey">{article.description}</p>
                 <Sections body={article.body} />
