@@ -15,6 +15,7 @@ export class PrivacyPolicy extends PureComponent {
     return (
       <main className="page-fade-in">
         <Helmet title="Privacy Policy" />
+
         <div className="container-small  center  pa4">
           <p className="t-body  t7">
             Privacy Policy<br /><br />

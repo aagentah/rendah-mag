@@ -2,7 +2,6 @@
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
-import { Link } from 'react-router-dom';
 import Iframe from 'react-iframe';
 import { isChrome, isAndroid } from 'react-device-detect';
 
@@ -41,22 +40,23 @@ export class WatchTower extends PureComponent {
 
   render() {
     const title = 'Watch Tower';
+    const desc = `The Rendah Team is invested in keeping you up-to-date
+    with the latest Halftime Beats. We've compiled our favourite Tracks &
+    Mixes into 2 Watch Tower playlists which will be updated regularly.`;
 
     return (
       <main className="page-fade-in">
-        <Helmet title={title} />
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={desc} />
+        </Helmet>
+
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb3" />
         <div className="container-medium  center  pt4  pb4">
           <div className="flex  flex-wrap">
             <div className="col-24">
               <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb2">
-                The&nbsp;
-                <Link className="link" to={'/Authors'}>
-                  <span className="rendah-red">Rendah Team</span>
-                </Link>
-                &nbsp;is invested in keeping you up-to-date with
-                the latest Halftime Beats. We&apos;ve compiled our favourite Tracks & Mixes into
-                2 &apos;Watch Tower&apos; playlists which will be updated regularly.
+                {desc}
               </p>
             </div>
           </div>

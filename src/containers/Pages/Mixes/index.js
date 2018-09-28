@@ -40,17 +40,21 @@ export class WatchTower extends PureComponent {
 
   render() {
     const title = 'Mixes';
+    const desc = 'Check out our Modules series featuring guest-mixes from upcomers within the scene.';
 
     return (
       <main className="page-fade-in">
-        <Helmet title={title} />
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={desc} />
+        </Helmet>
+
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb3" />
         <div className="container-medium  center  pt4  pb4">
           <div className="flex  flex-wrap">
             <div className="col-24">
               <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb2">
-                Check out our &apos;Modules&apos; series featuring
-                guest-mixes from upcomers within the scene.
+                {desc}
               </p>
             </div>
           </div>
