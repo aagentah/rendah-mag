@@ -1,5 +1,6 @@
 /* @flow */
-/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default,
+  react/forbid-prop-types */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -52,9 +53,9 @@ class ListItem extends Component {
 export default ListItem;
 
 ListItem.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.array,
 };
 
 ListItem.defaultProps = {
-  text: '',
+  text: [],
 };
