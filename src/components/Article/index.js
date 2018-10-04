@@ -68,7 +68,12 @@ export class Article extends PureComponent {
 
     return (
       <React.Fragment>
-        <Seo article={article} />
+        <Seo
+          title={article.title}
+          description={article.description}
+          img={article.img}
+          created={article.created}
+        />
 
         <div className="article">
           <figure className="rel  article__hero">
@@ -110,11 +115,15 @@ export class Article extends PureComponent {
 }
 
 Article.propTypes = {
-  info: PropTypes.shape(),
+  info: PropTypes.shape({
+    body: PropTypes.array,
+  }),
 };
 
 Article.defaultProps = {
-  info: {},
+  info: {
+    body: [],
+  },
 };
 
 export default Article;

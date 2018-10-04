@@ -1,5 +1,6 @@
 /* @flow */
-/* eslint-disable import/no-named-as-default, react/no-unknown-property */
+/* eslint-disable import/no-named-as-default, react/no-unknown-property,
+  react/forbid-prop-types */
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
@@ -125,11 +126,11 @@ export class Seo extends PureComponent {
 }
 
 Seo.propTypes = {
-  body: PropTypes.shape(),
+  body: PropTypes.array,
 };
 
 Seo.defaultProps = {
-  body: {},
+  body: [],
 };
 
 export default Seo;

@@ -1,5 +1,6 @@
 /* @flow */
-/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default,
+  react/forbid-prop-types */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -50,11 +51,11 @@ class Paragraph extends Component {
 }
 
 Paragraph.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.array,
 };
 
 Paragraph.defaultProps = {
-  text: '',
+  text: [],
 };
 
 export default Paragraph;

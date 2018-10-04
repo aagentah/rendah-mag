@@ -7,35 +7,35 @@ import PropTypes from 'prop-types';
 
 export class Seo extends PureComponent {
   render() {
-    const { article } = this.props;
+    const { title, description, img, created } = this.props;
 
     return (
       <React.Fragment>
         <Helmet>
-          <title>{article.title}</title>
-          <meta name="description" content={article.description} />
+          <title>{title}</title>
+          <meta name="description" content={description} />
 
           {/* Google+ */}
-          <meta itemprop="name" content={article.title} />
-          <meta itemprop="description" content={article.description} />
-          <meta itemprop="image" content={article.img} />
+          <meta itemprop="name" content={title} />
+          <meta itemprop="description" content={description} />
+          <meta itemprop="image" content={img} />
 
           {/* Twitter  */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@rendahmag" />
-          <meta name="twitter:title" content={article.title} />
-          <meta name="twitter:description" content={article.description} />
-          <meta name="twitter:image:src" content={article.img} />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
+          <meta name="twitter:image:src" content={img} />
 
           {/* Open Graph data */}
-          <meta property="og:title" content={article.title} />
+          <meta property="og:title" content={title} />
           <meta property="og:type" content="article" />
           <meta property="og:url" content="https://www.rendahmag.com/" />
-          <meta property="og:image" content={article.img} />
-          <meta property="og:description" content={article.description} />
+          <meta property="og:image" content={img} />
+          <meta property="og:description" content={description} />
           <meta property="og:site_name" content="Rendah" />
-          <meta property="article:published_time" content={article.created} />
-          <meta property="article:modified_time" content={article.created} />
+          <meta property="article:published_time" content={created} />
+          <meta property="article:modified_time" content={created} />
           <meta property="article:section" content="article" />
         </Helmet>
       </React.Fragment>
@@ -44,11 +44,17 @@ export class Seo extends PureComponent {
 }
 
 Seo.propTypes = {
-  article: PropTypes.shape(),
+  title: PropTypes.string,
+  description: PropTypes.string,
+  img: PropTypes.string,
+  created: PropTypes.string,
 };
 
 Seo.defaultProps = {
-  article: {},
+  title: '',
+  description: '',
+  img: '',
+  created: '',
 };
 
 export default Seo;
