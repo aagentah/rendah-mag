@@ -17,16 +17,21 @@ export class NotFound extends PureComponent {
 
   render() {
     const title = '404';
+    const desc = '404, this page does not exist.';
 
     return (
       <main className="page-fade-in">
-        <Helmet title={title} />
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={desc} />
+        </Helmet>
+
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
         <div className="container-medium  center  pt4  pb4">
           <div className="flex  flex-wrap">
             <div className="col-24">
               <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb2">
-                404, this page does not exist.
+                {desc}
               </p>
             </div>
           </div>

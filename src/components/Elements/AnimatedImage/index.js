@@ -41,7 +41,7 @@ class AnimatedImage extends Component {
 export default AnimatedImage;
 
 AnimatedImage.propTypes = {
-  lazy: PropTypes.boolean,
+  lazy: PropTypes.bool,
   src: PropTypes.string,
   alt: PropTypes.string,
   styles: PropTypes.string,

@@ -11,19 +11,19 @@ export class ArticleListGrid extends PureComponent {
   date = date => convertDate(date);
 
   render() {
-    const { padding } = this.props;
+    const { list, padding } = this.props;
 
     return (
       <div className={`container-medium  center  ${padding}`}>
         <div className="flex  flex-wrap">
-          {this.props.list.map(article => (
+          {list.map(article => (
             <div key={article.title} className="col-24  col-12-sm  col-24-lg  pt2  pb3  ph0  ph3-sm  ph0-lg">
               <article className="flex  flex-wrap  shadow2">
                 <figure className="col-7">
-                  <Link className="db" to={`/article/${article.url}`}>
+                  <Link className="db" to={`/article/${article.slug}`}>
                     <AnimatedImage
                       lazy
-                      src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${article.img}`}
+                      src={article.img}
                       alt={article.title}
                       styles="fade-in-zoom-in  h2  w-100"
                     />
@@ -31,7 +31,7 @@ export class ArticleListGrid extends PureComponent {
                 </figure>
 
                 <div className="col-17  ph3">
-                  <Link to={`/article/${article.url}`} className="t-body  db  link  pt2">
+                  <Link to={`/article/${article.slug}`} className="t-body  db  link  pt2">
                     <p className="t-title  black  f6  cp  over-hidden  link  list-card__title">{article.title}</p>
                   </Link>
                 </div>

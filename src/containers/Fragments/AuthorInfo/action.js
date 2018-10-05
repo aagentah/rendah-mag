@@ -1,18 +1,37 @@
+import sanity from '../../../utils/sanity';
 
 export const AUTHOR_REQUESTING = 'AUTHOR_REQUESTING';
 export const AUTHOR_FAILURE = 'AUTHOR_FAILURE';
 export const AUTHOR_SUCCESS = 'AUTHOR_SUCCESS';
 
-export const API_URL = (__DEV__) ?
-  '/api/author' : 'https://rendah-mag.herokuapp.com/api/author';
+// export const API_URL = (__DEV__) ?
+//   '/api/author' : 'https://rendah-mag.herokuapp.com/api/author';
 
-export const fetchAuthor = (authorId: string, axios: any, URL: string = API_URL) =>
+export const fetchAuthor = (authorId: string) =>
   (dispatch) => {
     dispatch({ type: AUTHOR_REQUESTING, authorId });
 
-    return axios.get(URL, { params: { title: authorId } })
-      .then(res => dispatch({ type: AUTHOR_SUCCESS, authorId, data: res.data }))
-      .catch(err => dispatch({ type: AUTHOR_FAILURE, authorId, err: err.message }));
+    const params = {
+      limit: '0..23',
+      authorId,
+    };
+
+    const query = `*[_type == "author" && slug.current == $authorId] [0] {
+      name,
+      alias,
+      description,
+      "img": image.asset->url,
+      "slug": slug.current,
+      socialHandles,
+    }`;
+
+    sanity.fetch(query, params).then((res) => {
+      if (res) {
+        dispatch({ type: AUTHOR_SUCCESS, authorId, data: res });
+      } else {
+        dispatch({ type: AUTHOR_FAILURE, authorId, err: 'error' });
+      }
+    });
   };
 
 // Using for preventing dobule fetching data
