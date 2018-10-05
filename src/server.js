@@ -20,7 +20,7 @@ import Html from './utils/Html';
 import App from './containers/App';
 import routes from './routes';
 import { port, host } from './config';
-import mongoHandle from './mongoHandle';
+import handleFeeds from './handleFeeds';
 
 const app = express();
 
@@ -55,8 +55,8 @@ if (__DEV__) {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-// load mongo db with all request types
-mongoHandle(app);
+// handle site map and mailchimp feeds
+handleFeeds(app);
 
 // Register server-side rendering middleware
 app.get('*', (req, res) => {
