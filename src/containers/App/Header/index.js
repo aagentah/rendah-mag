@@ -99,7 +99,7 @@ export class Header extends PureComponent {
             <ul className="tac  abs  header__desktop__nav__list">
               {links.map((link) => {
                 return (
-                  <li className="dib">
+                  <li key={link.text} className="dib">
                     <Link className="t-title  ttu  bold  dark-grey  ph2  f5  link" to={link.to}>{link.text}</Link>
                   </li>
                 );
@@ -128,7 +128,7 @@ export class Header extends PureComponent {
             <ul className="tac  fix  center  header__mobile__nav__list">
               {links.map((link) => {
                 return (
-                  <li className="db">
+                  <li key={link.text} className="db">
                     <Link onClick={this.mobileNavToggle} className="t-title  ttu  bold  db  dark-grey  pv3  f4  link" to={link.to}>{link.text}</Link>
                   </li>
                 );

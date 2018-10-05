@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class Paragraph extends Component {
+class ListItem extends Component {
   renderChildren = (child, i) => {
     if (child.marks) {
       if (child.marks.includes('stong') && child.marks.includes('em')) {
@@ -40,9 +40,9 @@ class Paragraph extends Component {
     if (text[0].text) {
       return (
         <React.Fragment>
-          <p className="db  t-body  f6  dark-grey  t-body  pv3">
+          <li className="db  t-body  f6  dark-grey  t-body">
             {text.map((child, i) => this.renderChildren(child, i))}
-          </p>
+          </li>
         </React.Fragment>
       );
     }
@@ -50,12 +50,12 @@ class Paragraph extends Component {
   }
 }
 
-Paragraph.propTypes = {
+export default ListItem;
+
+ListItem.propTypes = {
   text: PropTypes.array,
 };
 
-Paragraph.defaultProps = {
+ListItem.defaultProps = {
   text: [],
 };
-
-export default Paragraph;

@@ -31,20 +31,20 @@
   "homepage": "",
   "scripts": {
     "start": "better-npm-run start",
-    "heroku-postbuild": "yarn build",
-    "start:heroku": "yarn start:prod",
-    "start:production": "yarn build && yarn start:prod",
+    "heroku-postbuild": "npm run build",
+    "start:heroku": "npm run start:prod",
+    "start:production": "npm run build && npm run start:prod",
     "start:prod": "better-npm-run start:prod",
-    "start:prodlocal": "yarn build && better-npm-run start:prodlocal",
-    "build": "yarn clean:build && better-npm-run build",
-    "lint": "yarn lint:js && yarn lint:style",
+    "start:prodlocal": "npm run build && better-npm-run start:prodlocal",
+    "build": "npm run clean:build && better-npm-run build",
+    "lint": "npm run lint:js && npm run lint:style",
     "lint:js": "better-npm-run lint:js",
     "lint:style": "better-npm-run lint:style",
     "flow": "better-npm-run flow",
-    "clean:all": "yarn clean:build && yarn clean:test",
+    "clean:all": "npm run clean:build && npm run clean:test",
     "clean:build": "better-npm-run clean:build",
     "clean:test": "better-npm-run clean:test",
-    "coveralls": "better-npm-run coveralls && yarn clean:test"
+    "coveralls": "better-npm-run coveralls && npm run clean:test"
   },
   "betterScripts": {
     "start": {
@@ -159,6 +159,7 @@
     "not ie <= 8"
   ],
   "dependencies": {
+    "@sanity/client": "^0.133.2",
     "axios": "^0.17.0",
     "babel-polyfill": "^6.26.0",
     "chalk": "^2.3.0",
@@ -247,6 +248,7 @@
     "stylelint-webpack-plugin": "^0.9.0",
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
+    "webpack-sources": "1.0.1",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.20.0"
   }

@@ -110,7 +110,7 @@ module.exports = {
   name: 'client',
   target: 'web',
   cache: isDev,
-  devtool: isDev ? 'cheap-module-eval-source-map' : 'hidden-source-map',
+  // devtool: isDev ? 'cheap-module-eval-source-map' : 'hidden-source-map',
   context: path.join(process.cwd()),
   entry: getEntry(),
   output: {
