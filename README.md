@@ -19,7 +19,7 @@ npm install
 **3. Start to run it:**
 
 ```bash
-npm run start              # Building bundle and running development
+npm run start              # Running in development
 npm run start:prodlocal    # Building bundle and running production server
 ```
 
