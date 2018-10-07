@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 export class Seo extends PureComponent {
   render() {
-    const { title, description, img, created, author } = this.props;
+    const { title, slug, description, img, created, author } = this.props;
 
     return (
       <Helmet>
@@ -21,6 +21,7 @@ export class Seo extends PureComponent {
 
         {/* Open Graph data */}
         <meta property="og:title" content={title} />
+        <meta property="og:url" content={`https://www.rendahmag.com/article/${slug}`} />
         <meta property="og:image" content={img} />
         <meta property="og:description" content={description} />
         <meta property="article:published_time" content={created} />
@@ -34,6 +35,7 @@ export class Seo extends PureComponent {
 
 Seo.propTypes = {
   title: PropTypes.string,
+  slug: PropTypes.string,
   description: PropTypes.string,
   img: PropTypes.string,
   created: PropTypes.string,
@@ -42,6 +44,7 @@ Seo.propTypes = {
 
 Seo.defaultProps = {
   title: '',
+  slug: '',
   description: '',
   img: '',
   created: '',
