@@ -70,6 +70,7 @@ export class Article extends PureComponent {
       <React.Fragment>
         <Seo
           title={article.title}
+          slug={article.slug}
           description={article.description}
           img={article.img}
           created={article.created}

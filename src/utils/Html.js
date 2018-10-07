@@ -44,7 +44,6 @@ const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> =>
         <meta name="coverage" content="Global" />
         <meta name="owner" content="Dan Jones (Aagentah)" />
         <meta name="description" content="Beats, Halftime & Future Bass Magazine focused on the latest news & releases." />
-        <meta name="keywords" content="Beats, Halftime, Footwork, Trap, Future Bass, Drum & Bass, Dance Music, DnB, Magazine, Blog, News, Review, Mixes, Aagentah" />
         {head.meta.toComponent()}
 
         {head.title.toComponent()}

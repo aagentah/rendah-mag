@@ -21,6 +21,7 @@ export class Seo extends PureComponent {
 
         {/* Open Graph data */}
         <meta property="og:title" content={author.name} />
+        <meta property="og:url" content={`https://www.rendahmag.com/author/${author.slug}`} />
         <meta property="og:image" content={author.img} />
         <meta property="og:description" content={author.description} />
         <meta property="article:section" content="author" />
