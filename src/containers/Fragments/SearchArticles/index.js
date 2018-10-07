@@ -3,18 +3,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { frontloadConnect } from 'react-frontload';
+import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
 import ArticleListGrid from '../../../components/ArticleList/Grid';
 
-
 export class SearchArticles extends PureComponent {
-  componentDidMount() {
-    const query = this.props.match.params.query;
-    this.props.fetchSearchArticlesIfNeeded(query);
-  }
-
   renderSearchArticleList = () => {
     const { searchArticles } = this.props;
 
@@ -54,7 +50,6 @@ SearchArticles.propTypes = {
     list: PropTypes.arrayOf(PropTypes.object),
   }),
   match: PropTypes.shape(),
-  fetchSearchArticlesIfNeeded: PropTypes.func,
 };
 
 SearchArticles.defaultProps = {
@@ -64,7 +59,15 @@ SearchArticles.defaultProps = {
     list: [{}],
   },
   match: [],
-  fetchSearchArticlesIfNeeded: () => {},
 };
 
-export default connector(SearchArticles);
+const frontload = props =>
+  Promise.all([
+    props.fetchSearchArticlesIfNeeded(props.match.params.query),
+  ]);
+
+export default compose(
+  connector,
+  frontloadConnect(frontload, { onUpdate: false }),
+)(SearchArticles);
+

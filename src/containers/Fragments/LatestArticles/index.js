@@ -3,6 +3,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { frontloadConnect } from 'react-frontload';
+import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
@@ -11,11 +13,6 @@ import ArticleListList from '../../../components/ArticleList/List';
 
 
 export class LatestArticles extends PureComponent {
-  componentDidMount() {
-    const limit = this.props.limit;
-    this.props.fetchLatestArticlesIfNeeded(limit);
-  }
-
   renderLatestArticleList = () => {
     const { latestArticles } = this.props;
 
@@ -56,7 +53,6 @@ LatestArticles.propTypes = {
     err: PropTypes.any,
     list: PropTypes.arrayOf(PropTypes.object),
   }),
-  fetchLatestArticlesIfNeeded: PropTypes.func,
   type: PropTypes.string,
   limit: PropTypes.number,
 };
@@ -72,4 +68,13 @@ LatestArticles.defaultProps = {
   limit: 0,
 };
 
-export default connector(LatestArticles);
+const frontload = props =>
+  Promise.all([
+    props.fetchLatestArticlesIfNeeded(props.limit),
+  ]);
+
+export default compose(
+  connector,
+  frontloadConnect(frontload, { onUpdate: false }),
+)(LatestArticles);
+

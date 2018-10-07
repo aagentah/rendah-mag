@@ -3,6 +3,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { frontloadConnect } from 'react-frontload';
+import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
@@ -10,10 +12,6 @@ import ArticleListGrid from '../../../components/ArticleList/Grid';
 
 
 export class WeekArticles extends PureComponent {
-  componentDidMount() {
-    this.props.fetchWeekArticlesIfNeeded();
-  }
-
   renderWeekArticleList = () => {
     const { weekArticles } = this.props;
 
@@ -51,7 +49,6 @@ WeekArticles.propTypes = {
     err: PropTypes.any,
     list: PropTypes.arrayOf(PropTypes.object),
   }),
-  fetchWeekArticlesIfNeeded: PropTypes.func,
 };
 
 WeekArticles.defaultProps = {
@@ -60,7 +57,15 @@ WeekArticles.defaultProps = {
     err: '',
     list: [{}],
   },
-  fetchWeekArticlesIfNeeded: () => {},
 };
 
-export default connector(WeekArticles);
+const frontload = props =>
+  Promise.all([
+    props.fetchWeekArticlesIfNeeded(),
+  ]);
+
+export default compose(
+  connector,
+  frontloadConnect(frontload, { onUpdate: false }),
+)(WeekArticles);
+

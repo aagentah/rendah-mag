@@ -3,6 +3,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { frontloadConnect } from 'react-frontload';
+import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
@@ -10,10 +12,6 @@ import LatestAuthorList from '../../../components/AuthorList';
 
 
 export class Authors extends PureComponent {
-  componentDidMount() {
-    this.props.fetchAuthorsIfNeeded();
-  }
-
   renderLatestAuthorList = () => {
     const { authors } = this.props;
 
@@ -51,7 +49,6 @@ Authors.propTypes = {
     err: PropTypes.any,
     list: PropTypes.arrayOf(PropTypes.object),
   }),
-  fetchAuthorsIfNeeded: PropTypes.func,
 };
 
 Authors.defaultProps = {
@@ -60,7 +57,14 @@ Authors.defaultProps = {
     err: '',
     list: [{}],
   },
-  fetchAuthorsIfNeeded: () => {},
 };
 
-export default connector(Authors);
+const frontload = props =>
+  Promise.all([
+    props.fetchAuthorsIfNeeded(),
+  ]);
+
+export default compose(
+  connector,
+  frontloadConnect(frontload, { onUpdate: false }),
+)(Authors);
