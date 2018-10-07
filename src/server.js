@@ -9,16 +9,16 @@ import hpp from 'hpp';
 import favicon from 'serve-favicon';
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
-import { StaticRouter, matchPath } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import chalk from 'chalk';
 import cors from 'cors';
 import createHistory from 'history/createMemoryHistory';
+import { frontloadServerRender } from 'react-frontload';
 
 import configureStore from './redux/store';
 import Html from './utils/Html';
 import App from './containers/App';
-import routes from './routes';
 import { port, host } from './config';
 import handleFeeds from './handleFeeds';
 
@@ -64,47 +64,32 @@ app.get('*', (req, res) => {
 
   const history = createHistory();
   const store = configureStore(history);
-  const renderHtml = (store, htmlContent) => { // eslint-disable-line no-shadow
-    const html = renderToStaticMarkup(<Html store={store} htmlContent={htmlContent} />);
+  const routerContext = {};
+
+  const renderHtmlContent = () =>
+    renderToString(
+      <Provider store={store}>
+        <StaticRouter location={req.url} context={routerContext} >
+          <App noServerRender={__DISABLE_SSR__} />
+        </StaticRouter>
+      </Provider>,
+    );
+
+  const renderHtml = (htmlContent) => {
+    const html = renderToStaticMarkup(
+      <Html
+        store={store}
+        htmlContent={htmlContent}
+        noServerRender={__DISABLE_SSR__}
+      />,
+    );
 
     return `<!doctype html>${html}`;
   };
 
-  // If __DISABLE_SSR__ = true, disable server side rendering
-  if (__DISABLE_SSR__) {
-    res.send(renderHtml(store));
-    return;
-  }
-
-  // Load data on server-side
-  const loadBranchData = () => {
-    const promises = [];
-
-    routes.some((route) => {
-      const match = matchPath(req.path, route);
-
-      // $FlowFixMe: the params of pre-load actions are dynamic
-      if (match && route.loadData) promises.push(route.loadData(store.dispatch, match.params));
-
-      return match;
-    });
-
-    return Promise.all(promises);
-  };
-
-  // Send response after all the action(s) are dispathed
-  loadBranchData()
-    .then(() => {
-      // Setup React-Router server-side rendering
-      const routerContext = {};
-      const htmlContent = renderToString(
-        <Provider store={store}>
-          <StaticRouter location={req.url} context={routerContext}>
-            <App />
-          </StaticRouter>
-        </Provider>,
-      );
-
+  // Send response after all the action(s) are dispatched
+  frontloadServerRender(renderHtmlContent)
+    .then((htmlContent) => {
       // Check if the render result contains a redirect, if so we need to set
       // the specific status and redirect header and end the response
       if (routerContext.url) {
@@ -116,7 +101,7 @@ app.get('*', (req, res) => {
       // Checking is page is 404
       const status = routerContext.status === '404' ? 404 : 200;
       // Pass the route and initial state into html template
-      res.status(status).send(renderHtml(store, htmlContent));
+      res.status(status).send(renderHtml(htmlContent));
     })
     .catch((err) => {
       res.status(404).send('Not Found :(');

@@ -73,6 +73,7 @@ export class Article extends PureComponent {
           description={article.description}
           img={article.img}
           created={article.created}
+          author={article.author}
         />
 
         <div className="article">

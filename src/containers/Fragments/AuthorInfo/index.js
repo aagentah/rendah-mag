@@ -3,22 +3,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { frontloadConnect } from 'react-frontload';
+import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
 import Author from '../../../components/Author';
 
-
 export class AuthorInfo extends PureComponent {
-  componentDidMount() {
-    const { fetchAuthorIfNeeded, match: { params } } = this.props;
-
-    fetchAuthorIfNeeded(params.id);
-
-    const id = this.props.match.params.id;
-    this.props.fetchAuthorIfNeeded(id);
-  }
-
   renderAuthor = () => {
     const { authorInfo, match: { params } } = this.props;
     const authorInfoById = authorInfo[params.id];
@@ -58,7 +50,6 @@ AuthorInfo.propTypes = {
     info: PropTypes.object,
   }),
   match: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  fetchAuthorIfNeeded: PropTypes.func,
 };
 
 AuthorInfo.defaultProps = {
@@ -69,7 +60,14 @@ AuthorInfo.defaultProps = {
     info: {},
   },
   match: [],
-  fetchAuthorIfNeeded: () => {},
 };
 
-export default connector(AuthorInfo);
+const frontload = props =>
+  Promise.all([
+    props.fetchAuthorIfNeeded(props.match.params.id),
+  ]);
+
+export default compose(
+  connector,
+  frontloadConnect(frontload, { onUpdate: false }),
+)(AuthorInfo);

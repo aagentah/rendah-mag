@@ -9,6 +9,8 @@ import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter } from 'react-router-redux';
 import RedBox from 'redbox-react';
 import { Route } from 'react-router-dom';
+import { Frontload } from 'react-frontload';
+import App from './containers/App';
 
 import configureStore from './redux/store';
 import withTracker from './withTracker';
@@ -18,21 +20,27 @@ const initialState = window.__INITIAL_STATE__;
 const history = createHistory();
 const store = configureStore(history, initialState);
 const mountNode = document.getElementById('react-view');
+const noServerRender = window.__noServerRender__;
 
-const renderApp = () => {
-  const App = require('./containers/App').default;
+if (process.env.NODE_ENV !== 'production') {
+  console.log(`[react-frontload] server rendering configured ${noServerRender ? 'off' : 'on'}`);
+}
 
+const renderApp = () =>
   hydrate(
     <AppContainer errorReporter={({ error }) => <RedBox error={error} />}>
       <Provider store={store}>
-        <ConnectedRouter onUpdate={() => window.scrollTo(0, 0)} history={history}>
-          <Route component={withTracker(App)} />
-        </ConnectedRouter>
+        <Frontload noServerRender={window.__noServerRender__}>
+          <ConnectedRouter onUpdate={() => window.scrollTo(0, 0)} history={history}>
+            <Route
+              component={withTracker(() => <App noServerRender={noServerRender} />)}
+            />
+          </ConnectedRouter>
+        </Frontload>
       </Provider>
     </AppContainer>,
     mountNode,
   );
-};
 
 // Enable hot reload by react-hot-loader
 if (module.hot) {

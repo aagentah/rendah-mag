@@ -4,21 +4,14 @@ import/no-named-as-default-member */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { frontloadConnect } from 'react-frontload';
+import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
 import Article from '../../../components/Article';
 
 export class ArticleInfo extends PureComponent {
-  componentDidMount() {
-    const { fetchArticleIfNeeded, match: { params } } = this.props;
-
-    fetchArticleIfNeeded(params.id);
-
-    const id = this.props.match.params.id;
-    this.props.fetchArticleIfNeeded(id);
-  }
-
   renderArticle = () => {
     const { articleInfo, match: { params } } = this.props;
     const articleInfoById = articleInfo[params.id];
@@ -58,7 +51,6 @@ ArticleInfo.propTypes = {
     info: PropTypes.object,
   }),
   match: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  fetchArticleIfNeeded: PropTypes.func,
 };
 
 ArticleInfo.defaultProps = {
@@ -72,4 +64,12 @@ ArticleInfo.defaultProps = {
   fetchArticleIfNeeded: () => {},
 };
 
-export default connector(ArticleInfo);
+const frontload = props =>
+  Promise.all([
+    props.fetchArticleIfNeeded(props.match.params.id),
+  ]);
+
+export default compose(
+  connector,
+  frontloadConnect(frontload, { onUpdate: false }),
+)(ArticleInfo);

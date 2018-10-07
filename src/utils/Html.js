@@ -8,9 +8,13 @@ import _ from 'lodash';
 
 import type { Store } from '../types';
 
-type Props = { store: Store, htmlContent?: string };
+type Props = {
+  store: Store,
+  noServerRender: boolean,
+  htmlContent?: string,
+};
 
-const Html = ({ store, htmlContent }: Props): Element<'html'> => {
+const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> => {
   // Should be declared after "renderToStaticMarkup()" of "../server.js" or it won't work
   const head = Helmet.renderStatic();
   const attrs = head.htmlAttributes.toComponent();
@@ -39,20 +43,9 @@ const Html = ({ store, htmlContent }: Props): Element<'html'> => {
         <meta name="apple-mobile-web-app-title" content="Rendah" />
         <meta name="coverage" content="Global" />
         <meta name="owner" content="Dan Jones (Aagentah)" />
-
         <meta name="description" content="Beats, Halftime & Future Bass Magazine focused on the latest news & releases." />
         <meta name="keywords" content="Beats, Halftime, Footwork, Trap, Future Bass, Drum & Bass, Dance Music, DnB, Magazine, Blog, News, Review, Mixes, Aagentah" />
-
-        <meta property="fb:app_id" content="154881868603516" />
-        <meta property="fb:admins" content="danjonesaagentah" />
-        <meta property="og:type" content="article" />
-        <meta property="og:description" content="Beats, Halftime & Future Bass Magazine focused on the latest news & releases." />
-        <meta property="og:site_name" content="Rendah Mag" />
-
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@RendahMag" />
-        <meta name="twitter:creator" content="@RendahMag" />
-        <meta name="twitter:description" content="Beats, Halftime & Future Bass Magazine focused on the latest news & releases." />
+        {head.meta.toComponent()}
 
         {head.title.toComponent()}
         {head.base.toComponent()}
@@ -73,6 +66,14 @@ const Html = ({ store, htmlContent }: Props): Element<'html'> => {
         {
           _.keys(assets.styles).length === 0 ? null : null
         }
+
+        {/* configure the client to load data on initial render if __DISABLE_SSR__ is set */}
+        <script
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `window.__noServerRender__=${!!noServerRender};`,
+          }}
+        />
       </head>
       <body>
         <div

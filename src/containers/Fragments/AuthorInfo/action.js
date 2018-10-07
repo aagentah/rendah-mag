@@ -25,7 +25,7 @@ export const fetchAuthor = (authorId: string) =>
       socialHandles,
     }`;
 
-    sanity.fetch(query, params).then((res) => {
+    return sanity.fetch(query, params).then((res) => {
       if (res) {
         dispatch({ type: AUTHOR_SUCCESS, authorId, data: res });
       } else {
