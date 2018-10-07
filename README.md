@@ -30,7 +30,7 @@ Now the app should be running at [http://localhost:8080/](http://localhost:8080/
 
 [better-npm-run](https://github.com/benoror/better-npm-run) manages the scripts in a better way, which also provides the compatibility of cross-platform. All of the scripts are listed as following:
 
-`yarn <script>`|Description
+`npm run <script>`|Description
 ------------------|-----------
 `start`|Run your app on the development server at `localhost:3000`. HMR will be enabled.
 `start:prodlocal`|Bundle files to `./public/assets` and run it on the production server at `localhost:8080`.
