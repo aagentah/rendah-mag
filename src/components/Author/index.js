@@ -16,7 +16,6 @@ export class Article extends PureComponent {
     const { socialHandles } = author;
 
     const isArticle = this.props.article;
-    const renderSeo = this.props.seo ? <Seo author={author} /> : null;
     const containerClass = isArticle ? 'w-80-lg' : 'container-small  center';
     const borderClass = isArticle ? 'author__border  bt  bl-sm  bw2  bc-light-grey  pt4  pt0-md' : null;
 
@@ -24,7 +23,7 @@ export class Article extends PureComponent {
 
     if (socialHandles) {
       facebookLink = socialHandles.facebook ? (
-        <a href={`https://soundcloud.com/${socialHandles.facebook}`} rel="noopener noreferrer" target="_blank">
+        <a href={`https://facebook.com/${socialHandles.facebook}`} rel="noopener noreferrer" target="_blank">
           <img
             className="dib  pr2"
             width="35"
@@ -70,7 +69,9 @@ export class Article extends PureComponent {
 
     return (
       <React.Fragment>
-        {renderSeo}
+
+        {this.props.seo ? <Seo author={author} /> : null}
+
         <div className={`${containerClass}  ${padding}`}>
           <div className={`flex  flex-wrap  ${borderClass}`}>
             <div className="col-24  col-7-sm  col-6-md  pb4  pb0-sm">

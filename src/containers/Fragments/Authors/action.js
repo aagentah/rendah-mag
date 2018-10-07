@@ -25,7 +25,7 @@ export const fetchAuthors = () =>
       "img": image.asset->url,
     }`;
 
-    sanity.fetch(query).then((res) => {
+    return sanity.fetch(query).then((res) => {
       if (res) {
         dispatch({ type: AUTHORS_SUCCESS, data: res });
       } else {

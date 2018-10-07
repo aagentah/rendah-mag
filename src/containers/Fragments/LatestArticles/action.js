@@ -26,7 +26,7 @@ export const fetchLatestArticles = (limit: number) =>
       "created": publishedAt,
     }`;
 
-    sanity.fetch(query).then((res) => {
+    return sanity.fetch(query).then((res) => {
       if (res) {
         dispatch({ type: LATESTARTICLES_SUCCESS, data: res });
       } else {

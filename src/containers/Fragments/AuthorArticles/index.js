@@ -3,6 +3,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { frontloadConnect } from 'react-frontload';
+import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
@@ -10,11 +12,6 @@ import ArticleListGrid from '../../../components/ArticleList/Grid';
 
 
 export class AuthorArticles extends PureComponent {
-  componentDidMount() {
-    const id = this.props.match.params.id;
-    this.props.fetchAuthorArticlesIfNeeded(id);
-  }
-
   renderAuthorArticleList = () => {
     const { authorArticles } = this.props;
 
@@ -54,7 +51,6 @@ AuthorArticles.propTypes = {
     list: PropTypes.arrayOf(PropTypes.object),
   }),
   match: PropTypes.shape(),
-  fetchAuthorArticlesIfNeeded: PropTypes.func,
 };
 
 AuthorArticles.defaultProps = {
@@ -67,4 +63,12 @@ AuthorArticles.defaultProps = {
   fetchAuthorArticlesIfNeeded: () => {},
 };
 
-export default connector(AuthorArticles);
+const frontload = props =>
+  Promise.all([
+    props.fetchAuthorArticlesIfNeeded(props.match.params.id),
+  ]);
+
+export default compose(
+  connector,
+  frontloadConnect(frontload, { onUpdate: false }),
+)(AuthorArticles);
