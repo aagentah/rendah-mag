@@ -13,13 +13,14 @@ You can start by cloning the repository on your local machine by running:**
 **2. Install all of the dependencies:**
 
 ```bash
-yarn install
+npm install
 ```
 
 **3. Start to run it:**
 
 ```bash
-yarn start:prodlocal    # Building bundle and running production server
+npm run start              # Building bundle and running development
+npm run start:prodlocal    # Building bundle and running production server
 ```
 
 Now the app should be running at [http://localhost:8080/](http://localhost:8080/)
