@@ -3,6 +3,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { frontloadConnect } from 'react-frontload';
+import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
@@ -10,11 +12,6 @@ import ArticleListGrid from '../../../components/ArticleList/Grid';
 
 
 export class CategoryArticles extends PureComponent {
-  componentDidMount() {
-    const query = this.props.match.params.query;
-    this.props.fetchCategoryArticlesIfNeeded(query);
-  }
-
   renderCategoryArticleList = () => {
     const { categoryArticles } = this.props;
 
@@ -54,7 +51,6 @@ CategoryArticles.propTypes = {
     list: PropTypes.arrayOf(PropTypes.object),
   }),
   match: PropTypes.shape(),
-  fetchCategoryArticlesIfNeeded: PropTypes.func,
 };
 
 CategoryArticles.defaultProps = {
@@ -64,7 +60,15 @@ CategoryArticles.defaultProps = {
     list: [{}],
   },
   match: [],
-  fetchCategoryArticlesIfNeeded: () => {},
 };
 
-export default connector(CategoryArticles);
+const frontload = props =>
+  Promise.all([
+    props.fetchCategoryArticlesIfNeeded(props.match.params.query),
+  ]);
+
+export default compose(
+  connector,
+  frontloadConnect(frontload, { onUpdate: false }),
+)(CategoryArticles);
+

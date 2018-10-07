@@ -25,7 +25,7 @@ export const fetchExtraArticles = (limit: number) =>
       "created": publishedAt,
     }`;
 
-    sanity.fetch(query).then((res) => {
+    return sanity.fetch(query).then((res) => {
       if (res) {
         dispatch({ type: EXTRAARTICLES_SUCCESS, data: res });
       } else {

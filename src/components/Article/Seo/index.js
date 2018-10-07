@@ -7,38 +7,27 @@ import PropTypes from 'prop-types';
 
 export class Seo extends PureComponent {
   render() {
-    const { title, description, img, created } = this.props;
+    const { title, description, img, created, author } = this.props;
 
     return (
-      <React.Fragment>
-        <Helmet>
-          <title>{title}</title>
-          <meta name="description" content={description} />
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
 
-          {/* Google+ */}
-          <meta itemprop="name" content={title} />
-          <meta itemprop="description" content={description} />
-          <meta itemprop="image" content={img} />
+        {/* Twitter  */}
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image:src" content={img} />
 
-          {/* Twitter  */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@rendahmag" />
-          <meta name="twitter:title" content={title} />
-          <meta name="twitter:description" content={description} />
-          <meta name="twitter:image:src" content={img} />
-
-          {/* Open Graph data */}
-          <meta property="og:title" content={title} />
-          <meta property="og:type" content="article" />
-          <meta property="og:url" content="https://www.rendahmag.com/" />
-          <meta property="og:image" content={img} />
-          <meta property="og:description" content={description} />
-          <meta property="og:site_name" content="Rendah" />
-          <meta property="article:published_time" content={created} />
-          <meta property="article:modified_time" content={created} />
-          <meta property="article:section" content="article" />
-        </Helmet>
-      </React.Fragment>
+        {/* Open Graph data */}
+        <meta property="og:title" content={title} />
+        <meta property="og:image" content={img} />
+        <meta property="og:description" content={description} />
+        <meta property="article:published_time" content={created} />
+        <meta property="article:modified_time" content={created} />
+        <meta property="article:section" content="article" />
+        <meta property="article:author" content={author} />
+      </Helmet>
     );
   }
 }
@@ -48,6 +37,7 @@ Seo.propTypes = {
   description: PropTypes.string,
   img: PropTypes.string,
   created: PropTypes.string,
+  author: PropTypes.string,
 };
 
 Seo.defaultProps = {
@@ -55,6 +45,7 @@ Seo.defaultProps = {
   description: '',
   img: '',
   created: '',
+  author: '',
 };
 
 export default Seo;

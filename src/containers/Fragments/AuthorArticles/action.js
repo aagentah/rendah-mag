@@ -28,7 +28,7 @@ export const fetchAuthorArticles = (id: string) =>
     }
   }`;
 
-    sanity.fetch(query, params).then((res) => {
+    return sanity.fetch(query, params).then((res) => {
       if (res) {
         dispatch({ type: AUTHORARTICLES_SUCCESS, data: res.articles });
       } else {

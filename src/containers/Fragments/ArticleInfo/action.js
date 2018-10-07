@@ -28,7 +28,7 @@ export const fetchArticle = (articleId: string) =>
       ...,
     }`;
 
-    sanity.fetch(query, params).then((res) => {
+    return sanity.fetch(query, params).then((res) => {
       if (res) {
         dispatch({ type: ARTICLE_SUCCESS, articleId, data: res });
       } else {

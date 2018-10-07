@@ -28,7 +28,7 @@ export const fetchCategoryArticles = (id: string) =>
         }
       }`;
 
-    sanity.fetch(query, params).then((res) => {
+    return sanity.fetch(query, params).then((res) => {
       if (res) {
         dispatch({ type: CATEGORYARTICLES_SUCCESS, data: res.articles });
       } else {
