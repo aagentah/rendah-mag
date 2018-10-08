@@ -16,7 +16,7 @@ export class AuthorList extends PureComponent {
           {list.map(author => (
             <div key={author.name} className="col-24  col-12-sm  col-6-md  ph3  pb3">
               <figure className="rel  pb3  link  w-100">
-                <Link to={`/author/${author.slug}`} className="link  db  h4  w4  shadow2  center  br-100">
+                <Link title={author.slug} to={`/author/${author.slug}`} className="link  db  h4  w4  shadow2  center  br-100">
                   <AnimatedImage
                     lazy
                     src={author.img}
@@ -25,7 +25,7 @@ export class AuthorList extends PureComponent {
                   />
                 </Link>
               </figure>
-              <Link to={`/author/${author.slug}`} className="t-title  black  f6  link  db  pt1  pb3  tac  cp">
+              <Link title={author.slug} to={`/author/${author.slug}`} className="t-title  black  f6  link  db  pt1  pb3  tac  cp">
                 <span className="db">{author.name}</span>
                 <span className="db  t8  grey  pt1">({author.alias})</span>
               </Link>
