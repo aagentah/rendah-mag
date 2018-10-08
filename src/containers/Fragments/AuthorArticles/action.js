@@ -38,5 +38,5 @@ export const fetchAuthorArticles = (id: string) =>
   };
 
 /* istanbul ignore next */
-export const fetchAuthorArticlesIfNeeded = (id: string) =>
-  (dispatch, getState, axios: any) => { dispatch(fetchAuthorArticles(id, axios)); };
+export const fetchAuthorArticlesIfNeeded = (id: string) => dispatch =>
+  dispatch(fetchAuthorArticles(id));

@@ -50,14 +50,13 @@ const shouldFetchArticle = (state, articleId: string): boolean => {
 };
 
 /* istanbul ignore next */
-export const fetchArticleIfNeeded = (articleId: string) =>
-  (dispatch, getState, axios: any) => {
+export const fetchArticleIfNeeded = (articleId: string) => (dispatch, getState) => {
+  /* istanbul ignore next */
+  if (shouldFetchArticle(getState(), articleId)) {
     /* istanbul ignore next */
-    if (shouldFetchArticle(getState(), articleId)) {
-      /* istanbul ignore next */
-      return dispatch(fetchArticle(articleId, axios));
-    }
+    return dispatch(fetchArticle(articleId));
+  }
 
-    /* istanbul ignore next */
-    return null;
-  };
+  /* istanbul ignore next */
+  return Promise.resolve();
+};
