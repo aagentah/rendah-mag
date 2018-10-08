@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Sections from './Sections';
+import SocialLinks from './SocialLinks';
+
 import { convertDate, toTitleCase } from '../../functions';
 import AuthorInfo from '../../containers/Fragments/AuthorInfo';
 
@@ -70,6 +72,7 @@ export class Article extends PureComponent {
       <React.Fragment>
         <Seo
           title={article.title}
+          slug={article.slug}
           description={article.description}
           img={article.img}
           created={article.created}
@@ -96,10 +99,11 @@ export class Article extends PureComponent {
                 </div>
 
                 <span className="grey  t8">{this.date(article.created)} | </span>
-                <Link to={`/author/${article.authorSlug}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
+                <Link title={article.authorSlug} to={`/author/${article.authorSlug}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
                 <h1 className="pb3  pt4  t-title">{article.title}</h1>
                 <p className="pv3  t-body  f5  dark-grey">{article.description}</p>
                 <Sections body={article.body} />
+                <SocialLinks article={article} />
                 <AuthorInfo article padding="pt4  pt5-sm" match={authorInfoMatch} />
               </article>
 

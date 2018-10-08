@@ -69,7 +69,7 @@ const handleFeeds = app => {
       limit: '0..4',
     };
 
-    const query = `*[_type == "post"] | order(publishedAt asc) [${params.limit}] {
+    const query = `*[_type == "post"] | order(publishedAt desc) [${params.limit}] {
       title,
       description,
       "slug": slug.current,

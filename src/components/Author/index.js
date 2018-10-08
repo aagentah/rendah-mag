@@ -23,7 +23,7 @@ export class Article extends PureComponent {
 
     if (socialHandles) {
       facebookLink = socialHandles.facebook ? (
-        <a href={`https://facebook.com/${socialHandles.facebook}`} rel="noopener noreferrer" target="_blank">
+        <a title="facebook" href={`https://facebook.com/${socialHandles.facebook}`} rel="noopener noreferrer" target="_blank">
           <img
             className="dib  pr2"
             width="35"
@@ -34,7 +34,7 @@ export class Article extends PureComponent {
       ) : (false);
 
       twitterLink = socialHandles.twitter ? (
-        <a href={`https://twitter.com/${socialHandles.twitter}`} rel="noopener noreferrer" target="_blank">
+        <a title="twitter" href={`https://twitter.com/${socialHandles.twitter}`} rel="noopener noreferrer" target="_blank">
           <img
             className="dib  pr2"
             width="35"
@@ -45,7 +45,7 @@ export class Article extends PureComponent {
       ) : (false);
 
       instagramLink = socialHandles.instagram ? (
-        <a href={`https://instagram.com/${socialHandles.instagram}`} rel="noopener noreferrer" target="_blank">
+        <a title="instagram" href={`https://instagram.com/${socialHandles.instagram}`} rel="noopener noreferrer" target="_blank">
           <img
             className="dib  pr2"
             width="35"
@@ -56,7 +56,7 @@ export class Article extends PureComponent {
       ) : (false);
 
       soundcloudLink = socialHandles.soundcloud ? (
-        <a href={`https://soundcloud.com/${socialHandles.soundcloud}`} rel="noopener noreferrer" target="_blank">
+        <a title="soundcloud" href={`https://soundcloud.com/${socialHandles.soundcloud}`} rel="noopener noreferrer" target="_blank">
           <img
             className="dib  pr2"
             width="35"
@@ -77,6 +77,7 @@ export class Article extends PureComponent {
             <div className="col-24  col-7-sm  col-6-md  pb4  pb0-sm">
               <figure>
                 <Link
+                  title={author.slug}
                   to={`/author/${author.slug}`}
                   className="link  db  h4  w4  center  shadow2  br-100"
                 >
@@ -93,6 +94,7 @@ export class Article extends PureComponent {
             <div className="col-22  col-17-sm  col-18-md  center">
               <div className="flex  flex-column  justify-center  h4">
                 <Link
+                  title={author.slug}
                   to={`/author/${author.slug}`}
                   className="link  black  f5  pt2  db  cp  t-title  no-underline  tac  tal-sm"
                 >

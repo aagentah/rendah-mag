@@ -2,10 +2,9 @@
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
-import Iframe from 'react-iframe';
-import { isChrome, isAndroid } from 'react-device-detect';
 
 import Hero from '../../../components/Hero';
+import AnimatedImage from '../../../components/Elements/AnimatedImage';
 import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
 
 export class WatchTower extends PureComponent {
@@ -14,28 +13,6 @@ export class WatchTower extends PureComponent {
   }
   componentDidUpdate() {
     window.scrollTo(0, 0);
-  }
-
-  playlistEmbeds = () => {
-    if (isAndroid && isChrome) {
-      return <p className="pa4  t8  t-body  grey  tac"><a className="t8  link  rendah-red" rel="noopener noreferrer" target="_blank" href="https://docs.google.com/a/rendahmag.com/forms/d/e/1FAIpQLSfNxc82RJuzC0DnISat7n4H-G7IsPQIdaMpe202iiHZEoso9w/closedform">Soundcloud&#39;s Application API</a> currently does not work with Android (Chrome) To preview, please try another browser.</p>;
-    }
-
-    return (
-      <div className="flex  flex-wrap  pt4">
-        <div className="col-24  col-12-md  center  pb0  pb4-md">
-          <div className="w-90  db  center  mb3">
-            <Iframe
-              url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/484994280&color=%23ff817b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
-              width="100%"
-              height="420"
-              display="initial"
-              position="relative"
-            />
-          </div>
-        </div>
-      </div>
-    );
   }
 
   render() {
@@ -58,7 +35,28 @@ export class WatchTower extends PureComponent {
               </p>
             </div>
           </div>
-          {this.playlistEmbeds()}
+          <div className="flex  flex-wrap  justify-center  pv4">
+            <div className="col-6  pa3">
+              <a className="db  shadow2  link" title="modules-001" href="https://soundcloud.com/rendahmag/rendah-mag-modules-001-susp3c" rel="noopener noreferrer" target="_blank">
+                <AnimatedImage
+                  lazy
+                  src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1539000825/modules/modules-001.jpg"
+                  alt="modules-001"
+                  styles="fade-in-zoom-in  w-100"
+                />
+              </a>
+            </div>
+            <div className="col-6  pa3">
+              <a className="db  shadow2  link" title="modules-002" href="https://soundcloud.com/rendahmag/rendah-modules-002-host" rel="noopener noreferrer" target="_blank">
+                <AnimatedImage
+                  lazy
+                  src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1539000827/modules/modules-002.jpg"
+                  alt="modules-002"
+                  styles="fade-in-zoom-in  w-100"
+                />
+              </a>
+            </div>
+          </div>
         </div>
 
         <p className="t-title  bold  tac  f6  ttu  pb3">MORE ARTICLES</p>
