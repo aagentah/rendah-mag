@@ -38,5 +38,5 @@ export const fetchCategoryArticles = (id: string) =>
   };
 
 /* istanbul ignore next */
-export const fetchCategoryArticlesIfNeeded = (id: string) =>
-  (dispatch, getState, axios: any) => { dispatch(fetchCategoryArticles(id, axios)); };
+export const fetchCategoryArticlesIfNeeded = (id: string) => dispatch =>
+  dispatch(fetchCategoryArticles(id));
