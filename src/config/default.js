@@ -89,7 +89,7 @@ module.exports = {
       },
       {
         property: 'og:image',
-        content: 'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1523314127/brand/rendah.png',
+        content: 'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1539032515/brand/rendah-facebook-meta-logo.jpg',
       },
       {
         property: 'og:image:width',
@@ -108,7 +108,7 @@ module.exports = {
       },
       {
         name: 'twitter:image',
-        content: 'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1523314127/brand/rendah.png',
+        content: 'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1539032515/brand/rendah-facebook-meta-logo.jpg',
       },
       {
         name: 'twitter:card',
