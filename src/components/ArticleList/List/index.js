@@ -20,7 +20,7 @@ export class ArticleListGrid extends PureComponent {
             <div key={article.title} className="col-24  col-12-sm  col-24-lg  pt2  pb3  ph0  ph3-sm  ph0-lg">
               <article className="flex  flex-wrap  shadow2">
                 <figure className="col-7">
-                  <Link className="db" to={`/article/${article.slug}`}>
+                  <Link className="db" title={article.slug} to={`/article/${article.slug}`}>
                     <AnimatedImage
                       lazy
                       src={article.img}
@@ -31,7 +31,7 @@ export class ArticleListGrid extends PureComponent {
                 </figure>
 
                 <div className="col-17  ph3">
-                  <Link to={`/article/${article.slug}`} className="t-body  db  link  pt2">
+                  <Link title={article.slug} to={`/article/${article.slug}`} className="t-body  db  link  pt2">
                     <p className="t-title  black  f6  cp  over-hidden  link  list-card__title">{article.title}</p>
                   </Link>
                 </div>

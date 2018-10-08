@@ -92,7 +92,7 @@ export class Header extends PureComponent {
         {/* Desktop */}
         <header className="fix  w-100  shadow1  z9  bg-white  dn  db-lg  header__desktop">
           <nav className="container-large  center  rel" role="banner">
-            <Link className="link  abs  w3  header__desktop__logo" to={'/'}>
+            <Link className="link  abs  w3  header__desktop__logo" title="rendah" to={'/'}>
               <img className="pt1  mt1" width="38" src={Logo} alt="Logo" role="presentation" />
             </Link>
 
@@ -100,7 +100,7 @@ export class Header extends PureComponent {
               {links.map((link) => {
                 return (
                   <li key={link.text} className="dib">
-                    <Link className="t-title  ttu  bold  dark-grey  ph2  f5  link" to={link.to}>{link.text}</Link>
+                    <Link className="t-title  ttu  bold  dark-grey  ph2  f5  link" title={link.to} to={link.to}>{link.text}</Link>
                   </li>
                 );
               })}
@@ -120,7 +120,7 @@ export class Header extends PureComponent {
             <span className="bg-black" />
           </div>
 
-          <Link className="link  abs  w3  center  center  header__mobile__logo" to={'/'}>
+          <Link className="link  abs  w3  center  center  header__mobile__logo" title="rendah" to={'/'}>
             <img className="pt1  mt1  center" width="38" src={Logo} alt="Logo" role="presentation" />
           </Link>
 
@@ -129,7 +129,7 @@ export class Header extends PureComponent {
               {links.map((link) => {
                 return (
                   <li key={link.text} className="db">
-                    <Link onClick={this.mobileNavToggle} className="t-title  ttu  bold  db  dark-grey  pv3  f4  link" to={link.to}>{link.text}</Link>
+                    <Link onClick={this.mobileNavToggle} className="t-title  ttu  bold  db  dark-grey  pv3  f4  link" title={link.to} to={link.to}>{link.text}</Link>
                   </li>
                 );
               })}
