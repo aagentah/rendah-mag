@@ -36,6 +36,5 @@ export const fetchSearchArticles = (id: string) => (dispatch) => {
 };
 
 /* istanbul ignore next */
-export const fetchSearchArticlesIfNeeded = (id: string) => (dispatch) => {
+export const fetchSearchArticlesIfNeeded = (id: string) => dispatch =>
   dispatch(fetchSearchArticles(id));
-};

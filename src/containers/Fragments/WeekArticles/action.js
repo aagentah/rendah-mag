@@ -46,14 +46,13 @@ const shouldFetchWeekArticles = (state): boolean => {
 };
 
 /* istanbul ignore next */
-export const fetchWeekArticlesIfNeeded = () =>
-  (dispatch, getState, axios: any) => {
+export const fetchWeekArticlesIfNeeded = () => (dispatch, getState) => {
+  /* istanbul ignore next */
+  if (shouldFetchWeekArticles(getState())) {
     /* istanbul ignore next */
-    if (shouldFetchWeekArticles(getState())) {
-      /* istanbul ignore next */
-      return dispatch(fetchWeekArticles(axios));
-    }
+    return dispatch(fetchWeekArticles());
+  }
 
-    /* istanbul ignore next */
-    return null;
-  };
+  /* istanbul ignore next */
+  return Promise.resolve();
+};
