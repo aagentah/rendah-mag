@@ -35,7 +35,5 @@ export const fetchExtraArticles = (limit: number) =>
   };
 
 /* istanbul ignore next */
-export const fetchExtraArticlesIfNeeded = (limit: number) =>
-  (dispatch, axios: any) => {
-    dispatch(fetchExtraArticles(limit, axios));
-  };
+export const fetchExtraArticlesIfNeeded = (limit: number) => dispatch =>
+  dispatch(fetchExtraArticles(limit));

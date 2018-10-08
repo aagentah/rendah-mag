@@ -45,14 +45,13 @@ const shouldFetchAuthors = (state): boolean => {
 };
 
 /* istanbul ignore next */
-export const fetchAuthorsIfNeeded = () =>
-  (dispatch, getState, axios: any) => {
+export const fetchAuthorsIfNeeded = () => (dispatch, getState) => {
+  /* istanbul ignore next */
+  if (shouldFetchAuthors(getState())) {
     /* istanbul ignore next */
-    if (shouldFetchAuthors(getState())) {
-      /* istanbul ignore next */
-      return dispatch(fetchAuthors(axios));
-    }
+    return dispatch(fetchAuthors());
+  }
 
-    /* istanbul ignore next */
-    return null;
-  };
+  /* istanbul ignore next */
+  return Promise.resolve();
+};
