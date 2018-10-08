@@ -12,10 +12,10 @@
 // Mixins
 @import 'mixins/box-shadow';
 @import 'mixins/breakpoints';
-@import 'mixins/placeholder';
+// @import 'mixins/placeholder';
 
 // Utilities
-@import 'utilities/aspect-ratio';
+// @import 'utilities/aspect-ratio';
 @import 'utilities/background';
 @import 'utilities/base';
 @import 'utilities/border';
@@ -23,7 +23,7 @@
 @import 'utilities/border-radius';
 @import 'utilities/border-width';
 @import 'utilities/box-shadow';
-@import 'utilities/clearfix';
+// @import 'utilities/clearfix';
 @import 'utilities/color';
 @import 'utilities/cursor';
 // @import 'utilities/debug';
@@ -35,12 +35,12 @@
 @import 'utilities/font-weight';
 @import 'utilities/grid';
 @import 'utilities/height';
-@import 'utilities/helper';
+// @import 'utilities/helper';
 @import 'utilities/hover';
 @import 'utilities/line-height';
 @import 'utilities/link';
 @import 'utilities/max-width';
-@import 'utilities/negative-margin';
+// @import 'utilities/negative-margin';
 @import 'utilities/object';
 @import 'utilities/opacity';
 @import 'utilities/overflow';
@@ -51,7 +51,7 @@
 @import 'utilities/text-decoration';
 @import 'utilities/text-transform';
 @import 'utilities/typography';
-@import 'utilities/tracking';
+// @import 'utilities/tracking';
 @import 'utilities/vertical-align';
 @import 'utilities/width';
 @import 'utilities/z';
