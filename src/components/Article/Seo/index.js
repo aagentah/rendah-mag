@@ -17,16 +17,18 @@ export class Seo extends PureComponent {
         {/* Twitter  */}
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image:src" content={img} />
+        <meta name="twitter:image" content={img} />
 
         {/* Open Graph data */}
         <meta property="og:title" content={title} />
         <meta property="og:url" content={`https://www.rendahmag.com/article/${slug}`} />
         <meta property="og:image" content={img} />
+        <meta property="og:image:width" content="1080" />
+        <meta property="og:image:height" content="1080" />
         <meta property="og:description" content={description} />
         <meta property="article:published_time" content={created} />
         <meta property="article:modified_time" content={created} />
-        <meta property="article:section" content="article" />
+        <meta property="article:section" content="Article" />
         <meta property="article:author" content={author} />
       </Helmet>
     );
