@@ -28,16 +28,16 @@ const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> =>
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
+        {head.meta.toComponent()}
+        {head.title.toComponent()}
+        {head.base.toComponent()}
+        {head.link.toComponent()}
+
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-
-        {head.meta.toComponent()}
-        {head.title.toComponent()}
-        {head.base.toComponent()}
-        {head.link.toComponent()}
 
         {/* Styles will be presented in production with webpack extract text plugin */}
         {_

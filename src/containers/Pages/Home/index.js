@@ -16,9 +16,18 @@ export class Home extends PureComponent {
   }
 
   render() {
+    const title = 'Home';
+    const desc = 'Beats, Halftime & Future Bass Magazine focused on the latest news & releases.';
+    const canonical = 'https://www.rendahmag.com/';
+
     return (
       <main className="page-fade-in">
         <Helmet title="Home" />
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={desc} />
+          <link rel="canonical" href={canonical} />
+        </Helmet>
         <h1 className="dn">Home</h1>
         <WeekArticles padding="pt4  pb2" />
         <LatestArticles limit={16} type="grid" padding="pb4" />
