@@ -6,31 +6,24 @@ import PropTypes from 'prop-types';
 
 
 export class Image extends PureComponent {
-  caption = () => {
-    if (this.props.caption) {
-      return <figcaption className="t8  fs-italic  tac  pt2  grey">{this.props.caption}</figcaption>;
-    }
-    return null;
-  };
-
   render() {
+    const imageRef = this.props.section.asset._ref;
+    const imageUrl = imageRef.replace('image-', 'https://cdn.sanity.io/images/q8z2vf2k/production/').replace('-jpg', '.jpg');
+
     return (
       <figure>
-        <img className="w-80  db  center" alt={this.props.img} src={`https://res.cloudinary.com/dzz8ji5lj/image/upload/q_auto:good/${this.props.img}`} />
-        {this.caption()}
+        <img className="w-50  db  center" alt={imageUrl} src={imageUrl} />
       </figure>
     );
   }
 }
 
 Image.propTypes = {
-  img: PropTypes.string,
-  caption: PropTypes.string,
+  section: PropTypes.string,
 };
 
 Image.defaultProps = {
-  img: '',
-  caption: '',
+  section: '',
 };
 
 export default Image;
