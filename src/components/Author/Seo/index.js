@@ -13,6 +13,7 @@ export class Seo extends PureComponent {
       <Helmet>
         <title>{author.name}</title>
         <meta name="description" content={author.description} />
+        <link rel="canonical" href={`https://www.rendahmag.com/author/${author.slug}`} />
 
         {/* Twitter  */}
         <meta name="twitter:title" content={author.name} />

@@ -18,12 +18,14 @@ export class WatchTower extends PureComponent {
   render() {
     const title = 'Mixes';
     const desc = 'Check out our Modules series featuring guest-mixes from upcomers within the scene.';
+    const canonical = 'https://www.rendahmag.com/mixes';
 
     return (
       <main className="page-fade-in">
         <Helmet>
           <title>{title}</title>
           <meta name="description" content={desc} />
+          <link rel="canonical" href={canonical} />
         </Helmet>
 
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb3" />

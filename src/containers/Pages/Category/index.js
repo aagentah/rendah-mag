@@ -17,10 +17,16 @@ export class Category extends PureComponent {
 
   render() {
     const title = this.props.match.params.query;
+    const canonical = `https://www.rendahmag.com/category/${title}`;
 
     return (
       <main className="page-fade-in">
         <Helmet title={title} />
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={`The latest ${title}`} />
+          <link rel="canonical" href={canonical} />
+        </Helmet>
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
         <CategoryArticles match={this.props.match} />
       </main>
