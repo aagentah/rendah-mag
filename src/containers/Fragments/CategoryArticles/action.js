@@ -18,7 +18,7 @@ export const fetchCategoryArticles = (id: string) =>
     };
 
     const query = `*[_type == "category" && slug.current == $id] [0] {
-      "articles": *[_type == "post" && references(^._id)] [${params.limit}] {
+      "articles": *[_type == "post" && references(^._id)] | order(publishedAt desc) [${params.limit}] {
         title,
         description,
         "slug": slug.current,
