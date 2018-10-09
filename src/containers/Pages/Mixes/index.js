@@ -38,7 +38,7 @@ export class WatchTower extends PureComponent {
             </div>
           </div>
           <div className="flex  flex-wrap  justify-center  pv4">
-            <div className="col-6  pa3">
+            <div className="col-12  col-6-md  pa3">
               <a className="db  shadow2  link" title="modules-001" href="https://soundcloud.com/rendahmag/rendah-mag-modules-001-susp3c" rel="noopener noreferrer" target="_blank">
                 <AnimatedImage
                   lazy
@@ -48,7 +48,7 @@ export class WatchTower extends PureComponent {
                 />
               </a>
             </div>
-            <div className="col-6  pa3">
+            <div className="col-12  col-6-md  pa3">
               <a className="db  shadow2  link" title="modules-002" href="https://soundcloud.com/rendahmag/rendah-modules-002-host" rel="noopener noreferrer" target="_blank">
                 <AnimatedImage
                   lazy
