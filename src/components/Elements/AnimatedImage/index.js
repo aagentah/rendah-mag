@@ -17,6 +17,7 @@ class AnimatedImage extends Component {
                 className={`fadeIn-zoomIn  objf-cover  objp-center  ${styles}`}
                 src={src}
                 alt={alt}
+                title={alt}
               />
             </div>
           </LazyLoad>
