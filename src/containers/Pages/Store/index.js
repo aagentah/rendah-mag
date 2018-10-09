@@ -16,10 +16,16 @@ export class Store extends PureComponent {
 
   render() {
     const title = 'Store';
+    const desc = 'We ship worldwide and you can cancel at any time.';
+    const canonical = 'https://www.rendahmag.com/store';
 
     return (
       <main className="page-fade-in">
-        <Helmet title={title} />
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={desc} />
+          <link rel="canonical" href={canonical} />
+        </Helmet>
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
         <StoreList />
       </main>

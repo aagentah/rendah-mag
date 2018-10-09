@@ -16,16 +16,16 @@ export class SocialLinks extends PureComponent {
       let instagram = null;
 
       if (article.socialHandles.soundcloud) {
-        soundcloud = <a className="db  pv2  link  f6  black  t-body" href={`https://soundcloud.com/${article.socialHandles.soundcloud}`} rel="noopener noreferrer" target="_blank">- soundcloud/{article.socialHandles.soundcloud}</a>;
+        soundcloud = <a className="db  pv2  link  f6  black  t-body" title="soundcloud" href={`https://soundcloud.com/${article.socialHandles.soundcloud}`} rel="noopener noreferrer" target="_blank">- soundcloud/{article.socialHandles.soundcloud}</a>;
       }
       if (article.socialHandles.facebook) {
-        facebook = <a className="db  pv2  link  f6  black  t-body" href={`https://facebook.com/${article.socialHandles.facebook}`} rel="noopener noreferrer" target="_blank">f- acebook/{article.socialHandles.facebook}</a>;
+        facebook = <a className="db  pv2  link  f6  black  t-body" title="facebook" href={`https://facebook.com/${article.socialHandles.facebook}`} rel="noopener noreferrer" target="_blank">f- acebook/{article.socialHandles.facebook}</a>;
       }
       if (article.socialHandles.twitter) {
-        twitter = <a className="db  pv2  link  f6  black  t-body" href={`https://twitter.com/${article.socialHandles.twitter}`} rel="noopener noreferrer" target="_blank">- twitter/{article.socialHandles.twitter}</a>;
+        twitter = <a className="db  pv2  link  f6  black  t-body" title="twitter" href={`https://twitter.com/${article.socialHandles.twitter}`} rel="noopener noreferrer" target="_blank">- twitter/{article.socialHandles.twitter}</a>;
       }
       if (article.socialHandles.instagram) {
-        instagram = <a className="db  pv2  link  f6  black  t-body" href={`https://instagram.com/${article.socialHandles.instagram}`} rel="noopener noreferrer" target="_blank">- instagram/{article.socialHandles.instagram}</a>;
+        instagram = <a className="db  pv2  link  f6  black  t-body" title="instagram" href={`https://instagram.com/${article.socialHandles.instagram}`} rel="noopener noreferrer" target="_blank">- instagram/{article.socialHandles.instagram}</a>;
       }
 
 

@@ -43,12 +43,14 @@ export class WatchTower extends PureComponent {
     const desc = `The Rendah Team is invested in keeping you up-to-date
     with the latest Halftime Beats. We've compiled our favourite Tracks &
     Mixes into 2 Watch Tower playlists which will be updated regularly.`;
+    const canonical = 'https://www.rendahmag.com/watch-tower';
 
     return (
       <main className="page-fade-in">
         <Helmet>
           <title>{title}</title>
           <meta name="description" content={desc} />
+          <link rel="canonical" href={canonical} />
         </Helmet>
 
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb3" />
