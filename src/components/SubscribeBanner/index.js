@@ -39,9 +39,10 @@ export class SubscribeBanner extends PureComponent {
             />
             <span className="cp  abs  right  pr1" role="button" tabIndex={0} onClick={submitInit}><ArrowRight /></span>
           </form>
-          {status === 'sending' && <div className="message">Subscribing...</div>}
-          {status === 'error' && <div className="message">Please enter a valid email...</div>}
-          {status === 'success' && <div className="message">Welcome to the family.</div>}
+
+          {status === 'sending' && <div className="t-body  f7  black  pt2  grey">Subscribing...</div>}
+          {status === 'error' && <div className="t-body  f7  black  pt2  grey">Please enter a valid email...</div>}
+          {status === 'success' && <div className="t-body  f7  black  pt2  grey">Welcome to the family.</div>}
         </div>
       );
     };

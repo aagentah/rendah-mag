@@ -18,12 +18,14 @@ export class NotFound extends PureComponent {
   render() {
     const title = '404';
     const desc = '404, this page does not exist.';
+    const canonical = 'https://www.rendahmag.com/404';
 
     return (
       <main className="page-fade-in">
         <Helmet>
           <title>{title}</title>
           <meta name="description" content={desc} />
+          <link rel="canonical" href={canonical} />
         </Helmet>
 
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
