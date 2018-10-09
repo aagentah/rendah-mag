@@ -4,13 +4,14 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import includes from 'lodash/includes';
 
 import Heading from './Heading';
 import Paragraph from './Paragraph';
 import ListItem from './ListItem';
 import Quote from './Quote';
 // import NumberedList from './NumberedList';
-// import Image from './Image';
+import Image from './Image';
 // import Question from './Question';
 // import Answer from './Answer';
 import Soundcloud from './Soundcloud';
@@ -45,6 +46,15 @@ export class Seo extends PureComponent {
         <ul key={i}>
           <ListItem text={section.children} />
         </ul>
+      );
+    }
+
+    // image (must be jpg)
+    if (section._type === 'image' && includes(section.asset._ref, '-jpg')) {
+      return (
+        <div key={i} className="pv4">
+          <Image section={section} />
+        </div>
       );
     }
 

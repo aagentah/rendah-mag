@@ -12,9 +12,17 @@ export class PrivacyPolicy extends PureComponent {
   }
 
   render() {
+    const title = 'Privacy Policy';
+    const desc = 'View our Privacy Policy.';
+    const canonical = 'https://www.rendahmag.com/privacy-policy';
+
     return (
       <main className="page-fade-in">
-        <Helmet title="Privacy Policy" />
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={desc} />
+          <link rel="canonical" href={canonical} />
+        </Helmet>
 
         <div className="container-small  center  pa4">
           <p className="t-body  t7">
