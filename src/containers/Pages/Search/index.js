@@ -19,10 +19,15 @@ export class Search extends PureComponent {
   render() {
     const title = 'Search';
     const searchQuery = this.props.match.params.query;
+    const canonical = `https://www.rendahmag.com/${searchQuery}`;
 
     return (
       <main className="page-fade-in">
-        <Helmet title={title} />
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={`Searching articles for ${searchQuery}`} />
+          <link rel="canonical" href={canonical} />
+        </Helmet>
 
         <Hero type="h1" title={searchQuery} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
 
