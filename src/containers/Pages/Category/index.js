@@ -18,7 +18,7 @@ export class Category extends PureComponent {
 
   render() {
     const title = startCase(this.props.match.params.query);
-    const canonical = `https://www.rendahmag.com/category/${title}`;
+    const canonical = `https://www.rendahmag.com/category/${this.props.match.params.query}`;
     let description = null;
 
     switch (title) {
