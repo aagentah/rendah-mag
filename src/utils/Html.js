@@ -94,20 +94,20 @@ const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> =>
               {
               	"@context": "https://schema.org",
               	"@type": "Organization",
-              	"name" : "Rendah Mag",
-              	"url" : "https://www.rendahmag.com/",
-              	"logo" : "http://res.cloudinary.com/dzz8ji5lj/image/upload/v1523314127/brand/rendah.png",
-              	"address" : {
+              	"name": "Rendah Mag",
+              	"url": "https://www.rendahmag.com/",
+              	"logo": "http://res.cloudinary.com/dzz8ji5lj/image/upload/v1523314127/brand/rendah.png",
+              	"address": {
               		"@type": "PostalAddress",
               		"addressCountry": "United Kingdom",
-              		"addressLocality": "Manchester",
+              		"addressLocality": "Manchester"
               	},
               	"founder": "Dan Jones",
-              	"email" : "mailto:info@rendahmag.com",
-              	"sameAs" : [
+              	"email": "mailto:info@rendahmag.com",
+              	"sameAs": [
               		"https://www.facebook.com/rendahmag/",
               		"https://twitter.com/rendahmag",
-              		"https://www.instagram.com/rendahmag/",
+              		"https://www.instagram.com/rendahmag/"
               	],
               	"potentialAction": {
               		"@type": "SearchAction",
