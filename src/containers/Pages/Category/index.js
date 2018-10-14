@@ -3,6 +3,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import startCase from 'lodash/startCase';
 
 import Hero from '../../../components/Hero';
 import CategoryArticles from '../../../containers/Fragments/CategoryArticles';
@@ -16,15 +17,29 @@ export class Category extends PureComponent {
   }
 
   render() {
-    const title = this.props.match.params.query;
+    const title = startCase(this.props.match.params.query);
     const canonical = `https://www.rendahmag.com/category/${title}`;
+    let description = null;
+
+    switch (title) {
+      case 'News':
+        description = 'Bringing you the latest news within the scene. Those big boy announcements are likely make an appearance.';
+        break;
+      case 'Interviews':
+        description = 'Read exclusive interviews with established & upcoming artists.';
+        break;
+      case 'Insights':
+        description = 'Explicit reviews & insights to some of our favourite releases.';
+        break;
+      default:
+        description = null;
+    }
 
     return (
       <main className="page-fade-in">
-        <Helmet title={title} />
         <Helmet>
           <title>{title}</title>
-          <meta name="description" content={`The latest ${title}`} />
+          <meta name="description" content={description} />
           <link rel="canonical" href={canonical} />
         </Helmet>
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
