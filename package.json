@@ -167,6 +167,7 @@
     "compression": "1.7.1",
     "cors": "^2.8.4",
     "express": "4.16.3",
+    "express-lowercase-paths": "^1.0.0",
     "helmet": "3.13.0",
     "history": "^4.7.2",
     "hpp": "^0.2.2",
