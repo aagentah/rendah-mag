@@ -39,6 +39,7 @@ const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> =>
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
 
+
         {/* Styles will be presented in production with webpack extract text plugin */}
         {_
           .keys(assets.styles)
@@ -83,7 +84,40 @@ const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> =>
           .keys(assets.javascript)
           .reverse()
           .map(script => <script key={_.uniqueId()} src={assets.javascript[script]} />)}
+
         {head.script.toComponent()}
+
+
+        <Helmet>
+          <script type="application/ld+json">
+            {`
+              {
+              	"@context": "https://schema.org",
+              	"@type": "Organization",
+              	"name" : "Rendah Mag",
+              	"url" : "https://www.rendahmag.com/",
+              	"logo" : "http://res.cloudinary.com/dzz8ji5lj/image/upload/v1523314127/brand/rendah.png",
+              	"address" : {
+              		"@type": "PostalAddress",
+              		"addressCountry": "United Kingdom",
+              		"addressLocality": "Manchester",
+              	},
+              	"founder": "Dan Jones",
+              	"email" : "mailto:info@rendahmag.com",
+              	"sameAs" : [
+              		"https://www.facebook.com/rendahmag/",
+              		"https://twitter.com/rendahmag",
+              		"https://www.instagram.com/rendahmag/",
+              	],
+              	"potentialAction": {
+              		"@type": "SearchAction",
+              		"target": "https://www.rendahmag.com/search/{search_term}",
+              		"query-input": "required name=search_term"
+              	}
+              }
+            `}
+          </script>
+        </Helmet>
       </body>
     </html>
   );
