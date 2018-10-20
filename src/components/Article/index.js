@@ -3,6 +3,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FacebookProvider, Page } from 'react-facebook';
 
 import Sections from './Sections';
 import SocialLinks from './SocialLinks';
@@ -28,10 +29,10 @@ export class Article extends PureComponent {
     const articleHeight = this.articleElem.clientHeight;
     let sideBarSize = 0;
 
-    if (articleHeight < 900) {
+    if (articleHeight < 1000) {
       sideBarSize = 1;
     }
-    if (articleHeight >= 900) {
+    if (articleHeight >= 1000) {
       sideBarSize = 2;
     }
 
@@ -110,6 +111,11 @@ export class Article extends PureComponent {
               <div className="col-24  col-6-lg  mt4  mt5-lg  pt4">
                 {sideBarLatestArticles}
                 {sideBarExtraArticles}
+                <div className="container-medium  tac  dn  db-lg  pt3">
+                  <FacebookProvider appId="154881868603516">
+                    <Page href="https://www.facebook.com/rendahmag" />
+                  </FacebookProvider>
+                </div>
               </div>
             </div>
           </section>
