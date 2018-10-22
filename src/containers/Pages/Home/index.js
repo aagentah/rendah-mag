@@ -2,6 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 import WeekArticles from '../../../containers/Fragments/WeekArticles';
 import LatestArticles from '../../../containers/Fragments/LatestArticles';
@@ -32,6 +33,10 @@ export class Home extends PureComponent {
         <WeekArticles padding="pt4  pb2" />
         <LatestArticles limit={16} type="grid" padding="pb4" />
         <CategoryGrid padding="" />
+        <MessengerCustomerChat
+          pageId="302421033575970"
+          appId="154881868603516"
+        />
       </main>
     );
   }
