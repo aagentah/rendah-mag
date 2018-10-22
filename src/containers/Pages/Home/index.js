@@ -36,6 +36,9 @@ export class Home extends PureComponent {
         <MessengerCustomerChat
           pageId="302421033575970"
           appId="154881868603516"
+          loggedInGreeting="Welcome to Rendah."
+          loggedOutGreeting="Welcome to Rendah."
+          themeColor="#737373"
         />
       </main>
     );
