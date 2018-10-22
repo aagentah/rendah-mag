@@ -33,13 +33,15 @@ export class Home extends PureComponent {
         <WeekArticles padding="pt4  pb2" />
         <LatestArticles limit={16} type="grid" padding="pb4" />
         <CategoryGrid padding="" />
-        <MessengerCustomerChat
-          pageId="302421033575970"
-          appId="154881868603516"
-          loggedInGreeting="Welcome to Rendah."
-          loggedOutGreeting="Welcome to Rendah."
-          themeColor="#737373"
-        />
+        <div className="dn  db-lg">
+          <MessengerCustomerChat
+            pageId="302421033575970"
+            appId="154881868603516"
+            loggedInGreeting="Welcome to Rendah."
+            loggedOutGreeting="Welcome to Rendah."
+            themeColor="#737373"
+          />
+        </div>
       </main>
     );
   }
