@@ -22,8 +22,14 @@ export const fetchArticle = (articleId: string) =>
       description,
       "slug": slug.current,
       "img": image.asset->url,
-      "author": author->name,
-      "authorSlug": author->slug.current,
+      "author": author->{
+        name,
+        alias,
+        description,
+        "img": image.asset->url,
+        "slug": slug.current,
+        socialHandles,
+      },
       "created": publishedAt,
       ...,
     }`;
