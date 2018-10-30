@@ -1,4 +1,4 @@
-/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default, arrow-body-style */
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
@@ -20,6 +20,24 @@ export class WatchTower extends PureComponent {
     const desc = 'Check out our Modules series featuring guest-mixes from upcomers within the scene.';
     const canonical = 'https://www.rendahmag.com/mixes';
 
+    const modules = [
+      {
+        title: 'modules-001',
+        url: 'https://soundcloud.com/rendahmag/rendah-mag-modules-001-susp3c',
+        img: 'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1539000825/modules/modules-001.jpg',
+      },
+      {
+        title: 'modules-002',
+        url: 'https://soundcloud.com/rendahmag/rendah-modules-002-host',
+        img: 'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1539000827/modules/modules-002.jpg',
+      },
+      {
+        title: 'modules-003',
+        url: 'https://soundcloud.com/rendahmag/rendah-modules-003-kyra',
+        img: 'http://res.cloudinary.com/dzz8ji5lj/image/upload/v1540895131/modules/modules-003.jpg',
+      },
+    ];
+
     return (
       <main className="page-fade-in">
         <Helmet>
@@ -37,27 +55,22 @@ export class WatchTower extends PureComponent {
               </p>
             </div>
           </div>
+
           <div className="flex  flex-wrap  justify-center  pv4">
-            <div className="col-12  col-6-md  pa3">
-              <a className="db  shadow2  link" title="modules-001" href="https://soundcloud.com/rendahmag/rendah-mag-modules-001-susp3c" rel="noopener noreferrer" target="_blank">
-                <AnimatedImage
-                  lazy
-                  src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1539000825/modules/modules-001.jpg"
-                  alt="modules-001"
-                  styles="fade-in-zoom-in  w-100"
-                />
-              </a>
-            </div>
-            <div className="col-12  col-6-md  pa3">
-              <a className="db  shadow2  link" title="modules-002" href="https://soundcloud.com/rendahmag/rendah-modules-002-host" rel="noopener noreferrer" target="_blank">
-                <AnimatedImage
-                  lazy
-                  src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1539000827/modules/modules-002.jpg"
-                  alt="modules-002"
-                  styles="fade-in-zoom-in  w-100"
-                />
-              </a>
-            </div>
+            {modules.map((module) => {
+              return (
+                <div className="col-12  col-6-md  pa3">
+                  <a className="db  shadow2  link" title={module.title} href={module.url} rel="noopener noreferrer" target="_blank">
+                    <AnimatedImage
+                      lazy
+                      src={module.img}
+                      alt={module.title}
+                      styles="fade-in-zoom-in  w-100"
+                    />
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </div>
 
