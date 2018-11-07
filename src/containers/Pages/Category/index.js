@@ -23,7 +23,7 @@ export class Category extends PureComponent {
 
     switch (title) {
       case 'News':
-        description = 'Bringing you the latest news within the scene. Those big boy announcements are likely make an appearance.';
+        description = 'Bringing you the latest news within the scene.';
         break;
       case 'Interviews':
         description = 'Read exclusive interviews with established & upcoming artists.';

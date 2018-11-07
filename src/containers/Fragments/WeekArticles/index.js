@@ -8,7 +8,7 @@ import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
-import ArticleListGrid from '../../../components/ArticleList/Grid';
+import ArticleListCarousel from '../../../components/ArticleList/Carousel';
 
 
 export class WeekArticles extends PureComponent {
@@ -24,7 +24,7 @@ export class WeekArticles extends PureComponent {
       return <Loading type="WeekArticles" />;
     }
 
-    return <ArticleListGrid {...this.props} type="week" list={weekArticles.list} />;
+    return <ArticleListCarousel {...this.props} list={weekArticles.list} />;
   };
 
   render() {
@@ -68,4 +68,3 @@ export default compose(
   connector,
   frontloadConnect(frontload, { onUpdate: false }),
 )(WeekArticles);
-

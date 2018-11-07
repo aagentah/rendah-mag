@@ -28,8 +28,9 @@ export class Home extends PureComponent {
           <meta name="description" content={desc} />
           <link rel="canonical" href={canonical} />
         </Helmet>
+
         <h1 className="dn">Home</h1>
-        <WeekArticles padding="pt4  pb2" />
+        <WeekArticles padding="pb4" />
         <LatestArticles limit={16} type="grid" padding="pb4" />
         <CategoryGrid padding="" />
       </main>
