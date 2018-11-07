@@ -34,7 +34,7 @@ export class Seo extends PureComponent {
     // bullet list
     if (section._type === 'block' && section.listItem === 'bullet') {
       return (
-        <ul key={i}>
+        <ul key={i} className="pb3">
           <ListItem text={section.children} />
         </ul>
       );
@@ -43,7 +43,7 @@ export class Seo extends PureComponent {
     // number list
     if (section._type === 'block' && section.listItem === 'number') {
       return (
-        <ul key={i}>
+        <ul key={i} className="pb3">
           <ListItem text={section.children} />
         </ul>
       );

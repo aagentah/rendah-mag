@@ -3,12 +3,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FacebookProvider, Page } from 'react-facebook';
 
 import Sections from './Sections';
 import SocialLinks from './SocialLinks';
 
-import { convertDate, toTitleCase } from '../../functions';
-import AuthorInfo from '../../containers/Fragments/AuthorInfo';
+import { convertDate } from '../../functions';
+import Author from '../Author';
 
 import LatestArticles from '../../containers/Fragments/LatestArticles';
 import SubscribeBanner from '../SubscribeBanner';
@@ -28,10 +29,10 @@ export class Article extends PureComponent {
     const articleHeight = this.articleElem.clientHeight;
     let sideBarSize = 0;
 
-    if (articleHeight < 900) {
+    if (articleHeight < 1000) {
       sideBarSize = 1;
     }
-    if (articleHeight >= 900) {
+    if (articleHeight >= 1000) {
       sideBarSize = 2;
     }
 
@@ -42,7 +43,7 @@ export class Article extends PureComponent {
 
   render() {
     const article = this.props.info;
-    const authorInfoMatch = { params: { id: article.authorSlug } };
+    const { author } = article;
     let sideBarLatestArticles;
     let sideBarExtraArticles;
 
@@ -76,7 +77,7 @@ export class Article extends PureComponent {
           description={article.description}
           img={article.img}
           created={article.created}
-          author={article.author}
+          author={author.name}
         />
 
         <div className="article">
@@ -99,17 +100,22 @@ export class Article extends PureComponent {
                 </div>
 
                 <span className="grey  t8">{this.date(article.created)} | </span>
-                <Link title={article.authorSlug} to={`/author/${article.authorSlug}`} className="no-underline"><span className="grey  t8  cp  link">{toTitleCase(article.author)}</span></Link>
+                <Link title={author.slug} to={`/author/${author.slug}`} className="no-underline"><span className="grey  t8  cp  link">{author.name}</span></Link>
                 <h1 className="pb3  pt4  t-title">{article.title}</h1>
                 <p className="pv3  t-body  f5  dark-grey">{article.description}</p>
                 <Sections body={article.body} />
                 <SocialLinks article={article} />
-                <AuthorInfo article padding="pt4  pt5-sm" match={authorInfoMatch} />
+                <Author article padding="pt4  pt5-sm" info={author} />
               </article>
 
               <div className="col-24  col-6-lg  mt4  mt5-lg  pt4">
                 {sideBarLatestArticles}
                 {sideBarExtraArticles}
+                <div className="container-medium  tac  dn  db-lg  pt3">
+                  <FacebookProvider appId="154881868603516">
+                    <Page href="https://www.facebook.com/rendahmag" />
+                  </FacebookProvider>
+                </div>
               </div>
             </div>
           </section>
@@ -121,13 +127,15 @@ export class Article extends PureComponent {
 
 Article.propTypes = {
   info: PropTypes.shape({
-    body: PropTypes.array,
+    article: PropTypes.shape({}),
+    author: PropTypes.shape({}),
   }),
 };
 
 Article.defaultProps = {
   info: {
-    body: [],
+    article: {},
+    author: {},
   },
 };
 

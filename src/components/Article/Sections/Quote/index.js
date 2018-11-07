@@ -12,8 +12,8 @@ export class Quote extends PureComponent {
     return (
       <React.Fragment>
         <p className="bw2  bl  bc-light-grey  pa3">
-          <q className="t-title  f5  dark-grey  di">{quote}</q>
-          <address className="t-title  f6  dark-grey  di  tac  pt2  pl2">- {source}</address>
+          <q className="t-body  f5  dark-grey  di">{quote}</q>
+          <span className="t-body  f6  dark-grey  fs-normal  di  tac  pt2  pl2">- {source}</span>
         </p>
       </React.Fragment>
     );

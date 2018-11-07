@@ -41,7 +41,7 @@ class ListItem extends Component {
       return (
         <React.Fragment>
           <li className="db  t-body  f6  dark-grey  t-body">
-            {text.map((child, i) => this.renderChildren(child, i))}
+            - {text.map((child, i) => this.renderChildren(child, i))}
           </li>
         </React.Fragment>
       );
