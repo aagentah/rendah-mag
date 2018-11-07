@@ -14,21 +14,21 @@ export class CategoryGrid extends PureComponent {
         <div className="flex  flex-wrap">
           <div className="col-24  col-8-sm  ph3  pb4">
             <Link title="interviews" className="link" to={'/category/interviews'}>
-              <div className="flex  flex-column  justify-center  h4  shadow2  CategoryGrid__bg  CategoryGrid__bg--1" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/v1529440946/brand/Big_Canvas_Textures.png)' }}>
+              <div className="flex  flex-column  justify-center  h4  shadow2  CategoryGrid__bg  CategoryGrid__bg--1" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/v1539787080/brand/Big_Canvas_Textures_opt.jpg)' }}>
                 <h4 className="t-title  bold  f4  tac  dark-grey">INTERVIEWS</h4>
               </div>
             </Link>
           </div>
           <div className="col-24  col-8-sm  ph3  pb4">
             <Link title="insights" className="link" to={'/category/insights'}>
-              <div className="flex  flex-column  justify-center  h4  shadow2  CategoryGrid__bg  CategoryGrid__bg--2" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/v1529440946/brand/Big_Canvas_Textures.png)' }}>
+              <div className="flex  flex-column  justify-center  h4  shadow2  CategoryGrid__bg  CategoryGrid__bg--2" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/v1539787080/brand/Big_Canvas_Textures_opt.jpg)' }}>
                 <h4 className="t-title  bold  f4  tac  dark-grey">INSIGHTS</h4>
               </div>
             </Link>
           </div>
           <div className="col-24  col-8-sm  ph3  pb4">
             <Link title="news" className="link" to={'/category/news'}>
-              <div className="flex  flex-column  justify-center  h4  shadow2  CategoryGrid__bg  CategoryGrid__bg--3" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/v1529440946/brand/Big_Canvas_Textures.png)' }}>
+              <div className="flex  flex-column  justify-center  h4  shadow2  CategoryGrid__bg  CategoryGrid__bg--3" style={{ backgroundImage: 'url(https://res.cloudinary.com/dzz8ji5lj/image/upload/v1539787080/brand/Big_Canvas_Textures_opt.jpg)' }}>
                 <h4 className="t-title  bold  f4  tac  dark-grey">NEWS</h4>
               </div>
             </Link>

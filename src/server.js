@@ -15,6 +15,7 @@ import chalk from 'chalk';
 import cors from 'cors';
 import createHistory from 'history/createMemoryHistory';
 import { frontloadServerRender } from 'react-frontload';
+import lowercasePaths from 'express-lowercase-paths';
 
 import configureStore from './redux/store';
 import Html from './utils/Html';
@@ -28,6 +29,8 @@ const app = express();
 app.use(helmet());
 // Prevent HTTP parameter pollution.
 app.use(hpp());
+// lowercase 301 all routes
+app.use(lowercasePaths());
 // Compress all requests
 app.use(compression());
 // begin CORS
@@ -60,6 +63,9 @@ handleFeeds(app);
 
 // Register server-side rendering middleware
 app.get('*', (req, res) => {
+  console.log('get');
+  console.log(req);
+  console.log(res);
   if (__DEV__) webpackIsomorphicTools.refresh();
 
   const history = createHistory();
