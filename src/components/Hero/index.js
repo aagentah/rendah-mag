@@ -43,7 +43,7 @@ export class Hero extends PureComponent {
 
   render() {
     const { type, title, styles, padding } = this.props;
-    const image = 'https://res.cloudinary.com/dzz8ji5lj/image/upload/e_blur:1500/v1529440946/brand/Big_Canvas_Textures.png';
+    const image = 'https://res.cloudinary.com/dzz8ji5lj/image/upload/e_blur:1500/v1539787080/brand/Big_Canvas_Textures_opt.jpg';
 
     return (
       <div className={padding}>

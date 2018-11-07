@@ -12,7 +12,7 @@ export class Image extends PureComponent {
 
     return (
       <figure>
-        <img className="w-50  db  center" alt={imageUrl} src={imageUrl} />
+        <img className="w-50  db  center  shadow2" alt={imageUrl} src={imageUrl} />
       </figure>
     );
   }

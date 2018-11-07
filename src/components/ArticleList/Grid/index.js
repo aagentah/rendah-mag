@@ -3,8 +3,9 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import trim from 'lodash/trim';
 
-import { convertDate, toTitleCase } from '../../../functions';
+import { convertDate, toUrlCase } from '../../../functions';
 import AnimatedImage from '../../Elements/AnimatedImage';
 
 export class ArticleListGrid extends PureComponent {
@@ -23,6 +24,8 @@ export class ArticleListGrid extends PureComponent {
       containerClass = 'col-24  col-12-sm  col-6-md';
       imageHeight = 'h7  h7-sm';
     }
+
+    console.log('list', list);
 
     return (
       <div className={`container-medium  center  ${padding}`}>
@@ -43,7 +46,7 @@ export class ArticleListGrid extends PureComponent {
 
                 <div className="pv2  mt2">
                   <span className="t-body  grey  f6">{this.date(article.created)} | </span>
-                  <Link to={`/author/${article.author}`} className="link"><span className="t-body  grey  f6  cp  link">{toTitleCase(article.author)}</span></Link>
+                  <Link to={`/author/${toUrlCase(trim(article.author))}`} className="link"><span className="t-body  grey  f6  cp  link">{article.author}</span></Link>
                 </div>
 
                 <div>
