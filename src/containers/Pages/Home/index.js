@@ -22,7 +22,6 @@ export class Home extends PureComponent {
 
     return (
       <main className="page-fade-in">
-        <Helmet title="Home" />
         <Helmet>
           <title>{title}</title>
           <meta name="description" content={desc} />
