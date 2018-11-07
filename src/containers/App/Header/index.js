@@ -92,11 +92,11 @@ export class Header extends PureComponent {
         {/* Desktop */}
         <header className="fix  w-100  shadow1  z9  bg-white  dn  db-lg  header__desktop">
           <nav className="container-large  center  rel" role="banner">
-            <Link className="link  abs  w3  header__desktop__logo" title="rendah" to={'/'}>
+            <Link className="link  abs  header__desktop__logo" title="rendah" to={'/'}>
               <img className="pt1  mt1" width="38" src={Logo} alt="Logo" role="presentation" />
             </Link>
 
-            <ul className="tac  abs  header__desktop__nav__list">
+            <ul className="tac  abs  center  header__desktop__nav__list">
               {links.map((link) => {
                 return (
                   <li key={link.text} className="dib">

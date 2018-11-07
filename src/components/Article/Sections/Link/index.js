@@ -8,11 +8,11 @@ import PropTypes from 'prop-types';
 export class Link extends PureComponent {
   render() {
     return (
-      <React.Fragment>
-        <a className="link  black  t-body" href={this.props.url} rel="noopener noreferrer" target="_blank">
-          <span className="Article__link--span  pb2">{this.props.text}</span>
+      <div className="pv3  tac">
+        <a className="btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac" href={this.props.url} rel="noopener noreferrer" target="_blank">
+          {this.props.text}
         </a>
-      </React.Fragment>
+      </div>
     );
   }
 }
