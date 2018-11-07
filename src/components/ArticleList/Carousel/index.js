@@ -21,6 +21,7 @@ export class ArticleListGrid extends PureComponent {
           autoplayInterval={2000}
           speed={320}
           dragging={false}
+          swiping={false}
           pauseOnHover
           easing="easeSinInOut"
           wrapAround
