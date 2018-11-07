@@ -6,9 +6,9 @@ export const WEEKARTICLES_FAILURE = 'WEEKARTICLES_FAILURE';
 export const WEEKARTICLES_SUCCESS = 'WEEKARTICLES_SUCCESS';
 
 // export const API_URL = (__DEV__) ?
-//   '/api/week' : 'https://rendah-mag.herokuapp.com/api/week';
+//   '/api/featured' : 'https://rendah-mag.herokuapp.com/api/featured';
 
-export const fetchWeekArticles = () =>
+export const fetchFeaturedArticles = () =>
   (dispatch) => {
     dispatch({ type: WEEKARTICLES_REQUESTING });
 
@@ -37,20 +37,20 @@ export const fetchWeekArticles = () =>
 
 // Preventing dobule fetching data
 /* istanbul ignore next */
-const shouldFetchWeekArticles = (state): boolean => {
+const shouldFetchFeaturedArticles = (state): boolean => {
   // In development, we will allow action dispatching
   // or your reducer hot reloading won't updated on the view
   if (__DEV__) return true; // Next line = Preventing double fetching data
-  if (state.weekArticles.readyStatus === WEEKARTICLES_SUCCESS) return false;
+  if (state.featuredArticles.readyStatus === WEEKARTICLES_SUCCESS) return false;
   return true;
 };
 
 /* istanbul ignore next */
-export const fetchWeekArticlesIfNeeded = () => (dispatch, getState) => {
+export const fetchFeaturedArticlesIfNeeded = () => (dispatch, getState) => {
   /* istanbul ignore next */
-  if (shouldFetchWeekArticles(getState())) {
+  if (shouldFetchFeaturedArticles(getState())) {
     /* istanbul ignore next */
-    return dispatch(fetchWeekArticles());
+    return dispatch(fetchFeaturedArticles());
   }
 
   /* istanbul ignore next */

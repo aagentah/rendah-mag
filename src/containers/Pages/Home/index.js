@@ -3,7 +3,7 @@
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
-import WeekArticles from '../../../containers/Fragments/WeekArticles';
+import FeaturedArticles from '../../../containers/Fragments/FeaturedArticles';
 import LatestArticles from '../../../containers/Fragments/LatestArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
 
@@ -29,7 +29,7 @@ export class Home extends PureComponent {
         </Helmet>
 
         <h1 className="dn">Home</h1>
-        <WeekArticles padding="pb4" />
+        <FeaturedArticles padding="pb4" />
         <LatestArticles limit={16} type="grid" padding="pb4" />
         <CategoryGrid padding="" />
       </main>
