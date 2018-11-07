@@ -18,26 +18,32 @@ export class ArticleListGrid extends PureComponent {
       <div className={`w-100  center  ${padding}`}>
         <Carousel
           autoplay
-          autoplayInterval={2500}
+          autoplayInterval={2000}
           speed={320}
           dragging={false}
+          pauseOnHover
           easing="easeSinInOut"
           wrapAround
-          withoutControls
         >
           {list.map(article => (
             <div key={article.title}>
-              <article>
+              <article className="rel">
                 <figure>
                   <Link className="db  shadow2" title={article.slug} to={`/article/${article.slug}`}>
                     <AnimatedImage
                       lazy={false}
                       src={article.img}
                       alt={article.title}
-                      styles="vh-50  mh14  w-100"
+                      styles="fade-in-zoom-in  vh-50  mh14  w-100"
                     />
                   </Link>
                 </figure>
+
+                <Link className="abs  top  bottom  left  right  tac  center  ma  h2  mw-80" to={`/article/${article.slug}`}>
+                  <p className="t-body  dib  link  pa3  bg-black  shadow2">
+                    <span className="t-title  white  bold  f4  f3-md  ttu  cp  over-hidden  link">{article.title}</span>
+                  </p>
+                </Link>
               </article>
             </div>
           ))}
