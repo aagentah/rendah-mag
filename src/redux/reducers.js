@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
 
 import latestArticles from '../containers/Fragments/LatestArticles/reducer';
-import weekArticles from '../containers/Fragments/WeekArticles/reducer';
+import featuredArticles from '../containers/Fragments/FeaturedArticles/reducer';
 import extraArticles from '../containers/Fragments/ExtraArticles/reducer';
 import searchArticles from '../containers/Fragments/SearchArticles/reducer';
 import categoryArticles from '../containers/Fragments/CategoryArticles/reducer';
@@ -15,7 +15,7 @@ import authors from '../containers/Fragments/Authors/reducer';
 
 export default combineReducers({
   latestArticles,
-  weekArticles,
+  featuredArticles,
   extraArticles,
   searchArticles,
   categoryArticles,

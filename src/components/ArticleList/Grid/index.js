@@ -16,7 +16,7 @@ export class ArticleListGrid extends PureComponent {
     let containerClass;
     let imageHeight;
 
-    if (type === 'week') {
+    if (type === 'featured') {
       containerClass = 'col-24  col-12-sm';
       imageHeight = 'h7  h11-sm';
     }

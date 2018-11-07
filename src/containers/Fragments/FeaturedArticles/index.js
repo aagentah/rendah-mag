@@ -11,48 +11,48 @@ import Loading from '../../../components/Loading';
 import ArticleListCarousel from '../../../components/ArticleList/Carousel';
 
 
-export class WeekArticles extends PureComponent {
-  renderWeekArticleList = () => {
-    const { weekArticles } = this.props;
+export class FeaturedArticles extends PureComponent {
+  renderFeaturedArticleList = () => {
+    const { featuredArticles } = this.props;
 
     if (
-      !weekArticles.readyStatus ||
-      weekArticles.readyStatus === action.WEEKARTICLES_INVALID ||
-      weekArticles.readyStatus === action.WEEKARTICLES_REQUESTING ||
-      weekArticles.readyStatus === action.WEEKARTICLES_FAILURE
+      !featuredArticles.readyStatus ||
+      featuredArticles.readyStatus === action.WEEKARTICLES_INVALID ||
+      featuredArticles.readyStatus === action.WEEKARTICLES_REQUESTING ||
+      featuredArticles.readyStatus === action.WEEKARTICLES_FAILURE
     ) {
-      return <Loading type="WeekArticles" />;
+      return <Loading type="FeaturedArticles" />;
     }
 
-    return <ArticleListCarousel {...this.props} list={weekArticles.list} />;
+    return <ArticleListCarousel {...this.props} list={featuredArticles.list} />;
   };
 
   render() {
     return (
       <React.Fragment>
-        {this.renderWeekArticleList()}
+        {this.renderFeaturedArticleList()}
       </React.Fragment>
     );
   }
 }
 
 const connector = connect(
-  ({ weekArticles }) => ({ weekArticles }),
+  ({ featuredArticles }) => ({ featuredArticles }),
   dispatch => ({
-    fetchWeekArticlesIfNeeded: () => dispatch(action.fetchWeekArticlesIfNeeded()),
+    fetchFeaturedArticlesIfNeeded: () => dispatch(action.fetchFeaturedArticlesIfNeeded()),
   }),
 );
 
-WeekArticles.propTypes = {
-  weekArticles: PropTypes.shape({
+FeaturedArticles.propTypes = {
+  featuredArticles: PropTypes.shape({
     readyStatus: PropTypes.string,
     err: PropTypes.any,
     list: PropTypes.arrayOf(PropTypes.object),
   }),
 };
 
-WeekArticles.defaultProps = {
-  weekArticles: {
+FeaturedArticles.defaultProps = {
+  featuredArticles: {
     readyStatus: '',
     err: '',
     list: [{}],
@@ -61,10 +61,10 @@ WeekArticles.defaultProps = {
 
 const frontload = props =>
   Promise.all([
-    props.fetchWeekArticlesIfNeeded(),
+    props.fetchFeaturedArticlesIfNeeded(),
   ]);
 
 export default compose(
   connector,
   frontloadConnect(frontload, { onUpdate: false }),
-)(WeekArticles);
+)(FeaturedArticles);
