@@ -12,12 +12,8 @@ export const fetchFeaturedArticles = () =>
   (dispatch) => {
     dispatch({ type: WEEKARTICLES_REQUESTING });
 
-    const params = {
-      limit: '0..1',
-    };
-
     const query =
-    `*[_type == "post"] | order(publishedAt desc) [${params.limit}] {
+    `*[_type == "post" && featured == true] | order(publishedAt desc) {
       title,
       description,
       "slug": slug.current,
