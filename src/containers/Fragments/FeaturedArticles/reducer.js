@@ -2,30 +2,30 @@
 import _ from 'lodash';
 
 import {
-  WEEKARTICLES_INVALID,
-  WEEKARTICLES_REQUESTING,
-  WEEKARTICLES_FAILURE,
-  WEEKARTICLES_SUCCESS,
+  FEATUREDARTICLES_INVALID,
+  FEATUREDARTICLES_REQUESTING,
+  FEATUREDARTICLES_FAILURE,
+  FEATUREDARTICLES_SUCCESS,
 } from './action';
 
 const initialState = {
-  readyStatus: WEEKARTICLES_INVALID,
+  readyStatus: FEATUREDARTICLES_INVALID,
   err: null,
   list: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case WEEKARTICLES_REQUESTING:
-      return _.assign({}, state, { readyStatus: WEEKARTICLES_REQUESTING });
-    case WEEKARTICLES_FAILURE:
+    case FEATUREDARTICLES_REQUESTING:
+      return _.assign({}, state, { readyStatus: FEATUREDARTICLES_REQUESTING });
+    case FEATUREDARTICLES_FAILURE:
       return _.assign({}, state, {
-        readyStatus: WEEKARTICLES_FAILURE,
+        readyStatus: FEATUREDARTICLES_FAILURE,
         err: action.err,
       });
-    case WEEKARTICLES_SUCCESS:
+    case FEATUREDARTICLES_SUCCESS:
       return _.assign({}, state, {
-        readyStatus: WEEKARTICLES_SUCCESS,
+        readyStatus: FEATUREDARTICLES_SUCCESS,
         list: action.data,
       });
     default:
