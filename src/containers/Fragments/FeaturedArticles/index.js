@@ -17,9 +17,9 @@ export class FeaturedArticles extends PureComponent {
 
     if (
       !featuredArticles.readyStatus ||
-      featuredArticles.readyStatus === action.WEEKARTICLES_INVALID ||
-      featuredArticles.readyStatus === action.WEEKARTICLES_REQUESTING ||
-      featuredArticles.readyStatus === action.WEEKARTICLES_FAILURE
+      featuredArticles.readyStatus === action.FEATUREDARTICLES_INVALID ||
+      featuredArticles.readyStatus === action.FEATUREDARTICLES_REQUESTING ||
+      featuredArticles.readyStatus === action.FEATUREDARTICLES_FAILURE
     ) {
       return <Loading type="FeaturedArticles" />;
     }
