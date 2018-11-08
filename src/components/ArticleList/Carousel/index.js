@@ -1,9 +1,9 @@
-/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default, no-return-assign */
 
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Carousel from 'nuka-carousel';
+import ReactSwipe from 'react-swipe';
 
 import { convertDate } from '../../../functions';
 import AnimatedImage from '../../Elements/AnimatedImage';
@@ -13,18 +13,18 @@ export class ArticleListGrid extends PureComponent {
 
   render() {
     const { list, padding } = this.props;
+    console.log(list.length);
 
     return (
       <div className={`w-100  center  ${padding}`}>
-        <Carousel
-          autoplay
-          autoplayInterval={2000}
-          speed={320}
-          dragging={false}
-          swiping={false}
-          pauseOnHover
-          easing="easeSinInOut"
-          wrapAround
+        <ReactSwipe
+          className="carousel"
+          swipeOptions={{
+            continuous: true,
+            auto: 2200,
+            speed: 300,
+            swiping: true,
+          }}
         >
           {list.map(article => (
             <div key={article.title}>
@@ -48,7 +48,7 @@ export class ArticleListGrid extends PureComponent {
               </article>
             </div>
           ))}
-        </Carousel>
+        </ReactSwipe>
       </div>
     );
   }
