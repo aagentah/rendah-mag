@@ -174,7 +174,6 @@
     "lodash": "^4.17.11",
     "mongodb": "^2.2.31",
     "morgan": "1.9.0",
-    "nuka-carousel": "^4.4.2",
     "opn": "^5.1.0",
     "prop-types": "^15.6.2",
     "react": "16.5.2",
