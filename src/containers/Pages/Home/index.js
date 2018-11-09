@@ -3,7 +3,7 @@
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
-import WeekArticles from '../../../containers/Fragments/WeekArticles';
+import FeaturedArticles from '../../../containers/Fragments/FeaturedArticles';
 import LatestArticles from '../../../containers/Fragments/LatestArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
 
@@ -22,14 +22,14 @@ export class Home extends PureComponent {
 
     return (
       <main className="page-fade-in">
-        <Helmet title="Home" />
         <Helmet>
           <title>{title}</title>
           <meta name="description" content={desc} />
           <link rel="canonical" href={canonical} />
         </Helmet>
+
         <h1 className="dn">Home</h1>
-        <WeekArticles padding="pt4  pb2" />
+        <FeaturedArticles padding="pb4  mb2" />
         <LatestArticles limit={16} type="grid" padding="pb4" />
         <CategoryGrid padding="" />
       </main>

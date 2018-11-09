@@ -16,7 +16,7 @@ export class Authors extends PureComponent {
 
   render() {
     const title = 'Authors';
-    const desc = 'The Rendah Team is constantly growing, Get involved!';
+    const desc = 'Profiles of our authors & editors.';
     const canonical = 'https://www.rendahmag.com/authors';
 
     return (
