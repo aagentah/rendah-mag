@@ -9,11 +9,13 @@ import compose from 'lodash/flowRight';
 import * as action from './action';
 import Loading from '../../../components/Loading';
 import TeamMember from '../../../components/TeamMember';
+import ArticleListGrid from '../../../components/ArticleList/Grid';
 
 export class TeamMemberInfo extends PureComponent {
   renderTeamMember = () => {
     const { teamMemberInfo, match: { params } } = this.props;
     const teamMemberInfoById = teamMemberInfo[params.id];
+    let hasArticles;
 
     if (
       !teamMemberInfoById ||
@@ -23,7 +25,23 @@ export class TeamMemberInfo extends PureComponent {
       return <Loading type="TeamMemberInfo" />;
     }
 
-    return <TeamMember {...this.props} info={teamMemberInfoById.info} />;
+
+    if (teamMemberInfoById.info.articles) {
+      console.log('hasArticles');
+      hasArticles = (
+        <React.Fragment>
+          <p className="t-title  bold  tac  f6  ttu  pt2  pb3">LATEST FROM {teamMemberInfoById.info.slug.split('-')[0]}</p>
+          <ArticleListGrid padding="pt2" type="grid" list={teamMemberInfoById.info.articles} />
+        </React.Fragment>
+      );
+    }
+
+    return (
+      <React.Fragment>
+        <TeamMember {...this.props} info={teamMemberInfoById.info} />
+        {hasArticles}
+      </React.Fragment>
+    );
   }
 
   render() {
