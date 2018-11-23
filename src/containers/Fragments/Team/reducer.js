@@ -2,30 +2,30 @@
 import _ from 'lodash';
 
 import {
-  AUTHORS_INVALID,
-  AUTHORS_REQUESTING,
-  AUTHORS_FAILURE,
-  AUTHORS_SUCCESS,
+  TEAM_INVALID,
+  TEAM_REQUESTING,
+  TEAM_FAILURE,
+  TEAM_SUCCESS,
 } from './action';
 
 const initialState = {
-  readyStatus: AUTHORS_INVALID,
+  readyStatus: TEAM_INVALID,
   err: null,
   list: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case AUTHORS_REQUESTING:
-      return _.assign({}, state, { readyStatus: AUTHORS_REQUESTING });
-    case AUTHORS_FAILURE:
+    case TEAM_REQUESTING:
+      return _.assign({}, state, { readyStatus: TEAM_REQUESTING });
+    case TEAM_FAILURE:
       return _.assign({}, state, {
-        readyStatus: AUTHORS_FAILURE,
+        readyStatus: TEAM_FAILURE,
         err: action.err,
       });
-    case AUTHORS_SUCCESS:
+    case TEAM_SUCCESS:
       return _.assign({}, state, {
-        readyStatus: AUTHORS_SUCCESS,
+        readyStatus: TEAM_SUCCESS,
         list: action.data,
       });
     default:

@@ -22,7 +22,7 @@ export const fetchLatestArticles = (limit: number) =>
       description,
       "slug": slug.current,
       "img": image.asset->url,
-      "author": author->name,
+      "teamMember": author->name,
       "created": publishedAt,
     }`;
 

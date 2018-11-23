@@ -9,7 +9,7 @@ import Sections from './Sections';
 import SocialLinks from './SocialLinks';
 
 import { convertDate } from '../../functions';
-import Author from '../Author';
+import TeamMember from '../TeamMember';
 
 import LatestArticles from '../../containers/Fragments/LatestArticles';
 import SubscribeBanner from '../SubscribeBanner';
@@ -43,7 +43,7 @@ export class Article extends PureComponent {
 
   render() {
     const article = this.props.info;
-    const { author } = article;
+    const { teamMember } = article;
     let sideBarLatestArticles;
     let sideBarExtraArticles;
 
@@ -77,7 +77,7 @@ export class Article extends PureComponent {
           description={article.description}
           img={article.img}
           created={article.created}
-          author={author.name}
+          teamMember={teamMember.name}
         />
 
         <div className="article">
@@ -100,12 +100,12 @@ export class Article extends PureComponent {
                 </div>
 
                 <span className="grey  t8">{this.date(article.created)} | </span>
-                <Link title={author.slug} to={`/author/${author.slug}`} className="no-underline"><span className="grey  t8  cp  link">{author.name}</span></Link>
+                <Link title={teamMember.slug} to={`/team-member/${teamMember.slug}`} className="no-underline"><span className="grey  t8  cp  link">{teamMember.name}</span></Link>
                 <h1 className="pb3  pt4  t-title">{article.title}</h1>
                 <p className="pv3  t-body  f5  dark-grey">{article.description}</p>
                 <Sections body={article.body} />
                 <SocialLinks article={article} />
-                <Author article padding="pt4  pt5-sm" info={author} />
+                <TeamMember article padding="pt4  pt5-sm" info={teamMember} />
               </article>
 
               <div className="col-24  col-6-lg  mt4  mt5-lg  pt4">
@@ -128,14 +128,14 @@ export class Article extends PureComponent {
 Article.propTypes = {
   info: PropTypes.shape({
     article: PropTypes.shape({}),
-    author: PropTypes.shape({}),
+    teamMember: PropTypes.shape({}),
   }),
 };
 
 Article.defaultProps = {
   info: {
     article: {},
-    author: {},
+    teamMember: {},
   },
 };
 
