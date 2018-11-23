@@ -46,7 +46,7 @@ export class ArticleListGrid extends PureComponent {
 
                 <div className="pv2  mt2">
                   <span className="t-body  grey  f6">{this.date(article.created)} | </span>
-                  <Link to={`/team-member/${toUrlCase(trim(article.teamMember))}`} className="link"><span className="t-body  grey  f6  cp  link">{article.teamMember}</span></Link>
+                  <Link to={`/team/${toUrlCase(trim(article.teamMember))}`} className="link"><span className="t-body  grey  f6  cp  link">{article.teamMember}</span></Link>
                 </div>
 
                 <div>

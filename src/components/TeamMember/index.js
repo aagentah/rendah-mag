@@ -78,7 +78,7 @@ export class Article extends PureComponent {
               <figure>
                 <Link
                   title={teamMember.slug}
-                  to={`/team-member/${teamMember.slug}`}
+                  to={`/team/${teamMember.slug}`}
                   className="link  db  h4  w4  center  shadow2  br-100"
                 >
                   <AnimatedImage
@@ -95,7 +95,7 @@ export class Article extends PureComponent {
               <div className="flex  flex-column  justify-center  h4">
                 <Link
                   title={teamMember.slug}
-                  to={`/team-member/${teamMember.slug}`}
+                  to={`/team/${teamMember.slug}`}
                   className="link  black  f5  pt2  db  cp  t-title  no-underline  tac  tal-sm"
                 >
                   <span>{teamMember.name}</span>

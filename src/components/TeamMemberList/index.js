@@ -16,7 +16,7 @@ export class TeamMemberList extends PureComponent {
           {list.map(teamMember => (
             <div key={teamMember.name} className="col-24  col-12-sm  col-6-md  ph3  pb3">
               <figure className="rel  pb3  link  w-100">
-                <Link title={teamMember.slug} to={`/team-member/${teamMember.slug}`} className="link  db  h4  w4  shadow2  center  br-100">
+                <Link title={teamMember.slug} to={`/team/${teamMember.slug}`} className="link  db  h4  w4  shadow2  center  br-100">
                   <AnimatedImage
                     lazy
                     src={teamMember.img}
@@ -25,7 +25,7 @@ export class TeamMemberList extends PureComponent {
                   />
                 </Link>
               </figure>
-              <Link title={teamMember.slug} to={`/team-member/${teamMember.slug}`} className="t-title  black  f6  link  db  pt1  pb3  tac  cp">
+              <Link title={teamMember.slug} to={`/team/${teamMember.slug}`} className="t-title  black  f6  link  db  pt1  pb3  tac  cp">
                 <span className="db">{teamMember.name}</span>
                 <span className="db  t8  grey  pt1">({teamMember.alias})</span>
               </Link>
