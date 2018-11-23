@@ -4,9 +4,9 @@ import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
 import Hero from '../../../components/Hero';
-import AuthorsFragment from '../../../containers/Fragments/Authors';
+import TeamFragment from '../../../containers/Fragments/Team';
 
-export class Authors extends PureComponent {
+export class Team extends PureComponent {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -15,9 +15,9 @@ export class Authors extends PureComponent {
   }
 
   render() {
-    const title = 'Authors';
-    const desc = 'Profiles of our authors & editors.';
-    const canonical = 'https://www.rendahmag.com/authors';
+    const title = 'Team';
+    const desc = 'Profiles of our team & editors.';
+    const canonical = 'https://www.rendahmag.com/team';
 
     return (
       <main className="page-fade-in">
@@ -28,10 +28,10 @@ export class Authors extends PureComponent {
         </Helmet>
 
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb3" />
-        <AuthorsFragment padding="pv4" />
+        <TeamFragment padding="pv4" />
       </main>
     );
   }
 }
 
-export default Authors;
+export default Team;
