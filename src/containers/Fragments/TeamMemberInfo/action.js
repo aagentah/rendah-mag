@@ -5,7 +5,7 @@ export const TEAMMEMBER_FAILURE = 'TEAMMEMBER_FAILURE';
 export const TEAMMEMBER_SUCCESS = 'TEAMMEMBER_SUCCESS';
 
 // export const API_URL = (__DEV__) ?
-//   '/api/team-member' : 'https://rendah-mag.herokuapp.com/api/team-member';
+//   '/api/team' : 'https://rendah-mag.herokuapp.com/api/team';
 
 export const fetchTeamMember = (teamMemberId: string) =>
   (dispatch) => {

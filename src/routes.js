@@ -30,7 +30,7 @@ export default [
     component: ArticlePage,
   },
   {
-    path: '/team-member/:id',
+    path: '/team/:id',
     component: TeamMemberPage,
   },
   {
