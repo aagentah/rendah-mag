@@ -25,9 +25,7 @@ export class TeamMemberInfo extends PureComponent {
       return <Loading type="TeamMemberInfo" />;
     }
 
-
-    if (teamMemberInfoById.info.articles) {
-      console.log('hasArticles');
+    if (teamMemberInfoById.info.articles.length > 0) {
       hasArticles = (
         <React.Fragment>
           <p className="t-title  bold  tac  f6  ttu  pt2  pb3">LATEST FROM {teamMemberInfoById.info.slug.split('-')[0]}</p>
