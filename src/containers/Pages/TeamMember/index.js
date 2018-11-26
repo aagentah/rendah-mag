@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 import TeamMemberInfo from '../../../containers/Fragments/TeamMemberInfo';
+import CategoryGrid from '../../../components/CategoryGrid';
 
 
 export class TeamMember extends PureComponent {
@@ -21,6 +22,7 @@ export class TeamMember extends PureComponent {
         <Helmet title={this.props.match.params.id.replace(/\s+/g, '-')} />
         <h1 className="dn">{this.props.match.params.id.replace(/\s+/g, '-')}</h1>
         <TeamMemberInfo padding="pt4  pb5" match={this.props.match} seo />
+        <CategoryGrid padding="" />
       </main>
     );
   }
