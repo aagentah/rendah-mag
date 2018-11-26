@@ -29,7 +29,7 @@ export class TeamMemberInfo extends PureComponent {
       hasArticles = (
         <React.Fragment>
           <p className="t-title  bold  tac  f6  ttu  pt2  pb3">LATEST FROM {teamMemberInfoById.info.slug.split('-')[0]}</p>
-          <ArticleListGrid padding="pt2" type="grid" list={teamMemberInfoById.info.articles} />
+          <ArticleListGrid padding="pt2  pb5" type="grid" list={teamMemberInfoById.info.articles} />
         </React.Fragment>
       );
     }
