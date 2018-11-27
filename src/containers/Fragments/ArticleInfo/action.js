@@ -22,7 +22,7 @@ export const fetchArticle = (articleId: string) =>
       description,
       "slug": slug.current,
       "img": image.asset->url,
-      "author": author->{
+      "teamMember": author->{
         name,
         alias,
         description,

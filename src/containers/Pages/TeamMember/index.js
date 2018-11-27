@@ -4,11 +4,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import AuthorInfo from '../../../containers/Fragments/AuthorInfo';
-import AuthorArticles from '../../../containers/Fragments/AuthorArticles';
+import TeamMemberInfo from '../../../containers/Fragments/TeamMemberInfo';
+import CategoryGrid from '../../../components/CategoryGrid';
 
 
-export class Author extends PureComponent {
+export class TeamMember extends PureComponent {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -21,20 +21,19 @@ export class Author extends PureComponent {
       <main className="page-fade-in">
         <Helmet title={this.props.match.params.id.replace(/\s+/g, '-')} />
         <h1 className="dn">{this.props.match.params.id.replace(/\s+/g, '-')}</h1>
-        <AuthorInfo padding="pt4  pb5" match={this.props.match} seo />
-        <p className="t-title  bold  tac  f6  ttu  pt2  pb3">LATEST FROM {this.props.match.params.id.split('-')[0]}</p>
-        <AuthorArticles match={this.props.match} />
+        <TeamMemberInfo padding="pt4  pb5" match={this.props.match} seo />
+        <CategoryGrid padding="" />
       </main>
     );
   }
 }
 
-Author.propTypes = {
+TeamMember.propTypes = {
   match: PropTypes.shape(),
 };
 
-Author.defaultProps = {
+TeamMember.defaultProps = {
   match: [],
 };
 
-export default Author;
+export default TeamMember;

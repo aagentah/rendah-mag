@@ -6,28 +6,28 @@ import PropTypes from 'prop-types';
 
 import AnimatedImage from '../Elements/AnimatedImage';
 
-export class AuthorList extends PureComponent {
+export class TeamMemberList extends PureComponent {
   render() {
     const { list, padding } = this.props;
 
     return (
       <div className={`container-medium  center  ${padding}`}>
         <div className="flex  flex-wrap">
-          {list.map(author => (
-            <div key={author.name} className="col-24  col-12-sm  col-6-md  ph3  pb3">
+          {list.map(teamMember => (
+            <div key={teamMember.name} className="col-24  col-12-sm  col-6-md  ph3  pb3">
               <figure className="rel  pb3  link  w-100">
-                <Link title={author.slug} to={`/author/${author.slug}`} className="link  db  h4  w4  shadow2  center  br-100">
+                <Link title={teamMember.slug} to={`/team/${teamMember.slug}`} className="link  db  h4  w4  shadow2  center  br-100">
                   <AnimatedImage
                     lazy
-                    src={author.img}
-                    alt={author.name}
+                    src={teamMember.img}
+                    alt={teamMember.name}
                     styles="fade-in-zoom-in  h4  w4  center  br-100"
                   />
                 </Link>
               </figure>
-              <Link title={author.slug} to={`/author/${author.slug}`} className="t-title  black  f6  link  db  pt1  pb3  tac  cp">
-                <span className="db">{author.name}</span>
-                <span className="db  t8  grey  pt1">({author.alias})</span>
+              <Link title={teamMember.slug} to={`/team/${teamMember.slug}`} className="t-title  black  f6  link  db  pt1  pb3  tac  cp">
+                <span className="db">{teamMember.name}</span>
+                <span className="db  t8  grey  pt1">({teamMember.alias})</span>
               </Link>
             </div>
           ))}
@@ -37,14 +37,14 @@ export class AuthorList extends PureComponent {
   }
 }
 
-AuthorList.propTypes = {
+TeamMemberList.propTypes = {
   list: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   padding: PropTypes.string,
 };
 
-AuthorList.defaultProps = {
+TeamMemberList.defaultProps = {
   list: [],
   padding: '',
 };
 
-export default AuthorList;
+export default TeamMemberList;

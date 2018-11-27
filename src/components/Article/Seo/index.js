@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 export class Seo extends PureComponent {
   render() {
-    const { title, slug, description, img, created, author } = this.props;
+    const { title, slug, description, img, created, teamMember } = this.props;
 
     return (
       <Helmet>
@@ -30,7 +30,7 @@ export class Seo extends PureComponent {
         <meta property="article:published_time" content={created} />
         <meta property="article:modified_time" content={created} />
         <meta property="article:section" content="Article" />
-        <meta property="article:author" content={author} />
+        <meta property="article:teamMember" content={teamMember} />
       </Helmet>
     );
   }
@@ -42,7 +42,7 @@ Seo.propTypes = {
   description: PropTypes.string,
   img: PropTypes.string,
   created: PropTypes.string,
-  author: PropTypes.string,
+  teamMember: PropTypes.string,
 };
 
 Seo.defaultProps = {
@@ -51,7 +51,7 @@ Seo.defaultProps = {
   description: '',
   img: '',
   created: '',
-  author: '',
+  teamMember: '',
 };
 
 export default Seo;
