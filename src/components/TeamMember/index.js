@@ -12,12 +12,12 @@ import Seo from './Seo';
 export class Article extends PureComponent {
   render() {
     const { padding } = this.props;
-    const author = this.props.info;
-    const { socialHandles } = author;
+    const teamMember = this.props.info;
+    const { socialHandles } = teamMember;
 
     const isArticle = this.props.article;
     const containerClass = isArticle ? 'w-80-lg' : 'container-small  center';
-    const borderClass = isArticle ? 'author__border  bt  bl-sm  bw2  bc-light-grey  pt4  pt0-md' : null;
+    const borderClass = isArticle ? 'teamMember__border  bt  bl-sm  bw2  bc-light-grey  pt4  pt0-md' : null;
 
     let { facebookLink, twitterLink, instagramLink, soundcloudLink } = false;
 
@@ -70,21 +70,21 @@ export class Article extends PureComponent {
     return (
       <React.Fragment>
 
-        {this.props.seo ? <Seo author={author} /> : null}
+        {this.props.seo ? <Seo teamMember={teamMember} /> : null}
 
         <div className={`${containerClass}  ${padding}`}>
           <div className={`flex  flex-wrap  ${borderClass}`}>
             <div className="col-24  col-7-sm  col-6-md  pb4  pb0-sm">
               <figure>
                 <Link
-                  title={author.slug}
-                  to={`/author/${author.slug}`}
+                  title={teamMember.slug}
+                  to={`/team/${teamMember.slug}`}
                   className="link  db  h4  w4  center  shadow2  br-100"
                 >
                   <AnimatedImage
                     lazy
-                    src={author.img}
-                    alt={author.name}
+                    src={teamMember.img}
+                    alt={teamMember.name}
                     styles="fade-in-zoom-in  h4  w4  center  br-100"
                   />
                 </Link>
@@ -94,14 +94,14 @@ export class Article extends PureComponent {
             <div className="col-22  col-17-sm  col-18-md  center">
               <div className="flex  flex-column  justify-center  h4">
                 <Link
-                  title={author.slug}
-                  to={`/author/${author.slug}`}
+                  title={teamMember.slug}
+                  to={`/team/${teamMember.slug}`}
                   className="link  black  f5  pt2  db  cp  t-title  no-underline  tac  tal-sm"
                 >
-                  <span>{author.name}</span>
-                  <span className="pl1  grey  f5">({author.alias})</span>
+                  <span>{teamMember.name}</span>
+                  <span className="pl1  grey  f5">({teamMember.alias})</span>
                 </Link>
-                <p className="grey  f6  pt2  pb3  mb1  tac  tal-sm">{author.description}</p>
+                <p className="grey  f6  pt2  pb3  mb1  tac  tal-sm">{teamMember.description}</p>
                 <div className="tac  tal-sm">
                   {facebookLink}
                   {twitterLink}

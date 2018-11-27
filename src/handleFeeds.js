@@ -8,21 +8,21 @@ const handleFeeds = app => {
       'https://www.rendahmag.com/',
       'https://www.rendahmag.com/watch-tower',
       'https://www.rendahmag.com/mixes',
-      'https://www.rendahmag.com/authors',
+      'https://www.rendahmag.com/team',
       // 'https://www.rendahmag.com/store',
 
       'https://www.rendahmag.com/category/interviews',
       'https://www.rendahmag.com/category/insights',
       'https://www.rendahmag.com/category/news',
 
-      'https://www.rendahmag.com/authors/dan-jones',
-      'https://www.rendahmag.com/authors/dayle-hamers',
-      'https://www.rendahmag.com/authors/harry-taylor',
-      'https://www.rendahmag.com/authors/kieran-may',
-      'https://www.rendahmag.com/authors/sam-langley',
-      'https://www.rendahmag.com/authors/blair-mcgloiry',
-      'https://www.rendahmag.com/authors/rosh-parmar',
-      'https://www.rendahmag.com/authors/keelan-rushby',
+      'https://www.rendahmag.com/team/dan-jones',
+      'https://www.rendahmag.com/team/dayle-hamers',
+      'https://www.rendahmag.com/team/harry-taylor',
+      'https://www.rendahmag.com/team/kieran-may',
+      'https://www.rendahmag.com/team/sam-langley',
+      'https://www.rendahmag.com/team/blair-mcgloiry',
+      'https://www.rendahmag.com/team/rosh-parmar',
+      'https://www.rendahmag.com/team/keelan-rushby',
     ];
 
     const params = {
