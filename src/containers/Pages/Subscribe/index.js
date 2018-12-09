@@ -28,7 +28,13 @@ export class Subscribe extends PureComponent {
           <title>{title}</title>
           <meta name="description" content={desc} />
           <link rel="canonical" href={canonical} />
+
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={desc} />
           <meta name="twitter:image" content={img} />
+
+          <meta property="og:title" content={title} />
+          <meta property="og:url" content={canonical} />
           <meta property="og:image" content={img} />
         </Helmet>
 
