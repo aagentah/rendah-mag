@@ -4,8 +4,8 @@
   "description": "rm-setup",
   "main": "index.js",
   "engines": {
-    "node": ">=6.0",
-    "npm": ">=3.0"
+    "node": "8.11.1",
+    "npm": "5.6.0"
   },
   "repository": {
     "type": "git",
