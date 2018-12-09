@@ -20,6 +20,7 @@ export class Subscribe extends PureComponent {
     const title = 'Subscribe';
     const desc = 'The latest news & releases, straight to your inbox.';
     const canonical = 'https://www.rendahmag.com/subscribe';
+    const img = 'http://res.cloudinary.com/dzz8ji5lj/image/upload/v1544352629/brand/meta-subscribe.jpg';
 
     return (
       <main className="page-fade-in">
@@ -27,6 +28,8 @@ export class Subscribe extends PureComponent {
           <title>{title}</title>
           <meta name="description" content={desc} />
           <link rel="canonical" href={canonical} />
+          <meta name="twitter:image" content={img} />
+          <meta property="og:image" content={img} />
         </Helmet>
 
         <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
