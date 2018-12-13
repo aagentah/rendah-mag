@@ -9,6 +9,7 @@ import NotFoundPage from './containers/Pages/NotFound';
 import TeamPage from './containers/Pages/Team';
 import WatchTowerPage from './containers/Pages/WatchTower';
 import MixesPage from './containers/Pages/Mixes';
+import SubscribePage from './containers/Pages/Subscribe';
 import PrivacyPolicyPage from './containers/Pages/PrivacyPolicy';
 
 export default [
@@ -48,6 +49,10 @@ export default [
   {
     path: '/mixes',
     component: MixesPage,
+  },
+  {
+    path: '/subscribe',
+    component: SubscribePage,
   },
   {
     path: '/privacy-policy',
