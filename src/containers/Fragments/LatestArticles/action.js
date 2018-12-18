@@ -13,16 +13,16 @@ export const fetchLatestArticles = (limit: number) =>
     dispatch({ type: LATESTARTICLES_REQUESTING });
 
     const params = {
-      limit: `2..${((limit + 2) - 1)}`,
+      limit: `0..${((limit) - 1)}`,
     };
 
     const query =
-    `*[_type == "post"] | order(publishedAt desc) [${params.limit}] {
+    `*[_type == "post" && featured != true] | order(publishedAt desc) [${params.limit}] {
       title,
       description,
       "slug": slug.current,
       "img": image.asset->url,
-      "author": author->name,
+      "teamMember": author->name,
       "created": publishedAt,
     }`;
 

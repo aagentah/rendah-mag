@@ -5,15 +5,15 @@ import PropTypes from 'prop-types';
 
 import Item from './Item';
 
-export class AuthorList extends PureComponent {
+export class TeamMemberList extends PureComponent {
   render() {
     const { list, padding } = this.props;
 
     return (
       <div className={`container-medium  center  ${padding}`}>
         <div className="flex  flex-wrap">
-          {list.map(author => (
-            <Item key={author.name} author={author} />
+          {list.map(teamMember => (
+            <Item key={teamMember.name} teamMember={teamMember} />
           ))}
         </div>
       </div>
@@ -21,14 +21,14 @@ export class AuthorList extends PureComponent {
   }
 }
 
-AuthorList.propTypes = {
+TeamMemberList.propTypes = {
   list: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   padding: PropTypes.string,
 };
 
-AuthorList.defaultProps = {
+TeamMemberList.defaultProps = {
   list: [],
   padding: '',
 };
 
-export default AuthorList;
+export default TeamMemberList;

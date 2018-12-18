@@ -1,0 +1,11 @@
+.slider-control-centerleft {
+  @extend .dn;
+}
+
+.slider-control-centerright {
+  @extend .dn;
+}
+
+.slider-control-bottomcenter {
+  top: calc(100% + 22px);
+}
