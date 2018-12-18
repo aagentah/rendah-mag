@@ -1,4 +1,4 @@
-/* eslint-disable import/no-named-as-default, max-len */
+/* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,7 @@ export class Article extends PureComponent {
   render() {
     const { padding } = this.props;
     const teamMember = this.props.info;
-    const { socialHandles } = teamMember;
+    const { socialHandles, alias } = teamMember;
 
     const isArticle = this.props.article;
     const containerClass = isArticle ? 'w-80-lg' : 'container-small  center';
@@ -98,8 +98,8 @@ export class Article extends PureComponent {
                   to={`/team/${teamMember.slug}`}
                   className="link  black  f5  pt2  db  cp  t-title  no-underline  tac  tal-sm"
                 >
-                  <span>{teamMember.name}</span>
-                  <span className="pl1  grey  f5">({teamMember.alias})</span>
+                  <span>{author.name}</span>
+                  <span className="pl1  grey  f5">{(alias) ? `(${alias})` : ''}</span>
                 </Link>
                 <p className="grey  f6  pt2  pb3  mb1  tac  tal-sm">{teamMember.description}</p>
                 <div className="tac  tal-sm">
