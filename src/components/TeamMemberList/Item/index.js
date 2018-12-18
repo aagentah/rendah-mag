@@ -23,7 +23,7 @@ export class Item extends PureComponent {
             />
           </Link>
         </figure>
-        <Link title={teamMember.slug} to={`/teamMember/${teamMember.slug}`} className="t-title  black  f6  link  db  pt1  pb3  tac  cp">
+        <Link title={teamMember.slug} to={`/team/${teamMember.slug}`} className="t-title  black  f6  link  db  pt1  pb3  tac  cp">
           <span className="db">{teamMember.name}</span>
           <span className="db  t8  grey  pt1">{(alias) ? `(${alias})` : ''}</span>
         </Link>
