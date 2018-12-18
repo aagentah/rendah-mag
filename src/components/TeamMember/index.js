@@ -98,7 +98,7 @@ export class Article extends PureComponent {
                   to={`/team/${teamMember.slug}`}
                   className="link  black  f5  pt2  db  cp  t-title  no-underline  tac  tal-sm"
                 >
-                  <span>{author.name}</span>
+                  <span>{teamMember.name}</span>
                   <span className="pl1  grey  f5">{(alias) ? `(${alias})` : ''}</span>
                 </Link>
                 <p className="grey  f6  pt2  pb3  mb1  tac  tal-sm">{teamMember.description}</p>
