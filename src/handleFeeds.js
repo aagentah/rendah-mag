@@ -8,21 +8,22 @@ const handleFeeds = app => {
       'https://www.rendahmag.com/',
       'https://www.rendahmag.com/watch-tower',
       'https://www.rendahmag.com/mixes',
-      'https://www.rendahmag.com/authors',
+      'https://www.rendahmag.com/team',
+      'https://www.rendahmag.com/subscribe',
       // 'https://www.rendahmag.com/store',
 
       'https://www.rendahmag.com/category/interviews',
       'https://www.rendahmag.com/category/insights',
       'https://www.rendahmag.com/category/news',
 
-      'https://www.rendahmag.com/authors/dan-jones',
-      'https://www.rendahmag.com/authors/dayle-hamers',
-      'https://www.rendahmag.com/authors/harry-taylor',
-      'https://www.rendahmag.com/authors/kieran-may',
-      'https://www.rendahmag.com/authors/sam-langley',
-      'https://www.rendahmag.com/authors/blair-mcgloiry',
-      'https://www.rendahmag.com/authors/rosh-parmar',
-      'https://www.rendahmag.com/authors/keelan-rushby',
+      'https://www.rendahmag.com/team/dan-jones',
+      'https://www.rendahmag.com/team/dayle-hamers',
+      'https://www.rendahmag.com/team/harry-taylor',
+      'https://www.rendahmag.com/team/kieran-may',
+      'https://www.rendahmag.com/team/sam-langley',
+      'https://www.rendahmag.com/team/blair-mcgloiry',
+      'https://www.rendahmag.com/team/rosh-parmar',
+      'https://www.rendahmag.com/team/keelan-rushby',
     ];
 
     const params = {
@@ -89,14 +90,14 @@ const handleFeeds = app => {
 
         const articlesFeedBody = builder.create('channel');
 
-        const a = builder.create('title').txt('Rendah Weekly');
+        const a = builder.create('title').txt('Rendah Featuredly');
         const b = builder.create('link').txt('https://www.rendahmag.com/');
         const c = builder
           .create('atom:link')
           .att('href', 'https://www.rendahmag.com/feeds/articles.xml')
           .att('rel', 'self')
           .att('type', 'application/rss+xml');
-        const d = builder.create('description').txt('Weekly updates from Rendah');
+        const d = builder.create('description').txt('Featuredly updates from Rendah');
 
         articlesFeedBody.importDocument(a);
         articlesFeedBody.importDocument(b);

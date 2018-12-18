@@ -43,8 +43,8 @@ export class Header extends PureComponent {
         text: 'Home',
       },
       {
-        to: '/authors',
-        text: 'Authors',
+        to: '/team',
+        text: 'Team',
       },
       {
         to: '/category/news',

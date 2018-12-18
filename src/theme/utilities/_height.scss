@@ -2,6 +2,9 @@
   .h#{$i} {
     height: $value;
   }
+  .mh#{$i} {
+    max-height: $value;
+  }
 }
 
 @each $modifier, $breakpoint in $grid-breakpoints {
@@ -12,11 +15,12 @@
         height: $value;
       }
     }
-
-
   }
 }
 
+.vh-50 {
+  height: 50vh;
+}
 
 .vh-100 {
   height: 100vh;

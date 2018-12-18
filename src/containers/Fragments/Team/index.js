@@ -8,51 +8,51 @@ import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../components/Loading';
-import LatestAuthorList from '../../../components/AuthorList';
+import LatestTeamMemberList from '../../../components/TeamMemberList';
 
 
-export class Authors extends PureComponent {
-  renderLatestAuthorList = () => {
-    const { authors } = this.props;
+export class Team extends PureComponent {
+  renderLatestTeamMemberList = () => {
+    const { team } = this.props;
 
     if (
-      !authors.readyStatus ||
-      authors.readyStatus === action.AUTHORS_INVALID ||
-      authors.readyStatus === action.AUTHORS_REQUESTING ||
-      authors.readyStatus === action.AUTHORS_FAILURE
+      !team.readyStatus ||
+      team.readyStatus === action.TEAM_INVALID ||
+      team.readyStatus === action.TEAM_REQUESTING ||
+      team.readyStatus === action.TEAM_FAILURE
     ) {
-      return <Loading type="Authors" />;
+      return <Loading type="Team" />;
     }
 
-    return <LatestAuthorList {...this.props} list={authors.list} />;
+    return <LatestTeamMemberList {...this.props} list={team.list} />;
   };
 
   render() {
     return (
       <React.Fragment>
-        {this.renderLatestAuthorList()}
+        {this.renderLatestTeamMemberList()}
       </React.Fragment>
     );
   }
 }
 
 const connector = connect(
-  ({ authors }) => ({ authors }),
+  ({ team }) => ({ team }),
   dispatch => ({
-    fetchAuthorsIfNeeded: () => dispatch(action.fetchAuthorsIfNeeded()),
+    fetchTeamIfNeeded: () => dispatch(action.fetchTeamIfNeeded()),
   }),
 );
 
-Authors.propTypes = {
-  authors: PropTypes.shape({
+Team.propTypes = {
+  team: PropTypes.shape({
     readyStatus: PropTypes.string,
     err: PropTypes.any,
     list: PropTypes.arrayOf(PropTypes.object),
   }),
 };
 
-Authors.defaultProps = {
-  authors: {
+Team.defaultProps = {
+  team: {
     readyStatus: '',
     err: '',
     list: [{}],
@@ -61,10 +61,10 @@ Authors.defaultProps = {
 
 const frontload = props =>
   Promise.all([
-    props.fetchAuthorsIfNeeded(),
+    props.fetchTeamIfNeeded(),
   ]);
 
 export default compose(
   connector,
   frontloadConnect(frontload, { onUpdate: false }),
-)(Authors);
+)(Team);

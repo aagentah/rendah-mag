@@ -22,7 +22,7 @@ export const fetchSearchArticles = (id: string) => (dispatch) => {
     description,
     "slug": slug.current,
     "img": image.asset->url,
-    "author": author->name,
+    "teamMember": author->name,
     "created": publishedAt,
   }`;
 
