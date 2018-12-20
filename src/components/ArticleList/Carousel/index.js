@@ -35,14 +35,14 @@ export class ArticleListGrid extends PureComponent {
                       lazy={false}
                       src={article.img}
                       alt={article.title}
-                      styles="fade-in-zoom-in  vh-50  mh14  w-100"
+                      styles="fade-in-zoom-in  vh-60  mh14  w-100  objp--carousel"
                     />
                   </Link>
                 </figure>
 
                 <Link className="abs  top  bottom  left  right  tac  center  ma  h2  mw-80" to={`/article/${article.slug}`}>
-                  <p className="t-body  dib  link  pa3  bg-black  shadow2">
-                    <span className="t-title  white  bold  f4  f3-md  ttu  cp  over-hidden  link">{article.title}</span>
+                  <p className="t-body  dib  link  pa3  bg-black  shadow4  bb  bw1  bc-white">
+                    <span className="t-title  white  bold  f5  f4-md  ttu  cp  over-hidden  link">{article.title}</span>
                   </p>
                 </Link>
               </article>
