@@ -51,7 +51,7 @@ export class Article extends PureComponent {
       sideBarLatestArticles = (
         <React.Fragment>
           <p className="t-title  grey  f5  pl4  pv2">Latest</p>
-          <LatestArticles limit={4} type="list" />
+          <LatestArticles range={[1, 4]} type="list" />
 
           <div className="pv3  pv0-lg">
             <p className="t-title  grey  f5  pl4  pv2">Subscribe to Rendah</p>
