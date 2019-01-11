@@ -30,7 +30,7 @@ export class Home extends PureComponent {
 
         <h1 className="dn">Home</h1>
         <FeaturedArticles padding="pb4  mb2" />
-        <LatestArticles limit={16} type="grid" padding="pb4" />
+        <LatestArticles range={[1, 24]} type="grid" padding="pb4" />
         <CategoryGrid padding="" />
       </main>
     );
