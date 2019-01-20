@@ -33,11 +33,13 @@ const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> =>
         {head.base.toComponent()}
         {head.link.toComponent()}
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="theme-color" content="#ffffff">
 
 
         {/* Styles will be presented in production with webpack extract text plugin */}
@@ -96,7 +98,7 @@ const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> =>
               	"@type": "Organization",
               	"name": "Rendah Mag",
               	"url": "https://www.rendahmag.com/",
-              	"logo": "http://res.cloudinary.com/dzz8ji5lj/image/upload/v1523314127/brand/rendah.png",
+              	"logo": "https://res.cloudinary.com/dzz8ji5lj/image/upload/v1547996619/brand/rendah-logo.png",
               	"address": {
               		"@type": "PostalAddress",
               		"addressCountry": "United Kingdom",
