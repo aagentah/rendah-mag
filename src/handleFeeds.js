@@ -7,7 +7,7 @@ const handleFeeds = app => {
     const sitemap = [
       'https://www.rendahmag.com/',
       'https://www.rendahmag.com/watch-tower',
-      'https://www.rendahmag.com/mixes',
+      // 'https://www.rendahmag.com/mixes',
       'https://www.rendahmag.com/team',
       'https://www.rendahmag.com/subscribe',
       // 'https://www.rendahmag.com/store',

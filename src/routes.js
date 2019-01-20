@@ -8,7 +8,7 @@ import NotFoundPage from './containers/Pages/NotFound';
 // import StorePage from './containers/Pages/Store';
 import TeamPage from './containers/Pages/Team';
 import WatchTowerPage from './containers/Pages/WatchTower';
-import MixesPage from './containers/Pages/Mixes';
+// import MixesPage from './containers/Pages/Mixes';
 import SubscribePage from './containers/Pages/Subscribe';
 import PrivacyPolicyPage from './containers/Pages/PrivacyPolicy';
 
@@ -46,10 +46,10 @@ export default [
     path: '/watch-tower',
     component: WatchTowerPage,
   },
-  {
-    path: '/mixes',
-    component: MixesPage,
-  },
+  // {
+  //   path: '/mixes',
+  //   component: MixesPage,
+  // },
   {
     path: '/subscribe',
     component: SubscribePage,
