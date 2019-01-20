@@ -7,7 +7,7 @@ import classNames from 'classnames';
 
 import SearchInput from '../../../components/Elements/SearchInput';
 import { Search } from '../../../components/Elements/Svg';
-import Logo from '../assets/rendah-medium-reversed.png';
+import Logo from '../assets/logo-medium.png';
 
 export class Header extends PureComponent {
   constructor() {
