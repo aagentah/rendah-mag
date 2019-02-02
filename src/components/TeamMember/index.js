@@ -79,13 +79,13 @@ export class Article extends PureComponent {
                 <Link
                   title={teamMember.slug}
                   to={`/team/${teamMember.slug}`}
-                  className="link  db  h4  w4  center  shadow2  br-100"
+                  className="link  db  h4  w4  center  shadow2  br4"
                 >
                   <AnimatedImage
                     lazy
                     src={teamMember.img}
                     alt={teamMember.name}
-                    styles="fade-in-zoom-in  h4  w4  center  br-100"
+                    styles="fade-in-zoom-in  h4  w4  center  br4"
                   />
                 </Link>
               </figure>
