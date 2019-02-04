@@ -90,14 +90,14 @@ const handleFeeds = app => {
 
         const articlesFeedBody = builder.create('channel');
 
-        const a = builder.create('title').txt('Rendah Featuredly');
+        const a = builder.create('title').txt('Rendah Weekly');
         const b = builder.create('link').txt('https://www.rendahmag.com/');
         const c = builder
           .create('atom:link')
           .att('href', 'https://www.rendahmag.com/feeds/articles.xml')
           .att('rel', 'self')
           .att('type', 'application/rss+xml');
-        const d = builder.create('description').txt('Featuredly updates from Rendah');
+        const d = builder.create('description').txt('Featured weekly updates from Rendah');
 
         articlesFeedBody.importDocument(a);
         articlesFeedBody.importDocument(b);
@@ -187,14 +187,14 @@ const handleFeeds = app => {
 
         const articlesFeedBody = builder.create('channel');
 
-        const a = builder.create('title').txt('Rendah Featuredly');
+        const a = builder.create('title').txt('Rendah Twitter');
         const b = builder.create('link').txt('https://www.rendahmag.com/');
         const c = builder
           .create('atom:link')
           .att('href', 'https://www.rendahmag.com/feeds/articles.xml')
           .att('rel', 'self')
           .att('type', 'application/rss+xml');
-        const d = builder.create('description').txt('Featuredly updates from Rendah');
+        const d = builder.create('description').txt('Twitter updates from Rendah');
 
         articlesFeedBody.importDocument(a);
         articlesFeedBody.importDocument(b);
@@ -284,14 +284,14 @@ const handleFeeds = app => {
 
         const articlesFeedBody = builder.create('channel');
 
-        const a = builder.create('title').txt('Rendah Featuredly');
+        const a = builder.create('title').txt('Rendah Facebook');
         const b = builder.create('link').txt('https://www.rendahmag.com/');
         const c = builder
           .create('atom:link')
           .att('href', 'https://www.rendahmag.com/feeds/articles.xml')
           .att('rel', 'self')
           .att('type', 'application/rss+xml');
-        const d = builder.create('description').txt('Featuredly updates from Rendah');
+        const d = builder.create('description').txt('Facebook updates from Rendah');
 
         articlesFeedBody.importDocument(a);
         articlesFeedBody.importDocument(b);
