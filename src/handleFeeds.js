@@ -168,9 +168,11 @@ const handleFeeds = app => {
     const getTwitterHandles = (object) => {
       if (typeof object.socialHandles !== 'undefined') {
         if (typeof object.socialHandles.twitter !== 'undefined') {
-          return `| @${object.socialHandles.twitter.replace(' ', '').replace(',', ' @')}`;
+          return `| @${object.socialHandles.twitter.replace(', ', ' @').replace(',', ' @')}`;
         }
       }
+
+      return '';
     }
 
     sanity.fetch(query).then(sanityRes => {
