@@ -150,6 +150,101 @@ const handleFeeds = app => {
       }
     });
   });
+
+  app.get('/feeds/articles-twitter.xml', (req, res) => {
+    const params = {
+      limit: '0..4',
+    };
+
+    const query = `*[_type == "post"] | order(publishedAt desc) [${params.limit}] {
+      title,
+      description,
+      "slug": slug.current,
+      "img": image.asset->url,
+      "created": publishedAt,
+      "socialHandles": socialHandles,
+    }`;
+
+    const getTwitterHandles = (object) => {
+      if (typeof object.socialHandles !== 'undefined') {
+        if (typeof object.socialHandles.twitter !== 'undefined') {
+          return `| @${object.socialHandles.twitter.replace(' ', '').replace(',', ' @')}`;
+        }
+      }
+    }
+
+    sanity.fetch(query).then(sanityRes => {
+      if (sanityRes) {
+        const articlesFeedXML = builder.create('rss');
+        articlesFeedXML.att({
+          version: '2.0',
+          'xmlns:atom': 'http://www.w3.org/2005/Atom',
+          'xmlns:content': 'http://purl.org/rss/1.0/modules/content/',
+          'xmlns:media': 'http://search.yahoo.com/mrss/',
+        });
+
+        const articlesFeedBody = builder.create('channel');
+
+        const a = builder.create('title').txt('Rendah Featuredly');
+        const b = builder.create('link').txt('https://www.rendahmag.com/');
+        const c = builder
+          .create('atom:link')
+          .att('href', 'https://www.rendahmag.com/feeds/articles.xml')
+          .att('rel', 'self')
+          .att('type', 'application/rss+xml');
+        const d = builder.create('description').txt('Featuredly updates from Rendah');
+
+        articlesFeedBody.importDocument(a);
+        articlesFeedBody.importDocument(b);
+        articlesFeedBody.importDocument(c);
+        articlesFeedBody.importDocument(d);
+
+        let i;
+        for (i = 0; i < sanityRes.length; i++) {
+          function pubDate(date) {
+            const gmtDate = new Date(date);
+            return gmtDate.toUTCString();
+          }
+
+          const created = pubDate(sanityRes[i].created);
+          const item = builder
+            .create('item')
+            .ele('title')
+            .txt(sanityRes[i].title.replace('&', 'and'))
+            .up()
+            .ele('description')
+            .txt(`${sanityRes[i].description.replace('&', 'and')} ${getTwitterHandles(sanityRes[i])}`)
+            .up()
+            .ele('link')
+            .txt(`https://www.rendahmag.com/article/${sanityRes[i].slug}`)
+            .up()
+            .ele('guid')
+            .txt(`https://www.rendahmag.com/article/${sanityRes[i].slug}`)
+            .up()
+            .ele('pubDate')
+            .txt(created)
+            .up()
+            .ele('media:content')
+            .att('url', sanityRes[i].img)
+            .att('type', 'image/jpg')
+            .up();
+          articlesFeedBody.importDocument(item);
+        }
+        articlesFeedXML.importDocument(articlesFeedBody);
+
+        // console.log(articlesFeedXML.toString({
+        //   pretty: true
+        // }));
+
+        res.header('Content-Type', 'application/xml');
+        res.send(
+          articlesFeedXML.toString({
+            pretty: true,
+          }),
+        );
+      }
+    });
+  });
 };
 
 export default handleFeeds;
