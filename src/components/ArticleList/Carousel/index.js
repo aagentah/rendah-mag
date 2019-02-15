@@ -16,7 +16,7 @@ export class ArticleListGrid extends PureComponent {
     console.log(list.length);
 
     return (
-      <div className={`w-100  center  ${padding}`}>
+      <div className={`container-medium  center  ${padding}`}>
         <ReactSwipe
           className="carousel"
           swipeOptions={{
@@ -28,9 +28,13 @@ export class ArticleListGrid extends PureComponent {
         >
           {list.map(article => (
             <div key={article.title}>
-              <article className="rel">
+              <article className="rel  ph3">
                 <figure>
-                  <Link className="db  shadow2" title={article.slug} to={`/article/${article.slug}`}>
+                  <Link
+                    className="db  shadow2"
+                    title={article.slug}
+                    to={`/article/${article.slug}`}
+                  >
                     <AnimatedImage
                       lazy={false}
                       src={article.img}
@@ -40,9 +44,14 @@ export class ArticleListGrid extends PureComponent {
                   </Link>
                 </figure>
 
-                <Link className="abs  top  bottom  left  right  tac  center  ma  h2  mw-80" to={`/article/${article.slug}`}>
+                <Link
+                  className="abs  top  bottom  left  right  tac  center  ma  h2  mw-80"
+                  to={`/article/${article.slug}`}
+                >
                   <p className="t-body  dib  link  pa3  bg-black  shadow4  bb  bw1  bc-white">
-                    <span className="t-title  white  bold  f5  f4-md  ttu  cp  over-hidden  link">{article.title}</span>
+                    <span className="t-title  white  bold  f5  f4-md  ttu  cp  over-hidden  link">
+                      {article.title}
+                    </span>
                   </p>
                 </Link>
               </article>
