@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import MessengerCustomerChat from 'react-messenger-customer-chat';
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 export class Footer extends React.Component {
   shouldComponentUpdate() {
@@ -37,16 +37,14 @@ export class Footer extends React.Component {
           </footer>
         </div>
 
-        {/*
-          <MessengerCustomerChat
-            pageId="302421033575970"
-            appId="2015199145383303"
-            htmlRef="e0ffc7758bd165bc109a0d2729a08ea62622422e7ac95fc2a4"
-            loggedInGreeting="Welcome to Rendah."
-            loggedOutGreeting="Welcome to Rendah."
-            themeColor="#737373"
-          />
-        */}
+        <MessengerCustomerChat
+          pageId="302421033575970"
+          appId="2015199145383303"
+          htmlRef="e0ffc7758bd165bc109a0d2729a08ea62622422e7ac95fc2a4"
+          loggedInGreeting="Welcome to Rendah."
+          loggedOutGreeting="Welcome to Rendah."
+          themeColor="#737373"
+        />
       </React.Fragment>
     );
   }
