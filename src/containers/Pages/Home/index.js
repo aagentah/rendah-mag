@@ -30,7 +30,7 @@ export class Home extends PureComponent {
         </Helmet>
 
         <h1 className="dn">Home</h1>
-        <FeaturedArticles padding="pv4" />
+        <FeaturedArticles padding="pt0  pt4-md  pb4" />
 
         <div className="container-medium  center  pt3  pb4">
           <div className="col-24  tac">
