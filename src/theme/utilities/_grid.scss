@@ -27,6 +27,23 @@
   max-width: 1500px;
 }
 
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .container-small-#{$infix} {
+      max-width: 720px;
+    }
+
+    .container-medium-#{$infix} {
+      max-width: 1200px;
+    }
+
+    .container-large-#{$infix} {
+      max-width: 1500px;
+    }
+  }
+}
+
 [class^="col"],
 [class*=" col"] {
   flex-grow: 1;

@@ -16,9 +16,8 @@ export class ArticleListGrid extends PureComponent {
     console.log(list.length);
 
     return (
-      <div className={`container-medium  center  ${padding}`}>
+      <div className={`container-medium-md  center  ${padding}`}>
         <ReactSwipe
-          className="carousel"
           swipeOptions={{
             continuous: true,
             auto: 2200,
@@ -28,7 +27,7 @@ export class ArticleListGrid extends PureComponent {
         >
           {list.map(article => (
             <div key={article.title}>
-              <article className="rel  ph3">
+              <article className="rel  ph0  ph3-md">
                 <figure>
                   <Link
                     className="db  shadow2"
