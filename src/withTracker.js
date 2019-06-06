@@ -2,8 +2,14 @@
 
 import React, { Component } from 'react';
 import GoogleAnalytics from 'react-ga';
+import ReactPixel from 'react-facebook-pixel';
 
 GoogleAnalytics.initialize('UA-120300345-1');
+
+ReactPixel.init('525916664612219', null, {
+  autoConfig: true,
+  debug: true,
+});
 
 const withTracker = (WrappedComponent, options = {}) => {
   const trackPage = page => {
@@ -12,6 +18,7 @@ const withTracker = (WrappedComponent, options = {}) => {
       ...options,
     });
     GoogleAnalytics.pageview(page);
+    ReactPixel.pageView();
   };
 
   const HOC = class extends Component {

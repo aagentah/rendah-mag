@@ -23,6 +23,8 @@ export const fetchTeamMember = (teamMemberId: string) =>
       "img": image.asset->url,
       "slug": slug.current,
       socialHandles,
+      role,
+      order,
       "articles": *[_type == "post" && references(^._id)] | order(publishedAt desc) [${params.limit}] {
         title,
         description,
