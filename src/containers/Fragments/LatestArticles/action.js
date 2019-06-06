@@ -8,16 +8,16 @@ export const LATESTARTICLES_SUCCESS = 'LATESTARTICLES_SUCCESS';
 // export const API_URL = (__DEV__) ?
 //   '/api/articles' : 'https://rendah-mag.herokuapp.com/api/articles';
 
-export const fetchLatestArticles = (limit: number) =>
+export const fetchLatestArticles = (range: Array) =>
   (dispatch) => {
     dispatch({ type: LATESTARTICLES_REQUESTING });
 
     const params = {
-      limit: `0..${((limit) - 1)}`,
+      range: `${range[0] - 1}..${range[1] - 1}`,
     };
 
     const query =
-    `*[_type == "post" && featured != true] | order(publishedAt desc) [${params.limit}] {
+    `*[_type == "post" && featured != true] | order(publishedAt desc) [${params.range}] {
       title,
       description,
       "slug": slug.current,

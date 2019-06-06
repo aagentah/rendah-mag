@@ -15,17 +15,30 @@ export class SocialLinks extends PureComponent {
       let twitter = null;
       let instagram = null;
 
+
       if (article.socialHandles.soundcloud) {
-        soundcloud = <a className="db  pv2  link  f6  black  t-body" title="soundcloud" href={`https://soundcloud.com/${article.socialHandles.soundcloud}`} rel="noopener noreferrer" target="_blank">- soundcloud/{article.socialHandles.soundcloud}</a>;
+        soundcloud = [];
+        article.socialHandles.soundcloud.split(/\s*,\s*/).forEach((e) => {
+          soundcloud.push(<a className="db  pv2  link  f6  black  t-body" title="soundcloud" href={`https://soundcloud.com/${e}`} rel="noopener noreferrer" target="_blank">- soundcloud/{e}</a>);
+        });
       }
       if (article.socialHandles.facebook) {
-        facebook = <a className="db  pv2  link  f6  black  t-body" title="facebook" href={`https://facebook.com/${article.socialHandles.facebook}`} rel="noopener noreferrer" target="_blank">- facebook/{article.socialHandles.facebook}</a>;
+        facebook = [];
+        article.socialHandles.facebook.split(/\s*,\s*/).forEach((e) => {
+          facebook.push(<a className="db  pv2  link  f6  black  t-body" title="facebook" href={`https://facebook.com/${e}`} rel="noopener noreferrer" target="_blank">- facebook/{e}</a>);
+        });
       }
       if (article.socialHandles.twitter) {
-        twitter = <a className="db  pv2  link  f6  black  t-body" title="twitter" href={`https://twitter.com/${article.socialHandles.twitter}`} rel="noopener noreferrer" target="_blank">- twitter/{article.socialHandles.twitter}</a>;
+        twitter = [];
+        article.socialHandles.twitter.split(/\s*,\s*/).forEach((e) => {
+          twitter.push(<a className="db  pv2  link  f6  black  t-body" title="twitter" href={`https://twitter.com/${e}`} rel="noopener noreferrer" target="_blank">- twitter/{e}</a>);
+        });
       }
       if (article.socialHandles.instagram) {
-        instagram = <a className="db  pv2  link  f6  black  t-body" title="instagram" href={`https://instagram.com/${article.socialHandles.instagram}`} rel="noopener noreferrer" target="_blank">- instagram/{article.socialHandles.instagram}</a>;
+        instagram = [];
+        article.socialHandles.instagram.split(/\s*,\s*/).forEach((e) => {
+          instagram.push(<a className="db  pv2  link  f6  black  t-body" title="instagram" href={`https://instagram.com/${e}`} rel="noopener noreferrer" target="_blank">- instagram/{e}</a>);
+        });
       }
 
 
