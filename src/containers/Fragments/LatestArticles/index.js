@@ -42,8 +42,8 @@ export class LatestArticles extends PureComponent {
 const connector = connect(
   ({ latestArticles }) => ({ latestArticles }),
   dispatch => ({
-    fetchLatestArticlesIfNeeded: (limit: number) =>
-      dispatch(action.fetchLatestArticlesIfNeeded(limit)),
+    fetchLatestArticlesIfNeeded: (range: Array) =>
+      dispatch(action.fetchLatestArticlesIfNeeded(range)),
   }),
 );
 
@@ -54,7 +54,7 @@ LatestArticles.propTypes = {
     list: PropTypes.arrayOf(PropTypes.object),
   }),
   type: PropTypes.string,
-  limit: PropTypes.number,
+  range: PropTypes.arrayOf(PropTypes.number),
 };
 
 LatestArticles.defaultProps = {
@@ -65,16 +65,15 @@ LatestArticles.defaultProps = {
   },
   fetchLatestArticlesIfNeeded: () => {},
   type: '',
-  limit: 0,
+  range: [],
 };
 
 const frontload = props =>
   Promise.all([
-    props.fetchLatestArticlesIfNeeded(props.limit),
+    props.fetchLatestArticlesIfNeeded(props.range),
   ]);
 
 export default compose(
   connector,
   frontloadConnect(frontload, { onUpdate: false }),
 )(LatestArticles);
-
