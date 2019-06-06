@@ -23,6 +23,8 @@ export const fetchTeam = () =>
       description,
       "slug": slug.current,
       "img": image.asset->url,
+      role,
+      order,
     }`;
 
     return sanity.fetch(query).then((res) => {

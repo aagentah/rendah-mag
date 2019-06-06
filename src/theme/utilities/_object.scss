@@ -9,3 +9,11 @@
 .objp-center {
   object-position: center;
 }
+
+.objp--carousel {
+  object-position: center;
+
+  @include breakpoint-up(md) {
+    object-position: center 35%;
+  }
+}
