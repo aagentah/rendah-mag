@@ -28,6 +28,7 @@ height: calc(100vh - 80px);
 	--blend-color-5: #af4949;
 }
 
+
 .FeaturedArticle__title,
 .FeaturedArticle__description {
 	animation-name: glitch-anim-text;
@@ -67,6 +68,28 @@ height: calc(100vh - 80px);
   text-shadow: 1px 1px palette(dark-grey);
 	animation-delay: calc(var(--delay-anim) + var(--time-anim) * 0.25);
 }
+
+
+.FeaturedArticle--preview {
+position: fixed;
+top: 0;
+left: 0;
+z-index: 9999;
+width: 100%;
+height: 100vh;
+
+	--glitch-height: calc(100vh);
+
+  .FeaturedArticle__description {
+    display: none;
+  }
+
+* {
+  z-index: 9999;
+}
+}
+
+
 
 /* Glitch styles */
 .glitch {
@@ -133,6 +156,10 @@ height: calc(100vh - 80px);
 	background-blend-mode: var(--blend-mode-5);
 	animation-name: glitch-anim-flash;
 }
+
+
+
+
 
 /* Animations */
 
