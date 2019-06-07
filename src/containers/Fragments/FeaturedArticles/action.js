@@ -13,7 +13,7 @@ export const fetchFeaturedArticles = () =>
     dispatch({ type: FEATUREDARTICLES_REQUESTING });
 
     const query =
-    `*[_type == "post" && featured == true] | order(publishedAt desc) {
+    `*[_type == "post" && featured == true] | order(publishedAt desc) [0] {
       title,
       description,
       "slug": slug.current,
