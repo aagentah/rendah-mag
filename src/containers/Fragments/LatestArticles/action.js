@@ -17,7 +17,7 @@ export const fetchLatestArticles = (range: Array) =>
     };
 
     const query =
-    `*[_type == "post" && featured != true] | order(publishedAt desc) [${params.range}] {
+    `*[_type == "post"] | order(publishedAt desc) [${params.range}] {
       title,
       description,
       "slug": slug.current,

@@ -190,6 +190,9 @@
     "react-lazyload": "^2.3.0",
     "react-mailchimp-subscribe": "^2.0.2",
     "react-messenger-customer-chat": "^0.7.1",
+    "react-progressive-bg-image": "^3.0.0",
+    "react-progressive-image": "^0.6.0",
+    "react-progressive-image-loading": "^3.0.3",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "5.0.0-alpha.6",
@@ -202,6 +205,7 @@
     "redux-thunk": "^2.2.0",
     "serialize-javascript": "^1.4.0",
     "serve-favicon": "2.4.5",
+    "styled-components": "^4.3.1",
     "swipe-js-iso": "^2.0.4",
     "webpack-isomorphic-tools": "^3.0.5",
     "xmlbuilder": "^10.0.0"

@@ -1,6 +1,7 @@
 // Imports
 @import url('https://fonts.googleapis.com/css?family=Play:400,700');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Staatliches&display=swap');
 
 // Typography
 $system-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'Ubuntu', 'Roboto', 'Noto', 'Segoe Ui', Arial, sans-serif;
@@ -10,6 +11,7 @@ $sans: sans-serif;
 $serif: serif;
 
 // theme
+$t-special: 'Staatliches', cursive;
 $t-title: 'Play', sans-serif;
 $t-body: 'Roboto', sans-serif;
 

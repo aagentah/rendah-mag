@@ -3,6 +3,7 @@ import HomePage from './containers/Pages/Home';
 import SearchPage from './containers/Pages/Search';
 import CategoryPage from './containers/Pages/Category';
 import ArticlePage from './containers/Pages/Article';
+import ArticlePreviewPage from './containers/Pages/ArticlePreview';
 import TeamMemberPage from './containers/Pages/TeamMember';
 import NotFoundPage from './containers/Pages/NotFound';
 // import StorePage from './containers/Pages/Store';
@@ -29,6 +30,10 @@ export default [
   {
     path: '/article/:id',
     component: ArticlePage,
+  },
+  {
+    path: '/article-preview/:id',
+    component: ArticlePreviewPage,
   },
   {
     path: '/team/:id',
