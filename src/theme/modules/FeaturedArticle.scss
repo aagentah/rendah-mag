@@ -1,3 +1,4 @@
+
 .FeaturedArticle {
   position: relative;
   max-height: 800px;
@@ -10,7 +11,7 @@ height: calc(100vh - 80px);
 	--color-link: #f9d77e;
 	--color-link-hover: #fff;
 	--color-info: #efc453;
-	--glitch-width: 100vw;
+	--glitch-width: 100%;
 	--glitch-height: calc(100vh - 80px);
 	--gap-horizontal: 10px;
 	--gap-vertical: 5px;
@@ -97,7 +98,8 @@ height: 100vh;
 	top: 0;
 	left: 0;
 	width: var(--glitch-width);
-	height: var(--glitch-height);
+  max-height: 800px;
+height: calc(100vh - 80px);
 	overflow: hidden;
 }
 
@@ -105,8 +107,8 @@ height: 100vh;
 	position: absolute;
 	// top: calc(-1 * var(--gap-vertical));
 	// left: calc(-1 * var(--gap-horizontal));
-	width: calc(100%);
-	height: calc(100%);
+	width: 100%;
+	height: 100%;
 	// background: url('https://cdn.sanity.io/images/q8z2vf2k/production/213850c3554925871393fe383c8a30cd834eb97f-500x500.jpg') no-repeat 50% 0;
   background-position: center;
   background-color: var(--blend-color-1);
@@ -114,12 +116,12 @@ height: 100vh;
 
 	background-blend-mode: var(--blend-mode-1);
   object-fit: cover;
-   transition: filter 0.5s ease-in;
-   transform: translate3d(0,0,0);
+   transition: filter 1s ease-in, transform 1s ease-in;
 }
 
 .img-loading {
- filter: blur(15px);
+ filter: blur(10px);
+ transform: scale(1.2);
 }
 
 .glitch img:nth-child(n+2) {
