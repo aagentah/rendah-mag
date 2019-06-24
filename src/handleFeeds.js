@@ -10,7 +10,7 @@ const handleFeeds = app => {
       // 'https://www.rendahmag.com/mixes',
       'https://www.rendahmag.com/team',
       'https://www.rendahmag.com/subscribe',
-      // 'https://www.rendahmag.com/store',
+      'https://www.rendahmag.com/store',
 
       'https://www.rendahmag.com/category/interviews',
       'https://www.rendahmag.com/category/insights',

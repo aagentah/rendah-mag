@@ -7,6 +7,7 @@ import ArticlePreviewPage from './containers/Pages/ArticlePreview';
 import TeamMemberPage from './containers/Pages/TeamMember';
 import NotFoundPage from './containers/Pages/NotFound';
 import StorePage from './containers/Pages/Store';
+import ProductPage from './containers/Pages/Product';
 import TeamPage from './containers/Pages/Team';
 import WatchTowerPage from './containers/Pages/WatchTower';
 // import MixesPage from './containers/Pages/Mixes';
@@ -46,6 +47,10 @@ export default [
   {
     path: '/store/:query',
     component: StorePage,
+  },
+  {
+    path: '/product/:id',
+    component: ProductPage,
   },
   {
     path: '/watch-tower',
