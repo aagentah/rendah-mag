@@ -2,7 +2,6 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 // import Seo from './Seo';
 import AnimatedImage from '../Elements/AnimatedImage';
@@ -17,14 +16,14 @@ export class Product extends PureComponent {
         <div className="product">
           <article className="flex  flex-wrap  pa3">
             <figure className="col-24  col-12-md">
-              <Link className="db  shadow2" title={product.slug} to={`/product/${product.slug}`}>
+              <div className="db  shadow2">
                 <AnimatedImage
                   lazy
                   src={product.img}
                   alt={product.title}
                   styles="fade-in-zoom-in  h10  w-100"
                 />
-              </Link>
+              </div>
             </figure>
 
             <div className="col-24  col-12-md  pa3">

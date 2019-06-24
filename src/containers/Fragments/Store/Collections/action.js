@@ -25,7 +25,6 @@ export const fetchCollections = (range: Array) =>
     }`;
 
     return sanity.fetch(query).then((res) => {
-      console.log('res', res);
       if (res) {
         dispatch({ type: COLLECTIONS_SUCCESS, data: res });
       } else {

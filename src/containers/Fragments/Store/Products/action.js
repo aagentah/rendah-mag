@@ -31,7 +31,6 @@ export const fetchProducts = (id: string, range: Array) =>
       }`;
 
     return sanity.fetch(query).then((res) => {
-      console.log('res', res);
       if (res.items) {
         dispatch({ type: PRODUCTS_SUCCESS, data: res.items });
       } else {
