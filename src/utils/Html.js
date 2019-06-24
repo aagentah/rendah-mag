@@ -89,6 +89,10 @@ const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> =>
 
         {head.script.toComponent()}
 
+        {/* Snipcart */}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js" />
+        <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" data-api-key="NmIyMGJkZTYtZWVkNy00YmM5LTg3NjUtNTE4YjVjNzNiMzU2NjM2OTY5NjI2MDMxMTAyODE2" data-autopop="false" id="snipcart" />
+        <link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" rel="stylesheet" type="text/css" />
 
         <Helmet>
           <script type="application/ld+json">

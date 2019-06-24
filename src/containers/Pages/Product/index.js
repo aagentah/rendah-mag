@@ -2,13 +2,12 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 
 import Collections from '../../../containers/Fragments/Store/Collections';
 import Categories from '../../../containers/Fragments/Store/Categories';
-import Products from '../../../containers/Fragments/Store/Products';
+import ProductInfo from '../../../containers/Fragments/Store/ProductInfo';
 
-export class Store extends PureComponent {
+export class Article extends PureComponent {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -17,21 +16,15 @@ export class Store extends PureComponent {
   }
 
   render() {
-    const title = 'Store';
-    const searchQuery = this.props.match.params.query;
-    const desc = 'We ship worldwide and you can cancel at any time.';
-    const canonical = 'https://www.rendahmag.com/store';
-
-    console.log('this.props', this.props);
-    console.log('searchQuery', searchQuery);
-
     return (
       <main className="page-fade-in">
-        <Helmet>
-          <title>{title}</title>
-          <meta name="description" content={desc} />
-          <link rel="canonical" href={canonical} />
-        </Helmet>
+        <div className="snipcart-summary">
+          Number of items: <span className="snipcart-total-items" />
+          Total price: <span className="snipcart-total-price" />
+        </div>
+
+        <a href="/" className="snipcart-checkout">Click here to checkout</a>
+
         <div className="container-medium  center">
           <div className="flex  flex-wrap">
             <div className="col-24  col-6-md">
@@ -41,7 +34,7 @@ export class Store extends PureComponent {
               <Categories range={[1, 24]} type="grid" padding="pa2" />
             </div>
             <div className="col-24  col-18-md">
-              <Products range={[1, 24]} type="grid" padding="pa2" query={searchQuery} />
+              <ProductInfo match={this.props.match} />
             </div>
           </div>
         </div>
@@ -50,12 +43,12 @@ export class Store extends PureComponent {
   }
 }
 
-Store.propTypes = {
+Article.propTypes = {
   match: PropTypes.shape(),
 };
 
-Store.defaultProps = {
+Article.defaultProps = {
   match: [],
 };
 
-export default Store;
+export default Article;

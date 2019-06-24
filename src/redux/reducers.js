@@ -14,6 +14,7 @@ import team from '../containers/Fragments/Team/reducer';
 import collections from '../containers/Fragments/Store/Collections/reducer';
 import categories from '../containers/Fragments/Store/Categories/reducer';
 import products from '../containers/Fragments/Store/Products/reducer';
+import productInfo from '../containers/Fragments/Store/ProductInfo/reducer';
 
 export default combineReducers({
   latestArticles,
@@ -28,6 +29,7 @@ export default combineReducers({
   collections,
   categories,
   products,
+  productInfo,
   //
   router,
 });
