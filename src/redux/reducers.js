@@ -11,6 +11,9 @@ import categoryArticles from '../containers/Fragments/CategoryArticles/reducer';
 import articleInfo from '../containers/Fragments/ArticleInfo/reducer';
 import teamMemberInfo from '../containers/Fragments/TeamMemberInfo/reducer';
 import team from '../containers/Fragments/Team/reducer';
+import collections from '../containers/Fragments/Store/Collections/reducer';
+import categories from '../containers/Fragments/Store/Categories/reducer';
+import products from '../containers/Fragments/Store/Products/reducer';
 
 export default combineReducers({
   latestArticles,
@@ -21,5 +24,10 @@ export default combineReducers({
   articleInfo,
   teamMemberInfo,
   team,
+  //
+  collections,
+  categories,
+  products,
+  //
   router,
 });

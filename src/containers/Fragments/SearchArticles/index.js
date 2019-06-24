@@ -70,4 +70,3 @@ export default compose(
   connector,
   frontloadConnect(frontload, { onUpdate: false }),
 )(SearchArticles);
-
