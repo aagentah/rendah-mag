@@ -4,8 +4,10 @@ jsx-a11y/no-static-element-interactions, arrow-body-style */
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import includes from 'lodash/includes';
 
 import SearchInput from '../../../components/Elements/SearchInput';
+import CheckoutButton from '../../../components/Elements/CheckoutButton';
 import { Search } from '../../../components/Elements/Svg';
 import Logo from '../assets/logo-medium.png';
 
@@ -15,7 +17,16 @@ export class Header extends PureComponent {
     this.state = {
       navIsActive: false,
       searchIsActive: false,
+      isStore: false,
     };
+  }
+
+  componentDidMount() {
+    this.checkIfStore();
+  }
+
+  componentWillReceiveProps() {
+    this.checkIfStore();
   }
 
   mobileNavToggle = () => {
@@ -25,7 +36,7 @@ export class Header extends PureComponent {
       this.setState({ navIsActive: false });
     }
     this.setState({ searchIsActive: false });
-  }
+  };
 
   mobileSearchToggle = () => {
     if (!this.state.searchIsActive && !this.state.navIsActive) {
@@ -34,7 +45,20 @@ export class Header extends PureComponent {
       this.setState({ searchIsActive: false });
     }
     this.setState({ navIsActive: false });
-  }
+  };
+
+  checkIfStore = () => {
+    if (typeof window !== 'undefined') {
+      if (
+        includes(window.location.pathname, '/store') ||
+        includes(window.location.pathname, '/product')
+      ) {
+        this.setState({ isStore: true });
+      } else {
+        this.setState({ isStore: false });
+      }
+    }
+  };
 
   render() {
     const links = [
@@ -100,15 +124,27 @@ export class Header extends PureComponent {
               {links.map((link) => {
                 return (
                   <li key={link.text} className="dib">
-                    <Link className="t-title  ttu  bold  dark-grey  ph2  f5  link" title={link.to} to={link.to}>{link.text}</Link>
+                    <Link
+                      className="t-title  ttu  bold  dark-grey  ph2  f5  link"
+                      title={link.to}
+                      to={link.to}
+                    >
+                      {link.text}
+                    </Link>
                   </li>
                 );
               })}
             </ul>
 
-            <div className="abs  w4  header__desktop__search">
-              <SearchInput textAlign="inherit" />
-            </div>
+            {this.state.isStore ? (
+              <div className="abs  header__desktop__cart">
+                <CheckoutButton />
+              </div>
+            ) : (
+              <div className="abs  w4  header__desktop__search">
+                <SearchInput textAlign="inherit" />
+              </div>
+            )}
           </nav>
         </header>
 
@@ -120,8 +156,18 @@ export class Header extends PureComponent {
             <span className="bg-black" />
           </div>
 
-          <Link className="link  abs  w3  center  center  header__mobile__logo" title="rendah" to={'/'}>
-            <img className="pt1  mt1  center" width="38" src={Logo} alt="Logo" role="presentation" />
+          <Link
+            className="link  abs  w3  center  center  header__mobile__logo"
+            title="rendah"
+            to={'/'}
+          >
+            <img
+              className="pt1  mt1  center"
+              width="38"
+              src={Logo}
+              alt="Logo"
+              role="presentation"
+            />
           </Link>
 
           <nav className={navMobile} role="banner">
@@ -129,7 +175,14 @@ export class Header extends PureComponent {
               {links.map((link) => {
                 return (
                   <li key={link.text} className="db">
-                    <Link onClick={this.mobileNavToggle} className="t-title  ttu  bold  db  dark-grey  pv3  f4  link" title={link.to} to={link.to}>{link.text}</Link>
+                    <Link
+                      onClick={this.mobileNavToggle}
+                      className="t-title  ttu  bold  db  dark-grey  pv3  f4  link"
+                      title={link.to}
+                      to={link.to}
+                    >
+                      {link.text}
+                    </Link>
                   </li>
                 );
               })}

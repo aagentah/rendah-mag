@@ -18,13 +18,6 @@ export class Article extends PureComponent {
   render() {
     return (
       <main className="page-fade-in">
-        <div className="snipcart-summary">
-          Number of items: <span className="snipcart-total-items" />
-          Total price: <span className="snipcart-total-price" />
-        </div>
-
-        <a href="/" className="snipcart-checkout">Click here to checkout</a>
-
         <div className="container-medium  center">
           <div className="flex  flex-wrap">
             <div className="col-24  col-6-md">

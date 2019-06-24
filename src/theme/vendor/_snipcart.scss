@@ -1,3 +1,20 @@
 .snip-layout.snip-active {
   z-index: 9999;
 }
+
+.snipcart-total-items {
+  position: absolute;
+  top: -10px;
+  left: -15px;
+  background: red;
+  border-radius: 100%;
+  @extend .t-title;
+  @extend .white;
+  @extend .tac;
+  @extend .f6;
+  @extend .bold;
+  @extend .pa1;
+  @extend .ma0;
+  height: 24px;
+  width: 24px;
+}
