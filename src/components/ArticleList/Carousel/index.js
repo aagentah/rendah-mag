@@ -15,22 +15,22 @@ export class ArticleListGrid extends PureComponent {
       <div className={`w-100  ${padding}`}>
         <div className="FeaturedArticle" key={list.title}>
           <Link to={`/article/${list.slug}`} title={list.title}>
-            <div className="content">
+            <div>
               <div className="glitch">
-                <ProgressiveImage src={list.img} placeholder={`${list.img}?w=100`}>
-                  {(src, loading) => <img className={`card__ima  ${loading ? 'img-loading' : ''}`} src={src} alt="an" />}
+                <ProgressiveImage src={list.img} placeholder={`${list.img}?h=200&fit=scale`}>
+                  {(src, loading) => <img className={loading ? 'img-loading' : ''} src={src} alt="an" />}
                 </ProgressiveImage>
-                <ProgressiveImage src={list.img} placeholder={`${list.img}?w=100`}>
-                  {(src, loading) => <img className={`card__ima  ${loading ? 'img-loading' : ''}`} src={src} alt="an" />}
+                <ProgressiveImage src={list.img} placeholder={`${list.img}?h=200&fit=scale`}>
+                  {(src, loading) => <img className={loading ? 'img-loading' : ''} src={src} alt="an" />}
                 </ProgressiveImage>
-                <ProgressiveImage src={list.img} placeholder={`${list.img}?w=100`}>
-                  {(src, loading) => <img className={`card__ima  ${loading ? 'img-loading' : ''}`} src={src} alt="an" />}
+                <ProgressiveImage src={list.img} placeholder={`${list.img}?h=200&fit=scale`}>
+                  {(src, loading) => <img className={loading ? 'img-loading' : ''} src={src} alt="an" />}
                 </ProgressiveImage>
-                <ProgressiveImage src={list.img} placeholder={`${list.img}?w=100`}>
-                  {(src, loading) => <img className={`card__ima  ${loading ? 'img-loading' : ''}`} src={src} alt="an" />}
+                <ProgressiveImage src={list.img} placeholder={`${list.img}?h=200&fit=scale`}>
+                  {(src, loading) => <img className={loading ? 'img-loading' : ''} src={src} alt="an" />}
                 </ProgressiveImage>
-                <ProgressiveImage src={list.img} placeholder={`${list.img}?w=100`}>
-                  {(src, loading) => <img className={`card__ima  ${loading ? 'img-loading' : ''}`} src={src} alt="an" />}
+                <ProgressiveImage src={list.img} placeholder={`${list.img}?h=200&fit=scale`}>
+                  {(src, loading) => <img className={loading ? 'img-loading' : ''} src={src} alt="an" />}
                 </ProgressiveImage>
               </div>
               <h2 className="t-special  white  FeaturedArticle__title">{list.title}</h2>
