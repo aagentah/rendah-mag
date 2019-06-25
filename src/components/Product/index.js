@@ -18,7 +18,7 @@ export class Product extends PureComponent {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.location.search) {
       const values = queryString.parse(this.props.location.search);
 
