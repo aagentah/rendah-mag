@@ -27,6 +27,7 @@ export const fetchProduct = (productId: string) =>
     }`;
 
     return sanity.fetch(query, params).then((res) => {
+      console.log('res', res);
       if (res) {
         dispatch({ type: PRODUCT_SUCCESS, productId, data: res });
       } else {
