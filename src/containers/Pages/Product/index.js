@@ -27,7 +27,7 @@ export class Article extends PureComponent {
               <Categories range={[1, 24]} type="grid" padding="pa2" />
             </div>
             <div className="col-24  col-18-md">
-              <ProductInfo match={this.props.match} />
+              <ProductInfo match={this.props.match} {...this.props} />
             </div>
           </div>
         </div>
@@ -38,10 +38,12 @@ export class Article extends PureComponent {
 
 Article.propTypes = {
   match: PropTypes.shape(),
+  search: PropTypes.string,
 };
 
 Article.defaultProps = {
   match: [],
+  search: '',
 };
 
 export default Article;

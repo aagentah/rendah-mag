@@ -87,8 +87,12 @@ export class Header extends PureComponent {
       //   text: 'Mixes',
       // },
       // {
-      //   to: '/store/range-001',
+      //   to: '/store',
       //   text: 'Store',
+      // },
+      // {
+      //   to: '/store/opening-sequence',
+      //   text: 'Store range',
       // },
       {
         to: '/watch-tower',

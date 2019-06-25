@@ -24,7 +24,7 @@ export class ProductInfo extends PureComponent {
       return <Loading type="ProductInfo" />;
     }
 
-    return <Product info={productInfoById.info} />;
+    return <Product info={productInfoById.info} {...this.props} />;
   }
 
   render() {
