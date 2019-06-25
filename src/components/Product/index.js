@@ -2,6 +2,8 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import queryString from 'query-string';
+import { createBrowserHistory } from 'history';
 
 // import Seo from './Seo';
 import AnimatedImage from '../Elements/AnimatedImage';
@@ -12,8 +14,18 @@ export class Product extends PureComponent {
     this.state = {
       selectedPrice: null,
       selectedMaxQuantity: null,
-      selectedType: null,
+      selectedVariant: null,
     };
+  }
+
+  componentDidMount() {
+    if (this.props.location.search) {
+      const values = queryString.parse(this.props.location.search);
+
+      this.setState({
+        selectedVariant: values.variant,
+      });
+    }
   }
 
   renderVariant = variant => (
@@ -25,8 +37,11 @@ export class Product extends PureComponent {
           this.setState({
             selectedPrice: variant.type,
             selectedMaxQuantity: variant.quantity,
-            selectedType: variant.type,
+            selectedVariant: variant.type,
           });
+
+          const history = createBrowserHistory();
+          history.push({ search: `?variant=${variant.type}` });
         }}
       >
         {variant.type}
@@ -37,14 +52,6 @@ export class Product extends PureComponent {
   render() {
     const product = this.props.info;
     console.log(product);
-
-    if (product.variants.length === 1) {
-      this.setState({
-        selectedPrice: product.variants[0].type,
-        selectedMaxQuantity: product.variants[0].quantity,
-        selectedType: product.variants[0].type,
-      });
-    }
 
     return (
       <React.Fragment>
@@ -77,7 +84,7 @@ export class Product extends PureComponent {
                 data-item-id={product.slug}
                 data-item-name={product.title}
                 data-item-price={product.price}
-                data-item-url={`/product/${product.slug}?variant=${this.state.selectedType}`}
+                data-item-url={`https://rendahmag.com/product/${product.slug}?variant=${this.state.selectedVariant}`}
                 data-item-description={product.description}
                 data-item-max-quantity={this.state.selectedMaxQuantity}
                 disabled={!this.state.selectedPrice}
@@ -97,12 +104,18 @@ Product.propTypes = {
     product: PropTypes.shape({}),
     teamMember: PropTypes.shape({}),
   }),
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
 };
 
 Product.defaultProps = {
   info: {
     product: {},
     teamMember: {},
+  },
+  location: {
+    search: '',
   },
 };
 

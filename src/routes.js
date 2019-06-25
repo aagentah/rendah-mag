@@ -45,6 +45,11 @@ export default [
     component: TeamPage,
   },
   {
+    path: '/store/',
+    exact: true,
+    component: StorePage,
+  },
+  {
     path: '/store/:query',
     component: StorePage,
   },
