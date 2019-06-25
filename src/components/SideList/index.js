@@ -10,11 +10,13 @@ export class SideList extends PureComponent {
     console.log(list);
 
     return (
-      <ul className={`${padding}`}>
+      <ul className={`${padding}  list-none`}>
         {list.map(item => (
-          <li key={item.title} className="col-24  col-12-sm  col-24-lg  pv2">
-            <Link title={item.slug} to={`/store/${item.slug}`} className="t-body  db  link  pt2">
-              <p className="t-title  black  f6  cp  over-hidden  link  list-card__title">{item.title}</p>
+          <li key={item.title} className="col-24  col-12-sm  col-24-lg  pv2  mb2  bb  bc-black">
+            <Link title={item.slug} to={`/store/${item.slug}`} className="t-body  db  link">
+              <p className="t-title  black  f6  cp  over-hidden  link  list-card__title">
+                {item.title}
+              </p>
             </Link>
           </li>
         ))}

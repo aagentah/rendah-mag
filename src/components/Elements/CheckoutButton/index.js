@@ -10,10 +10,10 @@ export class CheckoutButton extends PureComponent {
     return (
       <React.Fragment>
         <a href="/" className="snipcart-checkout  rel">
+          <Cart />
           <div className="snipcart-summary">
             <span className="snipcart-total-items" />
           </div>
-          <Cart />
         </a>
       </React.Fragment>
     );

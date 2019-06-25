@@ -31,7 +31,12 @@ export class Product extends PureComponent {
   renderVariant = variant => (
     <div className="pr2">
       <button
-        className="btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac"
+        className={`
+          ${
+            this.state.selectedVariant === variant.type
+              ? 'btn  btn--primary  bg-black  ba  bw1  bc-black  white  tac'
+              : 'btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac'
+          }`}
         type="button"
         onClick={() => {
           this.setState({
@@ -58,33 +63,35 @@ export class Product extends PureComponent {
         <div className="product">
           <article className="flex  flex-wrap  pa3">
             <figure className="col-24  col-12-md">
-              <div className="db  shadow2">
+              <div className="db">
                 <AnimatedImage
                   lazy
                   src={product.img}
                   alt={product.title}
-                  styles="fade-in-zoom-in  h10  w-100"
+                  styles="fade-in-zoom-in  h12  w-100"
                 />
               </div>
             </figure>
 
             <div className="col-24  col-12-md  pa3">
-              <p className="t-title  grey  f4  bold  pb3">{product.title}</p>
-              <p className="t-body  grey  f5  pb3">{product.description}</p>
-              <p className="t-title  grey  f4  bold  pb4">£{product.price}</p>
-              {this.state.selectedPrice}
+              <p className="t-title  grey  f4  bold  pb2">{product.title}</p>
+              <p className="t-title  grey  f4  bold  pb3">£{product.price}</p>
+              <p className="t-body  grey  f5  pb4">{product.description}</p>
 
-              <div className="flex  flex-wrap">
+              <p className="t-body  grey  f6  pb2">Sizes:</p>
+              <div className="flex  flex-wrap  pb4">
                 {product.variants.map(variant => this.renderVariant(variant))}
               </div>
 
               <button
                 className="btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac  snipcart-add-item"
                 type="button"
-                data-item-id={product.slug}
-                data-item-name={product.title}
+                data-item-id={`${product.slug}-${this.state.selectedVariant}`}
+                data-item-name={`${product.title} (${this.state.selectedVariant})`}
                 data-item-price={product.price}
-                data-item-url={`https://rendahmag.com/product/${product.slug}?variant=${this.state.selectedVariant}`}
+                data-item-url={`https://rendahmag.com/product/${product.slug}?variant=${
+                  this.state.selectedVariant
+                }`}
                 data-item-description={product.description}
                 data-item-max-quantity={this.state.selectedMaxQuantity}
                 disabled={!this.state.selectedPrice}
