@@ -12,7 +12,7 @@ export class ProductList extends PureComponent {
     console.log(list);
 
     return (
-      <div className={`${padding}`}>
+      <div className={`flex  flex-wrap  ${padding}`}>
         {list.map(product => (
           <div key={product.title} className="col-24  col-6-md  pa3">
             <article>
@@ -28,14 +28,15 @@ export class ProductList extends PureComponent {
               </figure>
 
               <div className="pv2  mt2">
-                <span className="t-body  grey  f6">| </span>
+                <span className="t-body  grey  f6">£{product.price}</span>
               </div>
 
               <div>
                 <Link to={`/product/${product.slug}`} className="t-body  db  link  pb2">
-                  <p className="t-title  black  f5  cp  over-hidden  link  grid-card__title">{product.title}</p>
+                  <p className="t-title  black  f5  cp  over-hidden  link  grid-card__title">
+                    {product.title}
+                  </p>
                 </Link>
-                <p className="t-body  grey  f6  over-hidden  mt1  grid-card__desc">{product.description}</p>
               </div>
             </article>
           </div>

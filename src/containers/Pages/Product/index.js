@@ -18,12 +18,12 @@ export class Article extends PureComponent {
   render() {
     return (
       <main className="page-fade-in">
-        <div className="container-medium  center">
+        <div className="container-medium  center  pv4">
           <div className="flex  flex-wrap">
             <div className="col-24  col-6-md">
-              <span>Collections</span>
+              <span className="t-title  black  f6  bold">Collections</span>
               <Collections range={[1, 24]} type="grid" padding="pa2" />
-              <span>Categories</span>
+              <span className="t-title  black  f6  bold">Categories</span>
               <Categories range={[1, 24]} type="grid" padding="pa2" />
             </div>
             <div className="col-24  col-18-md">

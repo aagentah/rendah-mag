@@ -4,17 +4,22 @@
 
 .snipcart-total-items {
   position: absolute;
-  top: -10px;
-  left: -15px;
-  background: red;
+  right: -60px;
+  top: 0;
   border-radius: 100%;
   @extend .t-title;
-  @extend .white;
+  @extend .black;
   @extend .tac;
-  @extend .f6;
-  @extend .bold;
+  @extend .f4;
   @extend .pa1;
   @extend .ma0;
   height: 24px;
   width: 24px;
+  content: '0';
+}
+
+.snipcart-total-items::before {
+  content: '|';
+  position: absolute;
+  left: -4px;
 }
