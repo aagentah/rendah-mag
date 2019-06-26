@@ -38,6 +38,7 @@ export class Product extends PureComponent {
               : 'btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac'
           }`}
         type="button"
+        disabled={variant.soldOut || !variant.quantity}
         onClick={() => {
           this.setState({
             selectedPrice: variant.type,
@@ -56,7 +57,6 @@ export class Product extends PureComponent {
 
   render() {
     const product = this.props.info;
-    console.log(product);
 
     return (
       <React.Fragment>
@@ -64,18 +64,13 @@ export class Product extends PureComponent {
           <article className="flex  flex-wrap  pa3">
             <figure className="col-24  col-12-md">
               <div className="db">
-                <AnimatedImage
-                  lazy
-                  src={product.img}
-                  alt={product.title}
-                  styles="fade-in-zoom-in  h12  w-100"
-                />
+                <AnimatedImage lazy src={product.img} alt={product.title} styles="w-100" />
               </div>
             </figure>
 
             <div className="col-24  col-12-md  pa3">
               <p className="t-title  grey  f4  bold  pb2">{product.title}</p>
-              <p className="t-title  grey  f4  bold  pb3">£{product.price}</p>
+              <p className="t-title  grey  f4  pb3">£{product.price}</p>
               <p className="t-body  grey  f5  pb4">{product.description}</p>
 
               <p className="t-body  grey  f6  pb2">Sizes:</p>

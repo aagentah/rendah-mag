@@ -21,6 +21,7 @@ export const fetchProducts = (id: string, range: Array) =>
     console.log('params.id', params.id);
     if (params.id) {
       query = `*[_type == "collection" && slug.current == "${params.id}" || _type == "category" && slug.current == "${params.id}"] [0] {
+        ...,
         "items": *[_type == "item" && references(^._id)] | order(publishedAt desc) [${params.range}] {
           title,
           description,
@@ -31,6 +32,7 @@ export const fetchProducts = (id: string, range: Array) =>
         }`;
     } else {
       query = `*[_type == "collection"] [0] {
+        ...,
         "items": *[_type == "item" && references(^._id)] | order(publishedAt desc) [${params.range}] {
           title,
           description,
@@ -42,8 +44,9 @@ export const fetchProducts = (id: string, range: Array) =>
     }
 
     return sanity.fetch(query).then((res) => {
+      console.log(' res', res);
       if (res.items) {
-        dispatch({ type: PRODUCTS_SUCCESS, data: res.items });
+        dispatch({ type: PRODUCTS_SUCCESS, data: res });
       } else {
         dispatch({ type: PRODUCTS_FAILURE, err: 'error' });
       }

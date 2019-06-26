@@ -8,7 +8,7 @@ import { frontloadConnect } from 'react-frontload';
 import compose from 'lodash/flowRight';
 
 import * as action from './action';
-import Loading from '../../../../components/Loading';
+// import Loading from '../../../../components/Loading';
 import Product from '../../../../components/Product';
 
 export class ProductInfo extends PureComponent {
@@ -21,7 +21,8 @@ export class ProductInfo extends PureComponent {
       productInfoById.readyStatus === action.PRODUCT_REQUESTING ||
       productInfoById.readyStatus === action.PRODUCT_FAILURE
     ) {
-      return <Loading type="ProductInfo" />;
+      return false;
+      // return <Loading type="ProductInfo" />;
     }
 
     return <Product info={productInfoById.info} {...this.props} />;

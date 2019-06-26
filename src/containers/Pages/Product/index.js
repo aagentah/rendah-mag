@@ -21,10 +21,10 @@ export class Article extends PureComponent {
         <div className="container-medium  center  pv4">
           <div className="flex  flex-wrap">
             <div className="col-24  col-6-md">
-              <span className="t-title  black  f6  bold">Collections</span>
-              <Collections range={[1, 24]} type="grid" padding="pa2" />
-              <span className="t-title  black  f6  bold">Categories</span>
-              <Categories range={[1, 24]} type="grid" padding="pa2" />
+              <span className="t-title  black  f6  bold  db">Collections</span>
+              <Collections range={[1, 24]} type="grid" padding="pv2  pl2  pr3" />
+              <span className="t-title  black  f6  bold  db">Categories</span>
+              <Categories range={[1, 24]} type="grid" padding="pv2  pl2  pr3" />
             </div>
             <div className="col-24  col-18-md">
               <ProductInfo match={this.props.match} {...this.props} />

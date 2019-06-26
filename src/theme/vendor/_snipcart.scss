@@ -4,7 +4,7 @@
 
 .snipcart-total-items {
   position: absolute;
-  right: -60px;
+  right: -50px;
   top: 0;
   border-radius: 100%;
   @extend .t-title;
@@ -16,10 +16,4 @@
   height: 24px;
   width: 24px;
   content: '0';
-}
-
-.snipcart-total-items::before {
-  content: '|';
-  position: absolute;
-  left: -4px;
 }
