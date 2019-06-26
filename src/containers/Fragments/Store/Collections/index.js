@@ -12,6 +12,10 @@ import SideList from '../../../../components/SideList';
 
 
 export class Collections extends PureComponent {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   renderCollectionList = () => {
     const { collections } = this.props;
 

@@ -73,7 +73,7 @@ export class Product extends PureComponent {
               </div>
             </figure>
 
-            <div className="col-24  col-12-md  pa3">
+            <div className="col-24  col-12-md  ph4">
               <p className="t-title  grey  f4  bold  pb2">{product.title}</p>
               <p className="t-title  grey  f4  pb3">£{product.price}</p>
               <p className="t-body  grey  f5  pb4">{product.description}</p>

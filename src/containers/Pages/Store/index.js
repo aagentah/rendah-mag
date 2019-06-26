@@ -33,9 +33,9 @@ export class Store extends PureComponent {
           <div className="flex  flex-wrap">
             <div className="col-24  col-6-md">
               <span className="t-title  black  f6  bold  db">Collections</span>
-              <Collections range={[1, 24]} type="grid" padding="pv2  pl2  pr3" />
+              <Collections range={[1, 24]} type="grid" padding="pv2  pl2  pr4" />
               <span className="t-title  black  f6  bold  db">Categories</span>
-              <Categories range={[1, 24]} type="grid" padding="pv2  pl2  pr3" />
+              <Categories range={[1, 24]} type="grid" padding="pv2  pl2  pr4" />
             </div>
             <div className="col-24  col-18-md">
               <Products range={[1, 24]} type="grid" padding="" query={searchQuery} />
