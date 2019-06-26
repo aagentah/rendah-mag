@@ -14,7 +14,7 @@ export class Productdata extends PureComponent {
 
     return (
       <div className={padding}>
-        <div className="pb3">
+        <div className="ph3  pb3">
           <h1 className="t-title  black  f5  pb2">{data.title}</h1>
           {data.description && <p className="t-body  grey  f6">{data.description}</p>}
         </div>
@@ -28,7 +28,7 @@ export class Productdata extends PureComponent {
                       lazy
                       src={product.img}
                       alt={product.title}
-                      styles="fade-in-zoom-in  h6  w-100"
+                      styles="fade-in-zoom-in  h8  w-100"
                     />
                   </Link>
                 </figure>
