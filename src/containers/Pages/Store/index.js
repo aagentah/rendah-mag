@@ -38,7 +38,7 @@ export class Store extends PureComponent {
               <Categories range={[1, 24]} type="grid" padding="pv2  pl2  pr3" />
             </div>
             <div className="col-24  col-18-md">
-              <Products range={[1, 24]} type="grid" padding="ph2  pv2  pv0-md" query={searchQuery} />
+              <Products range={[1, 24]} type="grid" padding="" query={searchQuery} />
             </div>
           </div>
         </div>

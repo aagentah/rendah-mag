@@ -63,8 +63,13 @@ export class Product extends PureComponent {
         <div className="product">
           <article className="flex  flex-wrap  pa3">
             <figure className="col-24  col-12-md">
-              <div className="db">
-                <AnimatedImage lazy src={product.img} alt={product.title} styles="w-100" />
+              <div className="db  shadow2">
+                <AnimatedImage
+                  lazy
+                  src={product.img}
+                  alt={product.title}
+                  styles="fade-in-zoom-in  w-100"
+                />
               </div>
             </figure>
 

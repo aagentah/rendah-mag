@@ -11,8 +11,6 @@ export class Productdata extends PureComponent {
     const { padding } = this.props;
     const data = this.props.list;
     const items = this.props.list.items;
-    console.log('data', data);
-    console.log('items', items);
 
     return (
       <div className={padding}>
@@ -22,11 +20,16 @@ export class Productdata extends PureComponent {
         </div>
         <div className="flex  flex-wrap">
           {items.map(product => (
-            <div key={product.title} className="col-24  col-6-md  pa3">
+            <div key={product.title} className="col-24  col-8-md  pa3">
               <article>
                 <figure>
-                  <Link className="db" title={product.slug} to={`/product/${product.slug}`}>
-                    <AnimatedImage lazy src={product.img} alt={product.title} styles="h6  w-100" />
+                  <Link className="db  shadow2" title={product.slug} to={`/product/${product.slug}`}>
+                    <AnimatedImage
+                      lazy
+                      src={product.img}
+                      alt={product.title}
+                      styles="fade-in-zoom-in  h6  w-100"
+                    />
                   </Link>
                 </figure>
 
