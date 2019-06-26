@@ -6,54 +6,58 @@ import PropTypes from 'prop-types';
 
 import AnimatedImage from '../Elements/AnimatedImage';
 
-export class ProductList extends PureComponent {
+export class Productdata extends PureComponent {
   render() {
-    const { list, padding } = this.props;
-    console.log(list);
+    const { padding } = this.props;
+    const data = this.props.list;
+    const items = this.props.list.items;
+    console.log('data', data);
+    console.log('items', items);
 
     return (
-      <div className={`flex  flex-wrap  ${padding}`}>
-        {list.map(product => (
-          <div key={product.title} className="col-24  col-6-md  pa3">
-            <article>
-              <figure>
-                <Link className="db  shadow2" title={product.slug} to={`/product/${product.slug}`}>
-                  <AnimatedImage
-                    lazy
-                    src={product.img}
-                    alt={product.title}
-                    styles="fade-in-zoom-in  h5  w-100"
-                  />
-                </Link>
-              </figure>
+      <div className={padding}>
+        <div className="pb3">
+          <h1 className="t-title  black  f5  pb2">{data.title}</h1>
+          {data.description && <p className="t-body  grey  f6">{data.description}</p>}
+        </div>
+        <div className="flex  flex-wrap">
+          {items.map(product => (
+            <div key={product.title} className="col-24  col-6-md  pa3">
+              <article>
+                <figure>
+                  <Link className="db" title={product.slug} to={`/product/${product.slug}`}>
+                    <AnimatedImage lazy src={product.img} alt={product.title} styles="h6  w-100" />
+                  </Link>
+                </figure>
 
-              <div className="pv2  mt2">
-                <span className="t-body  grey  f6">£{product.price}</span>
-              </div>
+                <div className="pv2  mt2">
+                  <span className="t-body  grey  f6">£{product.price}</span>
+                </div>
 
-              <div>
-                <Link to={`/product/${product.slug}`} className="t-body  db  link  pb2">
-                  <p className="t-title  black  f5  cp  over-hidden  link  grid-card__title">
-                    {product.title}
-                  </p>
-                </Link>
-              </div>
-            </article>
-          </div>
-        ))}
+                <div>
+                  <Link to={`/product/${product.slug}`} className="t-body  db  link  pb2">
+                    <p className="t-title  black  f5  cp  over-hidden  link  grid-card__title">
+                      {product.title}
+                    </p>
+                  </Link>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
 }
 
-ProductList.propTypes = {
+Productdata.propTypes = {
   list: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   padding: PropTypes.string,
 };
 
-ProductList.defaultProps = {
+Productdata.defaultProps = {
   list: [],
   padding: '',
 };
 
-export default ProductList;
+export default Productdata;

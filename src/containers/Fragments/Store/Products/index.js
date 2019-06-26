@@ -7,7 +7,7 @@ import { frontloadConnect } from 'react-frontload';
 import compose from 'lodash/flowRight';
 
 import * as action from './action';
-import Loading from '../../../../components/Loading';
+// import Loading from '../../../../components/Loading';
 import ProductList from '../../../../components/ProductList';
 
 
@@ -21,7 +21,8 @@ export class Products extends PureComponent {
       products.readyStatus === action.PRODUCTS_REQUESTING ||
       products.readyStatus === action.PRODUCTS_FAILURE
     ) {
-      return <Loading type="Products" />;
+      return false;
+      // return <Loading type="Products" />;
     }
 
     return <ProductList {...this.props} list={products.list} />;

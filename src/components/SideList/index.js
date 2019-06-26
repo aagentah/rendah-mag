@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 export class SideList extends PureComponent {
   render() {
     const { list, padding } = this.props;
-    console.log(list);
 
     return (
       <ul className={`${padding}  list-none`}>

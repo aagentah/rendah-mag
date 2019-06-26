@@ -7,7 +7,7 @@ import { frontloadConnect } from 'react-frontload';
 import compose from 'lodash/flowRight';
 
 import * as action from './action';
-import Loading from '../../../../components/Loading';
+// import Loading from '../../../../components/Loading';
 import SideList from '../../../../components/SideList';
 
 
@@ -21,7 +21,8 @@ export class Collections extends PureComponent {
       collections.readyStatus === action.COLLECTIONS_REQUESTING ||
       collections.readyStatus === action.COLLECTIONS_FAILURE
     ) {
-      return <Loading type="Collections" />;
+      return false;
+      // return <Loading type="Collections" />;
     }
 
     return <SideList {...this.props} list={collections.list} />;
