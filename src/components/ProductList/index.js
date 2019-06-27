@@ -6,7 +6,20 @@ import PropTypes from 'prop-types';
 
 import AnimatedImage from '../Elements/AnimatedImage';
 
-export class Productdata extends PureComponent {
+export class ProductList extends PureComponent {
+  renderPrice = (product) => {
+    console.log(product, 'ooo');
+    if (product.specialPrice) {
+      return (
+        <p className="t-body  grey  f6">
+          <span className="strike  o-50  pr1">£{product.price}</span> £{product.specialPrice}
+        </p>
+      );
+    }
+
+    return <p className="t-body  grey  f6">£{product.price}</p>;
+  };
+
   render() {
     const { padding } = this.props;
     const data = this.props.list;
@@ -23,7 +36,11 @@ export class Productdata extends PureComponent {
             <div key={product.title} className="col-24  col-8-md  pa3">
               <article>
                 <figure>
-                  <Link className="db  shadow2" title={product.slug} to={`/product/${product.slug}`}>
+                  <Link
+                    className="db  shadow2"
+                    title={product.slug}
+                    to={`/product/${product.slug}`}
+                  >
                     <AnimatedImage
                       lazy
                       src={product.img}
@@ -33,9 +50,7 @@ export class Productdata extends PureComponent {
                   </Link>
                 </figure>
 
-                <div className="pv2  mt2">
-                  <span className="t-body  grey  f6">£{product.price}</span>
-                </div>
+                <div className="pv2  mt2">{this.renderPrice(product)}</div>
 
                 <div>
                   <Link to={`/product/${product.slug}`} className="t-body  db  link  pb2">
@@ -53,14 +68,14 @@ export class Productdata extends PureComponent {
   }
 }
 
-Productdata.propTypes = {
+ProductList.propTypes = {
   list: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   padding: PropTypes.string,
 };
 
-Productdata.defaultProps = {
+ProductList.defaultProps = {
   list: [],
   padding: '',
 };
 
-export default Productdata;
+export default ProductList;

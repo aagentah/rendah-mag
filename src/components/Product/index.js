@@ -63,6 +63,19 @@ export class Product extends PureComponent {
     );
   };
 
+  renderPrice = (product) => {
+    console.log('t-body  grey  f6', product);
+    if (product.specialPrice) {
+      return (
+        <p className="t-title  grey  f4  pb3">
+          <span className="strike  o-50  pr1">£{product.price}</span> £{product.specialPrice}
+        </p>
+      );
+    }
+
+    return <p className="t-title  grey  f4  pb3">£{product.price}</p>;
+  };
+
   render() {
     const product = this.props.info;
     console.log('product', product);
@@ -80,7 +93,7 @@ export class Product extends PureComponent {
           slug={product.slug}
           description={product.description}
           img={product.img}
-          price={product.price}
+          price={product.specialPrice || product.price}
         />
 
         <div className="product">
@@ -98,7 +111,7 @@ export class Product extends PureComponent {
 
             <div className="col-24  col-12-md  ph4">
               <p className="t-title  grey  f4  bold  pb2">{product.title}</p>
-              <p className="t-title  grey  f4  pb3">£{product.price}</p>
+              {this.renderPrice(product)}
               <p className="t-body  grey  f5  pb4">{product.description}</p>
 
               <p className="t-body  grey  f6  pb2">Sizes:</p>
@@ -111,7 +124,7 @@ export class Product extends PureComponent {
                 type="button"
                 data-item-id={`${product.slug}-${this.state.selectedVariant}`}
                 data-item-name={`${product.title} (${this.state.selectedVariant})`}
-                data-item-price={product.price}
+                data-item-price={product.specialPrice || product.price}
                 data-item-url={`https://rendahmag.com/product/${product.slug}?variant=${
                   this.state.selectedVariant
                 }`}
