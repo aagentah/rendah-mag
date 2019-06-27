@@ -28,6 +28,7 @@ export const fetchProducts = (id: string, range: Array) =>
           price,
           "slug": slug.current,
           "img": image.asset->url,
+          ...,
           }
         }`;
     } else {
@@ -39,6 +40,7 @@ export const fetchProducts = (id: string, range: Array) =>
           price,
           "slug": slug.current,
           "img": image.asset->url,
+          ...,
           }
         }`;
     }
