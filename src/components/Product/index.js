@@ -5,14 +5,13 @@ import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { createBrowserHistory } from 'history';
 
-// import Seo from './Seo';
+import Seo from './Seo';
 import AnimatedImage from '../Elements/AnimatedImage';
 
 export class Product extends PureComponent {
   constructor() {
     super();
     this.state = {
-      selectedPrice: null,
       selectedMaxQuantity: null,
       selectedVariant: null,
     };
@@ -28,38 +27,62 @@ export class Product extends PureComponent {
     }
   }
 
-  renderVariant = variant => (
-    <div className="pr2">
-      <button
-        className={`
+  renderVariant = (variant) => {
+    const handleDisabled = (availability) => {
+      console.log('availability', availability);
+      if (availability === 'soldOut') return true;
+      if (availability === 'limited') return false;
+      if (availability === 'unlimited') return false;
+      return false;
+    };
+
+    return (
+      <div className="pr2">
+        <button
+          className={`
           ${
             this.state.selectedVariant === variant.type
               ? 'btn  btn--primary  bg-black  ba  bw1  bc-black  white  tac'
               : 'btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac'
           }`}
-        type="button"
-        disabled={variant.soldOut || !variant.quantity}
-        onClick={() => {
-          this.setState({
-            selectedPrice: variant.type,
-            selectedMaxQuantity: variant.quantity,
-            selectedVariant: variant.type,
-          });
+          type="button"
+          disabled={handleDisabled(variant.availability)}
+          onClick={() => {
+            this.setState({
+              selectedMaxQuantity: variant.quantity,
+              selectedVariant: variant.type,
+            });
 
-          const history = createBrowserHistory();
-          history.push({ search: `?variant=${variant.type}` });
-        }}
-      >
-        {variant.type}
-      </button>
-    </div>
-  );
+            const history = createBrowserHistory();
+            history.push({ search: `?variant=${variant.type}` });
+          }}
+        >
+          {variant.type}
+        </button>
+      </div>
+    );
+  };
 
   render() {
     const product = this.props.info;
+    console.log('product', product);
+
+    const buyButtonProps = {};
+    if (product.recurringType && product.recurringInterval) {
+      buyButtonProps['data-item-payment-interval'] = product.recurringType;
+      buyButtonProps['data-item-payment-interval-count'] = product.recurringInterval;
+    }
 
     return (
       <React.Fragment>
+        <Seo
+          title={product.title}
+          slug={product.slug}
+          description={product.description}
+          img={product.img}
+          price={product.price}
+        />
+
         <div className="product">
           <article className="flex  flex-wrap  pa3">
             <figure className="col-24  col-12-md">
@@ -94,7 +117,8 @@ export class Product extends PureComponent {
                 }`}
                 data-item-description={product.description}
                 data-item-max-quantity={this.state.selectedMaxQuantity}
-                disabled={!this.state.selectedPrice}
+                disabled={!this.state.selectedVariant}
+                {...buyButtonProps}
               >
                 Add to Cart
               </button>
@@ -109,7 +133,6 @@ export class Product extends PureComponent {
 Product.propTypes = {
   info: PropTypes.shape({
     product: PropTypes.shape({}),
-    teamMember: PropTypes.shape({}),
   }),
   location: PropTypes.shape({
     search: PropTypes.string,
@@ -119,7 +142,6 @@ Product.propTypes = {
 Product.defaultProps = {
   info: {
     product: {},
-    teamMember: {},
   },
   location: {
     search: '',
