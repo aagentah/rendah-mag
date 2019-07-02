@@ -88,8 +88,8 @@ export class Article extends PureComponent {
 
           <section className="container-large  center  ph0  mt5  rel">
             <div className="flex  flex-wrap">
-              <div className="col-24  col-3-lg" />
-              <article ref={(articleElem) => { this.articleElem = articleElem; }} className="col-18  center  col-15-lg  pr5-lg">
+              <div className="col-24  col-6-lg" />
+              <article ref={(articleElem) => { this.articleElem = articleElem; }} className="col-18  center  col-12-lg  ph4-lg">
                 <div className="article__social  pb4">
                   <a className="ph1" href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.slug}`} rel="noopener noreferrer" target="_blank">
                     <img src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
@@ -108,7 +108,7 @@ export class Article extends PureComponent {
                 <TeamMember article padding="pt4  pt5-sm" info={teamMember} />
               </article>
 
-              <div className="col-24  col-6-lg  mt4  mt5-lg  pt4">
+              <div className="col-24  col-6-lg  mt4  mt5-lg  pt4  pr4-lg">
                 {sideBarLatestArticles}
                 {sideBarExtraArticles}
                 <div className="container-medium  tac  dn  db-lg  pt3">

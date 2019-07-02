@@ -1,6 +1,6 @@
 /* eslint-disable import/no-named-as-default */
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { frontloadConnect } from 'react-frontload';
@@ -10,8 +10,7 @@ import * as action from './action';
 // import Loading from '../../../../components/Loading';
 import SideList from '../../../../components/SideList';
 
-
-export class Collections extends PureComponent {
+export class Collections extends React.Component {
   shouldComponentUpdate() {
     return false;
   }
@@ -33,19 +32,14 @@ export class Collections extends PureComponent {
   };
 
   render() {
-    return (
-      <React.Fragment>
-        {this.renderCollectionList()}
-      </React.Fragment>
-    );
+    return <React.Fragment>{this.renderCollectionList()}</React.Fragment>;
   }
 }
 
 const connector = connect(
   ({ collections }) => ({ collections }),
   dispatch => ({
-    fetchCollectionsIfNeeded: (range: Array) =>
-      dispatch(action.fetchCollectionsIfNeeded(range)),
+    fetchCollectionsIfNeeded: (range: Array) => dispatch(action.fetchCollectionsIfNeeded(range)),
   }),
 );
 
@@ -70,10 +64,7 @@ Collections.defaultProps = {
   range: [],
 };
 
-const frontload = props =>
-  Promise.all([
-    props.fetchCollectionsIfNeeded(props.range),
-  ]);
+const frontload = props => Promise.all([props.fetchCollectionsIfNeeded(props.range)]);
 
 export default compose(
   connector,

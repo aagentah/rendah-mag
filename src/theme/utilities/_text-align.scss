@@ -1,6 +1,7 @@
 .tal { text-align: left; }
 .tar { text-align: right; }
 .tac { text-align: center; }
+.taj { text-align: justify; }
 
 @each $modifier, $breakpoint in $grid-breakpoints {
   $infix: breakpoint-infix($modifier, $grid-breakpoints);
@@ -8,6 +9,7 @@
     .tal-#{$infix} { text-align: left; }
     .tar-#{$infix} { text-align: right; }
     .tac-#{$infix} { text-align: center; }
+    .taj-#{$infix} { text-align: justify; }
   }
 }
 

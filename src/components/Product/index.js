@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { createBrowserHistory } from 'history';
+import ReactPixel from 'react-facebook-pixel';
 
 import Seo from './Seo';
 import AnimatedImage from '../Elements/AnimatedImage';
@@ -25,6 +26,13 @@ export class Product extends PureComponent {
         selectedVariant: values.variant,
       });
     }
+
+    ReactPixel.fbq('track', 'ViewContent', {
+      value: this.props.info.specialPrice || this.props.info.price,
+      currency: 'GBP',
+      content_ids: this.props.info.slug,
+      content_type: 'product',
+    });
   }
 
   renderVariant = (variant) => {
@@ -112,7 +120,7 @@ export class Product extends PureComponent {
             <div className="col-24  col-12-md  ph4">
               <p className="t-title  grey  f4  bold  pb2">{product.title}</p>
               {this.renderPrice(product)}
-              <p className="t-body  grey  f5  pb4">{product.description}</p>
+              <p className="t-body  lh-copy  grey  f5  taj  pb4">{product.description}</p>
 
               <p className="t-body  grey  f6  pb2">Sizes:</p>
               <div className="flex  flex-wrap  pb4">
@@ -145,7 +153,9 @@ export class Product extends PureComponent {
 
 Product.propTypes = {
   info: PropTypes.shape({
-    product: PropTypes.shape({}),
+    slug: PropTypes.string,
+    specialPrice: PropTypes.string,
+    price: PropTypes.string,
   }),
   location: PropTypes.shape({
     search: PropTypes.string,
@@ -154,7 +164,9 @@ Product.propTypes = {
 
 Product.defaultProps = {
   info: {
-    product: {},
+    slug: '',
+    specialPrice: '',
+    price: '',
   },
   location: {
     search: '',
