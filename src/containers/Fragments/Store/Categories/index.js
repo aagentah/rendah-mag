@@ -1,6 +1,6 @@
 /* eslint-disable import/no-named-as-default */
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { frontloadConnect } from 'react-frontload';
@@ -10,8 +10,7 @@ import * as action from './action';
 // import Loading from '../../../../components/Loading';
 import SideList from '../../../../components/SideList';
 
-
-export class Categories extends PureComponent {
+export class Categories extends React.Component {
   shouldComponentUpdate() {
     return false;
   }
@@ -33,19 +32,14 @@ export class Categories extends PureComponent {
   };
 
   render() {
-    return (
-      <React.Fragment>
-        {this.renderCategorieList()}
-      </React.Fragment>
-    );
+    return <React.Fragment>{this.renderCategorieList()}</React.Fragment>;
   }
 }
 
 const connector = connect(
   ({ categories }) => ({ categories }),
   dispatch => ({
-    fetchCategoriesIfNeeded: (range: Array) =>
-      dispatch(action.fetchCategoriesIfNeeded(range)),
+    fetchCategoriesIfNeeded: (range: Array) => dispatch(action.fetchCategoriesIfNeeded(range)),
   }),
 );
 
@@ -70,10 +64,7 @@ Categories.defaultProps = {
   range: [],
 };
 
-const frontload = props =>
-  Promise.all([
-    props.fetchCategoriesIfNeeded(props.range),
-  ]);
+const frontload = props => Promise.all([props.fetchCategoriesIfNeeded(props.range)]);
 
 export default compose(
   connector,

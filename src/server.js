@@ -63,9 +63,9 @@ handleFeeds(app);
 
 // Register server-side rendering middleware
 app.get('*', (req, res) => {
-  console.log('get');
-  console.log(req);
-  console.log(res);
+  // console.log('get');
+  // console.log(req);
+  // console.log(res);
   if (__DEV__) webpackIsomorphicTools.refresh();
 
   const history = createHistory();
