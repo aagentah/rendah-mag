@@ -32,6 +32,7 @@ export class Product extends PureComponent {
       currency: 'GBP',
       content_ids: this.props.info.slug,
       content_type: 'product',
+      product_catalog_id: 715844545502722,
     });
   }
 
