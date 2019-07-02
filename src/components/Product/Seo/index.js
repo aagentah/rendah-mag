@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 export class Seo extends PureComponent {
   render() {
-    const { title, slug, description, img, price } = this.props;
+    const { title, slug, description, img, price, availability } = this.props;
 
     return (
       <Helmet>
@@ -25,15 +25,22 @@ export class Seo extends PureComponent {
 
         {/* Open Graph data */}
         <meta property="og:title" content={title} />
+        <meta property="og:type" content="og:product" />
+        <meta property="og:description" content={description} />
         <meta property="og:url" content={`https://www.rendahmag.com/product/${slug}`} />
         <meta property="og:image" content={img} />
         <meta property="og:image:width" content="1080" />
         <meta property="og:image:height" content="1080" />
-        <meta property="og:type" content="og:product" />
-        <meta property="og:description" content={description} />
         <meta property="product:plural_title" content={title} />
+        <meta property="product:brand" content="Rendah Mag" />
+        <meta
+          property="product:availability"
+          content={availability === 'soldOut' ? 'out of stock' : 'in stock'}
+        />
+        <meta property="product:condition" content="new" />
         <meta property="product:price:amount" content={price} />
         <meta property="product:price:currency" content="GBP" />
+        <meta property="product:retailer_item_id" content={slug} />
       </Helmet>
     );
   }
@@ -45,6 +52,7 @@ Seo.propTypes = {
   description: PropTypes.string,
   img: PropTypes.string,
   price: PropTypes.string,
+  availability: PropTypes.string,
 };
 
 Seo.defaultProps = {
@@ -53,6 +61,7 @@ Seo.defaultProps = {
   description: '',
   img: '',
   price: '',
+  availability: '',
 };
 
 export default Seo;
