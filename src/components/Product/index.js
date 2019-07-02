@@ -19,6 +19,8 @@ export class Product extends PureComponent {
   }
 
   componentWillMount() {
+    const product = this.props.info;
+
     if (this.props.location.search) {
       const values = queryString.parse(this.props.location.search);
 
@@ -28,11 +30,12 @@ export class Product extends PureComponent {
     }
 
     ReactPixel.fbq('track', 'ViewContent', {
-      value: this.props.info.specialPrice || this.props.info.price,
-      currency: 'GBP',
-      content_ids: this.props.info.slug,
+      content_name: product.title,
+      content_ids: [product.slug],
       content_type: 'product',
       product_catalog_id: 715844545502722,
+      value: product.specialPrice || product.price,
+      currency: 'GBP',
     });
   }
 
