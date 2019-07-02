@@ -6,7 +6,7 @@ import ReactPixel from 'react-facebook-pixel';
 
 GoogleAnalytics.initialize('UA-120300345-1');
 
-ReactPixel.init('525916664612219', null, {
+ReactPixel.init('779539155776057', null, {
   autoConfig: true,
   debug: true,
 });
