@@ -102,7 +102,7 @@ export class Article extends PureComponent {
                 <span className="grey  t8">{this.date(article.created)} | </span>
                 <Link title={teamMember.slug} to={`/team/${teamMember.slug}`} className="no-underline"><span className="grey  t8  cp  link">{teamMember.name}</span></Link>
                 <h1 className="pb3  pt4  t-title">{article.title}</h1>
-                <p className="pv3  t-body  f5  dark-grey">{article.description}</p>
+                <p className="pv3  t-body  lh-copy  f6  dark-grey  taj">{article.description}</p>
                 <Sections body={article.body} />
                 <SocialLinks article={article} />
                 <TeamMember article padding="pt4  pt5-sm" info={teamMember} />
