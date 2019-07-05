@@ -28,7 +28,7 @@ export class ProductList extends PureComponent {
     return (
       <div className={padding}>
         <div className="ph3  pb3">
-          <h1 className="t-title  black  f5  pb2">{data.title}</h1>
+          <h1 className="t-title  black  bold  f4  pb2  mb1  pt2  pt2-md">{data.title}</h1>
           {data.description && <p className="t-body  grey  f6">{data.description}</p>}
         </div>
         <div className="flex  flex-wrap">

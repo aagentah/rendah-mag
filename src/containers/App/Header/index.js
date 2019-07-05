@@ -193,15 +193,26 @@ export class Header extends PureComponent {
             </ul>
           </nav>
 
-          <div className={searchMobile}>
-            <div className="abs  w-80  center  header__mobile__search-input">
-              <SearchInput onSearch={this.mobileSearchToggle} />
+          {this.state.isStore ? (
+            <div className="abs  header__mobile__cart">
+              <CheckoutButton />
             </div>
-          </div>
+          ) : (
+            <React.Fragment>
+              <div className={searchMobile}>
+                <div className="abs  w-80  center  header__mobile__search-input">
+                  <SearchInput onSearch={this.mobileSearchToggle} />
+                </div>
+              </div>
 
-          <div onClick={this.mobileSearchToggle} className="abs  cp  header__mobile__search-icon">
-            <Search />
-          </div>
+              <div
+                onClick={this.mobileSearchToggle}
+                className="abs  cp  header__mobile__search-icon"
+              >
+                <Search />
+              </div>
+            </React.Fragment>
+          )}
         </header>
       </React.Fragment>
     );
