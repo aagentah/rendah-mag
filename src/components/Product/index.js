@@ -110,7 +110,7 @@ export class Product extends PureComponent {
 
         <div className="product">
           <article className="flex  flex-wrap  pa3">
-            <figure className="col-24  col-12-md  pb3  pb0-md">
+            <figure className="col-24  col-12-md  pb4  pb0-md">
               <div className="db  shadow2">
                 <AnimatedImage
                   lazy
@@ -132,7 +132,7 @@ export class Product extends PureComponent {
               </div>
 
               <button
-                className="btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac  snipcart-add-item"
+                className="btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac  w-100  snipcart-add-item"
                 type="button"
                 data-item-id={`${product.slug}-${this.state.selectedVariant}`}
                 data-item-name={`${product.title} (${this.state.selectedVariant})`}
