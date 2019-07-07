@@ -159,6 +159,7 @@
     "not ie <= 8"
   ],
   "dependencies": {
+    "@sanity/block-content-to-react": "^2.0.6",
     "@sanity/client": "^0.140.8",
     "axios": "^0.18.1",
     "babel-polyfill": "^6.26.0",

@@ -21,7 +21,8 @@ export const fetchProduct = (productId: string) =>
       title,
       description,
       "slug": slug.current,
-      "img": image.asset->url,
+      "img1": image1.asset->url,
+      "img2": image2.asset->url,
       "created": publishedAt,
       ...,
     }`;

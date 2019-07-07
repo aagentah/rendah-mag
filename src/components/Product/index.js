@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { createBrowserHistory } from 'history';
 import ReactPixel from 'react-facebook-pixel';
+import BlockContent from '@sanity/block-content-to-react';
 
 import Seo from './Seo';
 import AnimatedImage from '../Elements/AnimatedImage';
@@ -40,6 +41,7 @@ export class Product extends PureComponent {
   }
 
   renderVariant = (variant) => {
+    console.log('v', variant);
     const handleDisabled = (availability) => {
       console.log('availability', availability);
       if (availability === 'soldOut') return true;
@@ -103,8 +105,8 @@ export class Product extends PureComponent {
         <Seo
           title={product.title}
           slug={product.slug}
-          description={product.description}
-          img={product.img}
+          description={product.title}
+          img={product.img1}
           price={product.specialPrice || product.price}
         />
 
@@ -114,7 +116,7 @@ export class Product extends PureComponent {
               <div className="db  shadow2">
                 <AnimatedImage
                   lazy
-                  src={product.img}
+                  src={product.img1}
                   alt={product.title}
                   styles="fade-in-zoom-in  w-100"
                 />
@@ -124,7 +126,10 @@ export class Product extends PureComponent {
             <div className="col-24  col-12-md  ph4">
               <p className="t-title  grey  f4  bold  pb2">{product.title}</p>
               {this.renderPrice(product)}
-              <p className="t-body  lh-copy  grey  f5  taj  pb4">{product.description}</p>
+
+              <div className="product__description  t-body  lh-copy  grey  f5  taj  pb4">
+                <BlockContent blocks={product.description} />
+              </div>
 
               <p className="t-body  grey  f6  pb2">Sizes:</p>
               <div className="flex  flex-wrap  pb4">
@@ -140,7 +145,7 @@ export class Product extends PureComponent {
                 data-item-url={`https://rendahmag.com/product/${product.slug}?variant=${
                   this.state.selectedVariant
                 }`}
-                data-item-description={product.description}
+                data-item-description={product.title}
                 data-item-max-quantity={this.state.selectedMaxQuantity}
                 disabled={!this.state.selectedVariant}
                 {...buyButtonProps}

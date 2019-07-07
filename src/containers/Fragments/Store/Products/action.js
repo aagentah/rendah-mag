@@ -27,7 +27,8 @@ export const fetchProducts = (id: string, range: Array) =>
           description,
           price,
           "slug": slug.current,
-          "img": image.asset->url,
+          "img1": image1.asset->url,
+          "img2": image2.asset->url,
           ...,
           }
         }`;
@@ -39,7 +40,8 @@ export const fetchProducts = (id: string, range: Array) =>
           description,
           price,
           "slug": slug.current,
-          "img": image.asset->url,
+          "img1": image1.asset->url,
+          "img2": image2.asset->url,
           ...,
           }
         }`;
