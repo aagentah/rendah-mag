@@ -43,7 +43,7 @@ export class ProductList extends PureComponent {
                   >
                     <AnimatedImage
                       lazy
-                      src={product.img}
+                      src={product.img1}
                       alt={product.title}
                       styles="fade-in-zoom-in  h8  w-100"
                     />

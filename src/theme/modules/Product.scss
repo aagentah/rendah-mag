@@ -1,0 +1,13 @@
+.product__description {
+  * {
+    @extend .t-body;
+    @extend .lh-copy;
+    @extend .f5;
+    @extend .taj;
+  }
+
+  ul {
+    @extend .pv2;
+    @extend .pl3;
+  }
+}
