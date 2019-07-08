@@ -1,4 +1,5 @@
-/* eslint-disable import/no-named-as-default, react/no-did-mount-set-state */
+/* eslint-disable import/no-named-as-default, react/no-did-mount-set-state,
+jsx-a11y/no-static-element-interactions */
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
@@ -16,6 +17,7 @@ export class Product extends PureComponent {
     this.state = {
       selectedMaxQuantity: null,
       selectedVariant: null,
+      selectedImageUrl: null,
     };
   }
 
@@ -41,12 +43,11 @@ export class Product extends PureComponent {
   }
 
   renderVariant = (variant) => {
-    console.log('v', variant);
     const handleDisabled = (availability) => {
-      console.log('availability', availability);
       if (availability === 'soldOut') return true;
       if (availability === 'limited') return false;
       if (availability === 'unlimited') return false;
+
       return false;
     };
 
@@ -77,8 +78,26 @@ export class Product extends PureComponent {
     );
   };
 
+  renderThumbnail = (product, img) => {
+    if (img) {
+      return (
+        <div className="pr2">
+          <div
+            className="w3  db  shadow2  cp"
+            onClick={() => {
+              this.setState({ selectedImageUrl: img });
+            }}
+          >
+            <AnimatedImage lazy src={img} alt={product.title} styles="fade-in-zoom-in  w-100" />
+          </div>
+        </div>
+      );
+    }
+
+    return false;
+  };
+
   renderPrice = (product) => {
-    console.log('t-body  grey  f6', product);
     if (product.specialPrice) {
       return (
         <p className="t-title  grey  f4  pb3">
@@ -92,9 +111,10 @@ export class Product extends PureComponent {
 
   render() {
     const product = this.props.info;
-    console.log('product', product);
+    const images = [product.img1, product.img2, product.img3];
 
     const buyButtonProps = {};
+
     if (product.recurringType && product.recurringInterval) {
       buyButtonProps['data-item-payment-interval'] = product.recurringType;
       buyButtonProps['data-item-payment-interval-count'] = product.recurringInterval;
@@ -113,21 +133,26 @@ export class Product extends PureComponent {
         <div className="product">
           <article className="flex  flex-wrap  pa3">
             <figure className="col-24  col-12-md  pb4  pb0-md">
-              <div className="db  shadow2">
-                <AnimatedImage
-                  lazy
-                  src={product.img1}
-                  alt={product.title}
-                  styles="fade-in-zoom-in  w-100"
-                />
+              <div className="flex  w-100">
+                <div className="db  shadow2">
+                  <AnimatedImage
+                    lazy
+                    src={this.state.selectedImageUrl || product.img1}
+                    alt={product.title}
+                    styles="fade-in-zoom-in  w-100"
+                  />
+                </div>
+              </div>
+              <div className="flex  w-100  pv3">
+                {images.map(img => this.renderThumbnail(product, img))}
               </div>
             </figure>
 
-            <div className="col-24  col-12-md  ph4">
+            <div className="col-24  col-12-md  ph2  ph4-md">
               <p className="t-title  grey  f4  bold  pb2">{product.title}</p>
               {this.renderPrice(product)}
 
-              <div className="product__description  t-body  lh-copy  grey  f5  taj  pb4">
+              <div className="product__description  t-body  lh-copy  grey  f5  pb4">
                 <BlockContent blocks={product.description} />
               </div>
 
