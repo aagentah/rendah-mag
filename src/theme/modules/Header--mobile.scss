@@ -107,6 +107,12 @@
 }
 
 .header__mobile__cart {
-  right: 27px;
+  right: 30px;
   top: 29px;
+
+  .snipcart-summary {
+    position: absolute;
+    left: 5px;
+    top: 0px;
+  }
 }

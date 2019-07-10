@@ -103,6 +103,14 @@ height: calc(100vh - 80px);
 	overflow: hidden;
 }
 
+.FeaturedArticle--preview {
+  /* Glitch styles */
+  .glitch {
+    max-height: 100vh;
+  height: 100vh;
+  }
+}
+
 .glitch img {
 	position: absolute;
 	// top: calc(-1 * var(--gap-vertical));
