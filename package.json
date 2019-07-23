@@ -203,7 +203,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "serialize-javascript": "^1.4.0",
-    "serve-favicon": "2.4.5",
+    "serve-favicon": "2.5.0",
     "styled-components": "^4.3.1",
     "webpack-isomorphic-tools": "^3.0.5",
     "xmlbuilder": "^10.0.0"
