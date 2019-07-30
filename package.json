@@ -238,7 +238,7 @@
     "file-loader": "2.0.0",
     "flow-bin": "0.57.3",
     "identity-obj-proxy": "^3.0.0",
-    "image-webpack-loader": "^4.6.0",
+    "image-webpack-loader": "^5.0.0",
     "nock": "9.0.27",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.7",
