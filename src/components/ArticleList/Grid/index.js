@@ -51,9 +51,9 @@ export class ArticleListGrid extends PureComponent {
 
                 <div>
                   <Link to={`/article/${article.slug}`} className="t-body  db  link  pb2">
-                    <p className="t-title  black  f5  cp  over-hidden  link  grid-card__title">{article.title}</p>
+                    <p className="t-title  lh-copy  black  f5  cp  over-hidden  link  grid-card__title">{article.title}</p>
                   </Link>
-                  <p className="t-body  grey  f6  over-hidden  mt1  grid-card__desc">{article.description}</p>
+                  <p className="t-body  lh-copy  grey  f6  over-hidden  mt1  grid-card__desc">{article.description}</p>
                 </div>
               </article>
             </div>
