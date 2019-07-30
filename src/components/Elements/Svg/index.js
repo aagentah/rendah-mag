@@ -8,9 +8,7 @@ type Props = { text: String };
 export const Fb = (): Element<'div'> => (
   <div data-svg="fb">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path
-        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 10h-2v2h2v6h3v-6h1.82l.18-2h-2v-.833c0-.478.096-.667.558-.667h1.442v-2.5h-2.404c-1.798 0-2.596.792-2.596 2.308v1.692z"
-      />
+      <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 10h-2v2h2v6h3v-6h1.82l.18-2h-2v-.833c0-.478.096-.667.558-.667h1.442v-2.5h-2.404c-1.798 0-2.596.792-2.596 2.308v1.692z" />
     </svg>
   </div>
 );
@@ -55,7 +53,10 @@ export const Logo = (): Element<'div'> => (
         <circle cx="355.5" cy="355.5" r="311.5" />
       </g>
       <g>
-        <path className="st0" d="M398.4,212.5h-20.8c3.4-0.3,6.9-0.5,10.4-0.5S395,212.2,398.4,212.5z" />
+        <path
+          className="st0"
+          d="M398.4,212.5h-20.8c3.4-0.3,6.9-0.5,10.4-0.5S395,212.2,398.4,212.5z"
+        />
         <path d="M388,212c-3.5,0-7,0.2-10.4,0.5h20.8C395,212.2,391.5,212,388,212L388,212z" />
       </g>
       <g>
@@ -80,7 +81,10 @@ export const Logo = (): Element<'div'> => (
         <circle cx="355.5" cy="355.5" r="311.5" />
       </g>
       <g>
-        <path className="st0" d="M398.4,212.5h-20.8c3.4-0.3,6.9-0.5,10.4-0.5S395,212.2,398.4,212.5z" />
+        <path
+          className="st0"
+          d="M398.4,212.5h-20.8c3.4-0.3,6.9-0.5,10.4-0.5S395,212.2,398.4,212.5z"
+        />
         <path d="M388,212c-3.5,0-7,0.2-10.4,0.5h20.8C395,212.2,391.5,212,388,212L388,212z" />
       </g>
       <g>
@@ -106,19 +110,25 @@ export const Logo = (): Element<'div'> => (
 
 export const ArrowRight = (): Element<'div'> => (
   <div data-svg="ArrowRight">
-    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24">
+      <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
+    </svg>
   </div>
 );
 
 export const CaretDown = (): Element<'div'> => (
   <div data-svg="CaretDown">
-    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" /></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24">
+      <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+    </svg>
   </div>
 );
 
 export const Menu = (): Element<'div'> => (
   <div data-svg="Menu">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" /></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
+    </svg>
   </div>
 );
 
@@ -130,6 +140,12 @@ export const Search = (): Element<'div'> => (
   </div>
 );
 
-export const NULL = ({ text }: Props): Element<'div'> => (
-  <div>{text}</div>
+export const Cart = (): Element<'div'> => (
+  <div data-svg="Cart">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+      <path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
+    </svg>
+  </div>
 );
+
+export const NULL = ({ text }: Props): Element<'div'> => <div>{text}</div>;

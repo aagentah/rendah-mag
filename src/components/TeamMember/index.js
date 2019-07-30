@@ -101,7 +101,7 @@ export class Article extends PureComponent {
                   <span>{teamMember.name}</span>
                   <span className="pl1  grey  f5">{(alias) ? `(${alias})` : ''}</span>
                 </Link>
-                <p className="grey  f6  pt2  pb3  mb1  tac  tal-sm">{teamMember.description}</p>
+                <p className="t-body  lh-copy  grey  f6  pt2  pb3  mb1  tac  tal-sm">{teamMember.description}</p>
                 <div className="tac  tal-sm">
                   {facebookLink}
                   {twitterLink}
