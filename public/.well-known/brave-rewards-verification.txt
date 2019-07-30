@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: rendahmag.com
+Token: ab74b37b4ed40941c09b3dd2a4b9548997e7c831c6d3df09a8bbccb99088f528

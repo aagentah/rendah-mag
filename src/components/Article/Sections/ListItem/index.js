@@ -40,7 +40,7 @@ class ListItem extends Component {
     if (text[0].text) {
       return (
         <React.Fragment>
-          <li className="db  t-body  f6  dark-grey  t-body">
+          <li className="db  t-body  lh-copy  f6  dark-grey">
             - {text.map((child, i) => this.renderChildren(child, i))}
           </li>
         </React.Fragment>
