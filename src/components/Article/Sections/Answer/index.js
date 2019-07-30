@@ -9,7 +9,7 @@ export class Answer extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <p className="t-body  f5  dark-grey">&ldquo;{this.props.text}&ldquo;</p>
+        <p className="t-body  lh-copy  f5  dark-grey  taj">&ldquo;{this.props.text}&ldquo;</p>
       </React.Fragment>
     );
   }

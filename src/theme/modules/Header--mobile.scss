@@ -105,3 +105,14 @@
   top: 25px;
   right: 15px;
 }
+
+.header__mobile__cart {
+  right: 30px;
+  top: 29px;
+
+  .snipcart-summary {
+    position: absolute;
+    left: 5px;
+    top: 0px;
+  }
+}
