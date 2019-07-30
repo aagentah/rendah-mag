@@ -95,11 +95,6 @@ const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> =>
           data-autopop="false"
           id="snipcart"
         />
-        <link
-          href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css"
-          rel="stylesheet"
-          type="text/css"
-        />
 
         <Helmet>
           <script type="application/ld+json">
