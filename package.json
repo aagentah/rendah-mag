@@ -188,7 +188,7 @@
     "react-helmet": "^5.2.0",
     "react-hot-loader": "4.7.2",
     "react-iframe": "^1.3.3",
-    "react-instafeed": "^0.4.0",
+    "react-instafeed": "^1.0.0",
     "react-lazyload": "^2.3.0",
     "react-mailchimp-subscribe": "^2.0.2",
     "react-messenger-customer-chat": "^0.7.1",
