@@ -13,7 +13,7 @@ import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import chalk from 'chalk';
 import cors from 'cors';
-import createHistory from 'history/createMemoryHistory';
+import { createMemoryHistory } from 'history';
 import { frontloadServerRender } from 'react-frontload';
 import lowercasePaths from 'express-lowercase-paths';
 
@@ -47,13 +47,15 @@ if (__DEV__) {
   const webpackConfig = require('../tools/webpack/config.babel');
   const compiler = webpack(webpackConfig);
 
-  app.use(require('webpack-dev-middleware')(compiler, {
-    publicPath: webpackConfig.output.publicPath,
-    hot: true,
-    noInfo: true,
-    stats: { colors: true },
-    serverSideRender: true,
-  }));
+  app.use(
+    require('webpack-dev-middleware')(compiler, {
+      publicPath: webpackConfig.output.publicPath,
+      hot: true,
+      noInfo: true,
+      stats: { colors: true },
+      serverSideRender: true,
+    }),
+  );
 
   app.use(require('webpack-hot-middleware')(compiler));
 }
@@ -68,14 +70,14 @@ app.get('*', (req, res) => {
   // console.log(res);
   if (__DEV__) webpackIsomorphicTools.refresh();
 
-  const history = createHistory();
+  const history = createMemoryHistory();
   const store = configureStore(history);
   const routerContext = {};
 
   const renderHtmlContent = () =>
     renderToString(
       <Provider store={store}>
-        <StaticRouter location={req.url} context={routerContext} >
+        <StaticRouter location={req.url} context={routerContext}>
           <App noServerRender={__DISABLE_SSR__} />
         </StaticRouter>
       </Provider>,
@@ -83,11 +85,7 @@ app.get('*', (req, res) => {
 
   const renderHtml = (htmlContent) => {
     const html = renderToStaticMarkup(
-      <Html
-        store={store}
-        htmlContent={htmlContent}
-        noServerRender={__DISABLE_SSR__}
-      />,
+      <Html store={store} htmlContent={htmlContent} noServerRender={__DISABLE_SSR__} />,
     );
 
     return `<!doctype html>${html}`;
@@ -114,7 +112,6 @@ app.get('*', (req, res) => {
       console.error(`==> 😭  Rendering routes error: ${err}`);
     });
 });
-
 
 if (port) {
   app.listen(port, host, (err) => {
