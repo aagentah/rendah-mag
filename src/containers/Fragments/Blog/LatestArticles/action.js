@@ -1,4 +1,4 @@
-import sanity from '../../../utils/sanity';
+import sanity from '../../../../utils/sanity';
 
 export const LATESTARTICLES_INVALID = 'LATESTARTICLES_INVALID';
 export const LATESTARTICLES_REQUESTING = 'LATESTARTICLES_REQUESTING';

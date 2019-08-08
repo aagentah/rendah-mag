@@ -3,7 +3,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import ArticlePreviewInfo from '../../../containers/Fragments/ArticlePreviewInfo';
+import ArticlePreviewInfo from '../../../containers/Fragments/Blog/ArticlePreviewInfo';
 
 export class Article extends PureComponent {
   componentDidMount() {

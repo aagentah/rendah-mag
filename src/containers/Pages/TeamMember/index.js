@@ -4,9 +4,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import TeamMemberInfo from '../../../containers/Fragments/TeamMemberInfo';
+import TeamMemberInfo from '../../../containers/Fragments/Blog/TeamMemberInfo';
 import CategoryGrid from '../../../components/CategoryGrid';
-
 
 export class TeamMember extends PureComponent {
   componentDidMount() {

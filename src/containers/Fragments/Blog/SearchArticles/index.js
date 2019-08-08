@@ -7,8 +7,8 @@ import { frontloadConnect } from 'react-frontload';
 import compose from 'lodash/flowRight';
 
 import * as action from './action';
-import Loading from '../../../components/Loading';
-import ArticleListGrid from '../../../components/ArticleList/Grid';
+import Loading from '../../../../components/Loading';
+import ArticleListGrid from '../../../../components/ArticleList/Grid';
 
 export class SearchArticles extends PureComponent {
   renderSearchArticleList = () => {

@@ -7,9 +7,9 @@ import { frontloadConnect } from 'react-frontload';
 import compose from 'lodash/flowRight';
 
 import * as action from './action';
-import Loading from '../../../components/Loading';
-import TeamMember from '../../../components/TeamMember';
-import ArticleListGrid from '../../../components/ArticleList/Grid';
+import Loading from '../../../../components/Loading';
+import TeamMember from '../../../../components/TeamMember';
+import ArticleListGrid from '../../../../components/ArticleList/Grid';
 
 export class TeamMemberInfo extends PureComponent {
   renderTeamMember = () => {

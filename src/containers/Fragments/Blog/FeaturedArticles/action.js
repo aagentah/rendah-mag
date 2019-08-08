@@ -1,4 +1,4 @@
-import sanity from '../../../utils/sanity';
+import sanity from '../../../../utils/sanity';
 
 export const FEATUREDARTICLES_INVALID = 'FEATUREDARTICLES_INVALID';
 export const FEATUREDARTICLES_REQUESTING = 'FEATUREDARTICLES_REQUESTING';

@@ -8,8 +8,8 @@ import { frontloadConnect } from 'react-frontload';
 import compose from 'lodash/flowRight';
 
 import * as action from './action';
-import Loading from '../../../components/Loading';
-import Article from '../../../components/Article';
+import Loading from '../../../../components/Loading';
+import ArticlePreview from '../../../../components/ArticlePreview';
 
 export class ArticleInfo extends PureComponent {
   renderArticle = () => {
@@ -24,7 +24,7 @@ export class ArticleInfo extends PureComponent {
       return <Loading type="ArticleInfo" />;
     }
 
-    return <Article info={articleInfoById.info} />;
+    return <ArticlePreview info={articleInfoById.info} />;
   }
 
   render() {

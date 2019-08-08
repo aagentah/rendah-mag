@@ -1,4 +1,4 @@
-import sanity from '../../../utils/sanity';
+import sanity from '../../../../utils/sanity';
 
 export const TEAMMEMBER_REQUESTING = 'TEAMMEMBER_REQUESTING';
 export const TEAMMEMBER_FAILURE = 'TEAMMEMBER_FAILURE';

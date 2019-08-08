@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import Iframe from 'react-iframe';
 
 import Hero from '../../../components/Hero';
-import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
+import ExtraArticles from '../../../containers/Fragments/Blog/ExtraArticles';
 
 export class WatchTower extends PureComponent {
   componentDidMount() {

@@ -7,8 +7,8 @@ import { frontloadConnect } from 'react-frontload';
 import compose from 'lodash/flowRight';
 
 import * as action from './action';
-import Loading from '../../../components/Loading';
-import ArticleListCarousel from '../../../components/ArticleList/Carousel';
+import Loading from '../../../../components/Loading';
+import ArticleListCarousel from '../../../../components/ArticleList/Carousel';
 
 
 export class FeaturedArticles extends PureComponent {

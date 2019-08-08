@@ -7,9 +7,9 @@ import { frontloadConnect } from 'react-frontload';
 import compose from 'lodash/flowRight';
 
 import * as action from './action';
-import Loading from '../../../components/Loading';
-import ArticleListGrid from '../../../components/ArticleList/Grid';
-import ArticleListList from '../../../components/ArticleList/List';
+import Loading from '../../../../components/Loading';
+import ArticleListGrid from '../../../../components/ArticleList/Grid';
+import ArticleListList from '../../../../components/ArticleList/List';
 
 
 export class LatestArticles extends PureComponent {

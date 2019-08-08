@@ -3,7 +3,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import ArticleInfo from '../../../containers/Fragments/ArticleInfo';
+import ArticleInfo from '../../../containers/Fragments/Blog/ArticleInfo';
 import CategoryGrid from '../../../components/CategoryGrid';
 
 export class Article extends PureComponent {

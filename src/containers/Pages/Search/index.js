@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 import Hero from '../../../components/Hero';
-import SearchArticles from '../../../containers/Fragments/SearchArticles';
+import SearchArticles from '../../../containers/Fragments/Blog/SearchArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
 
 export class Search extends PureComponent {
@@ -29,7 +29,12 @@ export class Search extends PureComponent {
           <link rel="canonical" href={canonical} />
         </Helmet>
 
-        <Hero type="h1" title={searchQuery} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
+        <Hero
+          type="h1"
+          title={searchQuery}
+          styles="t-title  ttu  f3  bold  dark-grey"
+          padding="pb4"
+        />
 
         <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb4">
           Latest results for:&nbsp;
