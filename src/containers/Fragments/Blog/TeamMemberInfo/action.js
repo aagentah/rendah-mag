@@ -7,16 +7,15 @@ export const TEAMMEMBER_SUCCESS = 'TEAMMEMBER_SUCCESS';
 // export const API_URL = (__DEV__) ?
 //   '/api/team' : 'https://rendah-mag.herokuapp.com/api/team';
 
-export const fetchTeamMember = (teamMemberId: string) =>
-  (dispatch) => {
-    dispatch({ type: TEAMMEMBER_REQUESTING, teamMemberId });
+export const fetchTeamMember = (teamMemberId: string) => (dispatch) => {
+  dispatch({ type: TEAMMEMBER_REQUESTING, teamMemberId });
 
-    const params = {
-      limit: '0..23',
-      teamMemberId,
-    };
+  const params = {
+    limit: '0..23',
+    teamMemberId,
+  };
 
-    const query = `*[_type == "author" && slug.current == $teamMemberId] [0] {
+  const query = `*[_type == "author" && slug.current == $teamMemberId] [0] {
       name,
       alias,
       description,
@@ -35,15 +34,14 @@ export const fetchTeamMember = (teamMemberId: string) =>
       }
     }`;
 
-    return sanity.fetch(query, params).then((res) => {
-      if (res) {
-        console.log('res ---', res);
-        dispatch({ type: TEAMMEMBER_SUCCESS, teamMemberId, data: res });
-      } else {
-        dispatch({ type: TEAMMEMBER_FAILURE, teamMemberId, err: 'error' });
-      }
-    });
-  };
+  return sanity.fetch(query, params).then((res) => {
+    if (res) {
+      dispatch({ type: TEAMMEMBER_SUCCESS, teamMemberId, data: res });
+    } else {
+      dispatch({ type: TEAMMEMBER_FAILURE, teamMemberId, err: 'error' });
+    }
+  });
+};
 
 // Using for preventing dobule fetching data
 /* istanbul ignore next */

@@ -8,31 +8,27 @@ export const COLLECTIONS_SUCCESS = 'COLLECTIONS_SUCCESS';
 // export const API_URL = (__DEV__) ?
 //   '/api/products' : 'https://rendah-mag.herokuapp.com/api/products';
 
-export const fetchCollections = (range: Array) =>
-  (dispatch) => {
-    console.log('dispatch', dispatch);
-    dispatch({ type: COLLECTIONS_REQUESTING });
+export const fetchCollections = (range: Array) => (dispatch) => {
+  dispatch({ type: COLLECTIONS_REQUESTING });
 
-    const params = {
-      range: `${range[0] - 1}..${range[1] - 1}`,
-    };
+  const params = {
+    range: `${range[0] - 1}..${range[1] - 1}`,
+  };
 
-    const query =
-    `*[_type == "collection"] | order(publishedAt desc) [${params.range}] {
+  const query = `*[_type == "collection"] | order(publishedAt desc) [${params.range}] {
       title,
       description,
       "slug": slug.current,
     }`;
 
-    return sanity.fetch(query).then((res) => {
-      if (res) {
-        dispatch({ type: COLLECTIONS_SUCCESS, data: res });
-      } else {
-        dispatch({ type: COLLECTIONS_FAILURE, err: 'error' });
-      }
-    });
-  };
-
+  return sanity.fetch(query).then((res) => {
+    if (res) {
+      dispatch({ type: COLLECTIONS_SUCCESS, data: res });
+    } else {
+      dispatch({ type: COLLECTIONS_FAILURE, err: 'error' });
+    }
+  });
+};
 
 /* istanbul ignore next */
 export const fetchCollectionsIfNeeded = (limit: number) => dispatch =>

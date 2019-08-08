@@ -25,8 +25,6 @@ export class ArticleListGrid extends PureComponent {
       imageHeight = 'h7  h7-sm';
     }
 
-    console.log('list', list);
-
     return (
       <div className={`container-medium  center  ${padding}`}>
         <div className="flex  flex-wrap">
@@ -34,7 +32,11 @@ export class ArticleListGrid extends PureComponent {
             <div key={article.title} className={`${containerClass}  pa3`}>
               <article>
                 <figure>
-                  <Link className="db  shadow2" title={article.slug} to={`/article/${article.slug}`}>
+                  <Link
+                    className="db  shadow2"
+                    title={article.slug}
+                    to={`/article/${article.slug}`}
+                  >
                     <AnimatedImage
                       lazy
                       src={article.img}
@@ -46,14 +48,20 @@ export class ArticleListGrid extends PureComponent {
 
                 <div className="pv2  mt2">
                   <span className="t-body  grey  f6">{this.date(article.created)} | </span>
-                  <Link to={`/team/${toUrlCase(trim(article.teamMember))}`} className="link"><span className="t-body  grey  f6  cp  link">{article.teamMember}</span></Link>
+                  <Link to={`/team/${toUrlCase(trim(article.teamMember))}`} className="link">
+                    <span className="t-body  grey  f6  cp  link">{article.teamMember}</span>
+                  </Link>
                 </div>
 
                 <div>
                   <Link to={`/article/${article.slug}`} className="t-body  db  link  pb2">
-                    <p className="t-title  lh-copy  black  f5  cp  over-hidden  link  grid-card__title">{article.title}</p>
+                    <p className="t-title  lh-copy  black  f5  cp  over-hidden  link  grid-card__title">
+                      {article.title}
+                    </p>
                   </Link>
-                  <p className="t-body  lh-copy  grey  f6  over-hidden  mt1  grid-card__desc">{article.description}</p>
+                  <p className="t-body  lh-copy  grey  f6  over-hidden  mt1  grid-card__desc">
+                    {article.description}
+                  </p>
                 </div>
               </article>
             </div>

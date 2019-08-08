@@ -7,17 +7,15 @@ export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS';
 // export const API_URL = (__DEV__) ?
 //   '/api/product' : 'https://rendah-mag.herokuapp.com/api/product';
 
-export const fetchProduct = (productId: string) =>
-  (dispatch) => {
-    dispatch({ type: PRODUCT_REQUESTING, productId });
+export const fetchProduct = (productId: string) => (dispatch) => {
+  dispatch({ type: PRODUCT_REQUESTING, productId });
 
-    const params = {
-      limit: '0',
-      productId,
-    };
+  const params = {
+    limit: '0',
+    productId,
+  };
 
-    const query =
-    `*[_type == "item" && slug.current == $productId] [${params.limit}] {
+  const query = `*[_type == "item" && slug.current == $productId] [${params.limit}] {
       title,
       description,
       "slug": slug.current,
@@ -27,15 +25,14 @@ export const fetchProduct = (productId: string) =>
       ...,
     }`;
 
-    return sanity.fetch(query, params).then((res) => {
-      console.log('res', res);
-      if (res) {
-        dispatch({ type: PRODUCT_SUCCESS, productId, data: res });
-      } else {
-        dispatch({ type: PRODUCT_FAILURE, productId, err: 'error' });
-      }
-    });
-  };
+  return sanity.fetch(query, params).then((res) => {
+    if (res) {
+      dispatch({ type: PRODUCT_SUCCESS, productId, data: res });
+    } else {
+      dispatch({ type: PRODUCT_FAILURE, productId, err: 'error' });
+    }
+  });
+};
 
 // Using for preventing dobule fetching data
 /* istanbul ignore next */
