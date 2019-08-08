@@ -4,8 +4,8 @@ import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
 
-import FeaturedArticles from '../../../containers/Fragments/FeaturedArticles';
-import LatestArticles from '../../../containers/Fragments/LatestArticles';
+import FeaturedArticles from '../../../containers/Fragments/Blog/FeaturedArticles';
+import LatestArticles from '../../../containers/Fragments/Blog/LatestArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
 
 export class Home extends PureComponent {

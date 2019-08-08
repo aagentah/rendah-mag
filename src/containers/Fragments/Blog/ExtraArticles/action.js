@@ -1,4 +1,4 @@
-import sanity from '../../../utils/sanity';
+import sanity from '../../../../utils/sanity';
 
 export const EXTRAARTICLES_INVALID = 'EXTRAARTICLES_INVALID';
 export const EXTRAARTICLES_REQUESTING = 'EXTRAARTICLES_REQUESTING';

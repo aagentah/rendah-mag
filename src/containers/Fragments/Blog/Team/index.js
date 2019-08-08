@@ -7,8 +7,8 @@ import { frontloadConnect } from 'react-frontload';
 import compose from 'lodash/flowRight';
 
 import * as action from './action';
-import Loading from '../../../components/Loading';
-import LatestTeamMemberList from '../../../components/TeamMemberList';
+import Loading from '../../../../components/Loading';
+import LatestTeamMemberList from '../../../../components/TeamMemberList';
 
 
 export class Team extends PureComponent {

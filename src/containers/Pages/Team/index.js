@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
 import Hero from '../../../components/Hero';
-import TeamFragment from '../../../containers/Fragments/Team';
+import TeamFragment from '../../../containers/Fragments/Blog/Team';
 
 export class Team extends PureComponent {
   componentDidMount() {

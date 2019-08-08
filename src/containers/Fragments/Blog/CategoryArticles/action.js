@@ -1,4 +1,4 @@
-import sanity from '../../../utils/sanity';
+import sanity from '../../../../utils/sanity';
 
 export const CATEGORYARTICLES_INVALID = 'CATEGORYARTICLES_INVALID';
 export const CATEGORYARTICLES_REQUESTING = 'CATEGORYARTICLES_REQUESTING';

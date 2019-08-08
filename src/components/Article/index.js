@@ -11,9 +11,9 @@ import SocialLinks from './SocialLinks';
 import { convertDate } from '../../functions';
 import TeamMember from '../TeamMember';
 
-import LatestArticles from '../../containers/Fragments/LatestArticles';
+import LatestArticles from '../../containers/Fragments/Blog/LatestArticles';
 import SubscribeBanner from '../SubscribeBanner';
-import ExtraArticles from '../../containers/Fragments/ExtraArticles';
+import ExtraArticles from '../../containers/Fragments/Blog/ExtraArticles';
 
 import Seo from './Seo';
 
@@ -82,25 +82,55 @@ export class Article extends PureComponent {
 
         <div className="article">
           <figure className="rel  article__hero">
-            <div className="article__hero--background" style={{ backgroundImage: `url(${article.img})` }} />
+            <div
+              className="article__hero--background"
+              style={{ backgroundImage: `url(${article.img})` }}
+            />
             <img className="article__hero--img" alt={article.title} src={article.img} />
           </figure>
 
           <section className="container-large  center  ph0  mt5  rel">
             <div className="flex  flex-wrap">
               <div className="col-24  col-6-lg" />
-              <article ref={(articleElem) => { this.articleElem = articleElem; }} className="col-18  center  col-12-lg  ph4-lg">
+              <article
+                ref={(articleElem) => {
+                  this.articleElem = articleElem;
+                }}
+                className="col-18  center  col-12-lg  ph4-lg"
+              >
                 <div className="article__social  pb4">
-                  <a className="ph1" href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.slug}`} rel="noopener noreferrer" target="_blank">
-                    <img src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
+                  <a
+                    className="ph1"
+                    href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.slug}`}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <img
+                      src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')}
+                      alt="facebook"
+                    />
                   </a>
-                  <a className="ph1" href={`https://twitter.com/share?url=https://www.rendahmag.com/article/${article.slug}`} rel="noopener noreferrer" target="_blank">
-                    <img src={require('../../containers/App/assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
+                  <a
+                    className="ph1"
+                    href={`https://twitter.com/share?url=https://www.rendahmag.com/article/${article.slug}`}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <img
+                      src={require('../../containers/App/assets/social/iconmonstr-twitter-5.png')}
+                      alt="twitter"
+                    />
                   </a>
                 </div>
 
                 <span className="grey  t8">{this.date(article.created)} | </span>
-                <Link title={teamMember.slug} to={`/team/${teamMember.slug}`} className="no-underline"><span className="grey  t8  cp  link">{teamMember.name}</span></Link>
+                <Link
+                  title={teamMember.slug}
+                  to={`/team/${teamMember.slug}`}
+                  className="no-underline"
+                >
+                  <span className="grey  t8  cp  link">{teamMember.name}</span>
+                </Link>
                 <h1 className="pb3  pt4  t-title">{article.title}</h1>
                 <p className="pv3  t-body  lh-copy  f6  dark-grey  taj">{article.description}</p>
                 <Sections body={article.body} />

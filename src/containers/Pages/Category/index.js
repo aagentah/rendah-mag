@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 import startCase from 'lodash/startCase';
 
 import Hero from '../../../components/Hero';
-import CategoryArticles from '../../../containers/Fragments/CategoryArticles';
+import CategoryArticles from '../../../containers/Fragments/Blog/CategoryArticles';
 
 export class Category extends PureComponent {
   componentDidMount() {

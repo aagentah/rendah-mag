@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as action from './action';
-import Loading from '../../../components/Loading';
-import ArticleListGrid from '../../../components/ArticleList/Grid';
-import ArticleListList from '../../../components/ArticleList/List';
+import Loading from '../../../../components/Loading';
+import ArticleListGrid from '../../../../components/ArticleList/Grid';
+import ArticleListList from '../../../../components/ArticleList/List';
 
 export class ExtraArticles extends PureComponent {
   componentDidMount() {

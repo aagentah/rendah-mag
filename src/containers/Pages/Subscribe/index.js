@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 
 import Hero from '../../../components/Hero';
 import SubscribeBanner from '../../../components/SubscribeBanner';
-import LatestArticles from '../../../containers/Fragments/LatestArticles';
+import LatestArticles from '../../../containers/Fragments/Blog/LatestArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
 
 export class Subscribe extends PureComponent {
@@ -20,7 +20,8 @@ export class Subscribe extends PureComponent {
     const title = 'Subscribe';
     const desc = 'The latest news & releases, straight to your inbox.';
     const canonical = 'https://www.rendahmag.com/subscribe';
-    const img = 'http://res.cloudinary.com/dzz8ji5lj/image/upload/v1544352629/brand/meta-subscribe.jpg';
+    const img =
+      'http://res.cloudinary.com/dzz8ji5lj/image/upload/v1544352629/brand/meta-subscribe.jpg';
 
     return (
       <main className="page-fade-in">

@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
 import Hero from '../../../components/Hero';
-import ExtraArticles from '../../../containers/Fragments/ExtraArticles';
+import ExtraArticles from '../../../containers/Fragments/Blog/ExtraArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
 
 export class NotFound extends PureComponent {
@@ -32,9 +32,7 @@ export class NotFound extends PureComponent {
         <div className="container-medium  center  pt4  pb4">
           <div className="flex  flex-wrap">
             <div className="col-24">
-              <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb2">
-                {desc}
-              </p>
+              <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb2">{desc}</p>
             </div>
           </div>
         </div>
