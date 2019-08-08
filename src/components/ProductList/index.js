@@ -8,7 +8,6 @@ import AnimatedImage from '../Elements/AnimatedImage';
 
 export class ProductList extends PureComponent {
   renderPrice = (product) => {
-    console.log(product, 'ooo');
     if (product.specialPrice) {
       return (
         <p className="t-body  grey  f6">
