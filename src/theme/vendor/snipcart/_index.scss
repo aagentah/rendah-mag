@@ -103,23 +103,3 @@ body.snip-open {
         padding: $_base-padding;
     }
 }
-
-.snip-layout.snip-active {
-  z-index: 9999;
-}
-
-.snipcart-total-items {
-  position: absolute;
-  right: -50px;
-  top: 0;
-  border-radius: 100%;
-  @extend .t-title;
-  @extend .black;
-  @extend .tac;
-  @extend .f4;
-  @extend .pa1;
-  @extend .ma0;
-  height: 24px;
-  width: 24px;
-  content: '0';
-}
