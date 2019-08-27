@@ -17,7 +17,7 @@ export const fetchTeam = () =>
     };
 
     const query =
-    `*[_type == "author"] | order(publishedAt desc) [${params.limit}] {
+    `*[_type == "author" && active] | order(publishedAt desc) [${params.limit}] {
       name,
       alias,
       description,
@@ -25,6 +25,7 @@ export const fetchTeam = () =>
       "img": image.asset->url,
       role,
       order,
+      active,
     }`;
 
     return sanity.fetch(query).then((res) => {

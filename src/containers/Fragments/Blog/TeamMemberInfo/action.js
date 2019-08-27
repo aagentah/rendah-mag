@@ -24,6 +24,7 @@ export const fetchTeamMember = (teamMemberId: string) => (dispatch) => {
       socialHandles,
       role,
       order,
+      active,
       "articles": *[_type == "post" && references(^._id)] | order(publishedAt desc) [${params.limit}] {
         title,
         description,
