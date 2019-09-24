@@ -3,6 +3,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { Link } from 'react-router-dom';
 
 import Collections from '../../../containers/Fragments/Store/Collections';
 import Categories from '../../../containers/Fragments/Store/Categories';
@@ -30,6 +31,16 @@ export class Store extends PureComponent {
           <link rel="canonical" href={canonical} />
         </Helmet>
         <div className="container-medium  center  pv4">
+          <div className="flex  flex-wrap">
+            <div className="w-100  pb3  pb4-md">
+              <Link title="Subscribe" to="/product/rendah-mag-subscription" className="w-100  link">
+                <img className="w-100  shadow2  br2  dn  db-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569356617/shop/subscribe-banner-desktop.png" alt="Subscribe Banner" />
+              </Link>
+              <Link title="Subscribe" to="/product/rendah-mag-subscription" className="w-100  link">
+                <img className="w-100  shadow2  br2  db  dn-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569356513/shop/subscribe-banner-mobile.png" alt="Subscribe Banner" />
+              </Link>
+            </div>
+          </div>
           <div className="flex  flex-wrap">
             <div className="col-24  col-6-md  ph2  ph0-md">
               <span className="t-title  black  f6  bold  dn  db-md">Collections</span>
