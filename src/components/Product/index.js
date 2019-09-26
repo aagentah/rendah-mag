@@ -166,6 +166,7 @@ export class Product extends PureComponent {
                 type="button"
                 data-item-id={`${product.slug}-${this.state.selectedVariant}`}
                 data-item-name={`${product.title} (${this.state.selectedVariant})`}
+                data-item-weight={product.weight || 0}
                 data-item-price={product.specialPrice || product.price}
                 data-item-url={`https://rendahmag.com/product/${product.slug}?variant=${
                   this.state.selectedVariant
