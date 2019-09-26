@@ -44,7 +44,7 @@ export class ProductList extends PureComponent {
                       lazy
                       src={product.img1}
                       alt={product.title}
-                      styles="fade-in-zoom-in  h8  w-100"
+                      styles="fade-in-zoom-in  w-100"
                     />
                   </Link>
                 </figure>
