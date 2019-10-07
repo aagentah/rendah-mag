@@ -109,6 +109,27 @@ export class Product extends PureComponent {
     return <p className="t-title  grey  f4  pb3">£{product.price}</p>;
   };
 
+  renderTag = (product) => {
+    switch (product.tag) {
+      case 'None':
+        return false;
+      case 'Sale':
+        return (
+          <span className="dib  t-body  bg-sale  white  f6  tac  pv1  ph2  mr2  br-pill">
+            {product.tag}
+          </span>
+        );
+      case 'Pre-order':
+        return (
+          <span className="dib  t-body  bg-pre-order  white  f6  tac  pv1  ph2  mr2  br-pill">
+            {product.tag}
+          </span>
+        );
+      default:
+        return false;
+    }
+  };
+
   render() {
     const product = this.props.info;
     const images = [product.img1, product.img2, product.img3];
@@ -132,7 +153,7 @@ export class Product extends PureComponent {
 
         <div className="product">
           <article className="flex  flex-wrap  pa3">
-            <figure className="col-24  col-12-md  pb4  pb0-md">
+            <figure className="col-24  col-12-md  pb3  pb0-md">
               <div className="flex  w-100">
                 <div className="db  shadow2">
                   <AnimatedImage
@@ -149,6 +170,8 @@ export class Product extends PureComponent {
             </figure>
 
             <div className="col-24  col-12-md  ph2  ph4-md">
+              <div className="dib  pv2  mt2  tal">{this.renderTag(product)}</div>
+
               <p className="t-title  grey  f4  bold  pb2">{product.title}</p>
               {this.renderPrice(product)}
 
