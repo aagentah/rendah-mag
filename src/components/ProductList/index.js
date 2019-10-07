@@ -19,6 +19,33 @@ export class ProductList extends PureComponent {
     return <p className="t-body  grey  f6">£{product.price}</p>;
   };
 
+  renderTag = (product) => {
+    switch (product.tag) {
+      case 'None':
+        return false;
+      case 'Sale':
+        return (
+          <span className="dib  t-body  bg-sale  white  f6  tac  pv1  ph2  mr2  br-pill">
+            {product.tag}
+          </span>
+        );
+      case 'Pre-order':
+        return (
+          <span className="dib  t-body  bg-pre-order  white  f6  tac  pv1  ph2  mr2  br-pill">
+            {product.tag}
+          </span>
+        );
+      case 'Sold-out':
+        return (
+          <span className="dib  t-body  bg-dark-grey  white  f6  tac  pv1  ph2  mr2  br-pill">
+            {product.tag}
+          </span>
+        );
+      default:
+        return false;
+    }
+  };
+
   render() {
     const { padding } = this.props;
     const data = this.props.list;
@@ -49,7 +76,10 @@ export class ProductList extends PureComponent {
                   </Link>
                 </figure>
 
-                <div className="pv2  mt2">{this.renderPrice(product)}</div>
+                <div>
+                  <div className="dib  pv2  mt2  tal">{this.renderTag(product)}</div>
+                  <div className="dib  pv2  mt2  tal">{this.renderPrice(product)}</div>
+                </div>
 
                 <div>
                   <Link to={`/product/${product.slug}`} className="t-body  db  link  pb2">
