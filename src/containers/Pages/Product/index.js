@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import Collections from '../../../containers/Fragments/Store/Collections';
 import Categories from '../../../containers/Fragments/Store/Categories';
@@ -20,16 +20,18 @@ export class Article extends PureComponent {
     return (
       <main className="page-fade-in">
         <div className="container-medium  center  pv4">
-          <div className="flex  flex-wrap">
-            <div className="w-100  pb3  pb4-md">
-              <Link title="Subscribe" to="/product/rendah-mag-issue-001" className="w-100  link">
-                <img className="w-100  shadow2  br2  dn  db-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569520981/shop/subscribe-banner-desktop_2.png" alt="Subscribe Banner" />
-              </Link>
-              <Link title="Subscribe" to="/product/rendah-mag-issue-001" className="w-100  link">
-                <img className="w-100  shadow2  br2  db  dn-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569520983/shop/subscribe-banner-mobile_1.png" alt="Subscribe Banner" />
-              </Link>
+          {/*
+            <div className="flex  flex-wrap">
+              <div className="w-100  pb3  pb4-md">
+                <Link title="Magazine" to="/product/rendah-mag-issue-001" className="w-100  link">
+                  <img className="w-100  shadow2  br2  dn  db-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569520981/shop/subscribe-banner-desktop_2.png" alt="Magazine Banner" />
+                </Link>
+                <Link title="Magazine" to="/product/rendah-mag-issue-001" className="w-100  link">
+                  <img className="w-100  shadow2  br2  db  dn-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569520983/shop/subscribe-banner-mobile_1.png" alt="Magazine Banner" />
+                </Link>
+              </div>
             </div>
-          </div>
+          */}
           <div className="flex  flex-wrap">
             <div className="col-24  col-6-md  ph2  ph0-md">
               <span className="t-title  black  f6  bold  dn  db-md">Collections</span>
