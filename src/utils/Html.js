@@ -88,10 +88,14 @@ const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> =>
         {head.script.toComponent()}
 
         {/* Snipcart */}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js" />
+        <script
+          src="https://code.jquery.com/jquery-3.4.1.min.js"
+          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+          crossorigin="anonymous"
+        />
         <script
           src="https://cdn.snipcart.com/scripts/2.0/snipcart.js"
-          data-api-key="NmIyMGJkZTYtZWVkNy00YmM5LTg3NjUtNTE4YjVjNzNiMzU2NjM2OTY5NjI2MDMxMTAyODE2"
+          data-api-key="MGM4ODQyYzAtOTMyZS00ZmJhLWI0NWUtZmRiNzAxMzMzYzI4NjM2OTY5NjI2MDMxMTAyODE2"
           data-autopop="false"
           id="snipcart"
         />
