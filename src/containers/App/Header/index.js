@@ -138,6 +138,16 @@ export class Header extends PureComponent {
                   </li>
                 );
               })}
+              <li className="dib">
+                <Link
+                  onClick={this.mobileNavToggle}
+                  className="t-title  ttu  bold  white  bg-black  mh2  ph3  pv2  f5  link"
+                  title="/store"
+                  to="/store"
+                >
+                  Store
+                </Link>
+              </li>
             </ul>
 
             {this.state.isStore ? (
@@ -190,6 +200,16 @@ export class Header extends PureComponent {
                   </li>
                 );
               })}
+              <li className="db  pv3">
+                <Link
+                  onClick={this.mobileNavToggle}
+                  className="t-title  ttu  bold  white  bg-black  ph3  pv2  f4  link"
+                  title="/store"
+                  to="/store"
+                >
+                  Store
+                </Link>
+              </li>
             </ul>
           </nav>
 
