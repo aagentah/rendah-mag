@@ -2,6 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+
 import Collections from '../../../containers/Fragments/Store/Collections';
 import Categories from '../../../containers/Fragments/Store/Categories';
 import ProductInfo from '../../../containers/Fragments/Store/ProductInfo';
