@@ -30,6 +30,19 @@ export class Home extends PureComponent {
 
         <h1 className="dn">Home</h1>
 
+        <div className="container-medium  center  pt4">
+          <div className="flex  flex-wrap">
+            <div className="w-100  pb2  pb0-md">
+              <Link title="Rendah Mag Issue: 001" to="/product/rendah-mag-issue-001" className="w-100  link">
+                <img className="w-100  shadow2  br2  dn  db-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569520981/shop/subscribe-banner-desktop_2.png" alt="Subscribe Banner" />
+              </Link>
+              <Link title="Rendah Mag Issue: 001" to="/product/rendah-mag-issue-001" className="w-100  link">
+                <img className="w-100  shadow2  br2  db  dn-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569520983/shop/subscribe-banner-mobile_1.png" alt="Subscribe Banner" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/*
           <div className="container-medium  center  pt3  pt4-md">
             <div className="flex  flex-wrap">
