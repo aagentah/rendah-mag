@@ -12,7 +12,13 @@ import SideList from '../../../../components/SideList';
 
 export class Collections extends React.Component {
   shouldComponentUpdate() {
-    return false;
+    if (this.props.collections.readyStatus === 'COLLECTIONS_SUCCESS') {
+      console.log('false');
+      return false;
+    }
+
+    console.log('true');
+    return true;
   }
 
   renderCollectionList = () => {

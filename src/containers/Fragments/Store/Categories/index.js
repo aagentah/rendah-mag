@@ -12,8 +12,15 @@ import SideList from '../../../../components/SideList';
 
 export class Categories extends React.Component {
   shouldComponentUpdate() {
-    return false;
+    if (this.props.categories.readyStatus === 'CATEGORIES_SUCCESS') {
+      console.log('false');
+      return false;
+    }
+
+    console.log('true');
+    return true;
   }
+
 
   renderCategorieList = () => {
     const { categories } = this.props;
