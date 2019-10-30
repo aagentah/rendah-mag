@@ -11,6 +11,7 @@ import { Frontload } from 'react-frontload';
 import config from '../../config';
 import routes from '../../routes';
 import '../../theme/main.scss';
+import '../../theme/rpl/_index.scss';
 
 import Header from './Header';
 import Footer from './Footer';

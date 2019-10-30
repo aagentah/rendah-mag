@@ -1,4 +1,13 @@
+.t-primary {
+  font-family: $t-primary;
+}
+
+.t-secondary {
+  font-family: $t-secondary;
+}
+
 .heading {
+  @extend .t-primary;
   @extend .bold;
 
   &.small {

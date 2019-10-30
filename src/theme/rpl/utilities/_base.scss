@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-family: $typography-body;
+  font-family: $t-secondary;
   font-size: $typography-base-size;
   font-weight: $typography-base-weight;
   color: $body-color;
@@ -43,7 +43,7 @@ button,
 input,
 select,
 textarea {
-  font-family: $typography-input;
+  font-family: $t-primary;
 }
 
 button {

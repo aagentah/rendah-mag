@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Image, Label, Heading, Copy, Button } from 'rendah-pattern-library';
+import { Card, Image, Label, Heading, Copy } from 'rendah-pattern-library';
 
 import { convertDate } from '../../../functions';
 
@@ -84,25 +84,6 @@ export class ArticleListGrid extends PureComponent {
         />
       );
 
-      const cardButton = (
-        <Button
-          /* Options */
-          type={'secondary'}
-          size={'medium'}
-          text={'Read more'}
-          color={'black'}
-          fluid={false}
-          icon={'arrow-right'}
-          iconFloat={null}
-          inverted={false}
-          loading={false}
-          disabled={false}
-          onClick={null}
-          /* Children */
-          withLinkProps={withLinkProps}
-        />
-      );
-
       return (
         <Card
           /* Options */
@@ -115,7 +96,7 @@ export class ArticleListGrid extends PureComponent {
           labelBlock={[dateLabel, authorLabel]}
           title={cardHeading}
           description={cardCopy}
-          button={cardButton}
+          button={null}
         />
       );
     };
