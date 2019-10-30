@@ -13,8 +13,6 @@ export class ArticleListGrid extends PureComponent {
     const { list, padding } = this.props;
 
     const renderCard = (article) => {
-      console.log('article', article);
-
       const withLinkProps = {
         type: 'internal',
         url: `/article/${article.slug}`,
@@ -88,8 +86,6 @@ export class ArticleListGrid extends PureComponent {
         <Card
           /* Options */
           type={'block'}
-          price={this.date(article.created)}
-          discountPrice={null}
           onClick={null}
           /* Children */
           image={cardImage}
@@ -100,8 +96,6 @@ export class ArticleListGrid extends PureComponent {
         />
       );
     };
-
-    console.log('list', list);
 
     return (
       <div className={`container-medium  center  ${padding}`}>
