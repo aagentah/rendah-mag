@@ -1,0 +1,19 @@
+.copy{
+  // @extend .t-secondary;
+
+  &.small {
+    @extend .f7;
+  }
+
+  &.medium {
+    @extend .f6;
+  }
+
+  &.large {
+    @extend .f5;
+  }
+
+  &.x-large {
+    @extend .f4;
+  }
+}
