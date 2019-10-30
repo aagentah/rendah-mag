@@ -1,0 +1,38 @@
+.page-theme-parallax__wrapper {
+  position: absolute;
+  z-index: -1;
+  // -webkit-animation-name: page-theme-parallax__wrapper;
+  // -webkit-animation-duration: 8s;
+  // animation-name: page-theme-parallax__wrapper;
+  // animation-duration: 8s;
+  // animation-fill-mode: both;
+  // animation-direction: alternate;
+  // animation-iteration-count: infinite;
+}
+
+// @keyframes page-theme-parallax__wrapper {
+//   from {
+//     transform: scale(1);
+//   }
+//   to {
+//     transform: scale(0.9);
+//   }
+// }
+
+.page-theme-parallax__icon {
+  opacity: 0;
+  -webkit-animation-name: page-theme-parallax__icon;
+  -webkit-animation-duration: 5s;
+  animation-name: page-theme-parallax__icon;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes page-theme-parallax__icon {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
