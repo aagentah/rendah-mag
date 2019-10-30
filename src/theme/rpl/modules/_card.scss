@@ -21,6 +21,7 @@
 }
 
 .card__title {
+  @extend .t-primary;
   @extend .f4;
   @extend .mb2;
 }

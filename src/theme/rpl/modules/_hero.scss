@@ -24,6 +24,7 @@
 }
 
 .hero__title {
+  @extend .t-primary;
   @extend .f2;
   @extend .mb3;
 }

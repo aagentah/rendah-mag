@@ -29,7 +29,7 @@
 // @import 'utilities/debug';
 @import "utilities/display";
 @import "utilities/flexbox";
-@import "utilities/font-familiy";
+@import "utilities/font-family";
 @import "utilities/font-size";
 @import "utilities/font-style";
 @import "utilities/font-weight";
@@ -78,17 +78,3 @@
 @import "modules/Loading";
 @import "modules/FeaturedArticle";
 @import "modules/Product";
-
-// pattern lib
-// @import "rpl/index";
-
-// elements
-@import "rpl/elements/heading";
-@import "rpl/elements/copy";
-@import "rpl/elements/button";
-@import "rpl/elements/image";
-
-// modules
-@import "rpl/modules/hero";
-@import "rpl/modules/card";
-@import "rpl/modules/page-theme-parallax";

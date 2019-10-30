@@ -1,11 +1,10 @@
 /* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Card, Image, Label, Heading } from 'rendah-pattern-library';
 
 import { convertDate } from '../../../functions';
-import AnimatedImage from '../../Elements/AnimatedImage';
 
 export class ArticleListGrid extends PureComponent {
   date = date => convertDate(date);
@@ -13,29 +12,80 @@ export class ArticleListGrid extends PureComponent {
   render() {
     const { list, padding } = this.props;
 
+    const renderCard = (article) => {
+      console.log('article', article);
+
+      const withLinkProps = {
+        type: 'internal',
+        url: `/article/${article.slug}`,
+        target: '_top',
+      };
+
+      const cardImage = (
+        <Image
+          /* Options */
+          src={article.img}
+          placeholder={`${article.img}?w=100`}
+          alt={article.title}
+          figcaption={null}
+          height={75}
+          onClick={null}
+          /* Children */
+          withLinkProps={withLinkProps}
+        />
+      );
+
+      const dateLabel = (
+        <Label
+          /* Options */
+          type={'date'}
+          text={this.date(article.created)}
+          color={'black'}
+          backgroundColor={'white'}
+          onClick={null}
+          /* Children */
+          withLinkProps={null}
+        />
+      );
+
+      const cardHeading = (
+        <Heading
+          /* Options */
+          htmlEntity={'h2'}
+          text={article.title}
+          color={'black'}
+          size={'small'}
+          truncate={2}
+          /* Children */
+          withLinkProps={withLinkProps}
+        />
+      );
+
+      return (
+        <Card
+          /* Options */
+          type={'thumbnail'}
+          price={this.date(article.created)}
+          discountPrice={null}
+          onClick={null}
+          /* Children */
+          image={cardImage}
+          labelBlock={[dateLabel]}
+          title={cardHeading}
+          description={null}
+          button={null}
+        />
+      );
+    };
+
+    console.log('list', list);
+
     return (
       <div className={`container-medium  center  ${padding}`}>
         <div className="flex  flex-wrap">
           {list.map(article => (
-            <div key={article.title} className="col-24  col-12-sm  col-24-lg  pt2  pb3  ph0  ph3-sm  ph0-lg">
-              <article className="flex  flex-wrap">
-                <figure className="col-7">
-                  <Link className="db" title={article.slug} to={`/article/${article.slug}`}>
-                    <AnimatedImage
-                      lazy
-                      src={article.img}
-                      alt={article.title}
-                      styles="fade-in-zoom-in  h2  w-100"
-                    />
-                  </Link>
-                </figure>
-
-                <div className="col-17  ph3">
-                  <Link title={article.slug} to={`/article/${article.slug}`} className="t-body  db  link  pt2">
-                    <p className="t-title  black  f6  cp  over-hidden  link  list-card__title">{article.title}</p>
-                  </Link>
-                </div>
-              </article>
+            <div key={article.title} className="col-24">
+              {renderCard(article)}
             </div>
           ))}
         </div>
