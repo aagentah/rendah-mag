@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Image, Heading, Copy, Button } from 'rendah-pattern-library';
+import { Card, Image, Label, Heading, Copy, Button } from 'rendah-pattern-library';
 
 import { convertDate } from '../../../functions';
 
@@ -23,29 +23,60 @@ export class ArticleListGrid extends PureComponent {
 
       const cardImage = (
         <Image
+          /* Options */
           src={article.img}
           placeholder={`${article.img}?w=100`}
           alt={article.title}
           figcaption={null}
           height={250}
           onClick={null}
+          /* Children */
           withLinkProps={withLinkProps}
+        />
+      );
+
+      const dateLabel = (
+        <Label
+          /* Options */
+          type={'date'}
+          text={this.date(article.created)}
+          color={'black'}
+          backgroundColor={'white'}
+          onClick={null}
+          /* Children */
+          withLinkProps={null}
+        />
+      );
+
+      const authorLabel = (
+        <Label
+          /* Options */
+          type={'author'}
+          text={article.teamMember}
+          color={'black'}
+          backgroundColor={'white'}
+          onClick={null}
+          /* Children */
+          withLinkProps={null}
         />
       );
 
       const cardHeading = (
         <Heading
+          /* Options */
           htmlEntity={'h2'}
           text={article.title}
           color={'black'}
           size={'small'}
           truncate={2}
+          /* Children */
           withLinkProps={withLinkProps}
         />
       );
 
       const cardCopy = (
         <Copy
+          /* Options */
           text={article.description}
           color={'black'}
           size={'medium'}
@@ -67,6 +98,7 @@ export class ArticleListGrid extends PureComponent {
           loading={false}
           disabled={false}
           onClick={null}
+          /* Children */
           withLinkProps={withLinkProps}
         />
       );
@@ -80,6 +112,7 @@ export class ArticleListGrid extends PureComponent {
           onClick={null}
           /* Children */
           image={cardImage}
+          labelBlock={[dateLabel, authorLabel]}
           title={cardHeading}
           description={cardCopy}
           button={cardButton}
