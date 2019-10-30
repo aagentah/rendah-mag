@@ -15,6 +15,11 @@
   @extend .pt2;
 }
 
+.card__label {
+  @extend .pr2;
+  @extend .mb1;
+}
+
 .card__title {
   @extend .f4;
   @extend .mb2;
@@ -42,7 +47,6 @@
   @extend .pr2;
   @extend .db;
 }
-
 
 .card__button-wrapper {
   //

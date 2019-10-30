@@ -1,0 +1,26 @@
+.label {
+  @extend .pv1;
+
+  &.date {
+    @extend .tal;
+  }
+
+  &.author {
+    @extend .tal;
+  }
+
+  &.price {
+    @extend .tal;
+  }
+
+  &.salePrice {
+    @extend .tal;
+  }
+
+  &.category {
+    @extend .tac;
+    @extend .shadow1;
+    @extend .br1;
+    @extend .ph3;
+  }
+}
