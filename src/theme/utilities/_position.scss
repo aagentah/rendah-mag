@@ -1,15 +1,15 @@
-.rel { position: relative; }
-.abs { position: absolute; }
+.relative { position: relative; }
+.absolute { position: absolute; }
 .sta { position: static; }
-.fix { position: fixed; }
+.fixed { position: fixed; }
 
 @each $modifier, $breakpoint in $grid-breakpoints {
   $infix: breakpoint-infix($modifier, $grid-breakpoints);
   @include breakpoint-up($modifier, $grid-breakpoints) {
-    .rel-#{$infix} { position: relative; }
-    .abs-#{$infix} { position: absolute; }
+    .relative-#{$infix} { position: relative; }
+    .absolute-#{$infix} { position: absolute; }
     .sta-#{$infix} { position: static; }
-    .fix-#{$infix} { position: fixed; }
+    .fixed-#{$infix} { position: fixed; }
   }
 }
 
