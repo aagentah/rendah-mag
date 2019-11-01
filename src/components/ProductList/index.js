@@ -2,6 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Card, Image, Label, Heading } from 'rendah-pattern-library';
 
 export class ProductList extends PureComponent {
@@ -13,8 +14,9 @@ export class ProductList extends PureComponent {
     const renderProduct = (product) => {
       const withLinkProps = {
         type: 'internal',
-        url: `/product/${product.slug}`,
+        url: '/',
         target: '_top',
+        routerLink: Link,
       };
 
       const cardImage = (
@@ -107,9 +109,11 @@ export class ProductList extends PureComponent {
         <div className="flex  flex-wrap">
           {products.map(product => (
             <div key={product.title} className="col-24  col-8-md  pa3">
-              <product>
-                {renderProduct(product)}
-              </product>
+              <Link className="link" title={product.slug} to={`/article/${product.slug}`}>
+                <product>
+                  {renderProduct(product)}
+                </product>
+              </Link>
             </div>
           ))}
         </div>

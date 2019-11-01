@@ -3,7 +3,7 @@
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { Hero, Image } from 'rendah-pattern-library';
+import { Hero, Image, Button } from 'rendah-pattern-library';
 
 import LatestArticles from '../../../containers/Fragments/Blog/LatestArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
@@ -21,6 +21,20 @@ export class Home extends PureComponent {
     const desc = 'Beats, Halftime & Future Bass Magazine focused on the latest news & releases.';
     const canonical = 'https://www.rendahmag.com/';
 
+    const withLinkProps = {
+      type: 'internal',
+      url: '/',
+      target: '_top',
+      routerLink: Link,
+    };
+
+    const subscribeWithLinkProps = {
+      type: 'internal',
+      url: '/subscribe',
+      target: '_top',
+      routerLink: Link,
+    };
+
     const heroImageDesktop = (
       <Image
         /* Options */
@@ -31,7 +45,7 @@ export class Home extends PureComponent {
         height={null}
         onClick={null}
         /* Children */
-        withLinkProps={null}
+        withLinkProps={withLinkProps}
       />
     );
 
@@ -45,7 +59,7 @@ export class Home extends PureComponent {
         height={null}
         onClick={null}
         /* Children */
-        withLinkProps={null}
+        withLinkProps={withLinkProps}
       />
     );
 
@@ -89,13 +103,22 @@ export class Home extends PureComponent {
 
         <div className="container-medium  center  mt2  pt4  pb4">
           <div className="col-24  tac">
-            <Link
-              className="btn  btn--primary  ba  bw1  bc-black  black  white-hover  bg-white  bg-black-hover  center  dib"
-              title="Subscribe"
-              to="/subscribe"
-            >
-              Subscribe to our Newsletter
-            </Link>
+            <Button
+              /* Options */
+              type={'primary'}
+              size={'large'}
+              text={'Subscribe to our Newsletter'}
+              color={'black'}
+              fluid={false}
+              icon={null}
+              iconFloat={null}
+              inverted={false}
+              loading={false}
+              disabled={false}
+              onClick={null}
+              /* Children */
+              withLinkProps={subscribeWithLinkProps}
+            />
           </div>
         </div>
 

@@ -2,6 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Card, Image, Label, Heading, Copy } from 'rendah-pattern-library';
 
 import { convertDate } from '../../../functions';
@@ -15,8 +16,9 @@ export class ArticleListGrid extends PureComponent {
     const renderCard = (article) => {
       const withLinkProps = {
         type: 'internal',
-        url: `/article/${article.slug}`,
+        url: '/',
         target: '_top',
+        routerLink: Link,
       };
 
       const cardImage = (
@@ -79,6 +81,8 @@ export class ArticleListGrid extends PureComponent {
           color={'black'}
           size={'medium'}
           truncate={2}
+          /* Children */
+          withLinkProps={null}
         />
       );
 
