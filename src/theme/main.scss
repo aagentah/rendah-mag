@@ -12,7 +12,11 @@
 // Mixins
 @import "mixins/box-shadow";
 @import "mixins/breakpoints";
-@import 'mixins/placeholder';
+@import "mixins/placeholder";
+
+
+// Pattern Lib
+@import "~rendah-pattern-library/dist/bundle";
 
 // Utilities
 // @import "utilities/background";
@@ -54,7 +58,7 @@
 // Elements
 @import "elements/svg";
 @import "elements/animation";
-@import "elements/list-card";
+// @import "elements/list-card";
 @import "elements/search-input";
 @import "elements/button";
 @import "elements/carousel";
@@ -64,11 +68,8 @@
 @import "modules/Article";
 @import "modules/TeamMember";
 @import "modules/Header";
-@import "modules/Hero";
+// @import "modules/Hero";
 @import "modules/CategoryGrid";
 @import "modules/Loading";
 @import "modules/FeaturedArticle";
 @import "modules/Product";
-
-// Pattern Lib
-@import "~rendah-pattern-library/dist/bundle";
