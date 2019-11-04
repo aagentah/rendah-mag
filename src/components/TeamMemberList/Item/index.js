@@ -1,53 +1,110 @@
 /* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
+// import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Card, Image, Label, Heading, Copy } from 'rendah-pattern-library';
 
-import AnimatedImage from '../../Elements/AnimatedImage';
+// import { convertDate } from '../../../functions';
 
 export class Item extends PureComponent {
+  // date = date => convertDate(date);
+
   render() {
     const { teamMember } = this.props;
-    const { alias, role, order } = teamMember;
+    // const { alias, role, order } = teamMember;
 
-    let colClass;
-    if (order === 1) colClass = 'col-24';
-    if (order === 2) colClass = 'col-24  col-8-sm';
-    if (order === 3) colClass = 'col-24  col-8-sm  col-6-md';
+    const renderCard = () => {
+      const withLinkProps = {
+        type: 'internal',
+        url: `/team/${teamMember.slug}`,
+        target: '_top',
+        routerLink: Link,
+      };
+
+      const cardImage = (
+        <Image
+          /* Options */
+          src={teamMember.img}
+          placeholder={`${teamMember.img}?w=100`}
+          alt={teamMember.name}
+          figcaption={null}
+          height={150}
+          onClick={null}
+          /* Children */
+          withLinkProps={withLinkProps}
+        />
+      );
+
+      const aliasLabel = (
+        <Label
+          /* Options */
+          type={'text'}
+          text={teamMember.alias}
+          color={'black'}
+          backgroundColor={'white'}
+          onClick={null}
+          /* Children */
+          withLinkProps={null}
+        />
+      );
+
+      const cardHeading = (
+        <Heading
+          /* Options */
+          htmlEntity={'h2'}
+          text={teamMember.name}
+          color={'black'}
+          size={'small'}
+          truncate={1}
+          /* Children */
+          withLinkProps={withLinkProps}
+        />
+      );
+
+      const cardCopy = (
+        <Copy
+          /* Options */
+          text={teamMember.description}
+          color={'black'}
+          size={'medium'}
+          truncate={2}
+          /* Children */
+          withLinkProps={null}
+        />
+      );
+
+      return (
+        <Card
+          /* Options */
+          type={'block'}
+          onClick={null}
+          /* Children */
+          image={cardImage}
+          labelBlock={[aliasLabel]}
+          title={cardHeading}
+          description={cardCopy}
+          button={null}
+        />
+      );
+    };
 
     return (
-      <div className={`${colClass}  ph3  pb3  rel`}>
-        <figure className={`rel  pb3  link  w-100 ${(order === 1 ? 'teamMember__firstRow' : '')}`}>
-          <Link title={teamMember.slug} to={`/team/${teamMember.slug}`} className="link  db  h4  w4  shadow2  center  br4">
-            <AnimatedImage
-              lazy
-              src={teamMember.img}
-              alt={teamMember.name}
-              styles="fade-in-zoom-in  h4  w4  center  br4"
-            />
-          </Link>
-        </figure>
-        <Link title={teamMember.slug} to={`/team/${teamMember.slug}`} className="t-title  black  f6  link  db  pt1  pb3  tac  cp">
-          <p className="db">{teamMember.name}</p>
-          <p className="db  t8  grey  pt1">{(alias) ? `(${alias})` : ''}</p>
-          <p className="db  t8  grey  pt1">{(role) ? `${role}` : ''}</p>
-        </Link>
+      <div className="col-12  col-6-sm  col-4-md  pa3">
+        {renderCard()}
       </div>
     );
   }
 }
 
-Item.propTypes = {
-  teamMember: PropTypes.shape({
-    order: PropTypes.number,
-  }),
-};
-
-Item.defaultProps = {
-  teamMember: {
-    order: 3,
-  },
-};
+// Item.propTypes = {
+//   list: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+//   padding: PropTypes.string,
+// };
+//
+// Item.defaultProps = {
+//   list: [],
+//   padding: '',
+// };
 
 export default Item;

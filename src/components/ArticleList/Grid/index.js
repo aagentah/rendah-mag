@@ -16,7 +16,7 @@ export class ArticleListGrid extends PureComponent {
     const renderCard = (article) => {
       const withLinkProps = {
         type: 'internal',
-        url: '/',
+        url: `/article/${article.slug}`,
         target: '_top',
         routerLink: Link,
       };

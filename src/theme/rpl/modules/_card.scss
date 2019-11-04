@@ -1,0 +1,53 @@
+.card {
+  width: 100%;
+}
+
+.card__image {
+  //
+}
+
+.card__image--block {
+  //
+}
+
+.card__contents-wrapper {
+  position: relative;
+}
+
+.card__label {
+  @extend .pr2;
+  @extend .mb1;
+}
+
+.card__title {
+  @extend .t-primary;
+  @extend .f4;
+  @extend .mb2;
+}
+
+.card__description {
+  @extend .f5;
+  @extend .mb3;
+}
+
+.card__price {
+  @extend .f6;
+  @extend .mb2;
+  @extend .pr2;
+  @extend .db;
+}
+
+.card__price--has-discount {
+  text-decoration: line-through;
+}
+
+.card__discount-price {
+  @extend .f6;
+  @extend .mb2;
+  @extend .pr2;
+  @extend .db;
+}
+
+.card__button-wrapper {
+  //
+}
