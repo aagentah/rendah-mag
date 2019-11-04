@@ -4,8 +4,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import startCase from 'lodash/startCase';
+import { Heading, Copy } from 'rendah-pattern-library';
 
-import Hero from '../../../components/Hero';
 import CategoryArticles from '../../../containers/Fragments/Blog/CategoryArticles';
 
 export class Category extends PureComponent {
@@ -42,7 +42,29 @@ export class Category extends PureComponent {
           <meta name="description" content={description} />
           <link rel="canonical" href={canonical} />
         </Helmet>
-        <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
+
+        <div className="container-medium  mla  mra  pt4  mv3">
+          <div className="flex  pb2  ph3">
+            <Heading
+              /* Options */
+              htmlEntity={'h1'}
+              text={title}
+              color={'black'}
+              size={'x-large'}
+              truncate={1}
+            />
+          </div>
+          <div className="flex  pb2  ph3">
+            <Copy
+              /* Options */
+              text={description}
+              color={'black'}
+              size={'medium'}
+              truncate={1}
+            />
+          </div>
+        </div>
+
         <CategoryArticles match={this.props.match} />
       </main>
     );

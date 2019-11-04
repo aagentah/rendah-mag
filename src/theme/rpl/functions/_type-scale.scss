@@ -1,0 +1,8 @@
+@function type-scale($index) {
+  @if map-has-key($type-scale, $index) {
+    @return map-get($type-scale, $index);
+  }
+
+  @warn "Unknown index '#{$index}' in map $type-scale.";
+  @return null;
+}
