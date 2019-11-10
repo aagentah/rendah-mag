@@ -14,7 +14,7 @@ export class ProductList extends PureComponent {
     const renderProduct = (product) => {
       const withLinkProps = {
         type: 'internal',
-        url: '/',
+        url: `/product/${product.slug}`,
         target: '_top',
         routerLink: Link,
       };
@@ -109,11 +109,9 @@ export class ProductList extends PureComponent {
         <div className="flex  flex-wrap">
           {products.map(product => (
             <div key={product.title} className="col-24  col-8-md  pa3">
-              <Link className="link" title={product.slug} to={`/article/${product.slug}`}>
-                <product>
-                  {renderProduct(product)}
-                </product>
-              </Link>
+              <product>
+                {renderProduct(product)}
+              </product>
             </div>
           ))}
         </div>

@@ -37,6 +37,10 @@ p {
   margin-bottom: 0;
 }
 
+a:focus {
+  outline: 0;
+}
+
 figure {
   margin: 0;
 }
@@ -44,6 +48,7 @@ figure {
 ul, ol {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 img,

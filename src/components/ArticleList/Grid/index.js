@@ -4,8 +4,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card, Image, Label, Heading, Copy } from 'rendah-pattern-library';
+import trim from 'lodash/trim';
 
-import { convertDate } from '../../../functions';
+import { convertDate, toUrlCase } from '../../../functions';
 
 export class ArticleListGrid extends PureComponent {
   date = date => convertDate(date);
@@ -14,9 +15,16 @@ export class ArticleListGrid extends PureComponent {
     const { list, padding } = this.props;
 
     const renderCard = (article) => {
-      const withLinkProps = {
+      const articleWithLinkProps = {
         type: 'internal',
         url: `/article/${article.slug}`,
+        target: '_top',
+        routerLink: Link,
+      };
+
+      const authorWithLinkProps = {
+        type: 'internal',
+        url: `/team/${toUrlCase(trim(article.teamMember))}`,
         target: '_top',
         routerLink: Link,
       };
@@ -31,7 +39,7 @@ export class ArticleListGrid extends PureComponent {
           height={250}
           onClick={null}
           /* Children */
-          withLinkProps={withLinkProps}
+          withLinkProps={articleWithLinkProps}
         />
       );
 
@@ -57,7 +65,7 @@ export class ArticleListGrid extends PureComponent {
           backgroundColor={'white'}
           onClick={null}
           /* Children */
-          withLinkProps={null}
+          withLinkProps={authorWithLinkProps}
         />
       );
 
@@ -70,7 +78,7 @@ export class ArticleListGrid extends PureComponent {
           size={'small'}
           truncate={2}
           /* Children */
-          withLinkProps={withLinkProps}
+          withLinkProps={articleWithLinkProps}
         />
       );
 
