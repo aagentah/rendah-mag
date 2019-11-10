@@ -16,7 +16,7 @@ export class ArticleListGrid extends PureComponent {
     const renderCard = (article) => {
       const withLinkProps = {
         type: 'internal',
-        url: '/',
+        url: `/article/${article.slug}`,
         target: '_top',
         routerLink: Link,
       };
@@ -81,9 +81,7 @@ export class ArticleListGrid extends PureComponent {
         <div className="flex  flex-wrap">
           {list.map(article => (
             <div key={article.title} className="col-24">
-              <Link className="link" title={article.slug} to={`/article/${article.slug}`}>
-                {renderCard(article)}
-              </Link>
+              {renderCard(article)}
             </div>
           ))}
         </div>
