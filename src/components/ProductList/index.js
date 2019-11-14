@@ -1,9 +1,9 @@
 /* eslint-disable import/no-named-as-default */
 
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Card, Image, Label, Heading } from 'rendah-pattern-library';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { Card, Image, Label, Heading } from "rendah-pattern-library";
 
 export class ProductList extends PureComponent {
   render() {
@@ -11,12 +11,12 @@ export class ProductList extends PureComponent {
     const list = this.props.list;
     const products = this.props.list.items;
 
-    const renderProduct = (product) => {
+    const renderProduct = product => {
       const withLinkProps = {
-        type: 'internal',
+        type: "internal",
         url: `/product/${product.slug}`,
-        target: '_top',
-        routerLink: Link,
+        target: "_top",
+        routerLink: Link
       };
 
       const cardImage = (
@@ -36,10 +36,10 @@ export class ProductList extends PureComponent {
       const priceLabel = (
         <Label
           /* Options */
-          type={'price'}
+          type={"price"}
           text={`£${product.price}`}
-          color={'black'}
-          backgroundColor={'white'}
+          color={"black"}
+          backgroundColor={"white"}
           onClick={null}
           /* Children */
           withLinkProps={null}
@@ -49,10 +49,10 @@ export class ProductList extends PureComponent {
       const specialPriceLabel = (
         <Label
           /* Options */
-          type={'sale-price'}
+          type={"sale-price"}
           text={`£${product.specialPrice}}`}
-          color={'black'}
-          backgroundColor={'white'}
+          color={"black"}
+          backgroundColor={"white"}
           onClick={null}
           /* Children */
           withLinkProps={null}
@@ -62,10 +62,10 @@ export class ProductList extends PureComponent {
       const categoryLabel = (
         <Label
           /* Options */
-          type={'category'}
+          type={"category"}
           text={product.tag}
-          color={'white'}
-          backgroundColor={'grey'}
+          color={"white"}
+          backgroundColor={"grey"}
           onClick={null}
           /* Children */
           withLinkProps={null}
@@ -75,11 +75,12 @@ export class ProductList extends PureComponent {
       const cardHeading = (
         <Heading
           /* Options */
-          htmlEntity={'h2'}
+          htmlEntity={"h2"}
           text={product.title}
-          color={'black'}
-          size={'small'}
+          color={"black"}
+          size={"small"}
           truncate={2}
+          reveal={null}
           /* Children */
           withLinkProps={withLinkProps}
         />
@@ -88,7 +89,7 @@ export class ProductList extends PureComponent {
       return (
         <Card
           /* Options */
-          type={'block'}
+          type={"block"}
           onClick={null}
           /* Children */
           image={cardImage}
@@ -103,15 +104,17 @@ export class ProductList extends PureComponent {
     return (
       <div className={padding}>
         <div className="ph3  pb3">
-          <h1 className="t-title  black  bold  f4  pb2  mb1  pt2  pt2-md">{list.title}</h1>
-          {list.description && <p className="t-body  grey  f6">{list.description}</p>}
+          <h1 className="t-title  black  bold  f4  pb2  mb1  pt2  pt2-md">
+            {list.title}
+          </h1>
+          {list.description && (
+            <p className="t-body  grey  f6">{list.description}</p>
+          )}
         </div>
         <div className="flex  flex-wrap">
           {products.map(product => (
             <div key={product.title} className="col-24  col-8-md  pa3">
-              <product>
-                {renderProduct(product)}
-              </product>
+              <product>{renderProduct(product)}</product>
             </div>
           ))}
         </div>
@@ -122,12 +125,12 @@ export class ProductList extends PureComponent {
 
 ProductList.propTypes = {
   list: PropTypes.array, // eslint-disable-line react/forbid-prop-types
-  padding: PropTypes.string,
+  padding: PropTypes.string
 };
 
 ProductList.defaultProps = {
   list: [],
-  padding: '',
+  padding: ""
 };
 
 export default ProductList;
