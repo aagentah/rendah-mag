@@ -1,12 +1,12 @@
 /* eslint-disable import/no-named-as-default */
 
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { Card, Image, Label, Heading, Copy } from "rendah-pattern-library";
-import trim from "lodash/trim";
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { Card, Image, Label, Heading, Copy } from 'rendah-pattern-library';
+import trim from 'lodash/trim';
 
-import { convertDate, toUrlCase } from "../../../functions";
+import { convertDate, toUrlCase } from '../../../functions';
 
 export class ArticleListGrid extends PureComponent {
   date = date => convertDate(date);
@@ -14,19 +14,19 @@ export class ArticleListGrid extends PureComponent {
   render() {
     const { list, padding } = this.props;
 
-    const renderCard = article => {
+    const renderCard = (article) => {
       const articleWithLinkProps = {
-        type: "internal",
+        type: 'internal',
         url: `/article/${article.slug}`,
-        target: "_top",
-        routerLink: Link
+        target: '_top',
+        routerLink: Link,
       };
 
       const authorWithLinkProps = {
-        type: "internal",
+        type: 'internal',
         url: `/team/${toUrlCase(trim(article.teamMember))}`,
-        target: "_top",
-        routerLink: Link
+        target: '_top',
+        routerLink: Link,
       };
 
       const cardImage = (
@@ -46,10 +46,10 @@ export class ArticleListGrid extends PureComponent {
       const dateLabel = (
         <Label
           /* Options */
-          type={"date"}
+          type={'date'}
           text={this.date(article.created)}
-          color={"black"}
-          backgroundColor={"white"}
+          color={'black'}
+          backgroundColor={'white'}
           onClick={null}
           /* Children */
           withLinkProps={null}
@@ -59,10 +59,10 @@ export class ArticleListGrid extends PureComponent {
       const authorLabel = (
         <Label
           /* Options */
-          type={"author"}
+          type={'author'}
           text={article.teamMember}
-          color={"black"}
-          backgroundColor={"white"}
+          color={'black'}
+          backgroundColor={'white'}
           onClick={null}
           /* Children */
           withLinkProps={authorWithLinkProps}
@@ -72,12 +72,11 @@ export class ArticleListGrid extends PureComponent {
       const cardHeading = (
         <Heading
           /* Options */
-          htmlEntity={"h2"}
+          htmlEntity={'h2'}
           text={article.title}
-          color={"black"}
-          size={"small"}
+          color={'black'}
+          size={'small'}
           truncate={2}
-          reveal={null}
           /* Children */
           withLinkProps={articleWithLinkProps}
         />
@@ -87,8 +86,8 @@ export class ArticleListGrid extends PureComponent {
         <Copy
           /* Options */
           text={article.description}
-          color={"black"}
-          size={"medium"}
+          color={'black'}
+          size={'medium'}
           truncate={2}
           /* Children */
           withLinkProps={null}
@@ -98,7 +97,7 @@ export class ArticleListGrid extends PureComponent {
       return (
         <Card
           /* Options */
-          type={"block"}
+          type={'block'}
           onClick={null}
           /* Children */
           image={cardImage}
@@ -126,12 +125,12 @@ export class ArticleListGrid extends PureComponent {
 
 ArticleListGrid.propTypes = {
   list: PropTypes.array, // eslint-disable-line react/forbid-prop-types
-  padding: PropTypes.string
+  padding: PropTypes.string,
 };
 
 ArticleListGrid.defaultProps = {
   list: [],
-  padding: ""
+  padding: '',
 };
 
 export default ArticleListGrid;
