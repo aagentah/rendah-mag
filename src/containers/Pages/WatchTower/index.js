@@ -1,11 +1,11 @@
 /* eslint-disable import/no-named-as-default */
 
-import React, { PureComponent } from 'react';
-import Helmet from 'react-helmet';
-import Iframe from 'react-iframe';
-import { Heading, Copy } from 'rendah-pattern-library';
+import React, { PureComponent } from "react";
+import Helmet from "react-helmet";
+import Iframe from "react-iframe";
+import { Heading, Copy } from "rendah-pattern-library";
 
-import ExtraArticles from '../../../containers/Fragments/Blog/ExtraArticles';
+import ExtraArticles from "../../../containers/Fragments/Blog/ExtraArticles";
 
 export class WatchTower extends PureComponent {
   componentDidMount() {
@@ -28,11 +28,11 @@ export class WatchTower extends PureComponent {
   );
 
   render() {
-    const title = 'Watch Tower';
+    const title = "Watch Tower";
     const description = `The Rendah Team is invested in keeping you up-to-date
     with the latest Halftime Beats. We've compiled our favourite Tracks &
     Mixes into 2 Watch Tower playlists which will be updated regularly.`;
-    const canonical = 'https://www.rendahmag.com/watch-tower';
+    const canonical = "https://www.rendahmag.com/watch-tower";
 
     return (
       <main className="page-fade-in">
@@ -46,25 +46,24 @@ export class WatchTower extends PureComponent {
           <div className="flex  pb2  ph3">
             <Heading
               /* Options */
-              htmlEntity={'h1'}
+              htmlEntity={"h1"}
               text={title}
-              color={'black'}
-              size={'x-large'}
+              color={"black"}
+              size={"x-large"}
               truncate={1}
+              reveal={true}
             />
           </div>
           <div className="flex  pb2  ph3">
             <Copy
               /* Options */
               text={description}
-              color={'black'}
-              size={'medium'}
+              color={"black"}
+              size={"medium"}
               truncate={3}
             />
           </div>
-          <div className="flex  pv3  ph3">
-            {this.playlistEmbeds()}
-          </div>
+          <div className="flex  pv3  ph3">{this.playlistEmbeds()}</div>
         </div>
 
         <p className="t-title  bold  tac  f6  ttu  pb3">More Articles</p>

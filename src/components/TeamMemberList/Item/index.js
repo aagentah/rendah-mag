@@ -1,9 +1,9 @@
 /* eslint-disable import/no-named-as-default */
 
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 // import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Card, Image, Label, Heading, Copy } from 'rendah-pattern-library';
+import { Link } from "react-router-dom";
+import { Card, Image, Label, Heading, Copy } from "rendah-pattern-library";
 
 // import { convertDate } from '../../../functions';
 
@@ -16,10 +16,10 @@ export class Item extends PureComponent {
 
     const renderCard = () => {
       const withLinkProps = {
-        type: 'internal',
+        type: "internal",
         url: `/team/${teamMember.slug}`,
-        target: '_top',
-        routerLink: Link,
+        target: "_top",
+        routerLink: Link
       };
 
       const cardImage = (
@@ -39,10 +39,10 @@ export class Item extends PureComponent {
       const aliasLabel = (
         <Label
           /* Options */
-          type={'text'}
+          type={"text"}
           text={teamMember.alias}
-          color={'black'}
-          backgroundColor={'white'}
+          color={"black"}
+          backgroundColor={"white"}
           onClick={null}
           /* Children */
           withLinkProps={null}
@@ -52,11 +52,12 @@ export class Item extends PureComponent {
       const cardHeading = (
         <Heading
           /* Options */
-          htmlEntity={'h2'}
+          htmlEntity={"h2"}
           text={teamMember.name}
-          color={'black'}
-          size={'small'}
+          color={"black"}
+          size={"small"}
           truncate={1}
+          reveal={null}
           /* Children */
           withLinkProps={withLinkProps}
         />
@@ -66,8 +67,8 @@ export class Item extends PureComponent {
         <Copy
           /* Options */
           text={teamMember.description}
-          color={'black'}
-          size={'medium'}
+          color={"black"}
+          size={"medium"}
           truncate={2}
           /* Children */
           withLinkProps={null}
@@ -77,7 +78,7 @@ export class Item extends PureComponent {
       return (
         <Card
           /* Options */
-          type={'block'}
+          type={"block"}
           onClick={null}
           /* Children */
           image={cardImage}
@@ -90,9 +91,7 @@ export class Item extends PureComponent {
     };
 
     return (
-      <div className="col-12  col-6-sm  col-4-md  pa3">
-        {renderCard()}
-      </div>
+      <div className="col-12  col-6-sm  col-4-md  pa3">{renderCard()}</div>
     );
   }
 }

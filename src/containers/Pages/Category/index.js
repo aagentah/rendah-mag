@@ -1,12 +1,12 @@
 /* eslint-disable import/no-named-as-default */
 
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
-import startCase from 'lodash/startCase';
-import { Heading, Copy } from 'rendah-pattern-library';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import Helmet from "react-helmet";
+import startCase from "lodash/startCase";
+import { Heading, Copy } from "rendah-pattern-library";
 
-import CategoryArticles from '../../../containers/Fragments/Blog/CategoryArticles';
+import CategoryArticles from "../../../containers/Fragments/Blog/CategoryArticles";
 
 export class Category extends PureComponent {
   componentDidMount() {
@@ -22,14 +22,16 @@ export class Category extends PureComponent {
     let description = null;
 
     switch (title) {
-      case 'News':
-        description = 'Bringing you the latest news within the scene.';
+      case "News":
+        description = "Bringing you the latest news within the scene.";
         break;
-      case 'Interviews':
-        description = 'Read exclusive interviews with established & upcoming artists.';
+      case "Interviews":
+        description =
+          "Read exclusive interviews with established & upcoming artists.";
         break;
-      case 'Insights':
-        description = 'Explicit reviews & insights to some of our favourite releases.';
+      case "Insights":
+        description =
+          "Explicit reviews & insights to some of our favourite releases.";
         break;
       default:
         description = null;
@@ -47,19 +49,20 @@ export class Category extends PureComponent {
           <div className="flex  pb2  ph3">
             <Heading
               /* Options */
-              htmlEntity={'h1'}
+              htmlEntity={"h1"}
               text={title}
-              color={'black'}
-              size={'x-large'}
+              color={"black"}
+              size={"x-large"}
               truncate={1}
+              reveal={true}
             />
           </div>
           <div className="flex  pb2  ph3">
             <Copy
               /* Options */
               text={description}
-              color={'black'}
-              size={'medium'}
+              color={"black"}
+              size={"medium"}
               truncate={1}
             />
           </div>
@@ -72,11 +75,11 @@ export class Category extends PureComponent {
 }
 
 Category.propTypes = {
-  match: PropTypes.shape(),
+  match: PropTypes.shape()
 };
 
 Category.defaultProps = {
-  match: [],
+  match: []
 };
 
 export default Category;
