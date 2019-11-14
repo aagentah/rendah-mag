@@ -1,10 +1,10 @@
 /* eslint-disable import/no-named-as-default */
 
-import React, { PureComponent } from "react";
-import Helmet from "react-helmet";
-import { Heading, Copy } from "rendah-pattern-library";
+import React, { PureComponent } from 'react';
+import Helmet from 'react-helmet';
+import { Heading, Copy } from 'rendah-pattern-library';
 
-import TeamFragment from "../../../containers/Fragments/Blog/Team";
+import TeamFragment from '../../../containers/Fragments/Blog/Team';
 
 export class Team extends PureComponent {
   componentDidMount() {
@@ -15,9 +15,9 @@ export class Team extends PureComponent {
   }
 
   render() {
-    const title = "Team";
-    const desc = "Profiles of our team & editors.";
-    const canonical = "https://www.rendahmag.com/team";
+    const title = 'Team';
+    const desc = 'Profiles of our team & editors.';
+    const canonical = 'https://www.rendahmag.com/team';
 
     return (
       <main className="page-fade-in">
@@ -31,20 +31,19 @@ export class Team extends PureComponent {
           <div className="flex  pb2  ph3">
             <Heading
               /* Options */
-              htmlEntity={"h1"}
+              htmlEntity={'h1'}
               text={title}
-              color={"black"}
-              size={"x-large"}
+              color={'black'}
+              size={'x-large'}
               truncate={1}
-              reveal={true}
             />
           </div>
           <div className="flex  pb2  ph3">
             <Copy
               /* Options */
               text={desc}
-              color={"black"}
-              size={"medium"}
+              color={'black'}
+              size={'medium'}
               truncate={1}
             />
           </div>
