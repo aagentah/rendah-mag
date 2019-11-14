@@ -51,7 +51,8 @@ export class Category extends PureComponent {
               text={title}
               color={'black'}
               size={'x-large'}
-              truncate={1}
+              truncate={null}
+              reveal
             />
           </div>
           <div className="flex  pb2  ph3">
