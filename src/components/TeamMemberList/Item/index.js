@@ -57,6 +57,7 @@ export class Item extends PureComponent {
           color={'black'}
           size={'small'}
           truncate={1}
+          reveal={null}
           /* Children */
           withLinkProps={withLinkProps}
         />
