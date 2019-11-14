@@ -51,6 +51,7 @@ export class WatchTower extends PureComponent {
               color={'black'}
               size={'x-large'}
               truncate={1}
+              reveal={true}
             />
           </div>
           <div className="flex  pb2  ph3">
