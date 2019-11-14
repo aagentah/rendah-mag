@@ -1,11 +1,11 @@
 /* eslint-disable import/no-named-as-default */
 
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Card, Image, Label, Heading } from 'rendah-pattern-library';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { Card, Image, Label, Heading } from "rendah-pattern-library";
 
-import { convertDate } from '../../../functions';
+import { convertDate } from "../../../functions";
 
 export class ArticleListGrid extends PureComponent {
   date = date => convertDate(date);
@@ -13,12 +13,12 @@ export class ArticleListGrid extends PureComponent {
   render() {
     const { list, padding } = this.props;
 
-    const renderCard = (article) => {
+    const renderCard = article => {
       const withLinkProps = {
-        type: 'internal',
+        type: "internal",
         url: `/article/${article.slug}`,
-        target: '_top',
-        routerLink: Link,
+        target: "_top",
+        routerLink: Link
       };
 
       const cardImage = (
@@ -38,10 +38,10 @@ export class ArticleListGrid extends PureComponent {
       const dateLabel = (
         <Label
           /* Options */
-          type={'date'}
+          type={"date"}
           text={this.date(article.created)}
-          color={'black'}
-          backgroundColor={'white'}
+          color={"black"}
+          backgroundColor={"white"}
           onClick={null}
           /* Children */
           withLinkProps={null}
@@ -51,10 +51,10 @@ export class ArticleListGrid extends PureComponent {
       const cardHeading = (
         <Heading
           /* Options */
-          htmlEntity={'h2'}
+          htmlEntity={"h2"}
           text={article.title}
-          color={'black'}
-          size={'small'}
+          color={"black"}
+          size={"small"}
           truncate={2}
           reveal={null}
           /* Children */
@@ -65,7 +65,7 @@ export class ArticleListGrid extends PureComponent {
       return (
         <Card
           /* Options */
-          type={'thumbnail'}
+          type={"thumbnail"}
           onClick={null}
           /* Children */
           image={cardImage}
@@ -93,12 +93,12 @@ export class ArticleListGrid extends PureComponent {
 
 ArticleListGrid.propTypes = {
   list: PropTypes.array, // eslint-disable-line react/forbid-prop-types
-  padding: PropTypes.string,
+  padding: PropTypes.string
 };
 
 ArticleListGrid.defaultProps = {
   list: [],
-  padding: '',
+  padding: ""
 };
 
 export default ArticleListGrid;
