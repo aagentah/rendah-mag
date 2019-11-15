@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FacebookProvider, Page } from 'react-facebook';
+import { Image, Heading, Copy } from 'rendah-pattern-library';
 
 import Sections from './Sections';
 import SocialLinks from './SocialLinks';
@@ -81,46 +82,28 @@ export class Article extends PureComponent {
         />
 
         <div className="article">
-          <figure className="rel  article__hero">
-            <div
-              className="article__hero--background"
-              style={{ backgroundImage: `url(${article.img})` }}
-            />
-            <img className="article__hero--img" alt={article.title} src={article.img} />
-          </figure>
-
-          <section className="container-large  center  ph0  mt5  rel">
+          <section className="container-large  center  ph0  rel">
             <div className="flex  flex-wrap">
               <div className="col-24  col-6-lg" />
+
               <article
                 ref={(articleElem) => {
                   this.articleElem = articleElem;
                 }}
                 className="col-18  center  col-12-lg  ph4-lg"
               >
-                <div className="article__social  pb4">
-                  <a
-                    className="ph1"
-                    href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.slug}`}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <img
-                      src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')}
-                      alt="facebook"
-                    />
-                  </a>
-                  <a
-                    className="ph1"
-                    href={`https://twitter.com/share?url=https://www.rendahmag.com/article/${article.slug}`}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <img
-                      src={require('../../containers/App/assets/social/iconmonstr-twitter-5.png')}
-                      alt="twitter"
-                    />
-                  </a>
+                <div className="mla  mra  mt3  mb4">
+                  <Image
+                    /* Options */
+                    src={article.img}
+                    placeholder={`${article.img}?w=100`}
+                    alt={article.title}
+                    figcaption={null}
+                    height={null}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
                 </div>
 
                 <span className="grey  t8">{this.date(article.created)} | </span>
@@ -131,14 +114,37 @@ export class Article extends PureComponent {
                 >
                   <span className="grey  t8  cp  link">{teamMember.name}</span>
                 </Link>
-                <h1 className="pb3  pt4  t-title">{article.title}</h1>
-                <p className="pv3  t-body  lh-copy  f6  dark-grey  taj">{article.description}</p>
+
+                <div className="pt2  pb3">
+                  <Heading
+                    /* Options */
+                    htmlEntity={'h1'}
+                    text={article.title}
+                    color={'black'}
+                    size={'large'}
+                    truncate={null}
+                    reveal
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
+
+                <Copy
+                  /* Options */
+                  text={article.description}
+                  color={'black'}
+                  size={'medium'}
+                  truncate={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+
                 <Sections body={article.body} />
                 <SocialLinks article={article} />
                 <TeamMember article padding="pt4  pt5-sm" info={teamMember} />
               </article>
 
-              <div className="col-24  col-6-lg  mt4  mt5-lg  pt4  pr4-lg">
+              <div className="col-24  col-6-lg  pr4-lg  mt3">
                 {sideBarLatestArticles}
                 {sideBarExtraArticles}
                 <div className="container-medium  tac  dn  db-lg  pt3">
