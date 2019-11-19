@@ -3,8 +3,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { Heading, Copy } from 'rendah-pattern-library';
 
-import Hero from '../../../components/Hero';
 import SearchArticles from '../../../containers/Fragments/Blog/SearchArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
 
@@ -29,17 +29,28 @@ export class Search extends PureComponent {
           <link rel="canonical" href={canonical} />
         </Helmet>
 
-        <Hero
-          type="h1"
-          title={searchQuery}
-          styles="t-title  ttu  f3  bold  dark-grey"
-          padding="pb4"
-        />
-
-        <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb4">
-          Latest results for:&nbsp;
-          <span className="bold">{searchQuery}</span>
-        </p>
+        <div className="container-medium  mla  mra  pt4  mv3">
+          <div className="flex  pb2  ph3">
+            <Heading
+              /* Options */
+              htmlEntity={'h1'}
+              text={'Search'}
+              color={'black'}
+              size={'x-large'}
+              truncate={null}
+              reveal
+            />
+          </div>
+          <div className="flex  pb2  ph3">
+            <Copy
+              /* Options */
+              text={`Latest results for: ${searchQuery}`}
+              color={'black'}
+              size={'medium'}
+              truncate={null}
+            />
+          </div>
+        </div>
 
         <SearchArticles match={this.props.match} padding="pb5" />
         <CategoryGrid />

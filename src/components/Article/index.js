@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FacebookProvider, Page } from 'react-facebook';
-import { Image, Heading, Copy } from 'rendah-pattern-library';
+import { Image, Heading, Copy, Label } from 'rendah-pattern-library';
 
 import Sections from './Sections';
 import SocialLinks from './SocialLinks';
@@ -82,7 +82,7 @@ export class Article extends PureComponent {
         />
 
         <div className="article">
-          <section className="container-large  center  ph0  rel">
+          <section className="container-large  mla  mra  ph0  rel">
             <div className="flex  flex-wrap">
               <div className="col-24  col-6-lg" />
 
@@ -90,7 +90,7 @@ export class Article extends PureComponent {
                 ref={(articleElem) => {
                   this.articleElem = articleElem;
                 }}
-                className="col-18  center  col-12-lg  ph4-lg"
+                className="col-18  mla  mra  col-12-lg  ph4-lg"
               >
                 <div className="mla  mra  mt3  mb4">
                   <Image
@@ -106,14 +106,32 @@ export class Article extends PureComponent {
                   />
                 </div>
 
-                <span className="grey  t8">{this.date(article.created)} | </span>
-                <Link
-                  title={teamMember.slug}
-                  to={`/team/${teamMember.slug}`}
-                  className="no-underline"
-                >
-                  <span className="grey  t8  cp  link">{teamMember.name}</span>
-                </Link>
+                <Label
+                  /* Options */
+                  type={'date'}
+                  text={this.date(article.created)}
+                  color={'black'}
+                  backgroundColor={'white'}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+
+                <Label
+                  /* Options */
+                  type={'author'}
+                  text={teamMember.name}
+                  color={'black'}
+                  backgroundColor={'white'}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'internal',
+                    url: `/team/${teamMember.slug}`,
+                    target: '_top',
+                    routerLink: Link,
+                  }}
+                />
 
                 <div className="pt2  pb3">
                   <Heading
