@@ -26,7 +26,7 @@ export class Seo extends PureComponent {
     if (section._type === 'block' && !section.listItem) {
       return (
         <div key={i}>
-          <Paragraph text={section.children} />
+          <Paragraph text={section.children} markDefs={section.markDefs} />
         </div>
       );
     }
