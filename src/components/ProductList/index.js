@@ -46,7 +46,7 @@ export class ProductList extends PureComponent {
         />
       );
 
-      const specialPriceLabel = (
+      const specialPriceLabel = (product.specialPrice) ? (
         <Label
           /* Options */
           type={'sale-price'}
@@ -57,9 +57,9 @@ export class ProductList extends PureComponent {
           /* Children */
           withLinkProps={null}
         />
-      );
+      ) : null;
 
-      const categoryLabel = (
+      const categoryLabel = (product.tag && product.tag !== 'None') ? (
         <Label
           /* Options */
           type={'category'}
@@ -70,7 +70,7 @@ export class ProductList extends PureComponent {
           /* Children */
           withLinkProps={null}
         />
-      );
+      ) : null;
 
       const cardHeading = (
         <Heading
@@ -104,7 +104,17 @@ export class ProductList extends PureComponent {
     return (
       <div className={padding}>
         <div className="ph3  pb3">
-          <h1 className="t-title  black  bold  f4  pb2  mb1  pt2  pt2-md">{list.title}</h1>
+          <Heading
+            /* Options */
+            htmlEntity={'h1'}
+            text={list.title}
+            color={'black'}
+            size={'medium'}
+            truncate={null}
+            reveal
+            /* Children */
+            withLinkProps={null}
+          />
           {list.description && <p className="t-body  grey  f6">{list.description}</p>}
         </div>
         <div className="flex  flex-wrap">

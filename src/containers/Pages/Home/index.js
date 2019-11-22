@@ -3,10 +3,11 @@
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { Button } from 'rendah-pattern-library';
+import { Button, Heading, Copy } from 'rendah-pattern-library';
 
 import LatestArticles from '../../../containers/Fragments/Blog/LatestArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
+import ExtraArticles from '../../../containers/Fragments/Blog/ExtraArticles';
 
 export class Home extends PureComponent {
   componentDidMount() {
@@ -59,7 +60,43 @@ export class Home extends PureComponent {
           </div>
         </div>
 
-        <LatestArticles range={[1, 24]} type="grid" padding="pt2  pb4" />
+        <LatestArticles range={[1, 8]} type="grid" padding="pv2" />
+
+        <div className="bg-dark-grey  mv4  mv5-md  pt4  pb4  pb5-md">
+          <div className="container-medium  mla  mra  mv3">
+            <div className="flex  pb2">
+              <Heading
+                /* Options */
+                htmlEntity={'h4'}
+                text={'Time capsule'}
+                color={'white'}
+                size={'x-large'}
+                truncate={null}
+                reveal
+              />
+            </div>
+            <div className="flex  pb4">
+              <div className="col-24  col-14-md">
+                <Copy
+                  /* Options */
+                  text={'Some throwback features, still relevant as ever.'}
+                  color={'white'}
+                  size={'medium'}
+                  truncate={null}
+                />
+              </div>
+            </div>
+          </div>
+
+          <ExtraArticles
+            type="list"
+            padding=""
+            range={[1, 6]}
+            column="col-24  col-12-md"
+            invert
+          />
+        </div>
+
         <CategoryGrid padding="" />
       </main>
     );

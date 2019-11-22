@@ -68,8 +68,23 @@ export class WatchTower extends PureComponent {
           </div>
         </div>
 
-        <p className="t-title  bold  tac  f6  ttu  pb3">More Articles</p>
-        <ExtraArticles type="grid" limit={4} padding="pt3" />
+        <div className="bg-dark-grey  mv4  mv5-md  pv4  pv5-md">
+          <div className="container-medium  mla  mra  mv3">
+            <div className="flex  pb2  ph3">
+              <Heading
+                /* Options */
+                htmlEntity={'h3'}
+                text={'More Articles'}
+                color={'white'}
+                size={'x-large'}
+                truncate={null}
+                reveal
+              />
+            </div>
+          </div>
+
+          <ExtraArticles range={[1, 4]} type="grid" padding="" invert />
+        </div>
       </main>
     );
   }

@@ -36,7 +36,7 @@ export class NotFound extends PureComponent {
             </div>
           </div>
         </div>
-        <ExtraArticles type="grid" limit={4} padding="pt3" />
+        <ExtraArticles range={[1, 4]} type="grid" padding="pt3" />
         <CategoryGrid padding="pt4" />
       </main>
     );

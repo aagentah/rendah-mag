@@ -12,7 +12,9 @@ export class ArticleListGrid extends PureComponent {
   date = date => convertDate(date);
 
   render() {
-    const { list, padding } = this.props;
+    const { list, padding, invert } = this.props;
+
+    const textColour = invert ? 'white' : 'black';
 
     const renderCard = (article) => {
       const articleWithLinkProps = {
@@ -48,8 +50,8 @@ export class ArticleListGrid extends PureComponent {
           /* Options */
           type={'date'}
           text={this.date(article.created)}
-          color={'black'}
-          backgroundColor={'white'}
+          color={textColour}
+          backgroundColor={null}
           onClick={null}
           /* Children */
           withLinkProps={null}
@@ -61,8 +63,8 @@ export class ArticleListGrid extends PureComponent {
           /* Options */
           type={'author'}
           text={article.teamMember}
-          color={'black'}
-          backgroundColor={'white'}
+          color={textColour}
+          backgroundColor={null}
           onClick={null}
           /* Children */
           withLinkProps={authorWithLinkProps}
@@ -74,7 +76,7 @@ export class ArticleListGrid extends PureComponent {
           /* Options */
           htmlEntity={'h2'}
           text={article.title}
-          color={'black'}
+          color={textColour}
           size={'small'}
           truncate={2}
           reveal={null}
@@ -87,7 +89,7 @@ export class ArticleListGrid extends PureComponent {
         <Copy
           /* Options */
           text={article.description}
-          color={'black'}
+          color={textColour}
           size={'medium'}
           truncate={2}
           /* Children */
@@ -114,7 +116,7 @@ export class ArticleListGrid extends PureComponent {
       <div className={`container-medium  center  ${padding}`}>
         <div className="flex  flex-wrap">
           {list.map(article => (
-            <div key={article.title} className="col-24  col-6-sm  pa3">
+            <div key={article.title} className="col-24  col-6-sm  ph3  pb2">
               {renderCard(article)}
             </div>
           ))}
@@ -127,11 +129,13 @@ export class ArticleListGrid extends PureComponent {
 ArticleListGrid.propTypes = {
   list: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   padding: PropTypes.string,
+  invert: PropTypes.bool,
 };
 
 ArticleListGrid.defaultProps = {
   list: [],
   padding: '',
+  invert: false,
 };
 
 export default ArticleListGrid;
