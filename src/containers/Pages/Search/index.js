@@ -52,7 +52,7 @@ export class Search extends PureComponent {
           </div>
         </div>
 
-        <SearchArticles match={this.props.match} padding="pb5" />
+        <SearchArticles match={searchQuery} padding="pb5" range={[1, 24]} />
         <CategoryGrid />
       </main>
     );

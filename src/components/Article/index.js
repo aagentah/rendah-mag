@@ -51,12 +51,14 @@ export class Article extends PureComponent {
     if (this.state.sideBarSize >= 1) {
       sideBarLatestArticles = (
         <React.Fragment>
-          <p className="t-title  grey  f5  pl4  pv2">Latest</p>
+          <p className="t-title  grey  f5  pl3  pl4-md  pt3  pt2-md  pb2">Latest</p>
           <LatestArticles range={[1, 4]} type="list" />
 
-          <div className="pv3  pv0-lg">
-            <p className="t-title  grey  f5  pl4  pv2">Subscribe to Rendah</p>
-            <SubscribeBanner />
+          <div className="container  center  pv3  pv0-md">
+            <p className="t-title  grey  f5  pv2">Subscribe to Rendah</p>
+            <div className="mw7  relative">
+              <SubscribeBanner />
+            </div>
           </div>
         </React.Fragment>
       );
@@ -64,8 +66,8 @@ export class Article extends PureComponent {
     if (this.state.sideBarSize >= 2) {
       sideBarExtraArticles = (
         <React.Fragment>
-          <p className="t-title  grey  f5  pl4  pv2">More</p>
-          <ExtraArticles limit={4} type="list" />
+          <p className="t-title  grey  f5  pl3  pl4-md  pt2  pb3  pb2-md">More</p>
+          <ExtraArticles range={[1, 4]} type="list" />
         </React.Fragment>
       );
     }

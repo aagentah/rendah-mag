@@ -17,7 +17,7 @@ export class Article extends PureComponent {
     const { socialHandles, alias } = teamMember;
 
     const isArticle = this.props.article;
-    const containerClass = isArticle ? 'w-80-lg' : 'container-small  center';
+    const containerClass = isArticle ? 'w-100' : 'container-small  center';
     const ActiveMemberLink = teamMember.active ? Link : 'div';
     const borderClass = isArticle ? 'teamMember__border  bt  bl-sm  bw2  bc-light-grey  pt4  pt0-md' : null;
 
