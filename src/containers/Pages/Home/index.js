@@ -60,7 +60,11 @@ export class Home extends PureComponent {
           </div>
         </div>
 
-        <LatestArticles range={[1, 8]} type="grid" padding="pv2" />
+        <div className="container-medium  center  pv2">
+          <div className="flex  flex-wrap">
+            <LatestArticles range={[1, 16]} type="grid" padding="ph3  pb2" />
+          </div>
+        </div>
 
         <div className="bg-dark-grey  mv4  mv5-md  pt4  pb4  pb5-md">
           <div className="container-medium  mla  mra  mv3">

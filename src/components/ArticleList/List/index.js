@@ -80,15 +80,13 @@ export class ArticleListGrid extends PureComponent {
     };
 
     return (
-      <div className={`container-medium  center  ${padding}`}>
-        <div className="flex  flex-wrap">
-          {list.map(article => (
-            <div key={article.title} className={`${(column || 'col-24')}  ph3  pb2`}>
-              {renderCard(article)}
-            </div>
-          ))}
-        </div>
-      </div>
+      <React.Fragment>
+        {list.map(article => (
+          <div key={article.title} className={`${(column || 'col-24')}  ${padding}`}>
+            {renderCard(article)}
+          </div>
+        ))}
+      </React.Fragment>
     );
   }
 }

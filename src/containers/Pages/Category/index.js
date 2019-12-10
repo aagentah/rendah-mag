@@ -66,7 +66,11 @@ export class Category extends PureComponent {
           </div>
         </div>
 
-        <CategoryArticles match={this.props.match} />
+        <div className="container-medium  center  pv2">
+          <div className="flex  flex-wrap">
+            <CategoryArticles match={this.props.match} range={[1, 24]} type="grid" padding="ph3  pb2" />
+          </div>
+        </div>
       </main>
     );
   }

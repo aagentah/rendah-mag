@@ -12,7 +12,7 @@ class Paragraph extends Component {
       if (markDefs.length) {
         if (child.marks[0] === markDefs[0]._key) {
           return (
-            <a key={i} target="_blank" href={markDefs[0].url} rel="noopener noreferrer" className="di  underline  rendah-red">
+            <a key={i} target="_blank" href={markDefs[0].url} rel="noopener noreferrer" className="di  underline  rendah-red-dark">
               {child.text}
             </a>
           );
