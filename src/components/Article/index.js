@@ -51,14 +51,12 @@ export class Article extends PureComponent {
     if (this.state.sideBarSize >= 1) {
       sideBarLatestArticles = (
         <React.Fragment>
-          <p className="t-title  grey  f5  pl3  pl4-md  pt3  pt2-md  pb2">Latest</p>
-          <LatestArticles range={[1, 4]} type="list" />
+          <p className="t-title  grey  f5  pl3  pt3  pt2-md  pb2">Latest</p>
+          <LatestArticles range={[1, 4]} type="list" padding="ph3  pb2" />
 
-          <div className="container  center  pv3  pv0-md">
-            <p className="t-title  grey  f5  pv2">Subscribe to Rendah</p>
-            <div className="mw7  relative">
-              <SubscribeBanner />
-            </div>
+          <p className="t-title  grey  f5  pl3  pt3  pt2-md  pb2">Subscribe to Rendah</p>
+          <div className="ph3  mw7  relative">
+            <SubscribeBanner />
           </div>
         </React.Fragment>
       );
@@ -66,8 +64,8 @@ export class Article extends PureComponent {
     if (this.state.sideBarSize >= 2) {
       sideBarExtraArticles = (
         <React.Fragment>
-          <p className="t-title  grey  f5  pl3  pl4-md  pt2  pb3  pb2-md">More</p>
-          <ExtraArticles range={[1, 4]} type="list" />
+          <p className="t-title  grey  f5  pl3  pt3  pt2-md  pb2">More</p>
+          <ExtraArticles range={[1, 4]} type="list" padding="ph3  pb2" />
         </React.Fragment>
       );
     }
@@ -108,32 +106,36 @@ export class Article extends PureComponent {
                   />
                 </div>
 
-                <Label
-                  /* Options */
-                  type={'date'}
-                  text={this.date(article.created)}
-                  color={'black'}
-                  backgroundColor={'white'}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
+                <div className="pb1">
+                  <Label
+                    /* Options */
+                    type={'date'}
+                    text={this.date(article.created)}
+                    color={'black'}
+                    backgroundColor={'white'}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
 
-                <Label
-                  /* Options */
-                  type={'author'}
-                  text={teamMember.name}
-                  color={'black'}
-                  backgroundColor={'white'}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'internal',
-                    url: `/team/${teamMember.slug}`,
-                    target: '_top',
-                    routerLink: Link,
-                  }}
-                />
+                <div className="pb1">
+                  <Label
+                    /* Options */
+                    type={'author'}
+                    text={teamMember.name}
+                    color={'black'}
+                    backgroundColor={'white'}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'internal',
+                      url: `/team/${teamMember.slug}`,
+                      target: '_top',
+                      routerLink: Link,
+                    }}
+                  />
+                </div>
 
                 <div className="pt2  pb3">
                   <Heading

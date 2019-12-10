@@ -6,7 +6,6 @@ import Helmet from 'react-helmet';
 import { Heading, Copy } from 'rendah-pattern-library';
 
 import SearchArticles from '../../../containers/Fragments/Blog/SearchArticles';
-import CategoryGrid from '../../../components/CategoryGrid';
 
 export class Search extends PureComponent {
   componentDidMount() {
@@ -52,8 +51,11 @@ export class Search extends PureComponent {
           </div>
         </div>
 
-        <SearchArticles match={searchQuery} padding="pb5" range={[1, 24]} />
-        <CategoryGrid />
+        <div className="container-medium  center  pv2">
+          <div className="flex  flex-wrap">
+            <SearchArticles match={searchQuery} range={[1, 28]} type="grid" padding="ph3  pb2" />
+          </div>
+        </div>
       </main>
     );
   }
