@@ -145,7 +145,7 @@ export class Article extends PureComponent {
                     color={'black'}
                     size={'large'}
                     truncate={null}
-                    reveal
+                    reveal={false}
                     /* Children */
                     withLinkProps={null}
                   />
