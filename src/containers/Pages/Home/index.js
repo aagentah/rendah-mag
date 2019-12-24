@@ -44,11 +44,11 @@ export class Home extends PureComponent {
             <Button
               /* Options */
               type={'primary'}
-              size={'medium'}
+              size={'small'}
               text={'Subscribe to Rendah Mag'}
               color={'black'}
               fluid={false}
-              icon={'mail'}
+              icon={null}
               iconFloat={null}
               inverted={false}
               loading={false}
@@ -92,13 +92,17 @@ export class Home extends PureComponent {
             </div>
           </div>
 
-          <ExtraArticles
-            type="list"
-            padding=""
-            range={[1, 6]}
-            column="col-24  col-12-md"
-            invert
-          />
+          <div className="container-medium  center  pv2">
+            <div className="flex  flex-wrap">
+              <ExtraArticles
+                type="list"
+                padding="ph3  pb2"
+                range={[1, 10]}
+                column="col-24  col-12-md"
+                invert
+              />
+            </div>
+          </div>
         </div>
 
         <CategoryGrid padding="" />

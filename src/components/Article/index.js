@@ -45,17 +45,42 @@ export class Article extends PureComponent {
   render() {
     const article = this.props.info;
     const { teamMember } = article;
+    console.log('yo', teamMember);
     let sideBarLatestArticles;
     let sideBarExtraArticles;
 
     if (this.state.sideBarSize >= 1) {
       sideBarLatestArticles = (
         <React.Fragment>
-          <p className="t-title  grey  f5  pl3  pt3  pt2-md  pb2">Latest</p>
-          <LatestArticles range={[1, 4]} type="list" padding="ph3  pb2" />
+          <div className="pl3  pb2">
+            <Heading
+              /* Options */
+              htmlEntity={'p'}
+              text={'Latest'}
+              color={'grey'}
+              size={'small'}
+              truncate={null}
+              reveal={false}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <LatestArticles range={[1, 4]} type="list" padding="ph3  pb3" />
 
-          <p className="t-title  grey  f5  pl3  pt3  pt2-md  pb2">Subscribe to Rendah</p>
-          <div className="ph3  mw7  relative">
+          <div className="pl3  pb3">
+            <Heading
+              /* Options */
+              htmlEntity={'p'}
+              text={'Subscribe to Rendah'}
+              color={'grey'}
+              size={'small'}
+              truncate={null}
+              reveal={false}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <div className="pl3  pb4  mw7  relative">
             <SubscribeBanner />
           </div>
         </React.Fragment>
@@ -64,8 +89,20 @@ export class Article extends PureComponent {
     if (this.state.sideBarSize >= 2) {
       sideBarExtraArticles = (
         <React.Fragment>
-          <p className="t-title  grey  f5  pl3  pt3  pt2-md  pb2">More</p>
-          <ExtraArticles range={[1, 4]} type="list" padding="ph3  pb2" />
+          <div className="pl3  pb2">
+            <Heading
+              /* Options */
+              htmlEntity={'p'}
+              text={'More'}
+              color={'grey'}
+              size={'small'}
+              truncate={null}
+              reveal={false}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <ExtraArticles range={[1, 4]} type="list" padding="ph3  pb3" />
         </React.Fragment>
       );
     }
@@ -82,7 +119,7 @@ export class Article extends PureComponent {
         />
 
         <div className="article">
-          <section className="container-large  mla  mra  ph0  rel">
+          <section className="container-large-md  mla  mra  rel">
             <div className="flex  flex-wrap">
               <div className="col-24  col-6-lg" />
 
@@ -90,9 +127,9 @@ export class Article extends PureComponent {
                 ref={(articleElem) => {
                   this.articleElem = articleElem;
                 }}
-                className="col-18  mla  mra  col-12-lg  ph4-lg"
+                className="col-24  mla  mra  col-12-lg  ph4-lg"
               >
-                <div className="mla  mra  mt3  mb4">
+                <div className="mla  mra  mt3-md  mb4">
                   <Image
                     /* Options */
                     src={article.img}
@@ -106,70 +143,72 @@ export class Article extends PureComponent {
                   />
                 </div>
 
-                <div className="pb1">
-                  <Label
-                    /* Options */
-                    type={'date'}
-                    text={this.date(article.created)}
-                    color={'black'}
-                    backgroundColor={'white'}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
+                <div className="col-18  col-24-md  mla  mra">
+                  <div className="pb1">
+                    <Label
+                      /* Options */
+                      type={'date'}
+                      text={this.date(article.created)}
+                      color={'black'}
+                      backgroundColor={'white'}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
 
-                <div className="pb1">
-                  <Label
-                    /* Options */
-                    type={'author'}
-                    text={teamMember.name}
-                    color={'black'}
-                    backgroundColor={'white'}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'internal',
-                      url: `/team/${teamMember.slug}`,
-                      target: '_top',
-                      routerLink: Link,
-                    }}
-                  />
-                </div>
+                  <div className="pb1">
+                    <Label
+                      /* Options */
+                      type={'author'}
+                      text={teamMember.name}
+                      color={'black'}
+                      backgroundColor={'white'}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'internal',
+                        url: `/team/${teamMember.slug}`,
+                        target: '_top',
+                        routerLink: Link,
+                      }}
+                    />
+                  </div>
 
-                <div className="pt2  pb3">
-                  <Heading
+                  <div className="pt2  pb3">
+                    <Heading
+                      /* Options */
+                      htmlEntity={'h1'}
+                      text={article.title}
+                      color={'black'}
+                      size={'large'}
+                      truncate={null}
+                      reveal={false}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+
+                  <Copy
                     /* Options */
-                    htmlEntity={'h1'}
-                    text={article.title}
+                    text={article.description}
                     color={'black'}
-                    size={'large'}
+                    size={'medium'}
                     truncate={null}
-                    reveal={false}
                     /* Children */
                     withLinkProps={null}
                   />
+
+                  <Sections body={article.body} />
+                  <SocialLinks article={article} />
+                  <TeamMember article padding="pt4  pt5-sm" info={teamMember} />
                 </div>
-
-                <Copy
-                  /* Options */
-                  text={article.description}
-                  color={'black'}
-                  size={'medium'}
-                  truncate={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-
-                <Sections body={article.body} />
-                <SocialLinks article={article} />
-                <TeamMember article padding="pt4  pt5-sm" info={teamMember} />
               </article>
 
-              <div className="col-24  col-6-lg  pr4-lg  mt3">
+              <div className="col-24  col-6-lg  pl3  pr3  pl0-md  pr4-lg  mt3">
                 {sideBarLatestArticles}
                 {sideBarExtraArticles}
-                <div className="container-medium  tac  dn  db-lg  pt3">
+                <div className="ph3  dn  db-lg">
                   <FacebookProvider appId="154881868603516">
                     <Page href="https://www.facebook.com/rendahmag" />
                   </FacebookProvider>
