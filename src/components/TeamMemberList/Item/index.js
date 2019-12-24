@@ -91,7 +91,7 @@ export class Item extends PureComponent {
     };
 
     return (
-      <div className="col-12  col-6-sm  col-4-md  pa3">
+      <div className="col-12  col-6-sm  col-4-md  ph3  pb2">
         {renderCard()}
       </div>
     );

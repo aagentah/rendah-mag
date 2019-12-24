@@ -78,7 +78,7 @@ export class ArticleListGrid extends PureComponent {
           text={article.title}
           color={textColour}
           size={'small'}
-          truncate={2}
+          truncate={null}
           reveal={null}
           /* Children */
           withLinkProps={articleWithLinkProps}
