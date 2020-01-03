@@ -16,7 +16,7 @@ export class Footer extends React.Component {
             <div className="flex  flex-wrap">
 
               <div className="col-14  pt2">
-                <p className="t-body  f7  di">Rendah Mag 2018 <span>|</span></p>
+                <p className="t-body  f7  di">Rendah Mag {new Date().getFullYear()} <span>|</span></p>
                 <Link className="t-body  black  link  f7  di  pl1  pr1" title="privacy-policy" to={'/privacy-policy'}>Privacy Policy</Link>
                 <span className="t-body  black  link  f7">|</span>
                 <a title="info@rendahmag.com" href="mailto:info@rendahmag.com" className="t-body  black  link  f7  pl1">info@rendahmag.com</a>
