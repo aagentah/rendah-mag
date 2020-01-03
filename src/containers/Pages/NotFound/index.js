@@ -4,8 +4,6 @@ import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 
 import Hero from '../../../components/Hero';
-import ExtraArticles from '../../../containers/Fragments/Blog/ExtraArticles';
-import CategoryGrid from '../../../components/CategoryGrid';
 
 export class NotFound extends PureComponent {
   componentDidMount() {
@@ -36,8 +34,6 @@ export class NotFound extends PureComponent {
             </div>
           </div>
         </div>
-        <ExtraArticles range={[1, 4]} type="grid" padding="pt3" />
-        <CategoryGrid padding="pt4" />
       </main>
     );
   }
