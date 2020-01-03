@@ -83,7 +83,17 @@ export class WatchTower extends PureComponent {
             </div>
           </div>
 
-          <ExtraArticles range={[1, 4]} type="grid" padding="" invert />
+          <div className="container-medium  center  pv2">
+            <div className="flex  flex-wrap">
+              <ExtraArticles
+                type="grid"
+                padding="ph3  pb2"
+                range={[1, 4]}
+                column="col-24"
+                invert
+              />
+            </div>
+          </div>
         </div>
       </main>
     );

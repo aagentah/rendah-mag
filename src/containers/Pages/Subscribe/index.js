@@ -70,7 +70,12 @@ export class Subscribe extends PureComponent {
           </div>
         </div>
 
-        <LatestArticles range={[1, 4]} type="grid" padding="pb4" />
+        <div className="container-medium  center  pv2">
+          <div className="flex  flex-wrap">
+            <LatestArticles range={[1, 4]} type="grid" padding="pb4" />
+          </div>
+        </div>
+
         <CategoryGrid padding="" />
       </main>
     );
