@@ -2,6 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
+import { Heading } from 'rendah-pattern-library';
 
 export class PrivacyPolicy extends PureComponent {
   componentDidMount() {
@@ -25,8 +26,19 @@ export class PrivacyPolicy extends PureComponent {
         </Helmet>
 
         <div className="container-small  center  pa4">
-          <p className="t-body  t7">
-            Privacy Policy<br /><br />
+          <div className="flex  pb3">
+            <Heading
+              /* Options */
+              htmlEntity={'h1'}
+              text={title}
+              color={'black'}
+              size={'x-large'}
+              truncate={null}
+              reveal
+            />
+          </div>
+
+          <p className="t-body  t7  lh-copy  taj">
             This privacy policy has been compiled to better serve those who are concerned
             with how their &apos;Personally Identifiable Information&apos; (PII) is being
             used online. PII, as described in US privacy law and information security, is
@@ -36,46 +48,51 @@ export class PrivacyPolicy extends PureComponent {
             we collect, use, protect or otherwise handle your Personally Identifiable
             Information in accordance with our website.<br /><br />
 
-            What personal information do we collect from the people that visit our blog,
-            website or app?<br /><br />
+            <strong>What personal information do we collect from the people that visit our blog,
+            website or app?</strong><br /><br />
 
             We do not collect information from visitors of our site.<br />
             or other details to help you with your experience.<br /><br />
 
-            When do we collect information?<br />
+            <strong>When do we collect information?</strong><br /><br />
             We collect information from you when you or enter information on our site.<br /><br />
 
 
-            How do we use your information?<br />
+            <strong>How do we use your information?</strong><br /><br />
             We may use the information we collect from you when you register, make a
             purchase, sign up for our newsletter, respond to a survey or marketing
             communication, surf the website, or use certain other site features in
             the following ways:<br /><br />
 
 
-            Do we use &apos;cookies&apos;?<br />
+            <strong>Do we use &apos;cookies&apos;?</strong><br /><br />
+
             We do not use cookies for tracking purposes<br />
             You can choose to have your computer warn you each time a cookie is being
             sent, or you can choose to turn off all cookies. You do this through your
             browser settings. Since browser is a little different, look at your
-            browser&apos;s Help Menu to learn the correct way to modify your cookies.<br />
+            browser&apos;s Help Menu to learn the correct way to modify your cookies.<br /><br />
 
-            If you turn cookies off.<br />
-            Third-party disclosure<br />
+            <strong>If you turn cookies off.</strong><br /><br />
+
+            <strong>Third-party disclosure</strong><br /><br />
             We do not sell, trade, or otherwise transfer to outside parties your
             Personally Identifiable Information.<br /><br />
 
-            Third-party links<br />
+            <strong>Third-party links</strong><br /><br />
+
             We do not include or offer third-party products or services on our website.<br /><br />
 
-            Google<br />
+            <strong>Google</strong><br /><br />
+
             Google&apos;s advertising requirements can be summed up by Google&apos;s
             Advertising Principles. They are put in place to provide a positive
             experience for users. https://support.google.com/adwordspolicy/answer/1316548?hl=en
             <br />We have not enabled Google AdSense on our site but we
             may do so in the future.<br /><br />
 
-            COPPA (Children Online Privacy Protection Act)<br />
+            <strong>COPPA (Children Online Privacy Protection Act)</strong><br /><br />
+
             When it comes to the collection of personal information from children under the
             age of 13 years old, the Children&apos;s Online Privacy Protection Act (COPPA)
             puts parents in control. The Federal Trade Commission, United States&apos;
@@ -84,7 +101,8 @@ export class PrivacyPolicy extends PureComponent {
             children&apos;s privacy and safety online.<br />
             We do not specifically market to children under the age of 13 years old.<br /><br />
 
-            Fair Information Practices<br />
+            <strong>Fair Information Practices</strong><br /><br />
+
             The Fair Information Practices Principles form the backbone of privacy law
             in the United States and the concepts they include have played a significant
             role in the development of data protection laws around the globe.
@@ -92,8 +110,9 @@ export class PrivacyPolicy extends PureComponent {
             implemented is critical to comply with the various privacy laws that
             protect personal information.<br /><br />
 
-            In order to be in line with Fair Information Practices we will take the
-            following responsive action, should a data breach occur:<br />
+            <strong>In order to be in line with Fair Information Practices we will take the
+            following responsive action, should a data breach occur:</strong><br /><br />
+
             We will notify you via email<br />
                   • Within 7 business days<br />
 
@@ -104,17 +123,21 @@ export class PrivacyPolicy extends PureComponent {
             users, but also that individuals have recourse to courts or government
             agencies to investigate and/or prosecute non-compliance by data processors.<br /><br />
 
-            CAN SPAM Act<br />
+            <strong>CAN SPAM Act</strong><br /><br />
+
             The CAN-SPAM Act is a law that sets the rules for commercial email, establishes
             requirements for commercial messages, gives recipients the right to have
             emails stopped from being sent to them, and spells out tough
             penalties for violations.<br /><br />
 
-            We collect your email address in order to:<br />
+            <strong>We collect your email address in order to:</strong><br /><br />
+
                   • Send information, respond to inquiries, and/or other
                   requests or questions<br /><br />
 
-            To be in accordance with CANSPAM, we agree to the following:<br />
+            <strong>To be in accordance with CANSPAM, we agree to the following:</strong>
+            <br /><br />
+
                   • Not use false or misleading subjects or email addresses.<br />
                   • Identify the message as an advertisement in some reasonable way.<br />
                   • Include the physical address of our business or site headquarters.<br />
@@ -127,7 +150,8 @@ export class PrivacyPolicy extends PureComponent {
             If at any time you would like to unsubscribe from receiving future emails, you can
             email us at and we will promptly remove you from ALL correspondence.<br /><br />
 
-            Contacting Us<br />
+            <strong>Contacting Us</strong><br /><br />
+
             If there are any questions regarding this privacy policy, you may
             contact us using the information below.<br /><br />
 
