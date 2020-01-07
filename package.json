@@ -1,7 +1,7 @@
 {
-  "name": "rm-setup",
+  "name": "rendah-mag",
   "version": "2.5.1",
-  "description": "rm-setup",
+  "description": "Est. 2018 - Creative UK-based outlet, primarily focused on exposing the progressive and innovative side to underground bass music.",
   "main": "index.js",
   "engines": {
     "node": "8.x",
@@ -12,18 +12,13 @@
     "url": ""
   },
   "keywords": [
-    "react",
-    "redux",
-    "react router",
-    "express",
-    "webpack 3",
-    "es6",
-    "flow",
-    "hot reloading",
-    "babel",
-    "performance optimizing"
+    "beats",
+    "halftime",
+    "drum & bass",
+    "music",
+    "magaazine"
   ],
-  "author": "Dan Jones",
+  "author": "Dan Jones (Aagentah)",
   "license": "MIT",
   "bugs": {
     "url": ""
