@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Card, Image, Label, Heading } from 'rendah-pattern-library';
 
 import { convertDate } from '../../../functions';
@@ -20,7 +20,7 @@ export class ArticleListGrid extends PureComponent {
         type: 'internal',
         url: `/article/${article.slug}`,
         target: '_top',
-        routerLink: Link,
+        routerLink: Redirect,
       };
 
       const cardImage = (

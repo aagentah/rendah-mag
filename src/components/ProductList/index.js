@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Card, Image, Label, Heading } from 'rendah-pattern-library';
 
 export class ProductList extends PureComponent {
@@ -16,7 +16,7 @@ export class ProductList extends PureComponent {
         type: 'internal',
         url: `/product/${product.slug}`,
         target: '_top',
-        routerLink: Link,
+        routerLink: Redirect,
       };
 
       const cardImage = (
