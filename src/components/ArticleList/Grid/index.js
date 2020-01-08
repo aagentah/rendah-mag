@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Card, Image, Label, Heading, Copy } from 'rendah-pattern-library';
 import trim from 'lodash/trim';
 
@@ -20,15 +20,15 @@ export class ArticleListGrid extends PureComponent {
       const articleWithLinkProps = {
         type: 'internal',
         url: `/article/${article.slug}`,
-        target: '_top',
-        routerLink: Link,
+        target: null,
+        routerLink: Redirect,
       };
 
       const authorWithLinkProps = {
         type: 'internal',
         url: `/team/${toUrlCase(trim(article.teamMember))}`,
-        target: '_top',
-        routerLink: Link,
+        target: null,
+        routerLink: Redirect,
       };
 
       const cardImage = (

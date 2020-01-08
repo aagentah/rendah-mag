@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 // import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Card, Image, Label, Heading, Copy } from 'rendah-pattern-library';
 
 // import { convertDate } from '../../../functions';
@@ -19,7 +19,7 @@ export class Item extends PureComponent {
         type: 'internal',
         url: `/team/${teamMember.slug}`,
         target: '_top',
-        routerLink: Link,
+        routerLink: Redirect,
       };
 
       const cardImage = (

@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Button, Heading, Copy } from 'rendah-pattern-library';
 
 import LatestArticles from '../../../containers/Fragments/Blog/LatestArticles';
@@ -26,7 +26,7 @@ export class Home extends PureComponent {
       type: 'internal',
       url: '/subscribe',
       target: '_top',
-      routerLink: Link,
+      routerLink: Redirect,
     };
 
     return (

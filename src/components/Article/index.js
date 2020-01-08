@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { FacebookProvider, Page } from 'react-facebook';
 import { Image, Heading, Copy, Label } from 'rendah-pattern-library';
 
@@ -45,7 +45,6 @@ export class Article extends PureComponent {
   render() {
     const article = this.props.info;
     const { teamMember } = article;
-    console.log('yo', teamMember);
     let sideBarLatestArticles;
     let sideBarExtraArticles;
 
@@ -157,7 +156,7 @@ export class Article extends PureComponent {
                     />
                   </div>
 
-                  <div className="pb1">
+                  <div className="pb2">
                     <Label
                       /* Options */
                       type={'author'}
@@ -170,7 +169,7 @@ export class Article extends PureComponent {
                         type: 'internal',
                         url: `/team/${teamMember.slug}`,
                         target: '_top',
-                        routerLink: Link,
+                        routerLink: Redirect,
                       }}
                     />
                   </div>
@@ -189,15 +188,17 @@ export class Article extends PureComponent {
                     />
                   </div>
 
-                  <Copy
-                    /* Options */
-                    text={article.description}
-                    color={'black'}
-                    size={'medium'}
-                    truncate={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
+                  <div className="pb2">
+                    <Copy
+                      /* Options */
+                      text={article.description}
+                      color={'black'}
+                      size={'medium'}
+                      truncate={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
 
                   <Sections body={article.body} />
                   <SocialLinks article={article} />
