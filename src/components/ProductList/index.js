@@ -50,7 +50,7 @@ export class ProductList extends PureComponent {
         <Label
           /* Options */
           type={'sale-price'}
-          text={`£${product.specialPrice}}`}
+          text={`£${product.specialPrice}`}
           color={'black'}
           backgroundColor={'white'}
           onClick={null}
@@ -65,7 +65,7 @@ export class ProductList extends PureComponent {
           type={'category'}
           text={product.tag}
           color={'white'}
-          backgroundColor={'grey'}
+          backgroundColor={'black'}
           onClick={null}
           /* Children */
           withLinkProps={null}
