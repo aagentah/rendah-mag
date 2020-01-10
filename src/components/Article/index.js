@@ -174,7 +174,7 @@ export class Article extends PureComponent {
                     />
                   </div>
 
-                  <div className="pt2  pb3">
+                  <div className="pt2  pb3  mb2">
                     <Heading
                       /* Options */
                       htmlEntity={'h1'}

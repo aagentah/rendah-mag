@@ -179,6 +179,7 @@ export class Product extends PureComponent {
           description={product.title}
           img={product.img1}
           price={product.specialPrice || product.price}
+          availability={product.tag !== 'Sold-out'}
         />
 
         <div className="product">
