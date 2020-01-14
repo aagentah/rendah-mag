@@ -1,0 +1,30 @@
+.relative { position: relative; }
+.absolute { position: absolute; }
+.sta { position: static; }
+.fixed { position: fixed; }
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .relative-#{$infix} { position: relative; }
+    .absolute-#{$infix} { position: absolute; }
+    .sta-#{$infix} { position: static; }
+    .fixed-#{$infix} { position: fixed; }
+  }
+}
+
+.top { top: 0; }
+.bottom { bottom: 0; }
+.left { left: 0; }
+.right { right: 0; }
+
+.center-3d {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center {
+  margin-right: auto;
+  margin-left: auto;
+}

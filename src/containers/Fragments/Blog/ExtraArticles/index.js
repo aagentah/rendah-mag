@@ -11,8 +11,8 @@ import ArticleListList from '../../../../components/ArticleList/List';
 
 export class ExtraArticles extends PureComponent {
   componentDidMount() {
-    const limit = this.props.limit;
-    this.props.fetchExtraArticlesIfNeeded(limit);
+    const range = this.props.range;
+    this.props.fetchExtraArticlesIfNeeded(range);
   }
 
   renderExtraArticleList = () => {
@@ -44,8 +44,8 @@ export class ExtraArticles extends PureComponent {
 const connector = connect(
   ({ extraArticles }) => ({ extraArticles }),
   dispatch => ({
-    fetchExtraArticlesIfNeeded: (limit: number) =>
-      dispatch(action.fetchExtraArticlesIfNeeded(limit)),
+    fetchExtraArticlesIfNeeded: (range: Array) =>
+      dispatch(action.fetchExtraArticlesIfNeeded(range)),
   }),
 );
 
@@ -57,7 +57,7 @@ ExtraArticles.propTypes = {
   }),
   fetchExtraArticlesIfNeeded: PropTypes.func,
   type: PropTypes.string,
-  limit: PropTypes.number,
+  range: PropTypes.arrayOf(PropTypes.number),
 };
 
 ExtraArticles.defaultProps = {
@@ -68,7 +68,7 @@ ExtraArticles.defaultProps = {
   },
   fetchExtraArticlesIfNeeded: () => {},
   type: '',
-  limit: 0,
+  range: [],
 };
 
 export default connector(ExtraArticles);

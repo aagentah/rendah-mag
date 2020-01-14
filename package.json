@@ -1,7 +1,7 @@
 {
-  "name": "rm-setup",
+  "name": "rendah-mag",
   "version": "2.5.1",
-  "description": "rm-setup",
+  "description": "Est. 2018 - Creative UK-based outlet, primarily focused on exposing the progressive and innovative side to underground bass music.",
   "main": "index.js",
   "engines": {
     "node": "8.x",
@@ -12,18 +12,13 @@
     "url": ""
   },
   "keywords": [
-    "react",
-    "redux",
-    "react router",
-    "express",
-    "webpack 3",
-    "es6",
-    "flow",
-    "hot reloading",
-    "babel",
-    "performance optimizing"
+    "beats",
+    "halftime",
+    "drum & bass",
+    "music",
+    "magaazine"
   ],
-  "author": "Dan Jones",
+  "author": "Dan Jones (Aagentah)",
   "license": "MIT",
   "bugs": {
     "url": ""
@@ -179,8 +174,8 @@
     "opn": "^5.1.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.8.2",
-    "react-dom": "16.8.6",
     "react": "16.8.6",
+    "react-dom": "16.8.6",
     "react-facebook": "^5.0.3",
     "react-facebook-pixel": "^0.1.3",
     "react-frontload": "1.1.0",
@@ -204,6 +199,7 @@
     "redbox-react": "^1.5.0",
     "redux": "^4.0.4",
     "redux-thunk": "^2.2.0",
+    "rendah-pattern-library": "github:danjonesdev/rendah-pattern-library",
     "serialize-javascript": "^1.4.0",
     "serve-favicon": "2.4.5",
     "styled-components": "^4.3.1",

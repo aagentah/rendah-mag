@@ -1,0 +1,45 @@
+.container-small,
+.container-medium,
+.container-large {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@include breakpoint-up(md) {
+  .container-small,
+  .container-medium,
+  .container-large {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.container-small {
+  max-width: 720px;
+}
+
+.container-medium {
+  max-width: 1200px;
+}
+
+.container-large {
+  max-width: 1500px;
+}
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .container-small-#{$infix} {
+      max-width: 720px;
+    }
+
+    .container-medium-#{$infix} {
+      max-width: 1200px;
+    }
+
+    .container-large-#{$infix} {
+      max-width: 1500px;
+    }
+  }
+}

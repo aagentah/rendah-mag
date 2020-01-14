@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 export class Seo extends PureComponent {
   render() {
     const { title, slug, description, img, price, availability } = this.props;
+    console.log('availability', availability);
 
     return (
       <Helmet>
@@ -35,7 +36,7 @@ export class Seo extends PureComponent {
         <meta property="product:brand" content="Rendah Mag" />
         <meta
           property="product:availability"
-          content={availability === 'soldOut' ? 'out of stock' : 'in stock'}
+          content={availability ? 'in stock' : 'out of stock'}
         />
         <meta property="product:condition" content="new" />
         <meta property="product:price:amount" content={price} />

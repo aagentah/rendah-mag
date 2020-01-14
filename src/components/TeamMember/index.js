@@ -9,15 +9,14 @@ import AnimatedImage from '../Elements/AnimatedImage';
 import Seo from './Seo';
 
 // Export this for unit testing more easily
-export class Article extends PureComponent {
+export class TeamMember extends PureComponent {
   render() {
-    console.log(this.props);
     const { padding } = this.props;
     const teamMember = this.props.info;
     const { socialHandles, alias } = teamMember;
 
     const isArticle = this.props.article;
-    const containerClass = isArticle ? 'w-80-lg' : 'container-small  center';
+    const containerClass = isArticle ? 'w-100' : 'container-small  center';
     const ActiveMemberLink = teamMember.active ? Link : 'div';
     const borderClass = isArticle ? 'teamMember__border  bt  bl-sm  bw2  bc-light-grey  pt4  pt0-md' : null;
 
@@ -119,18 +118,18 @@ export class Article extends PureComponent {
   }
 }
 
-Article.propTypes = {
+TeamMember.propTypes = {
   info: PropTypes.shape(),
   seo: PropTypes.bool,
   article: PropTypes.bool,
   padding: PropTypes.string,
 };
 
-Article.defaultProps = {
+TeamMember.defaultProps = {
   info: {},
   seo: false,
   article: false,
   padding: '',
 };
 
-export default Article;
+export default TeamMember;

@@ -9,6 +9,7 @@ import compose from 'lodash/flowRight';
 import * as action from './action';
 import Loading from '../../../../components/Loading';
 import ArticleListGrid from '../../../../components/ArticleList/Grid';
+import ArticleListList from '../../../../components/ArticleList/List';
 
 
 export class CategoryArticles extends PureComponent {
@@ -24,7 +25,9 @@ export class CategoryArticles extends PureComponent {
       return <Loading type="CategoryArticles" />;
     }
 
-    return <ArticleListGrid {...this.props} type="grid" list={categoryArticles.list} />;
+    if (this.props.type === 'grid') return <ArticleListGrid {...this.props} list={categoryArticles.list} />;
+    if (this.props.type === 'list') return <ArticleListList {...this.props} list={categoryArticles.list} />;
+    return true;
   };
 
   render() {
@@ -71,4 +74,3 @@ export default compose(
   connector,
   frontloadConnect(frontload, { onUpdate: false }),
 )(CategoryArticles);
-

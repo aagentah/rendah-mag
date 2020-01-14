@@ -1,0 +1,16 @@
+@each $class, $value in $type-scale {
+  .#{$class} {
+    font-size: $value;
+  }
+}
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    @each $class, $value in $type-scale {
+      .#{$class}-#{$infix} {
+        font-size: $value;
+      }
+    }
+  }
+}

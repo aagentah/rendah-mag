@@ -1,0 +1,75 @@
+// Imports
+@import url('https://fonts.googleapis.com/css?family=Play:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+// typography
+
+// $system-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+//   'Ubuntu', 'Roboto', 'Noto', 'Segoe Ui', Arial, sans-serif;
+// $helvetica: 'Helvetica Neue', Helvetica, sans-serif;
+// $mono: 'Consolas', 'Menlo', 'Monaco', 'Lucida Console', monospace;
+// $sans: sans-serif;
+// $serif: serif;
+
+$typography-base-size: 16px !default;
+$typography-base-weight: 400 !default;
+
+$t-primary: 'Play', sans-serif !default;
+$t-secondary: 'Roboto', sans-serif !default;
+
+$type-scale: (
+  f-headline: 6rem,
+  f-subheadline: 5rem,
+  f1: 3rem,
+  f2: 2.25rem,
+  f3: 1.5rem,
+  f4: 1.25rem,
+  f5: 1rem,
+  f6: 0.875rem,
+  f7: 0.75rem
+) !default;
+
+// colors
+
+$colors: (
+  black: #000000,
+  dark-grey: #343434,
+  grey: #777777,
+  light-grey: #eeeeee,
+  white: #ffffff,
+  blue: #096dff,
+  red: #ff0000,
+  green: #1c9c08,
+  primary-color: #00c4b4,
+  secondary-color: #ff00cd
+) !default;
+
+$body-color: palette(black) !default;
+$body-background-color: palette(white) !default;
+
+// grid
+
+$container-width: 1280px !default;
+$container-gutter: 24px !default;
+$columns: 24 !default;
+
+$grid-breakpoints: (
+  sm: 650px,
+  md: 950px,
+  lg: 1250px,
+  xl: 1550px
+) !default;
+
+// spacing
+
+$spacings: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 2rem,
+  5: 4rem,
+  6: 8rem,
+  7: 16rem
+) !default;
