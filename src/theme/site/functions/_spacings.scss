@@ -1,5 +1,0 @@
-
-
-@function spacing($spacing) {
-  @return map-get($spacings, $spacing);
-}

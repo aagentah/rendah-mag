@@ -51,7 +51,7 @@ class Paragraph extends Component {
     if (text[0].text) {
       return (
         <React.Fragment>
-          <p className="db  t-body  lh-copy  f6  white  taj  pv3">
+          <p className="db  t-body  lh-copy  f6  dark-grey  taj  pv3">
             {text.map((child, i) => this.renderChildren(child, markDefs, i))}
           </p>
         </React.Fragment>

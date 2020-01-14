@@ -39,7 +39,7 @@ class BulletList extends Component {
     if (text[0].text) {
       return (
         <React.Fragment>
-          <li className="db  t-body  lh-copy  f6  white">
+          <li className="db  t-body  lh-copy  f6  black">
             {text.map((child, i) => this.renderChildren(child, i))}
           </li>
         </React.Fragment>

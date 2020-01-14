@@ -12,10 +12,13 @@ body {
   font-family: $t-secondary;
   font-size: $typography-base-size;
   font-weight: $typography-base-weight;
-  color: $body-color;
-  background-color: $body-background-color;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+.App {
+  color: var(--black);
+  background: var(--white);
 }
 
 h1,
@@ -43,7 +46,8 @@ svg {
   height: auto;
 }
 
-ul, ol {
+ul,
+ol {
   margin: 0;
   padding: 0;
   list-style: none;

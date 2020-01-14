@@ -77,8 +77,8 @@ export class StudioArticle extends PureComponent {
                       /* Options */
                       type={'date'}
                       text={this.date(article.created)}
-                      color={'white'}
-                      backgroundColor={'dark-grey'}
+                      color={'black'}
+                      backgroundColor={'white'}
                       onClick={null}
                       /* Children */
                       withLinkProps={null}
@@ -90,7 +90,7 @@ export class StudioArticle extends PureComponent {
                       /* Options */
                       htmlEntity={'h1'}
                       text={article.title}
-                      color={'white'}
+                      color={'black'}
                       size={'large'}
                       truncate={null}
                       reveal={false}
@@ -103,7 +103,7 @@ export class StudioArticle extends PureComponent {
                     <Copy
                       /* Options */
                       text={article.description}
-                      color={'white'}
+                      color={'black'}
                       size={'medium'}
                       truncate={null}
                       /* Children */
