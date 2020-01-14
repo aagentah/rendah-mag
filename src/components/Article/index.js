@@ -2,8 +2,9 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { FacebookProvider, Page } from 'react-facebook';
+import { Image, Heading, Copy, Label } from 'rendah-pattern-library';
 
 import Sections from './Sections';
 import SocialLinks from './SocialLinks';
@@ -50,11 +51,35 @@ export class Article extends PureComponent {
     if (this.state.sideBarSize >= 1) {
       sideBarLatestArticles = (
         <React.Fragment>
-          <p className="t-title  grey  f5  pl4  pv2">Latest</p>
-          <LatestArticles range={[1, 4]} type="list" />
+          <div className="pl3  pb2">
+            <Heading
+              /* Options */
+              htmlEntity={'p'}
+              text={'Latest'}
+              color={'grey'}
+              size={'small'}
+              truncate={null}
+              reveal={false}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <LatestArticles range={[1, 4]} type="list" padding="ph3  pb3" />
 
-          <div className="pv3  pv0-lg">
-            <p className="t-title  grey  f5  pl4  pv2">Subscribe to Rendah</p>
+          <div className="pl3  pb3">
+            <Heading
+              /* Options */
+              htmlEntity={'p'}
+              text={'Subscribe to Rendah'}
+              color={'grey'}
+              size={'small'}
+              truncate={null}
+              reveal={false}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <div className="pl3  pb4  mw7  relative">
             <SubscribeBanner />
           </div>
         </React.Fragment>
@@ -63,8 +88,20 @@ export class Article extends PureComponent {
     if (this.state.sideBarSize >= 2) {
       sideBarExtraArticles = (
         <React.Fragment>
-          <p className="t-title  grey  f5  pl4  pv2">More</p>
-          <ExtraArticles limit={4} type="list" />
+          <div className="pl3  pb2">
+            <Heading
+              /* Options */
+              htmlEntity={'p'}
+              text={'More'}
+              color={'grey'}
+              size={'small'}
+              truncate={null}
+              reveal={false}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <ExtraArticles range={[1, 4]} type="list" padding="ph3  pb3" />
         </React.Fragment>
       );
     }
@@ -81,67 +118,98 @@ export class Article extends PureComponent {
         />
 
         <div className="article">
-          <figure className="rel  article__hero">
-            <div
-              className="article__hero--background"
-              style={{ backgroundImage: `url(${article.img})` }}
-            />
-            <img className="article__hero--img" alt={article.title} src={article.img} />
-          </figure>
-
-          <section className="container-large  center  ph0  mt5  rel">
+          <section className="container-large-md  mla  mra  rel">
             <div className="flex  flex-wrap">
               <div className="col-24  col-6-lg" />
+
               <article
                 ref={(articleElem) => {
                   this.articleElem = articleElem;
                 }}
-                className="col-18  center  col-12-lg  ph4-lg"
+                className="col-24  mla  mra  col-12-lg  ph4-lg"
               >
-                <div className="article__social  pb4">
-                  <a
-                    className="ph1"
-                    href={`https://www.facebook.com/sharer.php?u=https://www.rendahmag.com/article/${article.slug}`}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <img
-                      src={require('../../containers/App/assets/social/iconmonstr-facebook-5.png')}
-                      alt="facebook"
-                    />
-                  </a>
-                  <a
-                    className="ph1"
-                    href={`https://twitter.com/share?url=https://www.rendahmag.com/article/${article.slug}`}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <img
-                      src={require('../../containers/App/assets/social/iconmonstr-twitter-5.png')}
-                      alt="twitter"
-                    />
-                  </a>
+                <div className="mla  mra  mt3-md  mb4">
+                  <Image
+                    /* Options */
+                    src={article.img}
+                    placeholder={`${article.img}?w=100`}
+                    alt={article.title}
+                    figcaption={null}
+                    height={null}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
                 </div>
 
-                <span className="grey  t8">{this.date(article.created)} | </span>
-                <Link
-                  title={teamMember.slug}
-                  to={`/team/${teamMember.slug}`}
-                  className="no-underline"
-                >
-                  <span className="grey  t8  cp  link">{teamMember.name}</span>
-                </Link>
-                <h1 className="pb3  pt4  t-title">{article.title}</h1>
-                <p className="pv3  t-body  lh-copy  f6  dark-grey  taj">{article.description}</p>
-                <Sections body={article.body} />
-                <SocialLinks article={article} />
-                <TeamMember article padding="pt4  pt5-sm" info={teamMember} />
+                <div className="col-18  col-24-md  mla  mra">
+                  <div className="pb1">
+                    <Label
+                      /* Options */
+                      type={'date'}
+                      text={this.date(article.created)}
+                      color={'black'}
+                      backgroundColor={'white'}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+
+                  <div className="pb2">
+                    <Label
+                      /* Options */
+                      type={'author'}
+                      text={teamMember.name}
+                      color={'black'}
+                      backgroundColor={'white'}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'internal',
+                        url: `/team/${teamMember.slug}`,
+                        target: '_top',
+                        routerLink: Redirect,
+                      }}
+                    />
+                  </div>
+
+                  <div className="pt2  pb3  mb2">
+                    <Heading
+                      /* Options */
+                      htmlEntity={'h1'}
+                      text={article.title}
+                      color={'black'}
+                      size={'large'}
+                      truncate={null}
+                      reveal={false}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+
+                  <div className="pb2">
+                    <Copy
+                      /* Options */
+                      text={article.description}
+                      color={'black'}
+                      size={'medium'}
+                      truncate={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+
+                  <Sections body={article.body} />
+                  <SocialLinks article={article} />
+                  <TeamMember article padding="pt4  pt5-sm" info={teamMember} />
+                </div>
               </article>
 
-              <div className="col-24  col-6-lg  mt4  mt5-lg  pt4  pr4-lg">
+              <div className="col-24  col-6-lg  pl3  pr3  pl0-md  pr4-lg  mt3">
                 {sideBarLatestArticles}
                 {sideBarExtraArticles}
-                <div className="container-medium  tac  dn  db-lg  pt3">
+                <div className="ph3  dn  db-lg">
                   <FacebookProvider appId="154881868603516">
                     <Page href="https://www.facebook.com/rendahmag" />
                   </FacebookProvider>

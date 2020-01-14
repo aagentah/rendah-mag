@@ -1,94 +1,128 @@
 /* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
-import AnimatedImage from '../Elements/AnimatedImage';
+import { Redirect } from 'react-router-dom';
+import { Card, Image, Label, Heading } from 'rendah-pattern-library';
 
 export class ProductList extends PureComponent {
-  renderPrice = (product) => {
-    if (product.specialPrice) {
-      return (
-        <p className="t-body  grey  f6">
-          <span className="strike  o-50  pr1">£{product.price}</span> £{product.specialPrice}
-        </p>
-      );
-    }
-
-    return <p className="t-body  grey  f6">£{product.price}</p>;
-  };
-
-  renderTag = (product) => {
-    switch (product.tag) {
-      case 'None':
-        return false;
-      case 'Sale':
-        return (
-          <span className="dib  t-body  bg-sale  white  f6  tac  pv1  ph2  mr2  br-pill">
-            {product.tag}
-          </span>
-        );
-      case 'Pre-order':
-        return (
-          <span className="dib  t-body  bg-pre-order  white  f6  tac  pv1  ph2  mr2  br-pill">
-            {product.tag}
-          </span>
-        );
-      case 'Sold-out':
-        return (
-          <span className="dib  t-body  bg-dark-grey  white  f6  tac  pv1  ph2  mr2  br-pill">
-            {product.tag}
-          </span>
-        );
-      default:
-        return false;
-    }
-  };
-
   render() {
     const { padding } = this.props;
-    const data = this.props.list;
-    const items = this.props.list.items;
+    const list = this.props.list;
+    const products = this.props.list.items;
+
+    const renderProduct = (product) => {
+      const withLinkProps = {
+        type: 'internal',
+        url: `/product/${product.slug}`,
+        target: '_top',
+        routerLink: Redirect,
+      };
+
+      const cardImage = (
+        <Image
+          /* Options */
+          src={product.img1}
+          placeholder={`${product.img1}?w=100`}
+          alt={product.title}
+          figcaption={null}
+          height={250}
+          onClick={null}
+          /* Children */
+          withLinkProps={withLinkProps}
+        />
+      );
+
+      const priceLabel = (
+        <Label
+          /* Options */
+          type={'price'}
+          text={`£${product.price}`}
+          color={'black'}
+          backgroundColor={'white'}
+          onClick={null}
+          /* Children */
+          withLinkProps={null}
+        />
+      );
+
+      const specialPriceLabel = (product.specialPrice) ? (
+        <Label
+          /* Options */
+          type={'sale-price'}
+          text={`£${product.specialPrice}`}
+          color={'black'}
+          backgroundColor={'white'}
+          onClick={null}
+          /* Children */
+          withLinkProps={null}
+        />
+      ) : null;
+
+      const categoryLabel = (product.tag && product.tag !== 'None') ? (
+        <Label
+          /* Options */
+          type={'category'}
+          text={product.tag}
+          color={'white'}
+          backgroundColor={'black'}
+          onClick={null}
+          /* Children */
+          withLinkProps={null}
+        />
+      ) : null;
+
+      const cardHeading = (
+        <Heading
+          /* Options */
+          htmlEntity={'h2'}
+          text={product.title}
+          color={'black'}
+          size={'small'}
+          truncate={2}
+          reveal={null}
+          /* Children */
+          withLinkProps={withLinkProps}
+        />
+      );
+
+      return (
+        <Card
+          /* Options */
+          type={'block'}
+          onClick={null}
+          /* Children */
+          image={cardImage}
+          labelBlock={[priceLabel, specialPriceLabel, categoryLabel]}
+          title={cardHeading}
+          description={null}
+          button={null}
+        />
+      );
+    };
 
     return (
       <div className={padding}>
         <div className="ph3  pb3">
-          <h1 className="t-title  black  bold  f4  pb2  mb1  pt2  pt2-md">{data.title}</h1>
-          {data.description && <p className="t-body  grey  f6">{data.description}</p>}
+          <Heading
+            /* Options */
+            htmlEntity={'h1'}
+            text={list.title}
+            color={'black'}
+            size={'medium'}
+            truncate={null}
+            reveal
+            /* Children */
+            withLinkProps={null}
+          />
+          {list.description && <p className="t-body  grey  f6">{list.description}</p>}
         </div>
         <div className="flex  flex-wrap">
-          {items.map(product => (
+          {products.map(product => (
             <div key={product.title} className="col-24  col-8-md  pa3">
-              <article>
-                <figure>
-                  <Link
-                    className="db  shadow2"
-                    title={product.slug}
-                    to={`/product/${product.slug}`}
-                  >
-                    <AnimatedImage
-                      lazy
-                      src={product.img1}
-                      alt={product.title}
-                      styles="fade-in-zoom-in  w-100"
-                    />
-                  </Link>
-                </figure>
-
-                <div>
-                  <div className="dib  pv2  mt2  tal">{this.renderTag(product)}</div>
-                  <div className="dib  pv2  mt2  tal">{this.renderPrice(product)}</div>
-                </div>
-
-                <div>
-                  <Link to={`/product/${product.slug}`} className="t-body  db  link  pb2">
-                    <p className="t-title  black  f5  cp  over-hidden  link  grid-card__title">
-                      {product.title}
-                    </p>
-                  </Link>
-                </div>
-              </article>
+              <product>
+                {renderProduct(product)}
+              </product>
             </div>
           ))}
         </div>

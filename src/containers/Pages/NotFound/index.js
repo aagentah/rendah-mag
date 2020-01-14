@@ -2,10 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
-
-import Hero from '../../../components/Hero';
-import ExtraArticles from '../../../containers/Fragments/Blog/ExtraArticles';
-import CategoryGrid from '../../../components/CategoryGrid';
+import { Heading, Copy } from 'rendah-pattern-library';
 
 export class NotFound extends PureComponent {
   componentDidMount() {
@@ -28,16 +25,28 @@ export class NotFound extends PureComponent {
           <link rel="canonical" href={canonical} />
         </Helmet>
 
-        <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb4" />
-        <div className="container-medium  center  pt4  pb4">
-          <div className="flex  flex-wrap">
-            <div className="col-24">
-              <p className="t-body  dark-grey  f6  tac  mw6  db  center  pb2">{desc}</p>
-            </div>
+        <div className="container-medium  mla  mra  pt4  mv3">
+          <div className="flex  pb2  ph3">
+            <Heading
+              /* Options */
+              htmlEntity={'h1'}
+              text={title}
+              color={'black'}
+              size={'x-large'}
+              truncate={null}
+              reveal
+            />
+          </div>
+          <div className="flex  pb2  ph3">
+            <Copy
+              /* Options */
+              text={desc}
+              color={'black'}
+              size={'medium'}
+              truncate={null}
+            />
           </div>
         </div>
-        <ExtraArticles type="grid" limit={4} padding="pt3" />
-        <CategoryGrid padding="pt4" />
       </main>
     );
   }

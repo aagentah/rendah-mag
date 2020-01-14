@@ -2,8 +2,8 @@
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
+import { Heading, Copy } from 'rendah-pattern-library';
 
-import Hero from '../../../components/Hero';
 import TeamFragment from '../../../containers/Fragments/Blog/Team';
 
 export class Team extends PureComponent {
@@ -27,7 +27,29 @@ export class Team extends PureComponent {
           <link rel="canonical" href={canonical} />
         </Helmet>
 
-        <Hero type="h1" title={title} styles="t-title  ttu  f3  bold  dark-grey" padding="pb3" />
+        <div className="container-medium  mla  mra  pt4  mv3">
+          <div className="flex  pb2  ph3">
+            <Heading
+              /* Options */
+              htmlEntity={'h1'}
+              text={title}
+              color={'black'}
+              size={'x-large'}
+              truncate={null}
+              reveal
+            />
+          </div>
+          <div className="flex  pb2  ph3">
+            <Copy
+              /* Options */
+              text={desc}
+              color={'black'}
+              size={'medium'}
+              truncate={1}
+            />
+          </div>
+        </div>
+
         <TeamFragment padding="pv4" />
       </main>
     );

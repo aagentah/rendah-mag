@@ -1,0 +1,8 @@
+@function spacing($index) {
+  @if map-has-key($spacings, $index) {
+    @return map-get($spacings, $index);
+  }
+
+  @warn "Unknown index '#{$index}' in map $spacings.";
+  @return null;
+}
