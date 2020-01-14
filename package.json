@@ -210,7 +210,7 @@
     "autoprefixer": "^9.6.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-eslint": "8.0.1",
+    "babel-eslint": "9.0.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-istanbul": "^5.2.0",
     "babel-plugin-transform-remove-console": "^6.8.5",
