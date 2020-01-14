@@ -9,6 +9,7 @@ import compose from 'lodash/flowRight';
 import * as action from './action';
 import Loading from '../../../../components/Loading';
 import ArticleListGrid from '../../../../components/ArticleList/Grid';
+import ArticleListList from '../../../../components/ArticleList/List';
 
 export class SearchArticles extends PureComponent {
   renderSearchArticleList = () => {
@@ -23,7 +24,9 @@ export class SearchArticles extends PureComponent {
       return <Loading type="SearchArticles" />;
     }
 
-    return <ArticleListGrid {...this.props} type="grid" list={searchArticles.list} />;
+    if (this.props.type === 'grid') return <ArticleListGrid {...this.props} list={searchArticles.list} />;
+    if (this.props.type === 'list') return <ArticleListList {...this.props} list={searchArticles.list} />;
+    return true;
   };
 
   render() {
@@ -38,8 +41,8 @@ export class SearchArticles extends PureComponent {
 const connector = connect(
   ({ searchArticles }) => ({ searchArticles }),
   dispatch => ({
-    fetchSearchArticlesIfNeeded: (query: string) =>
-      dispatch(action.fetchSearchArticlesIfNeeded(query)),
+    fetchSearchArticlesIfNeeded: (query: string, range: Array) =>
+      dispatch(action.fetchSearchArticlesIfNeeded(query, range)),
   }),
 );
 
@@ -49,7 +52,9 @@ SearchArticles.propTypes = {
     err: PropTypes.any,
     list: PropTypes.arrayOf(PropTypes.object),
   }),
+  type: PropTypes.string,
   match: PropTypes.shape(),
+  range: PropTypes.arrayOf(PropTypes.number),
 };
 
 SearchArticles.defaultProps = {
@@ -59,11 +64,13 @@ SearchArticles.defaultProps = {
     list: [{}],
   },
   match: [],
+  type: '',
+  range: [],
 };
 
 const frontload = props =>
   Promise.all([
-    props.fetchSearchArticlesIfNeeded(props.match.params.query),
+    props.fetchSearchArticlesIfNeeded(props.match, props.range),
   ]);
 
 export default compose(

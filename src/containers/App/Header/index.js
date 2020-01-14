@@ -101,30 +101,30 @@ export class Header extends PureComponent {
     ];
 
     const navMobile = classNames({
-      'fix  bg-white  z8  header__mobile__nav': true,
+      'fixed  bg-white  z8  header__mobile__nav': true,
       'is-active': this.state.navIsActive,
     });
 
     const searchMobile = classNames({
-      'fix  bg-white  z8  header__mobile__search': true,
+      'fixed  bg-white  z8  header__mobile__search': true,
       'is-active': this.state.searchIsActive,
     });
 
     const hamburger = classNames({
-      'abs  cp  z9  header__mobile__nav__hamburger': true,
+      'absolute  cp  z9  header__mobile__nav__hamburger': true,
       'is-active': this.state.navIsActive || this.state.searchIsActive,
     });
 
     return (
       <React.Fragment>
         {/* Desktop */}
-        <header className="fix  w-100  shadow1  z9  bg-white  dn  db-lg  header__desktop">
+        <header className="fixed  w-100  shadow1  z9  bg-white  dn  db-lg  header__desktop">
           <nav className="container-large  center  rel" role="banner">
-            <Link className="link  abs  header__desktop__logo" title="rendah" to={'/'}>
+            <Link className="link  absolute  header__desktop__logo" title="rendah" to={'/'}>
               <img className="pt1  mt1" width="38" src={Logo} alt="Logo" role="presentation" />
             </Link>
 
-            <ul className="tac  abs  center  header__desktop__nav__list">
+            <ul className="tac  absolute  center  header__desktop__nav__list">
               {links.map((link) => {
                 return (
                   <li key={link.text} className="dib">
@@ -151,11 +151,11 @@ export class Header extends PureComponent {
             </ul>
 
             {this.state.isStore ? (
-              <div className="abs  header__desktop__cart">
+              <div className="absolute  header__desktop__cart">
                 <CheckoutButton />
               </div>
             ) : (
-              <div className="abs  w4  header__desktop__search">
+              <div className="absolute  w4  header__desktop__search">
                 <SearchInput textAlign="inherit" />
               </div>
             )}
@@ -163,7 +163,7 @@ export class Header extends PureComponent {
         </header>
 
         {/* Mobile */}
-        <header className="fix  w-100  shadow1  z9  bg-white  db  dn-lg  header__mobile">
+        <header className="fixed  w-100  shadow1  z9  bg-white  db  dn-lg  header__mobile">
           <div onClick={this.mobileNavToggle} className={hamburger}>
             <span className="bg-black" />
             <span className="bg-black" />
@@ -171,7 +171,7 @@ export class Header extends PureComponent {
           </div>
 
           <Link
-            className="link  abs  w3  center  center  header__mobile__logo"
+            className="link  absolute  w3  center  center  header__mobile__logo"
             title="rendah"
             to={'/'}
           >
@@ -185,7 +185,7 @@ export class Header extends PureComponent {
           </Link>
 
           <nav className={navMobile} role="banner">
-            <ul className="tac  fix  center  header__mobile__nav__list">
+            <ul className="tac  fixed  center  header__mobile__nav__list">
               {links.map((link) => {
                 return (
                   <li key={link.text} className="db">
@@ -214,20 +214,20 @@ export class Header extends PureComponent {
           </nav>
 
           {this.state.isStore ? (
-            <div className="abs  header__mobile__cart">
+            <div className="absolute  header__mobile__cart">
               <CheckoutButton />
             </div>
           ) : (
             <React.Fragment>
               <div className={searchMobile}>
-                <div className="abs  w-80  center  header__mobile__search-input">
+                <div className="absolute  w-80  center  header__mobile__search-input">
                   <SearchInput onSearch={this.mobileSearchToggle} />
                 </div>
               </div>
 
               <div
                 onClick={this.mobileSearchToggle}
-                className="abs  cp  header__mobile__search-icon"
+                className="absolute  cp  header__mobile__search-icon"
               >
                 <Search />
               </div>

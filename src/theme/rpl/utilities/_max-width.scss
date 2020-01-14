@@ -1,0 +1,49 @@
+$max-widths: (
+  0: none,
+  1: 1rem,
+  2: 2rem,
+  3: 4rem,
+  4: 8rem,
+  5: 16rem,
+  6: 32rem,
+  7: 48rem,
+  8: 64rem,
+  9: 96rem
+);
+
+@each $i, $value in $max-widths {
+  .mw#{$i} {
+    max-width: $value;
+  }
+}
+
+@for $i from 1 through 10 {
+  .mw-#{$i}0 {
+    max-width: #{$i}0%;
+  }
+}
+
+.mw-none {
+  max-width: none;
+}
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    @each $i, $value in $max-widths {
+      .mw#{$i}-#{$infix} {
+        max-width: $value;
+      }
+    }
+
+    @for $i from 1 through 10 {
+      .mw-#{$i}0-#{$infix} {
+        max-width: #{$i}0%;
+      }
+    }
+
+    .mw-none-#{$infix} {
+      max-width: none;
+    }
+  }
+}

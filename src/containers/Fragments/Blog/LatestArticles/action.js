@@ -37,5 +37,5 @@ export const fetchLatestArticles = (range: Array) =>
 
 
 /* istanbul ignore next */
-export const fetchLatestArticlesIfNeeded = (limit: number) => dispatch =>
-  dispatch(fetchLatestArticles(limit));
+export const fetchLatestArticlesIfNeeded = (range: Array) => dispatch =>
+  dispatch(fetchLatestArticles(range));
