@@ -200,7 +200,7 @@ export class Header extends PureComponent {
             <img
               className="pt1  mt1  center"
               width="38"
-              src={Logo}
+              src={LogoStudio}
               alt="Logo"
               role="presentation"
             />
