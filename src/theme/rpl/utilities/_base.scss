@@ -71,3 +71,7 @@ button {
 address {
   font-style: normal;
 }
+
+::placeholder {
+  color: var(--dark-grey);
+}
