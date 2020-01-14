@@ -200,7 +200,7 @@
     "redux": "^4.0.4",
     "redux-thunk": "^2.2.0",
     "rendah-pattern-library": "github:danjonesdev/rendah-pattern-library",
-    "serialize-javascript": "^1.4.0",
+    "serialize-javascript": "^2.1.1",
     "serve-favicon": "2.4.5",
     "styled-components": "^4.3.1",
     "webpack-isomorphic-tools": "^3.0.5",
