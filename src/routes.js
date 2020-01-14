@@ -8,6 +8,7 @@ import TeamMemberPage from './containers/Pages/TeamMember';
 import NotFoundPage from './containers/Pages/NotFound';
 import StorePage from './containers/Pages/Store';
 import ProductPage from './containers/Pages/Product';
+import StudioPage from './containers/Pages/Studio';
 import TeamPage from './containers/Pages/Team';
 import WatchTowerPage from './containers/Pages/WatchTower';
 // import MixesPage from './containers/Pages/Mixes';
@@ -56,6 +57,11 @@ export default [
   {
     path: '/product/:id',
     component: ProductPage,
+  },
+  {
+    path: '/studio/',
+    exact: true,
+    component: StudioPage,
   },
   {
     path: '/watch-tower',
