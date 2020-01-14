@@ -7,6 +7,7 @@ import queryString from 'query-string';
 import { createBrowserHistory } from 'history';
 import ReactPixel from 'react-facebook-pixel';
 import BlockContent from '@sanity/block-content-to-react';
+import { Label, Heading } from 'rendah-pattern-library';
 
 import Seo from './Seo';
 import AnimatedImage from '../Elements/AnimatedImage';
@@ -110,20 +111,49 @@ export class Product extends PureComponent {
   };
 
   renderTag = (product) => {
+    console.log('product.tag', product.tag);
+
     switch (product.tag) {
       case 'None':
         return false;
       case 'Sale':
         return (
-          <span className="dib  t-body  bg-sale  white  f6  tac  pv1  ph2  mr2  br-pill">
-            {product.tag}
-          </span>
+          <Label
+            /* Options */
+            type={'category'}
+            text={product.tag}
+            color={'black'}
+            backgroundColor={null}
+            onClick={null}
+            /* Children */
+            withLinkProps={null}
+          />
         );
       case 'Pre-order':
         return (
-          <span className="dib  t-body  bg-pre-order  white  f6  tac  pv1  ph2  mr2  br-pill">
-            {product.tag}
-          </span>
+          <Label
+            /* Options */
+            type={'category'}
+            text={product.tag}
+            color={'black'}
+            backgroundColor={null}
+            onClick={null}
+            /* Children */
+            withLinkProps={null}
+          />
+        );
+      case 'Sold-out':
+        return (
+          <Label
+            /* Options */
+            type={'category'}
+            text={product.tag}
+            color={'white'}
+            backgroundColor={'black'}
+            onClick={null}
+            /* Children */
+            withLinkProps={null}
+          />
         );
       default:
         return false;
@@ -149,6 +179,7 @@ export class Product extends PureComponent {
           description={product.title}
           img={product.img1}
           price={product.specialPrice || product.price}
+          availability={product.tag !== 'Sold-out'}
         />
 
         <div className="product">
@@ -172,7 +203,18 @@ export class Product extends PureComponent {
             <div className="col-24  col-12-md  ph2  ph4-md">
               <div className="dib  pv2  mt2  tal">{this.renderTag(product)}</div>
 
-              <p className="t-title  grey  f4  bold  pb2">{product.title}</p>
+              <Heading
+                /* Options */
+                htmlEntity={'h1'}
+                text={product.title}
+                color={'black'}
+                size={'medium'}
+                truncate={null}
+                reveal
+                /* Children */
+                withLinkProps={null}
+              />
+
               {this.renderPrice(product)}
 
               <div className="product__description  t-body  lh-copy  grey  f5  pb4">

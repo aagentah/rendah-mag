@@ -1,0 +1,18 @@
+.teamMember__firstRow {
+  &::before {
+    content: '';
+    width: 100%;
+    height: 10px;
+    top: 55px;
+    @extend .absolute;
+    @extend .bb;
+    @extend .bc-light-grey;
+    @extend .bw2;
+  }
+}
+
+.teamMember__border {
+  @include breakpoint-up(sm) {
+    border-top: 0;
+  }
+}

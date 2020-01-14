@@ -8,21 +8,17 @@ import Item from './Item';
 
 export class TeamMemberList extends PureComponent {
   render() {
-    const { list, padding } = this.props;
+    const { list } = this.props;
 
     return (
-      <div className={`container-medium  center  rel  ${padding}`}>
-        <div className="flex  flex-wrap  pb0  pb4-sm  teamList__topRow">
+      <div className="container-medium  mla  mra">
+        <div className="flex  flex-wrap">
           {filter(list, { order: 1 }).map(teamMember => (
             <Item key={teamMember.name} teamMember={teamMember} />
           ))}
-        </div>
-        <div className="flex  flex-wrap  pb0  pb4-sm">
           {filter(list, { order: 2 }).map(teamMember => (
             <Item key={teamMember.name} teamMember={teamMember} />
           ))}
-        </div>
-        <div className="flex  flex-wrap">
           {filter(list, { order: 3 }).map(teamMember => (
             <Item key={teamMember.name} teamMember={teamMember} />
           ))}
@@ -36,14 +32,12 @@ TeamMemberList.propTypes = {
   list: PropTypes.shape({
     order: PropTypes.number,
   }),
-  padding: PropTypes.string,
 };
 
 TeamMemberList.defaultProps = {
   list: {
     order: 3,
   },
-  padding: '',
 };
 
 export default TeamMemberList;

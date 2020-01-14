@@ -2,10 +2,12 @@
 
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { Button, Heading, Copy } from 'rendah-pattern-library';
 
 import LatestArticles from '../../../containers/Fragments/Blog/LatestArticles';
 import CategoryGrid from '../../../components/CategoryGrid';
+import ExtraArticles from '../../../containers/Fragments/Blog/ExtraArticles';
 
 export class Home extends PureComponent {
   componentDidMount() {
@@ -20,6 +22,13 @@ export class Home extends PureComponent {
     const desc = 'Beats, Halftime & Future Bass Magazine focused on the latest news & releases.';
     const canonical = 'https://www.rendahmag.com/';
 
+    const subscribeWithLinkProps = {
+      type: 'internal',
+      url: '/subscribe',
+      target: '_top',
+      routerLink: Redirect,
+    };
+
     return (
       <main className="page-fade-in">
         <Helmet>
@@ -30,47 +39,72 @@ export class Home extends PureComponent {
 
         <h1 className="dn">Home</h1>
 
-        <div className="container-medium  center  pt4">
-          <div className="flex  flex-wrap">
-            <div className="w-100  pb2  pb0-md">
-              <Link title="Rendah Mag Issue: 001" to="/product/rendah-mag-issue-001" className="w-100  link">
-                <img className="w-100  shadow2  br2  dn  db-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569520981/shop/subscribe-banner-desktop_2.png" alt="Subscribe Banner" />
-              </Link>
-              <Link title="Rendah Mag Issue: 001" to="/product/rendah-mag-issue-001" className="w-100  link">
-                <img className="w-100  shadow2  br2  db  dn-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569520983/shop/subscribe-banner-mobile_1.png" alt="Subscribe Banner" />
-              </Link>
-            </div>
+        <div className="container-medium  center  mt2  pt4  pb4">
+          <div className="col-24  tac">
+            <Button
+              /* Options */
+              type={'primary'}
+              size={'small'}
+              text={'Subscribe to Rendah Mag'}
+              color={'black'}
+              fluid={false}
+              icon={null}
+              iconFloat={null}
+              inverted={false}
+              loading={false}
+              disabled={false}
+              onClick={null}
+              /* Children */
+              withLinkProps={subscribeWithLinkProps}
+            />
           </div>
         </div>
 
-        {/*
-          <div className="container-medium  center  pt3  pt4-md">
-            <div className="flex  flex-wrap">
-              <div className="w-100  pb3  pb4-md">
-                <Link title="Subscribe" to="/product/rendah-mag-issue-001" className="w-100  link">
-                  <img className="w-100  shadow2  dn  db-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569520981/shop/subscribe-banner-desktop_2.png" alt="Subscribe Banner" />
-                </Link>
-                <Link title="Subscribe" to="/product/rendah-mag-issue-001" className="w-100  link">
-                  <img className="w-100  shadow2  db  dn-md" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1569520983/shop/subscribe-banner-mobile_1.png" alt="Subscribe Banner" />
-                </Link>
+        <div className="container-medium  center  pv2">
+          <div className="flex  flex-wrap">
+            <LatestArticles range={[1, 16]} type="grid" padding="ph3  pb2" />
+          </div>
+        </div>
+
+        <div className="bg-dark-grey  mv4  mv5-md  pt4  pb4  pb5-md">
+          <div className="container-medium  mla  mra  mv3">
+            <div className="flex  pb2">
+              <Heading
+                /* Options */
+                htmlEntity={'h4'}
+                text={'Time capsule'}
+                color={'white'}
+                size={'x-large'}
+                truncate={null}
+                reveal
+              />
+            </div>
+            <div className="flex  pb4">
+              <div className="col-24  col-14-md">
+                <Copy
+                  /* Options */
+                  text={'Some throwback features, still relevant as ever.'}
+                  color={'white'}
+                  size={'medium'}
+                  truncate={null}
+                />
               </div>
             </div>
           </div>
-        */}
 
-        <div className="container-medium  center  mt2  pt4  pb4">
-          <div className="col-24  tac">
-            <Link
-              className="btn  btn--primary  ba  bw1  bc-black  black  white-hover  bg-white  bg-black-hover  center  dib"
-              title="Subscribe"
-              to="/subscribe"
-            >
-              Subscribe to our Newsletter
-            </Link>
+          <div className="container-medium  center  pv2">
+            <div className="flex  flex-wrap">
+              <ExtraArticles
+                type="list"
+                padding="ph3  pb2"
+                range={[1, 10]}
+                column="col-24  col-12-md"
+                invert
+              />
+            </div>
           </div>
         </div>
 
-        <LatestArticles range={[1, 24]} type="grid" padding="pt2  pb4" />
         <CategoryGrid padding="" />
       </main>
     );

@@ -9,15 +9,14 @@ export const SEARCHARTICLES_SUCCESS = 'SEARCHARTICLES_SUCCESS';
 //   '/api/search' : 'https://rendah-mag.herokuapp.com/api/search';
 
 
-export const fetchSearchArticles = (id: string) => (dispatch) => {
+export const fetchSearchArticles = (id: string, range: Array) => (dispatch) => {
   dispatch({ type: SEARCHARTICLES_REQUESTING });
-
   const params = {
-    limit: '0..23',
     id,
+    range: `${range[0] - 1}..${range[1] - 1}`,
   };
 
-  const query = `*[_type == "post" && title match $id || _type == "post" && description match $id] | order(publishedAt desc) [${params.limit}] {
+  const query = `*[_type == "post" && title match $id || _type == "post" && description match $id] | order(publishedAt desc) [${params.range}] {
     title,
     description,
     "slug": slug.current,
@@ -36,5 +35,5 @@ export const fetchSearchArticles = (id: string) => (dispatch) => {
 };
 
 /* istanbul ignore next */
-export const fetchSearchArticlesIfNeeded = (id: string) => dispatch =>
-  dispatch(fetchSearchArticles(id));
+export const fetchSearchArticlesIfNeeded = (id: string, range: Array) => dispatch =>
+  dispatch(fetchSearchArticles(id, range));

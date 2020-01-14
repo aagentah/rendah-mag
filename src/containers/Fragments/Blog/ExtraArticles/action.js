@@ -8,15 +8,15 @@ export const EXTRAARTICLES_SUCCESS = 'EXTRAARTICLES_SUCCESS';
 // export const API_URL = (__DEV__) ?
 //   '/api/extra' : 'https://rendah-mag.herokuapp.com/api/extra';
 
-export const fetchExtraArticles = (limit: number) =>
+export const fetchExtraArticles = (range: Array) =>
   (dispatch) => {
     dispatch({ type: EXTRAARTICLES_REQUESTING });
 
     const params = {
-      limit: `0..${(limit - 1)}`,
+      range: `${range[0] - 1}..${range[1] - 1}`,
     };
     const query =
-    `*[_type == "post"] [${params.limit}] | order(publishedAt desc) {
+    `*[_type == "post"] [${params.range}] | order(publishedAt desc) {
       title,
       description,
       "slug": slug.current,
@@ -35,5 +35,5 @@ export const fetchExtraArticles = (limit: number) =>
   };
 
 /* istanbul ignore next */
-export const fetchExtraArticlesIfNeeded = (limit: number) => dispatch =>
-  dispatch(fetchExtraArticles(limit));
+export const fetchExtraArticlesIfNeeded = (range: Array) => dispatch =>
+  dispatch(fetchExtraArticles(range));

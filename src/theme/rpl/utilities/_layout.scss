@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+  max-width: $container-width;
+  padding-left: $container-gutter;
+  padding-right: $container-gutter;
+}
+
+.container--no-gutter {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.container--fluid {
+  max-width: none;
+}
+
+.breakout {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
