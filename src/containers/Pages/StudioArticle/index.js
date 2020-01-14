@@ -15,7 +15,7 @@ export class StudioArticle extends PureComponent {
 
   render() {
     return (
-      <main className="page-fade-in  bg-dark-grey">
+      <main className="page-fade-in">
         <ArticleInfo match={this.props.match} />
       </main>
     );

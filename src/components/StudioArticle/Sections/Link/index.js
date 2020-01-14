@@ -9,7 +9,7 @@ export class Link extends PureComponent {
   render() {
     return (
       <div className="pv3  tal">
-        <a className="btn  btn--primary  bg-black  bg-white-hover  ba  bw1  bc-white  white  black-hover  tac" href={this.props.url} rel="noopener noreferrer" target="_blank">
+        <a className="btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac" href={this.props.url} rel="noopener noreferrer" target="_blank">
           {this.props.text}
         </a>
       </div>

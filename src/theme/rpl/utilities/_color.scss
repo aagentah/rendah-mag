@@ -1,15 +1,18 @@
 @each $color, $hex in $colors {
   .#{$color} {
-    color: $hex;
+    color: var(--#{$color});
+    transition: background-color ease-in 0.3s;
   }
 
   .bg-#{$color} {
-    background-color: $hex;
+    background-color: var(--#{$color});
+    transition: background-color ease-in 0.3s;
   }
 }
 
 .bg-transparent {
   background-color: transparent;
+  transition: background-color ease-in 0.3s;
 }
 
 @each $modifier, $breakpoint in $grid-breakpoints {
@@ -17,16 +20,19 @@
   @include breakpoint-up($modifier, $grid-breakpoints) {
     @each $color, $hex in $colors {
       .#{$color}-#{$infix} {
-        color: $hex;
+        color: var(--#{$color});
+        transition: background-color ease-in 0.3s;
       }
 
       .bg-#{$color}-#{$infix} {
-        background-color: $hex;
+        background-color: var(--#{$color});
+        transition: background-color ease-in 0.3s;
       }
     }
 
     .bg-transparent-#{$infix} {
       background-color: transparent;
+      transition: background-color ease-in 0.3s;
     }
   }
 }
