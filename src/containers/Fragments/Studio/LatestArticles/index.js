@@ -8,47 +8,44 @@ import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../../components/Loading';
-import ArticleListGrid from '../../../../components/ArticleList/Grid';
-import ArticleListList from '../../../../components/ArticleList/List';
+import ArticleListGrid from '../../../../components/StudioArticleList/Grid';
 
 
-export class LatestArticles extends PureComponent {
-  renderLatestArticleList = () => {
-    const { latestArticles } = this.props;
+export class LatestStudioArticles extends PureComponent {
+  renderLatestStudioArticleList = () => {
+    const { latestStudioArticles } = this.props;
 
     if (
-      !latestArticles.readyStatus ||
-      latestArticles.readyStatus === action.LATESTARTICLES_INVALID ||
-      latestArticles.readyStatus === action.LATESTARTICLES_REQUESTING ||
-      latestArticles.readyStatus === action.LATESTARTICLES_FAILURE
+      !latestStudioArticles.readyStatus ||
+      latestStudioArticles.readyStatus === action.LATESTSTUDIOARTICLES_INVALID ||
+      latestStudioArticles.readyStatus === action.LATESTSTUDIOARTICLES_REQUESTING ||
+      latestStudioArticles.readyStatus === action.LATESTSTUDIOARTICLES_FAILURE
     ) {
-      return <Loading type="LatestArticles" />;
+      return <Loading type="LatestStudioArticles" />;
     }
 
-    if (this.props.type === 'grid') return <ArticleListGrid {...this.props} list={latestArticles.list} />;
-    if (this.props.type === 'list') return <ArticleListList {...this.props} list={latestArticles.list} />;
-    return true;
+    return <ArticleListGrid {...this.props} list={latestStudioArticles.list} />;
   };
 
   render() {
     return (
       <React.Fragment>
-        {this.renderLatestArticleList()}
+        {this.renderLatestStudioArticleList()}
       </React.Fragment>
     );
   }
 }
 
 const connector = connect(
-  ({ latestArticles }) => ({ latestArticles }),
+  ({ latestStudioArticles }) => ({ latestStudioArticles }),
   dispatch => ({
-    fetchLatestArticlesIfNeeded: (range: Array) =>
-      dispatch(action.fetchLatestArticlesIfNeeded(range)),
+    fetchLatestStudioArticlesIfNeeded: (range: Array) =>
+      dispatch(action.fetchLatestStudioArticlesIfNeeded(range)),
   }),
 );
 
-LatestArticles.propTypes = {
-  latestArticles: PropTypes.shape({
+LatestStudioArticles.propTypes = {
+  latestStudioArticles: PropTypes.shape({
     readyStatus: PropTypes.string,
     err: PropTypes.any,
     list: PropTypes.arrayOf(PropTypes.object),
@@ -57,23 +54,23 @@ LatestArticles.propTypes = {
   range: PropTypes.arrayOf(PropTypes.number),
 };
 
-LatestArticles.defaultProps = {
-  latestArticles: {
+LatestStudioArticles.defaultProps = {
+  latestStudioArticles: {
     readyStatus: '',
     err: '',
     list: [{}],
   },
-  fetchLatestArticlesIfNeeded: () => {},
+  fetchLatestStudioArticlesIfNeeded: () => {},
   type: '',
   range: [],
 };
 
 const frontload = props =>
   Promise.all([
-    props.fetchLatestArticlesIfNeeded(props.range),
+    props.fetchLatestStudioArticlesIfNeeded(props.range),
   ]);
 
 export default compose(
   connector,
   frontloadConnect(frontload, { onUpdate: false }),
-)(LatestArticles);
+)(LatestStudioArticles);
