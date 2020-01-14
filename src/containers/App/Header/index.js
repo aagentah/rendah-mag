@@ -71,17 +71,21 @@ export class Header extends PureComponent {
         text: 'Team',
       },
       {
-        to: '/category/news',
-        text: 'News',
+        to: '/studio',
+        text: 'Studio',
       },
-      {
-        to: '/category/interviews',
-        text: 'Interviews',
-      },
-      {
-        to: '/category/insights',
-        text: 'Insights',
-      },
+      // {
+      //   to: '/category/news',
+      //   text: 'News',
+      // },
+      // {
+      //   to: '/category/interviews',
+      //   text: 'Interviews',
+      // },
+      // {
+      //   to: '/category/insights',
+      //   text: 'Insights',
+      // },
       // {
       //   to: '/mixes',
       //   text: 'Mixes',
