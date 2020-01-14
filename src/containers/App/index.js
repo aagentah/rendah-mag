@@ -33,13 +33,11 @@ const App = (props: PassedProps): Element<'div'> => {
     />
   );
 
-  console.log('window.location.href', window.location.href);
-
   return (
     <Frontload noServerRender={props.noServerRender} >
       <React.Fragment>
         <Helmet {...config.app} />
-        <div className="App" data-theme={window.location.href.includes('studio') ? 'dark' : 'light'}>
+        <div className="App" data-theme={props.history && props.history.location.pathname.includes('studio') ? 'dark' : 'light'}>
           <Header />
           <Switch>{routes.map(route => routeWithSubRoutes(route))}</Switch>
           <Footer />

@@ -31,10 +31,10 @@ const renderApp = () =>
     <AppContainer errorReporter={({ error }) => <RedBox error={error} />}>
       <Provider store={store}>
         <Frontload noServerRender={window.__noServerRender__}>
-          <ConnectedRouter onUpdate={() => window.scrollTo(0, 0)} history={history}>
+          <ConnectedRouter onUpdate={() => window.scrollTo(0, 0)} history={history} window={window}>
             <Route
               component={withTracker(() => (
-                <App noServerRender={noServerRender} />
+                <App noServerRender={noServerRender} history={history} store={store} />
               ))}
             />
           </ConnectedRouter>
