@@ -10,6 +10,7 @@
     width: 30px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    fill: var(--black);
 
     &:active,
     &:hover {}
@@ -37,5 +38,11 @@
 
   svg {
     display: inline;
+  }
+}
+
+[data-svg="Search"] {
+  svg {
+    fill: var(--black);
   }
 }
