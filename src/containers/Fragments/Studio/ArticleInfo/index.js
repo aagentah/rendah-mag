@@ -9,7 +9,7 @@ import compose from 'lodash/flowRight';
 
 import * as action from './action';
 import Loading from '../../../../components/Loading';
-import Article from '../../../../components/Article';
+import Article from '../../../../components/StudioArticle';
 
 export class ArticleInfo extends PureComponent {
   renderArticle = () => {

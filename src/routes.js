@@ -9,6 +9,7 @@ import NotFoundPage from './containers/Pages/NotFound';
 import StorePage from './containers/Pages/Store';
 import ProductPage from './containers/Pages/Product';
 import StudioPage from './containers/Pages/Studio';
+import StudioArticlePage from './containers/Pages/StudioArticle';
 import TeamPage from './containers/Pages/Team';
 import WatchTowerPage from './containers/Pages/WatchTower';
 // import MixesPage from './containers/Pages/Mixes';
@@ -62,6 +63,10 @@ export default [
     path: '/studio/',
     exact: true,
     component: StudioPage,
+  },
+  {
+    path: '/studio/:id',
+    component: StudioArticlePage,
   },
   {
     path: '/watch-tower',

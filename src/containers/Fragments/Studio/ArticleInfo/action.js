@@ -1,4 +1,4 @@
-import sanity from '../../../../utils/sanity';
+import sanity from '../../../../utils/sanity-studio';
 
 export const ARTICLE_REQUESTING = 'ARTICLE_REQUESTING';
 export const ARTICLE_FAILURE = 'ARTICLE_FAILURE';
@@ -22,22 +22,12 @@ export const fetchArticle = (articleId: string) =>
       description,
       "slug": slug.current,
       "img": image.asset->url,
-      "teamMember": author->{
-        name,
-        alias,
-        description,
-        "img": image.asset->url,
-        "slug": slug.current,
-        socialHandles,
-        role,
-        order,
-        active,
-      },
       "created": publishedAt,
       ...,
     }`;
 
     return sanity.fetch(query, params).then((res) => {
+      console.log('res', res, articleId);
       if (res) {
         dispatch({ type: ARTICLE_SUCCESS, articleId, data: res });
       } else {

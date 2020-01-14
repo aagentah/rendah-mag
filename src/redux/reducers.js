@@ -13,6 +13,9 @@ import articleInfo from '../containers/Fragments/Blog/ArticleInfo/reducer';
 import teamMemberInfo from '../containers/Fragments/Blog/TeamMemberInfo/reducer';
 import team from '../containers/Fragments/Blog/Team/reducer';
 
+// studio
+import latestStudioArticles from '../containers/Fragments/Studio/LatestArticles/reducer';
+
 // store
 import collections from '../containers/Fragments/Store/Collections/reducer';
 import categories from '../containers/Fragments/Store/Categories/reducer';
@@ -29,6 +32,8 @@ export default combineReducers({
   articleInfo,
   teamMemberInfo,
   team,
+  // studio
+  latestStudioArticles,
   // store
   collections,
   categories,

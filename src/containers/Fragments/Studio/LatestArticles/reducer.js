@@ -2,30 +2,30 @@
 import _ from 'lodash';
 
 import {
-  LATESTARTICLES_INVALID,
-  LATESTARTICLES_REQUESTING,
-  LATESTARTICLES_FAILURE,
-  LATESTARTICLES_SUCCESS,
+  LATESTSTUDIOARTICLES_INVALID,
+  LATESTSTUDIOARTICLES_REQUESTING,
+  LATESTSTUDIOARTICLES_FAILURE,
+  LATESTSTUDIOARTICLES_SUCCESS,
 } from './action';
 
 const initialState = {
-  readyStatus: LATESTARTICLES_INVALID,
+  readyStatus: LATESTSTUDIOARTICLES_INVALID,
   err: null,
   list: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LATESTARTICLES_REQUESTING:
-      return _.assign({}, state, { readyStatus: LATESTARTICLES_REQUESTING });
-    case LATESTARTICLES_FAILURE:
+    case LATESTSTUDIOARTICLES_REQUESTING:
+      return _.assign({}, state, { readyStatus: LATESTSTUDIOARTICLES_REQUESTING });
+    case LATESTSTUDIOARTICLES_FAILURE:
       return _.assign({}, state, {
-        readyStatus: LATESTARTICLES_FAILURE,
+        readyStatus: LATESTSTUDIOARTICLES_FAILURE,
         err: action.err,
       });
-    case LATESTARTICLES_SUCCESS:
+    case LATESTSTUDIOARTICLES_SUCCESS:
       return _.assign({}, state, {
-        readyStatus: LATESTARTICLES_SUCCESS,
+        readyStatus: LATESTSTUDIOARTICLES_SUCCESS,
         list: action.data,
       });
     default:
