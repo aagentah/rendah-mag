@@ -1,5 +1,6 @@
 // Vendor
 @import "site/vendor/normalize";
+@import "site/vendor/snipcart";
 
 // Variables
 @import "site/vars/index";
@@ -13,7 +14,6 @@
 @import "site/mixins/box-shadow";
 @import "site/mixins/breakpoints";
 @import "site/mixins/placeholder";
-
 
 // Pattern Lib
 @import "rpl/index";
