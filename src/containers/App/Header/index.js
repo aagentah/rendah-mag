@@ -10,6 +10,7 @@ import SearchInput from '../../../components/Elements/SearchInput';
 import CheckoutButton from '../../../components/Elements/CheckoutButton';
 import { Search } from '../../../components/Elements/Svg';
 import Logo from '../assets/logo-medium.png';
+import LogoStudio from '../assets/logo-studio-medium.png';
 
 export class Header extends PureComponent {
   constructor() {
@@ -124,8 +125,11 @@ export class Header extends PureComponent {
         {/* Desktop */}
         <header className="fixed  w-100  shadow1  z9  bg-white  dn  db-lg  header__desktop">
           <nav className="container-large  center  rel" role="banner">
-            <Link className="link  absolute  header__desktop__logo" title="rendah" to={'/'}>
+            <Link className="link  absolute  header__desktop__logo  header__desktop__logo--normal" title="rendah" to={'/'}>
               <img className="pt1  mt1" width="38" src={Logo} alt="Logo" role="presentation" />
+            </Link>
+            <Link className="link  absolute  header__desktop__logo  header__desktop__logo--studio" title="rendah" to={'/'}>
+              <img className="pt1  mt1" width="38" src={LogoStudio} alt="Logo" role="presentation" />
             </Link>
 
             <ul className="tac  absolute  center  header__desktop__nav__list">
@@ -175,7 +179,21 @@ export class Header extends PureComponent {
           </div>
 
           <Link
-            className="link  absolute  w3  center  center  header__mobile__logo"
+            className="link  absolute  w3  center  center  header__mobile__logo  header__mobile__logo--normal"
+            title="rendah"
+            to={'/'}
+          >
+            <img
+              className="pt1  mt1  center"
+              width="38"
+              src={Logo}
+              alt="Logo"
+              role="presentation"
+            />
+          </Link>
+
+          <Link
+            className="link  absolute  w3  center  center  header__mobile__logo  header__mobile__logo--studio"
             title="rendah"
             to={'/'}
           >
