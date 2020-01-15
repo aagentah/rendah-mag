@@ -4,6 +4,13 @@
     transition: background-color ease-in 0.3s;
   }
 
+  .fill-#{$color},
+  .fill-#{$color} svg,
+  .fill-#{$color} svg * {
+    fill: var(--#{$color});
+    transition: fill ease-in 0.3s;
+  }
+
   .bg-#{$color} {
     background-color: var(--#{$color});
     transition: background-color ease-in 0.3s;
