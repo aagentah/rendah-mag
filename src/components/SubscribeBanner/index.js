@@ -36,7 +36,7 @@ export class SubscribeBanner extends PureComponent {
               type="email"
               placeholder={this.state.inputPlaceHolder}
             />
-            <span className="cp  absolute  right  pr1" role="button" tabIndex={0} onClick={submitInit}>
+            <span className="cp  absolute  right  pr1  pt1" role="button" tabIndex={0} onClick={submitInit}>
               <Icon icon={'arrow-right'} color={'black'} size={12} />
             </span>
           </form>
