@@ -5,9 +5,9 @@ import Helmet from 'react-helmet';
 import { Redirect } from 'react-router-dom';
 import { Button, Heading, Copy } from 'rendah-pattern-library';
 
-import LatestArticles from '../../../containers/Fragments/Blog/LatestArticles';
-import CategoryGrid from '../../../components/CategoryGrid';
-import ExtraArticles from '../../../containers/Fragments/Blog/ExtraArticles';
+import LatestArticles from '../../../../containers/Fragments/Blog/LatestArticles';
+import CategoryGrid from '../../../../components/CategoryGrid';
+import ExtraArticles from '../../../../containers/Fragments/Blog/ExtraArticles';
 
 export class Home extends PureComponent {
   componentDidMount() {

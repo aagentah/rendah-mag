@@ -3,7 +3,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import ArticlePreviewInfo from '../../../containers/Fragments/Blog/ArticlePreviewInfo';
+import ArticleInfo from '../../../../containers/Fragments/Studio/ArticleInfo';
 
 export class Article extends PureComponent {
   componentDidMount() {
@@ -16,7 +16,7 @@ export class Article extends PureComponent {
   render() {
     return (
       <main className="page-fade-in">
-        <ArticlePreviewInfo match={this.props.match} />
+        <ArticleInfo match={this.props.match} />
       </main>
     );
   }

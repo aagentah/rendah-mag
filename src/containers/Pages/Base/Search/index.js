@@ -3,12 +3,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import startCase from 'lodash/startCase';
 import { Heading, Copy } from 'rendah-pattern-library';
 
-import CategoryArticles from '../../../containers/Fragments/Blog/CategoryArticles';
+import SearchArticles from '../../../../containers/Fragments/Blog/SearchArticles';
 
-export class Category extends PureComponent {
+export class Search extends PureComponent {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -17,29 +16,15 @@ export class Category extends PureComponent {
   }
 
   render() {
-    const title = startCase(this.props.match.params.query);
-    const canonical = `https://www.rendahmag.com/category/${this.props.match.params.query}`;
-    let description = null;
-
-    switch (title) {
-      case 'News':
-        description = 'Bringing you the latest news within the scene.';
-        break;
-      case 'Interviews':
-        description = 'Read exclusive interviews with established & upcoming artists.';
-        break;
-      case 'Insights':
-        description = 'Explicit reviews & insights to some of our favourite releases.';
-        break;
-      default:
-        description = null;
-    }
+    const title = 'Search';
+    const searchQuery = this.props.match.params.query;
+    const canonical = `https://www.rendahmag.com/${searchQuery}`;
 
     return (
       <main className="page-fade-in">
         <Helmet>
           <title>{title}</title>
-          <meta name="description" content={description} />
+          <meta name="description" content={`Searching articles for ${searchQuery}`} />
           <link rel="canonical" href={canonical} />
         </Helmet>
 
@@ -48,7 +33,7 @@ export class Category extends PureComponent {
             <Heading
               /* Options */
               htmlEntity={'h1'}
-              text={title}
+              text={'Search'}
               color={'black'}
               size={'x-large'}
               truncate={null}
@@ -58,17 +43,17 @@ export class Category extends PureComponent {
           <div className="flex  pb2  ph3">
             <Copy
               /* Options */
-              text={description}
+              text={`Latest results for: ${searchQuery}`}
               color={'black'}
               size={'medium'}
-              truncate={1}
+              truncate={null}
             />
           </div>
         </div>
 
         <div className="container-medium  center  pv2">
           <div className="flex  flex-wrap">
-            <CategoryArticles match={this.props.match} range={[1, 24]} type="grid" padding="ph3  pb2" />
+            <SearchArticles match={searchQuery} range={[1, 28]} type="grid" padding="ph3  pb2" />
           </div>
         </div>
       </main>
@@ -76,12 +61,12 @@ export class Category extends PureComponent {
   }
 }
 
-Category.propTypes = {
+Search.propTypes = {
   match: PropTypes.shape(),
 };
 
-Category.defaultProps = {
+Search.defaultProps = {
   match: [],
 };
 
-export default Category;
+export default Search;

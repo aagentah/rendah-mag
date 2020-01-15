@@ -1,13 +1,12 @@
 /* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { Heading, Copy } from 'rendah-pattern-library';
 
-import SearchArticles from '../../../containers/Fragments/Blog/SearchArticles';
+import LatestArticles from '../../../../containers/Fragments/Studio/LatestArticles';
 
-export class Search extends PureComponent {
+export class Studio extends PureComponent {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -16,15 +15,15 @@ export class Search extends PureComponent {
   }
 
   render() {
-    const title = 'Search';
-    const searchQuery = this.props.match.params.query;
-    const canonical = `https://www.rendahmag.com/${searchQuery}`;
+    const title = 'Studio';
+    const description = 'Beats, Halftime & Future Bass Magazine focused on the latest news & releases.';
+    const canonical = 'https://www.rendahmag.com/studio';
 
     return (
       <main className="page-fade-in">
         <Helmet>
           <title>{title}</title>
-          <meta name="description" content={`Searching articles for ${searchQuery}`} />
+          <meta name="description" content={description} />
           <link rel="canonical" href={canonical} />
         </Helmet>
 
@@ -33,7 +32,7 @@ export class Search extends PureComponent {
             <Heading
               /* Options */
               htmlEntity={'h1'}
-              text={'Search'}
+              text={title}
               color={'black'}
               size={'x-large'}
               truncate={null}
@@ -43,17 +42,17 @@ export class Search extends PureComponent {
           <div className="flex  pb2  ph3">
             <Copy
               /* Options */
-              text={`Latest results for: ${searchQuery}`}
+              text={description}
               color={'black'}
               size={'medium'}
-              truncate={null}
+              truncate={1}
             />
           </div>
         </div>
 
         <div className="container-medium  center  pv2">
           <div className="flex  flex-wrap">
-            <SearchArticles match={searchQuery} range={[1, 28]} type="grid" padding="ph3  pb2" />
+            <LatestArticles range={[1, 16]} type="grid" padding="ph3  pb2" />
           </div>
         </div>
       </main>
@@ -61,12 +60,4 @@ export class Search extends PureComponent {
   }
 }
 
-Search.propTypes = {
-  match: PropTypes.shape(),
-};
-
-Search.defaultProps = {
-  match: [],
-};
-
-export default Search;
+export default Studio;

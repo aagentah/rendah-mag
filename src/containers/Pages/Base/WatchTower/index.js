@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import Iframe from 'react-iframe';
 import { Heading, Copy } from 'rendah-pattern-library';
 
-import ExtraArticles from '../../../containers/Fragments/Blog/ExtraArticles';
+import ExtraArticles from '../../../../containers/Fragments/Blog/ExtraArticles';
 
 export class WatchTower extends PureComponent {
   componentDidMount() {

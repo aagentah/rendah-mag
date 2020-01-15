@@ -3,9 +3,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import ArticleInfo from '../../../containers/Fragments/Studio/ArticleInfo';
+import ArticlePreviewInfo from '../../../../containers/Fragments/Blog/ArticlePreviewInfo';
 
-export class StudioArticle extends PureComponent {
+export class Article extends PureComponent {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -16,18 +16,18 @@ export class StudioArticle extends PureComponent {
   render() {
     return (
       <main className="page-fade-in">
-        <ArticleInfo match={this.props.match} />
+        <ArticlePreviewInfo match={this.props.match} />
       </main>
     );
   }
 }
 
-StudioArticle.propTypes = {
+Article.propTypes = {
   match: PropTypes.shape(),
 };
 
-StudioArticle.defaultProps = {
+Article.defaultProps = {
   match: [],
 };
 
-export default StudioArticle;
+export default Article;
