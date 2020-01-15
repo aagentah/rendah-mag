@@ -64,7 +64,7 @@ export class Subscribe extends PureComponent {
 
         <div className="container-medium  mla  mra  pt2  pt0-md  pb4">
           <div className="flex  flex-wrap  ph3">
-            <div className="mw7  relative">
+            <div className="w-100  mw5  relative">
               <SubscribeBanner />
             </div>
           </div>
