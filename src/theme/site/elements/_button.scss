@@ -1,5 +1,3 @@
-
-
 .btn {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
@@ -14,13 +12,7 @@
 }
 
 .btn:disabled,
-.btn[disabled]{
+.btn[disabled] {
   pointer-events: none;
   opacity: 0.3;
 }
-
-// @include breakpoint-up(sm) {
-//   .btn {
-//
-//   }
-// }

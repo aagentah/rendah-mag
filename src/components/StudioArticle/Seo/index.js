@@ -13,7 +13,7 @@ export class Seo extends PureComponent {
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={`https://www.rendahmag.com/article/${slug}`} />
+        <link rel="canonical" href={`https://www.rendahmag.com/studio/${slug}`} />
 
         {/* Twitter  */}
         <meta name="twitter:title" content={title} />
@@ -22,7 +22,7 @@ export class Seo extends PureComponent {
 
         {/* Open Graph data */}
         <meta property="og:title" content={title} />
-        <meta property="og:url" content={`https://www.rendahmag.com/article/${slug}`} />
+        <meta property="og:url" content={`https://www.rendahmag.com/studio/${slug}`} />
         <meta property="og:image" content={img} />
         <meta property="og:image:width" content="1080" />
         <meta property="og:image:height" content="1080" />
