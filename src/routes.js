@@ -1,26 +1,33 @@
 /* @flow */
-import HomePage from './containers/Pages/Home';
-import SearchPage from './containers/Pages/Search';
-import CategoryPage from './containers/Pages/Category';
-import ArticlePage from './containers/Pages/Article';
-import ArticlePreviewPage from './containers/Pages/ArticlePreview';
-import TeamMemberPage from './containers/Pages/TeamMember';
-import NotFoundPage from './containers/Pages/NotFound';
-import StorePage from './containers/Pages/Store';
-import ProductPage from './containers/Pages/Product';
-import StudioPage from './containers/Pages/Studio';
-import StudioArticlePage from './containers/Pages/StudioArticle';
-import TeamPage from './containers/Pages/Team';
-import WatchTowerPage from './containers/Pages/WatchTower';
-// import MixesPage from './containers/Pages/Mixes';
-import SubscribePage from './containers/Pages/Subscribe';
-import PrivacyPolicyPage from './containers/Pages/PrivacyPolicy';
+
+// Base
+import HomePage from './containers/Pages/Base/Home';
+import NotFoundPage from './containers/Pages/Base/NotFound';
+import PrivacyPolicyPage from './containers/Pages/Base/PrivacyPolicy';
+import SubscribePage from './containers/Pages/Base/Subscribe';
+import WatchTowerPage from './containers/Pages/Base/WatchTower';
+import SearchPage from './containers/Pages/Base/Search';
+
+// Blog
+import ArticlePage from './containers/Pages/Blog/Article';
+import ArticlePreviewPage from './containers/Pages/Blog/ArticlePreview';
+import CategoryPage from './containers/Pages/Blog/Category';
+import TeamPage from './containers/Pages/Blog/Team';
+import TeamMemberPage from './containers/Pages/Blog/TeamMember';
+
+// Store
+import StorePage from './containers/Pages/Store/Store';
+import ProductPage from './containers/Pages/Store/Product';
+
+// Studio
+import StudioPage from './containers/Pages/Studio/Studio';
+import StudioArticlePage from './containers/Pages/Studio/Article';
 
 export default [
   {
     path: '/',
     exact: true,
-    component: HomePage, // Add your route here
+    component: HomePage,
   },
   {
     path: '/search/:query',
@@ -72,10 +79,6 @@ export default [
     path: '/watch-tower',
     component: WatchTowerPage,
   },
-  // {
-  //   path: '/mixes',
-  //   component: MixesPage,
-  // },
   {
     path: '/subscribe',
     component: SubscribePage,

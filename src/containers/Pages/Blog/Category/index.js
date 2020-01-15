@@ -1,12 +1,14 @@
 /* eslint-disable import/no-named-as-default */
 
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import startCase from 'lodash/startCase';
 import { Heading, Copy } from 'rendah-pattern-library';
 
-import LatestArticles from '../../../containers/Fragments/Studio/LatestArticles';
+import CategoryArticles from '../../../../containers/Fragments/Blog/CategoryArticles';
 
-export class Studio extends PureComponent {
+export class Category extends PureComponent {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -15,9 +17,23 @@ export class Studio extends PureComponent {
   }
 
   render() {
-    const title = 'Studio';
-    const description = 'Beats, Halftime & Future Bass Magazine focused on the latest news & releases.';
-    const canonical = 'https://www.rendahmag.com/studio';
+    const title = startCase(this.props.match.params.query);
+    const canonical = `https://www.rendahmag.com/category/${this.props.match.params.query}`;
+    let description = null;
+
+    switch (title) {
+      case 'News':
+        description = 'Bringing you the latest news within the scene.';
+        break;
+      case 'Interviews':
+        description = 'Read exclusive interviews with established & upcoming artists.';
+        break;
+      case 'Insights':
+        description = 'Explicit reviews & insights to some of our favourite releases.';
+        break;
+      default:
+        description = null;
+    }
 
     return (
       <main className="page-fade-in">
@@ -52,7 +68,7 @@ export class Studio extends PureComponent {
 
         <div className="container-medium  center  pv2">
           <div className="flex  flex-wrap">
-            <LatestArticles range={[1, 16]} type="grid" padding="ph3  pb2" />
+            <CategoryArticles match={this.props.match} range={[1, 24]} type="grid" padding="ph3  pb2" />
           </div>
         </div>
       </main>
@@ -60,4 +76,12 @@ export class Studio extends PureComponent {
   }
 }
 
-export default Studio;
+Category.propTypes = {
+  match: PropTypes.shape(),
+};
+
+Category.defaultProps = {
+  match: [],
+};
+
+export default Category;

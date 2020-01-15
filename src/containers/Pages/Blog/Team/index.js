@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 import { Heading, Copy } from 'rendah-pattern-library';
 
-import TeamFragment from '../../../containers/Fragments/Blog/Team';
+import TeamFragment from '../../../../containers/Fragments/Blog/Team';
 
 export class Team extends PureComponent {
   componentDidMount() {

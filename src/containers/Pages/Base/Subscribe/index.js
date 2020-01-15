@@ -4,9 +4,9 @@ import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 import { Heading, Copy } from 'rendah-pattern-library';
 
-import SubscribeBanner from '../../../components/SubscribeBanner';
-import LatestArticles from '../../../containers/Fragments/Blog/LatestArticles';
-import CategoryGrid from '../../../components/CategoryGrid';
+import SubscribeBanner from '../../../../components/SubscribeBanner';
+import LatestArticles from '../../../../containers/Fragments/Blog/LatestArticles';
+import CategoryGrid from '../../../../components/CategoryGrid';
 
 export class Subscribe extends PureComponent {
   componentDidMount() {

@@ -4,9 +4,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import Collections from '../../../containers/Fragments/Store/Collections';
-import Categories from '../../../containers/Fragments/Store/Categories';
-import Products from '../../../containers/Fragments/Store/Products';
+import Collections from '../../../../containers/Fragments/Store/Collections';
+import Categories from '../../../../containers/Fragments/Store/Categories';
+import Products from '../../../../containers/Fragments/Store/Products';
 
 export class Store extends PureComponent {
   componentDidMount() {
