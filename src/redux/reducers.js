@@ -1,7 +1,7 @@
 /* @flow */
 
 import { combineReducers } from 'redux';
-import { routerReducer as router } from 'react-router-redux';
+import { connectRouter } from 'connected-react-router';
 
 // blog
 import latestArticles from '../containers/Fragments/Blog/LatestArticles/reducer';
@@ -22,7 +22,7 @@ import categories from '../containers/Fragments/Store/Categories/reducer';
 import products from '../containers/Fragments/Store/Products/reducer';
 import productInfo from '../containers/Fragments/Store/ProductInfo/reducer';
 
-export default combineReducers({
+const createRootReducer = history => combineReducers({
   // blog
   latestArticles,
   featuredArticles,
@@ -39,6 +39,8 @@ export default combineReducers({
   categories,
   products,
   productInfo,
-  //
-  router,
+
+  router: connectRouter(history),
 });
+
+export default createRootReducer;
