@@ -3,15 +3,37 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
+import { Button } from 'rendah-pattern-library';
 
 export class Link extends PureComponent {
   render() {
+    const withLinkProps = {
+      type: 'external',
+      url: this.props.url,
+      target: '_blank',
+      routerLink: null,
+    };
+
     return (
       <div className="pv3  tal">
-        <a className="btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac" href={this.props.url} rel="noopener noreferrer" target="_blank">
-          {this.props.text}
-        </a>
+        <div className="col-24">
+          <Button
+            /* Options */
+            type={'primary'}
+            size={'small'}
+            text={this.props.text}
+            color={'black'}
+            fluid={false}
+            icon={null}
+            iconFloat={null}
+            inverted
+            loading={false}
+            disabled={false}
+            onClick={null}
+            /* Children */
+            withLinkProps={withLinkProps}
+          />
+        </div>
       </div>
     );
   }
