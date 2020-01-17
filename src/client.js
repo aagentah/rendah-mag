@@ -6,7 +6,7 @@ import { hydrate, unmountComponentAtNode } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
-import { ConnectedRouter } from 'react-router-redux';
+import { ConnectedRouter } from 'connected-react-router';
 import RedBox from 'redbox-react';
 import { Route } from 'react-router-dom';
 import { Frontload } from 'react-frontload';
