@@ -58,6 +58,7 @@ input,
 select,
 textarea {
   font-family: $t-primary;
+  color: var(--dark-grey);
 }
 
 button {
@@ -70,6 +71,7 @@ button {
 
 address {
   font-style: normal;
+  color: var(--dark-grey);
 }
 
 ::placeholder {
