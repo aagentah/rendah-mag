@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Image, Heading, Copy, Label } from 'rendah-pattern-library';
+import { Image, Heading, Label } from 'rendah-pattern-library';
 
 import Sections from './Sections';
 
@@ -36,7 +36,6 @@ export class StudioArticle extends PureComponent {
 
   render() {
     const article = this.props.info;
-    console.log('article', article);
 
     return (
       <React.Fragment>
@@ -94,18 +93,6 @@ export class StudioArticle extends PureComponent {
                       size={'large'}
                       truncate={null}
                       reveal={false}
-                      /* Children */
-                      withLinkProps={null}
-                    />
-                  </div>
-
-                  <div className="pb2">
-                    <Copy
-                      /* Options */
-                      text={article.description}
-                      color={'black'}
-                      size={'medium'}
-                      truncate={null}
                       /* Children */
                       withLinkProps={null}
                     />
