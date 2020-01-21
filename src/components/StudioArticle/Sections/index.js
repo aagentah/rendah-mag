@@ -49,8 +49,12 @@ export class Seo extends PureComponent {
       );
     }
 
-    // image (must be jpg)
-    if (section._type === 'image' && includes(section.asset._ref, '-jpg')) {
+    // image
+    if
+    (
+      section._type === 'image' &&
+      (includes(section.asset._ref, '-jpg') || includes(section.asset._ref, '-png'))
+    ) {
       return (
         <div key={i} className="pv4">
           <Image section={section} />
