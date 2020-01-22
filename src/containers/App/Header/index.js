@@ -71,10 +71,10 @@ export class Header extends PureComponent {
         to: '/team',
         text: 'Team',
       },
-      {
-        to: '/studio',
-        text: 'Studio',
-      },
+      // {
+      //   to: '/studio',
+      //   text: 'Studio',
+      // },
       // {
       //   to: '/category/news',
       //   text: 'News',
@@ -86,18 +86,6 @@ export class Header extends PureComponent {
       // {
       //   to: '/category/insights',
       //   text: 'Insights',
-      // },
-      // {
-      //   to: '/mixes',
-      //   text: 'Mixes',
-      // },
-      // {
-      //   to: '/store',
-      //   text: 'Store',
-      // },
-      // {
-      //   to: '/store/opening-sequence',
-      //   text: 'Store range',
       // },
       {
         to: '/watch-tower',
