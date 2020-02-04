@@ -4,15 +4,18 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import find from 'lodash/find';
 
 class Paragraph extends Component {
   renderChildren = (child, markDefs, i) => {
     if (child.marks) {
       // If has inline URL link
       if (markDefs.length) {
-        if (child.marks[0] === markDefs[0]._key) {
+        const currentMark = find(markDefs, { _key: child.marks[0] });
+
+        if (currentMark && currentMark.url) {
           return (
-            <a key={i} target="_blank" href={markDefs[0].url} rel="noopener noreferrer" className="di  underline  rendah-red-dark">
+            <a key={i} target="_blank" href={currentMark.url} rel="noopener noreferrer" className="di  underline  rendah-red-dark">
               {child.text}
             </a>
           );
