@@ -8,8 +8,9 @@ import PropTypes from 'prop-types';
 export class Image extends PureComponent {
   render() {
     const imageRef = this.props.section.asset._ref;
+    console.log('imageRef', imageRef);
     const imageUrl =
-      imageRef.replace('image-', 'https://cdn.sanity.io/images/1o42t029/production/')
+      imageRef.replace('image-', 'https://cdn.sanity.io/images/q8z2vf2k/production/')
         .replace('-jpg', '.jpg')
         .replace('-png', '.png');
 
