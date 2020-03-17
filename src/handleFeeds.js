@@ -16,6 +16,8 @@ const handleFeeds = app => {
       'https://www.rendahmag.com/category/insights',
       'https://www.rendahmag.com/category/news',
 
+      'https://www.rendahmag.com/studio',
+
       'https://www.rendahmag.com/team/dan-jones',
       'https://www.rendahmag.com/team/dayle-hamers',
       'https://www.rendahmag.com/team/harry-taylor',

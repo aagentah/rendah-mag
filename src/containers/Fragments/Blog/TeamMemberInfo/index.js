@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { frontloadConnect } from 'react-frontload';
 import compose from 'lodash/flowRight';
+import { Heading } from 'rendah-pattern-library';
 
 import * as action from './action';
 import Loading from '../../../../components/Loading';
@@ -28,8 +29,18 @@ export class TeamMemberInfo extends PureComponent {
     if (teamMemberInfoById.info.articles.length > 0) {
       hasArticles = (
         <React.Fragment>
-          <p className="t-title  bold  tac  f6  ttu  pt2  pb3">LATEST FROM {teamMemberInfoById.info.slug.split('-')[0]}</p>
           <div className="container-medium  center  pv2">
+            <div className="flex  flex-wrap  ph3  pb3  ttu">
+              <Heading
+                /* Options */
+                htmlEntity={'h2'}
+                text={`Latest from ${teamMemberInfoById.info.slug.split('-')[0]}`}
+                color={'black'}
+                size={'medium'}
+                truncate={null}
+                reveal
+              />
+            </div>
             <div className="flex  flex-wrap">
               <ArticleListGrid range={[1, 20]} type="grid" padding="ph3  pb2" list={teamMemberInfoById.info.articles} />
             </div>

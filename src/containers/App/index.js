@@ -12,8 +12,7 @@ import config from '../../config';
 import routes from '../../routes';
 import '../../theme/main.scss';
 
-import Header from './Header';
-import Footer from './Footer';
+import ThemeWrapper from './ThemeWrapper';
 
 type PassedProps = {
   noServerRender: boolean
@@ -37,11 +36,9 @@ const App = (props: PassedProps): Element<'div'> => {
     <Frontload noServerRender={props.noServerRender} >
       <React.Fragment>
         <Helmet {...config.app} />
-        <div className="App">
-          <Header />
+        <ThemeWrapper>
           <Switch>{routes.map(route => routeWithSubRoutes(route))}</Switch>
-          <Footer />
-        </div>
+        </ThemeWrapper>
       </React.Fragment>
     </Frontload>
   );

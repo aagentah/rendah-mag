@@ -3,8 +3,7 @@ react/no-danger */
 
 import React, { PureComponent } from 'react';
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
-
-import { ArrowRight } from '../Elements/Svg';
+import { Icon } from 'rendah-pattern-library';
 
 export class SubscribeBanner extends PureComponent {
   constructor(props) {
@@ -37,7 +36,9 @@ export class SubscribeBanner extends PureComponent {
               type="email"
               placeholder={this.state.inputPlaceHolder}
             />
-            <span className="cp  absolute  right  pr1" role="button" tabIndex={0} onClick={submitInit}><ArrowRight /></span>
+            <span className="cp  absolute  right  pr1  pt1" role="button" tabIndex={0} onClick={submitInit}>
+              <Icon icon={'arrow-right'} color={'black'} size={12} />
+            </span>
           </form>
 
           {status === 'sending' && <div className="t-body  f7  black  pt2  grey">Subscribing...</div>}

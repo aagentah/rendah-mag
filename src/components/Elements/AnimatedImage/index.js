@@ -14,7 +14,7 @@ class AnimatedImage extends Component {
           <LazyLoad height={0} offset={300} once>
             <div className="over-hidden">
               <img
-                className={`fadeIn-zoomIn  objf-cover  objp-center  ${styles}`}
+                className={`fadeIn-zoomIn  object-fit-cover  object-position-center  ${styles}`}
                 src={src}
                 alt={alt}
                 title={alt}
@@ -29,7 +29,7 @@ class AnimatedImage extends Component {
       <React.Fragment>
         <div className="over-hidden">
           <img
-            className={`fadeIn-zoomIn  objf-cover  objp-center  ${styles}`}
+            className={`fadeIn-zoomIn  object-fit-cover  object-position-center  ${styles}`}
             src={src}
             alt={alt}
           />
