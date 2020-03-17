@@ -22,7 +22,10 @@ const Html = ({ store, htmlContent, noServerRender }: Props): Element<'html'> =>
   const assets = webpackIsomorphicTools.assets();
 
   return (
-    <html {...rest} lang={lang || 'en'}>
+    <html
+      {...rest}
+      lang={lang || 'en'}
+    >
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />

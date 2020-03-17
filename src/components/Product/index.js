@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import { createBrowserHistory } from 'history';
 import ReactPixel from 'react-facebook-pixel';
 import BlockContent from '@sanity/block-content-to-react';
-import { Label, Heading } from 'rendah-pattern-library';
+import { Label, Heading, Button } from 'rendah-pattern-library';
 
 import Seo from './Seo';
 import AnimatedImage from '../Elements/AnimatedImage';
@@ -54,27 +54,34 @@ export class Product extends PureComponent {
 
     return (
       <div className="pr2">
-        <button
-          className={`
-          ${
-            this.state.selectedVariant === variant.type
-              ? 'btn  btn--primary  bg-black  ba  bw1  bc-black  white  tac'
-              : 'btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac'
-          }`}
-          type="button"
-          disabled={handleDisabled(variant.availability)}
-          onClick={() => {
-            this.setState({
-              selectedMaxQuantity: variant.quantity,
-              selectedVariant: variant.type,
-            });
-
-            const history = createBrowserHistory();
-            history.push({ search: `?variant=${variant.type}` });
-          }}
+        <div
+          className="col-24  snipcart-add-item"
         >
-          {variant.type}
-        </button>
+          <Button
+            /* Options */
+            type={'primary'}
+            size={'small'}
+            text={variant.type}
+            color={'black'}
+            fluid={false}
+            icon={null}
+            iconFloat={null}
+            inverted={this.state.selectedVariant !== variant.type}
+            loading={false}
+            disabled={handleDisabled(variant.availability)}
+            onClick={() => {
+              this.setState({
+                selectedMaxQuantity: variant.quantity,
+                selectedVariant: variant.type,
+              });
+
+              const history = createBrowserHistory();
+              history.push({ search: `?variant=${variant.type}` });
+            }}
+            /* Children */
+            withLinkProps={null}
+          />
+        </div>
       </div>
     );
   };
@@ -226,9 +233,8 @@ export class Product extends PureComponent {
                 {product.variants.map(variant => this.renderVariant(variant))}
               </div>
 
-              <button
-                className="btn  btn--primary  bg-white  bg-black-hover  ba  bw1  bc-black  black  white-hover  tac  w-100  snipcart-add-item"
-                type="button"
+              <div
+                className="col-24  snipcart-add-item"
                 data-item-id={`${product.slug}-${this.state.selectedVariant}`}
                 data-item-name={`${product.title} (${this.state.selectedVariant})`}
                 data-item-weight={product.weight || 0}
@@ -241,8 +247,23 @@ export class Product extends PureComponent {
                 disabled={!this.state.selectedVariant}
                 {...buyButtonProps}
               >
-                Add to Cart
-              </button>
+                <Button
+                  /* Options */
+                  type={'primary'}
+                  size={'medium'}
+                  text={'Add to Cart'}
+                  color={'black'}
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={false}
+                  disabled={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
             </div>
           </article>
         </div>

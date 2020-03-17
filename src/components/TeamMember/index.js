@@ -18,7 +18,7 @@ export class TeamMember extends PureComponent {
     const isArticle = this.props.article;
     const containerClass = isArticle ? 'w-100' : 'container-small  center';
     const ActiveMemberLink = teamMember.active ? Link : 'div';
-    const borderClass = isArticle ? 'teamMember__border  bt  bl-sm  bw2  bc-light-grey  pt4  pt0-md' : null;
+    const borderClass = isArticle ? 'teamMember__border  bt  bl-sm  bw2  bc-light-grey  pt4' : null;
 
     let { facebookLink, twitterLink, instagramLink, soundcloudLink } = false;
 

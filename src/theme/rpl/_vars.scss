@@ -1,22 +1,21 @@
 // Imports
-@import url('https://fonts.googleapis.com/css?family=Play:400,700');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
+@import url("https://fonts.googleapis.com/css?family=Play:400,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 // typography
 
-// $system-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
-//   'Ubuntu', 'Roboto', 'Noto', 'Segoe Ui', Arial, sans-serif;
-// $helvetica: 'Helvetica Neue', Helvetica, sans-serif;
-// $mono: 'Consolas', 'Menlo', 'Monaco', 'Lucida Console', monospace;
-// $sans: sans-serif;
-// $serif: serif;
+$system-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
+  "Ubuntu", "Roboto", "Noto", "Segoe Ui", Arial, sans-serif;
+$helvetica: "Helvetica Neue", Helvetica, sans-serif;
+$mono: "Consolas", "Menlo", "Monaco", "Lucida Console", monospace;
+$sans: sans-serif;
+$serif: serif;
 
 $typography-base-size: 16px !default;
 $typography-base-weight: 400 !default;
 
-$t-primary: 'Play', sans-serif !default;
-$t-secondary: 'Roboto', sans-serif !default;
+$t-primary: "Play", sans-serif !default;
+$t-secondary: "Roboto", sans-serif !default;
 
 $type-scale: (
   f-headline: 6rem,
@@ -32,6 +31,32 @@ $type-scale: (
 
 // colors
 
+:root {
+  --black: #000000;
+  --dark-grey: #343434;
+  --grey: #777777;
+  --light-grey: #eeeeee;
+  --white: #ffffff;
+  --blue: #096dff;
+  --red: #ff0000;
+  --green: #1c9c08;
+  --primary-color: #00c4b4;
+  --secondary-color: #ff00cd;
+  --rendah-orange: #ffb84d;
+  --rendah-red: #ff817b;
+  --rendah-red-dark: #cc0a00;
+  --sale: #ff3333;
+  --pre-order: #8080ff;
+}
+
+[data-theme="dark"] {
+  --black: #ffb84d;
+  --dark-grey: #ffb84d;
+  --grey: #777777;
+  --light-grey: #343434;
+  --white: #343434;
+}
+
 $colors: (
   black: #000000,
   dark-grey: #343434,
@@ -42,7 +67,12 @@ $colors: (
   red: #ff0000,
   green: #1c9c08,
   primary-color: #00c4b4,
-  secondary-color: #ff00cd
+  secondary-color: #ff00cd,
+  rendah-orange: #ffb84d,
+  rendah-red: #ff817b,
+  rendah-red-dark: #cc0a00,
+  sale: #ff3333,
+  pre-order: #8080ff
 ) !default;
 
 $body-color: palette(black) !default;
