@@ -1,27 +1,37 @@
 /* @flow */
 
-import { routerMiddleware } from 'react-router-redux';
+import { routerMiddleware } from 'connected-react-router';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import chalk from 'chalk';
 
 import type { Store } from '../types';
-import rootReducer from './reducers';
+import createRootReducer from './reducers';
 
 export default (history: Object, initialState: Object = {}): Store => {
+  const isServer = typeof window === 'undefined';
+
   const middlewares = [
-    thunk.withExtraArgument(axios),
     routerMiddleware(history),
+    thunk.withExtraArgument(axios),
   ];
 
-  const enhancers = [
+  const composeEnhancers =
+  // @ts-ignore
+  (__DEV__ && !isServer && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
+
+  const enhancers = composeEnhancers(
     applyMiddleware(...middlewares),
-    __DEV__ && typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ?
-      window.devToolsExtension() : f => f,
-  ];
+    // Add other enhancers here
+  );
 
-  const store: Store = createStore(rootReducer, initialState, compose(...enhancers));
+  const store = createStore(
+    createRootReducer(history),
+    initialState || {},
+    enhancers,
+  );
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
