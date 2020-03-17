@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Icon } from 'rendah-pattern-library';
 // import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 export class Footer extends React.Component {
@@ -24,13 +25,13 @@ export class Footer extends React.Component {
 
               <div className="col-10  flex  justify-end">
                 <a title="facebook" className="w2  mh1" href="https://www.facebook.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                  <img src={require('../assets/social/iconmonstr-facebook-5.png')} alt="facebook" />
+                  <Icon icon={'facebook'} color={'black'} size={30} />
                 </a>
                 <a title="twitter" className="w2  mh1" href="https://twitter.com/RendahMag" rel="noopener noreferrer" target="_blank">
-                  <img src={require('../assets/social/iconmonstr-twitter-5.png')} alt="twitter" />
+                  <Icon icon={'twitter'} color={'black'} size={30} />
                 </a>
                 <a title="instagram" className="w2  mh1" href="https://www.instagram.com/rendahmag/" rel="noopener noreferrer" target="_blank">
-                  <img src={require('../assets/social/iconmonstr-instagram-5.png')} alt="instagram" />
+                  <Icon icon={'instagram'} color={'black'} size={30} />
                 </a>
               </div>
             </div>

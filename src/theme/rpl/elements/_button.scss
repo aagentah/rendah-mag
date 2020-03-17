@@ -3,7 +3,7 @@
   background: transparent;
   box-shadow: none;
   outline: 0;
-  color: palette(black);
+  color: var(--black);
   cursor: pointer;
   position: relative;
   text-decoration: none;
@@ -58,7 +58,7 @@
 }
 
 .button.primary {
-  border: 2px solid palette(black);
+  border: 2px solid var(--black);
   text-align: center;
   display: inline-block;
   border-radius: 3px;
@@ -116,7 +116,7 @@
     left: 0;
     height: 2px;
     width: 0%;
-    background-color: palette(black);
+    background-color: var(--black);
   }
 }
 
@@ -162,26 +162,26 @@
 
 @each $color, $hex in $colors {
   .button.primary.#{$color} {
-    background-color: $hex;
-    color: palette(white);
-    fill: palette(white);
+    background-color: var(--#{$color});
+    color: var(--white);
+    fill: var(--white);
 
     &:hover:not(.loading):not(.disabled) {
-      background-color: palette(white);
-      color: $hex;
-      fill: $hex;
+      background-color: var(--white);
+      color: var(--#{$color});
+      fill: var(--#{$color});
     }
   }
 
   .button.primary.#{$color}.inverted {
-    background-color: palette(white);
-    color: $hex;
-    fill: $hex;
+    background-color: var(--white);
+    color: var(--#{$color});
+    fill: var(--#{$color});
 
     &:hover:not(.loading):not(.disabled) {
-      background-color: $hex;
-      color: palette(white);
-      fill: palette(white);
+      background-color: var(--#{$color});
+      color: var(--white);
+      fill: var(--white);
     }
   }
 }

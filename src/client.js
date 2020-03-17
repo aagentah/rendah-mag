@@ -6,7 +6,7 @@ import { hydrate, unmountComponentAtNode } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
-import { ConnectedRouter } from 'react-router-redux';
+import { ConnectedRouter } from 'connected-react-router';
 import RedBox from 'redbox-react';
 import { Route } from 'react-router-dom';
 import { Frontload } from 'react-frontload';
@@ -31,10 +31,10 @@ const renderApp = () =>
     <AppContainer errorReporter={({ error }) => <RedBox error={error} />}>
       <Provider store={store}>
         <Frontload noServerRender={window.__noServerRender__}>
-          <ConnectedRouter onUpdate={() => window.scrollTo(0, 0)} history={history}>
+          <ConnectedRouter onUpdate={() => window.scrollTo(0, 0)} history={history} window={window}>
             <Route
               component={withTracker(() => (
-                <App noServerRender={noServerRender} />
+                <App noServerRender={noServerRender} history={history} store={store} />
               ))}
             />
           </ConnectedRouter>

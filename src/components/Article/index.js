@@ -202,7 +202,7 @@ export class Article extends PureComponent {
 
                   <Sections body={article.body} />
                   <SocialLinks article={article} />
-                  <TeamMember article padding="pt4  pt5-sm" info={teamMember} />
+                  <TeamMember article padding="pt3" info={teamMember} />
                 </div>
               </article>
 
