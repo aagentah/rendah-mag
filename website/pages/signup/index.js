@@ -77,7 +77,7 @@ export default function Sigup({ siteConfig }) {
 
   useEffect(() => {
     // redirect to home if user is authenticated
-    if (user) Router.push('/');
+    if (user) Router.push('/profile');
   }, [user]);
 
   const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;

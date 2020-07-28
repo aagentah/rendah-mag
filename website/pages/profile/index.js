@@ -313,6 +313,8 @@ export default function Profile({ siteConfig }) {
   return (
     <>
       <Layout
+        navOffset="top"
+        navOnWhite={true}
         meta={{
           siteConfig,
           title: 'Profile',
