@@ -25,72 +25,85 @@ export default function Home({ siteConfig, allPosts, allProducts }) {
         }}
         preview={null}
       >
-        <Container>
-          <div className="pv4  tac">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text="Next Boilerplate"
-              color="black"
-              size="large"
-              truncate={0}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
+        <div className="layout--split">
+          <div className="layout--split__left">
+            <div
+              className="layout--split__left__background"
+              style={{
+                backgroundImage:
+                  'url(https://images.unsplash.com/photo-1555086156-e6c7353d283f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)',
+              }}
+            ></div>
           </div>
-
-          {
-            // homePage.components.length > 0 &&
-            //   homePage.components.map(component => (
-            //     <RenderComponents component={component} />
-            //   ))
-          }
-
-          {allPosts.length > 0 && (
-            <section className="pb3">
-              <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-                - Posts
-              </h2>
-
-              <div className="flex  flex-wrap">
-                {allPosts.map((post, i) => (
-                  <div key={post.slug} className="col-24  col-6-md">
-                    <div className="pa3">
-                      <CardDefault i={i} post={post} />
-                    </div>
-                  </div>
-                ))}
+          <div className="layout--split__right  ph3  ph4-md">
+            <Container>
+              <div className="pv4  tac">
+                <Heading
+                  /* Options */
+                  htmlEntity="h1"
+                  text="Next Boilerplate"
+                  color="black"
+                  size="large"
+                  truncate={0}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
               </div>
-            </section>
-          )}
 
-          {allProducts.length > 0 && (
-            <section className="pb3">
-              <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-                - Products
-              </h2>
+              {
+                // homePage.components.length > 0 &&
+                //   homePage.components.map(component => (
+                //     <RenderComponents component={component} />
+                //   ))
+              }
 
-              <div className="flex  flex-wrap">
-                {allProducts.map((product, i) => (
-                  <div key={product.slug} className="col-24  col-6-md">
-                    <div className="pa3">
-                      <CardProduct i={i} product={product} />
-                    </div>
+              {allPosts.length > 0 && (
+                <section className="pb3">
+                  <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
+                    - Posts
+                  </h2>
+
+                  <div className="flex  flex-wrap">
+                    {allPosts.map((post, i) => (
+                      <div key={post.slug} className="col-24  col-8-md">
+                        <div className="ph3  pv2">
+                          <CardDefault i={i} post={post} />
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </section>
-          )}
+                </section>
+              )}
 
-          <section className="pb3">
-            <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-              - Subscribe Banner
-            </h2>
+              {allProducts.length > 0 && (
+                <section className="pb3">
+                  <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
+                    - Products
+                  </h2>
 
-            <SubscribeForm />
-          </section>
-        </Container>
+                  <div className="flex  flex-wrap">
+                    {allProducts.map((product, i) => (
+                      <div key={product.slug} className="col-24  col-8-md">
+                        <div className="pa3">
+                          <CardProduct i={i} product={product} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              <section className="pb3">
+                <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
+                  - Subscribe Banner
+                </h2>
+
+                <SubscribeForm />
+              </section>
+            </Container>
+          </div>
+        </div>
       </Layout>
     </>
   );

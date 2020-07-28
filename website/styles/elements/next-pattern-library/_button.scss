@@ -3,7 +3,6 @@
   background: transparent;
   box-shadow: none;
   outline: 0;
-  color: var(--black);
   cursor: pointer;
   position: relative;
   text-decoration: none;
@@ -109,7 +108,7 @@
   }
 
   &:after {
-    content: "";
+    content: '';
     transition: all 0.3s ease-in-out;
     position: absolute;
     bottom: -6px;

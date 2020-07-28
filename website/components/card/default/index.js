@@ -1,10 +1,16 @@
 import Link from 'next/link';
+import { useInView } from 'react-intersection-observer';
 
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
 import { imageBuilder } from '../../../lib/sanity/requests';
 
 export default function CardDefault({ post }) {
+  const [ref, inView, entry] = useInView({
+    rootMargin: '-200px 0px -100px 0px',
+    threshold: 1,
+  });
+
   const cardImage = (
     <Image
       /* Options */
@@ -16,7 +22,7 @@ export default function CardDefault({ post }) {
         .url()}
       alt={post.title}
       figcaption={null}
-      height={200}
+      height={150}
       onClick={null}
       /* Children */
       withLinkProps={{
@@ -31,18 +37,18 @@ export default function CardDefault({ post }) {
     />
   );
 
-  const cardLabel = (
-    <Label
-      /* Options */
-      customClass="ph2"
-      text="Blog"
-      color="white"
-      backgroundColor="black"
-      onClick={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
+  // const cardLabel = (
+  //   <Label
+  //     /* Options */
+  //     customClass="ph2"
+  //     text="Blog"
+  //     color="white"
+  //     backgroundColor="black"
+  //     onClick={null}
+  //     /* Children */
+  //     withLinkProps={null}
+  //   />
+  // );
 
   const cardHeading = (
     <Heading
@@ -51,7 +57,7 @@ export default function CardDefault({ post }) {
       text={post.title}
       color="black"
       size="small"
-      truncate={2}
+      truncate={4}
       reveal={null}
       /* Children */
       withLinkProps={{
@@ -66,27 +72,29 @@ export default function CardDefault({ post }) {
     />
   );
 
-  const cardCopy = (
-    <Copy
-      /* Options */
-      text={post.description}
-      color="black"
-      size="medium"
-      truncate={3}
-    />
-  );
+  // const cardCopy = (
+  //   <Copy
+  //     /* Options */
+  //     text={post.description}
+  //     color="black"
+  //     size="medium"
+  //     truncate={3}
+  //   />
+  // );
 
   return (
-    <Card
-      /* Options */
-      type="block"
-      onClick={null}
-      /* Children */
-      image={cardImage}
-      labelBlock={[cardLabel]}
-      title={cardHeading}
-      description={cardCopy}
-      button={null}
-    />
+    <div className={`card--scroll  ${inView ? 'in-view' : 'n'}`} ref={ref}>
+      <Card
+        /* Options */
+        type="block"
+        onClick={null}
+        /* Children */
+        image={cardImage}
+        labelBlock={null}
+        title={cardHeading}
+        description={null}
+        button={null}
+      />
+    </div>
   );
 }
