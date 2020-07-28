@@ -74,6 +74,8 @@ export default function Home({
   return (
     <>
       <Layout
+        navOffset={null}
+        navOnWhite={false}
         meta={{
           siteConfig,
           title: 'Home',
@@ -100,15 +102,17 @@ export default function Home({
             y={['-110px', '100px']}
             tagOuter="figure"
           >
-            <Hero
-              /* Options */
-              height={500}
-              /* Children */
-              image={heroImage}
-              title={heroHeading}
-              description={null}
-              button={heroButton}
-            />
+            <div className="hero--homepage">
+              <Hero
+                /* Options */
+                height={500}
+                /* Children */
+                image={heroImage}
+                title={heroHeading}
+                description={null}
+                button={heroButton}
+              />
+            </div>
           </Parallax>
 
           <div className="pt6  ph3  ph4-md">

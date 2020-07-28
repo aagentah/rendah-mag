@@ -88,6 +88,8 @@ export default function Sigup({ siteConfig }) {
   return (
     <>
       <Layout
+        navOffset="center"
+        navOnWhite={true}
         meta={{
           siteConfig,
           title: 'Sign Up',
@@ -97,7 +99,7 @@ export default function Sigup({ siteConfig }) {
         preview={null}
       >
         <Container>
-          <div className="pt4  pb2">
+          <div className="pt4  pb2  tac">
             <Heading
               /* Options */
               htmlEntity="h1"
@@ -111,7 +113,7 @@ export default function Sigup({ siteConfig }) {
             />
           </div>
 
-          <form className="form  form--default" onSubmit={onSubmit}>
+          <form className="form  form--default  mla  mra" onSubmit={onSubmit}>
             <div className="pv2">
               <Input
                 /* Options */
