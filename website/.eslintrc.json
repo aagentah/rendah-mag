@@ -1,0 +1,43 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "commonjs": true
+  },
+  "globals": {
+    "process": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
+    "airbnb",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "react/prop-types": 0,
+    "react/jsx-uses-vars": [2],
+    "react/jsx-no-undef": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-console": 0,
+    "template-curly-spacing": "off",
+    "indent": "off",
+    "no-underscore-dangle": "off",
+    "new-cap": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "no-restricted-syntax": "off"
+  }
+}

@@ -1,0 +1,34 @@
+.snipcart {
+  @extend .t-secondary;
+}
+
+.snipcart-modal__container {
+  background-color: var(--almost-white);
+}
+
+.snipcart-modal {
+  background-color: var(--almost-white);
+}
+
+.snipcart-cart-header {
+  background-color: var(--almost-white);
+}
+
+.snipcart__box--badge {
+  background: var(--dark-grey);
+  color: var(--white);
+}
+
+.snipcart__icon,
+.snipcart__icon path {
+  fill: var(--dark-grey);
+}
+
+.snipcart-input {
+  border-color: var(--dark-grey);
+}
+
+.snipcart-checkbox:focus + label:before,
+.snipcart-checkbox:hover + label:before {
+  border-color: var(--dark-grey);
+}

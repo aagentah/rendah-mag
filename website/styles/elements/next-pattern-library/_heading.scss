@@ -1,0 +1,24 @@
+.heading {
+  @extend .t-primary;
+  @extend .bold;
+  @extend .dib;
+
+  &.small {
+    @extend .f5;
+  }
+
+  &.medium {
+    @extend .f5;
+    @extend .f4-md;
+  }
+
+  &.large {
+    @extend .f4;
+    @extend .f3-md;
+  }
+
+  &.x-large {
+    @extend .f3;
+    @extend .f2-md;
+  }
+}

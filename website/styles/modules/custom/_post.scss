@@ -1,0 +1,39 @@
+.post__body {
+  @extend .taj;
+}
+
+.post__body p,
+.post__body ul,
+.post__body ol,
+.post__body blockquote {
+  @extend .t-secondary;
+  @extend .lh-copy;
+  @extend .f5;
+  @extend .pb3;
+}
+
+.post__body h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend .t-primary;
+  @extend .lh-title;
+  @extend .pb3;
+}
+
+.post__body h6 {
+  @extend .f5;
+}
+.post__body h5 {
+  @extend .f4;
+}
+.post__body h4 {
+  @extend .f4;
+}
+.post__body h3 {
+  @extend .f3;
+}
+.post__body h2 {
+  @extend .f2;
+}

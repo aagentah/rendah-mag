@@ -1,0 +1,129 @@
+// typography
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+$system-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
+  "Ubuntu", "Roboto", "Noto", "Segoe Ui", Arial, sans-serif;
+$helvetica: "Helvetica Neue", Helvetica, sans-serif;
+$mono: "Consolas", "Menlo", "Monaco", "Lucida Console", monospace;
+$sans: sans-serif;
+$serif: serif;
+
+$t-primary: "Roboto", cursive;
+$t-secondary: "Roboto", sans-serif;
+
+$typography-base-size: 16px !default;
+$typography-base-weight: 400 !default;
+
+$typography-title: $system-sans !default;
+$typography-body: $system-sans !default;
+$typography-input: $system-sans !default;
+
+$type-scale: (
+  f-headline: 6rem,
+  f-subheadline: 5rem,
+  f1: 3rem,
+  f2: 2.25rem,
+  f3: 1.5rem,
+  f4: 1.25rem,
+  f5: 1rem,
+  f6: 0.875rem,
+  f7: 0.75rem
+) !default;
+
+// colors
+
+:root {
+  --black: #000000;
+  --almost-black: #111111;
+  --dark-grey: #343434;
+  --mid-grey: #555555;
+  --grey: #777777;
+  --silver: #999999;
+  --light-silver: #aaaaaa;
+  --moon-grey: #cccccc;
+  --light-grey: #eeeeee;
+  --almost-white: #f5f5f5;
+  --white: #ffffff;
+  --blue: #096dff;
+  --red: #ff0000;
+  --green: #1c9c08;
+  --primary-color: #00c4b4;
+  --secondary-color: #ff00cd;
+}
+
+// [data-theme="dark"] {
+//   --black: #ffb84d;
+//   --dark-grey: #ffb84d;
+//   --grey: #777777;
+//   --light-grey: #343434;
+//   --white: #343434;
+// }
+
+$colors: (
+  black: --black,
+  almost-black: --almost-black,
+  dark-grey: --dark-grey,
+  mid-grey: --mid-grey,
+  grey: --grey,
+  silver: --silver,
+  light-silver: --light-silver,
+  moon-grey: --moon-grey,
+  light-grey: --light-grey,
+  almost-white: --almost-white,
+  white: --white,
+  blue: --blue,
+  red: --red,
+  green: --green,
+  primary-color: --primary-color,
+  secondary-color: --secondary-color
+) !default;
+
+$body-color: var(--almost-black) !default;
+$body-background-color: var(--white) !default;
+
+// grid
+
+$container-width: 1080px !default;
+$container-gutter: 24px !default;
+$columns: 24 !default;
+
+$grid-breakpoints: (
+  sm: 650px,
+  md: 950px,
+  lg: 1250px,
+  xl: 1550px
+) !default;
+
+/* iphone 6, 6s, 7, 8 */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
+}
+
+/* iphone 6+, 6s+, 7+, 8+ */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+}
+
+/* iphone X , XS, 11 Pro */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+}
+
+/* iphone XR, 11 */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+}
+
+/* iphone XS Max, 11 Pro Max */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+}
+
+// spacing
+
+$spacings: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 2rem,
+  5: 4rem,
+  6: 8rem,
+  7: 16rem
+) !default;

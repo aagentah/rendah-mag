@@ -1,6 +1,0 @@
-@each $color, $hex in $colors {
-  .bc-#{$color} {
-    border-color: var(--#{$color});
-    transition: background-color ease-in 0.3s;
-  }
-}
