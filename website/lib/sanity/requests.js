@@ -68,9 +68,19 @@ export async function getPostWithSearch(slug) {
   return data;
 }
 
+export async function getLatestInterviews(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "category" && slug.current == "interviews"] [0] {
+          "articles": *[_type == "post" && references(^._id)] | order(date desc, _updatedAt desc) [0..3] {
+            ${postFields}
+            }
+          }`);
+  return getUniquePosts(results.articles);
+}
+
 export async function getAllPosts(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc){
+    .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) [0..15] {
       ${postFields}
     }`);
   return getUniquePosts(results);

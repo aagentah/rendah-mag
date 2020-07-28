@@ -5,13 +5,15 @@ import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
 import { imageBuilder } from '../../../lib/sanity/requests';
 
-export default function CardDefault({ post }) {
+export default function CardDefault({ post, columnCount }) {
   const [ref, inView, entry] = useInView({
-    rootMargin: '-200px 0px -100px 0px',
+    rootMargin: '20px 0px -220px 0px',
     threshold: 1,
   });
 
-  const cardImage = (
+  let cardImage;
+
+  cardImage = (
     <Image
       /* Options */
       src={imageBuilder.image(post.coverImage).height(200).width(250).url()}
@@ -36,6 +38,34 @@ export default function CardDefault({ post }) {
       }}
     />
   );
+
+  if (columnCount == 2) {
+    cardImage = (
+      <Image
+        /* Options */
+        src={imageBuilder.image(post.coverImage).height(800).width(1000).url()}
+        placeholder={imageBuilder
+          .image(post.coverImage)
+          .height(20)
+          .width(25)
+          .url()}
+        alt={post.title}
+        figcaption={null}
+        height={300}
+        onClick={null}
+        /* Children */
+        withLinkProps={{
+          type: 'next',
+          href: '/post/[slug]',
+          target: null,
+          routerLink: Link,
+          routerLinkProps: {
+            as: `/post/${post.slug}`,
+          },
+        }}
+      />
+    );
+  }
 
   // const cardLabel = (
   //   <Label

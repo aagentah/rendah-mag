@@ -33,9 +33,9 @@ export default function Header() {
 
   return (
     <div className="header  bg-almost-white  flex  justify-center  align-center">
-      <Container>
-        <div className="flex  justify-start  align-center">
-          <nav className="nav  col-18  flex  justify-start">
+      <div className="flex  align-center  w-100">
+        <div className="col-12">
+          <nav className="nav  w-100  flex  justify-start">
             <ul className="flex  flex-wrap">
               <li className="dib  pr3">
                 <Button
@@ -160,23 +160,150 @@ export default function Header() {
               )}
             </ul>
           </nav>
-          <div className="col-12  flex  justify-end">
-            <SearchBar />
-          </div>
+        </div>
+        <div className="col-12">
+          <nav className="nav  w-100  flex  justify-end">
+            <ul className="flex  flex-wrap">
+              <li className="dib  pr3">
+                <Button
+                  /* Options */
+                  type="secondary"
+                  size="medium"
+                  text="Home"
+                  color="black"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'next',
+                    href: '/',
+                    target: null,
+                    routerLink: Link,
+                    routerLinkProps: null,
+                  }}
+                />
+              </li>
+              {user ? (
+                <>
+                  <li className="dib  pr3">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Profile"
+                      color="black"
+                      fluid={false}
+                      icon={null}
+                      iconFloat={null}
+                      inverted
+                      loading={false}
+                      disabled={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'next',
+                        href: '/profile',
+                        target: null,
+                        routerLink: Link,
+                        routerLinkProps: null,
+                      }}
+                    />
+                  </li>
+                  <li className="dib  pr3">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Log Out"
+                      color="black"
+                      fluid={false}
+                      icon={buttonIconSignOut}
+                      iconFloat={null}
+                      inverted
+                      loading={false}
+                      disabled={false}
+                      onClick={handleLogout}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="dib  pr3">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Sign Up"
+                      color="black"
+                      fluid={false}
+                      icon={null}
+                      iconFloat={null}
+                      inverted
+                      loading={false}
+                      disabled={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'next',
+                        href: '/signup',
+                        target: null,
+                        routerLink: Link,
+                        routerLinkProps: null,
+                      }}
+                    />
+                  </li>
+                  <li className="dib  pr3">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Login"
+                      color="black"
+                      fluid={false}
+                      icon={buttonIconSignIn}
+                      iconFloat={null}
+                      inverted
+                      loading={false}
+                      disabled={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'next',
+                        href: '/login',
+                        target: null,
+                        routerLink: Link,
+                        routerLinkProps: null,
+                      }}
+                    />
+                  </li>
+                </>
+              )}
+            </ul>
+          </nav>
           {
-            // <div className="col-6">
-            //   <span className={`loading-indicator  ${isLoadingClass}`}>
-            //     <div className="lds-ring">
-            //       <div></div>
-            //       <div></div>
-            //       <div></div>
-            //       <div></div>
-            //     </div>
-            //   </span>
-            // </div>
+            // <SearchBar />
           }
         </div>
-      </Container>
+        {
+          // <div className="col-6">
+          //   <span className={`loading-indicator  ${isLoadingClass}`}>
+          //     <div className="lds-ring">
+          //       <div></div>
+          //       <div></div>
+          //       <div></div>
+          //       <div></div>
+          //     </div>
+          //   </span>
+          // </div>
+        }
+      </div>
     </div>
   );
 }

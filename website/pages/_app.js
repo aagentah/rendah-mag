@@ -3,6 +3,7 @@ import Router from 'next/router';
 import { PageTransition } from 'next-page-transitions';
 import NProgress from 'nprogress';
 import { ToastProvider } from 'react-toast-notifications';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 import { AppProvider } from '../context-provider/app';
 
@@ -30,7 +31,9 @@ function MyApp({ Component, pageProps }) {
             }}
             loadingClassNames="loading-indicator"
           >
-            <Component {...pageProps} />
+            <ParallaxProvider>
+              <Component {...pageProps} />
+            </ParallaxProvider>
           </PageTransition>
         </ToastProvider>
       </AppProvider>

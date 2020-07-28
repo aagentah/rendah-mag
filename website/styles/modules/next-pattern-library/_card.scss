@@ -3,8 +3,8 @@
   position: relative;
 }
 
-.card__image {
-  //
+.card .image__wrapper {
+  @extend .shadow3;
 }
 
 .card__image--block {
