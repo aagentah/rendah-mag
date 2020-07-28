@@ -30,6 +30,7 @@ export default function Header({ navOnWhite }) {
   }, [app.isLoading]);
 
   useEffect(() => {
+    console.log('navOnWhite', navOnWhite);
     if (navOnWhite) {
       setNavColour('black');
     } else {

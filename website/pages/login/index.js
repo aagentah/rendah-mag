@@ -71,7 +71,7 @@ export default function Login({ siteConfig }) {
   }
 
   useEffect(() => {
-    if (user) Router.push(`${fwdRoute ? `/${fwdRoute}` : '/'}`);
+    if (user) Router.push(`${fwdRoute ? `/${fwdRoute}` : '/profile'}`);
   }, [user, fwdRoute]);
 
   const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
