@@ -35,7 +35,7 @@ export default function Header() {
     <div className="header  bg-almost-white  flex  justify-center  align-center">
       <Container>
         <div className="flex  justify-start  align-center">
-          <nav className="nav  col-18">
+          <nav className="nav  col-18  flex  justify-start">
             <ul className="flex  flex-wrap">
               <li className="dib  pr3">
                 <Button
@@ -43,7 +43,7 @@ export default function Header() {
                   type="secondary"
                   size="medium"
                   text="Home"
-                  color="black"
+                  color="white"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
@@ -69,7 +69,7 @@ export default function Header() {
                       type="secondary"
                       size="medium"
                       text="Profile"
-                      color="black"
+                      color="white"
                       fluid={false}
                       icon={null}
                       iconFloat={null}
@@ -93,7 +93,7 @@ export default function Header() {
                       type="secondary"
                       size="medium"
                       text="Log Out"
-                      color="black"
+                      color="white"
                       fluid={false}
                       icon={buttonIconSignOut}
                       iconFloat={null}
@@ -114,7 +114,7 @@ export default function Header() {
                       type="secondary"
                       size="medium"
                       text="Sign Up"
-                      color="black"
+                      color="white"
                       fluid={false}
                       icon={null}
                       iconFloat={null}
@@ -138,7 +138,7 @@ export default function Header() {
                       type="secondary"
                       size="medium"
                       text="Login"
-                      color="black"
+                      color="white"
                       fluid={false}
                       icon={buttonIconSignIn}
                       iconFloat={null}
@@ -160,7 +160,7 @@ export default function Header() {
               )}
             </ul>
           </nav>
-          <div className="col-6">
+          <div className="col-12  flex  justify-end">
             <SearchBar />
           </div>
           {

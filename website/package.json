@@ -36,6 +36,8 @@
     "password-validator": "^5.0.3",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-hook-inview": "^4.2.1",
+    "react-intersection-observer": "^8.26.2",
     "react-toast-notifications": "^2.4.0",
     "request": "^2.88.2",
     "sass": "^1.26.5",

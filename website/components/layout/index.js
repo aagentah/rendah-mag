@@ -10,7 +10,9 @@ export default function Layout({ meta, preview, children }) {
       {preview && <Alert preview={preview} />}
       <Header />
       <main className="page">{children}</main>
-      <Footer />
+      {
+        // <Footer />
+      }
     </>
   );
 }
