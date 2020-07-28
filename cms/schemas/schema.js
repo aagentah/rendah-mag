@@ -6,6 +6,9 @@ import category from './category'
 import post from './post'
 import author from './author'
 
+import siteSettings from './objects/siteSettings'
+
+
 export default createSchema({
   name: 'default',
   types: schemaTypes.concat(
@@ -13,7 +16,9 @@ export default createSchema({
       blockContent,
       post,
       author,
-      category
+      category,
+      //
+      siteSettings
     ]
   )
 })

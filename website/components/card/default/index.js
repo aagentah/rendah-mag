@@ -51,7 +51,7 @@ export default function CardDefault({ post }) {
       text={post.title}
       color="black"
       size="small"
-      truncate={1}
+      truncate={2}
       reveal={null}
       /* Children */
       withLinkProps={{
@@ -69,10 +69,10 @@ export default function CardDefault({ post }) {
   const cardCopy = (
     <Copy
       /* Options */
-      text={post.excerpt}
+      text={post.description}
       color="black"
       size="medium"
-      truncate={1}
+      truncate={3}
     />
   );
 

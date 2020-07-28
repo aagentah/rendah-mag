@@ -9,15 +9,15 @@ export default () =>
   S.list()
     .title("Content")
     .items([
-      //
-      // S.listItem()
-      //   .icon(MdSettings)
-      //   .title("Site Settings")
-      //   .child(
-      //     S.editor()
-      //       .schemaType("siteSettings")
-      //       .documentId("siteSettings")
-      //   ),
+
+      S.listItem()
+        .icon(MdSettings)
+        .title("Site Settings")
+        .child(
+          S.editor()
+            .schemaType("siteSettings")
+            .documentId("siteSettings")
+        ),
       //
       // S.listItem()
       //   .icon(MDWeb)
