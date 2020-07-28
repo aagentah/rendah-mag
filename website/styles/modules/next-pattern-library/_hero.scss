@@ -1,3 +1,15 @@
+.hero--homepage {
+  .image__wrapper {
+    img {
+      filter: brightness(65%);
+    }
+  }
+}
+
+.hero--article {
+  //
+}
+
 .hero {
   width: 100%;
   position: relative;
@@ -8,10 +20,6 @@
     left: 0;
     width: 100%;
     z-index: 0;
-
-    img {
-      filter: brightness(65%);
-    }
   }
 }
 
