@@ -11,6 +11,10 @@
     margin-left: -$value;
     margin-right: -$value;
   }
+
+  .nt#{$i} {
+    margin-top: -$value;
+  }
 }
 
 @each $modifier, $breakpoint in $grid-breakpoints {
@@ -28,6 +32,10 @@
       .nh#{$i}-#{$infix} {
         margin-left: -$value;
         margin-right: -$value;
+      }
+
+      .nt#{$i}-#{$infix} {
+        margin-top: -$value;
       }
     }
   }

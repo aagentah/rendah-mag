@@ -20,7 +20,7 @@
 
 @for $i from 1 through 10 {
   .h-#{$i}0 {
-    height: #{$i} + 0%;
+    height: ($i * 10) + 0%;
   }
 }
 
@@ -49,7 +49,7 @@
 
     @for $i from 1 through 10 {
       .h-#{$i}0-#{$infix} {
-        height: #{$i} + 0%;
+        height: ($i * 10) + 0%;
       }
     }
   }

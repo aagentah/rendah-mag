@@ -66,7 +66,6 @@ main {
   background-color: var(--black);
 
   @extend .col-24;
-  @extend .col-12-md;
 
   .layout--split__left__background {
     width: 100%;
@@ -75,24 +74,4 @@ main {
     background-repeat: no-repeat;
     background-position: center;
   }
-}
-
-.layout--split__right {
-  height: auto;
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  @extend .col-24;
-  @extend .col-12-md;
-}
-
-@include breakpoint-up(md) {
-  .layout--split__right {
-    height: 100vh;
-    overflow-y: scroll;
-  }
-}
-
-.layout-standard {
-  //
 }
