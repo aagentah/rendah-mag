@@ -1,0 +1,58 @@
+{
+  "name": "cms-sanity",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.16.x"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start -p $PORT",
+    "lint": "eslint '**/*.js'; exit 0",
+    "lint-fix": "eslint --fix '**/*.js'; exit 0",
+    "heroku-postbuild": "npm run build"
+  },
+  "dependencies": {
+    "@hapi/iron": "^6.0.0",
+    "@sanity/block-content-to-react": "2.0.7",
+    "@sanity/client": "1.149.2",
+    "@sanity/image-url": "0.140.17",
+    "classnames": "2.2.6",
+    "cookie": "^0.4.1",
+    "crypto": "^1.0.1",
+    "date-fns": "2.10.0",
+    "dotenv": "8.2.0",
+    "generate-password": "^1.5.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "latest",
+    "next-connect": "^0.6.6",
+    "next-page-transitions": "^1.0.0-beta.2",
+    "next-pattern-library": "github:danjonesdev/next-pattern-library",
+    "nodemailer": "^6.4.6",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "nprogress": "^0.2.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "password-validator": "^5.0.3",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-toast-notifications": "^2.4.0",
+    "request": "^2.88.2",
+    "sass": "^1.26.5",
+    "swr": "^0.2.0"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.1.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "postcss-preset-env": "^6.7.0",
+    "tailwindcss": "^1.2.0"
+  }
+}

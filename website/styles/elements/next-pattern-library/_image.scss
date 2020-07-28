@@ -1,0 +1,40 @@
+.image__wrapper {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+
+  -webkit-animation-name: image__wrapper;
+  animation-name: image__wrapper;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes image__wrapper {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.image__loading {
+  transition: opacity ease-in 0.5s;
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  filter: blur(5px);
+  clip-path: inset(0);
+  object-fit: cover;
+}

@@ -1,0 +1,55 @@
+$transitionTimeout: 300ms;
+
+main {
+  min-height: calc(100vh - 70px);
+}
+
+// Page transition
+
+.page {
+  transition: opacity $transitionTimeout;
+  opacity: 0;
+}
+
+.page-transition-enter {
+  .page {
+    opacity: 0;
+  }
+}
+
+.page-transition-enter-active {
+  .page {
+    opacity: 1;
+  }
+}
+
+.page-transition-enter-done {
+  .page {
+    opacity: 1;
+  }
+}
+
+.page-transition-exit {
+  .page {
+    opacity: 1;
+  }
+}
+
+.page-transition-exit-active {
+  .page {
+    opacity: 0;
+  }
+}
+
+// Indicator
+
+.loading-indicator-appear,
+.loading-indicator-enter {
+  opacity: 0;
+}
+
+.loading-indicator-appear-active,
+.loading-indicator-enter-active {
+  opacity: 1;
+  transition: opacity $transitionTimeout;
+}

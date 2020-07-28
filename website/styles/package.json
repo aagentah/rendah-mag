@@ -1,0 +1,14 @@
+{
+  "name": "@mosquitodigitalltd/front-scss",
+  "version": "0.0.6",
+  "description": "",
+  "author": "Jonathon Halliwell <jonathon@mosquitodigital.co.uk>",
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MosquitoDigitalLtd/front-scss.git"
+  },
+  "homepage": "https://front.mosquito.digital",
+  "bugs": "https://github.com/MosquitoDigitalLtd/front-scss/issues",
+  "license": "UNLICENSED"
+}

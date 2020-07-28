@@ -1,0 +1,22 @@
+.subscribe-banner {
+  //
+}
+
+.subscribe-banner__input {
+  box-shadow: 0;
+  outline: 0;
+  @extend .pa2;
+  @extend .ba;
+  @extend .bc-almost-black;
+}
+
+.subscribe-banner__submit {
+  // @extend .btn;
+  @extend .t-primary;
+  @extend .ba;
+  @extend .bc-almost-black;
+  @extend .white;
+  @extend .bg-black;
+  @extend .almost-black-hover;
+  @extend .bg-white-hover;
+}
