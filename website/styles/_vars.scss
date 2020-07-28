@@ -1,16 +1,18 @@
 // typography
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-$system-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
-  "Ubuntu", "Roboto", "Noto", "Segoe Ui", Arial, sans-serif;
-$helvetica: "Helvetica Neue", Helvetica, sans-serif;
-$mono: "Consolas", "Menlo", "Monaco", "Lucida Console", monospace;
+$system-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+  'Ubuntu', 'Roboto', 'Noto', 'Segoe Ui', Arial, sans-serif;
+$helvetica: 'Helvetica Neue', Helvetica, sans-serif;
+$mono: 'Consolas', 'Menlo', 'Monaco', 'Lucida Console', monospace;
 $sans: sans-serif;
 $serif: serif;
 
-$t-primary: "Roboto", cursive;
-$t-secondary: "Roboto", sans-serif;
+$t-primary: 'Play', sans-serif;
+$t-secondary: 'Roboto', sans-serif;
 
 $typography-base-size: 16px !default;
 $typography-base-weight: 400 !default;
@@ -28,7 +30,7 @@ $type-scale: (
   f4: 1.25rem,
   f5: 1rem,
   f6: 0.875rem,
-  f7: 0.75rem
+  f7: 0.75rem,
 ) !default;
 
 // colors
@@ -76,7 +78,7 @@ $colors: (
   red: --red,
   green: --green,
   primary-color: --primary-color,
-  secondary-color: --secondary-color
+  secondary-color: --secondary-color,
 ) !default;
 
 $body-color: var(--almost-black) !default;
@@ -92,7 +94,7 @@ $grid-breakpoints: (
   sm: 650px,
   md: 950px,
   lg: 1250px,
-  xl: 1550px
+  xl: 1550px,
 ) !default;
 
 /* iphone 6, 6s, 7, 8 */
@@ -125,5 +127,5 @@ $spacings: (
   4: 2rem,
   5: 4rem,
   6: 8rem,
-  7: 16rem
+  7: 16rem,
 ) !default;

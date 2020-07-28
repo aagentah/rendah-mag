@@ -76,10 +76,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
               </div>
 
               <p className="t-secondary  f7  almost-black  lh-copy  pb4">
-                {post.author.name}
-                {' '}
-                |
-                <Date dateString={post.date} />
+                {post.author.name} | <Date dateString={post.publishedAt} />
               </p>
 
               <div className="post__body  pb4">

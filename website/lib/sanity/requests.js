@@ -7,18 +7,18 @@ const getUniquePosts = (posts) => {
     if (slugs.has(post.slug)) {
       return false;
     }
-      slugs.add(post.slug);
-      return true;
+    slugs.add(post.slug);
+    return true;
   });
 };
 
 const postFields = `
   name,
   title,
-  date,
-  excerpt,
+  publishedAt,
+  description,
   'slug': slug.current,
-  'coverImage': coverImage.asset->url,
+  'coverImage': image.asset->url,
   'author': author->{name, 'picture': picture.asset->url},
 `;
 
@@ -31,7 +31,7 @@ const productFields = `
   'coverImage': coverImage.asset->url,
 `;
 
-const getClient = preview => (preview ? previewClient : client);
+const getClient = (preview) => (preview ? previewClient : client);
 
 export const imageBuilder = sanityImage(client);
 
@@ -46,13 +46,15 @@ export async function getPreviewPostBySlug(slug) {
       ${postFields}
       content
     }`,
-    { slug },
+    { slug }
   );
   return data[0];
 }
 
 export async function getAllPostsWithSlug() {
-  const data = await client.fetch('*[_type == "post"]{ \'slug\': slug.current }');
+  const data = await client.fetch(
+    '*[_type == "post"]{ \'slug\': slug.current }'
+  );
   return data;
 }
 
@@ -61,7 +63,7 @@ export async function getPostWithSearch(slug) {
     `*[_type == "post" && title match $slug || _type == "post" && excerpt match $slug]{
       ${postFields}
      }`,
-    { slug },
+    { slug }
   );
   return data;
 }
@@ -91,15 +93,15 @@ export async function getPostAndMore(slug, preview) {
         ${postFields}
         content,
       }`,
-        { slug },
+        { slug }
       )
-      .then(res => res?.[0]),
+      .then((res) => res?.[0]),
     curClient.fetch(
       `*[_type == "post" && slug.current != $slug] | order(date desc, _updatedAt desc){
         ${postFields}
         content,
       }[0...4]`,
-      { slug },
+      { slug }
     ),
   ]);
   return { post, morePosts: getUniquePosts(morePosts) };
@@ -111,7 +113,7 @@ export async function getPreviewProductBySlug(slug) {
       ${productFields}
       content,
     }`,
-    { slug },
+    { slug }
   );
   return data[0];
 }
@@ -125,15 +127,15 @@ export async function getProductAndMore(slug, preview) {
         ${productFields}
         content,
       }`,
-        { slug },
+        { slug }
       )
-      .then(res => res?.[0]),
+      .then((res) => res?.[0]),
     curClient.fetch(
       `*[_type == "product" && slug.current != $slug] | order(date desc, _updatedAt desc){
         ${productFields}
         content,
       }[0...4]`,
-      { slug },
+      { slug }
     ),
   ]);
 
