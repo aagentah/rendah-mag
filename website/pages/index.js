@@ -98,11 +98,11 @@ export default function Home({
           }
 
           <Parallax
-            className="z1  nt4"
+            className="z1  nt5"
             y={['-110px', '100px']}
             tagOuter="figure"
           >
-            <div className="hero--homepage">
+            <div className="hero--darken-all">
               <Hero
                 /* Options */
                 height={500}

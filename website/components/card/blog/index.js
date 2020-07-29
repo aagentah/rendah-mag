@@ -5,7 +5,7 @@ import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
 import { imageBuilder } from '../../../lib/sanity/requests';
 
-export default function CardDefault({ post, columnCount }) {
+export default function CardBlog({ post, columnCount }) {
   const [ref, inView, entry] = useInView({
     rootMargin: '20px 0px -220px 0px',
     threshold: 1,
