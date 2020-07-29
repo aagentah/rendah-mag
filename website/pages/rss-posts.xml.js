@@ -3,6 +3,11 @@ import React from 'react';
 import { getAllPosts } from '../lib/sanity/requests';
 import { SITE_URL } from '../constants';
 
+// Removes special characters that may break the RSS
+const encodeSpecialChar = (text) => {
+  return text.replace(/&/g, '&amp;');
+};
+
 const sitemapXml = (allPosts) => {
   let postsXML = '';
 
@@ -11,9 +16,9 @@ const sitemapXml = (allPosts) => {
 
     postsXML += `
       <item>
-        <title>${post.title}</title>
-        <link>${url}</link>
-        <description>${post.excerpt}</description>
+        <title>${encodeSpecialChar(post.title)}</title>
+        <link>${encodeSpecialChar(url)}</link>
+        <description>${encodeSpecialChar(post.description)}</description>
       </item>
       `;
 

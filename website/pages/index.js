@@ -4,7 +4,7 @@ import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '../components/layout';
 import Container from '../components/layout/container';
-import CardDefault from '../components/card/default';
+import CardBlog from '../components/card/blog';
 import CardProduct from '../components/card/product';
 import SubscribeForm from '../components/subscribe-form';
 // import RenderComponents from '../../helpers/render-components';
@@ -137,7 +137,7 @@ export default function Home({
                     {latestInterviews.map((post, i) => (
                       <div key={post.slug} className="col-24  col-12-md">
                         <div className="ph3  pv2">
-                          <CardDefault i={i} post={post} columnCount={2} />
+                          <CardBlog i={i} post={post} columnCount={2} />
                         </div>
                       </div>
                     ))}
@@ -165,7 +165,7 @@ export default function Home({
                     {allPosts.map((post, i) => (
                       <div key={post.slug} className="col-24  col-6-md">
                         <div className="ph3  pv2">
-                          <CardDefault i={i} post={post} columnCount={4} />
+                          <CardBlog i={i} post={post} columnCount={4} />
                         </div>
                       </div>
                     ))}

@@ -9,11 +9,11 @@ import Layout from '../../components/layout';
 import Container from '../../components/layout/container';
 
 import Date from '../../components/date';
-import CardDefault from '../../components/card/default';
+import CardBlog from '../../components/card/blog';
 
 import {
-  imageBuilder,
   getSiteConfig,
+  imageBuilder,
   getPostAndMore,
 } from '../../lib/sanity/requests';
 
@@ -105,7 +105,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 {morePosts.map((p, i) => (
                   <div key={p.slug} className="col-24  col-6-md">
                     <div className="pa3">
-                      <CardDefault i={i} post={p} />
+                      <CardBlog i={i} post={p} />
                     </div>
                   </div>
                 ))}
