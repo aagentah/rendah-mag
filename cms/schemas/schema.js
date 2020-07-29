@@ -6,6 +6,7 @@ import blockContent from './blockContent'
 import category from './documents/category'
 import post from './documents/post'
 import author from './documents/author'
+import cypher from './documents/cypher'
 import user from './documents/user'
 
 import siteSettings from './objects/siteSettings'
@@ -19,6 +20,7 @@ export default createSchema({
       //
       post,
       author,
+      cypher,
       category,
       user,
       //

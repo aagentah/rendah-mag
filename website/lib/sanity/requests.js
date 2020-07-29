@@ -1,5 +1,7 @@
 import sanityImage from '@sanity/image-url';
+
 import client, { previewClient } from './config';
+import dateTodayISO from '../../functions/dateTodayISO';
 
 const getUniquePosts = (posts) => {
   const slugs = new Set();
@@ -68,6 +70,14 @@ export async function getPostWithSearch(slug) {
   return data;
 }
 
+export async function getAllPosts(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) [0..15] {
+      ${postFields}
+    }`);
+  return getUniquePosts(results);
+}
+
 export async function getLatestInterviews(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "category" && slug.current == "interviews"] [0] {
@@ -78,12 +88,29 @@ export async function getLatestInterviews(preview) {
   return getUniquePosts(results.articles);
 }
 
-export async function getAllPosts(preview) {
-  const results = await getClient(preview)
-    .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) [0..15] {
-      ${postFields}
-    }`);
-  return getUniquePosts(results);
+export async function getCurrentAndPreviousCyphers(preview) {
+  const dateToday = dateTodayISO();
+  const curClient = getClient(preview);
+
+  const [current, previous] = await Promise.all([
+    curClient
+      .fetch(
+        `*[_type == "cypher" && announcementFields.isAnnounced] {
+              ...,
+              }`,
+        { dateToday }
+      )
+      .then((res) => res?.[0]),
+    curClient.fetch(
+      `*[_type == "cypher" && announcementFields.isAnnounced && publishedFields.isPublished] {
+            ...,
+            }`,
+      { dateToday }
+    ),
+  ]);
+
+  console.log('current', current);
+  return { current: current || null, previous: getUniquePosts(previous) };
 }
 
 export async function getAllProducts(preview) {
