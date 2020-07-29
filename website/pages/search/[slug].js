@@ -2,7 +2,7 @@ import { Heading } from 'next-pattern-library';
 
 import Layout from '../../components/layout';
 import Container from '../../components/layout/container';
-import CardDefault from '../../components/card/default';
+import CardBlog from '../../components/card/blog';
 
 import { getSiteConfig, getPostWithSearch } from '../../lib/sanity/requests';
 
@@ -54,7 +54,7 @@ export default function Post({ siteConfig, allPosts, params }) {
               {allPosts.map((post, i) => (
                 <div key={post.slug} className="col-24  col-6-md">
                   <div className="pa3">
-                    <CardDefault i={i} post={post} />
+                    <CardBlog i={i} post={post} />
                   </div>
                 </div>
               ))}
