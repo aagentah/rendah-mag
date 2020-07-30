@@ -8,7 +8,7 @@ export default {
       title: "Title",
       type: "string",
       description: "For example: Cypher 009 (Curated By Renraku)",
-      validation: Rule => Rule.required().max(60)
+      validation: (Rule) => Rule.required().max(60),
     },
     {
       name: "slug",
@@ -16,19 +16,30 @@ export default {
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96
+        maxLength: 96,
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
-
     {
       name: "image",
       title: "Image",
       type: "image",
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "packLink",
+      title: "Pack Link",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "submissionFormLink",
+      title: "Submission Form Link",
+      type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       type: "object",
@@ -47,15 +58,15 @@ export default {
         {
           name: "isAnnounced",
           title: "Announced",
-          type: "boolean"
+          type: "boolean",
         },
         {
           name: "announcementDescription",
           title: "Announcement Description",
-          type: 'array',
-          of: [{type: 'block'}]
-        }
-      ]
+          type: "array",
+          of: [{ type: "block" }],
+        },
+      ],
     },
     {
       type: "object",
@@ -74,13 +85,13 @@ export default {
         {
           name: "isPublished",
           title: "Published",
-          type: "boolean"
+          type: "boolean",
         },
         {
           name: "publishedDescription",
           title: "Published Description",
-          type: 'array',
-          of: [{type: 'block'}]
+          type: "array",
+          of: [{ type: "block" }],
         },
         {
           name: "shortUrl",
@@ -88,13 +99,13 @@ export default {
           type: "string",
           description: "Shortened gate link to the track.",
         },
-      ]
-    }
+      ],
+    },
   ],
   preview: {
     select: {
       title: "title",
-      media: "image"
-    }
-  }
+      media: "image",
+    },
+  },
 };
