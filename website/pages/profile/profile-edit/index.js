@@ -225,7 +225,7 @@ export default function ProfileEdit() {
       </Modal>
 
       <div className="flex  flex-wrap">
-        <div className="col-24  col-12-md  pr4  pb3  pb0-md">
+        <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
           <form className="form  form--default" onSubmit={handleEditProfile}>
             <div className="pv2">
               <Input
@@ -326,8 +326,8 @@ export default function ProfileEdit() {
             </div>
           </form>
         </div>
-        <div className="col-24  col-12-md  pr4">
-          <div className="flex  justify-start  justify-end-md  align-center  pv3">
+        <div className="col-24  col-12-md  pr0  pr4-md">
+          <div className="flex  justify-between  justify-end-md  align-center  pv3">
             <p className="t-secondary  black  f6  pr2">Newsletter Status:</p>
             <Label
               /* Options */
@@ -342,7 +342,7 @@ export default function ProfileEdit() {
               withLinkProps={null}
             />
           </div>
-          <div className="flex  justify-start  justify-end-md  align-center  pv3">
+          <div className="flex  justify-between  justify-end-md  align-center  pv3">
             <p className="t-secondary  black  f6  pr2">
               Dominion Subscription:
             </p>
