@@ -2,29 +2,11 @@ import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { useToasts } from 'react-toast-notifications';
 
-import {
-  Modal,
-  Heading,
-  Button,
-  Copy,
-  Icon,
-  Input,
-  Label,
-  Image,
-} from 'next-pattern-library';
+import { Heading, Button, Copy, Image } from 'next-pattern-library';
 
-import { useApp, useDispatchApp } from '../../../context-provider/app';
-import { useUser } from '../../../lib/hooks';
 import { imageBuilder } from '../../../lib/sanity/requests';
 
 export default function ProfileCypher({ cyphers }) {
-  const app = useApp();
-  const dispatch = useDispatchApp();
-  const [updateButtonLoading, setUpdateButtonLoading] = useState(false);
-  const [modalActive, setModalActive] = useState(false);
-  const [user, { mutate }] = useUser();
-  const { addToast } = useToasts();
-
   if (cyphers) {
     return (
       <>

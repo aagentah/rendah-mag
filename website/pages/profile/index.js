@@ -70,9 +70,6 @@ export default function Profile({ siteConfig }) {
         <Container>
           {user && (
             <>
-              {
-                // <p>Your profile: {JSON.stringify(user)}</p>
-              }
               <Tabs
                 /* Options */
                 content={[
