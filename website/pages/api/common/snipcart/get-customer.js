@@ -5,21 +5,19 @@ export default async (req, res) => {
   const { email } = req.body;
   // const email = 'Goldtoofgarms@hotmail.com';
 
-  const secret = Buffer.from(process.env.SNIPCART_SECRET_KEY).toString(
-    'base64'
-  );
-
   try {
-    const fetchCustomers = await fetch(
-      'http://app.snipcart.com/api/customers',
-      {
+    const secret = Buffer.from(process.env.SNIPCART_SECRET_KEY).toString(
+      'base64'
+    );
+
+    const fetchCustomers = async () =>
+      await fetch('http://app.snipcart.com/api/customers', {
         headers: {
           Authorization: `Basic ${secret}`,
           Accept: 'application/json',
         },
         method: 'GET',
-      }
-    );
+      });
 
     const fetchCustomerOrdersById = async (id) =>
       await fetch(`http://app.snipcart.com/api/customers/${id}/orders`, {
@@ -41,8 +39,9 @@ export default async (req, res) => {
 
     const action = async () => {
       // Fetch all customers
-      if (fetchCustomers.status >= 400) return false;
-      const customers = await fetchCustomers.json();
+      const customersRes = await fetchCustomers();
+      if (customersRes.status >= 400) return false;
+      const customers = await customersRes.json();
 
       // Find customer based on email
       if (!customers.items) return false;
@@ -50,37 +49,30 @@ export default async (req, res) => {
       if (!customer?.id) return false;
 
       // Fetch customer's orders based on Id
-      const customerOrdersResponse = await fetchCustomerOrdersById(customer.id);
-      if (fetchCustomers.status >= 400) return false;
-      const customerOrders = await customerOrdersResponse.json();
-      if (!customerOrders) return false;
+      const ordersRes = await fetchCustomerOrdersById(customer.id);
+      if (ordersRes.status >= 400) return false;
+      const orders = await ordersRes.json();
+      if (!orders) return false;
 
       // Fetch each order's details
-      const ordersByToken = [];
+      const detailedOrders = [];
 
-      for (let i = 0; i < customerOrders.length; i++) {
-        const orderResponse = await fetchCustomerOrderByToken(
-          customerOrders[i].token
-        );
-
+      for (let i = 0; i < orders.length; i++) {
+        const orderResponse = await fetchCustomerOrderByToken(orders[i].token);
         if (orderResponse.status >= 400) continue;
         const order = await orderResponse.json();
-        ordersByToken.push(order);
+        detailedOrders.push(order);
       }
 
-      return ordersByToken;
+      if (!detailedOrders.length > 0) return false;
+      return detailedOrders;
     };
 
     const response = await action();
 
     // Handle response
-    if (response) {
-      return res.status(200).json(response);
-    } else {
-      return res.status(400).json([]);
-    }
+    return response ? res.status(200).json(response) : res.status(400).json([]);
   } catch (error) {
-    // Catch errors
     return res.status(500).json([]);
   }
 };
