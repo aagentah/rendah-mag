@@ -76,7 +76,11 @@ export default function Profile({ siteConfig }) {
               <Tabs
                 /* Options */
                 content={[
-                  { id: '1', tabTitle: 'Profile', tabContent: <ProfileEdit /> },
+                  {
+                    id: '1',
+                    tabTitle: 'Profile',
+                    tabContent: <ProfileEdit customerOrders={customerOrders} />,
+                  },
                   {
                     id: '2',
                     tabTitle: 'Cyphers',

@@ -16,7 +16,7 @@ import { useApp, useDispatchApp } from '../../../context-provider/app';
 import { useUser } from '../../../lib/hooks';
 import passwordStrength from '../../../lib/password-strength';
 
-export default function ProfileEdit() {
+export default function ProfileEdit({ customerOrders }) {
   const app = useApp();
   const dispatch = useDispatchApp();
   const [updateButtonLoading, setUpdateButtonLoading] = useState(false);
@@ -25,6 +25,16 @@ export default function ProfileEdit() {
   const { addToast } = useToasts();
   const [isSubNewsletter, setIsSubNewsletter] = useState('Loading...');
   const [isDominionMember, setIsDominionMember] = useState('Loading...');
+
+  const checkIfDominionMember = () => {
+    if (customerOrders?.length === 0) {
+      setIsDominionMember('Not a member');
+    }
+  };
+
+  useEffect(() => {
+    checkIfDominionMember();
+  }, [customerOrders]);
 
   useEffect(() => {
     mailchimpGetMember();
