@@ -15,27 +15,15 @@ import {
 
 import { useApp, useDispatchApp } from '../../../context-provider/app';
 import { useUser } from '../../../lib/hooks';
-import {
-  getCurrentAndPreviousCyphers,
-  imageBuilder,
-} from '../../../lib/sanity/requests';
+import { imageBuilder } from '../../../lib/sanity/requests';
 
-export default function ProfileCypher() {
+export default function ProfileCypher({ cyphers }) {
   const app = useApp();
   const dispatch = useDispatchApp();
   const [updateButtonLoading, setUpdateButtonLoading] = useState(false);
   const [modalActive, setModalActive] = useState(false);
   const [user, { mutate }] = useUser();
   const { addToast } = useToasts();
-  const [cyphers, setCyphers] = useState(null);
-
-  const fetchCyphers = async () => {
-    setCyphers(await getCurrentAndPreviousCyphers());
-  };
-
-  useEffect(() => {
-    fetchCyphers();
-  }, []);
 
   if (cyphers) {
     console.log('cyphers.current', cyphers.current);
