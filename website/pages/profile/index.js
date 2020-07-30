@@ -4,6 +4,7 @@ import Router from 'next/router';
 import { Tabs } from 'next-pattern-library';
 
 import ProfileEdit from './profile-edit';
+import ProfileCypher from './profile-cypher';
 import Layout from '../../components/layout';
 import Container from '../../components/layout/container';
 
@@ -41,7 +42,11 @@ export default function Profile({ siteConfig }) {
                 /* Options */
                 content={[
                   { id: '1', tabTitle: 'Profile', tabContent: <ProfileEdit /> },
-                  { id: '2', tabTitle: 'Cyphers', tabContent: '' },
+                  {
+                    id: '2',
+                    tabTitle: 'Cyphers',
+                    tabContent: <ProfileCypher />,
+                  },
                   { id: '3', tabTitle: 'Dominion', tabContent: '' },
                 ]}
               />

@@ -8,7 +8,8 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const adminPublishPassword = "password";
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (e) => {
+    e.preventDefault();
     setDialogOpen(false);
 
     if (inputVal === adminPublishPassword) {
