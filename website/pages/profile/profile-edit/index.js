@@ -42,11 +42,9 @@ export default function ProfileEdit() {
     });
 
     if (res.status === 200) {
-      // Exists in mailchimp
       const mailchimpMember = await res.json();
       setIsSubNewsletter('Subscribed');
     } else {
-      // Does not exist in mailchimp
       setIsSubNewsletter('Not Subscribed');
     }
   };

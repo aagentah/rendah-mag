@@ -35,7 +35,6 @@ export default function Profile({ siteConfig }) {
     });
 
     if (res.status === 200) {
-      // Exists in mailchimp
       setCustomerOrders(await res.json());
     } else {
       setCustomerOrders([]);
@@ -47,9 +46,7 @@ export default function Profile({ siteConfig }) {
   }, []);
 
   useEffect(() => {
-    if (user) {
-      getCustomerOrders();
-    }
+    if (user) getCustomerOrders();
   }, [user]);
 
   useEffect(() => {
