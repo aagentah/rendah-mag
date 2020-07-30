@@ -5,14 +5,52 @@ import { Tabs } from 'next-pattern-library';
 
 import ProfileEdit from './profile-edit';
 import ProfileCypher from './profile-cypher';
+import ProfileOrders from './profile-orders';
 import Layout from '../../components/layout';
 import Container from '../../components/layout/container';
 
 import { useUser } from '../../lib/hooks';
 import { getSiteConfig } from '../../lib/sanity/requests';
 
+import { getCurrentAndPreviousCyphers } from '../../lib/sanity/requests';
+
 export default function Profile({ siteConfig }) {
   const [user, { loading, error }] = useUser();
+  const [cyphers, setCyphers] = useState(null);
+  const [customerOrders, setCustomerOrders] = useState(null);
+
+  const fetchCyphers = async () => {
+    setCyphers(await getCurrentAndPreviousCyphers());
+  };
+
+  const getCustomerOrders = async () => {
+    const res = await fetch('/api/common/snipcart/get-customer', {
+      body: JSON.stringify({
+        email: user.username,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    });
+
+    if (res.status === 200) {
+      // Exists in mailchimp
+      setCustomerOrders(await res.json());
+    } else {
+      setCustomerOrders([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchCyphers();
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      getCustomerOrders();
+    }
+  }, [user]);
 
   useEffect(() => {
     // redirect user to login if not authenticated
@@ -45,9 +83,16 @@ export default function Profile({ siteConfig }) {
                   {
                     id: '2',
                     tabTitle: 'Cyphers',
-                    tabContent: <ProfileCypher />,
+                    tabContent: <ProfileCypher cyphers={cyphers} />,
                   },
                   { id: '3', tabTitle: 'Dominion', tabContent: '' },
+                  {
+                    id: '4',
+                    tabTitle: 'Orders',
+                    tabContent: (
+                      <ProfileOrders customerOrders={customerOrders} />
+                    ),
+                  },
                 ]}
                 defaultSelected={0}
               />
