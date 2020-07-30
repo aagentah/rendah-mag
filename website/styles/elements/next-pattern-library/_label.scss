@@ -1,5 +1,6 @@
 .label {
   @extend .pv1;
+  @extend .f6;
 
   &.date {
     @extend .tal;
