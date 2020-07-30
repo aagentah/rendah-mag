@@ -26,7 +26,6 @@ export default function ProfileCypher({ cyphers }) {
   const { addToast } = useToasts();
 
   if (cyphers) {
-    console.log('cyphers.current', cyphers.current);
     return (
       <>
         <div className="pb3">
