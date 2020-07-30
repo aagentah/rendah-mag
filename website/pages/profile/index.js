@@ -49,6 +49,7 @@ export default function Profile({ siteConfig }) {
                   },
                   { id: '3', tabTitle: 'Dominion', tabContent: '' },
                 ]}
+                defaultSelected={0}
               />
             </>
           )}
