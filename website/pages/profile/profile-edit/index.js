@@ -9,6 +9,7 @@ import {
   Copy,
   Icon,
   Input,
+  Label,
 } from 'next-pattern-library';
 
 import { useApp, useDispatchApp } from '../../../context-provider/app';
@@ -22,6 +23,8 @@ export default function ProfileEdit() {
   const [modalActive, setModalActive] = useState(false);
   const [user, { mutate }] = useUser();
   const { addToast } = useToasts();
+  const [isSubNewsletter, setIsSubNewsletter] = useState('Loading...');
+  const [isDominionMember, setIsDominionMember] = useState('Loading...');
 
   useEffect(() => {
     mailchimpGetMember();
@@ -41,9 +44,10 @@ export default function ProfileEdit() {
     if (res.status === 200) {
       // Exists in mailchimp
       const mailchimpMember = await res.json();
-      console.log('mailchimpMember', mailchimpMember);
+      setIsSubNewsletter('Subscribed');
     } else {
       // Does not exist in mailchimp
+      setIsSubNewsletter('Not Subscribed');
     }
   };
 
@@ -220,105 +224,143 @@ export default function ProfileEdit() {
         </div>
       </Modal>
 
-      <form className="form  form--default" onSubmit={handleEditProfile}>
-        <div className="pv2">
-          <Input
-            /* Options */
-            type="email"
-            label="Email"
-            name="username"
-            value={(user && user.username) || ''}
-            icon={inputIconEnvelope}
-            required
-            disabled={false}
-            readOnly
-          />
+      <div className="flex  flex-wrap">
+        <div className="col-24  col-12-md  pr4  pb3  pb0-md">
+          <form className="form  form--default" onSubmit={handleEditProfile}>
+            <div className="pv2">
+              <Input
+                /* Options */
+                type="email"
+                label="Email"
+                name="username"
+                value={(user && user.username) || ''}
+                icon={inputIconEnvelope}
+                required
+                disabled={false}
+                readOnly
+              />
+            </div>
+            <div className="pv2">
+              <Input
+                /* Options */
+                type="text"
+                label="Name"
+                name="name"
+                value={(user && user.name) || ''}
+                icon={inputIconUser}
+                required
+                disabled={false}
+                readOnly={false}
+              />
+            </div>
+            <div className="pv2">
+              <Input
+                /* Options */
+                type="password"
+                label="Password"
+                name="password"
+                value=""
+                icon={inputIconLock}
+                required={false}
+                disabled={false}
+                readOnly={false}
+              />
+            </div>
+            <div className="pv2">
+              <Input
+                /* Options */
+                type="password"
+                label="Repeat Password"
+                name="rpassword"
+                value=""
+                icon={inputIconLock}
+                required={false}
+                disabled={false}
+                readOnly={false}
+              />
+            </div>
+            <div className="flex  flex-wrap  align-center  pt3">
+              <div className="pr3  pb3  pb0-md">
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="medium"
+                  text="Update"
+                  color="black"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={updateButtonLoading}
+                  disabled={app.isLoading}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'form',
+                    url: null,
+                    target: null,
+                    routerLink: null,
+                  }}
+                />
+              </div>
+              <div className="pr3">
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="medium"
+                  text="Delete Profile"
+                  color="black"
+                  fluid={false}
+                  icon={buttonIconTrash}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={app.isLoading}
+                  onClick={() => {
+                    setModalActive(!modalActive);
+                  }}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
+            </div>
+          </form>
         </div>
-        <div className="pv2">
-          <Input
-            /* Options */
-            type="text"
-            label="Name"
-            name="name"
-            value={(user && user.name) || ''}
-            icon={inputIconUser}
-            required
-            disabled={false}
-            readOnly={false}
-          />
-        </div>
-        <div className="pv2">
-          <Input
-            /* Options */
-            type="password"
-            label="Password"
-            name="password"
-            value=""
-            icon={inputIconLock}
-            required={false}
-            disabled={false}
-            readOnly={false}
-          />
-        </div>
-        <div className="pv2">
-          <Input
-            /* Options */
-            type="password"
-            label="Repeat Password"
-            name="rpassword"
-            value=""
-            icon={inputIconLock}
-            required={false}
-            disabled={false}
-            readOnly={false}
-          />
-        </div>
-        <div className="flex  flex-wrap  align-center  pt3">
-          <div className="pr3">
-            <Button
+        <div className="col-24  col-12-md  pr4">
+          <div className="flex  justify-start  justify-end-md  align-center  pv3">
+            <p className="t-secondary  black  f6  pr2">Newsletter Status:</p>
+            <Label
               /* Options */
-              type="primary"
-              size="medium"
-              text="Update"
-              color="black"
-              fluid={false}
-              icon={null}
-              iconFloat={null}
-              inverted={false}
-              loading={updateButtonLoading}
-              disabled={app.isLoading}
+              customClass={'ph3  pv2  shadow2'}
+              text={isSubNewsletter}
+              color={'white'}
+              backgroundColor={
+                isSubNewsletter === 'Subscribed' ? 'green' : 'red'
+              }
               onClick={null}
               /* Children */
-              withLinkProps={{
-                type: 'form',
-                url: null,
-                target: null,
-                routerLink: null,
-              }}
+              withLinkProps={null}
             />
           </div>
-          <div className="pr3">
-            <Button
+          <div className="flex  justify-start  justify-end-md  align-center  pv3">
+            <p className="t-secondary  black  f6  pr2">
+              Dominion Subscription:
+            </p>
+            <Label
               /* Options */
-              type="primary"
-              size="medium"
-              text="Delete Profile"
-              color="black"
-              fluid={false}
-              icon={buttonIconTrash}
-              iconFloat={null}
-              inverted
-              loading={false}
-              disabled={app.isLoading}
-              onClick={() => {
-                setModalActive(!modalActive);
-              }}
+              customClass={'ph3  pv2  shadow2'}
+              text={isDominionMember}
+              color={'white'}
+              backgroundColor={
+                isDominionMember === 'Subscribed' ? 'green' : 'red'
+              }
+              onClick={null}
               /* Children */
               withLinkProps={null}
             />
           </div>
         </div>
-      </form>
+      </div>
     </>
   );
 }
