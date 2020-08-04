@@ -105,8 +105,6 @@ export default function ProfileEdit({ customerOrders }) {
       }
     }
 
-    console.log('body', body);
-
     dispatch({ type: 'TOGGLE_LOADING' });
     setUpdateButtonLoading(true);
 
