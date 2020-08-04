@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { useToasts } from 'react-toast-notifications';
 
-import { Button, Icon } from 'next-pattern-library';
+import { Heading, Button, Icon } from 'next-pattern-library';
 
 import { useApp, useDispatchApp } from '../../context-provider/app';
 
@@ -49,13 +49,30 @@ export default function SubscribeForm() {
   const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
 
   return (
-    <form className="w-100" onSubmit={subscribe}>
-      <div className="flex  flex-wrap">
+    <form
+      className="w-100  pv5  ph0  ph3-md  flex  flex-wrap  justify-center  align-center  bg-almost-white"
+      onSubmit={subscribe}
+    >
+      <div className="col-24  flex  flex-wrap  justify-center  tac  pb3">
+        <Heading
+          /* Options */
+          htmlEntity="h1"
+          text="Subscribe to Rendah Mag's newsletter."
+          color="black"
+          size="medium"
+          truncate={null}
+          reveal={null}
+          /* Children */
+          withLinkProps={null}
+        />
+      </div>
+
+      <div className="flex  flex-wrap  mt2">
         <input
           className="subscribe-banner__input  di"
           id="email-input"
           name="email"
-          placeholder="you@awesome.com"
+          placeholder="Your email"
           ref={inputEl}
           type="email"
         />
@@ -69,7 +86,7 @@ export default function SubscribeForm() {
           fluid={false}
           icon={buttonIconArrowRight}
           iconFloat={null}
-          inverted
+          inverted={false}
           loading={null}
           disabled={app.isLoading}
           onClick={null}
@@ -83,7 +100,7 @@ export default function SubscribeForm() {
         />
       </div>
 
-      <p className="t-secondary  f6  almost-black  lh-copy  pv2  col-24">
+      <p className="t-secondary  f6  almost-black  lh-copy  pv2  col-24  tac  pt3  mb0">
         We&apos;ll only send emails when new content is posted. No spam.
       </p>
     </form>

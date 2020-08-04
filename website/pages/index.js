@@ -115,7 +115,7 @@ export default function Home({
             </div>
           </Parallax>
 
-          <div className="pt6  ph3  ph4-md">
+          <div className="pt6">
             <Container>
               {latestInterviews.length > 0 && (
                 <section className="pb5">
@@ -192,15 +192,11 @@ export default function Home({
                 //   </section>
                 // )}
               }
-
-              <section className="pb3">
-                <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-                  - Subscribe Banner
-                </h2>
-
-                <SubscribeForm />
-              </section>
             </Container>
+
+            <section className="pb5">
+              <SubscribeForm />
+            </section>
           </div>
         </div>
       </Layout>
