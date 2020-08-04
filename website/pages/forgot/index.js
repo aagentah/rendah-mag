@@ -30,7 +30,7 @@ export default function Forgot({ siteConfig }) {
       });
     } else {
       addToast(
-        'Something went wrong, please try again, or a different browser?',
+        'Something went wrong, are you sure you used the correct email?',
         {
           appearance: 'error',
           autoDismiss: true,

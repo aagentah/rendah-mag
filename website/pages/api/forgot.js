@@ -5,6 +5,11 @@ export default async (req, res) => {
   const { username } = req.body;
 
   const user = await findUserByUsername(null, username);
-  promptEmailLogin(username, user.hash, user.salt);
-  return res.status(201).json({ error: '' });
+
+  if (user) {
+    promptEmailLogin(username, user.hash, user.salt);
+    return res.status(200).json({ error: '' });
+  }
+
+  return res.status(501).json({ error: '' });
 };
