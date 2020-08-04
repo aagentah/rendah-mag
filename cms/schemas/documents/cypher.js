@@ -21,12 +21,15 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "image",
-      title: "Image",
+      name: "imageLandscape",
+      title: "Landscape Image",
       type: "image",
-      options: {
-        hotspot: true,
-      },
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "imageSquare",
+      title: "Square Image",
+      type: "image",
       validation: (Rule) => Rule.required(),
     },
     {
