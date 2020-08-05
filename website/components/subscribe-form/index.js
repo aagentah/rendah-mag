@@ -53,7 +53,7 @@ export default function SubscribeForm() {
       className="w-100  pv5  ph0  ph3-md  flex  flex-wrap  justify-center  align-center  bg-almost-white"
       onSubmit={subscribe}
     >
-      <div className="col-24  flex  flex-wrap  justify-center  tac  pb3">
+      <div className="col-24  flex  flex-wrap  justify-center  tac  pb3  mb2">
         <Heading
           /* Options */
           htmlEntity="h1"
@@ -100,7 +100,7 @@ export default function SubscribeForm() {
         />
       </div>
 
-      <p className="t-secondary  f6  almost-black  lh-copy  pv2  col-24  tac  pt3  mb0">
+      <p className="t-secondary  f6  almost-black  lh-copy  col-24  tac  pt4  ph5  ph0-md">
         We&apos;ll only send emails when new content is posted. No spam.
       </p>
     </form>

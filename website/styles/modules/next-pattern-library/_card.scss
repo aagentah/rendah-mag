@@ -20,22 +20,26 @@
 }
 
 .card__label {
+  cursor: pointer;
   @extend .pr2;
   @extend .mb1;
 }
 
 .card__title {
+  cursor: pointer;
   @extend .t-primary;
   @extend .f4;
   @extend .mb2;
 }
 
 .card__description {
+  cursor: pointer;
   @extend .f5;
   @extend .mb3;
 }
 
 .card__price {
+  cursor: pointer;
   @extend .f6;
   @extend .mb2;
   @extend .pr2;

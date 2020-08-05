@@ -46,9 +46,9 @@ export default function Header({ navOnWhite }) {
 
   return (
     <>
-      <div className="header  header--desktop  bg-almost-white  justify-center  align-center  dn  flex-md">
+      <div className="header  header--desktop  bg-almost-white  justify-center  align-center  dn  df-md">
         <div className="flex  align-center  w-100">
-          <div className="col-12">
+          <div className="col-12  ph4">
             <nav className="nav  w-100  flex  justify-start">
               <ul className="flex  flex-wrap">
                 <li className="dib  pr3">
@@ -150,12 +150,12 @@ export default function Header({ navOnWhite }) {
               </ul>
             </nav>
           </div>
-          <div className="col-12">
+          <div className="col-12  ph4">
             <nav className="nav  w-100  flex  justify-end">
               <ul className="flex  flex-wrap">
                 {user ? (
                   <>
-                    <li className="dib  pr3">
+                    <li className="dib  pl3">
                       <Button
                         /* Options */
                         type="secondary"
@@ -179,7 +179,7 @@ export default function Header({ navOnWhite }) {
                         }}
                       />
                     </li>
-                    <li className="dib  pr3">
+                    <li className="dib  pl3">
                       <Button
                         /* Options */
                         type="secondary"
@@ -258,7 +258,7 @@ export default function Header({ navOnWhite }) {
       <div
         className={`header  header--mobile  ${
           navOpen ? 'collapsed' : ''
-        }  bg-almost-white  justify-center  align-center  flex  dn-md`}
+        }  bg-almost-white  justify-center  align-center  df  dn-md`}
       >
         <div className="flex  flex-wrap">
           <div className="absolute  top  left  mt3  ml3" onClick={toggleNav}>

@@ -5,12 +5,13 @@ import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 import { imageBuilder } from '../../../lib/sanity/requests';
 
 export default function CardDefault({ product }) {
+  console.log('product', product);
   const cardImage = (
     <Image
       /* Options */
-      src={imageBuilder.image(product.coverImage).height(200).width(250).url()}
+      src={imageBuilder.image(product.image1).height(200).width(250).url()}
       placeholder={imageBuilder
-        .image(product.coverImage)
+        .image(product.image1)
         .height(20)
         .width(25)
         .url()}
@@ -54,15 +55,7 @@ export default function CardDefault({ product }) {
       truncate={1}
       reveal={null}
       /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/product/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/product/${product.slug}`,
-        },
-      }}
+      withLinkProps={null}
     />
   );
 

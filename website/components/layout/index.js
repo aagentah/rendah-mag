@@ -14,7 +14,7 @@ export default function Layout({
 
   switch (navOffset) {
     case 'top':
-      navOffsetType = 'pt6';
+      navOffsetType = 'pt5  pt6-md';
       break;
     case 'center':
       navOffsetType = 'flex  align-center';

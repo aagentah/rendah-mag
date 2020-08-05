@@ -11,7 +11,6 @@ export default function CardBlog({ teamMember, columnCount }) {
     threshold: 1,
   });
 
-
   const cardImage = (
     <Image
       /* Options */
@@ -61,27 +60,9 @@ export default function CardBlog({ teamMember, columnCount }) {
       truncate={4}
       reveal={null}
       /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/team/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/team/${teamMember.slug.current}`,
-        },
-      }}
+      withLinkProps={null}
     />
   );
-
-  // const cardCopy = (
-  //   <Copy
-  //     /* Options */
-  //     text={teamMember.description}
-  //     color="black"
-  //     size="medium"
-  //     truncate={2}
-  //   />
-  // );
 
   return (
     <div
