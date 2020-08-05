@@ -22,11 +22,11 @@ export default function CardDefault({ product }) {
       /* Children */
       withLinkProps={{
         type: 'next',
-        href: '/product/[slug]',
+        href: '/store/[slug]',
         target: null,
         routerLink: Link,
         routerLinkProps: {
-          as: `/product/${product.slug}`,
+          as: `/store/${product.slug}`,
         },
       }}
     />
