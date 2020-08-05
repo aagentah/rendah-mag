@@ -11,9 +11,8 @@ export default function CardBlog({ teamMember, columnCount }) {
     threshold: 1,
   });
 
-  let cardImage;
 
-  cardImage = (
+  const cardImage = (
     <Image
       /* Options */
       src={imageBuilder.image(teamMember.image).height(200).width(250).url()}
@@ -24,7 +23,7 @@ export default function CardBlog({ teamMember, columnCount }) {
         .url()}
       alt={teamMember.title}
       figcaption={null}
-      height={150}
+      height={200}
       onClick={null}
       /* Children */
       withLinkProps={{
@@ -38,34 +37,6 @@ export default function CardBlog({ teamMember, columnCount }) {
       }}
     />
   );
-
-  if (columnCount == 2) {
-    cardImage = (
-      <Image
-        /* Options */
-        src={imageBuilder.image(teamMember.image).height(800).width(1000).url()}
-        placeholder={imageBuilder
-          .image(teamMember.image)
-          .height(20)
-          .width(25)
-          .url()}
-        alt={teamMember.title}
-        figcaption={null}
-        height={300}
-        onClick={null}
-        /* Children */
-        withLinkProps={{
-          type: 'next',
-          href: '/team/[slug]',
-          target: null,
-          routerLink: Link,
-          routerLinkProps: {
-            as: `/team/${teamMember.slug.current}`,
-          },
-        }}
-      />
-    );
-  }
 
   const cardLabel = teamMember.alias ? (
     <Label

@@ -24,7 +24,8 @@ export default function ProfileCypher({ cyphers }) {
           />
         </div>
         <div className="flex  flex-wrap">
-          <div className="col-24  col-12-md  pb3  pb0-md">
+        <div className="col-24  col-12-md  pb3  pb0-md">
+          <div className="shadow2">
             <Image
               /* Options */
               src={imageBuilder
@@ -44,6 +45,7 @@ export default function ProfileCypher({ cyphers }) {
               /* Children */
               withLinkProps={null}
             />
+            </div>
           </div>
           <div className="col-24  col-12-md  ph0  ph4-md">
             <div className="pb0">
