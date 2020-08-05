@@ -55,7 +55,7 @@ export default function Profile({ siteConfig }) {
   }, [user, loading, error]);
 
   return (
-    <div className="bg-almost-white">
+    <div className="bg-white  bg-almost-white-md">
       <Layout
         navOffset="top"
         navOnWhite={true}

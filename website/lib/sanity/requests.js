@@ -25,12 +25,12 @@ const postFields = `
 `;
 
 const productFields = `
-  name,
-  title,
-  price,
-  excerpt,
+  ...,
+  'category': category->title,
+  'collection': collection->title,
   'slug': slug.current,
-  'coverImage': coverImage.asset->url,
+  'image1': image1.asset->url,
+  'image2': image2.asset->url,
 `;
 
 const getClient = (preview) => (preview ? previewClient : client);
@@ -137,7 +137,7 @@ export async function getTeamMemberAndPosts(slug, preview) {
 
 export async function getAllProducts(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "product"] | order(date desc, _updatedAt desc){
+    .fetch(`*[_type == "storeItem"] | order(date desc, _updatedAt desc){
       ${productFields}
     }`);
   return getUniquePosts(results);

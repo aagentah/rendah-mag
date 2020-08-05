@@ -60,19 +60,6 @@ export default function CardDefault({ post, columnCount }) {
     );
   }
 
-  // const cardLabel = (
-  //   <Label
-  //     /* Options */
-  //     customClass="ph2"
-  //     text="Blog"
-  //     color="white"
-  //     backgroundColor="black"
-  //     onClick={null}
-  //     /* Children */
-  //     withLinkProps={null}
-  //   />
-  // );
-
   const cardHeading = (
     <Heading
       /* Options */
@@ -86,16 +73,6 @@ export default function CardDefault({ post, columnCount }) {
       withLinkProps={null}
     />
   );
-
-  // const cardCopy = (
-  //   <Copy
-  //     /* Options */
-  //     text={post.description}
-  //     color="black"
-  //     size="medium"
-  //     truncate={3}
-  //   />
-  // );
 
   return (
     <div className={`card--scroll  ${inView ? 'in-view' : 'n'}`} ref={ref}>
