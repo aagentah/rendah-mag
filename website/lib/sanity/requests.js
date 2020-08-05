@@ -122,7 +122,6 @@ export async function getTeamMembers(preview) {
 }
 
 export async function getTeamMemberAndPosts(slug, preview) {
-  console.log('slug', slug);
   const results = await getClient(preview).fetch(
     `*[_type == "author" && active && slug.current == $slug] | order(date desc, _updatedAt desc) [0] {
       ...,
@@ -141,6 +140,17 @@ export async function getAllProducts(preview) {
       ${productFields}
     }`);
   return getUniquePosts(results);
+}
+
+export async function getProduct(slug, preview) {
+  console.log('slug', slug);
+  const results = await getClient(preview).fetch(
+    `*[_type == "storeItem" && slug.current == $slug] | order(date desc, _updatedAt desc) [0] {
+      ${productFields}
+    }`,
+    { slug }
+  );
+  return results;
 }
 
 export async function getPostAndMore(slug, preview) {
