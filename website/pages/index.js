@@ -7,7 +7,6 @@ import Container from '../components/layout/container';
 import CardBlog from '../components/card/blog';
 import CardProduct from '../components/card/product';
 import SubscribeForm from '../components/subscribe-form';
-// import RenderComponents from '../../helpers/render-components';
 
 import {
   getSiteConfig,
@@ -84,120 +83,82 @@ export default function Home({
         }}
         preview={null}
       >
-        <div className="">
-          {
-            // <div className="layout--split__left">
-            //   <div
-            //     className="layout--split__left__background"
-            //     style={{
-            //       backgroundImage:
-            //         'url(https://images.unsplash.com/photo-1555086156-e6c7353d283f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)',
-            //     }}
-            //   ></div>
-            // </div>
-          }
-
-          <Parallax
-            className="z1  nt5"
-            y={['-110px', '100px']}
-            tagOuter="figure"
-          >
-            <div className="hero--darken-all">
-              <Hero
-                /* Options */
-                height={500}
-                /* Children */
-                image={heroImage}
-                title={heroHeading}
-                description={null}
-                button={heroButton}
-              />
-            </div>
-          </Parallax>
-
-          <div className="pt6">
-            <Container>
-              {latestInterviews.length > 0 && (
-                <section className="pb5">
-                  <div className="pb4">
-                    <Heading
-                      /* Options */
-                      htmlEntity="h1"
-                      text="Latest interviews."
-                      color="black"
-                      size="medium"
-                      truncate={null}
-                      reveal={null}
-                      /* Children */
-                      withLinkProps={null}
-                    />
-                  </div>
-
-                  <div className="flex  flex-wrap">
-                    {latestInterviews.map((post, i) => (
-                      <div key={post.slug} className="col-24  col-12-md">
-                        <div className="ph3  pv2">
-                          <CardBlog i={i} post={post} columnCount={2} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              )}
-
-              {allPosts.length > 0 && (
-                <section className="pb5">
-                  <div className="pb4">
-                    <Heading
-                      /* Options */
-                      htmlEntity="h1"
-                      text="Latest news."
-                      color="black"
-                      size="medium"
-                      truncate={null}
-                      reveal={null}
-                      /* Children */
-                      withLinkProps={null}
-                    />
-                  </div>
-
-                  <div className="flex  flex-wrap">
-                    {allPosts.map((post, i) => (
-                      <div key={post.slug} className="col-24  col-6-md">
-                        <div className="ph3  pv2">
-                          <CardBlog i={i} post={post} columnCount={4} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              )}
-
-              {
-                // {allProducts.length > 0 && (
-                //   <section className="pb3">
-                //     <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-                //       - Products
-                //     </h2>
-                //
-                //     <div className="flex  flex-wrap">
-                //       {allProducts.map((product, i) => (
-                //         <div key={product.slug} className="col-24  col-8-md">
-                //           <div className="pa3">
-                //             <CardProduct i={i} product={product} />
-                //           </div>
-                //         </div>
-                //       ))}
-                //     </div>
-                //   </section>
-                // )}
-              }
-            </Container>
-
-            <section className="pb5">
-              <SubscribeForm />
-            </section>
+        <Parallax className="z1  nt5" y={['-110px', '100px']} tagOuter="figure">
+          <div className="hero--darken-all">
+            <Hero
+              /* Options */
+              height={500}
+              /* Children */
+              image={heroImage}
+              title={heroHeading}
+              description={null}
+              button={heroButton}
+            />
           </div>
+        </Parallax>
+
+        <div className="pt6">
+          <Container>
+            {latestInterviews.length > 0 && (
+              <section className="pb5">
+                <div className="pb4">
+                  <Heading
+                    /* Options */
+                    htmlEntity="h1"
+                    text="Latest interviews."
+                    color="black"
+                    size="medium"
+                    truncate={null}
+                    reveal={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
+
+                <div className="flex  flex-wrap">
+                  {latestInterviews.map((post, i) => (
+                    <div key={post.slug} className="col-24  col-12-md">
+                      <div className="ph3  pv2">
+                        <CardBlog i={i} post={post} columnCount={2} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {allPosts.length > 0 && (
+              <section className="pb5">
+                <div className="pb4">
+                  <Heading
+                    /* Options */
+                    htmlEntity="h1"
+                    text="Latest news."
+                    color="black"
+                    size="medium"
+                    truncate={null}
+                    reveal={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
+
+                <div className="flex  flex-wrap">
+                  {allPosts.map((post, i) => (
+                    <div key={post.slug} className="col-24  col-6-md">
+                      <div className="ph3  pv2">
+                        <CardBlog i={i} post={post} columnCount={4} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+          </Container>
+
+          <section className="pb5">
+            <SubscribeForm />
+          </section>
         </div>
       </Layout>
     </>
