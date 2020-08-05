@@ -25,7 +25,7 @@ export default function Post({ siteConfig, allTeam }) {
           <Heading
             /* Options */
             htmlEntity="h1"
-            text="Search"
+            text="Team"
             color="black"
             size="large"
             truncate={0}
@@ -47,10 +47,6 @@ export default function Post({ siteConfig, allTeam }) {
 
         {allTeam.length > 0 && (
           <section className="pb3">
-            <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-              Team Members
-            </h2>
-
             <div className="flex  flex-wrap">
               {allTeam.map((teamMember, i) => (
                 <div key={teamMember.slug} className="col-24  col-6-md">

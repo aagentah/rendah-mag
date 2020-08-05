@@ -112,10 +112,11 @@
 .tabs__mobile-nav__item {
   transition: background-color 0.3s ease-in-out;
   display: block;
-  background: var(--almost-white);
+  background: var(--white);
   color: var(--black);
   padding: 20px;
   margin-bottom: 20px;
+  border-bottom: 2px solid var(--almost-white);
   cursor: pointer;
   @extend .shadow1;
 }

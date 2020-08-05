@@ -14,6 +14,7 @@ import { useApp } from '../../../context-provider/app';
 export default function Header({ navOnWhite }) {
   const [user, { mutate }] = useUser();
   const [navColour, setNavColour] = useState('black');
+  const [navOpen, setNavOpen] = useState(false);
   const app = useApp();
 
   async function handleLogout() {
@@ -30,7 +31,6 @@ export default function Header({ navOnWhite }) {
   }, [app.isLoading]);
 
   useEffect(() => {
-    console.log('navOnWhite', navOnWhite);
     if (navOnWhite) {
       setNavColour('black');
     } else {
@@ -38,210 +38,456 @@ export default function Header({ navOnWhite }) {
     }
   }, [navOnWhite]);
 
+  const toggleNav = () => setNavOpen(!navOpen);
+
   const buttonIconSignIn = <Icon icon={['fas', 'sign-in-alt']} />;
   const buttonIconSignOut = <Icon icon={['fas', 'sign-out-alt']} />;
   const buttonIconStore = <Icon icon={['fas', 'store-alt']} />;
 
   return (
-    <div className="header  bg-almost-white  flex  justify-center  align-center">
-      <div className="flex  align-center  w-100">
-        <div className="col-12">
-          <nav className="nav  w-100  flex  justify-start">
-            <ul className="flex  flex-wrap">
-              <li className="dib  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Home"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: null,
-                  }}
-                />
-              </li>
-              <li className="dib  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Cyphers"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/cyphers',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: null,
-                  }}
-                />
-              </li>
-              <li className="dib  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Store"
-                  color={navColour}
-                  fluid={false}
-                  icon={buttonIconStore}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/store',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: null,
-                  }}
-                />
-              </li>
-            </ul>
-          </nav>
+    <>
+      <div className="header  header--desktop  bg-almost-white  justify-center  align-center  dn  flex-md">
+        <div className="flex  align-center  w-100">
+          <div className="col-12">
+            <nav className="nav  w-100  flex  justify-start">
+              <ul className="flex  flex-wrap">
+                <li className="dib  pr3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="medium"
+                    text="Home"
+                    color={navColour}
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: null,
+                    }}
+                  />
+                </li>
+                <li className="dib  pr3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="medium"
+                    text="Cyphers"
+                    color={navColour}
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/cyphers',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: null,
+                    }}
+                  />
+                </li>
+                <li className="dib  pr3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="medium"
+                    text="Team"
+                    color={navColour}
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/team',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: null,
+                    }}
+                  />
+                </li>
+                <li className="dib  pr3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="medium"
+                    text="Store"
+                    color={navColour}
+                    fluid={false}
+                    icon={buttonIconStore}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/store',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: null,
+                    }}
+                  />
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div className="col-12">
+            <nav className="nav  w-100  flex  justify-end">
+              <ul className="flex  flex-wrap">
+                {user ? (
+                  <>
+                    <li className="dib  pr3">
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="medium"
+                        text="Profile"
+                        color={navColour}
+                        fluid={false}
+                        icon={null}
+                        iconFloat={null}
+                        inverted
+                        loading={false}
+                        disabled={false}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={{
+                          type: 'next',
+                          href: '/profile',
+                          target: null,
+                          routerLink: Link,
+                          routerLinkProps: null,
+                        }}
+                      />
+                    </li>
+                    <li className="dib  pr3">
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="medium"
+                        text="Log Out"
+                        color={navColour}
+                        fluid={false}
+                        icon={buttonIconSignOut}
+                        iconFloat={null}
+                        inverted
+                        loading={false}
+                        disabled={false}
+                        onClick={handleLogout}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className="dib  pr3">
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="medium"
+                        text="Sign Up"
+                        color={navColour}
+                        fluid={false}
+                        icon={null}
+                        iconFloat={null}
+                        inverted
+                        loading={false}
+                        disabled={false}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={{
+                          type: 'next',
+                          href: '/signup',
+                          target: null,
+                          routerLink: Link,
+                          routerLinkProps: null,
+                        }}
+                      />
+                    </li>
+                    <li className="dib  pr3">
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="medium"
+                        text="Login"
+                        color={navColour}
+                        fluid={false}
+                        icon={buttonIconSignIn}
+                        iconFloat={null}
+                        inverted
+                        loading={false}
+                        disabled={false}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={{
+                          type: 'next',
+                          href: '/login',
+                          target: null,
+                          routerLink: Link,
+                          routerLinkProps: null,
+                        }}
+                      />
+                    </li>
+                  </>
+                )}
+              </ul>
+            </nav>
+          </div>
         </div>
-        <div className="col-12">
-          <nav className="nav  w-100  flex  justify-end">
-            <ul className="flex  flex-wrap">
-              {user ? (
-                <>
-                  <li className="dib  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Profile"
-                      color={navColour}
-                      fluid={false}
-                      icon={null}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={{
-                        type: 'next',
-                        href: '/profile',
-                        target: null,
-                        routerLink: Link,
-                        routerLinkProps: null,
-                      }}
-                    />
-                  </li>
-                  <li className="dib  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Log Out"
-                      color={navColour}
-                      fluid={false}
-                      icon={buttonIconSignOut}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      onClick={handleLogout}
-                      /* Children */
-                      withLinkProps={null}
-                    />
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="dib  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Sign Up"
-                      color={navColour}
-                      fluid={false}
-                      icon={null}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={{
-                        type: 'next',
-                        href: '/signup',
-                        target: null,
-                        routerLink: Link,
-                        routerLinkProps: null,
-                      }}
-                    />
-                  </li>
-                  <li className="dib  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Login"
-                      color={navColour}
-                      fluid={false}
-                      icon={buttonIconSignIn}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={{
-                        type: 'next',
-                        href: '/login',
-                        target: null,
-                        routerLink: Link,
-                        routerLinkProps: null,
-                      }}
-                    />
-                  </li>
-                </>
-              )}
-            </ul>
-          </nav>
-          {
-            // <SearchBar />
-          }
-        </div>
-        {
-          // <div className="col-6">
-          //   <span className={`loading-indicator  ${isLoadingClass}`}>
-          //     <div className="lds-ring">
-          //       <div></div>
-          //       <div></div>
-          //       <div></div>
-          //       <div></div>
-          //     </div>
-          //   </span>
-          // </div>
-        }
       </div>
-    </div>
+      <div
+        className={`header  header--mobile  ${
+          navOpen ? 'collapsed' : ''
+        }  bg-almost-white  justify-center  align-center  flex  dn-md`}
+      >
+        <div className="flex  flex-wrap">
+          <div className="absolute  top  left  mt3  ml3" onClick={toggleNav}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill={navColour}
+            >
+              <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
+            </svg>
+          </div>
+        </div>
+
+        <nav className="nav  w-100  flex  justify-end">
+          <div className="flex  flex-wrap">
+            <div className="absolute  top  right  mt3  mr3" onClick={toggleNav}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="white"
+              >
+                <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
+              </svg>
+            </div>
+          </div>
+          <ul className="w-100  pt4">
+            <li className="db  pb3">
+              <Button
+                /* Options */
+                type="secondary"
+                size="large"
+                text="Home"
+                color="white"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted
+                loading={false}
+                disabled={false}
+                onClick={toggleNav}
+                /* Children */
+                withLinkProps={{
+                  type: 'next',
+                  href: '/',
+                  target: null,
+                  routerLink: Link,
+                  routerLinkProps: null,
+                }}
+              />
+            </li>
+            <li className="db  pb3">
+              <Button
+                /* Options */
+                type="secondary"
+                size="large"
+                text="Cyphers"
+                color="white"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted
+                loading={false}
+                disabled={false}
+                onClick={toggleNav}
+                /* Children */
+                withLinkProps={{
+                  type: 'next',
+                  href: '/cyphers',
+                  target: null,
+                  routerLink: Link,
+                  routerLinkProps: null,
+                }}
+              />
+            </li>
+            <li className="db  pb3">
+              <Button
+                /* Options */
+                type="secondary"
+                size="large"
+                text="Team"
+                color="white"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted
+                loading={false}
+                disabled={false}
+                onClick={toggleNav}
+                /* Children */
+                withLinkProps={{
+                  type: 'next',
+                  href: '/team',
+                  target: null,
+                  routerLink: Link,
+                  routerLinkProps: null,
+                }}
+              />
+            </li>
+            <li className="db  pb3">
+              <Button
+                /* Options */
+                type="secondary"
+                size="large"
+                text="Store"
+                color="white"
+                fluid={false}
+                icon={buttonIconStore}
+                iconFloat={null}
+                inverted
+                loading={false}
+                disabled={false}
+                onClick={toggleNav}
+                /* Children */
+                withLinkProps={{
+                  type: 'next',
+                  href: '/store',
+                  target: null,
+                  routerLink: Link,
+                  routerLinkProps: null,
+                }}
+              />
+            </li>
+            {user ? (
+              <>
+                <li className="db  pb3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="large"
+                    text="Profile"
+                    color="white"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={toggleNav}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/profile',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: null,
+                    }}
+                  />
+                </li>
+                <li className="db  pb3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="large"
+                    text="Log Out"
+                    color="white"
+                    fluid={false}
+                    icon={buttonIconSignOut}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={() => {
+                      toggleNav();
+                      handleLogout();
+                    }}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="db  pb3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="large"
+                    text="Sign Up"
+                    color="white"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={toggleNav}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/signup',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: null,
+                    }}
+                  />
+                </li>
+                <li className="db  pb3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="large"
+                    text="Login"
+                    color="white"
+                    fluid={false}
+                    icon={buttonIconSignIn}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={toggleNav}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/login',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: null,
+                    }}
+                  />
+                </li>
+              </>
+            )}
+          </ul>
+        </nav>
+      </div>
+    </>
   );
 }
