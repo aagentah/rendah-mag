@@ -113,6 +113,28 @@ export async function getCurrentAndPreviousCyphers(preview) {
   return { current: current || null, previous: getUniquePosts(previous) };
 }
 
+export async function getTeamMembers(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "author" && active] | order(date desc, _updatedAt desc){
+      ...,
+    }`);
+  return getUniquePosts(results);
+}
+
+export async function getTeamMemberAndPosts(slug, preview) {
+  console.log('slug', slug);
+  const results = await getClient(preview).fetch(
+    `*[_type == "author" && active && slug.current == $slug] | order(date desc, _updatedAt desc) [0] {
+      ...,
+      "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc) [0..23] {
+      ${postFields}
+    }
+    }`,
+    { slug }
+  );
+  return results;
+}
+
 export async function getAllProducts(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "product"] | order(date desc, _updatedAt desc){
