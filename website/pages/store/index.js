@@ -38,7 +38,7 @@ export default function Post({ siteConfig, allProducts }) {
       navOnWhite={true}
       meta={{
         siteConfig,
-        title: 'Search',
+        title: 'Store',
         description: 'This is the Store page.',
         image: null,
       }}

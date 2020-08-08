@@ -4,12 +4,14 @@ import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '../components/layout';
 import Container from '../components/layout/container';
+import HeroPost from '../components/hero/post';
 import CardBlog from '../components/card/blog';
 import CardProduct from '../components/card/product';
 import SubscribeForm from '../components/subscribe-form';
 
 import {
   getSiteConfig,
+  getLatestFeaturedPost,
   getLatestInterviews,
   getAllPosts,
   getAllProducts,
@@ -17,58 +19,14 @@ import {
 
 export default function Home({
   siteConfig,
+  latestFeaturedPost,
   latestInterviews,
   allPosts,
   allProducts,
 }) {
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
-  const heroImage = (
-    <Image
-      /* Options */
-      src="https://images.unsplash.com/photo-1555086156-e6c7353d283f"
-      placeholder="https://via.placeholder.com/500x500"
-      alt="This is the alt text."
-      figcaption={null}
-      height={500}
-      onClick={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
-
-  const heroHeading = (
-    <Heading
-      /* Options */
-      htmlEntity="h1"
-      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      color="white"
-      size="x-large"
-      truncate={null}
-      reveal={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
-
-  const heroButton = (
-    <Button
-      /* Options */
-      type="secondary"
-      size="medium"
-      text="Read more"
-      color="white"
-      fluid={false}
-      icon={buttonIcon}
-      iconFloat={null}
-      inverted={false}
-      loading={false}
-      disabled={false}
-      onClick={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
+  console.log('latestFeaturedPost', latestFeaturedPost);
 
   return (
     <>
@@ -83,19 +41,7 @@ export default function Home({
         }}
         preview={null}
       >
-        <Parallax className="z1  nt5" y={['-110px', '100px']} tagOuter="figure">
-          <div className="hero--darken-all">
-            <Hero
-              /* Options */
-              height={500}
-              /* Children */
-              image={heroImage}
-              title={heroHeading}
-              description={null}
-              button={heroButton}
-            />
-          </div>
-        </Parallax>
+        <HeroPost post={latestFeaturedPost} />
 
         <div className="pt6">
           <Container>
@@ -167,11 +113,18 @@ export default function Home({
 
 export async function getServerSideProps() {
   const siteConfig = await getSiteConfig();
+  const latestFeaturedPost = await getLatestFeaturedPost();
   const latestInterviews = await getLatestInterviews();
   const allPosts = await getAllPosts();
   const allProducts = await getAllProducts();
 
   return {
-    props: { siteConfig, latestInterviews, allPosts, allProducts },
+    props: {
+      siteConfig,
+      latestFeaturedPost,
+      latestInterviews,
+      allPosts,
+      allProducts,
+    },
   };
 }
