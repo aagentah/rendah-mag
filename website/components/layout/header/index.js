@@ -11,7 +11,7 @@ import SearchBar from '../../search-bar';
 import { useUser } from '../../../lib/hooks';
 import { useApp } from '../../../context-provider/app';
 
-export default function Header({ navOnWhite }) {
+export default function Header({ navOnWhite, meta }) {
   const [user, { mutate }] = useUser();
   const [navColour, setNavColour] = useState('black');
   const [navOpen, setNavOpen] = useState(false);
@@ -43,6 +43,7 @@ export default function Header({ navOnWhite }) {
   const buttonIconSignIn = <Icon icon={['fas', 'sign-in-alt']} />;
   const buttonIconSignOut = <Icon icon={['fas', 'sign-out-alt']} />;
   const buttonIconStore = <Icon icon={['fas', 'store-alt']} />;
+  const buttonShoppingCart = <Icon icon={['fas', 'shopping-cart']} />;
 
   return (
     <>
@@ -153,9 +154,21 @@ export default function Header({ navOnWhite }) {
           <div className="col-12  ph4">
             <nav className="nav  w-100  flex  justify-end">
               <ul className="flex  flex-wrap">
+                {meta.title === 'Store' || meta.title === 'Product' ? (
+                  <>
+                    <li className="dib  pr3">
+                      <div className="flex  snipcart-checkout  cp">
+                        <span className="pr2">Checkout</span>
+                        {buttonShoppingCart}
+                        <span className="snipcart-items-count"></span>
+                      </div>
+                    </li>
+                  </>
+                ) : null}
+
                 {user ? (
                   <>
-                    <li className="dib  pl3">
+                    <li className="dib  pr3">
                       <Button
                         /* Options */
                         type="secondary"
@@ -179,7 +192,7 @@ export default function Header({ navOnWhite }) {
                         }}
                       />
                     </li>
-                    <li className="dib  pl3">
+                    <li className="dib  pr3">
                       <Button
                         /* Options */
                         type="secondary"
@@ -289,7 +302,7 @@ export default function Header({ navOnWhite }) {
             </div>
           </div>
           <ul className="w-100  pt4">
-            <li className="db  pb3">
+            <li className="db  pl4  pb3">
               <Button
                 /* Options */
                 type="secondary"
@@ -313,7 +326,7 @@ export default function Header({ navOnWhite }) {
                 }}
               />
             </li>
-            <li className="db  pb3">
+            <li className="db  pl4  pb3">
               <Button
                 /* Options */
                 type="secondary"
@@ -337,7 +350,7 @@ export default function Header({ navOnWhite }) {
                 }}
               />
             </li>
-            <li className="db  pb3">
+            <li className="db  pl4  pb3">
               <Button
                 /* Options */
                 type="secondary"
@@ -361,7 +374,7 @@ export default function Header({ navOnWhite }) {
                 }}
               />
             </li>
-            <li className="db  pb3">
+            <li className="db  pl4  pb3">
               <Button
                 /* Options */
                 type="secondary"
@@ -385,9 +398,10 @@ export default function Header({ navOnWhite }) {
                 }}
               />
             </li>
+
             {user ? (
               <>
-                <li className="db  pb3">
+                <li className="db  pl4  pb3">
                   <Button
                     /* Options */
                     type="secondary"
@@ -411,7 +425,7 @@ export default function Header({ navOnWhite }) {
                     }}
                   />
                 </li>
-                <li className="db  pb3">
+                <li className="db  pl4  pb3">
                   <Button
                     /* Options */
                     type="secondary"
@@ -435,7 +449,7 @@ export default function Header({ navOnWhite }) {
               </>
             ) : (
               <>
-                <li className="db  pb3">
+                <li className="db  pl4  pb3">
                   <Button
                     /* Options */
                     type="secondary"
@@ -459,7 +473,7 @@ export default function Header({ navOnWhite }) {
                     }}
                   />
                 </li>
-                <li className="db  pb3">
+                <li className="db  pl4  pb3">
                   <Button
                     /* Options */
                     type="secondary"

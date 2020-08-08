@@ -27,7 +27,7 @@ export default function Layout({
     <>
       <Meta {...meta} />
       {preview && <Alert preview={preview} />}
-      <Header navOnWhite={navOnWhite} />
+      <Header navOnWhite={navOnWhite} meta={meta} />
       <main className={`page ${navOffsetType}`}>{children}</main>
       <Footer />
     </>

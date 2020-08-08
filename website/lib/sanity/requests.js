@@ -70,6 +70,14 @@ export async function getPostWithSearch(slug) {
   return data;
 }
 
+export async function getLatestFeaturedPost(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "post" && featured] | order(publishedAt desc) [0] {
+      ${postFields}
+    }`);
+  return results;
+}
+
 export async function getAllPosts(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) [0..15] {
@@ -115,7 +123,7 @@ export async function getCurrentAndPreviousCyphers(preview) {
 
 export async function getTeamMembers(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "author" && active] | order(date desc, _updatedAt desc){
+    .fetch(`*[_type == "author" && active] | order(order asc){
       ...,
     }`);
   return getUniquePosts(results);
@@ -123,7 +131,7 @@ export async function getTeamMembers(preview) {
 
 export async function getTeamMemberAndPosts(slug, preview) {
   const results = await getClient(preview).fetch(
-    `*[_type == "author" && active && slug.current == $slug] | order(date desc, _updatedAt desc) [0] {
+    `*[_type == "author" && active && slug.current == $slug] [0] {
       ...,
       "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc) [0..23] {
       ${postFields}
