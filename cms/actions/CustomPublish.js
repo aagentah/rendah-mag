@@ -14,7 +14,6 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
 
     if (inputVal === adminPublishPassword) {
       setIsActioning(true);
-      patch.execute([{ set: { publishedAt: new Date().toISOString() } }]);
       publish.execute();
       onComplete();
     }

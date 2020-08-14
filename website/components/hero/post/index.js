@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { Parallax } from 'react-scroll-parallax';
@@ -56,7 +57,15 @@ export default function HeroPost({ post }) {
       disabled={false}
       onClick={null}
       /* Children */
-      withLinkProps={null}
+      withLinkProps={{
+        type: 'next',
+        href: '/post/[slug]',
+        target: null,
+        routerLink: Link,
+        routerLinkProps: {
+          as: `/post/${post.slug}`,
+        },
+      }}
     />
   );
 
