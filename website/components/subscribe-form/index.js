@@ -53,7 +53,7 @@ export default function SubscribeForm() {
       className="w-100  pv5  ph0  ph3-md  flex  flex-wrap  justify-center  align-center  bg-almost-white"
       onSubmit={subscribe}
     >
-      <div className="col-24  flex  flex-wrap  justify-center  tac  pb3  mb2">
+      <div className="col-24  flex  flex-wrap  justify-center  tac  pb3  mb0  mb2-md">
         <Heading
           /* Options */
           htmlEntity="h1"
@@ -67,9 +67,9 @@ export default function SubscribeForm() {
         />
       </div>
 
-      <div className="flex  flex-wrap  mt2">
+      <div className="flex  flex-wrap  mt2  ph4  ph0-md">
         <input
-          className="subscribe-banner__input  di"
+          className="subscribe-banner__input  col-24  col-12-md  flex  justify-center  mb3  mb0-md"
           id="email-input"
           name="email"
           placeholder="Your email"
@@ -77,27 +77,29 @@ export default function SubscribeForm() {
           type="email"
         />
 
-        <Button
-          /* Options */
-          type="primary"
-          size="medium"
-          text="Subscribe"
-          color="black"
-          fluid={false}
-          icon={buttonIconArrowRight}
-          iconFloat={null}
-          inverted={false}
-          loading={null}
-          disabled={app.isLoading}
-          onClick={null}
-          /* Children */
-          withLinkProps={{
-            type: 'form',
-            url: null,
-            target: null,
-            routerLink: null,
-          }}
-        />
+        <div className="col-24  col-12-md  flex  justify-center">
+          <Button
+            /* Options */
+            type="primary"
+            size="medium"
+            text="Subscribe"
+            color="black"
+            fluid={false}
+            icon={buttonIconArrowRight}
+            iconFloat={null}
+            inverted={false}
+            loading={null}
+            disabled={app.isLoading}
+            onClick={null}
+            /* Children */
+            withLinkProps={{
+              type: 'form',
+              url: null,
+              target: null,
+              routerLink: null,
+            }}
+          />
+        </div>
       </div>
 
       <p className="t-secondary  f6  almost-black  lh-copy  col-24  tac  pt4  ph5  ph0-md">

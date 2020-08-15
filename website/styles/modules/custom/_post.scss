@@ -8,8 +8,13 @@
 .post__body blockquote {
   @extend .t-secondary;
   @extend .lh-copy;
-  @extend .f5;
+  @extend .f6;
   @extend .pb3;
+}
+
+.post__body ul,
+.post__body ol {
+  @extend .ml3;
 }
 
 .post__body h2,

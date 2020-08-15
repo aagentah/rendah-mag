@@ -138,8 +138,8 @@ export default function Login({ siteConfig }) {
               />
             </div>
 
-            <div className="flex  flex-wrap  align-center  pt3">
-              <div className="pr3">
+            <div className="df  dib-md  flex-wrap  align-center  pt3">
+              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="primary"
@@ -163,7 +163,7 @@ export default function Login({ siteConfig }) {
                   }}
                 />
               </div>
-              <div className="pr3">
+              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="secondary"
@@ -187,7 +187,7 @@ export default function Login({ siteConfig }) {
                   }}
                 />
               </div>
-              <div className="pr3">
+              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="secondary"
