@@ -1,4 +1,6 @@
 .snipcart {
+  position: relative;
+  @extend .z9;
   @extend .t-secondary;
 }
 

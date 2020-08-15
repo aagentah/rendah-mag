@@ -22,6 +22,7 @@ const postFields = `
   'slug': slug.current,
   'coverImage': image.asset->url,
   'author': author->{name, 'picture': picture.asset->url},
+  ...,
 `;
 
 const productFields = `

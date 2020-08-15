@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
-import BlockContent from '@sanity/block-content-to-react';
 import { Parallax } from 'react-scroll-parallax';
 
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '../../components/layout';
 import Container from '../../components/layout/container';
+import Sections from '../../components/article/sections';
 
 import Date from '../../components/date';
 import CardBlog from '../../components/card/blog';
@@ -18,6 +18,7 @@ import {
 } from '../../lib/sanity/requests';
 
 export default function Post({ siteConfig, post, morePosts, preview }) {
+  console.log('post', post);
   const router = useRouter();
 
   useEffect(() => {
@@ -90,7 +91,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
               </p>
 
               <div className="post__body  pb4">
-                <BlockContent blocks={post.content} />
+                <Sections body={post.body} />
               </div>
             </section>
           </article>

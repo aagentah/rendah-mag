@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useToasts } from 'react-toast-notifications';
 import { Heading, Button, Icon, Input } from 'next-pattern-library';
 
@@ -85,8 +86,8 @@ export default function Forgot({ siteConfig }) {
               />
             </div>
 
-            <div className="flex  flex-wrap  align-center  pt3">
-              <div className="pr3">
+            <div className="df  dib-md  flex-wrap  align-center  pt3">
+              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="primary"
@@ -106,6 +107,30 @@ export default function Forgot({ siteConfig }) {
                     href: null,
                     target: null,
                     routerLink: null,
+                    routerLinkProps: null,
+                  }}
+                />
+              </div>
+              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+                <Button
+                  /* Options */
+                  type="secondary"
+                  size="medium"
+                  text="Log in"
+                  color="black"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={false}
+                  disabled={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'next',
+                    href: '/login',
+                    target: null,
+                    routerLink: Link,
                     routerLinkProps: null,
                   }}
                 />

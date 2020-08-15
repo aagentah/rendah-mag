@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { Parallax } from 'react-scroll-parallax';
@@ -22,8 +23,8 @@ export default function HeroCypher({ cypher }) {
   const heroImage = (
     <Image
       /* Options */
-      src={imageBuilder.image(cypher.image).height(700).width(1080).url()}
-      placeholder={imageBuilder.image(cypher.image).height(50).width(108).url()}
+      src="/images/cypher-youtube.jpg"
+      placeholder={null}
       alt="This is the alt text."
       figcaption={null}
       height={500}
@@ -37,7 +38,7 @@ export default function HeroCypher({ cypher }) {
     <Heading
       /* Options */
       htmlEntity="h1"
-      text={cypher.title}
+      text="Rendah Mag Cypher"
       color="white"
       size="x-large"
       truncate={null}
@@ -50,10 +51,10 @@ export default function HeroCypher({ cypher }) {
   const heroButton = (
     <Button
       /* Options */
-      type="primary"
+      type="secondary"
       size="medium"
       text="Enter this month's Cypher"
-      color="black"
+      color="white"
       fluid={false}
       icon={buttonIcon}
       iconFloat={null}
@@ -88,15 +89,6 @@ export default function HeroCypher({ cypher }) {
             withLinkProps={null}
           />
         </div>
-        <div className="pb3">
-          <Copy
-            /* Options */
-            text="This is the point of no return. Are you sure you want to DELETE your account?"
-            color="black"
-            size="medium"
-            truncate={2}
-          />
-        </div>
         <div className="flex  flex-wrap  pb2">
           <div className="col-24  col-8-md  flex  justify-center  justify-start-md  align-center">
             <Button
@@ -113,7 +105,13 @@ export default function HeroCypher({ cypher }) {
               disabled={false}
               onClick={null}
               /* Children */
-              withLinkProps={null}
+              withLinkProps={{
+                type: 'next',
+                href: '/login',
+                target: null,
+                routerLink: Link,
+                routerLinkProps: null,
+              }}
             />
           </div>
           <div className="col-24  col-8-md  flex  justify-center  justify-start-md  align-center">
@@ -131,10 +129,16 @@ export default function HeroCypher({ cypher }) {
               disabled={false}
               onClick={null}
               /* Children */
-              withLinkProps={null}
+              withLinkProps={{
+                type: 'next',
+                href: '/signup',
+                target: null,
+                routerLink: Link,
+                routerLinkProps: null,
+              }}
             />
           </div>
-          <div className="col-24  col-8-md  flex  justify-center  justify-start-md  align-center">
+          <div className="col-24  col-8-md  flex  justify-center  justify-start-md  align-center  pl2">
             <Button
               /* Options */
               type="secondary"
