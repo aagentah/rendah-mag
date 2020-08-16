@@ -69,8 +69,8 @@ export default function Cyphers({ siteConfig, cyphers }) {
                     tracks to us, and we pick our favourites to go into a
                     curated mix.
                     `}
-                    color={'white'}
-                    size={'medium'}
+                    color="white"
+                    size="medium"
                     truncate={null}
                   />
                 </div>

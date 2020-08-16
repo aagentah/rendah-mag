@@ -25,8 +25,8 @@ export default function Post({ siteConfig, product }) {
   console.log('product', product);
   return (
     <Layout
-      navOffset={'top'}
-      navOnWhite={true}
+      navOffset="top"
+      navOnWhite
       meta={{
         siteConfig,
         title: 'Product',

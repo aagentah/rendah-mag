@@ -14,10 +14,10 @@ export default function ProfileCypher({ cyphers }) {
         <div className="pb3">
           <Heading
             /* Options */
-            htmlEntity={'h3'}
+            htmlEntity="h3"
             text={"Enter this month's Cypher."}
-            color={'black'}
-            size={'medium'}
+            color="black"
+            size="medium"
             truncate={null}
             onClick={null}
             /* Children */
@@ -52,10 +52,10 @@ export default function ProfileCypher({ cyphers }) {
             <div className="pb0">
               <Heading
                 /* Options */
-                htmlEntity={'h3'}
+                htmlEntity="h3"
                 text={"This month's rules."}
-                color={'black'}
-                size={'small'}
+                color="black"
+                size="small"
                 truncate={null}
                 onClick={null}
                 /* Children */
@@ -74,14 +74,14 @@ export default function ProfileCypher({ cyphers }) {
               <div className="pb3  pr3">
                 <Button
                   /* Options */
-                  type={'primary'}
-                  size={'small'}
-                  text={'Download Pack'}
-                  color={'black'}
+                  type="primary"
+                  size="small"
+                  text="Download Pack"
+                  color="black"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
-                  inverted={true}
+                  inverted
                   loading={false}
                   disabled={false}
                   onClick={null}
@@ -98,14 +98,14 @@ export default function ProfileCypher({ cyphers }) {
               <div className="pb3  pr3">
                 <Button
                   /* Options */
-                  type={'primary'}
-                  size={'small'}
-                  text={'Submission Form'}
-                  color={'black'}
+                  type="primary"
+                  size="small"
+                  text="Submission Form"
+                  color="black"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
-                  inverted={true}
+                  inverted
                   loading={false}
                   disabled={false}
                   onClick={null}

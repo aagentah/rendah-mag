@@ -11,13 +11,13 @@ import {
 } from '../../lib/sanity/requests';
 
 export default function Post({ siteConfig, teamMember }) {
-  const posts = teamMember.posts;
+  const {posts} = teamMember;
 
   console.log('teamMember', teamMember);
   return (
     <Layout
-      navOffset={'top'}
-      navOnWhite={true}
+      navOffset="top"
+      navOnWhite
       meta={{
         siteConfig,
         title: 'Search',

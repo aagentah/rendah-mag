@@ -45,7 +45,7 @@ export default async (req, res) => {
 
       // Find customer based on email
       if (!customers.items) return false;
-      const customer = find(customers.items, { email: email });
+      const customer = find(customers.items, { email });
       if (!customer?.id) return false;
 
       // Fetch customer's orders based on Id

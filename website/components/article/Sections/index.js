@@ -128,9 +128,5 @@ export default function Sections({ body }) {
     return false;
   };
 
-  return (
-    <React.Fragment>
-      {body.map((section, i) => renderSections(section, i))}
-    </React.Fragment>
-  );
+  return <>{body.map((section, i) => renderSections(section, i))}</>;
 }
