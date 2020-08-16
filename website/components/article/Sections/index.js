@@ -6,19 +6,19 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import includes from 'lodash/includes';
 
-import Heading from './Heading';
-import Paragraph from './Paragraph';
-import ListItem from './ListItem';
-import Quote from './Quote';
+import Heading from './heading';
+import Paragraph from './paragraph';
+import ListItem from './list-item';
+import Quote from './quote';
 // import NumberedList from './NumberedList';
-import Image from './Image';
+import Image from './image';
 // import Question from './Question';
 // import Answer from './Answer';
-import Soundcloud from './Soundcloud';
-import Spotify from './Spotify';
-import Youtube from './Youtube';
-import FacebookVideo from './FacebookVideo';
-import ArticleLink from './Link';
+import Soundcloud from './soundcloud';
+import Spotify from './spotify';
+import Youtube from './youtube';
+import FacebookVideo from './facebook-video';
+import ArticleLink from './link';
 
 export class Seo extends PureComponent {
   renderSections = (section, i) => {
@@ -50,10 +50,10 @@ export class Seo extends PureComponent {
     }
 
     // image
-    if
-    (
+    if (
       section._type === 'image' &&
-      (includes(section.asset._ref, '-jpg') || includes(section.asset._ref, '-png'))
+      (includes(section.asset._ref, '-jpg') ||
+        includes(section.asset._ref, '-png'))
     ) {
       return (
         <div key={i} className="pv4">
