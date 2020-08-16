@@ -20,8 +20,8 @@ import Youtube from './youtube';
 import FacebookVideo from './facebook-video';
 import ArticleLink from './link';
 
-export class Sections extends PureComponent {
-  renderSections = (section, i) => {
+export default function Sections({ body }) {
+  const renderSections = (section, i) => {
     // para
     if (section._type === 'block' && !section.listItem) {
       return (
@@ -128,23 +128,9 @@ export class Sections extends PureComponent {
     return false;
   };
 
-  render() {
-    const { body } = this.props;
-
-    return (
-      <React.Fragment>
-        {body.map((section, i) => this.renderSections(section, i))}
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      {body.map((section, i) => renderSections(section, i))}
+    </React.Fragment>
+  );
 }
-
-Seo.propTypes = {
-  body: PropTypes.array,
-};
-
-Seo.defaultProps = {
-  body: [],
-};
-
-export default Seo;
