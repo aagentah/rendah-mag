@@ -1,10 +1,10 @@
 export default function Link({ url }) {
-  const withLinkProps = {
-    type: 'external',
-    url: url,
-    target: '_blank',
-    routerLink: null,
-  };
+  // const withLinkProps = {
+  //   type: 'external',
+  //   url: url,
+  //   target: '_blank',
+  //   routerLink: null,
+  // };
 
   return (
     <div className="pv3  tal">

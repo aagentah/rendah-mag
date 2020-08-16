@@ -1,11 +1,11 @@
 import find from 'lodash/find';
 
 export default function Paragraph({ text, markDefs }) {
-  const renderChildren = (child, markDefs, i) => {
+  const renderChildren = (child, mark, i) => {
     if (child.marks) {
       // If has inline URL link
-      if (markDefs.length) {
-        const currentMark = find(markDefs, { _key: child.marks[0] });
+      if (mark.length) {
+        const currentMark = find(mark, { _key: child.marks[0] });
 
         if (currentMark && currentMark.url) {
           return (
@@ -52,7 +52,7 @@ export default function Paragraph({ text, markDefs }) {
     return (
       <>
         <p className="db  t-body  lh-copy  f6  dark-grey  taj  pv3">
-          {text.map((child, i) => renderChildren(child, markDefs, i))}
+          {text.map((child, i) => renderChildren(child, mark, i))}
         </p>
       </>
     );
