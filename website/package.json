@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "prestart": "next build",
     "start": "next start -p $PORT",
     "lint": "eslint '**/*.js'; exit 0",
     "lint-fix": "eslint --fix '**/*.js'; exit 0",
