@@ -20,7 +20,7 @@ import Youtube from './youtube';
 import FacebookVideo from './facebook-video';
 import ArticleLink from './link';
 
-export class Seo extends PureComponent {
+export class Sections extends PureComponent {
   renderSections = (section, i) => {
     // para
     if (section._type === 'block' && !section.listItem) {
