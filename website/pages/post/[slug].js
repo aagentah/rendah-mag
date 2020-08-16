@@ -6,7 +6,7 @@ import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '../../components/layout';
 import Container from '../../components/layout/container';
-import Sections from '../../components/article/sections';
+// import Sections from '../../components/article/sections';
 
 import Date from '../../components/date';
 import CardBlog from '../../components/card/blog';
@@ -91,7 +91,9 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
               </p>
 
               <div className="post__body  pb4">
-                <Sections body={post.body} />
+                {
+                  // <Sections body={post.body} />
+                }
               </div>
             </section>
           </article>
