@@ -1,7 +1,7 @@
-export default function Heading() {
+export default function Heading({ text }) {
   return (
-    <React.Fragment>
-      <h2 className="t-title  f4  dark-grey">{this.props.text}</h2>
-    </React.Fragment>
+    <>
+      <h2 className="t-title  f4  dark-grey">{text}</h2>
+    </>
   );
 }

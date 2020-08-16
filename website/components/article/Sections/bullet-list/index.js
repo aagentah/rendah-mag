@@ -1,4 +1,4 @@
-export default function BulletList() {
+export default function BulletList({ text }) {
   renderChildren = (child, i) => {
     if (child.marks) {
       if (child.marks.includes('stong') && child.marks.includes('em')) {
@@ -27,15 +27,13 @@ export default function BulletList() {
     return child.text;
   };
 
-  const { text } = this.props;
-
   if (text[0].text) {
     return (
-      <React.Fragment>
+      <>
         <li className="db  t-body  lh-copy  f6  black">
           {text.map((child, i) => this.renderChildren(child, i))}
         </li>
-      </React.Fragment>
+      </>
     );
   }
   return false;
