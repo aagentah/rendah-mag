@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { useToasts } from 'react-toast-notifications';
+import BlockContent from '@sanity/block-content-to-react';
 
 import { Heading, Button, Copy, Image } from 'next-pattern-library';
 
@@ -24,27 +25,27 @@ export default function ProfileCypher({ cyphers }) {
           />
         </div>
         <div className="flex  flex-wrap">
-        <div className="col-24  col-12-md  pb3  pb0-md">
-          <div className="shadow2">
-            <Image
-              /* Options */
-              src={imageBuilder
-                .image(cyphers.current.image)
-                .height(1000)
-                .width(1000)
-                .url()}
-              placeholder={imageBuilder
-                .image(cyphers.current.image)
-                .height(50)
-                .width(108)
-                .url()}
-              alt="This is the alt text."
-              figcaption={null}
-              height={500}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
+          <div className="col-24  col-12-md  pb3  pb0-md">
+            <div className="shadow2">
+              <Image
+                /* Options */
+                src={imageBuilder
+                  .image(cyphers.current.imageSquare)
+                  .height(1000)
+                  .width(1000)
+                  .url()}
+                placeholder={imageBuilder
+                  .image(cyphers.current.imageSquare)
+                  .height(50)
+                  .width(108)
+                  .url()}
+                alt="This is the alt text."
+                figcaption={null}
+                height={500}
+                onClick={null}
+                /* Children */
+                withLinkProps={null}
+              />
             </div>
           </div>
           <div className="col-24  col-12-md  ph0  ph4-md">
@@ -62,15 +63,11 @@ export default function ProfileCypher({ cyphers }) {
               />
             </div>
 
-            <div className="pb3">
-              <Copy
-                /* Options */
-                text={
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            <div className="post__body  measure-wide  pb3">
+              <BlockContent
+                blocks={
+                  cyphers.current.announcementFields.announcementDescription
                 }
-                color={'black'}
-                size={'medium'}
-                truncate={null}
               />
             </div>
             <div className="flex  flex-wrap">
@@ -89,7 +86,13 @@ export default function ProfileCypher({ cyphers }) {
                   disabled={false}
                   onClick={null}
                   /* Children */
-                  withLinkProps={null}
+                  withLinkProps={{
+                    type: 'external',
+                    href: cyphers.current.packLink,
+                    target: '_blank',
+                    routerLink: null,
+                    routerLinkProps: null,
+                  }}
                 />
               </div>
               <div className="pb3  pr3">
@@ -107,7 +110,13 @@ export default function ProfileCypher({ cyphers }) {
                   disabled={false}
                   onClick={null}
                   /* Children */
-                  withLinkProps={null}
+                  withLinkProps={{
+                    type: 'external',
+                    href: cyphers.current.submissionFormLink,
+                    target: '_blank',
+                    routerLink: null,
+                    routerLinkProps: null,
+                  }}
                 />
               </div>
             </div>

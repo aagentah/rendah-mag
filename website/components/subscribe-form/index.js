@@ -69,7 +69,7 @@ export default function SubscribeForm() {
 
       <div className="flex  flex-wrap  mt2  ph4  ph0-md">
         <input
-          className="subscribe-banner__input  col-24  col-12-md  flex  justify-center  mb3  mb0-md"
+          className="subscribe-banner__input  col-24  col-16-md  flex  justify-center  mb3  mb0-md"
           id="email-input"
           name="email"
           placeholder="Your email"
@@ -77,7 +77,7 @@ export default function SubscribeForm() {
           type="email"
         />
 
-        <div className="col-24  col-12-md  flex  justify-center">
+        <div className="col-24  col-8-md  flex  justify-center  justify-start-md">
           <Button
             /* Options */
             type="primary"
