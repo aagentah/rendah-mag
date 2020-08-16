@@ -1,4 +1,4 @@
-export default function SocialLinks({}) {
+export default function SocialLinks() {
   const { article } = this.props;
 
   if (article.socialHandles) {
