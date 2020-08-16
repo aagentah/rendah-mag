@@ -1,5 +1,5 @@
 export default function BulletList({ text }) {
-  renderChildren = (child, i) => {
+  const renderChildren = (child, i) => {
     if (child.marks) {
       if (child.marks.includes('stong') && child.marks.includes('em')) {
         return (
@@ -31,7 +31,7 @@ export default function BulletList({ text }) {
     return (
       <>
         <li className="db  t-body  lh-copy  f6  black">
-          {text.map((child, i) => this.renderChildren(child, i))}
+          {text.map((child, i) => renderChildren(child, i))}
         </li>
       </>
     );

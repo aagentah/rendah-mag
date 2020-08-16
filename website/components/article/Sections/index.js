@@ -1,19 +1,10 @@
-/* @flow */
-/* eslint-disable import/no-named-as-default, react/no-unknown-property,
-  react/forbid-prop-types */
-
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import includes from 'lodash/includes';
 
 import Heading from './heading';
 import Paragraph from './paragraph';
 import ListItem from './list-item';
 import Quote from './quote';
-// import NumberedList from './NumberedList';
 import Image from './image';
-// import Question from './Question';
-// import Answer from './Answer';
 import Soundcloud from './soundcloud';
 import Spotify from './spotify';
 import Youtube from './youtube';
