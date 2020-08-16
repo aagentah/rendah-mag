@@ -52,7 +52,7 @@ export default function Paragraph({ text, markDefs }) {
     return (
       <>
         <p className="db  t-body  lh-copy  f6  dark-grey  taj  pv3">
-          {text.map((child, i) => renderChildren(child, mark, i))}
+          {text.map((child, i) => renderChildren(child, markDefs, i))}
         </p>
       </>
     );
