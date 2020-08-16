@@ -17,7 +17,7 @@ export default function Post({ siteConfig, allProducts }) {
   const uniqueCollectionNames = uniqBy(collectionNames, 'collection');
   const collectionGroups = [];
 
-  for (var i = 0; i < uniqueCollectionNames.length; i++) {
+  for (let i = 0; i < uniqueCollectionNames.length; i++) {
     const products = filter(allProducts, {
       collection: uniqueCollectionNames[i],
     });
@@ -34,8 +34,8 @@ export default function Post({ siteConfig, allProducts }) {
 
   return (
     <Layout
-      navOffset={'top'}
-      navOnWhite={true}
+      navOffset="top"
+      navOnWhite
       meta={{
         siteConfig,
         title: 'Store',

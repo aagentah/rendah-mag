@@ -89,7 +89,7 @@ export default function Sigup({ siteConfig }) {
     <>
       <Layout
         navOffset="center"
-        navOnWhite={true}
+        navOnWhite
         meta={{
           siteConfig,
           title: 'Sign Up',

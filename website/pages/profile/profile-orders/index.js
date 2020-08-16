@@ -29,11 +29,11 @@ export default function ProfileOrders({ customerOrders }) {
                 <div className="bg-almost-white  pa2  shadow1">
                   {order.items.map((item, i) => (
                     <div className="bg-almost-white  pa3">
-                      <p class="t-primary  f6  black  pb2">Name: {item.name}</p>
-                      <p class="t-primary  f6  black  pb2">
+                      <p className="t-primary  f6  black  pb2">Name: {item.name}</p>
+                      <p className="t-primary  f6  black  pb2">
                         Quantity: {item.quantity}
                       </p>
-                      <p class="t-primary  f6  black">Total: {item.price}</p>
+                      <p className="t-primary  f6  black">Total: {item.price}</p>
                     </div>
                   ))}
                 </div>

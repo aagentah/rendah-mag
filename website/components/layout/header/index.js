@@ -160,7 +160,7 @@ export default function Header({ navOnWhite, meta }) {
                       <div className="flex  snipcart-checkout  cp">
                         <span className="pr2">Checkout</span>
                         {buttonShoppingCart}
-                        <span className="snipcart-items-count"></span>
+                        <span className="snipcart-items-count" />
                       </div>
                     </li>
                   </>

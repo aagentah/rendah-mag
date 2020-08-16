@@ -52,7 +52,7 @@ export default (username, hash, salt) => {
     </div>
     `;
 
-  let sendSmtpEmail = {
+  const sendSmtpEmail = {
     sender: {
       name: 'Rendah Mag',
       email: 'no-reply@rendahmag.com',

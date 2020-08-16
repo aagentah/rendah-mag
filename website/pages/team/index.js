@@ -10,8 +10,8 @@ export default function Post({ siteConfig, allTeam }) {
   console.log('allTeam', allTeam);
   return (
     <Layout
-      navOffset={'top'}
-      navOnWhite={true}
+      navOffset="top"
+      navOnWhite
       meta={{
         siteConfig,
         title: 'Search',

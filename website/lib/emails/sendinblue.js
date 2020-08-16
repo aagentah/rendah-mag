@@ -1,11 +1,12 @@
 const SibApiV3Sdk = require('sib-api-v3-sdk');
+
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
+const apiKey = defaultClient.authentications['api-key'];
 apiKey.apiKey = process.env.SEND_IN_BLUE_API_KEY;
 
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+const apiInstance = new SibApiV3Sdk.SMTPApi();
 
 const sendinblue = (sendSmtpEmail) => {
   apiInstance.sendTransacEmail(sendSmtpEmail).then(

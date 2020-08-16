@@ -10,9 +10,9 @@ import Layout from '../../components/layout';
 import Container from '../../components/layout/container';
 
 import { useUser } from '../../lib/hooks';
-import { getSiteConfig } from '../../lib/sanity/requests';
+import { getSiteConfig , getCurrentAndPreviousCyphers } from '../../lib/sanity/requests';
 
-import { getCurrentAndPreviousCyphers } from '../../lib/sanity/requests';
+
 
 export default function Profile({ siteConfig }) {
   const [user, { loading, error }] = useUser();
@@ -58,7 +58,7 @@ export default function Profile({ siteConfig }) {
     <div className="bg-white  bg-almost-white-md">
       <Layout
         navOffset="top"
-        navOnWhite={true}
+        navOnWhite
         meta={{
           siteConfig,
           title: 'Profile',

@@ -337,9 +337,9 @@ export default function ProfileEdit({ customerOrders }) {
             <p className="t-secondary  black  f6  pr2">Newsletter Status:</p>
             <Label
               /* Options */
-              customClass={'ph3  pv2  shadow2'}
+              customClass="ph3  pv2  shadow2"
               text={isSubNewsletter}
-              color={'white'}
+              color="white"
               backgroundColor={
                 isSubNewsletter === 'Subscribed' ? 'green' : 'red'
               }
@@ -354,9 +354,9 @@ export default function ProfileEdit({ customerOrders }) {
             </p>
             <Label
               /* Options */
-              customClass={'ph3  pv2  shadow2'}
+              customClass="ph3  pv2  shadow2"
               text={isDominionMember}
-              color={'white'}
+              color="white"
               backgroundColor={
                 isDominionMember === 'Subscribed' ? 'green' : 'red'
               }
