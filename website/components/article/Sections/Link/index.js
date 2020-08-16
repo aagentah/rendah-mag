@@ -1,7 +1,7 @@
-export default function Link() {
+export default function Link({ url }) {
   const withLinkProps = {
     type: 'external',
-    url: this.props.url,
+    url: url,
     target: '_blank',
     routerLink: null,
   };

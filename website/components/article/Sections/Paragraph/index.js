@@ -50,11 +50,11 @@ export default function Paragraph({ text, markDefs }) {
 
   if (text[0].text) {
     return (
-      <React.Fragment>
+      <>
         <p className="db  t-body  lh-copy  f6  dark-grey  taj  pv3">
           {text.map((child, i) => renderChildren(child, markDefs, i))}
         </p>
-      </React.Fragment>
+      </>
     );
   }
   return false;

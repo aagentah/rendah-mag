@@ -1,9 +1,9 @@
-export default function Answer() {
+export default function Answer({ text }) {
   return (
-    <React.Fragment>
+    <>
       <p className="t-body  lh-copy  f5  dark-grey  taj">
-        &ldquo;{this.props.text}&ldquo;
+        &ldquo;{text}&ldquo;
       </p>
-    </React.Fragment>
+    </>
   );
 }
