@@ -157,7 +157,7 @@ export default function Header({ navOnWhite, meta }) {
                 {meta.title === 'Store' || meta.title === 'Product' ? (
                   <>
                     <li className="dib  pr3">
-                      <div className="flex  snipcart-checkout  cp">
+                      <div className="flex  snipcart-checkout">
                         <span className="pr2">Checkout</span>
                         {buttonShoppingCart}
                         <span className="snipcart-items-count" />

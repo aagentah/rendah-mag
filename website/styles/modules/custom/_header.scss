@@ -40,3 +40,25 @@
 .header--mobile.collapsed > .nav {
   transform: translateX(0);
 }
+
+.snipcart-checkout {
+  cursor: pointer;
+  position: relative;
+}
+
+.snipcart-items-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  width: 16px;
+  height: 16px;
+  font-size: 11px;
+  line-height: 11px;
+  background-color: var(--red);
+  color: var(--white);
+  border-radius: 100%;
+  @extend .flex;
+  @extend .justify-center;
+  @extend .align-center;
+  @extend .t-secondary;
+}
