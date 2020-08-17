@@ -97,29 +97,6 @@ export default {
       },
       validation: (Rule) => Rule.required(),
     },
-    {
-      name: "recurringType",
-      title: "Recurring Payment Type",
-      type: "string",
-      options: {
-        list: [
-          { title: "None", value: "None" },
-          { title: "Day", value: "Day" },
-          { title: "Week", value: "Week" },
-          { title: "Month", value: "Month" },
-          { title: "Year", value: "Year" },
-        ],
-        layout: "radio",
-      },
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: "recurringInterval",
-      title: "Recurring Payment Interval",
-      description: "If no Recurring Payment Type, use '0'",
-      type: "number",
-      validation: (Rule) => Rule.required(),
-    },
   ],
 
   orderings: [

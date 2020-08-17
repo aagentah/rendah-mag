@@ -70,7 +70,7 @@ export default function Post({ siteConfig, allProducts }) {
         )}
 
         {collectionGroups.length > 0 && (
-          <section className="pb3">
+          <section className="pb3  pt4">
             <div className="flex  flex-wrap">
               {collectionGroups.map((group, i) => (
                 <div key={group.name}>
