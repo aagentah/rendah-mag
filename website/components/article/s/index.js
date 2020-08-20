@@ -1,7 +1,7 @@
 import includes from 'lodash/includes';
 
 import Heading from './heading';
-// import Paragraph from './paragraph';
+import Paragraph from './paragraph';
 // import ListItem from './list-item';
 // import Quote from './quote';
 // import Image from './image';
@@ -13,15 +13,15 @@ import Heading from './heading';
 
 export default function Sections({ body }) {
   const renderSections = (section, i) => {
-    // // para
-    // if (section._type === 'block' && !section.listItem) {
-    //   return (
-    //     <div key={i}>
-    //       <Paragraph text={section.children} markDefs={section.markDefs} />
-    //     </div>
-    //   );
-    // }
-    //
+    // para
+    if (section._type === 'block' && !section.listItem) {
+      return (
+        <div key={i}>
+          <Paragraph text={section.children} markDefs={section.markDefs} />
+        </div>
+      );
+    }
+
     // // bullet list
     // if (section._type === 'block' && section.listItem === 'bullet') {
     //   return (
