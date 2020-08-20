@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-// import cx from 'classnames';
+import cx from 'classnames';
 import NProgress from 'nprogress';
 
-import { Button, Icon } from 'next-pattern-library';
+import { Image, Button, Icon } from 'next-pattern-library';
 
 import Container from '../container';
 import SearchBar from '../../search-bar';
@@ -40,6 +40,9 @@ export default function Header({ navOnWhite, meta }) {
 
   const toggleNav = () => setNavOpen(!navOpen);
 
+  const logoWhite = cx({ 'o-0': navOnWhite });
+  const logoBlack = cx({ 'o-0': !navOnWhite });
+
   const buttonIconSignIn = <Icon icon={['fas', 'sign-in-alt']} />;
   const buttonIconSignOut = <Icon icon={['fas', 'sign-out-alt']} />;
   const buttonIconStore = <Icon icon={['fas', 'store-alt']} />;
@@ -49,6 +52,45 @@ export default function Header({ navOnWhite, meta }) {
     <>
       <div className="header  header--desktop  bg-almost-white  justify-center  align-center  dn  df-md">
         <div className="flex  align-center  w-100">
+          <div className={`header__logo  ${logoWhite}`}>
+            <Image
+              /* Options */
+              src="/images/logo-medium-white.png"
+              placeholder="/images/logo-medium-white.png"
+              alt="This is the alt text."
+              figcaption={null}
+              height={null}
+              onClick={null}
+              /* Children */
+              withLinkProps={{
+                type: 'next',
+                href: '/',
+                target: null,
+                routerLink: Link,
+                routerLinkProps: null,
+              }}
+            />
+          </div>
+          <div className={`header__logo   ${logoBlack}`}>
+            <Image
+              /* Options */
+              src="/images/logo-medium-black.png"
+              placeholder="/images/logo-medium-black.png"
+              alt="This is the alt text."
+              figcaption={null}
+              height={null}
+              onClick={null}
+              /* Children */
+              withLinkProps={{
+                type: 'next',
+                href: '/',
+                target: null,
+                routerLink: Link,
+                routerLinkProps: null,
+              }}
+            />
+          </div>
+
           <div className="col-12  ph4">
             <nav className="nav  w-100  flex  justify-start">
               <ul className="flex  flex-wrap">
@@ -274,7 +316,7 @@ export default function Header({ navOnWhite, meta }) {
         }  bg-almost-white  justify-center  align-center  df  dn-md`}
       >
         <div className="flex  flex-wrap">
-          <div className="absolute  top  left  mt3  ml3" onClick={toggleNav}>
+          <div className="header__burger" onClick={toggleNav}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -286,6 +328,54 @@ export default function Header({ navOnWhite, meta }) {
             </svg>
           </div>
         </div>
+
+        <div className={`header__logo  ${logoWhite}`}>
+          <Image
+            /* Options */
+            src="/images/logo-medium-white.png"
+            placeholder="/images/logo-medium-white.png"
+            alt="This is the alt text."
+            figcaption={null}
+            height={null}
+            onClick={null}
+            /* Children */
+            withLinkProps={{
+              type: 'next',
+              href: '/',
+              target: null,
+              routerLink: Link,
+              routerLinkProps: null,
+            }}
+          />
+        </div>
+        <div className={`header__logo   ${logoBlack}`}>
+          <Image
+            /* Options */
+            src="/images/logo-medium-black.png"
+            placeholder="/images/logo-medium-black.png"
+            alt="This is the alt text."
+            figcaption={null}
+            height={null}
+            onClick={null}
+            /* Children */
+            withLinkProps={{
+              type: 'next',
+              href: '/',
+              target: null,
+              routerLink: Link,
+              routerLinkProps: null,
+            }}
+          />
+        </div>
+
+        {meta.title === 'Store' || meta.title === 'Product' ? (
+          <>
+            <div className="snipcart-checkout">
+              {buttonShoppingCart}
+              <span className="snipcart-items-count" />
+            </div>
+          </>
+        ) : null}
 
         <nav className="nav  w-100  flex  justify-end">
           <div className="flex  flex-wrap">
