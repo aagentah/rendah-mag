@@ -13,7 +13,7 @@ export default function HeroPost({ post }) {
   const heroImage = (
     <Image
       /* Options */
-      src={imageBuilder.image(post.coverImage).height(700).width(1080).url()}
+      src={imageBuilder.image(post.coverImage).height(500).width(1080).url()}
       placeholder={imageBuilder
         .image(post.coverImage)
         .height(50)
@@ -71,7 +71,7 @@ export default function HeroPost({ post }) {
 
   return (
     <>
-      <Parallax className="z1  nt5" y={['-110px', '100px']} tagOuter="figure">
+      <Parallax className="z1  nt5" y={['-50px', '50px']} tagOuter="figure">
         <div className="hero--darken-all">
           <Hero
             /* Options */

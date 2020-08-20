@@ -39,7 +39,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
         <>
           {cyphers.current && <HeroCypher cypher={cyphers.current} />}
 
-          <div className="pt6  ph3  ph4-md">
+          <div className="pt5  mt4  ph3  ph4-md">
             <Container>
               <div className="bg-black  shadow2  br3  pa4  pa5-md  mb5">
                 <div className="pb3">
