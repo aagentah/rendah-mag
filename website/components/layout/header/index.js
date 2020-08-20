@@ -198,7 +198,7 @@ export default function Header({ navOnWhite, meta }) {
               <ul className="flex  flex-wrap">
                 {meta.title === 'Store' || meta.title === 'Product' ? (
                   <>
-                    <li className="dib  pr3">
+                    <li className="dib  pr3  mr1">
                       <div className="flex  snipcart-checkout">
                         <span className="pr2">Checkout</span>
                         {buttonShoppingCart}

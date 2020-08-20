@@ -1,4 +1,5 @@
 import {
+  Tabs,
   Heading,
   Copy,
   Label,
@@ -22,7 +23,16 @@ export default function Post({ siteConfig, product }) {
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
   const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
 
-  console.log('product', product);
+  const descriptionTab = (
+    <div className="db  pb3">
+      <BlockContent blocks={product.description} />
+    </div>
+  );
+
+  const deliveryTab = (
+    <div className="db  pb3">Delivers are blah blah blah...</div>
+  );
+
   return (
     <Layout
       navOffset="top"
@@ -61,7 +71,7 @@ export default function Post({ siteConfig, product }) {
             </div>
           </div>
           <div className="col-24  col-12-md  ph3-md">
-            <div className="db  ph2  pb2">
+            <div className="db  ph2  pt2  pb3">
               <Heading
                 /* Options */
                 htmlEntity="h1"
@@ -74,7 +84,7 @@ export default function Post({ siteConfig, product }) {
                 withLinkProps={null}
               />
             </div>
-            <div className="db  ph2  pb3">
+            <div className="db  ph2  pb4">
               <Label
                 /* Options */
                 customClass="ph2"
@@ -86,9 +96,26 @@ export default function Post({ siteConfig, product }) {
                 withLinkProps={null}
               />
             </div>
-            <div className="db  ph2  pb3">
-              <BlockContent blocks={product.description} />
+
+            <div className="bb  bc-black  pb3  mb4">
+              <Tabs
+                /* Options */
+                content={[
+                  {
+                    id: '1',
+                    tabTitle: 'Description',
+                    tabContent: descriptionTab,
+                  },
+                  {
+                    id: '2',
+                    tabTitle: 'Deliveries',
+                    tabContent: deliveryTab,
+                  },
+                ]}
+                defaultSelected={1}
+              />
             </div>
+
             <div className="db  ph2  pb3">
               <div
                 className="snipcart-add-item"
