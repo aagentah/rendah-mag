@@ -10,6 +10,17 @@
   min-height: 80px;
   background-color: transparent;
   z-index: 10;
+
+  .header__logo {
+    width: 42px;
+    top: 20px;
+    left: 20px;
+    @extend .absolute;
+  }
+
+  .nav {
+    padding-left: 55px;
+  }
 }
 
 // Mobile
@@ -24,6 +35,33 @@
   min-height: 80px;
   background-color: transparent;
   z-index: 10;
+
+  .header__burger {
+    top: 20px;
+    left: 15px;
+    @extend .absolute;
+  }
+
+  .header__logo {
+    width: 33px;
+    top: 17px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    @extend .absolute;
+  }
+
+  .snipcart-checkout {
+    top: 20px;
+    right: 15px;
+    @extend .absolute;
+  }
+
+  .snipcart-checkout {
+    svg {
+      font-size: 1.6em;
+    }
+  }
 }
 
 .header--mobile > .nav {
@@ -40,6 +78,8 @@
 .header--mobile.collapsed > .nav {
   transform: translateX(0);
 }
+
+// Snipcart
 
 .snipcart-checkout {
   cursor: pointer;
