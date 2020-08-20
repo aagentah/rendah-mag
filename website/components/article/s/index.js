@@ -2,9 +2,9 @@ import includes from 'lodash/includes';
 
 import Heading from './heading';
 import Paragraph from './paragraph';
-// import ListItem from './list-item';
-// import Quote from './quote';
-// import Image from './image';
+import ListItem from './list-item';
+import Quote from './quote';
+import Image from './image';
 // import Soundcloud from './soundcloud';
 // import Spotify from './spotify';
 // import Youtube from './youtube';
@@ -22,37 +22,37 @@ export default function Sections({ body }) {
       );
     }
 
-    // // bullet list
-    // if (section._type === 'block' && section.listItem === 'bullet') {
-    //   return (
-    //     <ul key={i} className="pb3">
-    //       <ListItem text={section.children} />
-    //     </ul>
-    //   );
-    // }
-    //
-    // // number list
-    // if (section._type === 'block' && section.listItem === 'number') {
-    //   return (
-    //     <ul key={i} className="pb3">
-    //       <ListItem text={section.children} />
-    //     </ul>
-    //   );
-    // }
-    //
-    // // image
-    // if (
-    //   section._type === 'image' &&
-    //   (includes(section.asset._ref, '-jpg') ||
-    //     includes(section.asset._ref, '-png'))
-    // ) {
-    //   return (
-    //     <div key={i} className="pv4">
-    //       <Image section={section} />
-    //     </div>
-    //   );
-    // }
-    //
+    // bullet list
+    if (section._type === 'block' && section.listItem === 'bullet') {
+      return (
+        <ul key={i} className="pb3">
+          <ListItem text={section.children} />
+        </ul>
+      );
+    }
+
+    // number list
+    if (section._type === 'block' && section.listItem === 'number') {
+      return (
+        <ul key={i} className="pb3">
+          <ListItem text={section.children} />
+        </ul>
+      );
+    }
+
+    // image
+    if (
+      section._type === 'image' &&
+      (includes(section.asset._ref, '-jpg') ||
+        includes(section.asset._ref, '-png'))
+    ) {
+      return (
+        <div key={i} className="pv4">
+          <Image section={section} />
+        </div>
+      );
+    }
+
     // // soundcloud embed
     // if (section._type === 'soundCloudEmbedBlock') {
     //   return (
@@ -98,15 +98,15 @@ export default function Sections({ body }) {
       );
     }
 
-    // // quoteBlock
-    // if (section._type === 'quoteBlock') {
-    //   return (
-    //     <div key={i} className="pv2  mb2">
-    //       <Quote quote={section.quote} source={section.source} />
-    //     </div>
-    //   );
-    // }
-    //
+    // quoteBlock
+    if (section._type === 'quoteBlock') {
+      return (
+        <div key={i} className="pv2  mb2">
+          <Quote quote={section.quote} source={section.source} />
+        </div>
+      );
+    }
+
     // // linkBlock
     // if (section._type === 'linkBlock') {
     //   return (
