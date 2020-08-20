@@ -10,6 +10,7 @@ import Sections from '../../components/article/body-sections';
 
 import Date from '../../components/date';
 import CardBlog from '../../components/card/blog';
+import useWindowDimensions from '../../functions/useWindowDimensions';
 
 import {
   getSiteConfig,
@@ -18,7 +19,7 @@ import {
 } from '../../lib/sanity/requests';
 
 export default function Post({ siteConfig, post, morePosts, preview }) {
-  console.log('post', post);
+  const { height, width } = useWindowDimensions();
   const router = useRouter();
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
         }}
         preview={preview}
       >
-        <Parallax className="z1  nt4" y={['-110px', '100px']} tagOuter="figure">
+        <Parallax className="z1  nt4" y={['-50px', '50px']} tagOuter="figure">
           <div className="hero--darken-top">
             <Hero
               /* Options */
@@ -70,7 +71,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           </div>
         </Parallax>
         <Container>
-          <article className="pt6  ph3  ph4-md">
+          <article className="pt5  mt3  ph3  ph4-md">
             <section className="measure-wide  mla  mra">
               <div className="pb2">
                 <Heading
