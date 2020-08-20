@@ -7,7 +7,7 @@ import Quote from './quote';
 import Image from './image';
 import Soundcloud from './soundcloud';
 import Spotify from './spotify';
-// import Youtube from './youtube';
+import Youtube from './youtube';
 // import FacebookVideo from './facebook-video';
 // import ArticleLink from './link';
 
@@ -71,15 +71,15 @@ export default function Sections({ body }) {
       );
     }
 
-    // // soundcloud embed
-    // if (section._type === 'youTubeEmbedBlock') {
-    //   return (
-    //     <div key={i} className="pv4">
-    //       <Youtube videoId={section.youTubeEmbed} />
-    //     </div>
-    //   );
-    // }
-    //
+    // soundcloud embed
+    if (section._type === 'youTubeEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <Youtube videoId={section.youTubeEmbed} />
+        </div>
+      );
+    }
+
     // // facebook video embed
     // if (section._type === 'facebookVideoEmbedBlock') {
     //   return (
