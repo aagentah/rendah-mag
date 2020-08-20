@@ -1,4 +1,4 @@
-export default function Link({ url }) {
+export default function ArticleLink({ url }) {
   // const withLinkProps = {
   //   type: 'external',
   //   url: url,
