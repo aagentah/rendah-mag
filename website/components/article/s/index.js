@@ -5,8 +5,8 @@ import Paragraph from './paragraph';
 import ListItem from './list-item';
 import Quote from './quote';
 import Image from './image';
-// import Soundcloud from './soundcloud';
-// import Spotify from './spotify';
+import Soundcloud from './soundcloud';
+import Spotify from './spotify';
 // import Youtube from './youtube';
 // import FacebookVideo from './facebook-video';
 // import ArticleLink from './link';
@@ -53,24 +53,24 @@ export default function Sections({ body }) {
       );
     }
 
-    // // soundcloud embed
-    // if (section._type === 'soundCloudEmbedBlock') {
-    //   return (
-    //     <div key={i} className="pv4">
-    //       <Soundcloud url={section.soundCloudEmbed} />
-    //     </div>
-    //   );
-    // }
-    //
-    // // soundcloud embed
-    // if (section._type === 'spotifyEmbedBlock') {
-    //   return (
-    //     <div key={i} className="pv4">
-    //       <Spotify uri={section.spotifyEmbed} />
-    //     </div>
-    //   );
-    // }
-    //
+    // soundcloud embed
+    if (section._type === 'soundCloudEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <Soundcloud url={section.soundCloudEmbed} />
+        </div>
+      );
+    }
+
+    // spotify embed
+    if (section._type === 'spotifyEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <Spotify uri={section.spotifyEmbed} />
+        </div>
+      );
+    }
+
     // // soundcloud embed
     // if (section._type === 'youTubeEmbedBlock') {
     //   return (
