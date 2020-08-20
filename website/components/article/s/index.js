@@ -8,7 +8,7 @@ import Image from './image';
 import Soundcloud from './soundcloud';
 import Spotify from './spotify';
 import Youtube from './youtube';
-// import FacebookVideo from './facebook-video';
+import FacebookVideo from './facebook-video';
 // import ArticleLink from './link';
 
 export default function Sections({ body }) {
@@ -80,14 +80,14 @@ export default function Sections({ body }) {
       );
     }
 
-    // // facebook video embed
-    // if (section._type === 'facebookVideoEmbedBlock') {
-    //   return (
-    //     <div key={i} className="pv4">
-    //       <FacebookVideo url={section.facebookVideoEmbed} />
-    //     </div>
-    //   );
-    // }
+    // facebook video embed
+    if (section._type === 'facebookVideoEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <FacebookVideo url={section.facebookVideoEmbed} />
+        </div>
+      );
+    }
 
     // subtitleBlock
     if (section._type === 'subtitleBlock') {
