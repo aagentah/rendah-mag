@@ -57,7 +57,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
         preview={preview}
       >
         <Parallax className="z1  nt4" y={['-110px', '100px']} tagOuter="figure">
-          <div className="hero--article">
+          <div className="hero--darken-top">
             <Hero
               /* Options */
               height={700}
