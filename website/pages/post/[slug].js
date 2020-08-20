@@ -6,7 +6,7 @@ import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '../../components/layout';
 import Container from '../../components/layout/container';
-import Sections from '../../components/article/sections';
+import Sections from '../../components/article/s';
 
 import Date from '../../components/date';
 import CardBlog from '../../components/card/blog';
