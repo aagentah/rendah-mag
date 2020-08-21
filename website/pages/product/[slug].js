@@ -112,7 +112,7 @@ export default function Post({ siteConfig, product }) {
                     tabContent: deliveryTab,
                   },
                 ]}
-                defaultSelected={1}
+                defaultSelected="1"
               />
             </div>
 

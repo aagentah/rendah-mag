@@ -10,9 +10,10 @@ import Layout from '../../components/layout';
 import Container from '../../components/layout/container';
 
 import { useUser } from '../../lib/hooks';
-import { getSiteConfig , getCurrentAndPreviousCyphers } from '../../lib/sanity/requests';
-
-
+import {
+  getSiteConfig,
+  getCurrentAndPreviousCyphers,
+} from '../../lib/sanity/requests';
 
 export default function Profile({ siteConfig }) {
   const [user, { loading, error }] = useUser();
@@ -92,7 +93,7 @@ export default function Profile({ siteConfig }) {
                     ),
                   },
                 ]}
-                defaultSelected={0}
+                defaultSelected="1"
               />
             </>
           )}
