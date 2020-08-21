@@ -5,65 +5,39 @@ import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
 import { imageBuilder } from '../../../lib/sanity/requests';
 
-export default function CardCypher({ post, columnCount }) {
+export default function Cardmix({ mix, columnCount }) {
   const [ref, inView, entry] = useInView({
     rootMargin: '20px 0px -220px 0px',
     threshold: 1,
   });
 
-  let cardImage;
-
-  cardImage = (
+  const cardImage = (
     <Image
       /* Options */
-      src={imageBuilder.image(post.image).height(200).width(250).url()}
-      placeholder={imageBuilder.image(post.image).height(20).width(25).url()}
-      alt={post.title}
+      src={imageBuilder.image(mix.image).height(200).width(250).url()}
+      placeholder={imageBuilder.image(mix.image).height(20).width(25).url()}
+      alt={mix.title}
       figcaption={null}
       height={150}
       onClick={null}
       /* Children */
       withLinkProps={{
         type: 'next',
-        href: '/post/[slug]',
+        href: '/mix/[slug]',
         target: null,
         routerLink: Link,
         routerLinkProps: {
-          as: `/post/${post.slug}`,
+          as: `/mix/${mix.slug}`,
         },
       }}
     />
   );
 
-  if (columnCount == 1) {
-    cardImage = (
-      <Image
-        /* Options */
-        src={imageBuilder.image(post.image).height(1000).width(1000).url()}
-        placeholder={imageBuilder.image(post.image).height(20).width(25).url()}
-        alt={post.title}
-        figcaption={null}
-        height={600}
-        onClick={null}
-        /* Children */
-        withLinkProps={{
-          type: 'next',
-          href: '/post/[slug]',
-          target: null,
-          routerLink: Link,
-          routerLinkProps: {
-            as: `/post/${post.slug}`,
-          },
-        }}
-      />
-    );
-  }
-
   const cardHeading = (
     <Heading
       /* Options */
       htmlEntity="h2"
-      text={post.title}
+      text={mix.title}
       color="black"
       size="small"
       truncate={4}
