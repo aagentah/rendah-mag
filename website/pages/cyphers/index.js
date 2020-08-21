@@ -30,8 +30,8 @@ export default function Cyphers({ siteConfig, cyphers }) {
         navOnWhite={false}
         meta={{
           siteConfig,
-          title: 'Home',
-          description: 'This is the Home page.',
+          title: 'Cyphers',
+          description: 'This is the Cyphers page.',
           image: null,
         }}
         preview={null}

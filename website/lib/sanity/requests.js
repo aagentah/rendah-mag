@@ -219,3 +219,11 @@ export async function getProductAndMore(slug, preview) {
 
   return { product, moreProducts: getUniquePosts(moreProducts) };
 }
+
+export async function getGuestMixes(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "guestMix"] | order(date desc, _updatedAt desc) [0..15] {
+      ...,
+    }`);
+  return getUniquePosts(results);
+}

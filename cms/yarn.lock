@@ -893,13 +893,49 @@
   version "1.0.0"
   resolved "https://registry.npmjs.org/@rexxars/eventsource-polyfill/-/eventsource-polyfill-1.0.0.tgz#ab46f2f44da23aedd6f51f13d92a194a5367525b"
 
-"@sanity/base@1.150.1", "@sanity/base@^1.150.1":
+"@sanity/base@1.150.1":
   version "1.150.1"
   resolved "https://registry.npmjs.org/@sanity/base/-/base-1.150.1.tgz#8365278405bad379b1365b811c1fcd8756bad65c"
   dependencies:
     "@sanity/bifur-client" "0.0.4"
     "@sanity/client" "1.150.1"
     "@sanity/components" "1.150.1"
+    "@sanity/generate-help-url" "1.150.1"
+    "@sanity/image-url" "^0.140.19"
+    "@sanity/initial-value-templates" "1.150.1"
+    "@sanity/mutator" "1.150.1"
+    "@sanity/observable" "1.150.1"
+    "@sanity/preview" "1.150.1"
+    "@sanity/schema" "1.150.1"
+    "@sanity/state-router" "1.150.1"
+    "@sanity/structure" "1.150.1"
+    "@sanity/transaction-collator" "1.150.1"
+    "@sanity/util" "1.150.1"
+    "@sanity/uuid" "1.150.1"
+    "@sanity/validation" "1.150.1"
+    history "^4.6.3"
+    lodash "^4.17.15"
+    nano-pubsub "^1.0.2"
+    nanoid "^3.1.9"
+    observable-callback "^1.0.1"
+    oneline "^1.0.3"
+    promise-props "^1.0.0"
+    react-fast-compare "^2.0.2"
+    react-icon-base "^2.1.2"
+    react-icons "^2.2.7"
+    react-intl "^2.2.2"
+    react-props-stream "^1.0.0"
+    rxjs "^6.5.3"
+    semver-compare "^1.0.0"
+    shallow-equals "^1.0.0"
+
+"@sanity/base@1.150.2", "@sanity/base@^1.150.2":
+  version "1.150.2"
+  resolved "https://registry.npmjs.org/@sanity/base/-/base-1.150.2.tgz#b53c96d8727e05fb10ff9d599230b09cb6198976"
+  dependencies:
+    "@sanity/bifur-client" "0.0.4"
+    "@sanity/client" "1.150.1"
+    "@sanity/components" "1.150.2"
     "@sanity/generate-help-url" "1.150.1"
     "@sanity/image-url" "^0.140.19"
     "@sanity/initial-value-templates" "1.150.1"
@@ -964,7 +1000,7 @@
     make-error "^1.3.0"
     object-assign "^4.1.1"
 
-"@sanity/components@1.150.1", "@sanity/components@^1.150.1":
+"@sanity/components@1.150.1":
   version "1.150.1"
   resolved "https://registry.npmjs.org/@sanity/components/-/components-1.150.1.tgz#bd53ab2fe6e8efcf376b3c3e74dfd2afd62e0118"
   dependencies:
@@ -992,6 +1028,37 @@
     react-sortable-hoc "^0.6.3"
     react-split-pane "^0.1.84"
     react-tippy "^1.2.3"
+    rxjs "^6.5.3"
+    string-hash "^1.1.3"
+
+"@sanity/components@1.150.2", "@sanity/components@^1.150.2":
+  version "1.150.2"
+  resolved "https://registry.npmjs.org/@sanity/components/-/components-1.150.2.tgz#c869e03328cb199fb3beac9c78980f350db09bb6"
+  dependencies:
+    "@juggle/resize-observer" "3.1.3"
+    "@sanity/base" "1.150.2"
+    "@sanity/util" "1.150.1"
+    attr-accept "^1.1.0"
+    boundless-arrow-key-navigation "^1.1.0"
+    chance "^1.0.4"
+    chroma-js "^2.0.4"
+    circular-at "^1.0.3"
+    classnames "^2.2.5"
+    date-fns "^1.29.0"
+    dom-scroll-into-view "^1.2.1"
+    element-resize-detector "^1.1.14"
+    exif-component "^1.0.1"
+    lodash "^4.17.15"
+    nano-pubsub "^1.0.2"
+    palx "^1.0.3"
+    popper.js "1.16.1"
+    react-animate-height "^2.0.6"
+    react-click-outside "^3.0.0"
+    react-motion "^0.5.2"
+    react-popper "1.3.7"
+    react-sortable-hoc "^0.6.3"
+    react-split-pane "^0.1.84"
+    react-tippy "1.4.0"
     rxjs "^6.5.3"
     string-hash "^1.1.3"
 
@@ -1082,19 +1149,19 @@
     "@sanity/generate-help-url" "1.150.1"
     lodash "^4.17.15"
 
-"@sanity/default-layout@^1.150.1":
-  version "1.150.1"
-  resolved "https://registry.npmjs.org/@sanity/default-layout/-/default-layout-1.150.1.tgz#8e06b57cfcc5d97e4e19821d94415d9c4f34f5f8"
+"@sanity/default-layout@^1.150.2":
+  version "1.150.2"
+  resolved "https://registry.npmjs.org/@sanity/default-layout/-/default-layout-1.150.2.tgz#e01d50efacfb900d1f101d2064f2a85c64dbe97f"
   dependencies:
-    "@sanity/base" "1.150.1"
-    "@sanity/components" "1.150.1"
+    "@sanity/base" "1.150.2"
+    "@sanity/components" "1.150.2"
     "@sanity/generate-help-url" "1.150.1"
     classnames "^2.2.5"
     is-hotkey "^0.1.4"
     lodash "^4.17.15"
     react-click-outside "^3.0.0"
     react-props-stream "^1.0.0"
-    react-tippy "^1.2.3"
+    react-tippy "1.4.0"
     rxjs "^6.5.3"
 
 "@sanity/default-login@^1.150.1":
@@ -1105,16 +1172,16 @@
     prop-types "^15.6.0"
     rxjs "^6.5.3"
 
-"@sanity/desk-tool@^1.150.1":
-  version "1.150.1"
-  resolved "https://registry.npmjs.org/@sanity/desk-tool/-/desk-tool-1.150.1.tgz#ed2d3343663afba6218caa31f71e99f7cf9be554"
+"@sanity/desk-tool@^1.150.2":
+  version "1.150.2"
+  resolved "https://registry.npmjs.org/@sanity/desk-tool/-/desk-tool-1.150.2.tgz#6966538843856a8616fa795ff27ec269c5af4a94"
   dependencies:
     "@juggle/resize-observer" "3.1.3"
     "@reach/auto-id" "^0.7.2"
-    "@sanity/base" "1.150.1"
-    "@sanity/components" "1.150.1"
+    "@sanity/base" "1.150.2"
+    "@sanity/components" "1.150.2"
     "@sanity/data-aspects" "1.150.1"
-    "@sanity/form-builder" "1.150.1"
+    "@sanity/form-builder" "1.150.2"
     "@sanity/generate-help-url" "1.150.1"
     "@sanity/mutator" "1.150.1"
     "@sanity/react-hooks" "1.150.1"
@@ -1134,7 +1201,7 @@
     react-click-outside "^3.0.0"
     react-json-inspector "^7.1.1"
     react-tiny-virtual-list "^2.0.5"
-    react-tippy "^1.2.3"
+    react-tippy "1.4.0"
     rxjs "^6.5.3"
     scroll "^3.0.1"
     shallow-equals "^1.0.0"
@@ -1161,13 +1228,13 @@
     simple-get "^3.0.2"
     split2 "^2.1.1"
 
-"@sanity/form-builder@1.150.1":
-  version "1.150.1"
-  resolved "https://registry.npmjs.org/@sanity/form-builder/-/form-builder-1.150.1.tgz#07bcf7a6e3e85bfc2070463b60f13670de2ed00f"
+"@sanity/form-builder@1.150.2":
+  version "1.150.2"
+  resolved "https://registry.npmjs.org/@sanity/form-builder/-/form-builder-1.150.2.tgz#83cda6421cf609d057c79511168fe2a88822723e"
   dependencies:
-    "@sanity/base" "1.150.1"
+    "@sanity/base" "1.150.2"
     "@sanity/block-tools" "1.150.1"
-    "@sanity/components" "1.150.1"
+    "@sanity/components" "1.150.2"
     "@sanity/generate-help-url" "1.150.1"
     "@sanity/imagetool" "1.150.1"
     "@sanity/mutator" "1.150.1"
@@ -1190,12 +1257,12 @@
     moment "^2.19.1"
     nano-pubsub "^1.0.2"
     object-inspect "^1.6.0"
-    popper.js "^1.16.1"
+    popper.js "1.16.1"
     react-click-outside "^3.0.0"
     react-container-query "^0.11.0"
     react-datepicker "^1.8.0"
     react-measure "^2.3.0"
-    react-tippy "^1.2.3"
+    react-tippy "1.4.0"
     rxjs "^6.5.3"
     shallow-equals "^1.0.0"
     speakingurl "^13.0.0"
@@ -2244,8 +2311,8 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30001111:
-  version "1.0.30001116"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001116.tgz#f3a3dea347f9294a3bdc4292309039cc84117fb8"
+  version "1.0.30001117"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001117.tgz#69a9fae5d480eaa9589f7641a83842ad396d17c4"
 
 capture-stack-trace@^1.0.0:
   version "1.0.1"
@@ -3147,8 +3214,8 @@ ee-first@1.1.1:
   resolved "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
 electron-to-chromium@^1.3.30, electron-to-chromium@^1.3.523:
-  version "1.3.539"
-  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.539.tgz#9952fb0bf3fb4295282e7df35f6e7a2a8b89d3fd"
+  version "1.3.540"
+  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.540.tgz#4e4c08d8c12bbd32cf090e143c0d546f017f9d43"
 
 element-resize-detector@1.1.13:
   version "1.1.13"
@@ -5727,7 +5794,7 @@ pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
 
-popper.js@^1.11.1, popper.js@^1.14.4, popper.js@^1.16.1:
+popper.js@1.16.1, popper.js@^1.11.1, popper.js@^1.14.4, popper.js@^1.16.1:
   version "1.16.1"
   resolved "https://registry.npmjs.org/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
 
@@ -6653,7 +6720,7 @@ react-onclickoutside@^6.7.1:
   version "6.9.0"
   resolved "https://registry.npmjs.org/react-onclickoutside/-/react-onclickoutside-6.9.0.tgz#a54bc317ae8cf6131a5d78acea55a11067f37a1f"
 
-react-popper@^1.0.2:
+react-popper@1.3.7, react-popper@^1.0.2:
   version "1.3.7"
   resolved "https://registry.npmjs.org/react-popper/-/react-popper-1.3.7.tgz#f6a3471362ef1f0d10a4963673789de1baca2324"
   dependencies:
@@ -6710,7 +6777,7 @@ react-tiny-virtual-list@^2.0.5:
   dependencies:
     prop-types "^15.5.7"
 
-react-tippy@^1.2.3:
+react-tippy@1.4.0, react-tippy@^1.2.3:
   version "1.4.0"
   resolved "https://registry.npmjs.org/react-tippy/-/react-tippy-1.4.0.tgz#e8a8b4085ec985e5c94fe128918b733b588a1465"
   dependencies:
