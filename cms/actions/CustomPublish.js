@@ -9,67 +9,71 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
   const [inputVal, setInputVal] = useState("");
   const [isDialogOpen, setDialogOpen] = useState(false);
   const adminPublishPassword = "password";
+  const { patch, publish } = useDocumentOperation(id, type);
 
-  const properties = published || draft;
+  const compressImage = async () => {
+    const properties = draft || published;
 
-  for (var prop in properties) {
-    if (Object.prototype.hasOwnProperty.call(properties, prop)) {
-      // do stuff
-      if (properties[prop]._type === "image") {
+    for (const prop in properties) {
+      if (
+        typeof properties[prop] === "object" &&
+        properties[prop] !== null &&
+        properties[prop]?.type === "image"
+      ) {
         const imageProp = properties[prop];
+        const imagePropURL = await imageBuilder.image(imageProp).url();
 
-        const { patch, publish } = useDocumentOperation(
-          imageProp.asset._ref,
-          "sanity.imageAsset"
-        );
-
-        const imagePropURL = imageBuilder.image(imageProp).url();
-
-        fetch(imagePropURL)
-          .then(function (response) {
+        const fetchBlob = await fetch(imagePropURL)
+          .then((response) => {
             return response.blob();
           })
-          .then(function (blob) {
-            console.log("blob", blob);
-
-            new Compressor(blob, {
-              // quality: 0.9,
-              maxWidth: 1080,
-              success(result) {
-                //
-
-                fetch("https://rm-staging-2020.herokuapp.com/api/cors", {
-                  method: "post",
-                  headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    blob: result,
-                  }),
-                }).then((response) => {
-                  console.log("response", response);
-                  //do something awesome that makes the world a better place
-                });
-              },
-              error(err) {
-                console.log(err.message);
-              },
-            });
+          .then((blob) => {
+            return blob;
           });
 
-        // patch.execute([{ set: { _ref: "" } }]);
+        new Compressor(fetchBlob, {
+          // quality: 0.9,
+          maxWidth: 10,
+          success(result) {
+            client.assets
+              .upload("image", result, {
+                contentType: "image/png",
+                filename: `img-${properties._id}.png`,
+              })
+              .then((document) => {
+                patch.execute([
+                  {
+                    set: {
+                      [prop]: {
+                        type: "image",
+                        asset: {
+                          _type: "reference",
+                          _ref: document._id,
+                        },
+                      },
+                    },
+                  },
+                ]);
+              })
+              .catch((error) => {
+                console.error("Upload failed:", error.message);
+              });
+          },
+          error(err) {
+            console.log(err.message);
+          },
+        });
       }
     }
-  }
+  };
 
   const handleButtonClick = (e) => {
-    const { patch, publish } = useDocumentOperation(id, type);
     e.preventDefault();
     setDialogOpen(false);
 
     if (inputVal === adminPublishPassword) {
       setIsActioning(true);
+      // compressImage();
       publish.execute();
       onComplete();
     }

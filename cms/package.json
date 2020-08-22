@@ -25,7 +25,6 @@
     "@sanity/image-url": "^0.140.19",
     "@sanity/production-preview": "^1.150.1",
     "@sanity/vision": "^1.150.1",
-    "client-compress": "^2.2.2",
     "compressorjs": "^1.0.6",
     "prop-types": "^15.6",
     "react": "^16.2",
