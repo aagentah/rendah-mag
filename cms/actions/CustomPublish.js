@@ -87,7 +87,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
 
     if (inputVal === adminPublishPassword) {
       setIsActioning(true);
-      await compressImage();
+      // await compressImage();
       publish.execute();
       onComplete();
     }
