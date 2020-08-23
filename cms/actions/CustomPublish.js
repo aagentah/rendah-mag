@@ -15,15 +15,13 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
     const properties = draft || published;
 
     for (const prop in properties) {
-      if (
-        typeof properties[prop] === "object" &&
-        properties[prop] !== null &&
-        properties[prop]?.type === "image"
-      ) {
-        const imageProp = properties[prop];
-        const imagePropURL = await imageBuilder.image(imageProp).url();
+      const item = properties[prop];
 
-        const fetchBlob = await fetch(imagePropURL)
+      if (item?.type === "image" || item?._type === "image") {
+        const imageUrl = await imageBuilder.image(item).url();
+
+        // Fetch uploaded image's blob
+        const fetchBlob = await fetch(imageUrl)
           .then((response) => {
             return response.blob();
           })
@@ -31,49 +29,65 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
             return blob;
           });
 
-        new Compressor(fetchBlob, {
-          // quality: 0.9,
-          maxWidth: 10,
-          success(result) {
-            client.assets
-              .upload("image", result, {
-                contentType: "image/png",
-                filename: `img-${properties._id}.png`,
-              })
-              .then((document) => {
-                patch.execute([
-                  {
-                    set: {
-                      [prop]: {
-                        type: "image",
-                        asset: {
-                          _type: "reference",
-                          _ref: document._id,
-                        },
-                      },
-                    },
-                  },
-                ]);
-              })
-              .catch((error) => {
-                console.error("Upload failed:", error.message);
-              });
-          },
-          error(err) {
-            console.log(err.message);
-          },
+        // Compress blob
+        const compressedBlob = await new Promise((resolve, reject) => {
+          new Compressor(fetchBlob, {
+            maxWidth: 10,
+            success(result) {
+              resolve(result);
+            },
+            error(err) {
+              console.log(err.message);
+            },
+          });
         });
+
+        // Upload compressed image to Sanity
+        const uploadedDocument = await client.assets
+          .upload("image", compressedBlob, {
+            contentType: "image/png",
+            filename: `compressed-${properties._id}-
+              ${Math.floor(Math.random() * 500)}.png`,
+          })
+          .then((document) => {
+            return document;
+          })
+          .catch((error) => {
+            console.error("Upload failed:", error.message);
+          });
+
+        // Patch current document's image with uploaded image
+        await patch.execute([
+          {
+            set: {
+              [prop]: {
+                type: "image",
+                asset: {
+                  _type: "reference",
+                  _ref: uploadedDocument._id,
+                },
+              },
+            },
+          },
+        ]);
+
+        console.log("done");
+
+        // Delete previous image from Sanity
+        // await client.delete(item.asset._ref).then((result) => {
+        //   console.log("deleted imageAsset", result);
+        // });
       }
     }
   };
 
-  const handleButtonClick = (e) => {
+  const handleButtonClick = async (e) => {
     e.preventDefault();
     setDialogOpen(false);
 
     if (inputVal === adminPublishPassword) {
       setIsActioning(true);
-      // compressImage();
+      await compressImage();
       publish.execute();
       onComplete();
     }
