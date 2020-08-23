@@ -171,6 +171,30 @@ export default function Header({ navOnWhite, meta }) {
                     /* Options */
                     type="secondary"
                     size="medium"
+                    text="Mixes"
+                    color={navColour}
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/guest-mixes',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: null,
+                    }}
+                  />
+                </li>
+                <li className="dib  pr3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="medium"
                     text="Store"
                     color={navColour}
                     fluid={false}
@@ -458,6 +482,30 @@ export default function Header({ navOnWhite, meta }) {
                 withLinkProps={{
                   type: 'next',
                   href: '/team',
+                  target: null,
+                  routerLink: Link,
+                  routerLinkProps: null,
+                }}
+              />
+            </li>
+            <li className="db  pl4  pb3">
+              <Button
+                /* Options */
+                type="secondary"
+                size="large"
+                text="Mixes"
+                color="white"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted
+                loading={false}
+                disabled={false}
+                onClick={toggleNav}
+                /* Children */
+                withLinkProps={{
+                  type: 'next',
+                  href: '/guest-mixes',
                   target: null,
                   routerLink: Link,
                   routerLinkProps: null,
