@@ -26,7 +26,7 @@ export default function GuestMixes({ siteConfig, guestMixes }) {
     <>
       <Layout
         navOffset={null}
-        navOnWhite={false}
+        navOnWhite={true}
         meta={{
           siteConfig,
           title: 'Guest Mixes',
@@ -48,7 +48,7 @@ export default function GuestMixes({ siteConfig, guestMixes }) {
                     <Heading
                       /* Options */
                       htmlEntity="h1"
-                      text="Previous Cyphers."
+                      text="Guest Mixes."
                       color="black"
                       size="medium"
                       truncate={null}

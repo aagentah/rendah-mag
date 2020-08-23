@@ -57,7 +57,7 @@ export default function SubscribeForm() {
         <Heading
           /* Options */
           htmlEntity="h1"
-          text="Subscribe to Rendah Mag's newsletter."
+          text="Join our newsletter!"
           color="black"
           size="medium"
           truncate={null}
