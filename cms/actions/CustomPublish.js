@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDocumentOperation } from "@sanity/react-hooks";
 import Compressor from "compressorjs";
+
 import client from "../config";
 import { imageBuilder } from "../requests";
 
@@ -14,24 +15,14 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
   const compressImage = () => {
     const doc = draft || published;
 
-    console.log("doc", doc);
-
     const loopPropsForImages = async (objectProps, isBody) => {
       for (const prop in objectProps) {
         const item = objectProps[prop];
-
-        if (prop === "body") {
-          console.log("looping body", item);
-          loopPropsForImages(item, true);
-        }
 
         if (item?.type === "image" || item?._type === "image") {
           const resizeVal = item?.resize;
           if (!resizeVal || resizeVal === "none") return;
           const imageUrl = await imageBuilder.image(item).url();
-
-          console.log("prop", prop);
-          console.log("item", item);
 
           // // Compress image based on URL
           // const compressedBlob = await fetch(
@@ -88,20 +79,12 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
           const newItem = JSON.parse(JSON.stringify(item));
           newItem.asset._ref = uploadedDocument._id;
 
-          console.log("newItem", newItem);
-
           if (isBody) {
-            console.log("isBody");
             // Patch current document's image with uploaded image
             await client
               .patch(id)
               .setIfMissing({ body: [] })
-              // Add the items after the last item in the array (append)
-              .insert("replace", `body[${prop}]`, [
-                // Add a `_key` unique within the array to ensure it can be addressed uniquely
-                // in a real-time collaboration context
-                newItem,
-              ])
+              .insert("replace", `body[${prop}]`, [newItem])
               .commit()
               .then((res) => {
                 console.log(`Image was updated, document is ${res}`);
@@ -127,8 +110,6 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
               });
           }
 
-          console.log("done");
-
           // Delete previous image from Sanity
           await client.delete(item.asset._ref).then((result) => {
             console.log("deleted imageAsset", result);
@@ -138,6 +119,11 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
     };
 
     loopPropsForImages(doc, false);
+
+    if (doc?.body) {
+      console.log("looping body");
+      loopPropsForImages(doc.body, true);
+    }
   };
 
   const handleButtonClick = async (e) => {
