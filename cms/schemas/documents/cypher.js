@@ -24,18 +24,21 @@ export default {
       name: "imageLandscape",
       title: "Landscape Image",
       type: "image",
-      // fields: [
-      //   {
-      //     title: "Compress this image",
-      //     name: "shouldCompress",
-      //     type: "boolean",
-      //   },
-      //   {
-      //     title: "Resize 1080px",
-      //     name: "shouldResize",
-      //     type: "boolean",
-      //   },
-      // ],
+      fields: [
+        {
+          name: "resize",
+          title: "Resize",
+          type: "string",
+          options: {
+            list: [
+              { title: "None", value: "none" },
+              { title: "1080px", value: 1080 },
+              { title: "1920px", value: 1920 },
+            ],
+            layout: "radio",
+          },
+        },
+      ],
       validation: (Rule) => Rule.required(),
     },
     {

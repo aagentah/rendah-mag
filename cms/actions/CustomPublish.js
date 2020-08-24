@@ -18,6 +18,11 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
       const item = properties[prop];
 
       if (item?.type === "image" || item?._type === "image") {
+        const resizeVal = item?.resize;
+        if (!resizeVal || resizeVal === "none") return;
+
+        console.log("resizeVal", resizeVal);
+
         const imageUrl = await imageBuilder.image(item).url();
 
         // // Compress image based on URL
@@ -49,7 +54,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
         // Compress blob
         const compressedBlob = await new Promise((resolve, reject) => {
           new Compressor(fetchBlob, {
-            maxWidth: 10,
+            maxWidth: resizeVal,
             success(result) {
               resolve(result);
             },
@@ -63,8 +68,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
         const uploadedDocument = await client.assets
           .upload("image", compressedBlob, {
             contentType: "image/png",
-            filename: `compressed-${properties._id}-
-              ${Math.floor(Math.random() * 500)}.png`,
+            filename: `compressed-${prop}-${resizeVal}.png`,
           })
           .then((document) => {
             return document;
