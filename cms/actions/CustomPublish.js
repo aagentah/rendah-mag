@@ -20,6 +20,23 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
       if (item?.type === "image" || item?._type === "image") {
         const imageUrl = await imageBuilder.image(item).url();
 
+        // // Compress image based on URL
+        // const compressedBlob = await fetch(
+        //   "https://rm-staging-2020.herokuapp.com/api/cors",
+        //   {
+        //     method: "post",
+        //     headers: {
+        //       Accept: "application/json",
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({ imageUrl }),
+        //   }
+        // ).then((response) => {
+        //   return response;
+        // });
+        //
+        // console.log("compressedBlob", await compressedBlob.json());
+
         // Fetch uploaded image's blob
         const fetchBlob = await fetch(imageUrl)
           .then((response) => {
