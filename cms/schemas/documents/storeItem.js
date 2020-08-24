@@ -41,12 +41,42 @@ export default {
       name: "image1",
       title: "Image 1",
       type: "image",
+      fields: [
+        {
+          name: "resize",
+          title: "Resize",
+          type: "string",
+          options: {
+            list: [
+              { title: "None", value: "none" },
+              { title: "1080px", value: "1080" },
+              { title: "1920px", value: "1920" },
+            ],
+            layout: "radio",
+          },
+        },
+      ],
       validation: (Rule) => Rule.required(),
     },
     {
       name: "image2",
       title: "Image 2",
       type: "image",
+      fields: [
+        {
+          name: "resize",
+          title: "Resize",
+          type: "string",
+          options: {
+            list: [
+              { title: "None", value: "none" },
+              { title: "1080px", value: "1080" },
+              { title: "1920px", value: "1920" },
+            ],
+            layout: "radio",
+          },
+        },
+      ],
     },
     {
       name: "description",

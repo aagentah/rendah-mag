@@ -11,97 +11,133 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
   const adminPublishPassword = "password";
   const { patch, publish } = useDocumentOperation(id, type);
 
-  const compressImage = async () => {
-    const properties = draft || published;
+  const compressImage = () => {
+    const doc = draft || published;
 
-    for (const prop in properties) {
-      const item = properties[prop];
+    console.log("doc", doc);
 
-      if (item?.type === "image" || item?._type === "image") {
-        const resizeVal = item?.resize;
-        if (!resizeVal || resizeVal === "none") return;
+    const loopPropsForImages = async (objectProps, isBody) => {
+      for (const prop in objectProps) {
+        const item = objectProps[prop];
 
-        console.log("resizeVal", resizeVal);
+        if (prop === "body") {
+          console.log("looping body", item);
+          loopPropsForImages(item, true);
+        }
 
-        const imageUrl = await imageBuilder.image(item).url();
+        if (item?.type === "image" || item?._type === "image") {
+          const resizeVal = item?.resize;
+          if (!resizeVal || resizeVal === "none") return;
+          const imageUrl = await imageBuilder.image(item).url();
 
-        // // Compress image based on URL
-        // const compressedBlob = await fetch(
-        //   "https://rm-staging-2020.herokuapp.com/api/cors",
-        //   {
-        //     method: "post",
-        //     headers: {
-        //       Accept: "application/json",
-        //       "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({ imageUrl }),
-        //   }
-        // ).then((response) => {
-        //   return response;
-        // });
-        //
-        // console.log("compressedBlob", await compressedBlob.json());
+          console.log("prop", prop);
+          console.log("item", item);
 
-        // Fetch uploaded image's blob
-        const fetchBlob = await fetch(imageUrl)
-          .then((response) => {
-            return response.blob();
-          })
-          .then((blob) => {
-            return blob;
+          // // Compress image based on URL
+          // const compressedBlob = await fetch(
+          //   "https://rm-staging-2020.herokuapp.com/api/cors",
+          //   {
+          //     method: "post",
+          //     headers: {
+          //       Accept: "application/json",
+          //       "Content-Type": "application/json",
+          //     },
+          //     body: JSON.stringify({ imageUrl }),
+          //   }
+          // ).then((response) => {
+          //   return response;
+          // });
+          //
+          // console.log("compressedBlob", await compressedBlob.json());
+
+          // Fetch uploaded image's blob
+          const fetchBlob = await fetch(imageUrl)
+            .then((response) => {
+              return response.blob();
+            })
+            .then((blob) => {
+              return blob;
+            });
+
+          // Compress blob
+          const compressedBlob = await new Promise((resolve, reject) => {
+            new Compressor(fetchBlob, {
+              maxWidth: parseInt(resizeVal, 10),
+              success(result) {
+                resolve(result);
+              },
+              error(err) {
+                console.log(err.message);
+              },
+            });
           });
 
-        // Compress blob
-        const compressedBlob = await new Promise((resolve, reject) => {
-          new Compressor(fetchBlob, {
-            maxWidth: resizeVal,
-            success(result) {
-              resolve(result);
-            },
-            error(err) {
-              console.log(err.message);
-            },
+          // Upload compressed image to Sanity
+          const uploadedDocument = await client.assets
+            .upload("image", compressedBlob, {
+              contentType: "image/png",
+              filename: `compressed-${prop}-${parseInt(resizeVal, 10)}.png`,
+            })
+            .then((document) => {
+              return document;
+            })
+            .catch((error) => {
+              console.error("Upload failed:", error.message);
+            });
+
+          const newItem = JSON.parse(JSON.stringify(item));
+          newItem.asset._ref = uploadedDocument._id;
+
+          console.log("newItem", newItem);
+
+          if (isBody) {
+            console.log("isBody");
+            // Patch current document's image with uploaded image
+            await client
+              .patch(id)
+              .setIfMissing({ body: [] })
+              // Add the items after the last item in the array (append)
+              .insert("replace", `body[${prop}]`, [
+                // Add a `_key` unique within the array to ensure it can be addressed uniquely
+                // in a real-time collaboration context
+                newItem,
+              ])
+              .commit()
+              .then((res) => {
+                console.log(`Image was updated, document is ${res}`);
+                return res;
+              })
+              .catch((err) => {
+                console.error("Oh no, the update failed: ", err.message);
+                return false;
+              });
+          } else {
+            // Patch current document's image with uploaded image
+            await client
+              .patch(id)
+              .set({ [prop]: newItem })
+              .commit()
+              .then((res) => {
+                console.log(`Image was updated, document is ${res}`);
+                return res;
+              })
+              .catch((err) => {
+                console.error("Oh no, the update failed: ", err.message);
+                return false;
+              });
+          }
+
+          console.log("done");
+
+          // Delete previous image from Sanity
+          await client.delete(item.asset._ref).then((result) => {
+            console.log("deleted imageAsset", result);
           });
-        });
-
-        // Upload compressed image to Sanity
-        const uploadedDocument = await client.assets
-          .upload("image", compressedBlob, {
-            contentType: "image/png",
-            filename: `compressed-${prop}-${resizeVal}.png`,
-          })
-          .then((document) => {
-            return document;
-          })
-          .catch((error) => {
-            console.error("Upload failed:", error.message);
-          });
-
-        const newItem = JSON.parse(JSON.stringify(item));
-        newItem.asset._ref = uploadedDocument._id;
-
-        // Patch current document's image with uploaded image
-        await client
-          .patch(id)
-          .set({ [prop]: newItem })
-          .commit()
-          .then((res) => {
-            console.log(`Image was updated, document ID is ${res._id}`);
-            return res;
-          })
-          .catch((err) => {
-            console.error("Oh no, the update failed: ", err.message);
-            return false;
-          });
-
-        console.log("done");
-
-        // Delete previous image from Sanity
-        await client.delete(item.asset._ref).then((result) => {
-          console.log("deleted imageAsset", result);
-        });
+        }
       }
-    }
+    };
+
+    loopPropsForImages(doc, false);
   };
 
   const handleButtonClick = async (e) => {

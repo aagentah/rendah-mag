@@ -7,7 +7,7 @@ export default {
       name: "name",
       title: "Name",
       type: "string",
-      validation: Rule => Rule.required().max(60)
+      validation: (Rule) => Rule.required().max(60),
     },
     {
       name: "slug",
@@ -15,47 +15,59 @@ export default {
       type: "slug",
       options: {
         source: "name",
-        maxLength: 96
+        maxLength: 96,
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "active",
       title: "Active",
-      type: "boolean"
+      type: "boolean",
     },
     {
       name: "alias",
       title: "Alias",
-      type: "string"
+      type: "string",
     },
     {
       name: "role",
       title: "Role",
       type: "string",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "order",
       title: "Order",
       description: "Between 1-3",
       type: "number",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "image",
       title: "Image",
       type: "image",
-      options: {
-        hotspot: true
-      },
-      validation: Rule => Rule.required()
+      fields: [
+        {
+          name: "resize",
+          title: "Resize",
+          type: "string",
+          options: {
+            list: [
+              { title: "None", value: "none" },
+              { title: "1080px", value: "1080" },
+              { title: "1920px", value: "1920" },
+            ],
+            layout: "radio",
+          },
+        },
+      ],
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "description",
       title: "Author Description",
       type: "text",
-      validation: Rule => Rule.required().max(300)
+      validation: (Rule) => Rule.required().max(300),
     },
     {
       type: "object",
@@ -64,41 +76,41 @@ export default {
       fieldsets: [
         {
           name: "social",
-          description: 'Do not include "@" symbol'
-        }
+          description: 'Do not include "@" symbol',
+        },
       ],
       fields: [
         {
           name: "twitter",
           title: "Twitter Handle",
           type: "string",
-          fieldset: "social"
+          fieldset: "social",
         },
         {
           name: "instagram",
           title: "Instagram Handle",
           type: "string",
-          fieldset: "social"
+          fieldset: "social",
         },
         {
           name: "facebook",
           title: "Facebook Handle",
           type: "string",
-          fieldset: "social"
+          fieldset: "social",
         },
         {
           name: "soundcloud",
           title: "SoundCloud Handle",
           type: "string",
-          fieldset: "social"
-        }
-      ]
-    }
+          fieldset: "social",
+        },
+      ],
+    },
   ],
   preview: {
     select: {
       title: "name",
-      media: "image"
-    }
-  }
+      media: "image",
+    },
+  },
 };
