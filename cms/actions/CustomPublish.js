@@ -56,27 +56,29 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
             console.error("Upload failed:", error.message);
           });
 
+        const newItem = JSON.parse(JSON.stringify(item));
+        newItem.asset._ref = uploadedDocument._id;
+
         // Patch current document's image with uploaded image
-        await patch.execute([
-          {
-            set: {
-              [prop]: {
-                type: "image",
-                asset: {
-                  _type: "reference",
-                  _ref: uploadedDocument._id,
-                },
-              },
-            },
-          },
-        ]);
+        await client
+          .patch(id)
+          .set({ [prop]: newItem })
+          .commit()
+          .then((res) => {
+            console.log(`Image was updated, document ID is ${res._id}`);
+            return res;
+          })
+          .catch((err) => {
+            console.error("Oh no, the update failed: ", err.message);
+            return false;
+          });
 
         console.log("done");
 
         // Delete previous image from Sanity
-        // await client.delete(item.asset._ref).then((result) => {
-        //   console.log("deleted imageAsset", result);
-        // });
+        await client.delete(item.asset._ref).then((result) => {
+          console.log("deleted imageAsset", result);
+        });
       }
     }
   };
@@ -87,9 +89,9 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
 
     if (inputVal === adminPublishPassword) {
       setIsActioning(true);
-      // await compressImage();
       publish.execute();
       onComplete();
+      compressImage();
     }
   };
 
