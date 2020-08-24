@@ -32,9 +32,9 @@ export default async function handler(req, res) {
     width: 10,
   });
 
-  resized.toFile('public/temp/optimized.jpg');
+  resized.toFile('/temp/optimized.jpg');
 
-  const blob = await fetch(`${SITE_URL}/public/temp/optimized.jpg`)
+  const blob = await fetch(`${SITE_URL}/temp/optimized.jpg`)
     .then((response) => {
       return response.blob();
     })
@@ -45,5 +45,5 @@ export default async function handler(req, res) {
   console.log('blob', blob);
 
   // Rest of the API logic
-  res.json({ blob });
+  res.json({ yo: blob });
 }
