@@ -1,6 +1,8 @@
+import fs from 'fs';
 import Cors from 'cors';
 import tinify from 'tinify';
 
+import { SITE_URL } from '../../constants';
 import initMiddleware from '../../lib/init-middleware';
 
 // Initialize the cors middleware
@@ -16,14 +18,32 @@ export default async function handler(req, res) {
   // Run cors
   await cors(req, res);
 
-  tinify.key = '2hFnFm74VZHK9P5bq0P4r8kMdNY3qlP0';
+  // Tinify image
+  tinify.key = process.env.TINIFY_KEY;
 
+  // const { imageUrl } = req.query;
   const { imageUrl } = req.body;
+  console.log('imageUrl', imageUrl);
+
   const source = tinify.fromUrl(imageUrl);
 
-  source.toFile('optimized.jpg');
-  console.log('source', source);
+  const resized = source.resize({
+    method: 'scale',
+    width: 10,
+  });
+
+  resized.toFile('public/temp/optimized.jpg');
+
+  const blob = await fetch(`${SITE_URL}/public/temp/optimized.jpg`)
+    .then((response) => {
+      return response.blob();
+    })
+    .then((blob) => {
+      return blob;
+    });
+
+  console.log('blob', blob);
 
   // Rest of the API logic
-  res.json({ message: 'Hello Everyone!' });
+  res.json({ blob });
 }
