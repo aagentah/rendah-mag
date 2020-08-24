@@ -32,8 +32,8 @@ export default {
           options: {
             list: [
               { title: "None", value: "none" },
-              { title: "1080px", value: 1080 },
-              { title: "1920px", value: 1920 },
+              { title: "1080px", value: "1080" },
+              { title: "1920px", value: "1920" },
             ],
             layout: "radio",
           },
@@ -45,7 +45,27 @@ export default {
       name: "imageSquare",
       title: "Square Image",
       type: "image",
+      fields: [
+        {
+          name: "resize",
+          title: "Resize",
+          type: "string",
+          options: {
+            list: [
+              { title: "None", value: "none" },
+              { title: "1080px", value: "1080" },
+              { title: "1920px", value: "1920" },
+            ],
+            layout: "radio",
+          },
+        },
+      ],
       validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "body",
+      title: "Article Body",
+      type: "blockContent",
     },
     {
       name: "packLink",

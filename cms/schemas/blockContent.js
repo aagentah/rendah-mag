@@ -11,7 +11,7 @@ export default {
   title: "Block Content",
   name: "blockContent",
   type: "array",
-  validation: Rule => Rule.required(),
+  validation: (Rule) => Rule.required(),
   of: [
     {
       title: "Block",
@@ -19,12 +19,12 @@ export default {
       styles: [{ title: "Normal", value: "normal" }],
       lists: [
         { title: "Bullet", value: "bullet" },
-        { title: "Numbered", value: "number" }
+        { title: "Numbered", value: "number" },
       ],
       marks: {
         decorators: [
           { title: "Strong", value: "strong" },
-          { title: "Emphasis", value: "em" }
+          { title: "Emphasis", value: "em" },
         ],
         annotations: [
           {
@@ -37,18 +37,32 @@ export default {
                 name: "url",
                 title: "URL",
                 type: "string",
-                validation: Rule => Rule.required()
-              }
-            ]
-          }
-        ]
-      }
+                validation: (Rule) => Rule.required(),
+              },
+            ],
+          },
+        ],
+      },
     },
     {
       type: "image",
-      options: { hotspot: true },
       icon: iconImage,
-      validation: Rule => Rule.required()
+      fields: [
+        {
+          name: "resize",
+          title: "Resize",
+          type: "string",
+          options: {
+            list: [
+              { title: "None", value: "none" },
+              { title: "1080px", value: "1080" },
+              { title: "1920px", value: "1920" },
+            ],
+            layout: "radio",
+          },
+        },
+      ],
+      validation: (Rule) => Rule.required(),
     },
     // {
     //   name: 'categories',
@@ -80,16 +94,16 @@ export default {
           title: "Quote",
           type: "text",
           description: "A quote by the subject that stands out",
-          validation: Rule => Rule.required()
+          validation: (Rule) => Rule.required(),
         },
         {
           name: "source",
           title: "Source",
           type: "string",
           description: "The source or subject",
-          validation: Rule => Rule.required()
-        }
-      ]
+          validation: (Rule) => Rule.required(),
+        },
+      ],
     },
     {
       name: "linkBlock",
@@ -101,15 +115,15 @@ export default {
           name: "text",
           title: "Text",
           type: "string",
-          validation: Rule => Rule.required()
+          validation: (Rule) => Rule.required(),
         },
         {
           name: "url",
           title: "URL",
           type: "string",
-          validation: Rule => Rule.required()
-        }
-      ]
+          validation: (Rule) => Rule.required(),
+        },
+      ],
     },
     {
       name: "spotifyEmbedBlock",
@@ -122,9 +136,9 @@ export default {
           title: "Spotify Embed URI",
           description: "For example: spotify:track:5GZ4znceWfpTLrBBpr83DW",
           type: "string",
-          validation: Rule => Rule.required()
-        }
-      ]
+          validation: (Rule) => Rule.required(),
+        },
+      ],
     },
     {
       name: "soundCloudEmbedBlock",
@@ -137,9 +151,9 @@ export default {
           title: "SoundCloud Embed",
           type: "string",
           description: "For example: tracks/12345",
-          validation: Rule => Rule.required()
-        }
-      ]
+          validation: (Rule) => Rule.required(),
+        },
+      ],
     },
     {
       name: "youTubeEmbedBlock",
@@ -152,9 +166,9 @@ export default {
           title: "YouTube Embed",
           type: "string",
           description: "For example: 2g811Eo7K8U",
-          validation: Rule => Rule.required()
-        }
-      ]
+          validation: (Rule) => Rule.required(),
+        },
+      ],
     },
     {
       name: "facebookVideoEmbedBlock",
@@ -168,9 +182,9 @@ export default {
           type: "string",
           description:
             "For example: https://www.facebook.com/Bloc2BlocEnt/videos/453723538461181/",
-          validation: Rule => Rule.required()
-        }
-      ]
-    }
-  ]
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+    },
+  ],
 };

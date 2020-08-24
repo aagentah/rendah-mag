@@ -7,7 +7,7 @@ export default {
       name: "title",
       title: "Article Title",
       type: "string",
-      validation: Rule => Rule.required().max(60)
+      validation: (Rule) => Rule.required().max(60),
     },
     {
       name: "slug",
@@ -15,40 +15,55 @@ export default {
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96
+        maxLength: 96,
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "author",
       title: "Author",
       type: "reference",
       to: { type: "author" },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "featured",
       title: "Featured Article",
-      type: "boolean"
+      type: "boolean",
     },
     {
       name: "category",
       title: "Category",
       type: "reference",
       to: { type: "category" },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "publishedAt",
       title: "Publish Date",
       type: "datetime",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "image",
       title: "Image",
       type: "image",
-      validation: Rule => Rule.required()
+      fields: [
+        {
+          name: "resize",
+          title: "Resize",
+          type: "string",
+          options: {
+            list: [
+              { title: "None", value: "none" },
+              { title: "1080px", value: "1080" },
+              { title: "1920px", value: "1920" },
+            ],
+            layout: "radio",
+          },
+        },
+      ],
+      validation: (Rule) => Rule.required(),
     },
     // {
     //   name: 'categories',
@@ -60,12 +75,12 @@ export default {
       name: "description",
       title: "Article Description",
       type: "text",
-      validation: Rule => Rule.required().max(300)
+      validation: (Rule) => Rule.required().max(300),
     },
     {
       name: "body",
       title: "Article Body",
-      type: "blockContent"
+      type: "blockContent",
     },
     {
       type: "object",
@@ -74,59 +89,57 @@ export default {
       fieldsets: [
         {
           name: "social",
-          description: 'Do not include "@" symbol'
-        }
+          description: 'Do not include "@" symbol',
+        },
       ],
       fields: [
         {
           name: "twitter",
           title: "Twitter Handle",
           type: "string",
-          fieldset: "social"
+          fieldset: "social",
         },
         {
           name: "instagram",
           title: "Instagram Handle",
           type: "string",
-          fieldset: "social"
+          fieldset: "social",
         },
         {
           name: "facebook",
           title: "Facebook Handle",
           type: "string",
-          fieldset: "social"
+          fieldset: "social",
         },
         {
           name: "soundcloud",
           title: "SoundCloud Handle",
           type: "string",
-          fieldset: "social"
-        }
-      ]
-    }
+          fieldset: "social",
+        },
+      ],
+    },
   ],
 
   orderings: [
     {
-      title: 'Publish Date',
-      name: 'publishedAtDesc',
-      by: [
-        {field: 'publishedAt', direction: 'desc'}
-      ]
-    }
+      title: "Publish Date",
+      name: "publishedAtDesc",
+      by: [{ field: "publishedAt", direction: "desc" }],
+    },
   ],
 
   preview: {
     select: {
       title: "title",
       author: "author.name",
-      media: "image"
+      media: "image",
     },
     prepare(selection) {
       const { author } = selection;
       return Object.assign({}, selection, {
-        subtitle: author && `by ${author}`
+        subtitle: author && `by ${author}`,
       });
-    }
-  }
+    },
+  },
 };
