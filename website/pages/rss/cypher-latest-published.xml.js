@@ -1,29 +1,25 @@
 import React from 'react';
 
-import { getAllPosts } from '../lib/sanity/requests';
-import { SITE_URL } from '../constants';
+import { getLatestPublishedCypher } from '../../lib/sanity/requests';
+import { SITE_URL } from '../../constants';
 
 // Removes special characters that may break the RSS
 const encodeSpecialChar = (text) => {
   return text.replace(/&/g, '&amp;');
 };
 
-const sitemapXml = (allPosts) => {
+const sitemapXml = (latestCypher) => {
   let postsXML = '';
 
-  allPosts.map((post) => {
-    const url = `${SITE_URL}/${post.slug}`;
+  const url = `${SITE_URL}/${latestCypher.slug.current}`;
 
-    postsXML += `
+  postsXML += `
       <item>
-        <title>${encodeSpecialChar(post.title)}</title>
+        <title>${encodeSpecialChar(latestCypher.title)}</title>
         <link>${encodeSpecialChar(url)}</link>
-        <description>${encodeSpecialChar(post.description)}</description>
+        <description>${null}</description>
       </item>
       `;
-
-    return true;
-  });
 
   return `
     <rss version="2.0">
@@ -37,14 +33,12 @@ const sitemapXml = (allPosts) => {
     `;
 };
 
-class Sitemap extends React.Component {
+export default class BlogLatest extends React.Component {
   static async getInitialProps({ res }) {
-    const allPosts = await getAllPosts();
+    const latestCypher = await getLatestPublishedCypher();
 
     res.setHeader('Content-Type', 'text/xml');
-    res.write(sitemapXml(allPosts));
+    res.write(sitemapXml(latestCypher));
     res.end();
   }
 }
-
-export default Sitemap;
