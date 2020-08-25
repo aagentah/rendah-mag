@@ -170,7 +170,7 @@ export default function HeroCypher({ cypher }) {
             image={heroImage}
             title={heroHeading}
             description={null}
-            button={heroButton}
+            button={cypher ? heroButton : null}
           />
         </div>
       </Parallax>
