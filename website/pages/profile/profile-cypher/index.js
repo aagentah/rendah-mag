@@ -8,7 +8,7 @@ import { Heading, Button, Copy, Image } from 'next-pattern-library';
 import { imageBuilder } from '../../../lib/sanity/requests';
 
 export default function ProfileCypher({ cyphers }) {
-  if (cyphers) {
+  if (cyphers?.current) {
     return (
       <>
         <div className="pb3">
@@ -125,6 +125,22 @@ export default function ProfileCypher({ cyphers }) {
       </>
     );
   }
+
+  return (
+    <div className="pb3">
+      <Heading
+        /* Options */
+        htmlEntity="h3"
+        text={'There are no Cyphers currently in progress.'}
+        color="black"
+        size="medium"
+        truncate={null}
+        onClick={null}
+        /* Children */
+        withLinkProps={null}
+      />
+    </div>
+  );
 
   return null;
 }

@@ -22,7 +22,6 @@ import {
 } from '../../lib/sanity/requests';
 
 export default function Cyphers({ siteConfig, cyphers }) {
-  console.log('latest', cyphers.current);
   return (
     <>
       <Layout
@@ -37,7 +36,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
         preview={null}
       >
         <>
-          {cyphers.current && <HeroCypher cypher={cyphers.current} />}
+          <HeroCypher cypher={cyphers?.current} />
 
           <div className="pt5  mt4  ph3  ph4-md">
             <Container>
@@ -76,62 +75,64 @@ export default function Cyphers({ siteConfig, cyphers }) {
                 </div>
               </div>
 
-              <div className="flex  flex-wrap  bg-almost-white  shadow2  br3  pa4  pa5-md  mb5">
-                <div className="col-24  col-12-md  pr5-md  pb5  pb0-md">
-                  <div className="pb3">
-                    <Heading
-                      /* Options */
-                      htmlEntity="h1"
-                      text="This month's Cypher."
-                      color="black"
-                      size="large"
-                      truncate={null}
-                      reveal={null}
-                      /* Children */
-                      withLinkProps={null}
-                    />
-                  </div>
-
-                  <div className="post__body  measure-wide">
-                    <BlockContent
-                      blocks={
-                        cyphers.current.announcementFields
-                          .announcementDescription
-                      }
-                    />
-                  </div>
-                </div>
-
-                <div className="col-24  col-12-md">
-                  <Parallax
-                    className="z1  nt4"
-                    y={['30px', '-15px']}
-                    tagOuter="figure"
-                  >
-                    <div className="shadow2">
-                      <Image
+              {cyphers?.current && (
+                <div className="flex  flex-wrap  bg-almost-white  shadow2  br3  pa4  pa5-md  mb5">
+                  <div className="col-24  col-12-md  pr5-md  pb5  pb0-md">
+                    <div className="pb3">
+                      <Heading
                         /* Options */
-                        src={imageBuilder
-                          .image(cyphers.current.imageLandscape)
-                          .height(300)
-                          .width(300)
-                          .url()}
-                        placeholder={imageBuilder
-                          .image(cyphers.current.imageLandscape)
-                          .height(25)
-                          .width(25)
-                          .url()}
-                        alt="This is the alt text."
-                        figcaption={null}
-                        height={300}
-                        onClick={null}
+                        htmlEntity="h1"
+                        text="This month's Cypher."
+                        color="black"
+                        size="large"
+                        truncate={null}
+                        reveal={null}
                         /* Children */
                         withLinkProps={null}
                       />
                     </div>
-                  </Parallax>
+
+                    <div className="post__body  measure-wide">
+                      <BlockContent
+                        blocks={
+                          cyphers.current.announcementFields
+                            .announcementDescription
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-24  col-12-md">
+                    <Parallax
+                      className="z1  nt4"
+                      y={['30px', '-15px']}
+                      tagOuter="figure"
+                    >
+                      <div className="shadow2">
+                        <Image
+                          /* Options */
+                          src={imageBuilder
+                            .image(cyphers.current.imageLandscape)
+                            .height(300)
+                            .width(300)
+                            .url()}
+                          placeholder={imageBuilder
+                            .image(cyphers.current.imageLandscape)
+                            .height(25)
+                            .width(25)
+                            .url()}
+                          alt="This is the alt text."
+                          figcaption={null}
+                          height={300}
+                          onClick={null}
+                          /* Children */
+                          withLinkProps={null}
+                        />
+                      </div>
+                    </Parallax>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {cyphers.previous.length > 0 && (
                 <section className="pb5">
