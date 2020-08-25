@@ -20,26 +20,12 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
         const item = objectProps[prop];
 
         if (item?.type === "image" || item?._type === "image") {
+          // Check if resize has been selected
           const resizeVal = item?.resize;
-          if (!resizeVal || resizeVal === "none") return;
-          const imageUrl = await imageBuilder.image(item).url();
+          if (!resizeVal || resizeVal === "none") continue;
 
-          // // Compress image based on URL
-          // const compressedBlob = await fetch(
-          //   "https://rm-staging-2020.herokuapp.com/api/cors",
-          //   {
-          //     method: "post",
-          //     headers: {
-          //       Accept: "application/json",
-          //       "Content-Type": "application/json",
-          //     },
-          //     body: JSON.stringify({ imageUrl }),
-          //   }
-          // ).then((response) => {
-          //   return response;
-          // });
-          //
-          // console.log("compressedBlob", await compressedBlob.json());
+          // Fetch imageURL
+          const imageUrl = await imageBuilder.image(item).url();
 
           // Fetch uploaded image's blob
           const fetchBlob = await fetch(imageUrl)
@@ -87,7 +73,6 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
               .insert("replace", `body[${prop}]`, [newItem])
               .commit()
               .then((res) => {
-                console.log(`Image was updated, document is ${res}`);
                 return res;
               })
               .catch((err) => {
@@ -101,7 +86,6 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
               .set({ [prop]: newItem })
               .commit()
               .then((res) => {
-                console.log(`Image was updated, document is ${res}`);
                 return res;
               })
               .catch((err) => {
@@ -112,18 +96,14 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
 
           // Delete previous image from Sanity
           await client.delete(item.asset._ref).then((result) => {
-            console.log("deleted imageAsset", result);
+            console.log("Deleted image", result);
           });
         }
       }
     };
 
     loopPropsForImages(doc, false);
-
-    if (doc?.body) {
-      console.log("looping body");
-      loopPropsForImages(doc.body, true);
-    }
+    if (doc?.body) loopPropsForImages(doc.body, true);
   };
 
   const handleButtonClick = async (e) => {
