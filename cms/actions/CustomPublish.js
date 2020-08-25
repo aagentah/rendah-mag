@@ -13,8 +13,6 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
   const { patch, publish } = useDocumentOperation(id, type);
 
   const compressImage = () => {
-    const doc = draft || published;
-
     const loopPropsForImages = async (objectProps, isBody) => {
       for (const prop in objectProps) {
         const item = objectProps[prop];
@@ -26,6 +24,19 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
 
           // Fetch imageURL
           const imageUrl = await imageBuilder.image(item).url();
+
+          const getImageWidth = (src) => {
+            return new Promise((resolve, reject) => {
+              const img = new Image();
+              img.onload = () => resolve(img.width);
+              img.onerror = reject;
+              img.src = src;
+            });
+          };
+
+          const imageWidth = await getImageWidth(imageUrl);
+          console.log("imageWidth", imageWidth);
+          if (imageWidth <= parseInt(resizeVal, 10)) continue;
 
           // Fetch uploaded image's blob
           const fetchBlob = await fetch(imageUrl)
@@ -102,19 +113,19 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
       }
     };
 
-    loopPropsForImages(doc, false);
-    if (doc?.body) loopPropsForImages(doc.body, true);
+    loopPropsForImages(draft, false);
+    if (draft?.body) loopPropsForImages(draft.body, true);
   };
 
   const handleButtonClick = async (e) => {
     e.preventDefault();
     setDialogOpen(false);
 
-    if (inputVal === adminPublishPassword) {
+    if (inputVal === adminPublishPassword && draft) {
       setIsActioning(true);
       publish.execute();
-      onComplete();
       compressImage();
+      onComplete();
     }
   };
 
