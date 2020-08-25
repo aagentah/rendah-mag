@@ -122,6 +122,32 @@ export async function getCurrentAndPreviousCyphers(preview) {
   return { current: current || null, previous: getUniquePosts(previous) };
 }
 
+export async function getLatestAnouncedCypher(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "cypher" && announcementFields.isAnnounced && !publishedFields.isPublished] | order(announcementFields.announcedAt desc) [0] {
+      ...,
+    }`);
+
+  return results;
+}
+
+export async function getLatestPublishedCypher(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "cypher" && publishedFields.isPublished] | order(publishedFields.publishedAt desc) [0] {
+      ...,
+    }`);
+
+  return results;
+}
+
+export async function getLatestGuestMix(preview) {
+  const results = await getClient(preview).fetch(`*[_type == "guestMix"] [0] {
+      ...,
+    }`);
+
+  return results;
+}
+
 export async function getTeamMembers(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "author" && active] | order(order asc){
