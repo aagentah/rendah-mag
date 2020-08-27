@@ -23,6 +23,9 @@ import guestMix from "./documents/guestMix";
 // User
 import user from "./documents/user";
 
+// Dominion
+import subscriptionItem from "./documents/subscriptionItem";
+
 import siteSettings from "./objects/siteSettings";
 
 export default createSchema({
@@ -40,6 +43,7 @@ export default createSchema({
     cypher,
     guestMix,
     user,
+    subscriptionItem,
     //
     siteSettings,
   ]),
