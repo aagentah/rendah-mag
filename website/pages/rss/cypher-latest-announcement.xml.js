@@ -9,6 +9,23 @@ const encodeSpecialChar = (text) => {
   return text.replace(/&/g, '&amp;');
 };
 
+const escapeXml = (unsafe) => {
+  return unsafe.replace(/[<>&'"]/g, function (c) {
+    switch (c) {
+      case '<':
+        return '&lt;';
+      case '>':
+        return '&gt;';
+      case '&':
+        return '&amp;';
+      case "'":
+        return '&apos;';
+      case '"':
+        return '&quot;';
+    }
+  });
+};
+
 const sitemapXml = (cypher) => {
   let postsXML = '';
 
@@ -35,9 +52,9 @@ const sitemapXml = (cypher) => {
         <title>${encodeSpecialChar(cypher.title)}</title>
         <link>${encodeSpecialChar(url)}</link>
         <description>
-          ${encodeSpecialChar(description)}
-          ${encodeSpecialChar(packLink)}
-          ${encodeSpecialChar(submissionLink)}
+          ${escapeXml(encodeSpecialChar(description))}
+          ${escapeXml(encodeSpecialChar(packLink))}
+          ${escapeXml(encodeSpecialChar(submissionLink))}
         </description>
       </item>
       `;
