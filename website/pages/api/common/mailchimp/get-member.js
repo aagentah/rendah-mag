@@ -26,8 +26,7 @@ export default async (req, res) => {
 
     if (response.status >= 400) {
       return res.status(400).json({
-        error:
-          'There was an error subscribing to the newsletter. Try again later.',
+        error: 'There was an error. Try again later.',
       });
     }
 

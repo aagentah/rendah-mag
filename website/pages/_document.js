@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-import { IS_ECCOMERCE } from '../constants';
+import { IS_ECCOMERCE, SNIPCART_API_KEY } from '../constants';
 
 export default class MyDocument extends Document {
   render() {
@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
         <div
           hidden
           id="snipcart"
-          data-api-key={process.env.SNIPCART_API_KEY}
+          data-api-key={SNIPCART_API_KEY}
           data-config-add-product-behavior="none"
         />
         <script src="https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.js" />
@@ -55,9 +55,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#000" />
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
-          {IS_ECCOMERCE &&
-            process.env.SNIPCART_API_KEY &&
-            renderSnipCartConfig()}
+          {IS_ECCOMERCE && SNIPCART_API_KEY && renderSnipCartConfig()}
 
           <link
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"

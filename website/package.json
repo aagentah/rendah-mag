@@ -9,6 +9,7 @@
     "build": "next build",
     "prestart": "next build",
     "start": "next start -p $PORT",
+    "ngrok": "ngrok http 3000",
     "lint": "eslint '**/*.js'; exit 0",
     "lint-fix": "eslint --fix '**/*.js'; exit 0",
     "heroku-postbuild": "npm run build"
@@ -63,6 +64,7 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
-    "eslint-plugin-react-hooks": "^4.0.8"
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "ngrok": "^3.2.7"
   }
 }

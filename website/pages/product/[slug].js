@@ -121,7 +121,7 @@ export default function Post({ siteConfig, product }) {
                 className="snipcart-add-item"
                 data-item-id={product.slug}
                 data-item-price={product.price}
-                data-item-url={`/products/${product.slug}`}
+                data-item-url={`/product/${product.slug}`}
                 data-item-description=""
                 data-item-image={product.image1}
                 data-item-name={product.title}
@@ -172,10 +172,8 @@ export default function Post({ siteConfig, product }) {
 }
 
 export async function getServerSideProps({ params, preview = false }) {
-  console.log('params', params);
   const siteConfig = await getSiteConfig();
   const product = await getProduct(params.slug);
-  console.log('product', product);
   return {
     props: {
       siteConfig,

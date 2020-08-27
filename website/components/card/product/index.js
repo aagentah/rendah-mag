@@ -5,7 +5,6 @@ import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 import { imageBuilder } from '../../../lib/sanity/requests';
 
 export default function CardDefault({ product }) {
-  console.log('product', product);
   const cardImage = (
     <Image
       /* Options */
