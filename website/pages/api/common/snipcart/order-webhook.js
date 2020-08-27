@@ -7,13 +7,22 @@ export default async (req, res) => {
   const order = req.body;
 
   try {
-    const addOrdUpdateMailchimpUser = async (email, isSubscription) => {
+    const addUpdateMailchimpUser = async (
+      email,
+      firstName,
+      lastName,
+      isSubscription
+    ) => {
       const emailHashed = md5(email.toLowerCase());
       const DATACENTER = process.env.MAILCHIMP_API_KEY.split('-')[1];
 
       const data = {
         email_address: email,
         status: 'subscribed',
+        merge_fields: {
+          FNAME: firstName,
+          LNAME: lastName,
+        },
       };
 
       // Add or update member
@@ -34,38 +43,49 @@ export default async (req, res) => {
       }
 
       // Add tags
-      if (isSubscription) {
-        const tagsData = {
-          ...data,
-          tags: [
-            {
-              name: 'Dominion Subscription',
-              status: 'active',
-            },
-          ],
-        };
-
-        const addMembertags = await fetch(
-          `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}/tags`,
+      const tagsData = {
+        tags: [
           {
-            body: JSON.stringify(tagsData),
-            headers: {
-              Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`,
-              'Content-Type': 'application/json',
-            },
-            method: 'POST',
-          }
-        );
+            name: 'Customer',
+            status: 'active',
+          },
+        ],
+      };
 
-        if (addMembertags.status >= 400) {
-          throw await addMembertags.json();
+      if (isSubscription) {
+        tagsData.tags.push({
+          name: 'Dominion Subscription',
+          status: 'active',
+        });
+      }
+
+      const addMembertags = await fetch(
+        `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}/tags`,
+        {
+          body: JSON.stringify(tagsData),
+          headers: {
+            Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
         }
+      );
+
+      if (addMembertags.status >= 400) {
+        throw await addMembertags.json();
       }
     };
 
     if (order?.eventName === 'order.completed') {
-      const items = order.content.items;
-      const email = order.content.user.email;
+      const orderContent = order.content;
+
+      const items = orderContent.items;
+      const email = orderContent.user.email;
+      const fullname =
+        orderContent.user.billingAddress.fullName ||
+        orderContent.user.shippingAddress.fullName;
+      const firstName = fullname.split(' ')[0];
+      const lastName = fullname.split(' ')[1];
       let isSubscription = false;
 
       for (let i = 0; i < items.length; i++) {
@@ -80,7 +100,7 @@ export default async (req, res) => {
       }
 
       // Add or update mailchimp user
-      await addOrdUpdateMailchimpUser(email, isSubscription);
+      await addUpdateMailchimpUser(email, firstName, lastName, isSubscription);
 
       return res.status(200).json({ error: '' });
     }
