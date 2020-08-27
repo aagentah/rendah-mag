@@ -1,30 +1,14 @@
 import React from 'react';
 import blocksToHtml from '@sanity/block-content-to-html';
 
-import { getLatestAnouncedCypher } from '../../lib/sanity/requests';
+import {
+  imageBuilder,
+  getLatestAnouncedCypher,
+} from '../../lib/sanity/requests';
+
 import { SITE_URL } from '../../constants';
-
-// Removes special characters that may break the RSS
-const encodeSpecialChar = (text) => {
-  return text.replace(/&/g, '&amp;');
-};
-
-const escapeXml = (unsafe) => {
-  return unsafe.replace(/[<>&'"]/g, function (c) {
-    switch (c) {
-      case '<':
-        return '&lt;';
-      case '>':
-        return '&gt;';
-      case '&':
-        return '&amp;';
-      case "'":
-        return '&apos;';
-      case '"':
-        return '&quot;';
-    }
-  });
-};
+import escapeXml from '../../functions/escapeXml';
+import encodeSpecialChar from '../../functions/encodeSpecialChar';
 
 const sitemapXml = (cypher) => {
   let postsXML = '';
@@ -32,6 +16,8 @@ const sitemapXml = (cypher) => {
   const description = blocksToHtml({
     blocks: cypher.announcementFields.announcementDescription,
   });
+
+  const image = `<img src="${imageBuilder.image(cypher.imageSquare).url()}" />`;
 
   const packLink = `
     <p>Download Pack:
@@ -45,14 +31,13 @@ const sitemapXml = (cypher) => {
     </p>
   `;
 
-  const url = `${SITE_URL}/${cypher.slug.current}`;
-
   postsXML += `
       <item>
         <title>${encodeSpecialChar(cypher.title)}</title>
-        <link>${encodeSpecialChar(url)}</link>
+        <link></link>
         <description>
           ${escapeXml(encodeSpecialChar(description))}
+          ${escapeXml(encodeSpecialChar(image))}
           ${escapeXml(encodeSpecialChar(packLink))}
           ${escapeXml(encodeSpecialChar(submissionLink))}
         </description>
@@ -62,7 +47,7 @@ const sitemapXml = (cypher) => {
   return `
     <rss version="2.0">
       <channel>
-        <title>RSS Feed</title>
+        <title>Latest Announced Cypher</title>
         <link>${SITE_URL}</link>
         <description>This is a RSS feed</description>
         ${postsXML}

@@ -120,7 +120,6 @@ export default {
       ],
     },
   ],
-
   orderings: [
     {
       title: "Publish Date",
@@ -128,7 +127,6 @@ export default {
       by: [{ field: "publishedAt", direction: "desc" }],
     },
   ],
-
   preview: {
     select: {
       title: "title",

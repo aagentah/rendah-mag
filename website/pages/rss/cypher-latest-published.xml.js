@@ -1,30 +1,48 @@
 import React from 'react';
+import blocksToHtml from '@sanity/block-content-to-html';
 
-import { getLatestPublishedCypher } from '../../lib/sanity/requests';
+import {
+  imageBuilder,
+  getLatestPublishedCypher,
+} from '../../lib/sanity/requests';
+
 import { SITE_URL } from '../../constants';
+import escapeXml from '../../functions/escapeXml';
+import encodeSpecialChar from '../../functions/encodeSpecialChar';
 
-// Removes special characters that may break the RSS
-const encodeSpecialChar = (text) => {
-  return text.replace(/&/g, '&amp;');
-};
-
-const sitemapXml = (latestCypher) => {
+const sitemapXml = (cypher) => {
   let postsXML = '';
 
-  const url = `${SITE_URL}/${latestCypher.slug.current}`;
+  const description = blocksToHtml({
+    blocks: cypher.publishedFields.publishedDescription,
+  });
+
+  const image = `<img src="${imageBuilder
+    .image(cypher.imageLandscape)
+    .url()}" />`;
+
+  const shortURL = `
+    <p>Listen here:
+      <a href="${cypher.publishedFields.shortUrl}">${cypher.publishedFields.shortUrl}</a>
+    </p>
+  `;
 
   postsXML += `
       <item>
-        <title>${encodeSpecialChar(latestCypher.title)}</title>
-        <link>${encodeSpecialChar(url)}</link>
-        <description>${null}</description>
+        <title>${encodeSpecialChar(cypher.title)}</title>
+        <link></link>
+        <description>
+          ${escapeXml(encodeSpecialChar(description))}
+          ${escapeXml(encodeSpecialChar(image))}
+          ${escapeXml(encodeSpecialChar(shortURL))}
+        </description>
       </item>
       `;
 
   return `
     <rss version="2.0">
       <channel>
-        <title>RSS Feed</title>
+        <title>Latest Published Cypher</title>
         <link>${SITE_URL}</link>
         <description>This is a RSS feed</description>
         ${postsXML}
@@ -35,10 +53,10 @@ const sitemapXml = (latestCypher) => {
 
 export default class BlogLatest extends React.Component {
   static async getInitialProps({ res }) {
-    const latestCypher = await getLatestPublishedCypher();
+    const cypher = await getLatestPublishedCypher();
 
     res.setHeader('Content-Type', 'text/xml');
-    res.write(sitemapXml(latestCypher));
+    res.write(sitemapXml(cypher));
     res.end();
   }
 }
