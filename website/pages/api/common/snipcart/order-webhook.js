@@ -11,6 +11,7 @@ export default async (req, res) => {
       email,
       firstName,
       lastName,
+      address,
       isSubscription
     ) => {
       const emailHashed = md5(email.toLowerCase());
@@ -22,6 +23,7 @@ export default async (req, res) => {
         merge_fields: {
           FNAME: firstName,
           LNAME: lastName,
+          ADDRESS: address,
         },
       };
 
@@ -77,15 +79,24 @@ export default async (req, res) => {
     };
 
     if (order?.eventName === 'order.completed') {
-      const orderContent = order.content;
+      const { content } = order;
+      const { user } = content;
+      const { items } = content;
+      const { billingAddress, shippingAddress } = user;
+      const { email } = user;
+      const fullName = billingAddress?.fullName || shippingAddress?.fullName;
+      const firstName = fullName.split(' ')[0];
+      const lastName = fullName.split(' ')[1];
 
-      const items = orderContent.items;
-      const email = orderContent.user.email;
-      const fullname =
-        orderContent.user.billingAddress.fullName ||
-        orderContent.user.shippingAddress.fullName;
-      const firstName = fullname.split(' ')[0];
-      const lastName = fullname.split(' ')[1];
+      const address = {
+        addr1: shippingAddress?.address1 || null,
+        addr2: shippingAddress?.address2 || null,
+        city: shippingAddress?.city || null,
+        state: shippingAddress?.province || null,
+        zip: shippingAddress?.postalCode || null,
+        country: shippingAddress?.country || null,
+      };
+
       let isSubscription = false;
 
       for (let i = 0; i < items.length; i++) {
@@ -100,7 +111,13 @@ export default async (req, res) => {
       }
 
       // Add or update mailchimp user
-      await addUpdateMailchimpUser(email, firstName, lastName, isSubscription);
+      await addUpdateMailchimpUser(
+        email,
+        firstName,
+        lastName,
+        address,
+        isSubscription
+      );
 
       return res.status(200).json({ error: '' });
     }
