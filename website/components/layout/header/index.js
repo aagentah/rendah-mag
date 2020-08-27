@@ -17,6 +17,13 @@ export default function Header({ navOnWhite, meta }) {
   const [navOpen, setNavOpen] = useState(false);
   const app = useApp();
 
+  const showBasket =
+    meta.title === 'Store' ||
+    meta.title === 'Product' ||
+    meta.title === 'Subscription'
+      ? true
+      : false;
+
   async function handleLogout() {
     await fetch('/api/logout');
     mutate({ user: null });
@@ -220,7 +227,7 @@ export default function Header({ navOnWhite, meta }) {
           <div className="col-12  ph4">
             <nav className="nav  w-100  flex  justify-end">
               <ul className="flex  flex-wrap">
-                {meta.title === 'Store' || meta.title === 'Product' ? (
+                {showBasket ? (
                   <>
                     <li className="dib  pr3  mr1">
                       <div className="flex  snipcart-checkout">
@@ -231,7 +238,6 @@ export default function Header({ navOnWhite, meta }) {
                     </li>
                   </>
                 ) : null}
-
                 {user ? (
                   <>
                     <li className="dib  pr3">
@@ -392,7 +398,7 @@ export default function Header({ navOnWhite, meta }) {
           />
         </div>
 
-        {meta.title === 'Store' || meta.title === 'Product' ? (
+        {showBasket ? (
           <>
             <div className="snipcart-checkout">
               {buttonShoppingCart}

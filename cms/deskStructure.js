@@ -55,4 +55,6 @@ export default () =>
       S.documentTypeListItem("guestMix").icon(MDMusicVideo),
       // User
       S.documentTypeListItem("user").icon(MDPerson),
+      // Dominion
+      S.documentTypeListItem("subscriptionItem").icon(MDPerson),
     ]);

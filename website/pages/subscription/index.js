@@ -129,6 +129,7 @@ export default function Post({ siteConfig }) {
                 data-item-description=""
                 data-item-image=""
                 data-item-name="Dominion Subscription"
+                data-item-max-quantity="1"
               >
                 <Button
                   /* Options */
