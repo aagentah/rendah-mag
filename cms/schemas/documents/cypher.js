@@ -135,6 +135,13 @@ export default {
       ],
     },
   ],
+  orderings: [
+    {
+      title: "Announcement Date",
+      name: "announcedAtDesc",
+      by: [{ field: "announcementFields.announcedAt", direction: "desc" }],
+    },
+  ],
   preview: {
     select: {
       title: "title",
