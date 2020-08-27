@@ -8,17 +8,23 @@ const encodeSpecialChar = (text) => {
   return text.replace(/&/g, '&amp;');
 };
 
-const sitemapXml = (allPosts) => {
+const sitemapXml = (posts) => {
   let postsXML = '';
 
-  allPosts.map((post) => {
-    const url = `${SITE_URL}/${post.url}`;
+  posts.map((post) => {
+    const title = post?.title || '';
+
+    const description = post?.emailDescription
+      ? `<p>${post.emailDescription}</p>`
+      : '';
+
+    const url = post?.url ? `${SITE_URL}/${post.url}` : SITE_URL;
 
     postsXML += `
       <item>
-        <title>${encodeSpecialChar(post.title)}</title>
+        <title>${encodeSpecialChar(title)}</title>
         <link>${encodeSpecialChar(url)}</link>
-        <description>${encodeSpecialChar(post.description)}</description>
+        <description>${encodeSpecialChar(description)}</description>
       </item>
       `;
 
@@ -39,10 +45,10 @@ const sitemapXml = (allPosts) => {
 
 export default class BlogLatest extends React.Component {
   static async getInitialProps({ res }) {
-    const allPosts = await getAllPosts();
+    const posts = await getAllPosts();
 
     res.setHeader('Content-Type', 'text/xml');
-    res.write(sitemapXml(allPosts));
+    res.write(sitemapXml(posts));
     res.end();
   }
 }

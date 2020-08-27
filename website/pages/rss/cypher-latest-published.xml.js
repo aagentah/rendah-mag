@@ -13,28 +13,34 @@ import encodeSpecialChar from '../../functions/encodeSpecialChar';
 const sitemapXml = (cypher) => {
   let postsXML = '';
 
-  const description = blocksToHtml({
-    blocks: cypher.publishedFields.publishedDescription,
-  });
+  const title = cypher?.title || '';
 
-  const image = `<img src="${imageBuilder
-    .image(cypher.imageLandscape)
-    .url()}" />`;
+  const description = cypher?.publishedFields?.publishedDescription
+    ? blocksToHtml({
+        blocks: cypher.publishedFields.publishedDescription,
+      })
+    : '';
 
-  const shortURL = `
+  const image = cypher?.imageLandscape
+    ? `<img src="${imageBuilder.image(cypher.imageLandscape).url()}" />`
+    : '';
+
+  const url = cypher?.publishedFields?.shortUrl
+    ? `
     <p>Listen here:
       <a href="${cypher.publishedFields.shortUrl}">${cypher.publishedFields.shortUrl}</a>
     </p>
-  `;
+  `
+    : '';
 
   postsXML += `
       <item>
-        <title>${encodeSpecialChar(cypher.title)}</title>
+        <title>${encodeSpecialChar(title)}</title>
         <link></link>
         <description>
           ${escapeXml(encodeSpecialChar(description))}
           ${escapeXml(encodeSpecialChar(image))}
-          ${escapeXml(encodeSpecialChar(shortURL))}
+          ${escapeXml(encodeSpecialChar(url))}
         </description>
       </item>
       `;

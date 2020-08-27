@@ -1,29 +1,26 @@
 import React from 'react';
 import blocksToHtml from '@sanity/block-content-to-html';
 
-import { imageBuilder, getLatestGuestMix } from '../../lib/sanity/requests';
+import {
+  imageBuilder,
+  getLatestSubscriptionItem,
+} from '../../lib/sanity/requests';
 
 import { SITE_URL } from '../../constants';
 import escapeXml from '../../functions/escapeXml';
 import encodeSpecialChar from '../../functions/encodeSpecialChar';
 
-const sitemapXml = (mix) => {
+const sitemapXml = (item) => {
   let postsXML = '';
 
-  const title = mix?.title || '';
+  const title = item?.title || '';
 
-  const description = blocksToHtml({ blocks: mix.description });
-
-  const image = mix?.image
-    ? `<img src="${imageBuilder.image(mix.image).url()}" />`
+  const description = item?.emailDescription
+    ? `<p>${item.emailDescription}</p>`
     : '';
 
-  const link = mix?.soundcloudLink
-    ? `
-    <p>Link:
-      <a href="${mix.soundcloudLink}">${mix.soundcloudLink}</a>
-    </p>
-  `
+  const image = item?.image
+    ? `<img src="${imageBuilder.image(item.image).url()}" />`
     : '';
 
   postsXML += `
@@ -33,7 +30,6 @@ const sitemapXml = (mix) => {
         <description>
           ${escapeXml(encodeSpecialChar(description))}
           ${escapeXml(encodeSpecialChar(image))}
-          ${escapeXml(encodeSpecialChar(link))}
         </description>
       </item>
       `;
@@ -52,10 +48,10 @@ const sitemapXml = (mix) => {
 
 export default class BlogLatest extends React.Component {
   static async getInitialProps({ res }) {
-    const mix = await getLatestGuestMix();
+    const item = await getLatestSubscriptionItem();
 
     res.setHeader('Content-Type', 'text/xml');
-    res.write(sitemapXml(mix));
+    res.write(sitemapXml(item));
     res.end();
   }
 }

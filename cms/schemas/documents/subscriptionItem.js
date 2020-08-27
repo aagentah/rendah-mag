@@ -4,8 +4,8 @@ export default {
   type: "document",
   fields: [
     {
-      name: "name",
-      title: "Name",
+      name: "title",
+      title: "Title",
       type: "string",
       validation: (Rule) => Rule.required().max(60),
     },
@@ -38,6 +38,18 @@ export default {
           },
         },
       ],
+    },
+    {
+      name: "emailDescription",
+      title: "Email Description",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
+      name: "mainDescription",
+      title: "Main Description",
+      type: "array",
+      of: [{ type: "block" }],
     },
     {
       name: "publishedAt",
