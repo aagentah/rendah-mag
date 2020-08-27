@@ -4,8 +4,8 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 import blockContent from "./blockContent";
 
 // Blog
-import post from "./documents/post";
-import author from "./documents/author";
+import blogPost from "./documents/blogPost";
+import blogAuthor from "./documents/blogAuthor";
 import blogCategory from "./documents/blogCategory";
 
 // Store
@@ -33,8 +33,8 @@ export default createSchema({
   types: schemaTypes.concat([
     blockContent,
     //
-    post,
-    author,
+    blogPost,
+    blogAuthor,
     blogCategory,
     storeCategory,
     storeCollection,

@@ -6,6 +6,7 @@ import MDShop from "react-icons/lib/md/shop";
 import MDPerson from "react-icons/lib/md/person";
 import MDMusic from "react-icons/lib/md/music-note";
 import MDMusicVideo from "react-icons/lib/md/music-video";
+import MDLoyalty from "react-icons/lib/md/loyalty";
 
 const hiddenDocTypes = (listItem) =>
   !["siteSettings", "homePage", "textBlock"].includes(listItem.getId());
@@ -56,5 +57,5 @@ export default () =>
       // User
       S.documentTypeListItem("user").icon(MDPerson),
       // Dominion
-      S.documentTypeListItem("subscriptionItem").icon(MDPerson),
+      S.documentTypeListItem("subscriptionItem").icon(MDLoyalty),
     ]);

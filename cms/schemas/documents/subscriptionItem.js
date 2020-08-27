@@ -39,6 +39,12 @@ export default {
         },
       ],
     },
+    {
+      name: "publishedAt",
+      title: "Publish Date",
+      type: "datetime",
+      validation: (Rule) => Rule.required(),
+    },
   ],
   preview: {
     select: {
