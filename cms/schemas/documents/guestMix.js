@@ -41,6 +41,12 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "description",
+      title: "Description",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
       name: "soundcloudLink",
       title: "SoundCloud Link",
       type: "string",

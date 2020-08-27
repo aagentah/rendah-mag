@@ -140,14 +140,6 @@ export async function getLatestPublishedCypher(preview) {
   return results;
 }
 
-export async function getLatestGuestMix(preview) {
-  const results = await getClient(preview).fetch(`*[_type == "guestMix"] [0] {
-      ...,
-    }`);
-
-  return results;
-}
-
 export async function getTeamMembers(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "author" && active] | order(order asc){
@@ -246,10 +238,26 @@ export async function getProductAndMore(slug, preview) {
   return { product, moreProducts: getUniquePosts(moreProducts) };
 }
 
+export async function getLatestGuestMix(preview) {
+  const results = await getClient(preview).fetch(`*[_type == "guestMix"] [0] {
+      ...,
+    }`);
+
+  return results;
+}
+
 export async function getGuestMixes(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "guestMix"] | order(date desc, _updatedAt desc) [0..15] {
       ...,
     }`);
   return getUniquePosts(results);
+}
+
+export async function getLatestSubscriptionItem(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "subscriptionItem"] | order(publishedAt desc) [0] {
+      ...,
+    }`);
+  return results;
 }
