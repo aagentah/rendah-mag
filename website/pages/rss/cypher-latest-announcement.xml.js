@@ -1,4 +1,5 @@
 import React from 'react';
+import blocksToHtml from '@sanity/block-content-to-html';
 
 import { getLatestAnouncedCypher } from '../../lib/sanity/requests';
 import { SITE_URL } from '../../constants';
@@ -8,16 +9,36 @@ const encodeSpecialChar = (text) => {
   return text.replace(/&/g, '&amp;');
 };
 
-const sitemapXml = (latestCypher) => {
+const sitemapXml = (cypher) => {
   let postsXML = '';
 
-  const url = `${SITE_URL}/${latestCypher.slug.current}`;
+  const description = blocksToHtml({
+    blocks: cypher.announcementFields.announcementDescription,
+  });
+
+  const packLink = `
+    <p>Download Pack:
+      <a href="${cypher.packLink}">${cypher.packLink}</a>
+    </p>
+  `;
+
+  const submissionLink = `
+    <p>Download Pack:
+      <a href="${cypher.submissionFormLink}">${cypher.submissionFormLink}</a>
+    </p>
+  `;
+
+  const url = `${SITE_URL}/${cypher.slug.current}`;
 
   postsXML += `
       <item>
-        <title>${encodeSpecialChar(latestCypher.title)}</title>
+        <title>${encodeSpecialChar(cypher.title)}</title>
         <link>${encodeSpecialChar(url)}</link>
-        <description>${null}</description>
+        <description>
+          ${encodeSpecialChar(description)}
+          ${encodeSpecialChar(packLink)}
+          ${encodeSpecialChar(submissionLink)}
+        </description>
       </item>
       `;
 
@@ -35,10 +56,10 @@ const sitemapXml = (latestCypher) => {
 
 export default class BlogLatest extends React.Component {
   static async getInitialProps({ res }) {
-    const latestCypher = await getLatestAnouncedCypher();
+    const cypher = await getLatestAnouncedCypher();
 
     res.setHeader('Content-Type', 'text/xml');
-    res.write(sitemapXml(latestCypher));
+    res.write(sitemapXml(cypher));
     res.end();
   }
 }

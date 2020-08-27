@@ -63,11 +63,6 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "body",
-      title: "Article Body",
-      type: "blockContent",
-    },
-    {
       name: "packLink",
       title: "Pack Link",
       type: "string",
