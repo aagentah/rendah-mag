@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 import md5 from 'js-md5';
 
-import welcomeDominionEmail from '../../../../libs/emails/welcome-dominion-subscription';
+import welcomeDominionEmail from '../../../../lib/emails/welcome-dominion-subscription';
 
 export default async (req, res) => {
   const order = req.body;
@@ -17,7 +17,7 @@ export default async (req, res) => {
       };
 
       // Add or update member
-      await fetch(
+      const addOrUpdateMember = await fetch(
         `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}`,
         {
           body: JSON.stringify(data),
@@ -29,14 +29,23 @@ export default async (req, res) => {
         }
       );
 
+      if (addOrUpdateMember.status >= 400) {
+        throw await addOrUpdateMember.json();
+      }
+
       // Add tags
       if (isSubscription) {
         const tagsData = {
           ...data,
-          tags: ['Dominion Subscription'],
+          tags: [
+            {
+              name: 'Dominion Subscription',
+              status: 'active',
+            },
+          ],
         };
 
-        await fetch(
+        const addMembertags = await fetch(
           `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}/tags`,
           {
             body: JSON.stringify(tagsData),
@@ -44,9 +53,13 @@ export default async (req, res) => {
               Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`,
               'Content-Type': 'application/json',
             },
-            method: 'PUT',
+            method: 'POST',
           }
         );
+
+        if (addMembertags.status >= 400) {
+          throw await addMembertags.json();
+        }
       }
     };
 
@@ -72,6 +85,7 @@ export default async (req, res) => {
       return res.status(200).json({ error: '' });
     }
   } catch (error) {
+    console.error('error.message', error.message);
     return res.status(200).json({ error: error.message });
   }
 };
