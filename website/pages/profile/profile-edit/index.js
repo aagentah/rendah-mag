@@ -219,6 +219,20 @@ export default function ProfileEdit({ customerOrders }) {
         </div>
       </Modal>
 
+      <div className="pb4">
+        <Heading
+          /* Options */
+          htmlEntity="h1"
+          text="Edit Profile."
+          color="black"
+          size="medium"
+          truncate={null}
+          reveal={null}
+          /* Children */
+          withLinkProps={null}
+        />
+      </div>
+
       <div className="flex  flex-wrap">
         <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
           <form className="form  form--default" onSubmit={handleEditProfile}>

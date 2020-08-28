@@ -40,8 +40,8 @@ export default {
       ],
     },
     {
-      name: "emailDescription",
-      title: "Email Description",
+      name: "briefDescription",
+      title: "Brief Description",
       type: "array",
       of: [{ type: "block" }],
     },
@@ -50,6 +50,15 @@ export default {
       title: "Main Description",
       type: "array",
       of: [{ type: "block" }],
+    },
+    {
+      title: "Tags",
+      name: "tags",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        layout: "tags",
+      },
     },
     {
       name: "activeFrom",

@@ -10,7 +10,7 @@ import { imageBuilder } from '../../../lib/sanity/requests';
 export default function ProfileCypher({ cyphers }) {
   if (cyphers?.current) {
     return (
-      <>
+      <section>
         <div className="pb3">
           <Heading
             /* Options */
@@ -122,7 +122,7 @@ export default function ProfileCypher({ cyphers }) {
             </div>
           </div>
         </div>
-      </>
+      </section>
     );
   }
 
