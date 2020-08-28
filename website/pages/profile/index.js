@@ -16,27 +16,25 @@ import setCharAt from '../../functions/setCharAt';
 import {
   getSiteConfig,
   getCurrentAndPreviousCyphers,
-  getSubscriptionItemsSinceDate,
+  getDominionItemsSinceDate,
 } from '../../lib/sanity/requests';
 
 export default function Profile({ siteConfig }) {
   const [user, { loading, mutate, error }] = useUser();
   const [cyphers, setCyphers] = useState(null);
   const [customerOrders, setCustomerOrders] = useState(null);
-  const [subscriptionItems, setSubscriptionItems] = useState(null);
+  const [dominionItems, setDominionItems] = useState(null);
 
   const fetchCyphers = async () => {
     setCyphers(await getCurrentAndPreviousCyphers());
   };
 
-  const fetchSubscriptionItems = async () => {
+  const fetchDominionItems = async () => {
     let sinceStartOfMonth = user?.dominionSince.split('T')[0];
     sinceStartOfMonth = setCharAt(sinceStartOfMonth, 8, '0');
     sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
 
-    setSubscriptionItems(
-      await getSubscriptionItemsSinceDate(sinceStartOfMonth)
-    );
+    setDominionItems(await getDominionItemsSinceDate(sinceStartOfMonth));
   };
 
   const fetchCustomerOrders = async () => {
@@ -83,7 +81,7 @@ export default function Profile({ siteConfig }) {
   // Fetch orders
   useEffect(() => {
     if (user) fetchCustomerOrders();
-    if (user?.isDominion) fetchSubscriptionItems();
+    if (user?.isDominion) fetchDominionItems();
   }, [user]);
 
   // Fetch subscription items and check if is dominion subscription
@@ -147,7 +145,7 @@ export default function Profile({ siteConfig }) {
                     id: '3',
                     tabTitle: 'Dominion',
                     tabContent: (
-                      <ProfileDominion subscriptionItems={subscriptionItems} />
+                      <ProfileDominion dominionItems={dominionItems} />
                     ),
                   },
                   {

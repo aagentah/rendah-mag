@@ -57,5 +57,5 @@ export default () =>
       // User
       S.documentTypeListItem("user").icon(MDPerson),
       // Dominion
-      S.documentTypeListItem("subscriptionItem").icon(MDLoyalty),
+      S.documentTypeListItem("dominionItem").icon(MDLoyalty),
     ]);

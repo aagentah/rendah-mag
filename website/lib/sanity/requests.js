@@ -254,20 +254,21 @@ export async function getGuestMixes(preview) {
   return getUniquePosts(results);
 }
 
-export async function getLatestSubscriptionItem(preview) {
+export async function getLatestDominionItem(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "subscriptionItem"] | order(publishedAt desc) [0] {
+    .fetch(`*[_type == "dominionItem"] | order(publishedAt desc) [0] {
       ...,
     }`);
   return results;
 }
 
-export async function getSubscriptionItemsSinceDate(sinceStartOfMonth) {
+export async function getDominionItemsSinceDate(sinceStartOfMonth) {
   const results = await getClient().fetch(
-    `*[_type == "subscriptionItem" && activeFrom >= $sinceStartOfMonth] | order(publishedAt desc) {
+    `*[_type == "dominionItem" && activeFrom >= $sinceStartOfMonth] | order(publishedAt desc) {
       ...,
     }`,
     { sinceStartOfMonth }
   );
+  console.log('results', results);
   return results;
 }
