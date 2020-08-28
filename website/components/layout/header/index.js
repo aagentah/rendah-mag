@@ -53,7 +53,9 @@ export default function Header({ navOnWhite, meta }) {
   const buttonIconSignIn = <Icon icon={['fas', 'sign-in-alt']} />;
   const buttonIconSignOut = <Icon icon={['fas', 'sign-out-alt']} />;
   const buttonIconStore = <Icon icon={['fas', 'store-alt']} />;
-  const buttonShoppingCart = <Icon icon={['fas', 'shopping-cart']} />;
+  const buttonShoppingCart = (
+    <Icon color={navColour} icon={['fas', 'shopping-cart']} />
+  );
 
   return (
     <>
@@ -231,9 +233,9 @@ export default function Header({ navOnWhite, meta }) {
                   <>
                     <li className="dib  pr3  mr1">
                       <div className="flex  snipcart-checkout">
-                        <span className="pr2">Checkout</span>
+                        <span className={`pr2 ${navColour}`}>Checkout</span>
                         {buttonShoppingCart}
-                        <span className="snipcart-items-count" />
+                        <span className={`snipcart-items-count `} />
                       </div>
                     </li>
                   </>
