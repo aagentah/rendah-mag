@@ -6,10 +6,10 @@ import { Heading } from 'next-pattern-library';
 
 import { imageBuilder } from '../../../lib/sanity/requests';
 
-export default function ProfileDominion({ subscriptionItems }) {
-  console.log('subscriptionItems', subscriptionItems);
+export default function ProfileDominion({ dominionItems }) {
+  console.log('dominionItems', dominionItems);
 
-  if (subscriptionItems?.length) {
+  if (dominionItems?.length) {
     return (
       <>
         <div className="pb3">
@@ -29,7 +29,7 @@ export default function ProfileDominion({ subscriptionItems }) {
             </div>
 
             <div className="flex  flex-wrap">
-              {subscriptionItems.map((item, i) => (
+              {dominionItems.map((item, i) => (
                 <div className="bg-almost-white  pa2  shadow1">
                   <div className="bg-almost-white  pa3">
                     <p className="t-primary  f6  black  pb2">{item.title}</p>

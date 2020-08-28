@@ -1,6 +1,6 @@
 export default {
-  name: "subscriptionItem",
-  title: "Subscription Item",
+  name: "dominionItem",
+  title: "Dominion Item",
   type: "document",
   fields: [
     {
@@ -14,7 +14,7 @@ export default {
       title: "URL",
       type: "slug",
       options: {
-        source: "name",
+        source: "title",
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
@@ -60,7 +60,7 @@ export default {
   ],
   preview: {
     select: {
-      title: "name",
+      title: "title",
       media: "image",
     },
   },

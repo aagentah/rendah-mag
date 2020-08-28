@@ -3,7 +3,7 @@ import blocksToHtml from '@sanity/block-content-to-html';
 
 import {
   imageBuilder,
-  getLatestSubscriptionItem,
+  getLatestDominionItem,
 } from '../../lib/sanity/requests';
 
 import { SITE_URL } from '../../constants';
@@ -48,7 +48,7 @@ const sitemapXml = (item) => {
 
 export default class BlogLatest extends React.Component {
   static async getInitialProps({ res }) {
-    const item = await getLatestSubscriptionItem();
+    const item = await getLatestDominionItem();
 
     res.setHeader('Content-Type', 'text/xml');
     res.write(sitemapXml(item));
