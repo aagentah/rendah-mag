@@ -52,9 +52,9 @@ export default {
       of: [{ type: "block" }],
     },
     {
-      name: "publishedAt",
-      title: "Publish Date",
-      type: "datetime",
+      name: "activeFrom",
+      title: "Active From",
+      type: "date",
       validation: (Rule) => Rule.required(),
     },
   ],
