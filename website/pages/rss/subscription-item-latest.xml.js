@@ -15,8 +15,8 @@ const sitemapXml = (item) => {
 
   const title = item?.title || '';
 
-  const description = item?.emailDescription
-    ? `<p>${item.emailDescription}</p>`
+  const description = item?.briefDescription
+    ? `<p>${item.briefDescription}</p>`
     : '';
 
   const image = item?.image

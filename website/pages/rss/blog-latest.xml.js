@@ -14,8 +14,8 @@ const sitemapXml = (posts) => {
   posts.map((post) => {
     const title = post?.title || '';
 
-    const description = post?.emailDescription
-      ? `<p>${post.emailDescription}</p>`
+    const description = post?.briefDescription
+      ? `<p>${post.briefDescription}</p>`
       : '';
 
     const url = post?.url ? `${SITE_URL}/${post.url}` : SITE_URL;
