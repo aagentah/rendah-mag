@@ -261,3 +261,13 @@ export async function getLatestSubscriptionItem(preview) {
     }`);
   return results;
 }
+
+export async function getSubscriptionItemsSinceDate(sinceStartOfMonth) {
+  const results = await getClient().fetch(
+    `*[_type == "subscriptionItem" && activeFrom >= $sinceStartOfMonth] | order(publishedAt desc) {
+      ...,
+    }`,
+    { sinceStartOfMonth }
+  );
+  return results;
+}

@@ -24,17 +24,6 @@ export default function ProfileEdit({ customerOrders }) {
   const [user, { mutate }] = useUser();
   const { addToast } = useToasts();
   const [isSubNewsletter, setIsSubNewsletter] = useState('Loading...');
-  const [isDominionMember, setIsDominionMember] = useState('Loading...');
-
-  const checkIfDominionMember = () => {
-    if (customerOrders?.length === 0) {
-      setIsDominionMember('Not a member');
-    }
-  };
-
-  useEffect(() => {
-    checkIfDominionMember();
-  }, [customerOrders]);
 
   useEffect(() => {
     mailchimpGetMember();
@@ -355,11 +344,9 @@ export default function ProfileEdit({ customerOrders }) {
             <Label
               /* Options */
               customClass="ph3  pv2  shadow2"
-              text={isDominionMember}
+              text={user?.isDominion ? 'Subscribed' : 'Not Subscribed'}
               color="white"
-              backgroundColor={
-                isDominionMember === 'Subscribed' ? 'green' : 'red'
-              }
+              backgroundColor={user?.isDominion ? 'green' : 'red'}
               onClick={null}
               /* Children */
               withLinkProps={null}

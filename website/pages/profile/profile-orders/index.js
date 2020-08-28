@@ -26,16 +26,22 @@ export default function ProfileOrders({ customerOrders }) {
 
             <div className="flex  flex-wrap">
               {customerOrders.map((order, i) => (
-                <div className="bg-almost-white  pa2  shadow1">
-                  {order.items.map((item, i) => (
-                    <div className="bg-almost-white  pa3">
-                      <p className="t-primary  f6  black  pb2">Name: {item.name}</p>
-                      <p className="t-primary  f6  black  pb2">
-                        Quantity: {item.quantity}
-                      </p>
-                      <p className="t-primary  f6  black">Total: {item.price}</p>
-                    </div>
-                  ))}
+                <div className="col-24  pa2">
+                  <div className="shadow1">
+                    {order.items.map((item, i) => (
+                      <div className="bg-almost-white  pa3">
+                        <p className="t-primary  f6  black  pb2">
+                          Name: {item.name}
+                        </p>
+                        <p className="t-primary  f6  black  pb2">
+                          Quantity: {item.quantity}
+                        </p>
+                        <p className="t-primary  f6  black">
+                          Total: {item.price}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
