@@ -15,12 +15,15 @@ const sitemapXml = (mix) => {
   const description = blocksToHtml({ blocks: mix.description });
 
   const image = mix?.image
-    ? `<img src="${imageBuilder.image(mix.image).url()}" />`
+    ? `<img width="300" style="width: 300px;" src="${imageBuilder
+        .image(mix.image)
+        .url()}" />`
     : '';
 
   const link = mix?.soundcloudLink
     ? `
-    <p>Link:
+    <p>
+      Link:
       <a href="${mix.soundcloudLink}">${mix.soundcloudLink}</a>
     </p>
   `

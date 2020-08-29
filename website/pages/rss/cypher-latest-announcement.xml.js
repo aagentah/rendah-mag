@@ -22,12 +22,15 @@ const sitemapXml = (cypher) => {
     : '';
 
   const image = cypher?.imageSquare
-    ? `<img src="${imageBuilder.image(cypher.imageSquare).url()}" />`
+    ? `<img width="300" style="width: 300px;" src="${imageBuilder
+        .image(cypher.imageSquare)
+        .url()}" />`
     : '';
 
   const packLink = cypher.packLink
     ? `
-    <p>Download Pack:
+    <p>
+      Download Pack:
       <a href="${cypher.packLink}">${cypher.packLink}</a>
     </p>
   `
@@ -35,7 +38,8 @@ const sitemapXml = (cypher) => {
 
   const submissionLink = cypher.submissionFormLink
     ? `
-    <p>Download Pack:
+    <p>
+      Download Pack:
       <a href="${cypher.submissionFormLink}">${cypher.submissionFormLink}</a>
     </p>
   `
@@ -57,9 +61,9 @@ const sitemapXml = (cypher) => {
   return `
     <rss version="2.0">
       <channel>
-        <title>Latest Announced Cypher</title>
+        <title>New Cypher announced!</title>
         <link>${SITE_URL}</link>
-        <description>This is a RSS feed</description>
+        <description></description>
         ${postsXML}
       </channel>
     </rss>
