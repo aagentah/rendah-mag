@@ -7,7 +7,7 @@ export default (title, body, image, buttonText, buttonLink) => {
             <tr>
               <td width="150" valign="top">
               </td>
-              <td width="300" valign="top" style="text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; line-height: 24px; color: #000000;">
+              <td width="300" valign="top" style="text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; line-height: 24px;">
                 ${title}
               </td>
               <td width="150" valign="top">
@@ -30,7 +30,7 @@ export default (title, body, image, buttonText, buttonLink) => {
             <tr>
               <td width="150" valign="top">
               </td>
-              <td width="300" valign="top" style="text-align: justify; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 22px; color: #000000;">
+              <td width="300" valign="top" style="text-align: justify; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 22px;">
                 ${body}
               </td>
               <td width="150" valign="top">
@@ -77,12 +77,12 @@ export default (title, body, image, buttonText, buttonLink) => {
               <tr>
                 <td width="200" valign="top">
                 </td>
-                <td width="200" valign="top" style="text-align: justify; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 22px; color: #000000;">
+                <td width="200" valign="top" style="text-align: justify; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 22px;">
                   <div>
-                    <a href="${buttonLink}"
-                      style="background-color:#000000;border-radius:0px;color:#ffffff;display:inline-block;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;"
+                    <a class="btn" href="${buttonLink}"
+                      style="border-radius:0px;display:inline-block;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;"
                      >
-                      ${buttonText}
+                      ${buttonText}1
                     </a>
                   </div>
                 </td>
@@ -108,6 +108,25 @@ export default (title, body, image, buttonText, buttonLink) => {
       <title>Rendah Mag</title>
 
       <style type="text/css">
+        body, .bg {
+          background: #ffffff;
+          color: #111111;
+        }
+        .btn {
+          background: #111111;
+          color: #ffffff;
+        }
+        @media (prefers-color-scheme: dark) {
+          body, .bg {
+            background: #111111;
+            color: #ffffff;
+          }
+          .btn {
+            background: #111111;
+            color: #ffffff;
+            outline: 1px solid red;
+          }
+        }
         body {
           width: 100%;
           margin: 0;
@@ -154,11 +173,9 @@ export default (title, body, image, buttonText, buttonLink) => {
         }
         a {
           text-decoration: none;
-          color: #000001;
         }
         a.phone {
           text-decoration: none;
-          color: #000001 !important;
           pointer-events: auto;
           cursor: default;
         }
@@ -166,7 +183,6 @@ export default (title, body, image, buttonText, buttonLink) => {
           font-size: 13px;
           line-height: 17px;
           font-family: monospace;
-          color: #000001;
         }
         .showy {
           height: 100% !important;
@@ -181,14 +197,13 @@ export default (title, body, image, buttonText, buttonLink) => {
     </head>
 
     <body>
-
       <table cellpadding="0" cellspacing="0" border="0" style="margin: 0;padding: 0;width: 100%;line-height: 100% !important;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
         <tr>
           <td valign="top">
-            <table cellpadding="0" cellspacing="0" border="0" align="center" width="600" style="background: #ffffff;">
+            <table cellpadding="0" cellspacing="0" border="0" align="center" width="600" class="bg">
               <tr>
                 <td valign="top">
-                  <center style="background: #ffffff;">
+                  <center class="bg">
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600">
 
                       <tr>
@@ -216,6 +231,7 @@ export default (title, body, image, buttonText, buttonLink) => {
                       </tr>
 
                       ${emailTitle}
+                      ${emailBody}
                       ${emailImage}
                       ${emailButton}
 
