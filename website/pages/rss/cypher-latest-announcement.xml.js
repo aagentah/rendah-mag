@@ -48,7 +48,9 @@ const sitemapXml = (cypher) => {
   const spacer = `
     <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
-          <td height="30">&nbsp;</td>
+          <td>
+            <br />
+          </td>
         </tr>
       </table>
     `;
@@ -60,6 +62,7 @@ const sitemapXml = (cypher) => {
         <description>
           ${escapeXml(encodeSpecialChar(description))}
           ${escapeXml(encodeSpecialChar(packLink))}
+          ${escapeXml(encodeSpecialChar(spacer))}
           ${escapeXml(encodeSpecialChar(submissionLink))}
           ${escapeXml(encodeSpecialChar(spacer))}
           ${escapeXml(encodeSpecialChar(image))}
