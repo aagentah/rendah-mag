@@ -25,7 +25,7 @@ export default function ProfileCypher({ cyphers }) {
           />
         </div>
         <div className="flex  flex-wrap">
-          <div className="col-24  col-12-md  pr0  pr4-md">
+          <div className="col-24  col-16-md  pr0  pr4-md">
             <div className="pb0">
               <Heading
                 /* Options */
@@ -98,7 +98,7 @@ export default function ProfileCypher({ cyphers }) {
               </div>
             </div>
           </div>
-          <div className="col-24  col-12-md  pb3  pb0-md">
+          <div className="col-24  col-8-md  pb3  pb0-md">
             <div className="shadow2">
               <Image
                 /* Options */
@@ -109,12 +109,12 @@ export default function ProfileCypher({ cyphers }) {
                   .url()}
                 placeholder={imageBuilder
                   .image(cyphers.current.imageSquare)
-                  .height(50)
-                  .width(108)
+                  .height(100)
+                  .width(100)
                   .url()}
                 alt="This is the alt text."
                 figcaption={null}
-                height={500}
+                height={null}
                 onClick={null}
                 /* Children */
                 withLinkProps={null}

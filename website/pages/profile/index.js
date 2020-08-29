@@ -145,7 +145,10 @@ export default function Profile({ siteConfig }) {
                     id: '3',
                     tabTitle: 'Dominion',
                     tabContent: (
-                      <ProfileDominion dominionItems={dominionItems} />
+                      <ProfileDominion
+                        dominionItems={dominionItems}
+                        user={user}
+                      />
                     ),
                   },
                   {
