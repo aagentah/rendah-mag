@@ -23,7 +23,7 @@ export default (email) => {
     },
     to: [
       {
-        email: email,
+        email,
       },
     ],
     subject: 'Welcome to the Dominion',

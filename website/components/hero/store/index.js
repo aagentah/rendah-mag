@@ -41,9 +41,9 @@ export default function HeroCypher({ cypher }) {
   const heroCopy = (
     <Copy
       /* Options */
-      text={'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}
-      color={'black'}
-      size={'white'}
+      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      color="black"
+      size="white"
       truncate={2}
     />
   );

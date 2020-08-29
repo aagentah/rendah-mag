@@ -129,10 +129,10 @@ export default function ProfileDominion({ dominionItems, user }) {
                     <div className="absolute  top  right  mr3  nt2">
                       <Label
                         /* Options */
-                        customClass={'ph2'}
+                        customClass="ph2"
                         text="New"
-                        color={'white'}
-                        backgroundColor={'blue'}
+                        color="white"
+                        backgroundColor="blue"
                         onClick={null}
                         /* Children */
                         withLinkProps={null}
@@ -155,10 +155,10 @@ export default function ProfileDominion({ dominionItems, user }) {
                         <div key={tag} className="mr2  mb3">
                           <Label
                             /* Options */
-                            customClass={'ph2'}
+                            customClass="ph2"
                             text={tag}
-                            color={'white'}
-                            backgroundColor={'black'}
+                            color="white"
+                            backgroundColor="black"
                             onClick={null}
                             /* Children */
                             withLinkProps={null}
