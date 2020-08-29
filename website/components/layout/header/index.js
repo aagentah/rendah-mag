@@ -18,11 +18,9 @@ export default function Header({ navOnWhite, meta }) {
   const app = useApp();
 
   const showBasket =
-    meta.title === 'Store' ||
+    !!(meta.title === 'Store' ||
     meta.title === 'Product' ||
-    meta.title === 'Subscription'
-      ? true
-      : false;
+    meta.title === 'Subscription');
 
   async function handleLogout() {
     await fetch('/api/logout');

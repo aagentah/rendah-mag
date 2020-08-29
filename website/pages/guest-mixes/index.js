@@ -26,7 +26,7 @@ export default function GuestMixes({ siteConfig, guestMixes }) {
     <>
       <Layout
         navOffset={null}
-        navOnWhite={true}
+        navOnWhite
         meta={{
           siteConfig,
           title: 'Guest Mixes',

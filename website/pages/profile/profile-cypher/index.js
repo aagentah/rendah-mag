@@ -131,7 +131,7 @@ export default function ProfileCypher({ cyphers }) {
       <Heading
         /* Options */
         htmlEntity="h3"
-        text={'There are no Cyphers currently in progress.'}
+        text="There are no Cyphers currently in progress."
         color="black"
         size="medium"
         truncate={null}
