@@ -16,10 +16,11 @@ import {
 
 import { imageBuilder } from '../../../lib/sanity/requests';
 
-export default function ProfileDominion({ dominionItems }) {
-  const [modalActive, setModalActive] = useState(false);
+export default function ProfileDominion({ dominionItems, user }) {
+  const [modalActive, setModalActive] = useState(null);
 
   console.log('dominionItems', dominionItems);
+  console.log('user', user);
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
@@ -40,25 +41,27 @@ export default function ProfileDominion({ dominionItems }) {
           />
         </div>
 
-        <div className="flex  flex-wrap">
+        <div className="flex  flex-wrap  mb3">
           {dominionItems.map((item, i) => (
             <>
               <Modal
                 /* Options */
                 size="large"
-                active={modalActive}
+                active={modalActive === i}
               >
-                <Heading
-                  /* Options */
-                  htmlEntity="h3"
-                  text={item.title}
-                  color="black"
-                  size={item.image ? 'large' : 'medium'}
-                  truncate={0}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
+                <div className="pb2">
+                  <Heading
+                    /* Options */
+                    htmlEntity="h3"
+                    text={item.title}
+                    color="black"
+                    size={item.image ? 'large' : 'medium'}
+                    truncate={0}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
                 <div className="flex  flex-wrap">
                   <div
                     className={`col-24  ${item.image && 'col-12-md'}  pr4-md`}
@@ -112,7 +115,7 @@ export default function ProfileDominion({ dominionItems }) {
                       inverted={false}
                       loading={false}
                       disabled={false}
-                      onClick={() => setModalActive(!modalActive)}
+                      onClick={() => setModalActive(null)}
                       /* Children */
                       withLinkProps={null}
                     />
@@ -120,13 +123,31 @@ export default function ProfileDominion({ dominionItems }) {
                 </div>
               </Modal>
 
-              <div className="col-24  col-12-md">
-                <div className="br3  pa3  shadow2">
-                  <p className="t-secondary  f7  grey  pb2">
+              <div className="col-24  relative">
+                <div className="br3  pa4  mb4  shadow2">
+                  {i === 0 && (
+                    <div className="absolute  top  right  mr3  nt2">
+                      <Label
+                        /* Options */
+                        customClass={'ph2'}
+                        text="New"
+                        color={'white'}
+                        backgroundColor={'blue'}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+                  )}
+                  <p className="t-secondary  f7  grey  pb2  mb2">
                     {new Date(item.activeFrom).toDateString()}
                   </p>
 
-                  <p className="t-primary  f4  black  pb3  mb2">{item.title}</p>
+                  <p className="t-primary  f4  black  pb3">{item.title}</p>
+
+                  <div className="post__body  pr2  pb2">
+                    <BlockContent blocks={item.briefDescription} />
+                  </div>
 
                   <div className="flex  flex-wrap  pb3">
                     {item?.tags &&
@@ -159,7 +180,7 @@ export default function ProfileDominion({ dominionItems }) {
                       inverted={false}
                       loading={false}
                       disabled={false}
-                      onClick={() => setModalActive(!modalActive)}
+                      onClick={() => setModalActive(i)}
                       /* Children */
                       withLinkProps={null}
                     />
@@ -169,6 +190,11 @@ export default function ProfileDominion({ dominionItems }) {
             </>
           ))}
         </div>
+
+        <p className="t-secondary  f6  grey">
+          <span className="bold  pr1">Member since:</span>
+          {new Date(user.dominionSince).toDateString()}
+        </p>
       </section>
     );
   }
