@@ -61,7 +61,7 @@ const sitemapXml = (cypher) => {
           ${escapeXml(encodeSpecialChar(description))}
           ${escapeXml(encodeSpecialChar(packLink))}
           ${escapeXml(encodeSpecialChar(submissionLink))}
-          ${spacer}
+          ${escapeXml(encodeSpecialChar(spacer))}
           ${escapeXml(encodeSpecialChar(image))}
         </description>
       </item>
