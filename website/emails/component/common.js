@@ -124,7 +124,7 @@ export default (title, body, image, buttonText, buttonLink) => {
           .btn {
             background: #111111;
             color: #ffffff;
-            outline: 1px solid red;
+            outline: 1px solid #ffffff;;
           }
         }
         body {

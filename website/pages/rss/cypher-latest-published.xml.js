@@ -22,12 +22,15 @@ const sitemapXml = (cypher) => {
     : '';
 
   const image = cypher?.imageLandscape
-    ? `<img src="${imageBuilder.image(cypher.imageLandscape).url()}" />`
+    ? `<img width="300" style="width: 300px;" src="${imageBuilder
+        .image(cypher.imageLandscape)
+        .url()}" />`
     : '';
 
   const url = cypher?.publishedFields?.shortUrl
     ? `
-    <p>Listen here:
+    <p>
+      Listen here:
       <a href="${cypher.publishedFields.shortUrl}">${cypher.publishedFields.shortUrl}</a>
     </p>
   `

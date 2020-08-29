@@ -1,10 +1,7 @@
 import React from 'react';
 import blocksToHtml from '@sanity/block-content-to-html';
 
-import {
-  imageBuilder,
-  getLatestDominionItem,
-} from '../../lib/sanity/requests';
+import { imageBuilder, getLatestDominionItem } from '../../lib/sanity/requests';
 
 import { SITE_URL } from '../../constants';
 import escapeXml from '../../functions/escapeXml';
@@ -20,7 +17,9 @@ const sitemapXml = (item) => {
     : '';
 
   const image = item?.image
-    ? `<img src="${imageBuilder.image(item.image).url()}" />`
+    ? `<img width="300" style="width: 300px;" src="${imageBuilder
+        .image(item.image)
+        .url()}" />`
     : '';
 
   postsXML += `
