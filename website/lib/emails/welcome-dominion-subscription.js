@@ -5,6 +5,7 @@ import { SITE_URL } from '../../constants';
 export default (email) => {
   const html = `
     <div>
+      <img src="${SITE_URL}/images/welcome-to-the-dominion.png" width="600" />
       <p>
         Welcome to the Dominion.
       </p>
