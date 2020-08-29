@@ -8,7 +8,7 @@ const auth = nextConnect()
       name: 'sess',
       secret: process.env.IRON_PASSWORD, // This should be kept securely, preferably in env vars
       cookie: {
-        maxAge: 60 * 60 * 8, // 8 hours,
+        maxAge: 60 * 60 * 24 * 365, // 1 year
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         path: '/',

@@ -1,5 +1,5 @@
 // Common
-export const SITE_URL = 'https://danjonesmcr-next-boilerplate.herokuapp.com';
+export const SITE_URL = 'https://rm-staging-2020.herokuapp.com';
 
 // Snipcart
 export const IS_ECCOMERCE = true;
