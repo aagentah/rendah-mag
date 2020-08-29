@@ -45,15 +45,24 @@ const sitemapXml = (cypher) => {
   `
     : '';
 
+  const spacer = `
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+          <td height="30">&nbsp;</td>
+        </tr>
+      </table>
+    `;
+
   postsXML += `
       <item>
         <title>${encodeSpecialChar(title)}</title>
         <link></link>
         <description>
           ${escapeXml(encodeSpecialChar(description))}
-          ${escapeXml(encodeSpecialChar(image))}
           ${escapeXml(encodeSpecialChar(packLink))}
           ${escapeXml(encodeSpecialChar(submissionLink))}
+          ${spacer}
+          ${escapeXml(encodeSpecialChar(image))}
         </description>
       </item>
       `;
