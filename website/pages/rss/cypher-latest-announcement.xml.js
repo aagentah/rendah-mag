@@ -39,7 +39,7 @@ const sitemapXml = (cypher) => {
   const submissionLink = cypher.submissionFormLink
     ? `
     <p>
-      Download Pack:
+      Submission Form:
       <a href="${cypher.submissionFormLink}">${cypher.submissionFormLink}</a>
     </p>
   `
@@ -62,10 +62,10 @@ const sitemapXml = (cypher) => {
         <description>
           ${escapeXml(encodeSpecialChar(description))}
           ${escapeXml(encodeSpecialChar(spacer))}
+          ${escapeXml(encodeSpecialChar(image))}
+          ${escapeXml(encodeSpecialChar(spacer))}
           ${escapeXml(encodeSpecialChar(packLink))}
           ${escapeXml(encodeSpecialChar(submissionLink))}
-          ${escapeXml(encodeSpecialChar(spacer))}
-          ${escapeXml(encodeSpecialChar(image))}
         </description>
       </item>
       `;
