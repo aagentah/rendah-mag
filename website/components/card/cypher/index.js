@@ -35,7 +35,7 @@ export default function CardCypher({ post, columnCount }) {
     />
   );
 
-  if (columnCount == 1) {
+  if (columnCount === 1) {
     cardImage = (
       <Image
         /* Options */

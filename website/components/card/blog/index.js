@@ -39,7 +39,7 @@ export default function CardBlog({ post, columnCount }) {
     />
   );
 
-  if (columnCount == 2) {
+  if (columnCount === 2) {
     cardImage = (
       <Image
         /* Options */

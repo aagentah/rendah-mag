@@ -17,10 +17,11 @@ export default function Header({ navOnWhite, meta }) {
   const [navOpen, setNavOpen] = useState(false);
   const app = useApp();
 
-  const showBasket =
-    !!(meta.title === 'Store' ||
+  const showBasket = !!(
+    meta.title === 'Store' ||
     meta.title === 'Product' ||
-    meta.title === 'Subscription');
+    meta.title === 'Subscription'
+  );
 
   async function handleLogout() {
     await fetch('/api/logout');
@@ -346,7 +347,7 @@ export default function Header({ navOnWhite, meta }) {
         }  bg-almost-white  justify-center  align-center  df  dn-md`}
       >
         <div className="flex  flex-wrap">
-          <div className="header__burger" onClick={toggleNav}>
+          <button className="header__burger" onClick={toggleNav} role="button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -356,7 +357,7 @@ export default function Header({ navOnWhite, meta }) {
             >
               <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
             </svg>
-          </div>
+          </button>
         </div>
 
         <div className={`header__logo  ${logoWhite}`}>
@@ -409,7 +410,11 @@ export default function Header({ navOnWhite, meta }) {
 
         <nav className="nav  w-100  flex  justify-end">
           <div className="flex  flex-wrap">
-            <div className="absolute  top  right  mt3  mr3" onClick={toggleNav}>
+            <button
+              className="absolute  top  right  mt3  mr3"
+              onClick={toggleNav}
+              role="button"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -419,7 +424,7 @@ export default function Header({ navOnWhite, meta }) {
               >
                 <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
               </svg>
-            </div>
+            </button>
           </div>
           <ul className="w-100  pt4">
             <li className="db  pl4  pb3">
