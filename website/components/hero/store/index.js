@@ -61,9 +61,7 @@ export default function HeroCypher({ cypher }) {
       inverted={false}
       loading={false}
       disabled={false}
-      onClick={() => {
-        setModalActive(!modalActive);
-      }}
+      onClick={null}
       /* Children */
       withLinkProps={null}
     />
