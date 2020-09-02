@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Router from 'next/router';
 import { useToasts } from 'react-toast-notifications';
+import { useDropzone } from 'react-dropzone';
 
 import {
   Modal,
@@ -24,6 +25,27 @@ export default function ProfileEdit({ customerOrders }) {
   const [user, { mutate }] = useUser();
   const { addToast } = useToasts();
   const [isSubNewsletter, setIsSubNewsletter] = useState('Loading...');
+  const [avatarBlob, setAvatarBlob] = useState(null);
+
+  const onDrop = useCallback((acceptedFiles) => {
+    if (acceptedFiles.length > 0) {
+      const file = acceptedFiles[0];
+
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function () {
+        setAvatarBlob(reader.result);
+      };
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+    }
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    multiple: false,
+    onDrop,
+  });
 
   useEffect(() => {
     mailchimpGetMember();
@@ -54,6 +76,7 @@ export default function ProfileEdit({ customerOrders }) {
     const body = {
       email: e.currentTarget.username.value,
       name: e.currentTarget.name.value,
+      avatar: avatarBlob,
     };
 
     if (e.currentTarget.password.value) {
@@ -231,6 +254,15 @@ export default function ProfileEdit({ customerOrders }) {
           /* Children */
           withLinkProps={null}
         />
+      </div>
+
+      <div {...getRootProps()}>
+        <input {...getInputProps()} />
+        {isDragActive ? (
+          <p>Drop the files here ...</p>
+        ) : (
+          <p>Drag 'n' drop some files here, or click to select files</p>
+        )}
       </div>
 
       <div className="flex  flex-wrap">
