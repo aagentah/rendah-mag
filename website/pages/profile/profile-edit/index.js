@@ -271,9 +271,9 @@ export default function ProfileEdit({ customerOrders }) {
           <div className="react-dropzone__wrapper" {...getRootProps()}>
             <input {...getInputProps()} />
             {isDragActive ? (
-              <p>Drop the files here ...</p>
+              <p>Drop the file here...</p>
             ) : (
-              <p>Drag 'n' drop some files here, or click to select files</p>
+              <p>Drag & drop your image here, or click to select file</p>
             )}
           </div>
         </div>
@@ -316,19 +316,21 @@ export default function ProfileEdit({ customerOrders }) {
       </div>
 
       <div className="flex  flex-wrap">
-        <div className="col-24  pb3">
+        <div className="col-24  pb4">
           <div className="w4">
-            <Image
-              /* Options */
-              src={avatarEl || '/images/avatar-placeholder.png'}
-              placeholder={avatarEl || '/images/avatar-placeholder.png'}
-              alt={(user && user.username) || ''}
-              figcaption={null}
-              height={150}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
+            <div className="shadow2">
+              <Image
+                /* Options */
+                src={avatarEl || '/images/avatar-placeholder.png'}
+                placeholder={null}
+                alt={(user && user.username) || ''}
+                figcaption={null}
+                height={150}
+                onClick={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
           </div>
         </div>
 
