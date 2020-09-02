@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone';
 
 import {
   Modal,
+  Image,
   Heading,
   Button,
   Copy,
@@ -21,24 +22,29 @@ export default function ProfileEdit({ customerOrders }) {
   const app = useApp();
   const dispatch = useDispatchApp();
   const [updateButtonLoading, setUpdateButtonLoading] = useState(false);
-  const [modalActive, setModalActive] = useState(false);
+  const [deleteModalActive, setDeleteModalActive] = useState(false);
+  const [avatarModalActive, setAvatarModalActive] = useState(false);
   const [user, { mutate }] = useUser();
   const { addToast } = useToasts();
   const [isSubNewsletter, setIsSubNewsletter] = useState('Loading...');
   const [avatarBlob, setAvatarBlob] = useState(null);
+  const [avatarEl, setAvatarEl] = useState(null);
 
   const onDrop = useCallback((acceptedFiles) => {
+    setAvatarModalActive(false);
+
+    addToast(`To save your image, make sure to hit Update.`, {
+      appearance: 'info',
+      autoDismiss: true,
+    });
+
     if (acceptedFiles.length > 0) {
       const file = acceptedFiles[0];
+      const reader = new FileReader();
 
-      var reader = new FileReader();
+      setAvatarEl(URL.createObjectURL(file));
       reader.readAsDataURL(file);
-      reader.onload = function () {
-        setAvatarBlob(reader.result);
-      };
-      reader.onerror = function (error) {
-        console.log('Error: ', error);
-      };
+      reader.onload = () => setAvatarBlob(reader.result);
     }
   }, []);
 
@@ -76,8 +82,9 @@ export default function ProfileEdit({ customerOrders }) {
     const body = {
       email: e.currentTarget.username.value,
       name: e.currentTarget.name.value,
-      avatar: avatarBlob,
     };
+
+    if (avatarBlob) body.avatar = avatarBlob;
 
     if (e.currentTarget.password.value) {
       body.password = e.currentTarget.password.value;
@@ -176,7 +183,7 @@ export default function ProfileEdit({ customerOrders }) {
       <Modal
         /* Options */
         size="small"
-        active={modalActive}
+        active={deleteModalActive}
       >
         <div className="pb2">
           <Heading
@@ -233,7 +240,59 @@ export default function ProfileEdit({ customerOrders }) {
               loading={false}
               disabled={false}
               onClick={() => {
-                setModalActive(!modalActive);
+                setDeleteModalActive(!deleteModalActive);
+              }}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        /* Options */
+        size="medium"
+        active={avatarModalActive}
+      >
+        <div className="pb4">
+          <Heading
+            /* Options */
+            htmlEntity="h1"
+            text="Update Avatar"
+            color="black"
+            size="large"
+            truncate={0}
+            onClick={null}
+            /* Children */
+            withLinkProps={null}
+          />
+        </div>
+        <div className="pb4">
+          <div className="react-dropzone__wrapper" {...getRootProps()}>
+            <input {...getInputProps()} />
+            {isDragActive ? (
+              <p>Drop the files here ...</p>
+            ) : (
+              <p>Drag 'n' drop some files here, or click to select files</p>
+            )}
+          </div>
+        </div>
+        <div className="flex  flex-wrap  pb2">
+          <div className="col-24  col-12-md  flex  justify-center  justify-start-md  align-center">
+            <Button
+              /* Options */
+              type="secondary"
+              size="medium"
+              text="Cancel"
+              color="black"
+              fluid={false}
+              icon={null}
+              iconFloat={null}
+              inverted={false}
+              loading={false}
+              disabled={false}
+              onClick={() => {
+                setAvatarModalActive(!avatarModalActive);
               }}
               /* Children */
               withLinkProps={null}
@@ -256,13 +315,43 @@ export default function ProfileEdit({ customerOrders }) {
         />
       </div>
 
-      <div {...getRootProps()}>
-        <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Drop the files here ...</p>
-        ) : (
-          <p>Drag 'n' drop some files here, or click to select files</p>
-        )}
+      <div className="flex  flex-wrap">
+        <div className="col-24  pb3">
+          <div className="w4">
+            <Image
+              /* Options */
+              src={avatarEl || '/images/avatar-placeholder.png'}
+              placeholder={avatarEl || '/images/avatar-placeholder.png'}
+              alt={(user && user.username) || ''}
+              figcaption={null}
+              height={150}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+        </div>
+
+        <div className="col-24  pb3">
+          <Button
+            /* Options */
+            type="primary"
+            size="small"
+            text="Choose Profile Picture"
+            color="black"
+            fluid={false}
+            icon={null}
+            iconFloat={null}
+            inverted
+            loading={false}
+            disabled={app.isLoading}
+            onClick={() => {
+              setAvatarModalActive(!avatarModalActive);
+            }}
+            /* Children */
+            withLinkProps={null}
+          />
+        </div>
       </div>
 
       <div className="flex  flex-wrap">
@@ -358,7 +447,7 @@ export default function ProfileEdit({ customerOrders }) {
                   loading={false}
                   disabled={app.isLoading}
                   onClick={() => {
-                    setModalActive(!modalActive);
+                    setDeleteModalActive(!deleteModalActive);
                   }}
                   /* Children */
                   withLinkProps={null}
