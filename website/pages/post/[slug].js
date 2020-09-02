@@ -7,6 +7,7 @@ import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 import Layout from '../../components/layout';
 import Container from '../../components/layout/container';
 import Sections from '../../components/article/body-sections';
+import Author from '../../components/article/author';
 
 import Date from '../../components/date';
 import CardBlog from '../../components/card/blog';
@@ -29,10 +30,12 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   if (router.isFallback) return <p>Loading...</p>;
 
   if (!router.isFallback && post?.slug) {
+    console.log('post', post);
+
     const heroImage = (
       <Image
         /* Options */
-        src={imageBuilder.image(post.coverImage).height(700).width(1080).url()}
+        src={imageBuilder.image(post.coverImage).height(1000).width(2000).url()}
         placeholder={imageBuilder
           .image(post.coverImage)
           .height(50)
@@ -94,6 +97,12 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
               <div className="post__body  pb4">
                 <Sections body={post.body} />
               </div>
+
+              <div className="post__body  pb4">
+                <hr />
+              </div>
+
+              <Author author={post.author} />
             </section>
           </article>
 
