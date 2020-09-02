@@ -3,6 +3,7 @@ import crypto from 'crypto';
 import tinify from 'tinify';
 
 import client from './config-write';
+import { SITE_URL } from '../../constants';
 
 export async function createUser(req, user) {
   const salt = crypto.randomBytes(16).toString('hex');
@@ -63,7 +64,9 @@ export async function updateUserByUsername(req, user, update) {
       ''
     );
 
-    fs.writeFile('tmp/image.png', base64Data, 'base64', function (err) {
+    await fs.writeFile('tmp/image.png', base64Data, 'base64', async function (
+      err
+    ) {
       const source = tinify.fromFile('tmp/image.png');
 
       const resized = source.resize({
@@ -72,10 +75,45 @@ export async function updateUserByUsername(req, user, update) {
       });
 
       // Tinify image
-      resized.toFile('tmp/optimized.png');
-      return;
+      await resized.toFile('tmp/optimized.png');
+
+      console.log('yo');
+
+      // Upload compressed image to Sanity
+      await client.assets
+        .upload('image', fs.createReadStream('tmp/optimized.png'), {
+          contentType: 'image/png',
+          filename: `optimized.png`,
+        })
+        .then((imageAsset) => {
+          client
+            .patch(user._id)
+            .set({
+              avatar: {
+                _type: 'image',
+                asset: {
+                  _type: 'reference',
+                  _ref: imageAsset._id,
+                },
+              },
+            })
+            .commit()
+            .then((res) => {
+              console.log(`Image was updated, ${res._id}`);
+              return res;
+            })
+            .catch((err) => {
+              console.error('Oh no, the image update failed: ', err.message);
+              return false;
+            });
+        })
+        .catch((error) => {
+          console.error('Upload failed:', error.message);
+        });
     });
   }
+
+  delete updateFields.avatar;
 
   const data = await client
     .patch(user._id)

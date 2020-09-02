@@ -16,6 +16,11 @@ export default {
       required: true,
     },
     {
+      name: "avatar",
+      title: "Avatar",
+      type: "image",
+    },
+    {
       name: "isDominion",
       title: "Dominion Member",
       type: "boolean",
