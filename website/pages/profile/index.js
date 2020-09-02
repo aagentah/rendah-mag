@@ -127,7 +127,7 @@ export default function Profile({ siteConfig }) {
       >
         <Container>
           {user && (
-            <>
+            <div className="tabs-wrapper--side-bar">
               <Tabs
                 /* Options */
                 content={[
@@ -161,7 +161,7 @@ export default function Profile({ siteConfig }) {
                 ]}
                 defaultSelected="1"
               />
-            </>
+            </div>
           )}
         </Container>
       </Layout>
