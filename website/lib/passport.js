@@ -1,8 +1,8 @@
 import crypto from 'crypto';
-
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
-import { findUserByUsername } from './sanity/user';
+
+import { findUserByUsername } from './sanity/user/findUserByUsername';
 
 passport.serializeUser((user, done) => {
   // serialize the username into session
@@ -50,8 +50,8 @@ passport.use(
       } else {
         done(null, user);
       }
-    },
-  ),
+    }
+  )
 );
 
 export default passport;

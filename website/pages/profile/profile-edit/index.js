@@ -17,6 +17,7 @@ import {
 import { useApp, useDispatchApp } from '../../../context-provider/app';
 import { useUser } from '../../../lib/hooks';
 import passwordStrength from '../../../lib/password-strength';
+import { imageBuilder } from '../../../lib/sanity/requests';
 
 export default function ProfileEdit({ customerOrders }) {
   const app = useApp();
@@ -28,7 +29,7 @@ export default function ProfileEdit({ customerOrders }) {
   const { addToast } = useToasts();
   const [isSubNewsletter, setIsSubNewsletter] = useState('Loading...');
   const [avatarBlob, setAvatarBlob] = useState(null);
-  const [avatarEl, setAvatarEl] = useState(null);
+  const [avatarImage, setAvatarImage] = useState(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     setAvatarModalActive(false);
@@ -42,7 +43,7 @@ export default function ProfileEdit({ customerOrders }) {
       const file = acceptedFiles[0];
       const reader = new FileReader();
 
-      setAvatarEl(URL.createObjectURL(file));
+      setAvatarImage(URL.createObjectURL(file));
       reader.readAsDataURL(file);
       reader.onload = () => setAvatarBlob(reader.result);
     }
@@ -56,6 +57,14 @@ export default function ProfileEdit({ customerOrders }) {
   useEffect(() => {
     mailchimpGetMember();
   }, []);
+
+  useEffect(() => {
+    if (user.avatar) {
+      setAvatarImage(
+        imageBuilder.image(user.avatar).height(500).width(500).url()
+      );
+    }
+  }, [user.avatar]);
 
   const mailchimpGetMember = async () => {
     const res = await fetch('/api/common/mailchimp/get-member', {
@@ -177,6 +186,8 @@ export default function ProfileEdit({ customerOrders }) {
   const inputIconEnvelope = <Icon icon={['fas', 'envelope']} />;
   const inputIconUser = <Icon icon={['fas', 'user']} />;
   const inputIconLock = <Icon icon={['fas', 'lock']} />;
+
+  console.log('user', user);
 
   return (
     <>
@@ -321,7 +332,7 @@ export default function ProfileEdit({ customerOrders }) {
             <div className="shadow2">
               <Image
                 /* Options */
-                src={avatarEl || '/images/avatar-placeholder.png'}
+                src={avatarImage || '/images/avatar-placeholder.png'}
                 placeholder={null}
                 alt={(user && user.username) || ''}
                 figcaption={null}
