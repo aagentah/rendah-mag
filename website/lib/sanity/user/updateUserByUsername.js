@@ -8,7 +8,6 @@ import client from '../config-write';
 import { SITE_URL } from '../../../constants';
 
 const handlePassword = (cloneFields) => {
-  if (!cloneFields?.password) return;
   const salt = crypto.randomBytes(16).toString('hex');
   const hash = crypto
     .pbkdf2Sync(cloneFields.password, salt, 1000, 64, 'sha512')
@@ -38,17 +37,19 @@ const handleAvatar = async (cloneFields, user) => {
   await resized.toFile('tmp/optimized.png');
 
   const uploadCompressed = async (imageAsset) => {
+    const avatarProps = {
+      avatar: {
+        _type: 'image',
+        asset: {
+          _type: 'reference',
+          _ref: imageAsset._id,
+        },
+      },
+    };
+
     return await client
       .patch(user._id)
-      .set({
-        avatar: {
-          _type: 'image',
-          asset: {
-            _type: 'reference',
-            _ref: imageAsset._id,
-          },
-        },
-      })
+      .set(avatarProps)
       .commit()
       .then((res) => {
         console.log(`Image was updated, ${res._id}`);
@@ -83,11 +84,16 @@ export async function updateUserByUsername(req, user, fields) {
     let cloneFields = cloneDeep(fields);
 
     // Handle password change
-    handlePassword(cloneFields);
+    if (cloneFields?.password) {
+      cloneFields = handlePassword(cloneFields);
+    }
 
     // Handle image change
-    if (cloneFields?.avatar)
+    if (cloneFields?.avatar) {
       cloneFields = await handleAvatar(cloneFields, user);
+    }
+
+    console.log('cloneFields', cloneFields);
 
     // Update user
     const data = await client
