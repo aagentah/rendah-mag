@@ -1,6 +1,9 @@
 import fs from 'fs';
 import crypto from 'crypto';
 import tinify from 'tinify';
+const { promisify } = require('util');
+
+const writeFile = promisify(fs.writeFile);
 
 import client from './config-write';
 import { SITE_URL } from '../../constants';
@@ -41,32 +44,31 @@ export async function findUserByUsername(req, username) {
 }
 
 export async function updateUserByUsername(req, user, update) {
-  tinify.key = process.env.TINIFY_KEY;
+  try {
+    tinify.key = process.env.TINIFY_KEY;
 
-  const updateFields = update;
+    const updateFields = update;
 
-  // Handle password change
-  if (updateFields?.password) {
-    const salt = crypto.randomBytes(16).toString('hex');
-    const hash = crypto
-      .pbkdf2Sync(updateFields.password, salt, 1000, 64, 'sha512')
-      .toString('hex');
+    // Handle password change
+    if (updateFields?.password) {
+      const salt = crypto.randomBytes(16).toString('hex');
+      const hash = crypto
+        .pbkdf2Sync(updateFields.password, salt, 1000, 64, 'sha512')
+        .toString('hex');
 
-    updateFields.salt = salt;
-    updateFields.hash = hash;
-    delete updateFields.password;
-  }
+      updateFields.salt = salt;
+      updateFields.hash = hash;
+      delete updateFields.password;
+    }
 
-  // Handle image change
-  if (updateFields?.avatar) {
-    const base64Data = updateFields.avatar.replace(
-      /^data:image\/png;base64,/,
-      ''
-    );
+    const uploadAvatar = async () => {
+      const image64 = updateFields.avatar.replace(
+        /^data:image\/png;base64,/,
+        ''
+      );
 
-    await fs.writeFile('tmp/image.png', base64Data, 'base64', async function (
-      err
-    ) {
+      await writeFile('tmp/image.png', image64, 'base64');
+
       const source = tinify.fromFile('tmp/image.png');
 
       const resized = source.resize({
@@ -77,7 +79,28 @@ export async function updateUserByUsername(req, user, update) {
       // Tinify image
       await resized.toFile('tmp/optimized.png');
 
-      console.log('yo');
+      const uploadCompressed = async (imageAsset) => {
+        return await client
+          .patch(user._id)
+          .set({
+            avatar: {
+              _type: 'image',
+              asset: {
+                _type: 'reference',
+                _ref: imageAsset._id,
+              },
+            },
+          })
+          .commit()
+          .then((res) => {
+            console.log(`Image was updated, ${res._id}`);
+            return res;
+          })
+          .catch((err) => {
+            console.error('Oh no, the image update failed: ', err.message);
+            return false;
+          });
+      };
 
       // Upload compressed image to Sanity
       await client.assets
@@ -85,50 +108,40 @@ export async function updateUserByUsername(req, user, update) {
           contentType: 'image/png',
           filename: `optimized.png`,
         })
-        .then((imageAsset) => {
-          client
-            .patch(user._id)
-            .set({
-              avatar: {
-                _type: 'image',
-                asset: {
-                  _type: 'reference',
-                  _ref: imageAsset._id,
-                },
-              },
-            })
-            .commit()
-            .then((res) => {
-              console.log(`Image was updated, ${res._id}`);
-              return res;
-            })
-            .catch((err) => {
-              console.error('Oh no, the image update failed: ', err.message);
-              return false;
-            });
+        .then(async (imageAsset) => {
+          await uploadCompressed(imageAsset);
         })
         .catch((error) => {
           console.error('Upload failed:', error.message);
         });
-    });
+
+      delete updateFields.avatar;
+      return;
+    };
+
+    // Handle image change
+    if (updateFields?.avatar) {
+      await uploadAvatar();
+    }
+
+    const data = await client
+      .patch(user._id)
+      .set(updateFields)
+      .commit()
+      .then((res) => {
+        console.log(`User was updated, document ID is ${res._id}`);
+        return res;
+      })
+      .catch((err) => {
+        console.error('Oh no, the update failed: ', err.message);
+        return false;
+      });
+
+    return data;
+  } catch (error) {
+    console.log(error.message);
+    return res.status(400).send('Error updating user');
   }
-
-  delete updateFields.avatar;
-
-  const data = await client
-    .patch(user._id)
-    .set(updateFields)
-    .commit()
-    .then((res) => {
-      console.log(`User was updated, document ID is ${res._id}`);
-      return res;
-    })
-    .catch((err) => {
-      console.error('Oh no, the update failed: ', err.message);
-      return false;
-    });
-
-  return data;
 }
 
 export async function deleteUser(req, user) {
