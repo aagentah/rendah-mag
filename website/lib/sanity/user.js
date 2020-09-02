@@ -1,4 +1,6 @@
+import fs from 'fs';
 import crypto from 'crypto';
+import tinify from 'tinify';
 
 import client from './config-write';
 
@@ -38,9 +40,12 @@ export async function findUserByUsername(req, username) {
 }
 
 export async function updateUserByUsername(req, user, update) {
+  tinify.key = process.env.TINIFY_KEY;
+
   const updateFields = update;
 
-  if (updateFields?.password && updateFields.password) {
+  // Handle password change
+  if (updateFields?.password) {
     const salt = crypto.randomBytes(16).toString('hex');
     const hash = crypto
       .pbkdf2Sync(updateFields.password, salt, 1000, 64, 'sha512')
@@ -49,6 +54,27 @@ export async function updateUserByUsername(req, user, update) {
     updateFields.salt = salt;
     updateFields.hash = hash;
     delete updateFields.password;
+  }
+
+  // Handle image change
+  if (updateFields?.avatar) {
+    const base64Data = updateFields.avatar.replace(
+      /^data:image\/png;base64,/,
+      ''
+    );
+
+    fs.writeFile('tmp/image.png', base64Data, 'base64', function (err) {
+      const source = tinify.fromFile('tmp/image.png');
+
+      const resized = source.resize({
+        method: 'scale',
+        width: 1080,
+      });
+
+      // Tinify image
+      resized.toFile('tmp/optimized.png');
+      return;
+    });
   }
 
   const data = await client

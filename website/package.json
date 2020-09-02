@@ -42,6 +42,7 @@
     "postcss-preset-env": "^6.7.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-dropzone": "^11.0.3",
     "react-facebook": "^8.1.4",
     "react-hook-inview": "^4.2.1",
     "react-iframe": "^1.8.0",
