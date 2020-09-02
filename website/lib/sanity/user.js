@@ -43,37 +43,31 @@ export async function findUserByUsername(req, username) {
   return data;
 }
 
-export async function updateUserByUsername(req, user, update) {
+export async function updateUserByUsername(req, user, fields) {
   try {
-    tinify.key = process.env.TINIFY_KEY;
-
-    const updateFields = update;
-
     // Handle password change
-    if (updateFields?.password) {
+    if (fields?.password) {
       const salt = crypto.randomBytes(16).toString('hex');
       const hash = crypto
-        .pbkdf2Sync(updateFields.password, salt, 1000, 64, 'sha512')
+        .pbkdf2Sync(fields.password, salt, 1000, 64, 'sha512')
         .toString('hex');
 
-      updateFields.salt = salt;
-      updateFields.hash = hash;
-      delete updateFields.password;
+      fields.salt = salt;
+      fields.hash = hash;
+      delete fields.password;
     }
 
     const uploadAvatar = async () => {
-      const image64 = updateFields.avatar.replace(
-        /^data:image\/png;base64,/,
-        ''
-      );
+      const image64 = fields.avatar.replace(/^data:image\/png;base64,/, '');
 
       await writeFile('tmp/image.png', image64, 'base64');
 
       const source = tinify.fromFile('tmp/image.png');
 
       const resized = source.resize({
-        method: 'scale',
-        width: 1080,
+        method: 'cover',
+        width: 720,
+        height: 720,
       });
 
       // Tinify image
@@ -115,18 +109,19 @@ export async function updateUserByUsername(req, user, update) {
           console.error('Upload failed:', error.message);
         });
 
-      delete updateFields.avatar;
+      delete fields.avatar;
       return;
     };
 
     // Handle image change
-    if (updateFields?.avatar) {
+    if (fields?.avatar) {
+      tinify.key = process.env.TINIFY_KEY;
       await uploadAvatar();
     }
 
     const data = await client
       .patch(user._id)
-      .set(updateFields)
+      .set(fields)
       .commit()
       .then((res) => {
         console.log(`User was updated, document ID is ${res._id}`);
