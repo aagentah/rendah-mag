@@ -35,30 +35,23 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
           };
 
           const imageWidth = await getImageWidth(imageUrl);
-          console.log("imageWidth", imageWidth);
-          if (imageWidth <= parseInt(resizeVal, 10)) continue;
+          // if (imageWidth <= parseInt(resizeVal, 10)) continue;
 
-          // Fetch uploaded image's blob
-          const fetchBlob = await fetch(imageUrl)
-            .then((response) => {
-              return response.blob();
-            })
-            .then((blob) => {
-              return blob;
-            });
-
-          // Compress blob
-          const compressedBlob = await new Promise((resolve, reject) => {
-            new Compressor(fetchBlob, {
-              maxWidth: parseInt(resizeVal, 10),
-              success(result) {
-                resolve(result);
+          // Pass to API to tinify & resize
+          const compressedBlob = await fetch(
+            "https://rm-staging-2020.herokuapp.com/api/cors",
+            // "https://d170750931f6.ngrok.io/api/cors",
+            {
+              body: JSON.stringify({
+                imageUrl: imageUrl,
+                size: parseInt(resizeVal, 10),
+              }),
+              headers: {
+                "Content-Type": "application/json",
               },
-              error(err) {
-                console.log(err.message);
-              },
-            });
-          });
+              method: "POST",
+            }
+          ).then((response) => response.blob());
 
           // Upload compressed image to Sanity
           const uploadedDocument = await client.assets
