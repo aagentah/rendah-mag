@@ -41,6 +41,6 @@ export default async function handler(req, res) {
   // res.json({ blob });
   // res.sendFile('tmp/optimized.png');
 
-  res.setHeader('Content-Type', 'image/jpg');
-  res.send('tmp/optimized.png');
+  const buffer = fs.readFileSync('tmp/optimized.png');
+  res.send(buffer);
 }
