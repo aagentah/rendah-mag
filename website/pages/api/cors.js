@@ -38,7 +38,7 @@ export default async function handler(req, res) {
     // Send image
     res.send(buffer);
   } catch (error) {
-    console.log('error', error.msg);
+    console.log('error', error.message);
     return res.status(400).send('Error updating user', error.msg);
   }
 }
