@@ -39,5 +39,5 @@ export default async function handler(req, res) {
   // console.log('blob', blob);
   //
   // res.json({ blob });
-  res.sendFile(`${SITE_URL}/tmp/optimized.png`);
+  res.sendFile('tmp/optimized.png');
 }
