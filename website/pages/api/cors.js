@@ -20,25 +20,27 @@ export default async function handler(req, res) {
 
     tinify.key = process.env.TINIFY_KEY;
 
-    const { imageUrl, size } = req.body;
+    const { imageUrl, size, ref } = req.body;
     const source = tinify.fromUrl(imageUrl);
     const resized = source.resize({ method: 'scale', width: size });
-    const random500 = Math.floor(Math.random() * 501);
-    const filePath = `tmp/optimized-${random500}-${size}.png`;
 
     // Compress image
-    resized.toFile(filePath);
+    resized.toFile(`tmp/optimized-${ref}.png`);
 
     // Get compressed image
-    const buffer = fs.readFileSync(filePath);
+    const buffer = fs.readFileSync(`tmp/optimized-${ref}.png`);
 
     // Delete temp image
-    fs.unlinkSync(filePath);
+    try {
+      fs.unlinkSync(`tmp/optimized-${ref}.png`);
+    } catch (error) {
+      console.log('unlinkSync error:', error.message);
+    }
 
     // Send image
     res.send(buffer);
   } catch (error) {
-    console.log('error', error.message);
+    console.log('handler error:', error.message);
     return res.status(400).send('Error updating user', error.msg);
   }
 }
