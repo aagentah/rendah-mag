@@ -20,16 +20,16 @@ export default async function handler(req, res) {
   tinify.key = process.env.TINIFY_KEY;
 
   // const { imageUrl } = req.query;
-  const { imageUrl } = req.body;
+  const { imageUrl, size } = req.body;
   const source = tinify.fromUrl(imageUrl);
   const copyrighted = source.preserve('copyright', 'creation');
   const resized = copyrighted.resize({
     method: 'scale',
-    width: 10,
+    width: size,
   });
 
   // Tinify image
-  resized.toFile('tmp/optimized.jpg');
+  resized.toFile('tmp/optimized.png');
 
   // const blob = await fetch()
   //   .then((response) => response.blob())
@@ -39,5 +39,5 @@ export default async function handler(req, res) {
   // console.log('blob', blob);
   //
   // res.json({ blob });
-  res.sendFile(`${SITE_URL}/tmp/optimized.jpg`);
+  res.sendFile(`${SITE_URL}/tmp/optimized.png`);
 }
