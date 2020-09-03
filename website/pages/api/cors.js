@@ -20,22 +20,23 @@ export default async function handler(req, res) {
 
     tinify.key = process.env.TINIFY_KEY;
 
-    const { imageUrl, size, ref } = req.body;
+    const { imageUrl, size } = req.body;
     const source = tinify.fromUrl(imageUrl);
     const resized = source.resize({ method: 'scale', width: size });
+    const rand500 = Math.floor(Math.random() * 501);
 
     // Compress image
-    resized.toFile(`tmp/optimized-${ref}.png`);
+    await resized.toFile(`tmp/optimized-${rand500}.png`);
 
     // Get compressed image
-    const buffer = fs.readFileSync(`tmp/optimized-${ref}.png`);
+    const buffer = fs.readFileSync(`tmp/optimized-${rand500}.png`);
 
     // Send image
     res.send(buffer);
 
     // Delete temp image
     try {
-      fs.unlinkSync(`tmp/optimized-${ref}.png`);
+      fs.unlinkSync(`tmp/optimized-${rand500}.png`);
     } catch (error) {
       console.log('unlinkSync error:', error.message);
     }

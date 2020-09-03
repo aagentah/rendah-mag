@@ -20,7 +20,7 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "iamge",
+      name: "image",
       title: "Image",
       type: "image",
       fields: [
