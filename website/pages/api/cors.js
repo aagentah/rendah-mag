@@ -30,15 +30,15 @@ export default async function handler(req, res) {
     // Get compressed image
     const buffer = fs.readFileSync(`tmp/optimized-${ref}.png`);
 
+    // Send image
+    res.send(buffer);
+
     // Delete temp image
     try {
       fs.unlinkSync(`tmp/optimized-${ref}.png`);
     } catch (error) {
       console.log('unlinkSync error:', error.message);
     }
-
-    // Send image
-    res.send(buffer);
   } catch (error) {
     console.log('handler error:', error.message);
     return res.status(400).send('Error updating user', error.msg);
