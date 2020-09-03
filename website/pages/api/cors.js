@@ -14,32 +14,42 @@ const cors = initMiddleware(
 );
 
 export default async function handler(req, res) {
-  // Run cors
-  await cors(req, res);
+  try {
+    // Run cors
+    await cors(req, res);
 
-  tinify.key = process.env.TINIFY_KEY;
+    tinify.key = process.env.TINIFY_KEY;
 
-  // const { imageUrl } = req.query;
-  const { imageUrl, size } = req.body;
-  const source = tinify.fromUrl(imageUrl);
-  const resized = source.resize({
-    method: 'scale',
-    width: size,
-  });
+    // const { imageUrl } = req.query;
+    const { imageUrl, size } = req.body;
+    const source = tinify.fromUrl(imageUrl);
+    const resized = source.resize({
+      method: 'scale',
+      width: size,
+    });
 
-  // Tinify image
-  resized.toFile('tmp/optimized.png');
+    // Tinify image
+    resized.toFile('tmp/optimized.png');
 
-  // const blob = await fetch()
-  //   .then((response) => response.blob())
-  //   .then((blob) => blob);
-  //
-  // console.log('imageUrl', imageUrl);
-  // console.log('blob', blob);
-  //
-  // res.json({ blob });
-  // res.sendFile('tmp/optimized.png');
+    // const blob = await fetch()
+    //   .then((response) => response.blob())
+    //   .then((blob) => blob);
+    //
+    // console.log('imageUrl', imageUrl);
+    // console.log('blob', blob);
+    //
+    // res.json({ blob });
+    // res.sendFile('tmp/optimized.png');
 
-  const buffer = fs.readFileSync('tmp/optimized.png');
-  res.send(buffer);
+    const buffer = fs.readFileSync('tmp/optimized.png');
+
+    // Delete image
+    fs.unlinkSync('tmp/optimized.png');
+
+    // Send image
+    res.send(buffer);
+  } catch (error) {
+    console.log('error', error.msg);
+    return res.status(400).send('Error updating user', error.msg);
+  }
 }
