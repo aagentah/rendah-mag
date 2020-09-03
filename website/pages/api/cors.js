@@ -30,12 +30,13 @@ export default async function handler(req, res) {
   // Tinify image
   resized.toFile('tmp/optimized.jpg');
 
-  const blob = await fetch(`${SITE_URL}/tmp/optimized.jpg`)
-    .then((response) => response.blob())
-    .then((blob) => blob);
-
-  console.log('imageUrl', imageUrl);
-  console.log('blob', blob);
-
-  res.json({ blob });
+  // const blob = await fetch()
+  //   .then((response) => response.blob())
+  //   .then((blob) => blob);
+  //
+  // console.log('imageUrl', imageUrl);
+  // console.log('blob', blob);
+  //
+  // res.json({ blob });
+  res.sendFile(`${SITE_URL}/tmp/optimized.jpg`);
 }
