@@ -28,7 +28,7 @@ export default async function handler(req, res) {
   });
 
   // Tinify image
-  resized.toFile('/tmp/optimized.jpg');
+  resized.toFile('tmp/optimized.jpg');
 
   const blob = await fetch(`${SITE_URL}/tmp/optimized.jpg`)
     .then((response) => response.blob())
