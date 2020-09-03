@@ -59,12 +59,12 @@ export default function ProfileEdit({ customerOrders }) {
   }, []);
 
   useEffect(() => {
-    if (user.avatar) {
+    if (user?.avatar) {
       setAvatarImage(
         imageBuilder.image(user.avatar).height(500).width(500).url()
       );
     }
-  }, [user.avatar]);
+  }, [user?.avatar]);
 
   const mailchimpGetMember = async () => {
     const res = await fetch('/api/common/mailchimp/get-member', {
