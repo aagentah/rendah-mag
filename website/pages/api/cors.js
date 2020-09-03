@@ -20,31 +20,20 @@ export default async function handler(req, res) {
 
     tinify.key = process.env.TINIFY_KEY;
 
-    // const { imageUrl } = req.query;
     const { imageUrl, size } = req.body;
     const source = tinify.fromUrl(imageUrl);
-    const resized = source.resize({
-      method: 'scale',
-      width: size,
-    });
+    const resized = source.resize({ method: 'scale', width: size });
+    const random500 = Math.floor(Math.random() * 501);
+    const filePath = `tmp/optimized-${random500}-${size}.png`;
 
-    // Tinify image
-    resized.toFile('tmp/optimized.png');
+    // Compress image
+    resized.toFile(filePath);
 
-    // const blob = await fetch()
-    //   .then((response) => response.blob())
-    //   .then((blob) => blob);
-    //
-    // console.log('imageUrl', imageUrl);
-    // console.log('blob', blob);
-    //
-    // res.json({ blob });
-    // res.sendFile('tmp/optimized.png');
+    // Get compressed image
+    const buffer = fs.readFileSync(filePath);
 
-    const buffer = fs.readFileSync('tmp/optimized.png');
-
-    // Delete image
-    fs.unlinkSync('tmp/optimized.png');
+    // Delete temp image
+    fs.unlinkSync(filePath);
 
     // Send image
     res.send(buffer);
