@@ -22,8 +22,7 @@ export default async function handler(req, res) {
   // const { imageUrl } = req.query;
   const { imageUrl, size } = req.body;
   const source = tinify.fromUrl(imageUrl);
-  const copyrighted = source.preserve('copyright', 'creation');
-  const resized = copyrighted.resize({
+  const resized = source.resize({
     method: 'scale',
     width: size,
   });
