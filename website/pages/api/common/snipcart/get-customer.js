@@ -44,7 +44,11 @@ const getCustomer = async (req, res) => {
         method: 'GET',
       });
 
-      return order;
+      if (!order.ok) {
+        return null;
+      }
+
+      return await order.json();
     };
 
     const action = async () => {
@@ -65,16 +69,24 @@ const getCustomer = async (req, res) => {
       if (!orders) return false;
 
       // Fetch each order's details
-      const detailedOrders = [];
+      // const detailedOrders = [];
+      //
+      // for (let i = 0; i < orders.length; i += 1) {
+      //   const orderResponse = await ;
+      //
+      //   if (orderResponse.ok) {
+      //     const order = await orderResponse.json();
+      //     detailedOrders.push(order);
+      //   }
+      // }
+
+      const promises = [];
 
       for (let i = 0; i < orders.length; i += 1) {
-        const orderResponse = await fetchCustomerOrderByToken(orders[i].token);
-        if (!orderResponse.ok) continue;
-        const order = await orderResponse.json();
-        detailedOrders.push(order);
+        promises.push(fetchCustomerOrderByToken(orders[i].token));
       }
 
-      if (!detailedOrders.length > 0) return false;
+      const detailedOrders = await Promise.all(promises);
       return detailedOrders;
     };
 

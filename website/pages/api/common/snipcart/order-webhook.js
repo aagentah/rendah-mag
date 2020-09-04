@@ -40,12 +40,9 @@ export default async (req, res) => {
         }
       );
 
-      // Get response's JSON
-      const addOrUpdateMemberJson = await addOrUpdateMember.json();
-
       if (!addOrUpdateMember.ok) {
         // Error
-        throw new Error(addOrUpdateMemberJson);
+        throw new Error(await addOrUpdateMember.json());
       }
 
       // Add tags
@@ -77,12 +74,9 @@ export default async (req, res) => {
         }
       );
 
-      // Get response's JSON
-      const addMembertagsJson = await addMembertags.json();
-
       if (!addMembertags.ok) {
         // Error
-        throw new Error(addMembertagsJson);
+        throw new Error(addMembertags.json());
       }
     };
 
