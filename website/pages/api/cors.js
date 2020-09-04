@@ -39,7 +39,8 @@ export default async function handler(req, res) {
       }
     });
   } catch (error) {
-    console.log('handler error:', error.message);
-    return res.status(400).send('Error updating user', error.msg);
+    // Handle catch
+    // console.error(error.message || error.toString());
+    return res.status(500).json({ error: 'Error compressing image.' });
   }
 }
