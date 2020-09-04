@@ -28,13 +28,13 @@ export default async function handler(req, res) {
     await resized.toFile(`tmp/optimized.png`);
 
     // Send image
-    fs.readFile('tmp/optimized.png', function (err, file) {
+    fs.readFile('/tmp/optimized.png', function (err, file) {
       console.log('file', file);
       res.send(file);
 
       // Delete temp image
       try {
-        fs.unlinkSync(`tmp/optimized.png`);
+        fs.unlinkSync(`/tmp/optimized.png`);
       } catch (error) {
         console.log('unlinkSync error:', error.message);
       }
