@@ -40,8 +40,12 @@ export default async (req, res) => {
         }
       );
 
-      if (addOrUpdateMember.status >= 400) {
-        throw await addOrUpdateMember.json();
+      // Get response's JSON
+      const addOrUpdateMemberJson = await addOrUpdateMember.json();
+
+      if (!addOrUpdateMember.ok) {
+        // Error
+        throw new Error(addOrUpdateMemberJson);
       }
 
       // Add tags
@@ -73,8 +77,12 @@ export default async (req, res) => {
         }
       );
 
-      if (addMembertags.status >= 400) {
-        throw await addMembertags.json();
+      // Get response's JSON
+      const addMembertagsJson = await addMembertags.json();
+
+      if (!addMembertags.ok) {
+        // Error
+        throw new Error(addMembertagsJson);
       }
     };
 
@@ -122,7 +130,8 @@ export default async (req, res) => {
       return res.status(200).json({ error: '' });
     }
   } catch (error) {
-    console.error('error.message', error.message);
-    return res.status(200).json({ error: error.message });
+    // Handle catch
+    // console.error(error.message || error.toString());
+    return res.status(400).json({ error: 'Error fetching customer orders.' });
   }
 };
