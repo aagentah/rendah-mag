@@ -31,7 +31,7 @@ export default async (req, res) => {
     }
 
     // Success
-    return res.status(200).json(json);
+    return res.status(200).json({ error: '' });
   } catch (error) {
     // Handle catch
     // console.error(error.message || error.toString());

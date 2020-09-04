@@ -80,9 +80,7 @@ const getCustomer = async (req, res) => {
 
     // Handle response
     const response = await action();
-    if (response) return res.status(200).json(response);
-
-    throw new Error(response);
+    return res.status(200).json(response);
   } catch (error) {
     // Handle catch
     // console.error(error.message || error.toString());
