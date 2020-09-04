@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
-import { useToasts } from 'react-toast-notifications';
 import BlockContent from '@sanity/block-content-to-react';
 
 import { Heading, Button, Copy, Image } from 'next-pattern-library';
@@ -141,6 +140,4 @@ export default function ProfileCypher({ cyphers }) {
       />
     </div>
   );
-
-  return null;
 }

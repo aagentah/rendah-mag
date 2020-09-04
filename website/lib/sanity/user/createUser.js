@@ -2,7 +2,7 @@ import crypto from 'crypto';
 
 import client from '../config-write';
 
-export async function createUser(req, user) {
+const createUser = async (req, user) => {
   const salt = crypto.randomBytes(16).toString('hex');
   const hash = crypto
     .pbkdf2Sync(user.password, salt, 1000, 64, 'sha512')
@@ -22,4 +22,6 @@ export async function createUser(req, user) {
   });
 
   return data;
-}
+};
+
+export default createUser;

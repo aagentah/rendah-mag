@@ -1,4 +1,4 @@
-import { findUserByUsername } from '../../lib/sanity/user/findUserByUsername';
+import findUserByUsername from '../../lib/sanity/user/findUserByUsername';
 import promptEmailLogin from '../../lib/emails/promt-email-login';
 
 export default async (req, res) => {

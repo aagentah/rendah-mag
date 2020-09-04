@@ -3,15 +3,13 @@ import find from 'lodash/find';
 
 import { SNIPCART_SECRET_KEY } from '../../../../constants';
 
-export default async (req, res) => {
-  const { email } = req.body;
-  // const email = 'Goldtoofgarms@hotmail.com';
-
+const getCustomer = async (req, res) => {
   try {
+    const { email } = req.body;
     const secret = Buffer.from(SNIPCART_SECRET_KEY).toString('base64');
 
-    const fetchCustomers = async () =>
-      await fetch('http://app.snipcart.com/api/customers', {
+    const fetchCustomers = async () => {
+      const customers = await fetch('http://app.snipcart.com/api/customers', {
         headers: {
           Authorization: `Basic ${secret}`,
           Accept: 'application/json',
@@ -19,8 +17,26 @@ export default async (req, res) => {
         method: 'GET',
       });
 
-    const fetchCustomerOrdersById = async (id) =>
-      await fetch(`http://app.snipcart.com/api/customers/${id}/orders`, {
+      return customers;
+    };
+
+    const fetchCustomerOrdersById = async (id) => {
+      const orders = await fetch(
+        `http://app.snipcart.com/api/customers/${id}/orders`,
+        {
+          headers: {
+            Authorization: `Basic ${secret}`,
+            Accept: 'application/json',
+          },
+          method: 'GET',
+        }
+      );
+
+      return orders;
+    };
+
+    const fetchCustomerOrderByToken = async (token) => {
+      const order = await fetch(`http://app.snipcart.com/api/orders/${token}`, {
         headers: {
           Authorization: `Basic ${secret}`,
           Accept: 'application/json',
@@ -28,19 +44,13 @@ export default async (req, res) => {
         method: 'GET',
       });
 
-    const fetchCustomerOrderByToken = async (token) =>
-      await fetch(`http://app.snipcart.com/api/orders/${token}`, {
-        headers: {
-          Authorization: `Basic ${secret}`,
-          Accept: 'application/json',
-        },
-        method: 'GET',
-      });
+      return order;
+    };
 
     const action = async () => {
       // Fetch all customers
       const customersRes = await fetchCustomers();
-      if (customersRes.status >= 400) return false;
+      if (!customersRes.ok) return false;
       const customers = await customersRes.json();
 
       // Find customer based on email
@@ -50,16 +60,16 @@ export default async (req, res) => {
 
       // Fetch customer's orders based on Id
       const ordersRes = await fetchCustomerOrdersById(customer.id);
-      if (ordersRes.status >= 400) return false;
+      if (!ordersRes.ok) return false;
       const orders = await ordersRes.json();
       if (!orders) return false;
 
       // Fetch each order's details
       const detailedOrders = [];
 
-      for (let i = 0; i < orders.length; i++) {
+      for (let i = 0; i < orders.length; i += 1) {
         const orderResponse = await fetchCustomerOrderByToken(orders[i].token);
-        if (orderResponse.status >= 400) continue;
+        if (!orderResponse.ok) continue;
         const order = await orderResponse.json();
         detailedOrders.push(order);
       }
@@ -68,11 +78,14 @@ export default async (req, res) => {
       return detailedOrders;
     };
 
-    const response = await action();
-
     // Handle response
-    return response ? res.status(200).json(response) : res.status(400).json([]);
+    const response = await action();
+    if (response) return res.status(200).json(response);
+    throw new Error('response is null or undefined');
   } catch (error) {
-    return res.status(500).json([]);
+    console.error('Error in getCustomer(): ', error.message);
+    return res.status(400).json({ error: 'Error fetching customer orders.' });
   }
 };
+
+export default getCustomer;

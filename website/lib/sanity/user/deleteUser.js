@@ -1,6 +1,6 @@
 import client from '../config-write';
 
-export async function deleteUser(req, user) {
+const deleteUser = async (req, user) => {
   console.log('user', user);
 
   const data = await client
@@ -15,4 +15,6 @@ export async function deleteUser(req, user) {
     });
 
   return data;
-}
+};
+
+export default deleteUser;

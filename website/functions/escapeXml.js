@@ -1,6 +1,6 @@
-export default (unsafe) => {
-  return unsafe.replace(/[<>&'"]/g, function (c) {
-    switch (c) {
+const escapeXML = (unsafe) => {
+  const newChar = unsafe.replace(/[<>&'"]/g, (char) => {
+    switch (char) {
       case '<':
         return '&lt;';
       case '>':
@@ -11,6 +11,12 @@ export default (unsafe) => {
         return '&apos;';
       case '"':
         return '&quot;';
+      default:
+        return '';
     }
   });
+
+  return newChar;
 };
+
+export default escapeXML;

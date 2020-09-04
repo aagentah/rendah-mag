@@ -10,10 +10,10 @@ const apiInstance = new SibApiV3Sdk.SMTPApi();
 
 const sendinblue = (sendSmtpEmail) => {
   apiInstance.sendTransacEmail(sendSmtpEmail).then(
-    function (data) {
+    (data) => {
       return true;
     },
-    function (error) {
+    (error) => {
       console.error(error);
       return false;
     }

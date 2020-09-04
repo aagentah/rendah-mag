@@ -28,8 +28,8 @@ export default function ProfileOrders({ customerOrders }) {
             <div className="col-24  pa2">
               <div className="br3  pa3  shadow2  mb3">
                 <p className="t-secondary  f7  grey">{order.completionDate}</p>
-                {order.items.map((item, i) => (
-                  <div className="pv3">
+                {order.items.map((item) => (
+                  <div key={item.uniqueId} className="pv3">
                     <p className="t-primary  f5  black  pb3">{item.name}</p>
                     <div className="pl2">
                       <p className="t-secondary  f6  black  pb2">
