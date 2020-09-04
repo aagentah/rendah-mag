@@ -40,22 +40,22 @@ export default function Profile({ siteConfig }) {
   };
 
   const fetchCustomerOrders = async () => {
-    const res = await fetch('/api/common/snipcart/get-customer', {
-      body: JSON.stringify({
-        email: user.username,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    // Fetch orders
+    const response = await fetch('/api/common/snipcart/get-customer', {
+      body: JSON.stringify({ email: user.username }),
+      headers: { 'Content-Type': 'application/json' },
       method: 'POST',
     });
 
-    const resJSON = await res.json();
+    // Get response's JSON
+    const json = await response.json();
 
-    if (res.ok) {
-      setCustomerOrders(resJSON);
+    if (response.ok) {
+      // Success
+      setCustomerOrders(json);
     } else {
-      addToast(resJSON.error, {
+      // Error
+      addToast(json.error, {
         appearance: 'error',
         autoDismiss: true,
       });
@@ -63,21 +63,35 @@ export default function Profile({ siteConfig }) {
     }
   };
 
+  // Set the user to Dominion in CMS
   async function setUserIsDominion(dominionStartDate) {
     const body = {
       isDominion: true,
       dominionSince: dominionStartDate.split('T')[0],
     };
 
-    const res = await fetch('../api/user', {
+    // Put to user API
+    const response = await fetch('../api/user', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
 
-    if (res.status === 200) {
-      const updatedUser = await res.json();
-      mutate(updatedUser);
+    // Get response's JSON
+    const json = await response.json();
+
+    if (response.ok) {
+      // Success
+      mutate(json);
+    } else {
+      // Error
+      addToast(
+        'There was an issue adding you to the Dominion, please contact support right away.',
+        {
+          appearance: 'error',
+          autoDismiss: true,
+        }
+      );
     }
   }
 

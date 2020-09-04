@@ -67,7 +67,8 @@ export default function ProfileEdit({ customerOrders }) {
   }, [user?.avatar]);
 
   const mailchimpGetMember = async () => {
-    const res = await fetch('/api/common/mailchimp/get-member', {
+    // Fetch mailchimp member
+    const response = await fetch('/api/common/mailchimp/get-member', {
       body: JSON.stringify({
         email: user.username,
       }),
@@ -77,10 +78,14 @@ export default function ProfileEdit({ customerOrders }) {
       method: 'POST',
     });
 
-    if (res.status === 200) {
-      const mailchimpMember = await res.json();
+    // Get response's JSON
+    const json = await response.json();
+
+    if (response.ok) {
+      // Success
       setIsSubNewsletter('Subscribed');
     } else {
+      // Error
       setIsSubNewsletter('Not Subscribed');
     }
   };
@@ -136,21 +141,26 @@ export default function ProfileEdit({ customerOrders }) {
     dispatch({ type: 'TOGGLE_LOADING' });
     setUpdateButtonLoading(true);
 
-    const res = await fetch('../api/user', {
+    // Update user
+    const response = await fetch('../api/user', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
 
-    if (res.status === 200) {
-      const updatedUser = await res.json();
-      mutate(updatedUser);
+    // Get response's JSON
+    const json = await response.json();
+
+    if (response.ok) {
+      // Success
+      mutate(json);
       addToast('Successfully updated', {
         appearance: 'success',
         autoDismiss: true,
       });
     } else {
-      addToast('Error whilst updating, try again.', {
+      // Error
+      addToast('Error whilst updating, try again, or a different browser.', {
         appearance: 'error',
         autoDismiss: true,
       });

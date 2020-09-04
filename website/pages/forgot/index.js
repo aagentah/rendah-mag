@@ -17,19 +17,24 @@ export default function Forgot({ siteConfig }) {
       username: e.currentTarget.username.value,
     };
 
-    const res = await fetch('../api/forgot', {
+    // Post to forgot API
+    const response = await fetch('../api/forgot', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
 
-    if (res.status === 200) {
-      await res.json();
+    // Get response's JSON
+    const json = await response.json();
+
+    if (response.ok) {
+      // Success
       addToast("We've sent you an email with some instructions", {
         appearance: 'info',
         autoDismiss: true,
       });
     } else {
+      // Error
       addToast(
         'Something went wrong, are you sure you used the correct email?',
         {
