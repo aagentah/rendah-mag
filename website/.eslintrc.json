@@ -38,6 +38,7 @@
     "no-underscore-dangle": "off",
     "new-cap": "off",
     "react/jsx-one-expression-per-line": "off",
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "no-unused-vars": "off"
   }
 }

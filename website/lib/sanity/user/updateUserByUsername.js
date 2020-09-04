@@ -8,23 +8,27 @@ import client from '../config-write';
 import { SITE_URL } from '../../../constants';
 
 const handlePassword = (cloneFields) => {
+  const f = cloneFields;
+
   const salt = crypto.randomBytes(16).toString('hex');
   const hash = crypto
-    .pbkdf2Sync(cloneFields.password, salt, 1000, 64, 'sha512')
+    .pbkdf2Sync(f.password, salt, 1000, 64, 'sha512')
     .toString('hex');
 
-  cloneFields.salt = salt;
-  cloneFields.hash = hash;
+  f.salt = salt;
+  f.hash = hash;
 
-  delete cloneFields.password;
-  return cloneFields;
+  delete f.password;
+  return f;
 };
 
 const handleAvatar = async (cloneFields, user) => {
   tinify.key = process.env.TINIFY_KEY;
 
+  const f = cloneFields;
+
   const writeFile = promisify(fs.writeFile);
-  const image64 = cloneFields.avatar.replace(/^data:image\/png;base64,/, '');
+  const image64 = f.avatar.replace(/^data:image\/[a-z]+;base64,/, '');
   await writeFile('tmp/image.png', image64, 'base64');
   const source = tinify.fromFile('tmp/image.png');
   const resized = source.resize({
@@ -47,7 +51,7 @@ const handleAvatar = async (cloneFields, user) => {
       },
     };
 
-    return await client
+    const patchUserWithImage = await client
       .patch(user._id)
       .set(avatarProps)
       .commit()
@@ -59,6 +63,8 @@ const handleAvatar = async (cloneFields, user) => {
         console.error('Oh no, the image update failed: ', err.message);
         return false;
       });
+
+    return patchUserWithImage;
   };
 
   // Upload compressed image to Sanity
@@ -74,11 +80,11 @@ const handleAvatar = async (cloneFields, user) => {
       console.error('Upload failed:', error.message);
     });
 
-  delete cloneFields.avatar;
-  return cloneFields;
+  delete f.avatar;
+  return f;
 };
 
-export async function updateUserByUsername(req, user, fields) {
+const updateUserByUsername = async (req, user, fields) => {
   try {
     // Clone the fields object
     let cloneFields = cloneDeep(fields);
@@ -92,8 +98,6 @@ export async function updateUserByUsername(req, user, fields) {
     if (cloneFields?.avatar) {
       cloneFields = await handleAvatar(cloneFields, user);
     }
-
-    console.log('cloneFields', cloneFields);
 
     // Update user
     const data = await client
@@ -111,7 +115,9 @@ export async function updateUserByUsername(req, user, fields) {
 
     return data;
   } catch (error) {
-    console.log(error.message);
-    return res.status(400).send('Error updating user');
+    console.log('Error', error.message);
+    return false;
   }
-}
+};
+
+export default updateUserByUsername;

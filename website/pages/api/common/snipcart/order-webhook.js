@@ -99,7 +99,7 @@ export default async (req, res) => {
 
       let isSubscription = false;
 
-      for (let i = 0; i < items.length; i++) {
+      for (let i = 0; i < items.length; i += 1) {
         const item = items[i];
 
         // Send subscription email

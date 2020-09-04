@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
+import { useToasts } from 'react-toast-notifications';
 
 import { Tabs } from 'next-pattern-library';
 
@@ -20,6 +21,7 @@ import {
 } from '../../lib/sanity/requests';
 
 export default function Profile({ siteConfig }) {
+  const { addToast } = useToasts();
   const [user, { loading, mutate, error }] = useUser();
   const [cyphers, setCyphers] = useState(null);
   const [customerOrders, setCustomerOrders] = useState(null);
@@ -48,9 +50,15 @@ export default function Profile({ siteConfig }) {
       method: 'POST',
     });
 
-    if (res.status === 200) {
-      setCustomerOrders(await res.json());
+    const resJSON = await res.json();
+
+    if (res.ok) {
+      setCustomerOrders(resJSON);
     } else {
+      addToast(resJSON.error, {
+        appearance: 'error',
+        autoDismiss: true,
+      });
       setCustomerOrders([]);
     }
   };

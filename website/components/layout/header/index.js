@@ -347,7 +347,7 @@ export default function Header({ navOnWhite, meta }) {
         }  bg-almost-white  justify-center  align-center  df  dn-md`}
       >
         <div className="flex  flex-wrap">
-          <button className="header__burger" onClick={toggleNav} role="button">
+          <button className="header__burger" onClick={toggleNav} type="button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -413,7 +413,7 @@ export default function Header({ navOnWhite, meta }) {
             <button
               className="absolute  top  right  mt3  mr3"
               onClick={toggleNav}
-              role="button"
+              type="button"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

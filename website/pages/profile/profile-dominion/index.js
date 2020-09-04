@@ -151,7 +151,7 @@ export default function ProfileDominion({ dominionItems, user }) {
 
                   <div className="flex  flex-wrap  pb3">
                     {item?.tags &&
-                      item.tags.map((tag, i) => (
+                      item.tags.map((tag) => (
                         <div key={tag} className="mr2  mb3">
                           <Label
                             /* Options */
