@@ -27,9 +27,8 @@ export default async function handler(req, res) {
     // Compress image
     await resized.toFile(`tmp/optimized.png`);
 
-    // Send image
     fs.readFile('tmp/optimized.png', function (err, file) {
-      console.log('file', file);
+      // Send image
       res.send(file);
 
       // Delete temp image
