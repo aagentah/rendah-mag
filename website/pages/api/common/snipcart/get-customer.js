@@ -81,9 +81,11 @@ const getCustomer = async (req, res) => {
     // Handle response
     const response = await action();
     if (response) return res.status(200).json(response);
-    throw new Error('response is null or undefined');
+
+    throw new Error(response);
   } catch (error) {
-    console.error('Error in getCustomer(): ', error.message);
+    // Handle catch
+    // console.error(error.message || error.toString());
     return res.status(400).json({ error: 'Error fetching customer orders.' });
   }
 };

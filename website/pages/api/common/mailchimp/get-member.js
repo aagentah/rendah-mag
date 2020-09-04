@@ -2,17 +2,12 @@ import fetch from 'isomorphic-unfetch';
 import md5 from 'js-md5';
 
 export default async (req, res) => {
-  const { email } = req.body;
-
-  if (!email) {
-    return res.status(400).json({ error: 'Email is required' });
-  }
-
-  const emailHashed = md5(email.toLowerCase());
-
   try {
+    const { email } = req.body;
+    const emailHashed = md5(email.toLowerCase());
     const DATACENTER = process.env.MAILCHIMP_API_KEY.split('-')[1];
 
+    // Fetch mailchimp member
     const response = await fetch(
       `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}`,
       {
@@ -24,14 +19,19 @@ export default async (req, res) => {
       }
     );
 
-    if (response.status >= 400) {
-      return res.status(400).json({
-        error: 'There was an error. Try again later.',
-      });
-    }
+    // Get response's JSON
+    const json = await response.json();
 
-    return res.status(200).json(await response.json());
+    if (response.ok) {
+      // Success
+      return res.status(200).json(json);
+    } else {
+      // Error
+      throw new Error('');
+    }
   } catch (error) {
-    return res.status(500).json({ error: error.message || error.toString() });
+    // Handle catch
+    // console.error(error.message || error.toString());
+    return res.status(500).json({ error: 'Error fetching mailchimp member.' });
   }
 };

@@ -22,16 +22,21 @@ export default function Login({ siteConfig }) {
       password: `${router.query.salt}:${router.query.hash}`,
     };
 
-    const res = await fetch('../api/login', {
+    // Post to log in API
+    const response = await fetch('../api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
 
-    if (res.status === 200) {
-      const userObj = await res.json();
-      mutate(userObj);
+    // Get response's JSON
+    const json = await response.json();
+
+    if (response.ok) {
+      // Success
+      mutate(json);
     } else {
+      // Error
       addToast(
         'Something went wrong, please try again, or a different browser?',
         {
@@ -50,16 +55,21 @@ export default function Login({ siteConfig }) {
       password: e.currentTarget.password.value,
     };
 
-    const res = await fetch('../api/login', {
+    // Post to log in API
+    const response = await fetch('../api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
 
-    if (res.status === 200) {
-      const userObj = await res.json();
-      mutate(userObj);
+    // Get response's JSON
+    const json = await response.json();
+
+    if (response.ok) {
+      // Success
+      mutate(json);
     } else {
+      // Error
       addToast(
         'Something went wrong, have you used the correct Username/Password?',
         {
