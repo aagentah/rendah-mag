@@ -18,7 +18,7 @@ export default function Post({ siteConfig, allProducts }) {
   const uniqueCollectionNames = uniqBy(collectionNames, 'collection');
   const collectionGroups = [];
 
-  for (let i = 0; i < uniqueCollectionNames.length; i++) {
+  for (let i = 0; i < uniqueCollectionNames.length; i += 1) {
     const products = filter(allProducts, {
       collection: uniqueCollectionNames[i],
     });
@@ -64,9 +64,7 @@ export default function Post({ siteConfig, allProducts }) {
           {collectionGroups.length === 0 && (
             <section className="pb3">
               <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-                - No Results for &quot;
-                {params.slug}
-                &quot;
+                No collections found.
               </h2>
             </section>
           )}

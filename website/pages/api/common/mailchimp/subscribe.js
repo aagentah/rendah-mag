@@ -22,12 +22,9 @@ export default async (req, res) => {
       }
     );
 
-    // Get response's JSON
-    const json = await response.json();
-
     // Error
     if (!response.ok) {
-      throw new Error(json);
+      throw new Error(await response.json());
     }
 
     // Success

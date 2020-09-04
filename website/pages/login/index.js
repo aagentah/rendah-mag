@@ -29,12 +29,9 @@ export default function Login({ siteConfig }) {
       body: JSON.stringify(body),
     });
 
-    // Get response's JSON
-    const json = await response.json();
-
     if (response.ok) {
       // Success
-      mutate(json);
+      mutate(await response.json());
     } else {
       // Error
       addToast(
@@ -62,12 +59,9 @@ export default function Login({ siteConfig }) {
       body: JSON.stringify(body),
     });
 
-    // Get response's JSON
-    const json = await response.json();
-
     if (response.ok) {
       // Success
-      mutate(json);
+      mutate(await response.json());
     } else {
       // Error
       addToast(

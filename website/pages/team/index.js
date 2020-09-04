@@ -38,9 +38,7 @@ export default function Post({ siteConfig, allTeam }) {
         {allTeam.length === 0 && (
           <section className="pb3">
             <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-              - No Results for &quot;
-              {params.slug}
-              &quot;
+              No team found.
             </h2>
           </section>
         )}

@@ -31,23 +31,26 @@ export default function ProfileEdit({ customerOrders }) {
   const [avatarBlob, setAvatarBlob] = useState(null);
   const [avatarImage, setAvatarImage] = useState(null);
 
-  const onDrop = useCallback((acceptedFiles) => {
-    setAvatarModalActive(false);
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      setAvatarModalActive(false);
 
-    addToast(`To save your image, make sure to hit Update.`, {
-      appearance: 'info',
-      autoDismiss: true,
-    });
+      addToast(`To save your image, make sure to hit Update.`, {
+        appearance: 'info',
+        autoDismiss: true,
+      });
 
-    if (acceptedFiles.length > 0) {
-      const file = acceptedFiles[0];
-      const reader = new FileReader();
+      if (acceptedFiles.length > 0) {
+        const file = acceptedFiles[0];
+        const reader = new FileReader();
 
-      setAvatarImage(URL.createObjectURL(file));
-      reader.readAsDataURL(file);
-      reader.onload = () => setAvatarBlob(reader.result);
-    }
-  }, []);
+        setAvatarImage(URL.createObjectURL(file));
+        reader.readAsDataURL(file);
+        reader.onload = () => setAvatarBlob(reader.result);
+      }
+    },
+    [setAvatarModalActive, addToast]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     multiple: false,
@@ -55,8 +58,29 @@ export default function ProfileEdit({ customerOrders }) {
   });
 
   useEffect(() => {
+    const mailchimpGetMember = async () => {
+      // Fetch mailchimp member
+      const response = await fetch('/api/common/mailchimp/get-member', {
+        body: JSON.stringify({
+          email: user.username,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      });
+
+      if (response.ok) {
+        // Success
+        setIsSubNewsletter('Subscribed');
+      } else {
+        // Error
+        setIsSubNewsletter('Not Subscribed');
+      }
+    };
+
     mailchimpGetMember();
-  }, []);
+  }, [user.username]);
 
   useEffect(() => {
     if (user?.avatar) {
@@ -64,31 +88,7 @@ export default function ProfileEdit({ customerOrders }) {
         imageBuilder.image(user.avatar).height(500).width(500).url()
       );
     }
-  }, [user?.avatar]);
-
-  const mailchimpGetMember = async () => {
-    // Fetch mailchimp member
-    const response = await fetch('/api/common/mailchimp/get-member', {
-      body: JSON.stringify({
-        email: user.username,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    });
-
-    // Get response's JSON
-    const json = await response.json();
-
-    if (response.ok) {
-      // Success
-      setIsSubNewsletter('Subscribed');
-    } else {
-      // Error
-      setIsSubNewsletter('Not Subscribed');
-    }
-  };
+  }, [user.avatar]);
 
   async function handleEditProfile(e) {
     e.preventDefault();
@@ -148,12 +148,9 @@ export default function ProfileEdit({ customerOrders }) {
       body: JSON.stringify(body),
     });
 
-    // Get response's JSON
-    const json = await response.json();
-
     if (response.ok) {
       // Success
-      mutate(json);
+      mutate(await response.json());
       addToast('Successfully updated', {
         appearance: 'success',
         autoDismiss: true,

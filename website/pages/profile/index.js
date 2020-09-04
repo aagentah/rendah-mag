@@ -47,15 +47,12 @@ export default function Profile({ siteConfig }) {
       method: 'POST',
     });
 
-    // Get response's JSON
-    const json = await response.json();
-
     if (response.ok) {
       // Success
-      setCustomerOrders(json);
+      setCustomerOrders(await response.json());
     } else {
       // Error
-      addToast(json.error, {
+      addToast(await response.json().error, {
         appearance: 'error',
         autoDismiss: true,
       });
@@ -77,12 +74,9 @@ export default function Profile({ siteConfig }) {
       body: JSON.stringify(body),
     });
 
-    // Get response's JSON
-    const json = await response.json();
-
     if (response.ok) {
       // Success
-      mutate(json);
+      mutate(await response.json());
     } else {
       // Error
       addToast(
@@ -111,23 +105,23 @@ export default function Profile({ siteConfig }) {
     if (user?.isDominion) return;
 
     if (user && customerOrders?.length) {
-      for (let i = 0; i < customerOrders.length; i++) {
+      for (let i = 0; i < customerOrders.length; i += 1) {
         const order = customerOrders[i];
         const orderItems = order.items;
 
-        if (!orderItems.length) continue;
+        if (orderItems.length) {
+          for (let ii = 0; ii < orderItems.length; ii += 1) {
+            const item = orderItems[ii];
 
-        for (let ii = 0; ii < orderItems.length; ii++) {
-          const item = orderItems[ii];
-
-          if (item.id === 'dominion-subscription') {
-            const dominionStartDate = item.addedOn;
-            setUserIsDominion(dominionStartDate);
+            if (item.id === 'dominion-subscription') {
+              const dominionStartDate = item.addedOn;
+              setUserIsDominion(dominionStartDate);
+            }
           }
         }
       }
     }
-  }, [customerOrders]);
+  }, [customerOrders, setUserIsDominion]);
 
   useEffect(() => {
     // redirect user to login if not authenticated

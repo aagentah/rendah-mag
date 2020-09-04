@@ -25,7 +25,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 
   useEffect(() => {
     if (!router.isFallback && !post?.slug) Router.push('/404');
-  }, [router.isFallback, post?.slug]);
+  }, [router.isFallback, post.slug]);
 
   if (router.isFallback) return <p>Loading...</p>;
 

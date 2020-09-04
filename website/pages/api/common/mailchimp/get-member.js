@@ -19,16 +19,13 @@ export default async (req, res) => {
       }
     );
 
-    // Get response's JSON
-    const json = await response.json();
-
     // Error
     if (!response.ok) {
-      throw new Error(json);
+      throw new Error(await response.json());
     }
 
     // Success
-    return res.status(200).json(json);
+    return res.status(200).json(await response.json());
   } catch (error) {
     // Handle catch
     // console.error(error.message || error.toString());

@@ -24,9 +24,6 @@ export default function Forgot({ siteConfig }) {
       body: JSON.stringify(body),
     });
 
-    // Get response's JSON
-    const json = await response.json();
-
     if (response.ok) {
       // Success
       addToast("We've sent you an email with some instructions", {
