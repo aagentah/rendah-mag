@@ -120,9 +120,9 @@ export default async (req, res) => {
         address,
         isSubscription
       );
-
-      return res.status(200).json({ error: '' });
     }
+
+    return res.status(200).json({ error: '' });
   } catch (error) {
     // Handle catch
     // console.error(error.message || error.toString());
