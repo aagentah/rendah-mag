@@ -6,10 +6,10 @@
   },
   "scripts": {
     "dev": "next",
+    "dev-ngrok": "next & ngrok http 3000",
     "build": "next build",
     "prestart": "next build",
     "start": "next start -p $PORT",
-    "ngrok": "ngrok http 3000",
     "lint": "eslint '**/*.js'; exit 0",
     "lint-fix": "eslint --fix '**/*.js'; exit 0",
     "heroku-postbuild": "npm run build"
