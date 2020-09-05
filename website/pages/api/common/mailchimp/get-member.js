@@ -28,7 +28,7 @@ export default async (req, res) => {
     return res.status(200).json(await response.json());
   } catch (error) {
     // Handle catch
-    // console.error(error.message || error.toString());
+    console.error(error.message || error.toString());
     return res.status(500).json({ error: 'Error fetching mailchimp member.' });
   }
 };
