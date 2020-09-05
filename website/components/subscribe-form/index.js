@@ -17,7 +17,7 @@ export default function SubscribeForm() {
     e.preventDefault();
     dispatch({ type: 'TOGGLE_LOADING' });
 
-    const res = await fetch('/api/common/subscribe', {
+    const res = await fetch('/api/subscribe', {
       body: JSON.stringify({
         email: inputEl.current.value,
       }),

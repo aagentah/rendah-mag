@@ -15,7 +15,7 @@ export default function ProfileOrders() {
   useEffect(() => {
     const fetchCustomerOrders = async () => {
       // Fetch orders
-      const response = await fetch('/api/common/snipcart/get-customer', {
+      const response = await fetch('/api/snipcart/get-customer', {
         body: JSON.stringify({ email: user.username }),
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
