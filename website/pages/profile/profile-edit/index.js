@@ -96,7 +96,7 @@ export default function ProfileEdit() {
     e.preventDefault();
 
     const body = {
-      email: e.currentTarget.username.value,
+      username: e.currentTarget.username.value,
       name: e.currentTarget.name.value,
     };
 
