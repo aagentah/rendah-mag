@@ -273,17 +273,26 @@ export default function ProfileEdit() {
           size="medium"
           active={avatarModalActive}
         >
-          <div className="pb4">
+          <div className="pb3">
             <Heading
               /* Options */
               htmlEntity="h1"
-              text="Update Avatar"
+              text="Choose Profile Picture"
               color="black"
               size="large"
               truncate={0}
               onClick={null}
               /* Children */
               withLinkProps={null}
+            />
+          </div>
+          <div className="pb4">
+            <Copy
+              /* Options */
+              text="Recomended square & at least 720px."
+              color="black"
+              size="medium"
+              truncate={null}
             />
           </div>
           <div className="pb4">
