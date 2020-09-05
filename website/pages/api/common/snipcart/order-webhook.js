@@ -125,7 +125,7 @@ export default async (req, res) => {
     return res.status(200).json({ error: '' });
   } catch (error) {
     // Handle catch
-    // console.error(error.message || error.toString());
+    console.error(error.message || error.toString());
     return res.status(400).json({ error: 'Error fetching customer orders.' });
   }
 };
