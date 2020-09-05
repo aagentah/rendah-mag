@@ -61,6 +61,7 @@ const getCustomer = async (req, res) => {
       }
 
       const customers = await customersRes.json();
+      console.log('customers', customers);
       if (!customers.items) return [];
 
       // Find customer based on email
@@ -75,6 +76,7 @@ const getCustomer = async (req, res) => {
       }
 
       const orders = await ordersRes.json();
+      console.log('orders', orders);
       if (!orders?.length) return [];
 
       const promises = [];
@@ -84,6 +86,7 @@ const getCustomer = async (req, res) => {
       }
 
       const detailedOrders = await Promise.all(promises);
+      console.log('detailedOrders', detailedOrders);
       return detailedOrders;
     };
 
