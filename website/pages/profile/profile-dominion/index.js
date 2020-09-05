@@ -14,15 +14,33 @@ import {
   Label,
 } from 'next-pattern-library';
 
-import { imageBuilder } from '../../../lib/sanity/requests';
+import { useUser } from '../../../lib/hooks';
+import setCharAt from '../../../functions/setCharAt';
 
-export default function ProfileDominion({ dominionItems, user }) {
+import {
+  imageBuilder,
+  getDominionItemsSinceDate,
+} from '../../../lib/sanity/requests';
+
+export default function ProfileDominion() {
+  const [user, { loading, mutate, error }] = useUser();
   const [modalActive, setModalActive] = useState(null);
-
-  console.log('dominionItems', dominionItems);
-  console.log('user', user);
+  const [dominionItems, setDominionItems] = useState(null);
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
+
+  // Fetch dominion items
+  useEffect(() => {
+    const fetchDominionItems = async () => {
+      let sinceStartOfMonth = user?.dominionSince.split('T')[0];
+      sinceStartOfMonth = setCharAt(sinceStartOfMonth, 8, '0');
+      sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
+
+      setDominionItems(await getDominionItemsSinceDate(sinceStartOfMonth));
+    };
+
+    if (user?.isDominion) fetchDominionItems();
+  }, [user]);
 
   if (dominionItems?.length) {
     return (
@@ -200,20 +218,16 @@ export default function ProfileDominion({ dominionItems, user }) {
   }
 
   return (
-    <section>
-      <div className="pb4">
-        <Heading
-          /* Options */
-          htmlEntity="h1"
-          text="You are not in the Dominion."
-          color="black"
-          size="medium"
-          truncate={null}
-          reveal={null}
-          /* Children */
-          withLinkProps={null}
-        />
-      </div>
-    </section>
+    <Heading
+      /* Options */
+      htmlEntity="h1"
+      text="You are not in the Dominion."
+      color="black"
+      size="medium"
+      truncate={null}
+      reveal={null}
+      /* Children */
+      withLinkProps={null}
+    />
   );
 }
