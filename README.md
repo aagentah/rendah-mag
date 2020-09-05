@@ -80,6 +80,7 @@
 - IRON_PASSWORD=some_not_random_password_that_is_at_least_32_characters
 - NODE_MODULES_CACHE=false
 - PROJECT_PATH=website
+- NEXT_TELEMETRY_DISABLED=1
 
 #### Heroku Buildpacks (In order)
 
