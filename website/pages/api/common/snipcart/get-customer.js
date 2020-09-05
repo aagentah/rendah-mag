@@ -61,11 +61,11 @@ const getCustomer = async (req, res) => {
       }
 
       const customers = await customersRes.json();
-      if (!customers.items) return res.status(200).json([]);
+      if (!customers.items) return [];
 
       // Find customer based on email
       const customer = find(customers.items, { email });
-      if (!customer) return res.status(200).json([]);
+      if (!customer) return [];
 
       // Fetch customer's orders based on Id
       const ordersRes = await fetchCustomerOrdersById(customer.id);
@@ -75,7 +75,7 @@ const getCustomer = async (req, res) => {
       }
 
       const orders = await ordersRes.json();
-      if (!orders?.length) return res.status(200).json([]);
+      if (!orders?.length) return [];
 
       const promises = [];
 
