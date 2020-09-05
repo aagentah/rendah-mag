@@ -13,7 +13,7 @@ const cors = initMiddleware(
   })
 );
 
-export default async function handler(req, res) {
+const handler = async (req, res) => {
   try {
     // Run cors
     await cors(req, res);
@@ -27,20 +27,23 @@ export default async function handler(req, res) {
     // Compress image
     await resized.toFile(`tmp/optimized.png`);
 
-    fs.readFile('tmp/optimized.png', function (err, file) {
-      // Send image
-      res.send(file);
+    // Write to temporary folder
+    const file = fs.readFileSync('tmp/optimized.png');
 
-      // Delete temp image
-      try {
-        fs.unlinkSync(`tmp/optimized.png`);
-      } catch (error) {
-        console.log('unlinkSync error:', error.message);
-      }
-    });
+    // Delete temp image
+    try {
+      fs.unlinkSync('tmp/optimized.png');
+    } catch (error) {
+      console.log('unlinkSync error:', error.message);
+    }
+
+    // Send image
+    return res.send(file);
   } catch (error) {
     // Handle catch
     // console.error(error.message || error.toString());
     return res.status(500).json({ error: 'Error compressing image.' });
   }
-}
+};
+
+export default handler;

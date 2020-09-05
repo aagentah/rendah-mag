@@ -48,7 +48,8 @@ const getCustomer = async (req, res) => {
         return null;
       }
 
-      return await order.json();
+      const json = await order.json();
+      return json;
     };
 
     const action = async () => {
