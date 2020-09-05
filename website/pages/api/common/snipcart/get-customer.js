@@ -55,31 +55,27 @@ const getCustomer = async (req, res) => {
     const action = async () => {
       // Fetch all customers
       const customersRes = await fetchCustomers();
-      if (!customersRes.ok) return false;
+
+      if (!customersRes.ok) {
+        throw new Error(await customersRes.json());
+      }
+
       const customers = await customersRes.json();
+      if (!customers.items) return res.status(200).json([]);
 
       // Find customer based on email
-      if (!customers.items) return false;
       const customer = find(customers.items, { email });
-      if (!customer?.id) return false;
+      if (!customer) return res.status(200).json([]);
 
       // Fetch customer's orders based on Id
       const ordersRes = await fetchCustomerOrdersById(customer.id);
-      if (!ordersRes.ok) return false;
-      const orders = await ordersRes.json();
-      if (!orders) return false;
 
-      // Fetch each order's details
-      // const detailedOrders = [];
-      //
-      // for (let i = 0; i < orders.length; i += 1) {
-      //   const orderResponse = await ;
-      //
-      //   if (orderResponse.ok) {
-      //     const order = await orderResponse.json();
-      //     detailedOrders.push(order);
-      //   }
-      // }
+      if (!ordersRes.ok) {
+        throw new Error(await ordersRes.json());
+      }
+
+      const orders = await ordersRes.json();
+      if (!orders?.length) return res.status(200).json([]);
 
       const promises = [];
 
