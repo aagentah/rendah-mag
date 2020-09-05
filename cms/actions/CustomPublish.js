@@ -39,8 +39,8 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
 
           // Pass to API to tinify & resize
           const compressedBlob = await fetch(
-            // "https://rm-staging-2020.herokuapp.com/api/cors",
-            "http://89b202c98ef2.ngrok.io/api/cors",
+            "https://rm-staging-2020.herokuapp.com/api/cors",
+            // "http://89b202c98ef2.ngrok.io/api/cors",
             {
               body: JSON.stringify({
                 imageUrl: imageUrl,
