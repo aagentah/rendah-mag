@@ -60,7 +60,7 @@ export default function ProfileEdit() {
   useEffect(() => {
     const mailchimpGetMember = async () => {
       // Fetch mailchimp member
-      const response = await fetch('/api/common/mailchimp/get-member', {
+      const response = await fetch('/api/mailchimp/get-member', {
         body: JSON.stringify({
           email: user.username,
         }),
