@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { getAllPosts, getAllProducts } from '../lib/sanity/requests';
-import { SITE_URL } from '../constants';
+import { getAllPosts, getAllProducts } from '~/lib/sanity/requests';
+import { SITE_URL } from '~/constants';
 
 const sitemapXml = (allPosts, allProducts) => {
   let postsXML = '';

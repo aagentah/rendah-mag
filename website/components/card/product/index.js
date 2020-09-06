@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
-import { imageBuilder } from '../../../lib/sanity/requests';
+import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function CardDefault({ product }) {
   const cardImage = (

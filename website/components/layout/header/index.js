@@ -8,7 +8,7 @@ import HeaderDesktop from './desktop';
 import HeaderMobile from './mobile';
 
 import { useApp } from '../../../context-provider/app';
-import { useUser } from '../../../lib/hooks';
+import { useUser } from '~/lib/hooks';
 
 export default function Header({ navOnWhite, meta }) {
   const app = useApp();

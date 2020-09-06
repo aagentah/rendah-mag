@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { getAllPosts } from '../../lib/sanity/requests';
-import { SITE_URL } from '../../constants';
+import { getAllPosts } from '~/lib/sanity/requests';
+import { SITE_URL } from '~/constants';
 
 // Removes special characters that may break the RSS
 const encodeSpecialChar = (text) => {

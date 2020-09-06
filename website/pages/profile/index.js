@@ -8,11 +8,11 @@ import ProfileEdit from './profile-edit';
 import ProfileCypher from './profile-cypher';
 import ProfileOrders from './profile-orders';
 import ProfileDominion from './profile-dominion';
-import Layout from '../../components/layout';
-import Container from '../../components/layout/container';
+import Layout from '~/components/layout';
+import Container from '~/components/layout/container';
 
-import { useUser } from '../../lib/hooks';
-import { getSiteConfig } from '../../lib/sanity/requests';
+import { useUser } from '~/lib/hooks';
+import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Profile({ siteConfig }) {
   const { addToast } = useToasts();

@@ -5,7 +5,7 @@ import { Parallax } from 'react-scroll-parallax';
 
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
-import { imageBuilder } from '../../../lib/sanity/requests';
+import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function HeroPost({ post }) {
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;

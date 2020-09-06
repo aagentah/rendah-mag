@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 import md5 from 'js-md5';
 
-import welcomeDominionEmail from '../../../lib/emails/welcome-dominion-subscription';
+import welcomeDominionEmail from '~/lib/emails/welcome-dominion-subscription';
 
 export default async (req, res) => {
   const order = req.body;

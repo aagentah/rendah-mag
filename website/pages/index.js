@@ -2,12 +2,12 @@ import { Parallax } from 'react-scroll-parallax';
 
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
-import Layout from '../components/layout';
-import Container from '../components/layout/container';
-import HeroHome from '../components/hero/home';
-import CardBlog from '../components/card/blog';
-import CardProduct from '../components/card/product';
-import SubscribeForm from '../components/subscribe-form';
+import Layout from '~/components/layout';
+import Container from '~/components/layout/container';
+import HeroHome from '~/components/hero/home';
+import CardBlog from '~/components/card/blog';
+import CardProduct from '~/components/card/product';
+import SubscribeForm from '~/components/subscribe-form';
 
 import {
   getSiteConfig,
@@ -15,7 +15,7 @@ import {
   getLatestInterviews,
   getAllPosts,
   getAllProducts,
-} from '../lib/sanity/requests';
+} from '~/lib/sanity/requests';
 
 export default function Home({
   siteConfig,

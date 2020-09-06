@@ -3,8 +3,9 @@ require('dotenv').config();
 
 module.exports = {
   webpack: (config) => {
-    config.resolve.alias['~'] = path.resolve(__dirname);
-    return config;
+    const configClone = config;
+    configClone.resolve.alias['~'] = path.resolve(__dirname);
+    return configClone;
   },
   env: {
     SANITY_PREVIEW_SECRET: process.env.SANITY_PREVIEW_SECRET,

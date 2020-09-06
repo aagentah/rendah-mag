@@ -6,7 +6,7 @@ import { Image, Button, Icon } from 'next-pattern-library';
 import Container from '../../container';
 import SearchBar from '../../../search-bar';
 
-import { useUser } from '../../../../lib/hooks';
+import { useUser } from '~/lib/hooks';
 
 export default function HeaderMobile({
   meta,

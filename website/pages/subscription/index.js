@@ -9,15 +9,15 @@ import {
 } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';
 
-import Layout from '../../components/layout';
-import Container from '../../components/layout/container';
-import CardBlog from '../../components/card/blog';
+import Layout from '~/components/layout';
+import Container from '~/components/layout/container';
+import CardBlog from '~/components/card/blog';
 
 import {
   getSiteConfig,
   getProduct,
   imageBuilder,
-} from '../../lib/sanity/requests';
+} from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig }) {
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;

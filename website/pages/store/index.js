@@ -4,12 +4,12 @@ import uniqBy from 'lodash/uniqBy';
 
 import { Heading } from 'next-pattern-library';
 
-import Layout from '../../components/layout';
-import Container from '../../components/layout/container';
-import CardProduct from '../../components/card/product';
-import HeroStore from '../../components/hero/store';
+import Layout from '~/components/layout';
+import Container from '~/components/layout/container';
+import CardProduct from '~/components/card/product';
+import HeroStore from '~/components/hero/store';
 
-import { getSiteConfig, getAllProducts } from '../../lib/sanity/requests';
+import { getSiteConfig, getAllProducts } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, allProducts }) {
   console.log('allProducts', allProducts);

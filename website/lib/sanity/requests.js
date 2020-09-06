@@ -1,7 +1,7 @@
 import sanityImage from '@sanity/image-url';
 
 import client, { previewClient } from './config';
-import dateTodayISO from '../../functions/dateTodayISO';
+import dateTodayISO from '~/functions/dateTodayISO';
 
 const getUniquePosts = (posts) => {
   const slugs = new Set();

@@ -1,7 +1,7 @@
 import sendinblue from './sendinblue';
 
-import { SITE_URL } from '../../constants';
-import emailCommon from '../../emails/component/common';
+import { SITE_URL } from '~/constants';
+import emailCommon from '~/emails/component/common';
 
 export default (email) => {
   const title = 'Welcome to the Dominion.';

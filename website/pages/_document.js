@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-import { IS_ECCOMERCE, SNIPCART_API_KEY } from '../constants';
+import { IS_ECCOMERCE, SNIPCART_API_KEY } from '~/constants';
 
 export default class MyDocument extends Document {
   render() {

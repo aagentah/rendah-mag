@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 
-import { imageBuilder } from '../../../lib/sanity/requests';
-import { SITE_URL } from '../../../constants';
+import { imageBuilder } from '~/lib/sanity/requests';
+import { SITE_URL } from '~/constants';
 
 const Meta = (props) => {
   const { router, siteConfig, title, description, image } = props;

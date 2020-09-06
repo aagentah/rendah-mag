@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { useToasts } from 'react-toast-notifications';
 import { Heading, Button, Icon, Input } from 'next-pattern-library';
 
-import Layout from '../../components/layout';
-import Container from '../../components/layout/container';
+import Layout from '~/components/layout';
+import Container from '~/components/layout/container';
 
-import { useUser } from '../../lib/hooks';
-import { getSiteConfig } from '../../lib/sanity/requests';
-import passwordStrength from '../../lib/password-strength';
+import { useUser } from '~/lib/hooks';
+import { getSiteConfig } from '~/lib/sanity/requests';
+import passwordStrength from '~/lib/password-strength';
 
 export default function Sigup({ siteConfig }) {
   const [user, { mutate }] = useUser();

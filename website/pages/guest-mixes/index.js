@@ -9,16 +9,16 @@ import {
 import BlockContent from '@sanity/block-content-to-react';
 import { Parallax } from 'react-scroll-parallax';
 
-import Layout from '../../components/layout';
-import Container from '../../components/layout/container';
-import SubscribeForm from '../../components/subscribe-form';
-import CardGuestMix from '../../components/card/guest-mix';
+import Layout from '~/components/layout';
+import Container from '~/components/layout/container';
+import SubscribeForm from '~/components/subscribe-form';
+import CardGuestMix from '~/components/card/guest-mix';
 
 import {
   getSiteConfig,
   imageBuilder,
   getGuestMixes,
-} from '../../lib/sanity/requests';
+} from '~/lib/sanity/requests';
 
 export default function GuestMixes({ siteConfig, guestMixes }) {
   console.log('guestMixes', guestMixes);

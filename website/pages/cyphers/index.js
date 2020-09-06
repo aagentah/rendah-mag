@@ -9,17 +9,17 @@ import {
 import BlockContent from '@sanity/block-content-to-react';
 import { Parallax } from 'react-scroll-parallax';
 
-import Layout from '../../components/layout';
-import Container from '../../components/layout/container';
-import HeroCypher from '../../components/hero/cypher';
-import CardCypher from '../../components/card/cypher';
-import SubscribeForm from '../../components/subscribe-form';
+import Layout from '~/components/layout';
+import Container from '~/components/layout/container';
+import HeroCypher from '~/components/hero/cypher';
+import CardCypher from '~/components/card/cypher';
+import SubscribeForm from '~/components/subscribe-form';
 
 import {
   getSiteConfig,
   imageBuilder,
   getCurrentAndPreviousCyphers,
-} from '../../lib/sanity/requests';
+} from '~/lib/sanity/requests';
 
 export default function Cyphers({ siteConfig, cyphers }) {
   return (

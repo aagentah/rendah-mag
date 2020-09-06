@@ -4,7 +4,7 @@ import { useToasts } from 'react-toast-notifications';
 
 import { Heading } from 'next-pattern-library';
 
-import { useUser } from '../../../lib/hooks';
+import { useUser } from '~/lib/hooks';
 
 export default function ProfileOrders() {
   const { addToast } = useToasts();

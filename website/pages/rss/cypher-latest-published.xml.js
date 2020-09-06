@@ -4,11 +4,11 @@ import blocksToHtml from '@sanity/block-content-to-html';
 import {
   imageBuilder,
   getLatestPublishedCypher,
-} from '../../lib/sanity/requests';
+} from '~/lib/sanity/requests';
 
-import { SITE_URL } from '../../constants';
-import escapeXml from '../../functions/escapeXml';
-import encodeSpecialChar from '../../functions/encodeSpecialChar';
+import { SITE_URL } from '~/constants';
+import escapeXml from '~/functions/escapeXml';
+import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
 const sitemapXml = (cypher) => {
   let postsXML = '';
