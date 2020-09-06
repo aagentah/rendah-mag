@@ -39,6 +39,18 @@
     "new-cap": "off",
     "react/jsx-one-expression-per-line": "off",
     "no-restricted-syntax": "off",
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["^[~]"]
+      }
+    ],
+    "import/extensions": [
+      "error",
+      {
+        "ignore": ["^[~]"]
+      }
+    ],
     "no-unused-vars": "off"
   }
 }

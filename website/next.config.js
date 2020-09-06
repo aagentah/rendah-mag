@@ -1,6 +1,11 @@
+const path = require('path');
 require('dotenv').config();
 
 module.exports = {
+  webpack: (config) => {
+    config.resolve.alias['~'] = path.resolve(__dirname);
+    return config;
+  },
   env: {
     SANITY_PREVIEW_SECRET: process.env.SANITY_PREVIEW_SECRET,
     SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
