@@ -14,10 +14,10 @@ import {
   Label,
 } from 'next-pattern-library';
 
-import { useApp, useDispatchApp } from '../../../context-provider/app';
-import { useUser } from '../../../lib/hooks';
-import passwordStrength from '../../../lib/password-strength';
-import { imageBuilder } from '../../../lib/sanity/requests';
+import { useApp, useDispatchApp } from '~/context-provider/app';
+import { useUser } from '~/lib/hooks';
+import passwordStrength from '~/lib/password-strength';
+import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function ProfileEdit() {
   const app = useApp();
