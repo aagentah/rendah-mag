@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { useToasts } from 'react-toast-notifications';
 
@@ -10,14 +10,24 @@ export default function SubscribeForm() {
   const app = useApp();
   const dispatch = useDispatchApp();
   const { addToast } = useToasts();
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const inputEl = useRef(null);
 
   const subscribe = async (e) => {
     e.preventDefault();
-    dispatch({ type: 'TOGGLE_LOADING' });
 
-    const res = await fetch('/api/subscribe', {
+    if (!inputEl.current.value) {
+      return addToast('You must enter a valid email.', {
+        appearance: 'info',
+        autoDismiss: true,
+      });
+    }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setButtonLoading(true);
+
+    const response = await fetch('/api/mailchimp/subscribe', {
       body: JSON.stringify({
         email: inputEl.current.value,
       }),
@@ -27,23 +37,25 @@ export default function SubscribeForm() {
       method: 'POST',
     });
 
-    const { error } = await res.json();
+    const json = await response.json();
 
-    if (error) {
-      addToast(error, {
+    if (response.ok) {
+      // Success
+      addToast('Welcome to the newsletter!', {
+        appearance: 'success',
+        autoDismiss: true,
+      });
+    } else {
+      // Error
+      addToast(json.error, {
         appearance: 'error',
         autoDismiss: true,
       });
-      dispatch({ type: 'TOGGLE_LOADING' });
-      return;
     }
 
     inputEl.current.value = '';
-    addToast('Success! 🎉 You are now subscribed to the newsletter.', {
-      appearance: 'success',
-      autoDismiss: true,
-    });
     dispatch({ type: 'TOGGLE_LOADING' });
+    setButtonLoading(false);
   };
 
   const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
@@ -88,7 +100,7 @@ export default function SubscribeForm() {
             icon={buttonIconArrowRight}
             iconFloat={null}
             inverted={false}
-            loading={null}
+            loading={buttonLoading}
             disabled={app.isLoading}
             onClick={null}
             /* Children */
