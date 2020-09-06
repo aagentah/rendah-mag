@@ -38,7 +38,7 @@
 //
 import sendinblue from './sendinblue';
 
-import { SITE_URL } from '../../constants';
+import { SITE_URL } from '~/constants';
 
 export default (username, hash, salt) => {
   const html = `

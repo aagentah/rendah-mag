@@ -4,20 +4,20 @@ import { Parallax } from 'react-scroll-parallax';
 
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
-import Layout from '../../components/layout';
-import Container from '../../components/layout/container';
-import Sections from '../../components/article/body-sections';
-import Author from '../../components/article/author';
+import Layout from '~/components/layout';
+import Container from '~/components/layout/container';
+import Sections from '~/components/article/body-sections';
+import Author from '~/components/article/author';
 
-import Date from '../../components/date';
-import CardBlog from '../../components/card/blog';
-import useWindowDimensions from '../../functions/useWindowDimensions';
+import Date from '~/components/date';
+import CardBlog from '~/components/card/blog';
+import useWindowDimensions from '~/functions/useWindowDimensions';
 
 import {
   getSiteConfig,
   imageBuilder,
   getPostAndMore,
-} from '../../lib/sanity/requests';
+} from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, post, morePosts, preview }) {
   const { height, width } = useWindowDimensions();

@@ -1,6 +1,6 @@
 import nextConnect from 'next-connect';
 import auth from '../../middleware/auth';
-import passport from '../../lib/passport';
+import passport from '~/lib/passport';
 
 const handler = nextConnect();
 

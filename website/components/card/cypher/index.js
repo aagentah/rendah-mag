@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
-import { imageBuilder } from '../../../lib/sanity/requests';
+import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function CardCypher({ post, columnCount }) {
   const [ref, inView, entry] = useInView({

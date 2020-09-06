@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { useToasts } from 'react-toast-notifications';
 import { Heading, Button, Icon, Input } from 'next-pattern-library';
 
-import Layout from '../../components/layout';
-import Container from '../../components/layout/container';
+import Layout from '~/components/layout';
+import Container from '~/components/layout/container';
 
-import { useUser } from '../../lib/hooks';
-import { getSiteConfig } from '../../lib/sanity/requests';
+import { useUser } from '~/lib/hooks';
+import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Login({ siteConfig }) {
   const router = useRouter();

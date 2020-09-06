@@ -13,7 +13,7 @@ import {
   Icon,
 } from 'next-pattern-library';
 
-import { imageBuilder } from '../../../lib/sanity/requests';
+import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function HeroCypher({ cypher }) {
   const [modalActive, setModalActive] = useState(false);

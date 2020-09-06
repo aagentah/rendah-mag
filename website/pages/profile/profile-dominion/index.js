@@ -14,13 +14,13 @@ import {
   Label,
 } from 'next-pattern-library';
 
-import { useUser } from '../../../lib/hooks';
-import setCharAt from '../../../functions/setCharAt';
+import { useUser } from '~/lib/hooks';
+import setCharAt from '~/functions/setCharAt';
 
 import {
   imageBuilder,
   getDominionItemsSinceDate,
-} from '../../../lib/sanity/requests';
+} from '~/lib/sanity/requests';
 
 export default function ProfileDominion() {
   const [user, { loading, mutate, error }] = useUser();

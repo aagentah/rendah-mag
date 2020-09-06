@@ -7,7 +7,7 @@ import { Heading, Button, Copy, Image } from 'next-pattern-library';
 import {
   imageBuilder,
   getCurrentAndPreviousCyphers,
-} from '../../../lib/sanity/requests';
+} from '~/lib/sanity/requests';
 
 export default function ProfileCypher() {
   const [cyphers, setCyphers] = useState(null);

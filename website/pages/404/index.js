@@ -1,9 +1,9 @@
 import { Heading, Copy } from 'next-pattern-library';
 
-import Layout from '../../components/layout';
-import Container from '../../components/layout/container';
+import Layout from '~/components/layout';
+import Container from '~/components/layout/container';
 
-import { getSiteConfig } from '../../lib/sanity/requests';
+import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Error404({ siteConfig }) {
   return (

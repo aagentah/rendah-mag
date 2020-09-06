@@ -1,6 +1,6 @@
 import { Image } from 'next-pattern-library';
 
-import { imageBuilder } from '../../../../lib/sanity/requests';
+import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function ImageSection({ section }) {
   return (

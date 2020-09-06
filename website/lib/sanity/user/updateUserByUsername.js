@@ -5,7 +5,7 @@ import { promisify } from 'util';
 import cloneDeep from 'lodash/cloneDeep';
 
 import client from '../config-write';
-import { SITE_URL } from '../../../constants';
+import { SITE_URL } from '~/constants';
 
 const handlePassword = (cloneFields) => {
   const f = cloneFields;

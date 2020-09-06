@@ -1,8 +1,8 @@
 import BlockContent from '@sanity/block-content-to-react';
 
 import Container from '../layout/container';
-import componentTextAlign from '../../functions/componentTextAlign';
-import componentSpacing from '../../functions/componentSpacing';
+import componentTextAlign from '~/functions/componentTextAlign';
+import componentSpacing from '~/functions/componentSpacing';
 
 export default function TextBlock({ component }) {
   const {

@@ -1,9 +1,9 @@
 import nextConnect from 'next-connect';
 
 import auth from '../../middleware/auth';
-import deleteUser from '../../lib/sanity/user/deleteUser';
-import updateUserByUsername from '../../lib/sanity/user/updateUserByUsername';
-import findUserByUsername from '../../lib/sanity/user/findUserByUsername';
+import deleteUser from '~/lib/sanity/user/deleteUser';
+import updateUserByUsername from '~/lib/sanity/user/updateUserByUsername';
+import findUserByUsername from '~/lib/sanity/user/findUserByUsername';
 
 const handler = nextConnect();
 

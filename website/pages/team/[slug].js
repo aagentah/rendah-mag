@@ -1,14 +1,14 @@
 import { Heading, Copy, Label, Image } from 'next-pattern-library';
 
-import Layout from '../../components/layout';
-import Container from '../../components/layout/container';
-import CardBlog from '../../components/card/blog';
+import Layout from '~/components/layout';
+import Container from '~/components/layout/container';
+import CardBlog from '~/components/card/blog';
 
 import {
   getSiteConfig,
   getTeamMemberAndPosts,
   imageBuilder,
-} from '../../lib/sanity/requests';
+} from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, teamMember }) {
   const {posts} = teamMember;

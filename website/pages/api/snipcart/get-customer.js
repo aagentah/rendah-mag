@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 import find from 'lodash/find';
 
-import { SNIPCART_SECRET_KEY } from '../../../constants';
+import { SNIPCART_SECRET_KEY } from '~/constants';
 
 const getCustomer = async (req, res) => {
   try {

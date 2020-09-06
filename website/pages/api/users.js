@@ -1,8 +1,8 @@
 import nextConnect from 'next-connect';
 
 import auth from '../../middleware/auth';
-import createUser from '../../lib/sanity/user/createUser';
-import findUserByUsername from '../../lib/sanity/user/findUserByUsername';
+import createUser from '~/lib/sanity/user/createUser';
+import findUserByUsername from '~/lib/sanity/user/findUserByUsername';
 
 const handler = nextConnect();
 

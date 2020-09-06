@@ -1,11 +1,11 @@
 import React from 'react';
 import blocksToHtml from '@sanity/block-content-to-html';
 
-import { imageBuilder, getLatestDominionItem } from '../../lib/sanity/requests';
+import { imageBuilder, getLatestDominionItem } from '~/lib/sanity/requests';
 
-import { SITE_URL } from '../../constants';
-import escapeXml from '../../functions/escapeXml';
-import encodeSpecialChar from '../../functions/encodeSpecialChar';
+import { SITE_URL } from '~/constants';
+import escapeXml from '~/functions/escapeXml';
+import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
 const sitemapXml = (item) => {
   let postsXML = '';
