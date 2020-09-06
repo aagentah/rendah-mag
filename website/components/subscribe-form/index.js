@@ -101,7 +101,7 @@ export default function SubscribeForm() {
             iconFloat={null}
             inverted={false}
             loading={buttonLoading}
-            disabled={app.isLoading}
+            disabled={false}
             onClick={null}
             /* Children */
             withLinkProps={{

@@ -37,6 +37,8 @@
 .modal__dialog {
   position: relative;
   background: #fff;
+  max-height: 90%;
+  overflow-y: auto;
   @extend .pa4;
   @extend .br3;
   @extend .shadow4;
