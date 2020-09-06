@@ -5,10 +5,9 @@ import { imageBuilder } from '~/lib/sanity/requests';
 export default function Author({ siteConfig, author }) {
   const { posts } = author;
 
-  console.log('author', author);
   return (
-    <div className="flex  flex-wrap  pb5">
-      <div className="col-24  col-8-md  ph2  pb3">
+    <div className="flex  flex-wrap  br4  shadow2">
+      <div className="col-24  col-9-md  pa3  pa4-md">
         <div className="shadow2">
           <Image
             /* Options */
@@ -27,8 +26,8 @@ export default function Author({ siteConfig, author }) {
           />
         </div>
       </div>
-      <div className="col-12  ph3-md">
-        <div className="db  ph2  pb2">
+      <div className="col-24  col-15-md  ph3-md  pa3">
+        <div className="db  ph2  pt3  pb2">
           <Heading
             /* Options */
             htmlEntity="h1"

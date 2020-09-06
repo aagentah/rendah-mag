@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import { useToasts } from 'react-toast-notifications';
 import { Heading, Button, Icon, Input } from 'next-pattern-library';
@@ -5,13 +6,18 @@ import { Heading, Button, Icon, Input } from 'next-pattern-library';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
+import { useDispatchApp } from '~/context-provider/app';
 import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Forgot({ siteConfig }) {
+  const dispatch = useDispatchApp();
   const { addToast } = useToasts();
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   async function onSubmit(e) {
     e.preventDefault();
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setButtonLoading(true);
 
     const body = {
       username: e.currentTarget.username.value,
@@ -40,6 +46,9 @@ export default function Forgot({ siteConfig }) {
         }
       );
     }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setButtonLoading(false);
   }
 
   const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
@@ -100,7 +109,7 @@ export default function Forgot({ siteConfig }) {
                   icon={buttonIconArrowRight}
                   iconFloat={null}
                   inverted={false}
-                  loading={false}
+                  loading={buttonLoading}
                   disabled={false}
                   onClick={null}
                   /* Children */

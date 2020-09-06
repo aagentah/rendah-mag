@@ -1,6 +1,5 @@
-export default function SocialLinks() {
-  const { article } = this.props;
-
+export default function SocialLinks({ article }) {
+  console.log('aaa', article);
   if (article.socialHandles) {
     let soundcloud = null;
     let facebook = null;
@@ -73,7 +72,7 @@ export default function SocialLinks() {
     }
 
     return (
-      <div className="pt3  ph3  bt  bc-grey  mt3">
+      <div className="ph3">
         {soundcloud}
         {facebook}
         {twitter}

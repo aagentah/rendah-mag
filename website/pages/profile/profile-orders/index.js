@@ -21,12 +21,14 @@ export default function ProfileOrders() {
         method: 'POST',
       });
 
+      const json = await response.json();
+
       if (response.ok) {
         // Success
-        setCustomerOrders(await response.json());
+        setCustomerOrders(json);
       } else {
         // Error
-        addToast(await response.json().error, {
+        addToast(json.error, {
           appearance: 'error',
           autoDismiss: true,
         });

@@ -22,9 +22,15 @@ export default async (req, res) => {
       }
     );
 
+    const json = await response.json();
+
     // Error
     if (!response.ok) {
-      throw new Error(await response.json());
+      if (json.title === 'Member Exists') {
+        throw new Error('You are already added to our newsletter.');
+      }
+
+      throw new Error('There was an issue subscribing.');
     }
 
     // Success
@@ -32,6 +38,6 @@ export default async (req, res) => {
   } catch (error) {
     // Handle catch
     console.error(error.message || error.toString());
-    return res.status(500).json({ error: 'There was an issue subscribing.' });
+    return res.status(500).json({ error: error.message });
   }
 };

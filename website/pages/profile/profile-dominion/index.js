@@ -17,10 +17,7 @@ import {
 import { useUser } from '~/lib/hooks';
 import setCharAt from '~/functions/setCharAt';
 
-import {
-  imageBuilder,
-  getDominionItemsSinceDate,
-} from '~/lib/sanity/requests';
+import { imageBuilder, getDominionItemsSinceDate } from '~/lib/sanity/requests';
 
 export default function ProfileDominion() {
   const [user, { loading, mutate, error }] = useUser();
@@ -211,7 +208,7 @@ export default function ProfileDominion() {
 
         <p className="t-secondary  f6  grey">
           <span className="bold  pr1">Member since:</span>
-          {new Date(user.dominionSince).toDateString()}
+          {new Date(user?.dominionSince).toDateString()}
         </p>
       </section>
     );

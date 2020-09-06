@@ -7,6 +7,7 @@ import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';
+import SocialLinks from '~/components/article/social-links';
 import Author from '~/components/article/author';
 
 import Date from '~/components/date';
@@ -30,8 +31,6 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   if (router.isFallback) return <p>Loading...</p>;
 
   if (!router.isFallback && post?.slug) {
-    console.log('post', post);
-
     const heroImage = (
       <Image
         /* Options */
@@ -74,7 +73,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           </div>
         </Parallax>
         <Container>
-          <article className="pt5  mt3  ph3  ph4-md">
+          <article className="pt5  pb4  mt3  ph3  ph4-md">
             <section className="measure-wide  mla  mra">
               <div className="pb2">
                 <Heading
@@ -94,15 +93,23 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 {post.author.name} | <Date dateString={post.publishedAt} />
               </p>
 
-              <div className="post__body  pb4">
+              <div className="post__body">
                 <Sections body={post.body} />
               </div>
 
-              <div className="post__body  pb4">
+              <div className="pb4">
                 <hr />
               </div>
 
-              <Author author={post.author} />
+              <div className="pb4">
+                <SocialLinks article={post} />
+              </div>
+            </section>
+
+            <section className="measure-wide  mla  mra">
+              <div className="pb4">
+                <Author author={post.author} />
+              </div>
             </section>
           </article>
 
