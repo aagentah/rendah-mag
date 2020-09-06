@@ -16,8 +16,21 @@
     border-bottom: 2px solid var(--almost-white);
   }
 
+  // Body
+
   .tabs__body {
+    box-shadow: 0;
+    border-radius: 0;
+    background-color: var(--white);
     @extend .col-20-md;
+  }
+
+  @include breakpoint-up(md) {
+    .tabs__body {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      border-radius: 1rem;
+      padding: 50px;
+    }
   }
 }
 
@@ -68,18 +81,14 @@
 // Body
 
 .tabs__body {
-  background-color: var(--white);
+  background-color: transparent;
   padding: 0;
-  box-shadow: 0;
-  border-radius: 0;
 }
 
 @include breakpoint-up(md) {
   .tabs__body {
-    background-color: var(--white);
-    padding: 50px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    border-radius: 1rem;
+    padding: 0;
+    padding-top: 30px;
   }
 }
 
