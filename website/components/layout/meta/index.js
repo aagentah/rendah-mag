@@ -80,7 +80,10 @@ const Meta = (props) => {
   return (
     <Head>
       <link rel="canonical" href={`${SITE_URL}${router.asPath}`} />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
 
       <title>
         {titleVal} | {siteTitle}

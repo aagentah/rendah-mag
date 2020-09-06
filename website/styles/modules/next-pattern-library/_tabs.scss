@@ -69,13 +69,17 @@
 
 .tabs__body {
   background-color: var(--white);
-  padding: 20px;
+  padding: 0;
+  box-shadow: 0;
+  border-radius: 0;
 }
 
 @include breakpoint-up(md) {
   .tabs__body {
     background-color: var(--white);
     padding: 50px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 1rem;
   }
 }
 
@@ -109,6 +113,8 @@
 }
 
 .tabs__content {
+  padding-left: 15px;
+  padding-right: 15px;
   padding-bottom: 30px;
 }
 
@@ -125,6 +131,8 @@
     display: none;
 
     .tabs__content {
+      padding-left: 0;
+      padding-right: 0;
       display: block;
     }
   }
