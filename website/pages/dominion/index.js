@@ -13,11 +13,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
-import {
-  getSiteConfig,
-  getProduct,
-  imageBuilder,
-} from '~/lib/sanity/requests';
+import { getSiteConfig, getProduct, imageBuilder } from '~/lib/sanity/requests';
 
 export default function Dominion({ siteConfig }) {
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
