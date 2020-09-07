@@ -53,7 +53,7 @@
 
   .snipcart-checkout {
     top: 20px;
-    right: 15px;
+    right: 20px;
     @extend .absolute;
   }
 
@@ -77,6 +77,12 @@
 
 .header--mobile.collapsed > .nav {
   transform: translateX(0);
+}
+
+.header--mobile > .nav {
+  .button.large {
+    font-size: 1.8rem;
+  }
 }
 
 // Snipcart

@@ -13,18 +13,18 @@ export default function Error404({ siteConfig }) {
         navOnWhite={true}
         meta={{
           siteConfig,
-          title: '404',
-          description: 'Page not found.',
+          title: 'Terms & Conditions',
+          description: '',
           image: null,
         }}
         preview={null}
       >
         <Container>
-          <div className="pt4  pb3  tac">
+          <div className="pb4  tac">
             <Heading
               /* Options */
               htmlEntity="h1"
-              text="404"
+              text="Privacy Policy"
               color="black"
               size="large"
               truncate={0}
@@ -33,15 +33,7 @@ export default function Error404({ siteConfig }) {
               withLinkProps={null}
             />
           </div>
-          <div className="pb3  tac">
-            <Copy
-              /* Options */
-              text="Page not found."
-              color="black"
-              size="medium"
-              truncate={2}
-            />
-          </div>
+          <div className="measure-wide  mla  mra  pb3  taj">tc's go here.</div>
         </Container>
       </Layout>
     </>

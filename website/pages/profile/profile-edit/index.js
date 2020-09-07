@@ -440,7 +440,7 @@ export default function ProfileEdit() {
                 />
               </div>
               <div className="flex  flex-wrap  align-center  pt3">
-                <div className="pr3  pb3  pb0-md">
+                <div className="db  dib-md  pr3">
                   <Button
                     /* Options */
                     type="primary"
@@ -463,7 +463,7 @@ export default function ProfileEdit() {
                     }}
                   />
                 </div>
-                <div className="pr3">
+                <div className="db  dib-md  pr3">
                   <Button
                     /* Options */
                     type="primary"

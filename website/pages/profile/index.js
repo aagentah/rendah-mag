@@ -36,38 +36,40 @@ export default function Profile({ siteConfig }) {
         }}
         preview={null}
       >
-        <Container>
-          {user && (
-            <div className="tabs-wrapper--side-bar">
-              <Tabs
-                /* Options */
-                content={[
-                  {
-                    id: '1',
-                    tabTitle: 'Profile',
-                    tabContent: <ProfileEdit />,
-                  },
-                  {
-                    id: '2',
-                    tabTitle: 'Cyphers',
-                    tabContent: <ProfileCypher />,
-                  },
-                  {
-                    id: '3',
-                    tabTitle: 'Dominion',
-                    tabContent: <ProfileDominion />,
-                  },
-                  {
-                    id: '4',
-                    tabTitle: 'Orders',
-                    tabContent: <ProfileOrders />,
-                  },
-                ]}
-                defaultSelected="1"
-              />
-            </div>
-          )}
-        </Container>
+        <div className="pt4  pt0-md  pb4">
+          <Container>
+            {user && (
+              <div className="tabs-wrapper--side-bar">
+                <Tabs
+                  /* Options */
+                  content={[
+                    {
+                      id: '1',
+                      tabTitle: 'Profile',
+                      tabContent: <ProfileEdit />,
+                    },
+                    {
+                      id: '2',
+                      tabTitle: 'Cyphers',
+                      tabContent: <ProfileCypher />,
+                    },
+                    {
+                      id: '3',
+                      tabTitle: 'Dominion',
+                      tabContent: <ProfileDominion />,
+                    },
+                    {
+                      id: '4',
+                      tabTitle: 'Orders',
+                      tabContent: <ProfileOrders />,
+                    },
+                  ]}
+                  defaultSelected="1"
+                />
+              </div>
+            )}
+          </Container>
+        </div>
       </Layout>
     </div>
   );
