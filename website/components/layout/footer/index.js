@@ -17,7 +17,7 @@ export default function Footer() {
                 <Heading
                   /* Options */
                   htmlEntity="h3"
-                  text={`Rendah Mag Ltd. ${new Date().getFullYear()}`}
+                  text={`Rendah Mag ${new Date().getFullYear()}`}
                   color="white"
                   size="large"
                   truncate={null}
@@ -45,7 +45,7 @@ export default function Footer() {
                     /* Children */
                     withLinkProps={{
                       type: 'next',
-                      href: '/team',
+                      href: '/privacy-policy',
                       target: null,
                       routerLink: Link,
                       routerLinkProps: null,
@@ -69,7 +69,7 @@ export default function Footer() {
                     /* Children */
                     withLinkProps={{
                       type: 'next',
-                      href: '/team',
+                      href: '/return-policy',
                       target: null,
                       routerLink: Link,
                       routerLinkProps: null,
@@ -93,9 +93,33 @@ export default function Footer() {
                     /* Children */
                     withLinkProps={{
                       type: 'next',
-                      href: '/team',
+                      href: '/terms-conditions',
                       target: null,
                       routerLink: Link,
+                      routerLinkProps: null,
+                    }}
+                  />
+                </li>
+                <li className="db  pb3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="small"
+                    text="info@rendahmag.com"
+                    color="white"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'external',
+                      href: 'mailto:info@rendahmag.com',
+                      target: '_blank',
+                      routerLink: null,
                       routerLinkProps: null,
                     }}
                   />

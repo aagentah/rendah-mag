@@ -2,18 +2,32 @@
   position: relative;
   @extend .z9;
   @extend .t-secondary;
+
+  *,
+  *:before,
+  *:after,
+  *:focus,
+  *:active,
+  *:hover {
+    border-color: var(--grey);
+  }
 }
 
-.snipcart-modal__container {
+.snipcart__font--secondary,
+.snipcart__font--subtitle {
+  @extend .t-primary;
+}
+
+.snipcart-modal__container,
+.snipcart-cart__content,
+.snipcart-modal,
+.snipcart-cart-header,
+.snipcart-discount-box {
   background-color: var(--almost-white);
 }
 
-.snipcart-modal {
-  background-color: var(--almost-white);
-}
-
-.snipcart-cart-header {
-  background-color: var(--almost-white);
+.snipcart__box--gray {
+  background-color: var(--white);
 }
 
 .snipcart__box--badge {
@@ -26,11 +40,43 @@
   fill: var(--dark-grey);
 }
 
-.snipcart-input {
-  border-color: var(--dark-grey);
+.snipcart-discount-box__submit,
+.snipcart__actions--link {
+  color: var(--grey);
 }
 
-.snipcart-checkbox:focus + label:before,
-.snipcart-checkbox:hover + label:before {
-  border-color: var(--dark-grey);
+.snipcart__box {
+  @extend .shadow2;
+  @extend .br4;
+}
+
+.snipcart-cart-button--highlight {
+  @extend .button;
+  @extend .black;
+  @extend .primary;
+  @extend .medium;
+  // transition: all 0.3s ease-in-out;
+  // background: var(--black);
+  // color: var(--white);
+  // fill: var(--white);
+  // border-color: var(--black);
+  line-height: 12px !important;
+  height: 45px !important;
+  // min-width: 100px;
+  // border: 2px solid var(--black);
+  // text-align: center;
+  // display: inline-block;
+  // border-radius: 3px;
+  // font-size: 1rem;
+  // @extend .t-primary;
+  //
+  // &:hover {
+  //   background-color: transparent;
+  //   color: var(--black);
+  //   fill: var(--black);
+  // }
+
+  svg {
+    display: none;
+  }
 }
