@@ -7,7 +7,6 @@ import Container from '~/components/layout/container';
 import HeroHome from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
 import CardProduct from '~/components/card/product';
-import SubscribeForm from '~/components/subscribe-form';
 
 import {
   getSiteConfig,
@@ -101,10 +100,6 @@ export default function Home({
               </section>
             )}
           </Container>
-
-          <section className="pb5">
-            <SubscribeForm />
-          </section>
         </div>
       </Layout>
     </>

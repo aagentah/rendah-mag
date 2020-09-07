@@ -11,7 +11,6 @@ import { Parallax } from 'react-scroll-parallax';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import SubscribeForm from '~/components/subscribe-form';
 import CardGuestMix from '~/components/card/guest-mix';
 
 import {
@@ -71,10 +70,6 @@ export default function GuestMixes({ siteConfig, guestMixes }) {
               )}
             </Container>
           </div>
-
-          <section className="pb3">
-            <SubscribeForm />
-          </section>
         </>
       </Layout>
     </>

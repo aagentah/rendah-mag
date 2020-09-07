@@ -13,7 +13,6 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import HeroCypher from '~/components/hero/cypher';
 import CardCypher from '~/components/card/cypher';
-import SubscribeForm from '~/components/subscribe-form';
 
 import {
   getSiteConfig,
@@ -76,8 +75,8 @@ export default function Cyphers({ siteConfig, cyphers }) {
               </div>
 
               {cyphers?.current && (
-                <div className="flex  flex-wrap  bg-almost-white  shadow2  br3  pa4  pa5-md  mb5">
-                  <div className="col-24  col-12-md  pr5-md  pb5  pb0-md">
+                <div className="flex  flex-wrap  mt5-md  pt4-md  mb5">
+                  <div className="col-24  col-12-md  pr5-md  pt3  pb5  pb0-md">
                     <div className="pb3">
                       <Heading
                         /* Options */
@@ -103,33 +102,27 @@ export default function Cyphers({ siteConfig, cyphers }) {
                   </div>
 
                   <div className="col-24  col-12-md">
-                    <Parallax
-                      className="z1  nt4"
-                      y={['30px', '-15px']}
-                      tagOuter="figure"
-                    >
-                      <div className="shadow2">
-                        <Image
-                          /* Options */
-                          src={imageBuilder
-                            .image(cyphers.current.imageLandscape)
-                            .height(300)
-                            .width(300)
-                            .url()}
-                          placeholder={imageBuilder
-                            .image(cyphers.current.imageLandscape)
-                            .height(25)
-                            .width(25)
-                            .url()}
-                          alt="This is the alt text."
-                          figcaption={null}
-                          height={300}
-                          onClick={null}
-                          /* Children */
-                          withLinkProps={null}
-                        />
-                      </div>
-                    </Parallax>
+                    <div className="shadow2">
+                      <Image
+                        /* Options */
+                        src={imageBuilder
+                          .image(cyphers.current.imageLandscape)
+                          .height(300)
+                          .width(300)
+                          .url()}
+                        placeholder={imageBuilder
+                          .image(cyphers.current.imageLandscape)
+                          .height(25)
+                          .width(25)
+                          .url()}
+                        alt="This is the alt text."
+                        figcaption={null}
+                        height={300}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
                   </div>
                 </div>
               )}
@@ -163,10 +156,6 @@ export default function Cyphers({ siteConfig, cyphers }) {
               )}
             </Container>
           </div>
-
-          <section className="pb3">
-            <SubscribeForm />
-          </section>
         </>
       </Layout>
     </>

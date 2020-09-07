@@ -124,6 +124,7 @@
 .tabs__content {
   padding-left: 15px;
   padding-right: 15px;
+  padding-top: 30px;
   padding-bottom: 30px;
 }
 
@@ -142,6 +143,7 @@
     .tabs__content {
       padding-left: 0;
       padding-right: 0;
+      padding-top: 0;
       display: block;
     }
   }
@@ -155,8 +157,8 @@
   background: var(--almost-white);
   color: var(--black);
   padding: 20px;
-  margin-bottom: 20px;
-  border-bottom: 2px solid var(--light-grey);
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--grey);
   cursor: pointer;
 }
 
