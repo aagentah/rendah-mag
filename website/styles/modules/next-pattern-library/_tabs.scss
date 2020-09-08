@@ -19,7 +19,6 @@
   // Body
 
   .tabs__body {
-    box-shadow: 0;
     border-radius: 0;
     background-color: var(--white);
     @extend .col-20-md;
@@ -27,7 +26,6 @@
 
   @include breakpoint-up(md) {
     .tabs__body {
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
       border-radius: 1rem;
       padding: 50px;
     }
@@ -62,7 +60,7 @@
   display: inline-block;
   background-color: var(--almost-white);
   color: var(--black);
-  border-bottom: 2px solid var(--white);
+  border-bottom: 2px solid var(--light-grey);
   padding: 20px;
   margin-right: 10px;
   cursor: pointer;
@@ -154,16 +152,23 @@
 .tabs__mobile-nav__item {
   transition: background-color 0.3s ease-in-out;
   display: block;
-  background: var(--almost-white);
+  background: var(--white);
   color: var(--black);
   padding: 20px;
-  margin-bottom: 0;
-  border-bottom: 1px solid var(--grey);
+  margin-bottom: 20px;
   cursor: pointer;
+  @extend .shadow2;
+  @extend .br4;
 }
 
 @include breakpoint-up(md) {
   .tabs__mobile-nav__item {
+    background: var(--almost-white);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--grey);
+    margin-bottom: 0;
     display: none;
   }
 }

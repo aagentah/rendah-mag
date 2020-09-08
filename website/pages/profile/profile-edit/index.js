@@ -27,7 +27,7 @@ export default function ProfileEdit() {
   const [avatarModalActive, setAvatarModalActive] = useState(false);
   const [user, { mutate }] = useUser();
   const { addToast } = useToasts();
-  const [isSubNewsletter, setIsSubNewsletter] = useState('Loading...');
+  // const [isSubNewsletter, setIsSubNewsletter] = useState('Loading...');
   const [avatarBlob, setAvatarBlob] = useState(null);
   const [avatarImage, setAvatarImage] = useState(null);
 
@@ -57,32 +57,32 @@ export default function ProfileEdit() {
     onDrop,
   });
 
-  useEffect(() => {
-    const mailchimpGetMember = async () => {
-      // Fetch mailchimp member
-      const response = await fetch('/api/mailchimp/get-member', {
-        body: JSON.stringify({
-          email: user.username,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-      });
-
-      if (response.ok) {
-        // Success
-        setIsSubNewsletter('Subscribed');
-      } else {
-        // Error
-        setIsSubNewsletter('Not Subscribed');
-      }
-    };
-
-    if (user) {
-      mailchimpGetMember();
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   const mailchimpGetMember = async () => {
+  //     // Fetch mailchimp member
+  //     const response = await fetch('/api/mailchimp/get-member', {
+  //       body: JSON.stringify({
+  //         email: user.username,
+  //       }),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       method: 'POST',
+  //     });
+  //
+  //     if (response.ok) {
+  //       // Success
+  //       setIsSubNewsletter('Subscribed');
+  //     } else {
+  //       // Error
+  //       setIsSubNewsletter('Not Subscribed');
+  //     }
+  //   };
+  //
+  //   if (user) {
+  //     mailchimpGetMember();
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     if (user?.avatar) {
@@ -486,38 +486,40 @@ export default function ProfileEdit() {
               </div>
             </form>
           </div>
-          <div className="col-24  col-12-md  pr0  pr4-md">
-            <div className="flex  justify-between  justify-end-md  align-center  pv3">
-              <p className="t-secondary  black  f6  pr2">Newsletter Status:</p>
-              <Label
-                /* Options */
-                customClass="ph3  pv2  shadow2"
-                text={isSubNewsletter}
-                color="white"
-                backgroundColor={
-                  isSubNewsletter === 'Subscribed' ? 'green' : 'red'
-                }
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-            <div className="flex  justify-between  justify-end-md  align-center  pv3">
-              <p className="t-secondary  black  f6  pr2">
-                Dominion Subscription:
-              </p>
-              <Label
-                /* Options */
-                customClass="ph3  pv2  shadow2"
-                text={user?.isDominion ? 'Subscribed' : 'Not Subscribed'}
-                color="white"
-                backgroundColor={user?.isDominion ? 'green' : 'red'}
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-          </div>
+          {
+            // <div className="col-24  col-12-md  pr0  pr4-md">
+            //   <div className="flex  justify-between  justify-end-md  align-center  pv3">
+            //     <p className="t-secondary  black  f6  pr2">Newsletter Status:</p>
+            //     <Label
+            //       /* Options */
+            //       customClass="ph3  pv2  shadow2"
+            //       text={isSubNewsletter}
+            //       color="white"
+            //       backgroundColor={
+            //         isSubNewsletter === 'Subscribed' ? 'green' : 'red'
+            //       }
+            //       onClick={null}
+            //       /* Children */
+            //       withLinkProps={null}
+            //     />
+            //   </div>
+            //   <div className="flex  justify-between  justify-end-md  align-center  pv3">
+            //     <p className="t-secondary  black  f6  pr2">
+            //       Dominion Subscription:
+            //     </p>
+            //     <Label
+            //       /* Options */
+            //       customClass="ph3  pv2  shadow2"
+            //       text={user?.isDominion ? 'Subscribed' : 'Not Subscribed'}
+            //       color="white"
+            //       backgroundColor={user?.isDominion ? 'green' : 'red'}
+            //       onClick={null}
+            //       /* Children */
+            //       withLinkProps={null}
+            //     />
+            //   </div>
+            // </div>
+          }
         </div>
       </>
     );
