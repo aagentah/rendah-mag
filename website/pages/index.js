@@ -25,8 +25,6 @@ export default function Home({
 }) {
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
-  console.log('latestFeaturedPost', latestFeaturedPost);
-
   return (
     <>
       <Layout

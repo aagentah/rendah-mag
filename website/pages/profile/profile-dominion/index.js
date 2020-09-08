@@ -58,7 +58,7 @@ export default function ProfileDominion() {
 
         <div className="flex  flex-wrap  mb3">
           {dominionItems.map((item, i) => (
-            <>
+            <article key={item._id} className="w-100">
               <Modal
                 /* Options */
                 size="large"
@@ -202,7 +202,7 @@ export default function ProfileDominion() {
                   </div>
                 </div>
               </div>
-            </>
+            </article>
           ))}
         </div>
 

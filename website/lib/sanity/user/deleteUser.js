@@ -1,8 +1,6 @@
 import client from '../config-write';
 
 const deleteUser = async (req, user) => {
-  console.log('user', user);
-
   const data = await client
     .delete(user._id)
     .then((res) => {

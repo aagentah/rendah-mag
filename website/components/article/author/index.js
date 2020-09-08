@@ -6,7 +6,20 @@ export default function Author({ siteConfig, author }) {
   const { posts } = author;
 
   return (
-    <div className="flex  flex-wrap  br4  shadow2">
+    <div className="flex  flex-wrap  br4  shadow2  relative  pt2  pt0-md">
+      <div className="absolute  top  right  nt2  mr4">
+        <Label
+          /* Options */
+          customClass="ph2"
+          text="Author"
+          color="black"
+          backgroundColor="light-grey"
+          onClick={null}
+          /* Children */
+          withLinkProps={null}
+        />
+      </div>
+
       {author.image && (
         <div className="col-24  col-9-md  pa3  pa4-md">
           <Image
@@ -29,7 +42,7 @@ export default function Author({ siteConfig, author }) {
         </div>
       )}
 
-      <div className="col-24  col-15-md  ph3-md  pa3">
+      <div className="col-24  col-15-md  pt0  pb3  ph3  pt3-md  ph3-md">
         {author.name && (
           <div className="db  ph2  pt3  pb2">
             <Heading

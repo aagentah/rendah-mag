@@ -20,7 +20,6 @@ import {
 } from '~/lib/sanity/requests';
 
 export default function GuestMixes({ siteConfig, guestMixes }) {
-  console.log('guestMixes', guestMixes);
   return (
     <>
       <Layout

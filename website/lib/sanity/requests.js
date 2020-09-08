@@ -120,7 +120,6 @@ export async function getCurrentAndPreviousCyphers(preview) {
     ),
   ]);
 
-  console.log('current', current);
   return { current: current || null, previous: getUniquePosts(previous) };
 }
 
@@ -172,7 +171,6 @@ export async function getAllProducts(preview) {
 }
 
 export async function getProduct(slug, preview) {
-  console.log('slug', slug);
   const results = await getClient(preview).fetch(
     `*[_type == "storeItem" && slug.current == $slug] | order(date desc, _updatedAt desc) [0] {
       ${productFields}
@@ -271,6 +269,5 @@ export async function getDominionItemsSinceDate(sinceStartOfMonth) {
     }`,
     { sinceStartOfMonth }
   );
-  console.log('results', results);
   return results;
 }

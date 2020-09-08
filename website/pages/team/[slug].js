@@ -13,7 +13,6 @@ import {
 export default function Post({ siteConfig, teamMember }) {
   const { posts } = teamMember;
 
-  console.log('teamMember', teamMember);
   return (
     <Layout
       navOffset="top"
@@ -121,7 +120,6 @@ export default function Post({ siteConfig, teamMember }) {
 }
 
 export async function getServerSideProps({ params, preview = false }) {
-  console.log('params', params);
   const siteConfig = await getSiteConfig();
   const teamMember = await getTeamMemberAndPosts(params.slug);
 
