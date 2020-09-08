@@ -22,6 +22,8 @@ export default function HeroPost({ post }) {
       alt="This is the alt text."
       figcaption={null}
       height={500}
+      width={null}
+      customClass={null}
       onClick={null}
       /* Children */
       withLinkProps={null}

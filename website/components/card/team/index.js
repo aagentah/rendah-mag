@@ -23,6 +23,8 @@ export default function CardBlog({ teamMember, columnCount }) {
       alt={teamMember.title}
       figcaption={null}
       height={200}
+      width={null}
+      customClass={null}
       onClick={null}
       /* Children */
       withLinkProps={{

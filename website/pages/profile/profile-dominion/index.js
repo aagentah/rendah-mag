@@ -90,27 +90,27 @@ export default function ProfileDominion() {
                   <div className="col-24  col-12-md">
                     {item.image && (
                       <div className="pb4  pb0-md">
-                        <div className="shadow2">
-                          <Image
-                            /* Options */
-                            src={imageBuilder
-                              .image(item.image)
-                              .height(500)
-                              .width(500)
-                              .url()}
-                            placeholder={imageBuilder
-                              .image(item.image)
-                              .height(50)
-                              .width(50)
-                              .url()}
-                            alt=""
-                            figcaption={null}
-                            height={300}
-                            onClick={null}
-                            /* Children */
-                            withLinkProps={null}
-                          />
-                        </div>
+                        <Image
+                          /* Options */
+                          src={imageBuilder
+                            .image(item.image)
+                            .height(500)
+                            .width(500)
+                            .url()}
+                          placeholder={imageBuilder
+                            .image(item.image)
+                            .height(50)
+                            .width(50)
+                            .url()}
+                          alt=""
+                          figcaption={null}
+                          height={300}
+                          width={null}
+                          customClass="shadow2"
+                          onClick={null}
+                          /* Children */
+                          withLinkProps={null}
+                        />
                       </div>
                     )}
                   </div>

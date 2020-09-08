@@ -17,6 +17,8 @@ export default function CardDefault({ product }) {
       alt={product.title}
       figcaption={null}
       height={200}
+      width={null}
+      customClass={null}
       onClick={null}
       /* Children */
       withLinkProps={{

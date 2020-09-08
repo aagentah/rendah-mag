@@ -112,27 +112,27 @@ export default function ProfileCypher() {
             </div>
           </div>
           <div className="col-24  col-8-md  pb3  pb0-md">
-            <div className="shadow2">
-              <Image
-                /* Options */
-                src={imageBuilder
-                  .image(cyphers.current.imageSquare)
-                  .height(1000)
-                  .width(1000)
-                  .url()}
-                placeholder={imageBuilder
-                  .image(cyphers.current.imageSquare)
-                  .height(100)
-                  .width(100)
-                  .url()}
-                alt="This is the alt text."
-                figcaption={null}
-                height={null}
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
+            <Image
+              /* Options */
+              src={imageBuilder
+                .image(cyphers.current.imageSquare)
+                .height(1000)
+                .width(1000)
+                .url()}
+              placeholder={imageBuilder
+                .image(cyphers.current.imageSquare)
+                .height(100)
+                .width(100)
+                .url()}
+              alt="This is the alt text."
+              figcaption={null}
+              height={null}
+              width={null}
+              customClass="shadow2"
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
           </div>
         </div>
       </section>

@@ -56,27 +56,27 @@ export default function Post({ siteConfig, product }) {
           <Container>
             <div className="flex  flex-wrap  pb5">
               <div className="col-24  col-12-md  ph2  pb3">
-                <div className="shadow2">
-                  <Image
-                    /* Options */
-                    src={imageBuilder
-                      .image(product.image1)
-                      .height(1000)
-                      .width(1000)
-                      .url()}
-                    placeholder={imageBuilder
-                      .image(product.image1)
-                      .height(25)
-                      .width(25)
-                      .url()}
-                    alt={product.title}
-                    figcaption={null}
-                    height={500}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
+                <Image
+                  /* Options */
+                  src={imageBuilder
+                    .image(product.image1)
+                    .height(1000)
+                    .width(1000)
+                    .url()}
+                  placeholder={imageBuilder
+                    .image(product.image1)
+                    .height(25)
+                    .width(25)
+                    .url()}
+                  alt={product.title}
+                  figcaption={null}
+                  height={500}
+                  width={null}
+                  customClass="shadow2"
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
               </div>
               <div className="col-24  col-12-md  ph3-md">
                 <div className="db  ph2  pt2  pb3">

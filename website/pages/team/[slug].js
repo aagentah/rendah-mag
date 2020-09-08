@@ -11,7 +11,7 @@ import {
 } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, teamMember }) {
-  const {posts} = teamMember;
+  const { posts } = teamMember;
 
   console.log('teamMember', teamMember);
   return (
@@ -29,27 +29,27 @@ export default function Post({ siteConfig, teamMember }) {
       <Container>
         <div className="flex  flex-wrap  pb5">
           <div className="col-24  col-8-md  ph2  pb3">
-            <div className="shadow2">
-              <Image
-                /* Options */
-                src={imageBuilder
-                  .image(teamMember.image)
-                  .height(250)
-                  .width(250)
-                  .url()}
-                placeholder={imageBuilder
-                  .image(teamMember.image)
-                  .height(25)
-                  .width(25)
-                  .url()}
-                alt={teamMember.title}
-                figcaption={null}
-                height={250}
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
+            <Image
+              /* Options */
+              src={imageBuilder
+                .image(teamMember.image)
+                .height(250)
+                .width(250)
+                .url()}
+              placeholder={imageBuilder
+                .image(teamMember.image)
+                .height(25)
+                .width(25)
+                .url()}
+              alt={teamMember.title}
+              figcaption={null}
+              height={250}
+              width={null}
+              customClass="shadow2"
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
           </div>
           <div className="col-12  ph3-md">
             <div className="db  ph2  pb2">

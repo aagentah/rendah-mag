@@ -30,6 +30,8 @@ export default function HeaderDestop({
             alt="This is the alt text."
             figcaption={null}
             height={null}
+            width={null}
+            customClass={null}
             onClick={null}
             /* Children */
             withLinkProps={{
@@ -49,6 +51,8 @@ export default function HeaderDestop({
             alt="This is the alt text."
             figcaption={null}
             height={null}
+            width={null}
+            customClass={null}
             onClick={null}
             /* Children */
             withLinkProps={{
