@@ -346,19 +346,19 @@ export default function ProfileEdit() {
         <div className="flex  flex-wrap">
           <div className="col-24  pb4">
             <div className="w4">
-              <div className="shadow2">
-                <Image
-                  /* Options */
-                  src={avatarImage || '/images/avatar-placeholder.png'}
-                  placeholder={null}
-                  alt={user?.username || ''}
-                  figcaption={null}
-                  height={150}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
+              <Image
+                /* Options */
+                src={avatarImage || '/images/avatar-placeholder.png'}
+                placeholder={null}
+                alt={user?.username || ''}
+                figcaption={null}
+                height={150}
+                width={null}
+                customClass="shadow2"
+                onClick={null}
+                /* Children */
+                withLinkProps={null}
+              />
             </div>
           </div>
 

@@ -21,6 +21,8 @@ export default function CardCypher({ post, columnCount }) {
       alt={post.title}
       figcaption={null}
       height={150}
+      width={null}
+      customClass={null}
       onClick={null}
       /* Children */
       withLinkProps={{
@@ -44,6 +46,8 @@ export default function CardCypher({ post, columnCount }) {
         alt={post.title}
         figcaption={null}
         height={600}
+        width={null}
+        customClass={null}
         onClick={null}
         /* Children */
         withLinkProps={{

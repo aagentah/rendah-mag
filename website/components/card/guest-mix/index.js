@@ -19,6 +19,8 @@ export default function Cardmix({ mix, columnCount }) {
       alt={mix.title}
       figcaption={null}
       height={150}
+      width={null}
+      customClass={null}
       onClick={null}
       /* Children */
       withLinkProps={{

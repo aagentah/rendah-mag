@@ -28,6 +28,8 @@ export default function HeroCypher({ cypher }) {
       alt="This is the alt text."
       figcaption={null}
       height={500}
+      width={null}
+      customClass={null}
       onClick={null}
       /* Children */
       withLinkProps={null}

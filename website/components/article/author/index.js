@@ -9,27 +9,23 @@ export default function Author({ siteConfig, author }) {
     <div className="flex  flex-wrap  br4  shadow2">
       {author.image && (
         <div className="col-24  col-9-md  pa3  pa4-md">
-          <div className="shadow2">
-            <Image
-              /* Options */
-              src={imageBuilder
-                .image(author.image)
-                .height(500)
-                .width(500)
-                .url()}
-              placeholder={imageBuilder
-                .image(author.image)
-                .height(25)
-                .width(25)
-                .url()}
-              alt={author.name}
-              figcaption={null}
-              height={150}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
+          <Image
+            /* Options */
+            src={imageBuilder.image(author.image).height(500).width(500).url()}
+            placeholder={imageBuilder
+              .image(author.image)
+              .height(25)
+              .width(25)
+              .url()}
+            alt={author.name}
+            figcaption={null}
+            height={150}
+            width={null}
+            customClass="shadow2"
+            onClick={null}
+            /* Children */
+            withLinkProps={null}
+          />
         </div>
       )}
 

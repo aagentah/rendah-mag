@@ -25,6 +25,8 @@ export default function CardBlog({ post, columnCount }) {
       alt={post.title}
       figcaption={null}
       height={150}
+      width={null}
+      customClass={null}
       onClick={null}
       /* Children */
       withLinkProps={{
@@ -52,6 +54,8 @@ export default function CardBlog({ post, columnCount }) {
         alt={post.title}
         figcaption={null}
         height={300}
+        width={null}
+        customClass={null}
         onClick={null}
         /* Children */
         withLinkProps={{

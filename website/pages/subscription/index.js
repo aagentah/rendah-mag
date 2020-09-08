@@ -13,11 +13,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
-import {
-  getSiteConfig,
-  getProduct,
-  imageBuilder,
-} from '~/lib/sanity/requests';
+import { getSiteConfig, getProduct, imageBuilder } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig }) {
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
@@ -63,6 +59,8 @@ export default function Post({ siteConfig }) {
                 //   alt={product.title}
                 //   figcaption={null}
                 //   height={500}
+                //   width={null}
+                //   customClass={null}
                 //   onClick={null}
                 //   /* Children */
                 //   withLinkProps={null}

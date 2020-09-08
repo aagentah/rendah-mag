@@ -118,6 +118,8 @@ export default function Cyphers({ siteConfig, cyphers }) {
                         alt="This is the alt text."
                         figcaption={null}
                         height={300}
+                        width={null}
+                        customClass={null}
                         onClick={null}
                         /* Children */
                         withLinkProps={null}

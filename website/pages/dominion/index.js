@@ -60,6 +60,8 @@ export default function Dominion({ siteConfig }) {
                   //   alt={product.title}
                   //   figcaption={null}
                   //   height={500}
+                  //   width={null}
+                  //   customClass={null}
                   //   onClick={null}
                   //   /* Children */
                   //   withLinkProps={null}

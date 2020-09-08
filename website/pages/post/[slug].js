@@ -43,6 +43,8 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
         alt="This is the alt text."
         figcaption={null}
         height={700}
+        width={null}
+        customClass={null}
         onClick={null}
         /* Children */
         withLinkProps={null}
