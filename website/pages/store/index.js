@@ -12,8 +12,6 @@ import HeroStore from '~/components/hero/store';
 import { getSiteConfig, getAllProducts } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, allProducts }) {
-  console.log('allProducts', allProducts);
-
   const collectionNames = map(allProducts, 'collection');
   const uniqueCollectionNames = uniqBy(collectionNames, 'collection');
   const collectionGroups = [];

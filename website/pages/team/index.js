@@ -7,7 +7,6 @@ import CardTeam from '~/components/card/team';
 import { getSiteConfig, getTeamMembers } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, allTeam }) {
-  console.log('allTeam', allTeam);
   return (
     <Layout
       navOffset="top"
@@ -47,7 +46,7 @@ export default function Post({ siteConfig, allTeam }) {
           <section className="pb3">
             <div className="flex  flex-wrap">
               {allTeam.map((teamMember, i) => (
-                <div key={teamMember.slug} className="col-24  col-6-md">
+                <div key={teamMember._id} className="col-24  col-6-md">
                   <div className="pa3">
                     <CardTeam i={i} teamMember={teamMember} columnCount="4" />
                   </div>

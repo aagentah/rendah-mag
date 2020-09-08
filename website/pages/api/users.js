@@ -16,11 +16,9 @@ handler
     }
     // Here you check if the username has already been used
     const userExisted = await findUserByUsername(req, username);
-    console.log('userExisted', userExisted);
     const isUserEmpty =
       Object.keys(userExisted).length === 0 &&
       userExisted.constructor === Object;
-    console.log('isUserEmpty', isUserEmpty);
     if (!isUserEmpty) {
       return res.status(409).send('The username has already been used');
     }

@@ -99,11 +99,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 <Sections body={post.body} />
               </div>
 
-              <div className="pb4">
-                <hr />
-              </div>
-
-              <div className="pb4">
+              <div className="pb4  mb2">
                 <SocialLinks article={post} />
               </div>
             </section>

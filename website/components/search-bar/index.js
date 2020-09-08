@@ -6,7 +6,6 @@ export default function SearchBar() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log('search');
     Router.push(`/search/${inputEl.current.value}`);
   };
 

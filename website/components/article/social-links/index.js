@@ -1,5 +1,4 @@
 export default function SocialLinks({ article }) {
-  console.log('aaa', article);
   if (article.socialHandles) {
     let soundcloud = null;
     let facebook = null;
@@ -11,6 +10,7 @@ export default function SocialLinks({ article }) {
       article.socialHandles.soundcloud.split(/\s*,\s*/).forEach((e) => {
         soundcloud.push(
           <a
+            key={e}
             className="db  pv2  link  f6  black  t-body"
             title="soundcloud"
             href={`https://soundcloud.com/${e}`}
@@ -27,6 +27,7 @@ export default function SocialLinks({ article }) {
       article.socialHandles.facebook.split(/\s*,\s*/).forEach((e) => {
         facebook.push(
           <a
+            key={e}
             className="db  pv2  link  f6  black  t-body"
             title="facebook"
             href={`https://facebook.com/${e}`}
@@ -43,6 +44,7 @@ export default function SocialLinks({ article }) {
       article.socialHandles.twitter.split(/\s*,\s*/).forEach((e) => {
         twitter.push(
           <a
+            key={e}
             className="db  pv2  link  f6  black  t-body"
             title="twitter"
             href={`https://twitter.com/${e}`}
@@ -59,6 +61,7 @@ export default function SocialLinks({ article }) {
       article.socialHandles.instagram.split(/\s*,\s*/).forEach((e) => {
         instagram.push(
           <a
+            key={e}
             className="db  pv2  link  f6  black  t-body"
             title="instagram"
             href={`https://instagram.com/${e}`}
@@ -72,7 +75,7 @@ export default function SocialLinks({ article }) {
     }
 
     return (
-      <div className="ph3">
+      <div className="pa4  bg-almost-white">
         {soundcloud}
         {facebook}
         {twitter}
