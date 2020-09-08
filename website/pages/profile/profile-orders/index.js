@@ -110,7 +110,10 @@ export default function ProfileOrders() {
 
         <div className="flex  flex-wrap">
           {customerOrders.map((order, i) => (
-            <div className="col-24  pa2">
+            <div
+              key={`${order.creationDate}-${order.paymentTransactionId}`}
+              className="col-24  pa2"
+            >
               <div className="br3  pa3  shadow2  mb3">
                 <p className="t-secondary  f7  grey">{order.completionDate}</p>
                 {order.items.map((item) => (

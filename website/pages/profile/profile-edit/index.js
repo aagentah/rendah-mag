@@ -227,7 +227,7 @@ export default function ProfileEdit() {
             />
           </div>
           <div className="flex  flex-wrap  pb2">
-            <div className="col-24  col-12-md  flex  justify-center  justify-start-md  align-center">
+            <div className="col-12  flex  justify-center  justify-start-md  align-center">
               <Button
                 /* Options */
                 type="primary"
@@ -245,7 +245,7 @@ export default function ProfileEdit() {
                 withLinkProps={null}
               />
             </div>
-            <div className="col-24  col-12-md  flex  justify-center  justify-start-md  align-center">
+            <div className="col-12  flex  justify-center  justify-start-md  align-center">
               <Button
                 /* Options */
                 type="secondary"
@@ -277,7 +277,7 @@ export default function ProfileEdit() {
             <Heading
               /* Options */
               htmlEntity="h1"
-              text="Choose Profile Picture"
+              text="Change Avatar"
               color="black"
               size="large"
               truncate={0}
@@ -362,12 +362,12 @@ export default function ProfileEdit() {
             </div>
           </div>
 
-          <div className="col-24  pb3">
+          <div className="col-24  pb4">
             <Button
               /* Options */
               type="primary"
               size="small"
-              text="Choose Profile Picture"
+              text="Change Avatar"
               color="black"
               fluid={false}
               icon={null}
@@ -439,8 +439,8 @@ export default function ProfileEdit() {
                   readOnly={false}
                 />
               </div>
-              <div className="flex  flex-wrap  align-center  pt3">
-                <div className="db  dib-md  pr3">
+              <div className="flex-md  flex-wrap  align-end-md  justify-between-md  pt4">
+                <div className="db  dib-md  pr3  pb4  pb0-md">
                   <Button
                     /* Options */
                     type="primary"
@@ -463,16 +463,16 @@ export default function ProfileEdit() {
                     }}
                   />
                 </div>
-                <div className="db  dib-md  pr3">
+                <div className="db  dib-md  pr3  pb1">
                   <Button
                     /* Options */
-                    type="primary"
-                    size="medium"
+                    type="secondary"
+                    size="small"
                     text="Delete Profile"
-                    color="black"
+                    color="red"
                     fluid={false}
                     icon={buttonIconTrash}
-                    iconFloat={null}
+                    iconFloat="left"
                     inverted
                     loading={false}
                     disabled={app.isLoading}
