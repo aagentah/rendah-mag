@@ -13,6 +13,15 @@ const reducer = (state, action) => {
 
       return newState;
     }
+    case 'SET_DEVICE_TYPE': {
+      const newState = {
+        ...state,
+        deviceType: action.deviceType,
+      };
+
+      return newState;
+      return true;
+    }
 
     default:
       throw new Error(`Unknown action: ${action.type}`);
@@ -20,7 +29,11 @@ const reducer = (state, action) => {
 };
 
 export const AppProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, { isLoading: false });
+  const [state, dispatch] = useReducer(reducer, {
+    isLoading: false,
+    deviceType: null,
+  });
+
   return (
     <CounterDispatchContext.Provider value={dispatch}>
       <CounterStateContext.Provider value={state}>

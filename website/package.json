@@ -47,7 +47,10 @@
     "react-hook-inview": "^4.2.1",
     "react-iframe": "^1.8.0",
     "react-intersection-observer": "^8.26.2",
+    "react-responsive": "^8.1.0",
+    "react-scroll": "^1.8.1",
     "react-scroll-parallax": "^2.3.4",
+    "react-scroll-to": "^3.0.0-beta.6",
     "react-spotify-player": "^1.0.4",
     "react-toast-notifications": "^2.4.0",
     "react-youtube": "^7.11.3",
@@ -55,7 +58,8 @@
     "sass": "^1.26.5",
     "sib-api-v3-sdk": "^7.2.4",
     "swr": "^0.2.0",
-    "tinify": "^1.6.0-beta.2"
+    "tinify": "^1.6.0-beta.2",
+    "zenscroll": "^4.0.2"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.0",

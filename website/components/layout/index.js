@@ -1,3 +1,5 @@
+import deviceType from '~/lib/device-type';
+
 import Alert from './alert';
 import Footer from './footer';
 import Meta from './meta';
@@ -10,6 +12,8 @@ export default function Layout({
   preview,
   children,
 }) {
+  deviceType();
+
   let navOffsetType;
 
   switch (navOffset) {

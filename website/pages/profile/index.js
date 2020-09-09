@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { useToasts } from 'react-toast-notifications';
+import zenscroll from 'zenscroll';
 
 import { Tabs } from 'next-pattern-library';
 
@@ -11,17 +12,26 @@ import ProfileDominion from './profile-dominion';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
+import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Profile({ siteConfig }) {
-  const { addToast } = useToasts();
+  const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
+  const { addToast } = useToasts();
 
   useEffect(() => {
     // redirect user to login if not authenticated
     if ((!loading && !user) || error) Router.replace('/login');
   }, [user, loading, error]);
+
+  const handleToggle = (visibleTab, current) => {
+    if (app.deviceType !== 'mobile') return;
+    zenscroll.setup(300, 15);
+    if (visibleTab) return zenscroll.to(current, 400);
+    return zenscroll.toY(0);
+  };
 
   return (
     <div className="bg-white  bg-almost-white-md">
@@ -65,6 +75,7 @@ export default function Profile({ siteConfig }) {
                     },
                   ]}
                   defaultSelected="1"
+                  onToggle={handleToggle}
                 />
               </div>
             )}
