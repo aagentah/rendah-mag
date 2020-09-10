@@ -43,7 +43,7 @@ export default function ProfileCypher() {
               <Heading
                 /* Options */
                 htmlEntity="h3"
-                text={"This month's rules."}
+                text={cyphers.current.title}
                 color="black"
                 size="small"
                 truncate={null}

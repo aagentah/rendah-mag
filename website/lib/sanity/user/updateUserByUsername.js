@@ -7,6 +7,8 @@ import cloneDeep from 'lodash/cloneDeep';
 import client from '../config-write';
 import { SITE_URL } from '~/constants';
 
+import updateUserTags from '~/lib/mailchimp/update-user-tags';
+
 const handlePassword = (cloneFields) => {
   const f = cloneFields;
 
@@ -92,6 +94,25 @@ const handleAvatar = async (cloneFields, user) => {
   return f;
 };
 
+const handleTags = async (cloneFields) => {
+  // Update tags in Mailchimp
+  await updateUserTags(cloneFields.tags, cloneFields.username);
+
+  // Create array with checked tags
+  const checkedTags = [];
+
+  for (let i = 0; i < cloneFields.tags.length; i++) {
+    const tag = cloneFields.tags[i];
+    if (tag.status) checkedTags.push(tag.label);
+  }
+
+  // Replace cloneFields tags with array
+  delete cloneFields.tags;
+  cloneFields.tags = checkedTags;
+
+  return cloneFields;
+};
+
 const updateUserByUsername = async (req, user, fields) => {
   try {
     // Clone the fields object
@@ -106,6 +127,13 @@ const updateUserByUsername = async (req, user, fields) => {
     if (cloneFields?.avatar) {
       cloneFields = await handleAvatar(cloneFields, user);
     }
+
+    // Handle tags
+    if (cloneFields?.tags.length > 0) {
+      cloneFields = await handleTags(cloneFields);
+    }
+
+    console.log('cloneFields', cloneFields);
 
     // Update user
     const data = await client
@@ -123,7 +151,7 @@ const updateUserByUsername = async (req, user, fields) => {
 
     return data;
   } catch (error) {
-    console.log('Error', error.message);
+    console.log('Error in updateUserByUsername(): ', error.message);
     return false;
   }
 };

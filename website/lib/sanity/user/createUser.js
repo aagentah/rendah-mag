@@ -26,6 +26,7 @@ const createUser = async (user) => {
     _type: 'user',
     username: user.username,
     name: user.name,
+    publicProfile: true,
     salt,
     hash,
   };

@@ -32,14 +32,13 @@ export default function ProfileEdit() {
   const [avatarImage, setAvatarImage] = useState(null);
 
   const userTags = [
-    { text: 'Producer', label: 'producer' },
-    { text: 'DJ', label: 'dj' },
-    { text: 'Visual Artist', label: 'visual-artist' },
-    { text: 'Label', label: 'label' },
-    { text: 'Listener', label: 'listener' },
-    { text: 'Developer', label: 'developer' },
-    { text: 'Engineer', label: 'engineer' },
-    { text: 'BADMAN', label: 'badman' },
+    'Producer',
+    'DJ',
+    'Visual Artist',
+    'Label',
+    'Listener',
+    'Developer',
+    'Engineer',
   ];
 
   const onDrop = useCallback(
@@ -68,14 +67,37 @@ export default function ProfileEdit() {
     onDrop,
   });
 
+  useEffect(() => {
+    if (user?.avatar) {
+      setAvatarImage(
+        imageBuilder.image(user.avatar).height(500).width(500).url()
+      );
+    }
+  }, [user]);
+
   async function handleEditProfile(e) {
     e.preventDefault();
+
+    const tags = [];
+
+    for (let i = 0; i < userTags.length; i++) {
+      const checkbox = e.currentTarget[userTags[i]];
+
+      tags.push({
+        label: checkbox.name,
+        status: checkbox.checked,
+      });
+    }
 
     const body = {
       username: e.currentTarget.username.value,
       name: e.currentTarget.name.value,
+      publicProfile: e.currentTarget.publicProfile.checked,
     };
 
+    console.log('tags', tags);
+
+    if (tags.length > 0) body.tags = tags;
     if (avatarBlob) body.avatar = avatarBlob;
 
     if (e.currentTarget.password.value) {
@@ -415,8 +437,19 @@ export default function ProfileEdit() {
                   readOnly={false}
                 />
               </div>
+              <div className="pv2">
+                <Checkbox
+                  /* Options */
+                  label="Public Profile"
+                  name="publicProfile"
+                  checked={true}
+                  required={false}
+                  disabled={false}
+                  onClick={null}
+                />
+              </div>
             </div>
-            <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+            <div className="col-24  col-12-md  pb3  pb0-md">
               <div className="bg-almost-white  pa3  pa4-md">
                 <div className="pb2">
                   <Heading
@@ -434,7 +467,7 @@ export default function ProfileEdit() {
                 <div className="pb3">
                   <Copy
                     /* Options */
-                    text="We aim to deliver only relevant content."
+                    text="We strive to deliver more relevant content."
                     color="black"
                     size="small"
                     truncate={null}
@@ -442,12 +475,12 @@ export default function ProfileEdit() {
                 </div>
                 <div className="flex  flex-wrap">
                   {userTags.map((tag) => (
-                    <div key={tag.label} className="col-24  col-12-md">
+                    <div key={tag} className="col-24  col-12-md">
                       <div className="pv2">
                         <Checkbox
                           /* Options */
-                          label={tag.text}
-                          name={tag.label}
+                          label={tag}
+                          name={tag}
                           checked={false}
                           required={false}
                           disabled={false}

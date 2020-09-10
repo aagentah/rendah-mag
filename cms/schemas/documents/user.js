@@ -31,6 +31,20 @@ export default {
       type: "date",
     },
     {
+      name: "publicProfile",
+      title: "Public Profile",
+      type: "boolean",
+    },
+    {
+      title: "Tags",
+      name: "tags",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        layout: "tags",
+      },
+    },
+    {
       name: "salt",
       title: "Salt",
       type: "string",
