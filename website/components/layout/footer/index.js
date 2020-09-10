@@ -8,7 +8,9 @@ import SubscribeForm from '~/components/subscribe-form';
 export default function Footer() {
   return (
     <>
-      <SubscribeForm />
+      {
+        // <SubscribeForm />
+      }
       <footer className="footer  pv5">
         <Container>
           <div className="flex  flex-wrap">

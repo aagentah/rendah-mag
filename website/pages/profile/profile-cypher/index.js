@@ -71,7 +71,7 @@ export default function ProfileCypher() {
                   fluid={false}
                   icon={null}
                   iconFloat={null}
-                  inverted
+                  inverted={false}
                   loading={false}
                   disabled={false}
                   onClick={null}
@@ -95,7 +95,7 @@ export default function ProfileCypher() {
                   fluid={false}
                   icon={null}
                   iconFloat={null}
-                  inverted
+                  inverted={false}
                   loading={false}
                   disabled={false}
                   onClick={null}
