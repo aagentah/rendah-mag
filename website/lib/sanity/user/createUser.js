@@ -1,12 +1,26 @@
 import crypto from 'crypto';
 
 import client from '../config-write';
+import subscribe from '~/pages/api/mailchimp/subscribe';
 
-const createUser = async (req, user) => {
+const createUser = async (user) => {
   const salt = crypto.randomBytes(16).toString('hex');
   const hash = crypto
     .pbkdf2Sync(user.password, salt, 1000, 64, 'sha512')
     .toString('hex');
+
+  // Adds user to Mailchimp
+  if (user.addMailchimp) {
+    try {
+      subscribe({
+        body: {
+          email: user.username,
+        },
+      });
+    } catch (error) {
+      console.log('Error adding user to Mailchimp:', error.message);
+    }
+  }
 
   const doc = {
     _type: 'user',
@@ -18,7 +32,7 @@ const createUser = async (req, user) => {
 
   const data = await client.create(doc).then((res) => {
     console.log(`User was created, document ID is ${res._id}`);
-    return { username: res.username, createdAt: Date.now() };
+    return { username: res.username, name: res.name };
   });
 
   return data;

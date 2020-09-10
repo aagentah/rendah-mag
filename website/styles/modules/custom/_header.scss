@@ -37,6 +37,7 @@
   z-index: 10;
 
   .header__burger {
+    background-color: transparent;
     top: 20px;
     left: 15px;
     @extend .absolute;

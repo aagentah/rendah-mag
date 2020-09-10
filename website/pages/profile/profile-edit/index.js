@@ -11,6 +11,7 @@ import {
   Copy,
   Icon,
   Input,
+  Checkbox,
   Label,
 } from 'next-pattern-library';
 
@@ -27,7 +28,7 @@ export default function ProfileEdit() {
   const [avatarModalActive, setAvatarModalActive] = useState(false);
   const [user, { mutate }] = useUser();
   const { addToast } = useToasts();
-  // const [isSubNewsletter, setIsSubNewsletter] = useState('Loading...');
+  const [isSubNewsletter, setIsSubNewsletter] = useState('Loading');
   const [avatarBlob, setAvatarBlob] = useState(null);
   const [avatarImage, setAvatarImage] = useState(null);
 
@@ -57,32 +58,32 @@ export default function ProfileEdit() {
     onDrop,
   });
 
-  // useEffect(() => {
-  //   const mailchimpGetMember = async () => {
-  //     // Fetch mailchimp member
-  //     const response = await fetch('/api/mailchimp/get-member', {
-  //       body: JSON.stringify({
-  //         email: user.username,
-  //       }),
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       method: 'POST',
-  //     });
-  //
-  //     if (response.ok) {
-  //       // Success
-  //       setIsSubNewsletter('Subscribed');
-  //     } else {
-  //       // Error
-  //       setIsSubNewsletter('Not Subscribed');
-  //     }
-  //   };
-  //
-  //   if (user) {
-  //     mailchimpGetMember();
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    const mailchimpGetMember = async () => {
+      // Fetch mailchimp member
+      const response = await fetch('/api/mailchimp/get-member', {
+        body: JSON.stringify({
+          email: user.username,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      });
+
+      if (response.ok) {
+        // Success
+        setIsSubNewsletter(true);
+      } else {
+        // Error
+        setIsSubNewsletter(false);
+      }
+    };
+
+    if (user) {
+      mailchimpGetMember();
+    }
+  }, [user]);
 
   useEffect(() => {
     if (user?.avatar) {
@@ -426,7 +427,7 @@ export default function ProfileEdit() {
                   readOnly={false}
                 />
               </div>
-              <div className="pv2">
+              <div className="pv2  mb3">
                 <Input
                   /* Options */
                   type="password"
@@ -437,6 +438,17 @@ export default function ProfileEdit() {
                   required={false}
                   disabled={false}
                   readOnly={false}
+                />
+              </div>
+              <div className="pv2  mb2">
+                <Checkbox
+                  /* Options */
+                  label="Subscribed to Newsletter"
+                  name="isMailchimp"
+                  checked={isSubNewsletter && isSubNewsletter !== 'Loading'}
+                  required={false}
+                  disabled={isSubNewsletter === 'Loading'}
+                  onClick={null}
                 />
               </div>
               <div className="flex-md  flex-wrap  align-end-md  justify-between-md  pt4">
