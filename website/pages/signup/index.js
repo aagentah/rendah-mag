@@ -10,6 +10,7 @@ import Container from '~/components/layout/container';
 import { useUser } from '~/lib/hooks';
 import { getSiteConfig } from '~/lib/sanity/requests';
 import passwordStrength from '~/lib/password-strength';
+import validEmail from '~/lib/valid-email';
 
 export default function Sigup({ siteConfig }) {
   const [user, { mutate }] = useUser();
@@ -23,14 +24,11 @@ export default function Sigup({ siteConfig }) {
       username: e.currentTarget.username.value,
       password: e.currentTarget.password.value,
       name: e.currentTarget.name.value,
-      age: e.currentTarget.age.checked,
+      terms: e.currentTarget.terms.checked,
       addMailchimp: e.currentTarget.addMailchimp.checked,
     };
 
-    console.log('e', e.currentTarget.username.required);
-    console.log('body', body);
-
-    if (!body.username) {
+    if (!body.username || !validEmail(body.username)) {
       addToast('Please enter a valid email.', {
         appearance: 'error',
         autoDismiss: true,
@@ -57,8 +55,8 @@ export default function Sigup({ siteConfig }) {
       hasError = true;
     }
 
-    if (!body.age) {
-      addToast('Please confirm you are 18+.', {
+    if (!body.terms) {
+      addToast(`Please check that you accept the T&C's`, {
         appearance: 'error',
         autoDismiss: true,
       });
@@ -207,7 +205,7 @@ export default function Sigup({ siteConfig }) {
                 readOnly={false}
               />
             </div>
-            <div className="pv2">
+            <div className="pv2  mb3">
               <Input
                 /* Options */
                 type="password"
@@ -220,21 +218,21 @@ export default function Sigup({ siteConfig }) {
                 readOnly={false}
               />
             </div>
-            <div className="pv2">
+            <div className="pv2  mb2">
               <Checkbox
                 /* Options */
-                label="Confirm I am 18+ years old."
-                name="age"
+                label="Confirm that I accept the T&C's."
+                name="terms"
                 checked={false}
                 required
                 disabled={false}
                 onClick={null}
               />
             </div>
-            <div className="pv2">
+            <div className="pv2  mb2">
               <Checkbox
                 /* Options */
-                label="Add to Rendah's Mailout (We promise to only send relevant content)."
+                label="Add me to your Newsletter for news and exclusive content."
                 name="addMailchimp"
                 checked={false}
                 required={false}
@@ -242,7 +240,6 @@ export default function Sigup({ siteConfig }) {
                 onClick={null}
               />
             </div>
-
             <div className="df  dib-md  flex-wrap  align-center  pt3">
               <div className="col-24  di-md  pb3  pb0-md  pr3-md">
                 <Button

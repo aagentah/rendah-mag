@@ -34,10 +34,12 @@ export default async (req, res) => {
     }
 
     // Success
-    return res.status(200).json({ error: '' });
+    if (res) return res.status(200).json({ error: '' });
+    return true;
   } catch (error) {
     // Handle catch
     console.error(error.message || error.toString());
-    return res.status(500).json({ error: error.message });
+    if (res) return res.status(500).json({ error: error.message });
+    return false;
   }
 };

@@ -10,24 +10,17 @@ handler
   .use(auth)
   //
   .post(async (req, res) => {
-    const { username, password, name } = req.body;
-    if (!username || !password || !name) {
-      return res.status(400).send('Missing fields');
-    }
     // Here you check if the username has already been used
-    const userExisted = await findUserByUsername(req, username);
+    const userExisted = await findUserByUsername(req, req.body.username);
     const isUserEmpty =
       Object.keys(userExisted).length === 0 &&
       userExisted.constructor === Object;
+
     if (!isUserEmpty) {
-      return res.status(409).send('The username has already been used');
+      return res.status(409).send('The username has already been used.');
     }
 
-    const user = { username, password, name };
-    // Security-wise, you must hash the password before saving it
-    // const hashedPass = await argon2.hash(password);
-    // const user = { username, password: hashedPass, name }
-    createUser(req, user);
+    const user = await createUser(req.body);
 
     return req.logIn(user, (err) => {
       if (err) throw err;
