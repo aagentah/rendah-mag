@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
 import { useToasts } from 'react-toast-notifications';
-import { Heading, Button, Icon, Input } from 'next-pattern-library';
+import { Heading, Button, Icon, Input, Checkbox } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -17,35 +17,80 @@ export default function Sigup({ siteConfig }) {
 
   async function onSubmit(e) {
     e.preventDefault();
+    let hasError = false;
 
     const body = {
       username: e.currentTarget.username.value,
       password: e.currentTarget.password.value,
       name: e.currentTarget.name.value,
+      age: e.currentTarget.age.checked,
+      addMailchimp: e.currentTarget.addMailchimp.checked,
     };
 
-    if (body.password !== e.currentTarget.rpassword.value) {
-      addToast("The passwords don't match", {
+    console.log('e', e.currentTarget.username.required);
+    console.log('body', body);
+
+    if (!body.username) {
+      addToast('Please enter a valid email.', {
         appearance: 'error',
         autoDismiss: true,
       });
-      return;
+
+      hasError = true;
+    }
+
+    if (!body.name) {
+      addToast('Please enter your name.', {
+        appearance: 'error',
+        autoDismiss: true,
+      });
+
+      hasError = true;
+    }
+
+    if (!body.password) {
+      addToast('Please enter a password.', {
+        appearance: 'error',
+        autoDismiss: true,
+      });
+
+      hasError = true;
+    }
+
+    if (!body.age) {
+      addToast('Please confirm you are 18+.', {
+        appearance: 'error',
+        autoDismiss: true,
+      });
+
+      hasError = true;
+    }
+
+    if (body.password !== e.currentTarget.rpassword.value) {
+      addToast("The passwords don't match.", {
+        appearance: 'error',
+        autoDismiss: true,
+      });
+
+      hasError = true;
     }
 
     if (body.password === e.currentTarget.username.value) {
-      addToast('Password should not match Email', {
+      addToast('Password should not match email.', {
         appearance: 'error',
         autoDismiss: true,
       });
-      return;
+
+      hasError = true;
     }
 
     if (body.password === e.currentTarget.name.value) {
-      addToast('Password should not match Name', {
+      addToast('Password should not match name.', {
         appearance: 'error',
         autoDismiss: true,
       });
-      return;
+
+      hasError = true;
     }
 
     // Check password strength
@@ -55,6 +100,11 @@ export default function Sigup({ siteConfig }) {
         appearance: 'error',
         autoDismiss: true,
       });
+
+      hasError = true;
+    }
+
+    if (hasError) {
       return;
     }
 
@@ -113,7 +163,11 @@ export default function Sigup({ siteConfig }) {
             />
           </div>
 
-          <form className="form  form--default  mla  mra" onSubmit={onSubmit}>
+          <form
+            className="form  form--default  mla  mra"
+            onSubmit={onSubmit}
+            noValidate
+          >
             <div className="pv2">
               <Input
                 /* Options */
@@ -164,6 +218,28 @@ export default function Sigup({ siteConfig }) {
                 required
                 disabled={false}
                 readOnly={false}
+              />
+            </div>
+            <div className="pv2">
+              <Checkbox
+                /* Options */
+                label="Confirm I am 18+ years old."
+                name="age"
+                checked={false}
+                required
+                disabled={false}
+                onClick={null}
+              />
+            </div>
+            <div className="pv2">
+              <Checkbox
+                /* Options */
+                label="Add to Rendah's Mailout (We promise to only send relevant content)."
+                name="addMailchimp"
+                checked={false}
+                required={false}
+                disabled={false}
+                onClick={null}
               />
             </div>
 
