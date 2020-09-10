@@ -28,9 +28,19 @@ export default function ProfileEdit() {
   const [avatarModalActive, setAvatarModalActive] = useState(false);
   const [user, { mutate }] = useUser();
   const { addToast } = useToasts();
-  const [isSubNewsletter, setIsSubNewsletter] = useState('Loading');
   const [avatarBlob, setAvatarBlob] = useState(null);
   const [avatarImage, setAvatarImage] = useState(null);
+
+  const userTags = [
+    { text: 'Producer', label: 'producer' },
+    { text: 'DJ', label: 'dj' },
+    { text: 'Visual Artist', label: 'visual-artist' },
+    { text: 'Label', label: 'label' },
+    { text: 'Listener', label: 'listener' },
+    { text: 'Developer', label: 'developer' },
+    { text: 'Engineer', label: 'engineer' },
+    { text: 'BADMAN', label: 'badman' },
+  ];
 
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -57,41 +67,6 @@ export default function ProfileEdit() {
     multiple: false,
     onDrop,
   });
-
-  useEffect(() => {
-    const mailchimpGetMember = async () => {
-      // Fetch mailchimp member
-      const response = await fetch('/api/mailchimp/get-member', {
-        body: JSON.stringify({
-          email: user.username,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-      });
-
-      if (response.ok) {
-        // Success
-        setIsSubNewsletter(true);
-      } else {
-        // Error
-        setIsSubNewsletter(false);
-      }
-    };
-
-    if (user) {
-      mailchimpGetMember();
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (user?.avatar) {
-      setAvatarImage(
-        imageBuilder.image(user.avatar).height(500).width(500).url()
-      );
-    }
-  }, [user]);
 
   async function handleEditProfile(e) {
     e.preventDefault();
@@ -385,9 +360,9 @@ export default function ProfileEdit() {
           </div>
         </div>
 
-        <div className="flex  flex-wrap">
-          <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-            <form className="form  form--default" onSubmit={handleEditProfile}>
+        <form className="w-100" onSubmit={handleEditProfile}>
+          <div className="flex  flex-wrap">
+            <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
               <div className="pv2">
                 <Input
                   /* Options */
@@ -440,99 +415,97 @@ export default function ProfileEdit() {
                   readOnly={false}
                 />
               </div>
-              <div className="pv2  mb2">
-                <Checkbox
-                  /* Options */
-                  label="Subscribed to Newsletter"
-                  name="isMailchimp"
-                  checked={isSubNewsletter && isSubNewsletter !== 'Loading'}
-                  required={false}
-                  disabled={isSubNewsletter === 'Loading'}
-                  onClick={null}
-                />
-              </div>
-              <div className="flex-md  flex-wrap  align-end-md  justify-between-md  pt4">
-                <div className="db  dib-md  pr3  pb4  pb0-md">
-                  <Button
+            </div>
+            <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+              <div className="bg-almost-white  pa3  pa4-md">
+                <div className="pb2">
+                  <Heading
                     /* Options */
-                    type="primary"
-                    size="medium"
-                    text="Update"
+                    htmlEntity="h1"
+                    text="I am..."
                     color="black"
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted={false}
-                    loading={updateButtonLoading}
-                    disabled={app.isLoading}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'form',
-                      url: null,
-                      target: null,
-                      routerLink: null,
-                    }}
-                  />
-                </div>
-                <div className="db  dib-md  pr3  pb1">
-                  <Button
-                    /* Options */
-                    type="secondary"
                     size="small"
-                    text="Delete Profile"
-                    color="red"
-                    fluid={false}
-                    icon={buttonIconTrash}
-                    iconFloat="left"
-                    inverted
-                    loading={false}
-                    disabled={app.isLoading}
-                    onClick={() => {
-                      setDeleteModalActive(!deleteModalActive);
-                    }}
+                    truncate={0}
+                    onClick={null}
                     /* Children */
                     withLinkProps={null}
                   />
                 </div>
+                <div className="pb3">
+                  <Copy
+                    /* Options */
+                    text="We aim to deliver only relevant content."
+                    color="black"
+                    size="small"
+                    truncate={null}
+                  />
+                </div>
+                <div className="flex  flex-wrap">
+                  {userTags.map((tag) => (
+                    <div key={tag.label} className="col-24  col-12-md">
+                      <div className="pv2">
+                        <Checkbox
+                          /* Options */
+                          label={tag.text}
+                          name={tag.label}
+                          checked={false}
+                          required={false}
+                          disabled={false}
+                          onClick={null}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </form>
+            </div>
           </div>
-          {
-            // <div className="col-24  col-12-md  pr0  pr4-md">
-            //   <div className="flex  justify-between  justify-end-md  align-center  pv3">
-            //     <p className="t-secondary  black  f6  pr2">Newsletter Status:</p>
-            //     <Label
-            //       /* Options */
-            //       customClass="ph3  pv2  shadow2"
-            //       text={isSubNewsletter}
-            //       color="white"
-            //       backgroundColor={
-            //         isSubNewsletter === 'Subscribed' ? 'green' : 'red'
-            //       }
-            //       onClick={null}
-            //       /* Children */
-            //       withLinkProps={null}
-            //     />
-            //   </div>
-            //   <div className="flex  justify-between  justify-end-md  align-center  pv3">
-            //     <p className="t-secondary  black  f6  pr2">
-            //       Dominion Subscription:
-            //     </p>
-            //     <Label
-            //       /* Options */
-            //       customClass="ph3  pv2  shadow2"
-            //       text={user?.isDominion ? 'Subscribed' : 'Not Subscribed'}
-            //       color="white"
-            //       backgroundColor={user?.isDominion ? 'green' : 'red'}
-            //       onClick={null}
-            //       /* Children */
-            //       withLinkProps={null}
-            //     />
-            //   </div>
-            // </div>
-          }
-        </div>
+          <div className="flex-md  flex-wrap  align-end-md  justify-between-md  pt4">
+            <div className="db  dib-md  pr3  pb4  pb0-md">
+              <Button
+                /* Options */
+                type="primary"
+                size="medium"
+                text="Update"
+                color="black"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted={false}
+                loading={updateButtonLoading}
+                disabled={app.isLoading}
+                onClick={null}
+                /* Children */
+                withLinkProps={{
+                  type: 'form',
+                  url: null,
+                  target: null,
+                  routerLink: null,
+                }}
+              />
+            </div>
+            <div className="db  dib-md  pr3  pb1">
+              <Button
+                /* Options */
+                type="secondary"
+                size="small"
+                text="Delete Profile"
+                color="red"
+                fluid={false}
+                icon={buttonIconTrash}
+                iconFloat="left"
+                inverted
+                loading={false}
+                disabled={app.isLoading}
+                onClick={() => {
+                  setDeleteModalActive(!deleteModalActive);
+                }}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+          </div>
+        </form>
       </>
     );
   }
