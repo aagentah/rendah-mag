@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { Parallax } from 'react-scroll-parallax';
-
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
@@ -73,19 +71,17 @@ export default function HeroPost({ post }) {
 
   return (
     <>
-      <Parallax className="z1  nt5" y={['-50px', '50px']} tagOuter="figure">
-        <div className="hero--darken-all">
-          <Hero
-            /* Options */
-            height={500}
-            /* Children */
-            image={heroImage}
-            title={heroHeading}
-            description={null}
-            button={heroButton}
-          />
-        </div>
-      </Parallax>
+      <div className="hero--darken-all">
+        <Hero
+          /* Options */
+          height={500}
+          /* Children */
+          image={heroImage}
+          title={heroHeading}
+          description={null}
+          button={heroButton}
+        />
+      </div>
     </>
   );
 }
