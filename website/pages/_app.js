@@ -7,6 +7,7 @@ import { ToastProvider } from 'react-toast-notifications';
 import { AppProvider } from '~/context-provider/app';
 
 import '~/styles/index.scss';
+import 'keen-slider/keen-slider.min.css';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());

@@ -20,6 +20,7 @@ export default function Profile({ siteConfig }) {
   const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
   const { addToast } = useToasts();
+  const [refreshDominion, setRefreshDominion] = useState(false);
 
   useEffect(() => {
     // redirect user to login if not authenticated
@@ -27,10 +28,17 @@ export default function Profile({ siteConfig }) {
   }, [user, loading, error]);
 
   const handleToggle = (visibleTab, current) => {
-    if (app.deviceType !== 'mobile') return;
-    zenscroll.setup(300, 15);
-    if (visibleTab) return zenscroll.to(current, 400);
-    return zenscroll.toY(0);
+    // Handles tab scroll on mobile
+    if (app.deviceType === 'mobile') {
+      zenscroll.setup(300, 15);
+      if (visibleTab) return zenscroll.to(current, 400);
+      zenscroll.toY(0);
+    }
+    // Handles dominion carousel refresh
+    if (visibleTab === '3') {
+      console.log('set true');
+      setRefreshDominion(true);
+    }
   };
 
   return (
@@ -66,7 +74,9 @@ export default function Profile({ siteConfig }) {
                     {
                       id: '3',
                       tabTitle: 'Dominion',
-                      tabContent: <ProfileDominion />,
+                      tabContent: (
+                        <ProfileDominion refreshDominion={refreshDominion} />
+                      ),
                     },
                     {
                       id: '4',
