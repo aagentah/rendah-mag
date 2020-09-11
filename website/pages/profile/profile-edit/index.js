@@ -95,8 +95,6 @@ export default function ProfileEdit() {
       publicProfile: e.currentTarget.publicProfile.checked,
     };
 
-    console.log('tags', tags);
-
     if (tags.length > 0) body.tags = tags;
     if (avatarBlob) body.avatar = avatarBlob;
 
@@ -481,7 +479,7 @@ export default function ProfileEdit() {
                           /* Options */
                           label={tag}
                           name={tag}
-                          checked={false}
+                          checked={user.tags.includes(tag)}
                           required={false}
                           disabled={false}
                           onClick={null}

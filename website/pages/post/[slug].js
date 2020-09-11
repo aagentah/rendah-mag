@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Router, { useRouter } from 'next/router';
-import { Parallax } from 'react-scroll-parallax';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
 
@@ -24,6 +23,7 @@ import SubscribeForm from '~/components/subscribe-form';
 import Date from '~/components/date';
 import CardBlog from '~/components/card/blog';
 import useWindowDimensions from '~/functions/useWindowDimensions';
+import { useUser } from '~/lib/hooks';
 
 import {
   getSiteConfig,
@@ -33,12 +33,13 @@ import {
 
 export default function Post({ siteConfig, post, morePosts, preview }) {
   const router = useRouter();
+  const [user] = useUser();
   const { height, width } = useWindowDimensions();
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
   const handleIntersection = (event) => {
-    if (event.isIntersecting && !hasShownModal) {
+    if (event.isIntersecting && !user && !hasShownModal) {
       setHasShownModal(true);
       setModalActive(true);
     }
@@ -140,19 +141,17 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           </div>
         </Modal>
 
-        <Parallax className="z1  nt4" y={['-50px', '50px']} tagOuter="figure">
-          <div className="hero--darken-top">
-            <Hero
-              /* Options */
-              height={700}
-              /* Children */
-              image={heroImage}
-              title={null}
-              description={null}
-              button={null}
-            />
-          </div>
-        </Parallax>
+        <div className="hero--darken-top">
+          <Hero
+            /* Options */
+            height={700}
+            /* Children */
+            image={heroImage}
+            title={null}
+            description={null}
+            button={null}
+          />
+        </div>
 
         <Container>
           <article className="pt5  pb4  mt3  ph3  ph4-md">
