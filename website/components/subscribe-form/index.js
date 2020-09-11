@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { useToasts } from 'react-toast-notifications';
 
-import { Heading, Button, Icon } from 'next-pattern-library';
+import { Button, Icon } from 'next-pattern-library';
 
 import { useApp, useDispatchApp } from '../../context-provider/app';
 
-export default function SubscribeForm() {
+export default function SubscribeForm({ onSuccess }) {
   const app = useApp();
   const dispatch = useDispatchApp();
   const { addToast } = useToasts();
@@ -45,6 +45,8 @@ export default function SubscribeForm() {
         appearance: 'success',
         autoDismiss: true,
       });
+
+      onSuccess();
     } else {
       // Error
       addToast(json.error, {
@@ -62,23 +64,10 @@ export default function SubscribeForm() {
 
   return (
     <form
-      className="w-100  pv5  ph0  ph3-md  flex  flex-wrap  justify-center  align-center  bg-almost-white"
+      className="w-100  flex  flex-wrap  justify-center  align-center"
       onSubmit={subscribe}
+      noValidate
     >
-      <div className="col-24  flex  flex-wrap  justify-center  tac  pb3  mb0  mb2-md">
-        <Heading
-          /* Options */
-          htmlEntity="h1"
-          text="Join our newsletter!"
-          color="black"
-          size="medium"
-          truncate={null}
-          reveal={null}
-          /* Children */
-          withLinkProps={null}
-        />
-      </div>
-
       <div className="flex  flex-wrap  mt2  ph4  ph0-md">
         <input
           className="subscribe-banner__input  col-24  col-16-md  flex  justify-center  mb3  mb0-md"
@@ -113,10 +102,6 @@ export default function SubscribeForm() {
           />
         </div>
       </div>
-
-      <p className="t-secondary  f6  almost-black  lh-copy  col-24  tac  pt4  ph5  ph0-md">
-        We&apos;ll only send emails when new content is posted. No spam.
-      </p>
     </form>
   );
 }
