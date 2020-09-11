@@ -221,7 +221,7 @@ export default function ProfileEdit() {
               text="This is the point of no return. Are you sure you want to DELETE your account?"
               color="black"
               size="medium"
-              truncate={2}
+              truncate={null}
             />
           </div>
           <div className="flex  flex-wrap  pb2">
@@ -257,7 +257,7 @@ export default function ProfileEdit() {
                 loading={false}
                 disabled={false}
                 onClick={() => {
-                  setDeleteModalActive(!deleteModalActive);
+                  setDeleteModalActive(false);
                 }}
                 /* Children */
                 withLinkProps={null}

@@ -1,14 +1,25 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Router, { useRouter } from 'next/router';
 import { Parallax } from 'react-scroll-parallax';
+import 'intersection-observer';
+import Observer from '@researchgate/react-intersection-observer';
 
-import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
+import {
+  Modal,
+  Hero,
+  Heading,
+  Copy,
+  Image,
+  Button,
+  Icon,
+} from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';
 import SocialLinks from '~/components/article/social-links';
 import Author from '~/components/article/author';
+import SubscribeForm from '~/components/subscribe-form';
 
 import Date from '~/components/date';
 import CardBlog from '~/components/card/blog';
@@ -21,8 +32,22 @@ import {
 } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, post, morePosts, preview }) {
-  const { height, width } = useWindowDimensions();
   const router = useRouter();
+  const { height, width } = useWindowDimensions();
+  const [hasShownModal, setHasShownModal] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
+
+  const handleIntersection = (event) => {
+    if (event.isIntersecting && !hasShownModal) {
+      setHasShownModal(true);
+      setModalActive(true);
+    }
+  };
+
+  const options = {
+    onChange: handleIntersection,
+    rootMargin: '0% 0% -30% 0%',
+  };
 
   useEffect(() => {
     if (!router.isFallback && !post?.slug) Router.push('/404');
@@ -61,6 +86,60 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
         }}
         preview={preview}
       >
+        <Modal
+          /* Options */
+          size="small"
+          active={modalActive}
+        >
+          <div className="pb2">
+            <Heading
+              /* Options */
+              htmlEntity="h3"
+              text="Thanks for reading ❤️"
+              color="black"
+              size="medium"
+              truncate={0}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <div className="pb3">
+            <Copy
+              /* Options */
+              text="Can we add you to our Newsletter? We strive to only send relevant content."
+              color="black"
+              size="medium"
+              truncate={null}
+            />
+          </div>
+          <div className="pb4">
+            <SubscribeForm onSuccess={() => setModalActive(false)} />
+          </div>
+          <div className="flex  flex-wrap  pb2">
+            <div className="col-24  flex  justify-center  align-center">
+              <Button
+                /* Options */
+                type="secondary"
+                size="medium"
+                text="No thanks"
+                color="black"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted={false}
+                loading={false}
+                disabled={false}
+                onClick={() => {
+                  setModalActive(false);
+                }}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+          </div>
+        </Modal>
+
         <Parallax className="z1  nt4" y={['-50px', '50px']} tagOuter="figure">
           <div className="hero--darken-top">
             <Hero
@@ -74,6 +153,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
             />
           </div>
         </Parallax>
+
         <Container>
           <article className="pt5  pb4  mt3  ph3  ph4-md">
             <section className="measure-wide  mla  mra">
@@ -99,9 +179,11 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 <Sections body={post.body} />
               </div>
 
-              <div className="pb4  mb2">
-                <SocialLinks article={post} />
-              </div>
+              <Observer {...options}>
+                <div className="pb4  mb2">
+                  <SocialLinks article={post} />
+                </div>
+              </Observer>
             </section>
 
             <section className="measure-wide  mla  mra">

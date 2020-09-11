@@ -5,9 +5,9 @@ import NProgress from 'nprogress';
 import { ToastProvider } from 'react-toast-notifications';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
-import { AppProvider } from '../context-provider/app';
+import { AppProvider } from '~/context-provider/app';
 
-import '../styles/index.scss';
+import '~/styles/index.scss';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());

@@ -1,15 +1,14 @@
+import { useState } from 'react';
 import Link from 'next/link';
-import { useInView } from 'react-intersection-observer';
+import 'intersection-observer';
+import Observer from '@researchgate/react-intersection-observer';
 
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function CardBlog({ post, columnCount }) {
-  const [ref, inView, entry] = useInView({
-    rootMargin: '20px 0px -220px 0px',
-    threshold: 1,
-  });
+  const [inView, setInView] = useState(false);
 
   let cardImage;
 
@@ -85,19 +84,34 @@ export default function CardBlog({ post, columnCount }) {
     />
   );
 
+  const handleIntersection = (event) => {
+    if (event.isIntersecting) {
+      return setInView(true);
+    }
+
+    return setInView(false);
+  };
+
+  const options = {
+    onChange: handleIntersection,
+    rootMargin: '0% 0% -30% 0%',
+  };
+
   return (
-    <div className={`card--scroll  ${inView ? 'in-view' : 'n'}`} ref={ref}>
-      <Card
-        /* Options */
-        type="block"
-        onClick={null}
-        /* Children */
-        image={cardImage}
-        labelBlock={null}
-        title={cardHeading}
-        description={null}
-        button={null}
-      />
-    </div>
+    <Observer {...options}>
+      <div className={`card--scroll ${inView && 'in-view'}`}>
+        <Card
+          /* Options */
+          type="block"
+          onClick={null}
+          /* Children */
+          image={cardImage}
+          labelBlock={null}
+          title={cardHeading}
+          description={null}
+          button={null}
+        />
+      </div>
+    </Observer>
   );
 }
