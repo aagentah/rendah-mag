@@ -15,7 +15,7 @@ import {
   Label,
 } from 'next-pattern-library';
 
-import Carousel from './Carousel';
+import Carousel from './carousel.js';
 
 import { useUser } from '~/lib/hooks';
 import setCharAt from '~/functions/setCharAt';

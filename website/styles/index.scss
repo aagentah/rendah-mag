@@ -92,3 +92,18 @@
 .arrow--disabled {
   fill: var(--grey);
 }
+
+//
+
+.carousel-arrow--left {
+  position: absolute;
+  top: 45%;
+  left: -30px;
+  cursor: pointer;
+}
+
+.carousel-arrow--right {
+  position: absolute;
+  top: 45%;
+  right: -30px;
+}
