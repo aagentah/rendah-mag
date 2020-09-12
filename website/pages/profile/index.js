@@ -31,12 +31,14 @@ export default function Profile({ siteConfig }) {
     // Handles tab scroll on mobile
     if (app.deviceType === 'mobile') {
       zenscroll.setup(300, 15);
-      if (visibleTab) return zenscroll.to(current, 400);
-      zenscroll.toY(0);
+      if (visibleTab) {
+        zenscroll.to(current, 400);
+      } else {
+        zenscroll.toY(0);
+      }
     }
     // Handles dominion carousel refresh
     if (visibleTab === '3') {
-      console.log('set true');
       setRefreshDominion(true);
     }
   };

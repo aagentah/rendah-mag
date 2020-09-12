@@ -15,45 +15,45 @@ import {
   Label,
 } from 'next-pattern-library';
 
+import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import setCharAt from '~/functions/setCharAt';
 
 import { imageBuilder, getDominionItemsSinceDate } from '~/lib/sanity/requests';
 
 function ArrowLeft(props) {
-  const disabeld = props.disabled ? ' arrow--disabled' : '';
   return (
-    <svg
+    <div
       onClick={props.onClick}
-      className={'arrow arrow--left' + disabeld}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
+      className={`carousel-arrow--left ${
+        props.disabled ? 'light-grey' : 'black  cp'
+      }`}
     >
-      <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
-    </svg>
+      <Icon icon={['fas', 'chevron-left']} size="2x" />
+    </div>
   );
 }
 
 function ArrowRight(props) {
-  const disabeld = props.disabled ? ' arrow--disabled' : '';
   return (
-    <svg
+    <div
       onClick={props.onClick}
-      className={'arrow arrow--right' + disabeld}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
+      className={`carousel-arrow--right ${
+        props.disabled ? 'light-grey' : 'black  cp'
+      }`}
     >
-      <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
-    </svg>
+      <Icon icon={['fas', 'chevron-right']} size="2x" />
+    </div>
   );
 }
 
 export default function Carousel({ dominionItems, refreshDominion }) {
+  const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
   const [modalActive, setModalActive] = useState(null);
 
   const sliderOptions = {
-    slidesPerView: 2,
+    slidesPerView: app.deviceType === 'mobile' ? 1 : 2,
     mode: 'snap',
     spacing: 0,
     initial: 0,
@@ -67,7 +67,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
-  if (refreshDominion && dominionItems?.length) {
+  if (refreshDominion && dominionItems.length) {
     return (
       <>
         <div>
@@ -151,7 +151,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
           ))}
         </div>
         <div className="navigation-wrapper">
-          <div ref={sliderRef} className="keen-slider">
+          <div ref={sliderRef} className="keen-slider  flex align-center">
             {dominionItems.map((item, i) => (
               <article className="keen-slider__slide  pa3" key={item._id}>
                 <div className="relative">
@@ -170,17 +170,13 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                         />
                       </div>
                     )}
-                    <p className="t-secondary  f7  grey  pb2  mb2">
+                    <p className="t-secondary  f7  grey  pb2">
                       {new Date(item.activeFrom).toDateString()}
                     </p>
 
-                    <p className="t-primary  f4  black  pb3">{item.title}</p>
-
-                    {
-                      // <div className="post__body  pr2  pb2">
-                      //   <BlockContent blocks={item.briefDescription} />
-                      // </div>
-                    }
+                    <p className="t-primary  f4  black  pb3  mb2">
+                      {item.title}
+                    </p>
 
                     <div className="flex  flex-wrap  pb3">
                       {item?.tags &&
@@ -205,7 +201,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                         /* Options */
                         type="secondary"
                         size="small"
-                        text="More details"
+                        text="View details"
                         color="black"
                         fluid={false}
                         icon={buttonIcon}
@@ -232,7 +228,10 @@ export default function Carousel({ dominionItems, refreshDominion }) {
 
               <ArrowRight
                 onClick={(e) => e.stopPropagation() || slider.next()}
-                disabled={currentSlide === slider.details().size - 1}
+                disabled={
+                  currentSlide ===
+                  slider.details().size - sliderOptions.slidesPerView
+                }
               />
             </>
           )}
