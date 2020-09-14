@@ -7,8 +7,8 @@ export default (title, body, image, buttonText, buttonLink) => {
             <tr>
               <td width="150" valign="top">
               </td>
-              <td width="300" valign="top" style="text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; line-height: 24px;">
-                ${title}
+              <td width="300" valign="top">
+                <h1 style="text-align: center;">${title}</h1>
               </td>
               <td width="150" valign="top">
               </td>
@@ -30,8 +30,8 @@ export default (title, body, image, buttonText, buttonLink) => {
             <tr>
               <td width="150" valign="top">
               </td>
-              <td width="300" valign="top" style="text-align: justify; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 22px;">
-                ${body}
+              <td width="300" valign="top">
+                <p>${body}</p>
               </td>
               <td width="150" valign="top">
               </td>
@@ -80,7 +80,7 @@ export default (title, body, image, buttonText, buttonLink) => {
                 <td width="200" valign="top" style="text-align: justify; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 22px;">
                   <div>
                     <a class="btn" href="${buttonLink}"
-                      style="border-radius:0px;display:inline-block;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;"
+                      style="border-radius:0px;display:inline-block;font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;"
                      >
                       ${buttonText}1
                     </a>
@@ -108,92 +108,103 @@ export default (title, body, image, buttonText, buttonLink) => {
       <title>Rendah Mag</title>
 
       <style type="text/css">
+      body, .bg {
+        background: #ffffff;
+        color: #111111;
+      }
+      .btn {
+        background: #111111;
+        color: #ffffff;
+      }
+      @media (prefers-color-scheme: dark) {
         body, .bg {
-          background: #ffffff;
-          color: #111111;
+          background: #111111;
+          color: #ffffff;
         }
         .btn {
           background: #111111;
           color: #ffffff;
+          outline: 1px solid #ffffff;;
         }
-        @media (prefers-color-scheme: dark) {
-          body, .bg {
-            background: #111111;
-            color: #ffffff;
-          }
-          .btn {
-            background: #111111;
-            color: #ffffff;
-            outline: 1px solid #ffffff;;
-          }
+      }
+      body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      #outlook a {
+        padding: 0;
+      }
+      .ExternalClass {
+        width: 100%;
+      }
+      .ExternalClass,
+      .ExternalClass p,
+      .ExternalClass span,
+      .ExternalClass font,
+      .ExternalClass td,
+      .ExternalClass div {
+        line-height: 100%;
+      }
+      p, ul, li, a, span, h1, h2, h3, h4, h5, h6 {
+        text-align: justify;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #000000;
+        font-size: 16px;
+        line-height: 22px;
+      }
+      h1 {
+        font-size: 20px;
+        line-height: 26px;
+      }
+      @media only screen and (max-width: 768px) {
+        /* For mobile phones: */
+        p, ul, li, a, span, h1, h2, h3, h4, h5, h6 {
+          font-size: 20px;
+          line-height: 26px;
         }
-        body {
-          width: 100%;
-          margin: 0;
-          padding: 0;
-          -webkit-text-size-adjust: 100%;
-          -ms-text-size-adjust: 100%;
+        h1 {
+          font-size: 24px;
+          line-height: 28px;
         }
-        #outlook a {
-          padding: 0;
-        }
-        .ExternalClass {
-          width: 100%;
-        }
-        .ExternalClass,
-        .ExternalClass p,
-        .ExternalClass span,
-        .ExternalClass font,
-        .ExternalClass td,
-        .ExternalClass div {
-          line-height: 100%;
-        }
-        p {
-          margin: 0;
-          padding: 0;
-          font-size: 14px;
-          line-height: 18px;
-        }
-        table td {
-          border-collapse: collapse;
-        }
-        table {
-          border-collapse: collapse;
-          mso-table-lspace: 0pt;
-          mso-table-rspace: 0pt;
-        }
-        img {
-          display: block;
-          outline: none;
-          text-decoration: none;
-          -ms-interpolation-mode: bicubic;
-        }
-        a img {
-          border: none;
-        }
-        a {
-          text-decoration: none;
-        }
-        a.phone {
-          text-decoration: none;
-          pointer-events: auto;
-          cursor: default;
-        }
-        span {
-          font-size: 13px;
-          line-height: 17px;
-          font-family: monospace;
-        }
-        .showy {
-          height: 100% !important;
-          width: 100% !important;
-        }
+      }
+      table td {
+        border-collapse: collapse;
+      }
+      table {
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      img {
+        display: block;
+        outline: none;
+        text-decoration: none;
+        -ms-interpolation-mode: bicubic;
+      }
+      a img {
+        border: none;
+      }
+      a {
+        text-decoration: none;
+      }
+      a.phone {
+        text-decoration: none;
+        pointer-events: auto;
+        cursor: default;
+      }
+      .showy {
+        height: 100% !important;
+        width: 100% !important;
+      }
+    </style>
+    <!--[if gte mso 9]>
+      <style>
+      /* Target Outlook 2007 and 2010 */
       </style>
-      <!--[if gte mso 9]>
-        <style>
-        /* Target Outlook 2007 and 2010 */
-        </style>
-      <![endif]-->
+    <![endif]-->
     </head>
 
     <body>
@@ -213,18 +224,14 @@ export default (title, body, image, buttonText, buttonLink) => {
                               <td height="10">&nbsp;</td>
                             </tr>
                             <tr>
-                              <td width="275" valign="top">
-                              </td>
-                              <td width="50" valign="top" style="text-align: center;">
+                              <td width="600" valign="top" style="text-align: center;">
                                 <a href="https://www.rendahmag.com/">
-                                  <img src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_50/v1547996619/brand/Small.png" alt="Rendah Mag">
+                                  <img width="600" style="width: 600px" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1600102370/email/header.png" alt="Rendah Mag">
                                 </a>
-                              </td>
-                              <td width="275" valign="top">
                               </td>
                             </tr>
                             <tr>
-                              <td height="30">&nbsp;</td>
+                              <td height="10">&nbsp;</td>
                             </tr>
                           </table>
                         </td>

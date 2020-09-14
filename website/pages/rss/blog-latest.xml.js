@@ -26,7 +26,7 @@ const sitemapXml = (posts) => {
           .url()}" alt="${post?.title}" /></a>`
       : '';
 
-    const readMoreLink = `<p><a style="text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;
+    const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;
 
     const spacer = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
