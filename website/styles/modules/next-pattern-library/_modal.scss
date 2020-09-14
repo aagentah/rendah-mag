@@ -17,18 +17,21 @@
 }
 
 .modal--small .modal__dialog {
+  max-height: 90vh;
   max-width: 400px;
   width: 90%;
   margin: 10% auto;
 }
 
 .modal--medium .modal__dialog {
+  max-height: 90vh;
   max-width: 600px;
   width: 90%;
   margin: 10% auto;
 }
 
 .modal--large .modal__dialog {
+  max-height: 70vh;
   max-width: 800px;
   width: 90%;
   margin: 10% auto;
@@ -37,7 +40,6 @@
 .modal__dialog {
   position: relative;
   background: #fff;
-  max-height: 90%;
   overflow-y: auto;
   @extend .pa4;
   @extend .br3;

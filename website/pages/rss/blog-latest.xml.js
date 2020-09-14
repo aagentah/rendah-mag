@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getAllPosts } from '~/lib/sanity/requests';
+import { getAllPosts, imageBuilder } from '~/lib/sanity/requests';
 import { SITE_URL } from '~/constants';
 
 // Removes special characters that may break the RSS
@@ -14,9 +14,15 @@ const sitemapXml = (posts) => {
   posts.map((post) => {
     const title = post?.title || '';
 
-    const description = post?.briefDescription
-      ? `<p>${post.briefDescription}</p>`
+    const image = post?.image
+      ? `<img src="${imageBuilder
+          .image(post.image)
+          .height(250)
+          .width(300)
+          .url()}" alt="${title}" width="300" style="width: 300px; margin-bottom: 20px;" />`
       : '';
+
+    const description = post?.description ? `<p>${post.description}</p>` : '';
 
     const url = post?.url ? `${SITE_URL}/${post.url}` : SITE_URL;
 
@@ -24,7 +30,10 @@ const sitemapXml = (posts) => {
       <item>
         <title>${encodeSpecialChar(title)}</title>
         <link>${encodeSpecialChar(url)}</link>
-        <description>${encodeSpecialChar(description)}</description>
+        <description>
+          ${encodeSpecialChar(image)}
+          ${encodeSpecialChar(description)}
+        </description>
       </item>
       `;
 
