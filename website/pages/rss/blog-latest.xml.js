@@ -9,20 +9,19 @@ const sitemapXml = (posts) => {
   let postsXML = '';
 
   posts.map((post) => {
-    console.log('post', post);
-    const title = post?.title || '';
-
-    const description = post?.description ? `<p>${post.description}</p>` : '';
+    const title = post?.title
+      ? `<h2 style="font-weight: bold; text-align: left;">${post.title}</h2>`
+      : '';
 
     const url = post?.slug ? `${SITE_URL}/article/${post.slug}` : SITE_URL;
 
     const image = post?.image
-      ? `<a href="${url} target="_blank">"<img width="300" style="width: 300px;" src="${imageBuilder
+      ? `<a href="${url}" target="_blank"><img width="300" style="width: 300px;" src="${imageBuilder
           .image(post.image)
           .url()}" alt="${title}" /></a>`
       : '';
 
-    const readMoreLink = `<p><a href="${url}" target="_blank">Read more</a></p>`;
+    const readMoreLink = `<p><a style="text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;
 
     const spacer = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -36,12 +35,12 @@ const sitemapXml = (posts) => {
 
     postsXML += `
       <item>
-        <title>${escapeXml(encodeSpecialChar(title))}</title>
+        <title>${escapeXml(encodeSpecialChar(post?.title))}</title>
         <link>${escapeXml(encodeSpecialChar(url))}</link>
         <description>
           ${escapeXml(encodeSpecialChar(image))}
           ${escapeXml(encodeSpecialChar(spacer))}
-          ${escapeXml(encodeSpecialChar(description))}
+          ${escapeXml(encodeSpecialChar(title))}
           ${escapeXml(encodeSpecialChar(spacer))}
           ${escapeXml(encodeSpecialChar(readMoreLink))}
         </description>
