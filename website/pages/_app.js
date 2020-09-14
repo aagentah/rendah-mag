@@ -5,6 +5,7 @@ import NProgress from 'nprogress';
 import { ToastProvider } from 'react-toast-notifications';
 
 import { AppProvider } from '~/context-provider/app';
+import * as gtag from '~/lib/gtag';
 
 import '~/styles/index.scss';
 import 'keen-slider/keen-slider.min.css';
@@ -12,6 +13,9 @@ import 'keen-slider/keen-slider.min.css';
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
+
+// Track pageview when route is changed
+Router.events.on('routeChangeComplete', (url) => gtag.pageview(url));
 
 function MyApp({ Component, pageProps }) {
   const transitionTimeout = 300;

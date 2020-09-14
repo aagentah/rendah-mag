@@ -108,14 +108,14 @@ export async function getCurrentAndPreviousCyphers(preview) {
       .fetch(
         `*[_type == "cypher" && announcementFields.isAnnounced] {
               ...,
-              }`,
+            } | order(announcementFields.announcedAt desc) [0]`,
         { dateToday }
       )
       .then((res) => res?.[0]),
     curClient.fetch(
-      `*[_type == "cypher" && announcementFields.isAnnounced && publishedFields.isPublished] {
+      `*[_type == "cypher" && publishedFields.isPublished] {
             ...,
-            }`,
+            }  | order(publishedFields.publishedAt desc)`,
       { dateToday }
     ),
   ]);

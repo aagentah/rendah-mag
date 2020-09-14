@@ -39,13 +39,17 @@ export default function Cyphers({ siteConfig, cyphers }) {
 
           <div className="pt5  mt4  ph3  ph4-md">
             <Container>
-              <div className="bg-black  shadow2  br3  pa4  pa5-md  mb5">
+              <div className="bg-almost-white  br3  pa4  pa5-md  mb5  rel">
+                <div className="absolute  top  right  shadow1  br-100  bg-almost-white  nt3  mr4  mr5-md  info-color">
+                  <Icon icon={['fas', 'info-circle']} size="2x" />
+                </div>
+
                 <div className="pb3">
                   <Heading
                     /* Options */
                     htmlEntity="h1"
                     text="What is a Rendah Mag Cypher?"
-                    color="white"
+                    color="black"
                     size="large"
                     truncate={null}
                     reveal={null}
@@ -54,24 +58,22 @@ export default function Cyphers({ siteConfig, cyphers }) {
                   />
                 </div>
 
-                <div className="measure-wide">
-                  <Copy
-                    /* Options */
-                    text={`
-                    Each month, Rendah Mag works with a selected artist to
-                    curate a sample pack, consisting of a variety of
-                    instruments, loops, basses, and basically anything that
-                    could be used to make a track. We release this pack to the
-                    public to make a track of their own using the samples and
+                <Copy
+                  /* Options */
+                  text={`
+                    Each month, Rendah Mag works with an artist to
+                    curate a sample pack consisting of a variety of
+                    instruments, loops, basses, and anything else that
+                    could be used to make a track. We release this pack publicly
+                    for people to make a track of their own from, using these samples
                     against a set of rules. The artists then submit their
                     tracks to us, and we pick our favourites to go into a
                     curated mix.
                     `}
-                    color="white"
-                    size="medium"
-                    truncate={null}
-                  />
-                </div>
+                  color="black"
+                  size="medium"
+                  truncate={null}
+                />
               </div>
 
               {cyphers?.current && (
@@ -147,7 +149,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
 
                   <div className="flex  flex-wrap">
                     {cyphers.previous.map((cypher, i) => (
-                      <div key={cypher.slug} className="col-24  col-8-md">
+                      <div key={cypher.slug} className="col-24  col-6-md">
                         <div className="ph3  pv2">
                           <CardCypher i={i} post={cypher} columnCount={4} />
                         </div>

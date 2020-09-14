@@ -39,7 +39,6 @@ export default {
           },
         },
       ],
-      validation: (Rule) => Rule.required(),
     },
     {
       name: "imageSquare",
@@ -127,10 +126,10 @@ export default {
           of: [{ type: "block" }],
         },
         {
-          name: "shortUrl",
-          title: "Short URL",
+          name: "publishedUrl",
+          title: "URL",
           type: "string",
-          description: "Shortened gate link to the track.",
+          description: "URL or Shortened gate link for the track.",
         },
       ],
     },
@@ -145,7 +144,7 @@ export default {
   preview: {
     select: {
       title: "title",
-      media: "image",
+      media: "imageSquare",
     },
   },
 };

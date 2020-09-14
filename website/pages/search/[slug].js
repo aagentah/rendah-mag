@@ -9,6 +9,8 @@ import { getSiteConfig, getPostWithSearch } from '~/lib/sanity/requests';
 export default function Post({ siteConfig, allPosts, params }) {
   return (
     <Layout
+      navOffset="top"
+      navOnWhite
       meta={{
         siteConfig,
         title: 'Search',
