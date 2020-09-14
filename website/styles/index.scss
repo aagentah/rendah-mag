@@ -107,3 +107,29 @@
   top: 45%;
   right: -30px;
 }
+
+///
+
+/* width */
+::-webkit-scrollbar {
+  background: var(--black);
+  border-radius: 10px;
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--black);
+  border-radius: 10px;
+  width: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--black);
+}
