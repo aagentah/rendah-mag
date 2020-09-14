@@ -6,6 +6,7 @@ import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function CardCypher({ post, columnCount }) {
+  console.log('post', post);
   const [ref, inView, entry] = useInView({
     rootMargin: '20px 0px -220px 0px',
     threshold: 1,
@@ -16,23 +17,25 @@ export default function CardCypher({ post, columnCount }) {
   cardImage = (
     <Image
       /* Options */
-      src={imageBuilder.image(post.image).height(200).width(250).url()}
-      placeholder={imageBuilder.image(post.image).height(20).width(25).url()}
+      src={imageBuilder.image(post.imageSquare).height(500).width(500).url()}
+      placeholder={imageBuilder
+        .image(post.imageSquare)
+        .height(50)
+        .width(50)
+        .url()}
       alt={post.title}
       figcaption={null}
-      height={150}
+      height={220}
       width={null}
       customClass={null}
       onClick={null}
       /* Children */
       withLinkProps={{
-        type: 'next',
-        href: '/post/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/post/${post.slug}`,
-        },
+        type: 'external',
+        href: post.publishedFields.publishedUrl,
+        target: '_blank',
+        routerLink: null,
+        routerLinkProps: null,
       }}
     />
   );
@@ -41,8 +44,16 @@ export default function CardCypher({ post, columnCount }) {
     cardImage = (
       <Image
         /* Options */
-        src={imageBuilder.image(post.image).height(1000).width(1000).url()}
-        placeholder={imageBuilder.image(post.image).height(20).width(25).url()}
+        src={imageBuilder
+          .image(post.imageSquare)
+          .height(1000)
+          .width(1000)
+          .url()}
+        placeholder={imageBuilder
+          .image(post.imageSquare)
+          .height(50)
+          .width(50)
+          .url()}
         alt={post.title}
         figcaption={null}
         height={600}
@@ -51,13 +62,11 @@ export default function CardCypher({ post, columnCount }) {
         onClick={null}
         /* Children */
         withLinkProps={{
-          type: 'next',
-          href: '/post/[slug]',
-          target: null,
-          routerLink: Link,
-          routerLinkProps: {
-            as: `/post/${post.slug}`,
-          },
+          type: 'external',
+          href: post.publishedFields.publishedUrl,
+          target: '_blank',
+          routerLink: null,
+          routerLinkProps: null,
         }}
       />
     );

@@ -38,7 +38,7 @@ export default function HeroCypher({ cypher }) {
     <Heading
       /* Options */
       htmlEntity="h1"
-      text="Rendah Mag Cypher"
+      text="Rendah Mag Cyphers"
       color="white"
       size="x-large"
       truncate={null}
