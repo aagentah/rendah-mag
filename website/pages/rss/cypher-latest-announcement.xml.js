@@ -1,10 +1,7 @@
 import React from 'react';
 import blocksToHtml from '@sanity/block-content-to-html';
 
-import {
-  imageBuilder,
-  getLatestAnouncedCypher,
-} from '~/lib/sanity/requests';
+import { imageBuilder, getLatestAnouncedCypher } from '~/lib/sanity/requests';
 
 import { SITE_URL } from '~/constants';
 import escapeXml from '~/functions/escapeXml';
@@ -24,7 +21,7 @@ const sitemapXml = (cypher) => {
   const image = cypher?.imageSquare
     ? `<img width="300" style="width: 300px;" src="${imageBuilder
         .image(cypher.imageSquare)
-        .url()}" />`
+        .url()}" alt="${title}" />`
     : '';
 
   const packLink = cypher.packLink
@@ -57,7 +54,7 @@ const sitemapXml = (cypher) => {
 
   postsXML += `
       <item>
-        <title>${encodeSpecialChar(title)}</title>
+        <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
         <description>
           ${escapeXml(encodeSpecialChar(description))}
