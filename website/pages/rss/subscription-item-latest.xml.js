@@ -24,7 +24,7 @@ const sitemapXml = (item) => {
 
   postsXML += `
       <item>
-        <title>${encodeSpecialChar(title)}</title>
+        <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
         <description>
           ${escapeXml(encodeSpecialChar(description))}

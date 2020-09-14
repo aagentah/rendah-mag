@@ -2,37 +2,48 @@ import React from 'react';
 
 import { getAllPosts, imageBuilder } from '~/lib/sanity/requests';
 import { SITE_URL } from '~/constants';
-
-// Removes special characters that may break the RSS
-const encodeSpecialChar = (text) => {
-  return text.replace(/&/g, '&amp;');
-};
+import escapeXml from '~/functions/escapeXml';
+import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
 const sitemapXml = (posts) => {
   let postsXML = '';
 
   posts.map((post) => {
+    console.log('post', post);
     const title = post?.title || '';
-
-    const image = post?.image
-      ? `<img src="${imageBuilder
-          .image(post.image)
-          .height(250)
-          .width(300)
-          .url()}" alt="${title}" width="300" style="width: 300px; margin-bottom: 20px;" />`
-      : '';
 
     const description = post?.description ? `<p>${post.description}</p>` : '';
 
-    const url = post?.url ? `${SITE_URL}/${post.url}` : SITE_URL;
+    const url = post?.slug ? `${SITE_URL}/article/${post.slug}` : SITE_URL;
+
+    const image = post?.image
+      ? `<a href="${url} target="_blank">"<img width="300" style="width: 300px;" src="${imageBuilder
+          .image(post.image)
+          .url()}" alt="${title}" /></a>`
+      : '';
+
+    const readMoreLink = `<p><a href="${url}" target="_blank">Read more</a></p>`;
+
+    const spacer = `
+      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tr>
+            <td>
+              <br />
+            </td>
+          </tr>
+        </table>
+      `;
 
     postsXML += `
       <item>
-        <title>${encodeSpecialChar(title)}</title>
-        <link>${encodeSpecialChar(url)}</link>
+        <title>${escapeXml(encodeSpecialChar(title))}</title>
+        <link>${escapeXml(encodeSpecialChar(url))}</link>
         <description>
-          ${encodeSpecialChar(image)}
-          ${encodeSpecialChar(description)}
+          ${escapeXml(encodeSpecialChar(image))}
+          ${escapeXml(encodeSpecialChar(spacer))}
+          ${escapeXml(encodeSpecialChar(description))}
+          ${escapeXml(encodeSpecialChar(spacer))}
+          ${escapeXml(encodeSpecialChar(readMoreLink))}
         </description>
       </item>
       `;

@@ -113,7 +113,7 @@
 /* width */
 ::-webkit-scrollbar {
   background: var(--black);
-  border-radius: 10px;
+  border-radius: 2px;
   width: 8px;
 }
 
@@ -125,7 +125,7 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--black);
-  border-radius: 10px;
+  border-radius: 2px;
   width: 8px;
 }
 
