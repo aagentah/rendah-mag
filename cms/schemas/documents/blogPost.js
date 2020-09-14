@@ -72,6 +72,12 @@ export default {
     //   of: [{type: 'reference', to: {type: 'category'}}]
     // },
     {
+      name: "socialTagline",
+      title: "Social Tagline",
+      type: "text",
+      validation: (Rule) => Rule.required().max(70),
+    },
+    {
       name: "description",
       title: "Article Description",
       type: "text",
