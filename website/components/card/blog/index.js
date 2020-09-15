@@ -6,16 +6,21 @@ import Observer from '@researchgate/react-intersection-observer';
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
+import { useApp } from '~/context-provider/app';
 
 export default function CardBlog({ post, columnCount }) {
+  const app = useApp();
   const [inView, setInView] = useState(false);
-
   let cardImage;
 
   cardImage = (
     <Image
       /* Options */
-      src={imageBuilder.image(post.coverImage).height(200).width(250).url()}
+      src={imageBuilder
+        .image(post.coverImage)
+        .height(app.deviceType === 'mobile' ? 800 : 500)
+        .width(app.deviceType === 'mobile' ? 800 : 500)
+        .url()}
       placeholder={imageBuilder
         .image(post.coverImage)
         .height(20)
@@ -23,7 +28,7 @@ export default function CardBlog({ post, columnCount }) {
         .url()}
       alt={post.title}
       figcaption={null}
-      height={150}
+      height={app.deviceType === 'mobile' ? 300 : 180}
       width={null}
       customClass={null}
       onClick={null}
@@ -44,7 +49,11 @@ export default function CardBlog({ post, columnCount }) {
     cardImage = (
       <Image
         /* Options */
-        src={imageBuilder.image(post.coverImage).height(800).width(1000).url()}
+        src={imageBuilder
+          .image(post.coverImage)
+          .height(app.deviceType === 'mobile' ? 800 : 1000)
+          .width(app.deviceType === 'mobile' ? 800 : 1000)
+          .url()}
         placeholder={imageBuilder
           .image(post.coverImage)
           .height(20)

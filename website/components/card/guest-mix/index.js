@@ -1,24 +1,29 @@
+import { useState } from 'react';
 import Link from 'next/link';
-import { useInView } from 'react-intersection-observer';
+import 'intersection-observer';
+import Observer from '@researchgate/react-intersection-observer';
 
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
+import { useApp } from '~/context-provider/app';
 
 export default function Cardmix({ mix, columnCount }) {
-  const [ref, inView, entry] = useInView({
-    rootMargin: '20px 0px -220px 0px',
-    threshold: 1,
-  });
+  const app = useApp();
+  const [inView, setInView] = useState(false);
 
   const cardImage = (
     <Image
       /* Options */
-      src={imageBuilder.image(mix.image).height(200).width(250).url()}
+      src={imageBuilder
+        .image(mix.image)
+        .height(app.deviceType === 'mobile' ? 800 : 500)
+        .width(app.deviceType === 'mobile' ? 800 : 500)
+        .url()}
       placeholder={imageBuilder.image(mix.image).height(20).width(25).url()}
       alt={mix.title}
       figcaption={null}
-      height={150}
+      height={app.deviceType === 'mobile' ? 300 : 220}
       width={null}
       customClass={null}
       onClick={null}
@@ -49,19 +54,34 @@ export default function Cardmix({ mix, columnCount }) {
     />
   );
 
+  const handleIntersection = (event) => {
+    if (event.isIntersecting) {
+      return setInView(true);
+    }
+
+    return setInView(false);
+  };
+
+  const options = {
+    onChange: handleIntersection,
+    rootMargin: '0% 0% -30% 0%',
+  };
+
   return (
-    <div className={`card--scroll  ${inView ? 'in-view' : 'n'}`} ref={ref}>
-      <Card
-        /* Options */
-        type="block"
-        onClick={null}
-        /* Children */
-        image={cardImage}
-        labelBlock={null}
-        title={cardHeading}
-        description={null}
-        button={null}
-      />
-    </div>
+    <Observer {...options}>
+      <div className={`card--scroll  ${inView && 'in-view'}`}>
+        <Card
+          /* Options */
+          type="block"
+          onClick={null}
+          /* Children */
+          image={cardImage}
+          labelBlock={null}
+          title={cardHeading}
+          description={null}
+          button={null}
+        />
+      </div>
+    </Observer>
   );
 }

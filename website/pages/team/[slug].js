@@ -26,8 +26,8 @@ export default function Post({ siteConfig, teamMember }) {
       preview={null}
     >
       <Container>
-        <div className="flex  flex-wrap  pb5">
-          <div className="col-24  col-8-md  ph2  pb3">
+        <div className="flex  flex-wrap  pt4  pb5">
+          <div className="col-24  col-8-md  ph2  pb4  pb3-md">
             <Image
               /* Options */
               src={imageBuilder
@@ -50,7 +50,7 @@ export default function Post({ siteConfig, teamMember }) {
               withLinkProps={null}
             />
           </div>
-          <div className="col-12  ph3-md">
+          <div className="measure-wide  ph3-md">
             <div className="db  ph2  pb2">
               <Heading
                 /* Options */
@@ -76,7 +76,7 @@ export default function Post({ siteConfig, teamMember }) {
                 withLinkProps={null}
               />
             </div>
-            <div className="db  ph2  pb3">
+            <div className="db  ph2  pb3  taj">
               <Copy
                 /* Options */
                 text={teamMember.description}

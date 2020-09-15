@@ -1,23 +1,26 @@
+import { useState } from 'react';
 import Link from 'next/link';
-import { useInView } from 'react-intersection-observer';
+import 'intersection-observer';
+import Observer from '@researchgate/react-intersection-observer';
 
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
+import { useApp } from '~/context-provider/app';
 
 export default function CardCypher({ post, columnCount }) {
-  console.log('post', post);
-  const [ref, inView, entry] = useInView({
-    rootMargin: '20px 0px -220px 0px',
-    threshold: 1,
-  });
-
+  const app = useApp();
+  const [inView, setInView] = useState(false);
   let cardImage;
 
   cardImage = (
     <Image
       /* Options */
-      src={imageBuilder.image(post.imageSquare).height(500).width(500).url()}
+      src={imageBuilder
+        .image(post.imageSquare)
+        .height(app.deviceType === 'mobile' ? 800 : 500)
+        .width(app.deviceType === 'mobile' ? 800 : 500)
+        .url()}
       placeholder={imageBuilder
         .image(post.imageSquare)
         .height(50)
@@ -25,7 +28,7 @@ export default function CardCypher({ post, columnCount }) {
         .url()}
       alt={post.title}
       figcaption={null}
-      height={220}
+      height={app.deviceType === 'mobile' ? 300 : 220}
       width={null}
       customClass={null}
       onClick={null}
@@ -39,38 +42,6 @@ export default function CardCypher({ post, columnCount }) {
       }}
     />
   );
-
-  if (columnCount === 1) {
-    cardImage = (
-      <Image
-        /* Options */
-        src={imageBuilder
-          .image(post.imageSquare)
-          .height(1000)
-          .width(1000)
-          .url()}
-        placeholder={imageBuilder
-          .image(post.imageSquare)
-          .height(50)
-          .width(50)
-          .url()}
-        alt={post.title}
-        figcaption={null}
-        height={600}
-        width={null}
-        customClass={null}
-        onClick={null}
-        /* Children */
-        withLinkProps={{
-          type: 'external',
-          href: post.publishedFields.publishedUrl,
-          target: '_blank',
-          routerLink: null,
-          routerLinkProps: null,
-        }}
-      />
-    );
-  }
 
   const cardHeading = (
     <Heading
@@ -86,19 +57,34 @@ export default function CardCypher({ post, columnCount }) {
     />
   );
 
+  const handleIntersection = (event) => {
+    if (event.isIntersecting) {
+      return setInView(true);
+    }
+
+    return setInView(false);
+  };
+
+  const options = {
+    onChange: handleIntersection,
+    rootMargin: '0% 0% -30% 0%',
+  };
+
   return (
-    <div className={`card--scroll  ${inView ? 'in-view' : 'n'}`} ref={ref}>
-      <Card
-        /* Options */
-        type="block"
-        onClick={null}
-        /* Children */
-        image={cardImage}
-        labelBlock={null}
-        title={cardHeading}
-        description={null}
-        button={null}
-      />
-    </div>
+    <Observer {...options}>
+      <div className={`card--scroll  ${inView && 'in-view'}`}>
+        <Card
+          /* Options */
+          type="block"
+          onClick={null}
+          /* Children */
+          image={cardImage}
+          labelBlock={null}
+          title={cardHeading}
+          description={null}
+          button={null}
+        />
+      </div>
+    </Observer>
   );
 }

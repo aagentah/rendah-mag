@@ -3,12 +3,19 @@ import Link from 'next/link';
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
+import { useApp } from '~/context-provider/app';
 
 export default function CardDefault({ product }) {
+  const app = useApp();
+
   const cardImage = (
     <Image
       /* Options */
-      src={imageBuilder.image(product.image1).height(200).width(250).url()}
+      src={imageBuilder
+        .image(product.image1)
+        .height(app.deviceType === 'mobile' ? 800 : 500)
+        .width(app.deviceType === 'mobile' ? 800 : 500)
+        .url()}
       placeholder={imageBuilder
         .image(product.image1)
         .height(20)
@@ -16,7 +23,7 @@ export default function CardDefault({ product }) {
         .url()}
       alt={product.title}
       figcaption={null}
-      height={200}
+      height={app.deviceType === 'mobile' ? 300 : 220}
       width={null}
       customClass={null}
       onClick={null}

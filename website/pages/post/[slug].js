@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Router, { useRouter } from 'next/router';
 import 'intersection-observer';
@@ -156,7 +157,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
         <Container>
           <article className="pt5  pb4  mt3  ph3  ph4-md">
             <section className="measure-wide  mla  mra">
-              <div className="pb2">
+              <div className="pb3">
                 <Heading
                   /* Options */
                   htmlEntity="h1"
@@ -170,8 +171,11 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 />
               </div>
 
-              <p className="t-secondary  f7  almost-black  lh-copy  pb4">
-                {post.author.name} | <Date dateString={post.publishedAt} />
+              <p className="t-secondary  f6  almost-black  lh-copy  pb4">
+                <Link href={`/team/${post.author.slug.current}`}>
+                  <span className="cp  black  fw7">{post.author.name}</span>
+                </Link>{' '}
+                | <Date dateString={post.publishedAt} />
               </p>
 
               <div className="post__body">
