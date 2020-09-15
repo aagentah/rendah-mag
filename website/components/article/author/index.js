@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { Heading, Copy, Label, Image } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
@@ -6,7 +8,7 @@ export default function Author({ siteConfig, author }) {
   const { posts } = author;
 
   return (
-    <div className="flex  flex-wrap  br4  shadow2  relative  pt2  pt0-md">
+    <div className="flex  flex-wrap  br4  shadow2  relative  pa4">
       <div className="absolute  top  right  nt2  mr4">
         <Label
           /* Options */
@@ -21,7 +23,7 @@ export default function Author({ siteConfig, author }) {
       </div>
 
       {author.image && (
-        <div className="col-24  col-9-md  pa3  pa4-md">
+        <div className="col-24  col-9-md  pb4  pb0-md">
           <Image
             /* Options */
             src={imageBuilder.image(author.image).height(500).width(500).url()}
@@ -37,14 +39,22 @@ export default function Author({ siteConfig, author }) {
             customClass="shadow2"
             onClick={null}
             /* Children */
-            withLinkProps={null}
+            withLinkProps={{
+              type: 'next',
+              href: '/team/[slug]',
+              target: null,
+              routerLink: Link,
+              routerLinkProps: {
+                as: `/team/${author.slug.current}`,
+              },
+            }}
           />
         </div>
       )}
 
-      <div className="col-24  col-15-md  pt0  pb3  ph3  pt3-md  ph3-md">
+      <div className="col-24  col-15-md  pl0  pl4-md  pr0  pr2-md">
         {author.name && (
-          <div className="db  ph2  pt3  pb2">
+          <div className="db  pb2">
             <Heading
               /* Options */
               htmlEntity="h1"
@@ -54,13 +64,21 @@ export default function Author({ siteConfig, author }) {
               truncate={null}
               reveal={null}
               /* Children */
-              withLinkProps={null}
+              withLinkProps={{
+                type: 'next',
+                href: '/team/[slug]',
+                target: null,
+                routerLink: Link,
+                routerLinkProps: {
+                  as: `/team/${author.slug.current}`,
+                },
+              }}
             />
           </div>
         )}
 
         {author.alias && (
-          <div className="db  ph2  pb3">
+          <div className="db  pb3">
             <Label
               /* Options */
               customClass="ph2"
@@ -75,7 +93,7 @@ export default function Author({ siteConfig, author }) {
         )}
 
         {author.description && (
-          <div className="db  ph2  pb3">
+          <div className="db  pb3  taj">
             <Copy
               /* Options */
               text={author.description}

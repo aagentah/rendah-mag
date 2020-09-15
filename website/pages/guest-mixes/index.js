@@ -58,7 +58,7 @@ export default function GuestMixes({ siteConfig, guestMixes }) {
 
                   <div className="flex  flex-wrap">
                     {guestMixes.map((mix, i) => (
-                      <div key={mix.slug} className="col-24  col-8-md">
+                      <div key={mix.slug} className="col-24  col-6-md">
                         <div className="ph3  pv2">
                           <CardGuestMix mix={mix} />
                         </div>

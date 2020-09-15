@@ -37,9 +37,41 @@ export default function Cyphers({ siteConfig, cyphers }) {
         <>
           <HeroCypher cypher={cyphers?.current} />
 
-          <div className="pt5  mt4  ph3  ph4-md">
+          <div className="pt5  mt4-md  ph3  ph4-md">
             <Container>
-              <div className="bg-almost-white  br3  pa4  pa5-md  mb5  rel">
+              {!cyphers?.current && (
+                <div className="flex  flex-wrap  mb3  mb5-md  pb0  pb4-md">
+                  <div className="col-24  pt3  pb5  pb0-md">
+                    <div className="pb3  tac-md">
+                      <Heading
+                        /* Options */
+                        htmlEntity="h1"
+                        text="There aren't currenly any Cyphers happening."
+                        color="black"
+                        size="large"
+                        truncate={null}
+                        reveal={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+
+                    <div className="tac-md">
+                      <Copy
+                        /* Options */
+                        text={`
+                      We usually host a new Cypher each month, so keep an eye on our socials for the next one!
+                      `}
+                        color="black"
+                        size="medium"
+                        truncate={null}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="bg-almost-white  br3  pa4  pa5-md  mb5  relative">
                 <div className="absolute  top  right  shadow1  br-100  bg-almost-white  nt3  mr4  mr5-md  info-color">
                   <Icon icon={['fas', 'info-circle']} size="2x" />
                 </div>
@@ -77,7 +109,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
               </div>
 
               {cyphers?.current && (
-                <div className="flex  flex-wrap  mt5-md  pt4-md  mb5">
+                <div className="flex  flex-wrap  mt5-md  pt3-md  mb5  pb0  pb3-md">
                   <div className="col-24  col-12-md  pr5-md  pt3  pb5  pb0-md">
                     <div className="pb3">
                       <Heading

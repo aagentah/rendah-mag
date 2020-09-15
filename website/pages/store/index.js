@@ -71,7 +71,7 @@ export default function Post({ siteConfig, allProducts }) {
             <section className="pb3  pt4">
               <div className="flex  flex-wrap">
                 {collectionGroups.map((group, i) => (
-                  <div key={group.name}>
+                  <div class="col-24" key={group.name}>
                     <div className="flex  flex-wrap  pb3  bb  bc-black  mb3">
                       <Heading
                         /* Options */
@@ -87,7 +87,10 @@ export default function Post({ siteConfig, allProducts }) {
                     </div>
                     <div className="flex  flex-wrap  pb3">
                       {group.products.map((product, ii) => (
-                        <div key={product.title} className="pa3">
+                        <div
+                          key={product.title}
+                          className="col-24  col-6-md  pa3"
+                        >
                           <CardProduct i={ii} product={product} />
                         </div>
                       ))}
