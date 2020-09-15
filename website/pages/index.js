@@ -1,5 +1,3 @@
-import { Parallax } from 'react-scroll-parallax';
-
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '~/components/layout';

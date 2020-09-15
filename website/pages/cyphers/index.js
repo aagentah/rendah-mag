@@ -1,3 +1,6 @@
+import BlockContent from '@sanity/block-content-to-react';
+import { Parallax } from 'react-scroll-parallax';
+
 import {
   Heading,
   Image,
@@ -6,8 +9,6 @@ import {
   Icon,
   Input,
 } from 'next-pattern-library';
-import BlockContent from '@sanity/block-content-to-react';
-import { Parallax } from 'react-scroll-parallax';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -71,28 +72,39 @@ export default function Cyphers({ siteConfig, cyphers }) {
                 </div>
               )}
 
-              <div className="bg-almost-white  br3  pa4  pa5-md  mb5  relative">
-                <div className="absolute  top  right  shadow1  br-100  bg-almost-white  nt3  mr4  mr5-md  info-color">
-                  <Icon icon={['fas', 'info-circle']} size="2x" />
+              <div className="relative">
+                <div className="absolute  top  right  br-100  bg-almost-white  nt4  nr6  info-color  o-10  f4">
+                  <Parallax
+                    className="z1  nt3"
+                    y={['-30px', '30px']}
+                    tagOuter="figure"
+                  >
+                    <Icon icon={['fas', 'info-circle']} size="10x" />
+                  </Parallax>
                 </div>
 
-                <div className="pb3">
-                  <Heading
+                <div className="bg-almost-white  br3  pa4  pa5-md  mb5  relative">
+                  <div className="absolute  top  right  shadow1  br-100  bg-almost-white  nt3  mr4  mr5-md  info-color">
+                    <Icon icon={['fas', 'info-circle']} size="2x" />
+                  </div>
+
+                  <div className="pb3">
+                    <Heading
+                      /* Options */
+                      htmlEntity="h1"
+                      text="What is a Rendah Mag Cypher?"
+                      color="black"
+                      size="large"
+                      truncate={null}
+                      reveal={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+
+                  <Copy
                     /* Options */
-                    htmlEntity="h1"
-                    text="What is a Rendah Mag Cypher?"
-                    color="black"
-                    size="large"
-                    truncate={null}
-                    reveal={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
-
-                <Copy
-                  /* Options */
-                  text={`
+                    text={`
                     Each month, Rendah Mag works with an artist to
                     curate a sample pack consisting of a variety of
                     instruments, loops, basses, and anything else that
@@ -102,10 +114,11 @@ export default function Cyphers({ siteConfig, cyphers }) {
                     tracks to us, and we pick our favourites to go into a
                     curated mix.
                     `}
-                  color="black"
-                  size="medium"
-                  truncate={null}
-                />
+                    color="black"
+                    size="medium"
+                    truncate={null}
+                  />
+                </div>
               </div>
 
               {cyphers?.current && (
@@ -118,6 +131,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
                         text="This month's Cypher."
                         color="black"
                         size="large"
+                        v
                         truncate={null}
                         reveal={null}
                         /* Children */
