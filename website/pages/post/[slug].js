@@ -4,6 +4,8 @@ import Router, { useRouter } from 'next/router';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
 
+import HeroPost from '~/components/hero/post';
+
 import {
   Modal,
   Hero,
@@ -58,26 +60,6 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   if (router.isFallback) return <p>Loading...</p>;
 
   if (!router.isFallback && post?.slug) {
-    const heroImage = (
-      <Image
-        /* Options */
-        src={imageBuilder.image(post.coverImage).height(1000).width(2000).url()}
-        placeholder={imageBuilder
-          .image(post.coverImage)
-          .height(50)
-          .width(108)
-          .url()}
-        alt="This is the alt text."
-        figcaption={null}
-        height={700}
-        width={null}
-        customClass={null}
-        onClick={null}
-        /* Children */
-        withLinkProps={null}
-      />
-    );
-
     return (
       <Layout
         meta={{
@@ -142,16 +124,8 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           </div>
         </Modal>
 
-        <div className="hero--darken-top">
-          <Hero
-            /* Options */
-            height={700}
-            /* Children */
-            image={heroImage}
-            title={null}
-            description={null}
-            button={null}
-          />
+        <div className="pb5">
+          <HeroPost post={post} />
         </div>
 
         <Container>
