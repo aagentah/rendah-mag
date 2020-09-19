@@ -1,11 +1,12 @@
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import cx from 'classnames';
 import NProgress from 'nprogress';
 
 import { Icon } from 'next-pattern-library';
 
-import HeaderDesktop from './desktop';
-import HeaderMobile from './mobile';
+const HeaderDesktop = dynamic(() => import('./desktop'));
+const HeaderMobile = dynamic(() => import('./mobile'));
 
 import { useApp } from '../../../context-provider/app';
 import { useUser } from '~/lib/hooks';
@@ -59,26 +60,33 @@ export default function Header({ navOnWhite, meta }) {
     }
   }, [navOnWhite]);
 
-  return (
-    <>
-      <HeaderDesktop
-        meta={meta}
-        navColour={navColour}
-        logoWhite={logoWhite}
-        logoBlack={logoBlack}
-        handleLogout={handleLogout}
-        showBasket={showBasket}
-        buttonIcons={buttonIcons}
-      />
-      <HeaderMobile
-        meta={meta}
-        navColour={navColour}
-        logoWhite={logoWhite}
-        logoBlack={logoBlack}
-        handleLogout={handleLogout}
-        showBasket={showBasket}
-        buttonIcons={buttonIcons}
-      />
-    </>
-  );
+  if (app?.deviceType) {
+    return (
+      <>
+        {app.deviceType !== 'mobile' && (
+          <HeaderDesktop
+            meta={meta}
+            navColour={navColour}
+            logoWhite={logoWhite}
+            logoBlack={logoBlack}
+            handleLogout={handleLogout}
+            showBasket={showBasket}
+            buttonIcons={buttonIcons}
+          />
+        )}
+        {app.deviceType === 'mobile' && (
+          <HeaderMobile
+            meta={meta}
+            navColour={navColour}
+            logoWhite={logoWhite}
+            logoBlack={logoBlack}
+            handleLogout={handleLogout}
+            showBasket={showBasket}
+            buttonIcons={buttonIcons}
+          />
+        )}
+      </>
+    );
+  }
+  return false;
 }
