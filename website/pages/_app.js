@@ -18,6 +18,11 @@ Router.events.on('routeChangeError', () => NProgress.done());
 // Track pageview when route is changed
 Router.events.on('routeChangeComplete', (url) => gtag.pageview(url));
 
+// Performance metrics
+// export function reportWebVitals(metric) {
+//   console.log(metric);
+// }
+
 function MyApp({ Component, pageProps }) {
   const transitionTimeout = 300;
 
