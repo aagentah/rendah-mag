@@ -4,23 +4,12 @@ import { IS_ECCOMERCE, SNIPCART_API_KEY } from '~/constants';
 import { GA_TRACKING_ID } from '~/lib/gtag';
 
 export default class MyDocument extends Document {
-  render() {
-    const renderSnipCartConfig = () => (
-      <>
-        <link
-          rel="stylesheet"
-          href="https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.css"
-        />
-        <div
-          hidden
-          id="snipcart"
-          data-api-key={SNIPCART_API_KEY}
-          data-config-add-product-behavior="none"
-        />
-        <script src="https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.js" />
-      </>
-    );
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
+  }
 
+  render() {
     return (
       <Html lang="en">
         <Head>
@@ -29,34 +18,41 @@ export default class MyDocument extends Document {
             sizes="180x180"
             href="/favicon/apple-touch-icon.png"
           />
+
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
             href="/favicon/favicon-32x32.png"
           />
+
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
             href="/favicon/favicon-16x16.png"
           />
+
           <link rel="manifest" href="/favicon/site.webmanifest" />
+
           <link
             rel="mask-icon"
             href="/favicon/safari-pinned-tab.svg"
             color="#000000"
           />
+
           <link rel="shortcut icon" href="/favicon/favicon.ico" />
+
           <meta name="msapplication-TileColor" content="#000000" />
+
           <meta
             name="msapplication-config"
             content="/favicon/browserconfig.xml"
           />
-          <meta name="theme-color" content="#000" />
-          <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
-          {IS_ECCOMERCE && SNIPCART_API_KEY && renderSnipCartConfig()}
+          <meta name="theme-color" content="#000" />
+
+          <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
           <link
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -88,6 +84,14 @@ export default class MyDocument extends Document {
             </>
           )}
         </Head>
+
+        <div
+          hidden
+          id="snipcart"
+          data-api-key={SNIPCART_API_KEY}
+          data-config-add-product-behavior="none"
+        />
+
         <body>
           <Main />
           <NextScript />

@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import uniqBy from 'lodash/uniqBy';
@@ -8,6 +9,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardProduct from '~/components/card/product';
 import HeroStore from '~/components/hero/store';
+import { SNIPCART_API_KEY } from '~/constants';
 
 import { getSiteConfig, getAllProducts } from '~/lib/sanity/requests';
 

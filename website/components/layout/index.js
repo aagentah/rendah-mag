@@ -27,6 +27,7 @@ export default function Layout({
       navOffsetType = '';
       break;
   }
+
   return (
     <>
       <Meta {...meta} />

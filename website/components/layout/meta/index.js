@@ -1,10 +1,14 @@
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 
+import { useApp, useDispatchApp } from '~/context-provider/app';
 import { imageBuilder } from '~/lib/sanity/requests';
+import { IS_ECCOMERCE, SNIPCART_API_KEY } from '~/constants';
 import { SITE_URL } from '~/constants';
 
 const Meta = (props) => {
+  const app = useApp();
+  const dispatch = useDispatchApp();
   const { router, siteConfig, title, description, image } = props;
 
   // siteConfig
@@ -77,38 +81,71 @@ const Meta = (props) => {
     };
   };
 
+  const handleSnipcart = () => {
+    let canRender = false;
+
+    if (app?.hasSnipcartLoaded) canRender = true;
+
+    if (
+      titleVal === 'Store' ||
+      titleVal === 'Product' ||
+      titleVal === 'Dominion'
+    ) {
+      canRender = true;
+    }
+
+    console.log('app?.hasSnipcartLoaded', app?.hasSnipcartLoaded);
+    console.log('canRender', canRender);
+
+    if (canRender) {
+      if (!app?.hasSnipcartLoaded)
+        dispatch({ type: 'SET_SNIPCART_LOADED', hasSnipcartLoaded: true });
+
+      return (
+        <>
+          <link
+            rel="stylesheet"
+            href="https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.css"
+          />
+
+          <script src="https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.js"></script>
+        </>
+      );
+    }
+  };
+
   return (
-    <Head>
-      <link rel="canonical" href={`${SITE_URL}${router.asPath}`} />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      />
+    <>
+      <Head>
+        <link rel="canonical" href={`${SITE_URL}${router.asPath}`} />
 
-      <title>
-        {titleVal} | {siteTitle}
-      </title>
+        <title>
+          {titleVal} | {siteTitle}
+        </title>
 
-      <meta name="description" content={descVal || siteDesc} />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
 
-      <meta property="og:site_name" content={siteTitle} />
-      <meta property="og:image" content={imageVal || siteImage} />
-      <meta property="og:title" content={`${titleVal} | ${siteTitle}`} />
-      <meta property="og:type" content="article" />
-      <meta property="og:url" content={`${SITE_URL}${router.asPath}`} />
-      <meta property="og:description" content={descVal || siteDesc} />
-      <meta property="og:image" content={imageVal || siteImage} />
+        <meta name="description" content={descVal || siteDesc} />
 
-      <meta name="twitter:card" content="Summary" />
-      <meta name="twitter:title" content={`${titleVal} | ${siteTitle}`} />
-      <meta name="twitter:description" content={descVal || siteDesc} />
-      <meta name="twitter:image" content={imageVal || siteImage} />
+        <meta property="og:site_name" content={siteTitle} />
+        <meta property="og:image" content={imageVal || siteImage} />
+        <meta property="og:title" content={`${titleVal} | ${siteTitle}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`${SITE_URL}${router.asPath}`} />
+        <meta property="og:description" content={descVal || siteDesc} />
+        <meta property="og:image" content={imageVal || siteImage} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(makeSchema()) }} // eslint-disable-line react/no-danger
-      />
-    </Head>
+        <meta name="twitter:card" content="Summary" />
+        <meta name="twitter:title" content={`${titleVal} | ${siteTitle}`} />
+        <meta name="twitter:description" content={descVal || siteDesc} />
+        <meta name="twitter:image" content={imageVal || siteImage} />
+
+        {handleSnipcart()}
+      </Head>
+    </>
   );
 };
 
