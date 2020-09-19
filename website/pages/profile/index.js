@@ -70,7 +70,7 @@ export default function Profile({ siteConfig }) {
                     },
                     {
                       id: '2',
-                      tabTitle: 'Cyphers',
+                      tabTitle: 'Cypher',
                       tabContent: <ProfileCypher />,
                     },
                     {
