@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
+import LazyLoad from 'react-lazyload';
 
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
@@ -13,31 +14,37 @@ export default function Cardmix({ mix, columnCount }) {
   const [inView, setInView] = useState(false);
 
   const cardImage = (
-    <Image
-      /* Options */
-      src={imageBuilder
-        .image(mix.image)
-        .height(app.deviceType === 'mobile' ? 800 : 500)
-        .width(app.deviceType === 'mobile' ? 800 : 500)
-        .url()}
-      placeholder={imageBuilder.image(mix.image).height(20).width(25).url()}
-      alt={mix.title}
-      figcaption={null}
+    <LazyLoad
+      once
+      offset={100}
       height={app.deviceType === 'mobile' ? 300 : 220}
-      width={null}
-      customClass={null}
-      onClick={null}
-      /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/mix/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/mix/${mix.slug}`,
-        },
-      }}
-    />
+    >
+      <Image
+        /* Options */
+        src={imageBuilder
+          .image(mix.image)
+          .height(app.deviceType === 'mobile' ? 800 : 500)
+          .width(app.deviceType === 'mobile' ? 800 : 500)
+          .url()}
+        placeholder={imageBuilder.image(mix.image).height(20).width(25).url()}
+        alt={mix.title}
+        figcaption={null}
+        height={app.deviceType === 'mobile' ? 300 : 220}
+        width={null}
+        customClass={null}
+        onClick={null}
+        /* Children */
+        withLinkProps={{
+          type: 'next',
+          href: '/mix/[slug]',
+          target: null,
+          routerLink: Link,
+          routerLinkProps: {
+            as: `/mix/${mix.slug}`,
+          },
+        }}
+      />
+    </LazyLoad>
   );
 
   const cardHeading = (

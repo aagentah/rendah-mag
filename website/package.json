@@ -50,6 +50,7 @@
     "react-hook-inview": "^4.2.1",
     "react-iframe": "^1.8.0",
     "react-intersection-observer": "^8.28.4",
+    "react-lazyload": "^3.0.0",
     "react-responsive": "^8.1.0",
     "react-scroll": "^1.8.1",
     "react-scroll-parallax": "^2.3.4",
