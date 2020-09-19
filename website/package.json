@@ -34,7 +34,7 @@
     "js-md5": "^0.7.3",
     "keen-slider": "^5.2.3",
     "lodash": "^4.17.20",
-    "next": "^9.5.2",
+    "next": "^9.5.3",
     "next-connect": "^0.6.6",
     "next-page-transitions": "^1.0.0-beta.2",
     "next-pattern-library": "github:danjonesdev/next-pattern-library",
