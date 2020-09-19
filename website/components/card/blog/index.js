@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
+import LazyLoad from 'react-lazyload';
 
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
@@ -14,35 +15,41 @@ export default function CardBlog({ post, columnCount }) {
   let cardImage;
 
   cardImage = (
-    <Image
-      /* Options */
-      src={imageBuilder
-        .image(post.coverImage)
-        .height(app.deviceType === 'mobile' ? 800 : 500)
-        .width(app.deviceType === 'mobile' ? 800 : 500)
-        .url()}
-      placeholder={imageBuilder
-        .image(post.coverImage)
-        .height(20)
-        .width(25)
-        .url()}
-      alt={post.title}
-      figcaption={null}
+    <LazyLoad
+      once
+      offset={100}
       height={app.deviceType === 'mobile' ? 300 : 180}
-      width={null}
-      customClass={null}
-      onClick={null}
-      /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/post/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/post/${post.slug}`,
-        },
-      }}
-    />
+    >
+      <Image
+        /* Options */
+        src={imageBuilder
+          .image(post.coverImage)
+          .height(app.deviceType === 'mobile' ? 800 : 500)
+          .width(app.deviceType === 'mobile' ? 800 : 500)
+          .url()}
+        placeholder={imageBuilder
+          .image(post.coverImage)
+          .height(20)
+          .width(25)
+          .url()}
+        alt={post.title}
+        figcaption={null}
+        height={app.deviceType === 'mobile' ? 300 : 180}
+        width={null}
+        customClass={null}
+        onClick={null}
+        /* Children */
+        withLinkProps={{
+          type: 'next',
+          href: '/post/[slug]',
+          target: null,
+          routerLink: Link,
+          routerLinkProps: {
+            as: `/post/${post.slug}`,
+          },
+        }}
+      />
+    </LazyLoad>
   );
 
   if (columnCount === 2) {

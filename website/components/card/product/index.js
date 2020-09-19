@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import LazyLoad from 'react-lazyload';
 
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
@@ -9,35 +10,41 @@ export default function CardDefault({ product }) {
   const app = useApp();
 
   const cardImage = (
-    <Image
-      /* Options */
-      src={imageBuilder
-        .image(product.image1)
-        .height(app.deviceType === 'mobile' ? 800 : 500)
-        .width(app.deviceType === 'mobile' ? 800 : 500)
-        .url()}
-      placeholder={imageBuilder
-        .image(product.image1)
-        .height(20)
-        .width(25)
-        .url()}
-      alt={product.title}
-      figcaption={null}
+    <LazyLoad
+      once
+      offset={100}
       height={app.deviceType === 'mobile' ? 300 : 220}
-      width={null}
-      customClass={null}
-      onClick={null}
-      /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/product/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/product/${product.slug}`,
-        },
-      }}
-    />
+    >
+      <Image
+        /* Options */
+        src={imageBuilder
+          .image(product.image1)
+          .height(app.deviceType === 'mobile' ? 800 : 500)
+          .width(app.deviceType === 'mobile' ? 800 : 500)
+          .url()}
+        placeholder={imageBuilder
+          .image(product.image1)
+          .height(20)
+          .width(25)
+          .url()}
+        alt={product.title}
+        figcaption={null}
+        height={app.deviceType === 'mobile' ? 300 : 220}
+        width={null}
+        customClass={null}
+        onClick={null}
+        /* Children */
+        withLinkProps={{
+          type: 'next',
+          href: '/product/[slug]',
+          target: null,
+          routerLink: Link,
+          routerLinkProps: {
+            as: `/product/${product.slug}`,
+          },
+        }}
+      />
+    </LazyLoad>
   );
 
   const cardLabel = (
