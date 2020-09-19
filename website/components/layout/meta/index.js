@@ -94,24 +94,24 @@ const Meta = (props) => {
       canRender = true;
     }
 
-    console.log('app?.hasSnipcartLoaded', app?.hasSnipcartLoaded);
-    console.log('canRender', canRender);
+    if (!canRender) return;
 
-    if (canRender) {
-      if (!app?.hasSnipcartLoaded)
-        dispatch({ type: 'SET_SNIPCART_LOADED', hasSnipcartLoaded: true });
+    if (!app?.hasSnipcartLoaded)
+      dispatch({ type: 'SET_SNIPCART_LOADED', hasSnipcartLoaded: true });
 
-      return (
-        <>
-          <link
-            rel="stylesheet"
-            href="https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.css"
-          />
+    return (
+      <>
+        <link
+          rel="stylesheet"
+          href="https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.css"
+        />
 
-          <script src="https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.js"></script>
-        </>
-      );
-    }
+        <script
+          async
+          src="https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.js"
+        ></script>
+      </>
+    );
   };
 
   return (
