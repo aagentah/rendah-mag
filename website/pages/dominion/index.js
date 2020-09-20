@@ -51,12 +51,12 @@ export default function Dominion({ siteConfig }) {
                   //     .image(product.image1)
                   //     .height(1000)
                   //     .width(1000)
-                  //     .url()}
+                  //     .auto('format').url()}
                   //   placeholder={imageBuilder
                   //     .image(product.image1)
                   //     .height(25)
                   //     .width(25)
-                  //     .url()}
+                  //     .auto('format').url()}
                   //   alt={product.title}
                   //   figcaption={null}
                   //   height={500}

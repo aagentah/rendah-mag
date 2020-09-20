@@ -106,12 +106,12 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                           .image(item.image)
                           .height(500)
                           .width(500)
-                          .url()}
+                          .auto('format').url()}
                         placeholder={imageBuilder
                           .image(item.image)
                           .height(50)
                           .width(50)
-                          .url()}
+                          .auto('format').url()}
                         alt=""
                         figcaption={null}
                         height={300}

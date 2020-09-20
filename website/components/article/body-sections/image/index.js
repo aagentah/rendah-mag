@@ -9,11 +9,12 @@ export default function ImageSection({ section }) {
       <figure>
         <Image
           /* Options */
-          src={imageBuilder.image(section.asset).url()}
+          src={imageBuilder.image(section.asset).auto('format').url()}
           placeholder={imageBuilder
             .image(section.asset)
             .height(25)
             .width(25)
+            .auto('format')
             .url()}
           alt="This is the alt text."
           figcaption={null}

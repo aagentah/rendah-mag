@@ -118,12 +118,12 @@ export default function ProfileCypher() {
                 .image(cyphers.current.imageSquare)
                 .height(1000)
                 .width(1000)
-                .url()}
+                .auto('format').url()}
               placeholder={imageBuilder
                 .image(cyphers.current.imageSquare)
                 .height(100)
                 .width(100)
-                .url()}
+                .auto('format').url()}
               alt="This is the alt text."
               figcaption={null}
               height={null}

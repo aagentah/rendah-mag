@@ -17,7 +17,7 @@ const sitemapXml = (mix) => {
   const image = mix?.image
     ? `<img width="300" style="width: 300px;" src="${imageBuilder
         .image(mix.image)
-        .url()}" />`
+        .auto('format').url()}" />`
     : '';
 
   const link = mix?.soundcloudLink

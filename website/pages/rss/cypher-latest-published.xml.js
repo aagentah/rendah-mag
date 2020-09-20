@@ -21,7 +21,7 @@ const sitemapXml = (cypher) => {
   const image = cypher?.imageLandscape
     ? `<img width="300" style="width: 300px;" src="${imageBuilder
         .image(cypher.imageLandscape)
-        .url()}" />`
+        .auto('format').url()}" />`
     : '';
 
   const url = cypher?.publishedFields?.shortUrl

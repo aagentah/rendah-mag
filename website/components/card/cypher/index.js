@@ -26,12 +26,12 @@ export default function CardCypher({ post, columnCount }) {
           .image(post.imageSquare)
           .height(app.deviceType === 'mobile' ? 800 : 500)
           .width(app.deviceType === 'mobile' ? 800 : 500)
-          .url()}
+          .auto('format').url()}
         placeholder={imageBuilder
           .image(post.imageSquare)
           .height(50)
           .width(50)
-          .url()}
+          .auto('format').url()}
         alt={post.title}
         figcaption={null}
         height={app.deviceType === 'mobile' ? 300 : 220}

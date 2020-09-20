@@ -15,7 +15,7 @@ const Meta = (props) => {
   const siteTitle = siteConfig.title || '';
   const siteDesc = siteConfig.description || '';
   const siteImage =
-    imageBuilder.image(siteConfig.logo).height(1000).width(1000).url() || '';
+    imageBuilder.image(siteConfig.logo).height(1000).width(1000).auto('format').url() || '';
 
   const titleVal = title || '';
   const descVal = description || '';

@@ -23,7 +23,7 @@ const sitemapXml = (posts) => {
     const image = post?.image
       ? `<a href="${url}" target="_blank"><img width="300" style="width: 300px;" src="${imageBuilder
           .image(post.image)
-          .url()}" alt="${post?.title}" /></a>`
+          .auto('format').url()}" alt="${post?.title}" /></a>`
       : '';
 
     const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;

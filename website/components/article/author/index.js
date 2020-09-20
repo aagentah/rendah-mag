@@ -26,11 +26,17 @@ export default function Author({ siteConfig, author }) {
         <div className="col-24  col-9-md  pb4  pb0-md">
           <Image
             /* Options */
-            src={imageBuilder.image(author.image).height(500).width(500).url()}
+            src={imageBuilder
+              .image(author.image)
+              .height(500)
+              .width(500)
+              .auto('format')
+              .url()}
             placeholder={imageBuilder
               .image(author.image)
               .height(25)
               .width(25)
+              .auto('format')
               .url()}
             alt={author.name}
             figcaption={null}

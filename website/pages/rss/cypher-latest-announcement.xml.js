@@ -21,7 +21,7 @@ const sitemapXml = (cypher) => {
   const image = cypher?.imageSquare
     ? `<img width="300" style="width: 300px;" src="${imageBuilder
         .image(cypher.imageSquare)
-        .url()}" alt="${title}" />`
+        .auto('format').url()}" alt="${title}" />`
     : '';
 
   const packLink = cypher.packLink

@@ -34,12 +34,12 @@ export default function Post({ siteConfig, teamMember }) {
                 .image(teamMember.image)
                 .height(250)
                 .width(250)
-                .url()}
+                .auto('format').url()}
               placeholder={imageBuilder
                 .image(teamMember.image)
                 .height(25)
                 .width(25)
-                .url()}
+                .auto('format').url()}
               alt={teamMember.title}
               figcaption={null}
               height={250}
