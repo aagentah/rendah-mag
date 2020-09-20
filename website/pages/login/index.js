@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 import { Heading, Button, Icon, Input } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
@@ -13,7 +13,6 @@ import { getSiteConfig } from '~/lib/sanity/requests';
 export default function Login({ siteConfig }) {
   const router = useRouter();
   const [user, { mutate }] = useUser();
-  const { addToast } = useToasts();
   const fwdRoute = router.query?.fwdRoute ? router.query.fwdRoute : null;
 
   async function loginViaQuery() {
@@ -34,12 +33,8 @@ export default function Login({ siteConfig }) {
       mutate(await response.json());
     } else {
       // Error
-      addToast(
-        'Something went wrong, please try again, or a different browser?',
-        {
-          appearance: 'error',
-          autoDismiss: true,
-        }
+      toast.error(
+        'Something went wrong, please try again, or a different browser?'
       );
     }
   }
@@ -64,12 +59,8 @@ export default function Login({ siteConfig }) {
       mutate(await response.json());
     } else {
       // Error
-      addToast(
-        'Something went wrong, have you used the correct Username/Password?',
-        {
-          appearance: 'error',
-          autoDismiss: true,
-        }
+      toast.error(
+        'Something went wrong, have you used the correct Username/Password?'
       );
     }
   }
@@ -114,7 +105,11 @@ export default function Login({ siteConfig }) {
             />
           </div>
 
-          <form className="form  form--default  mla  mra" onSubmit={onSubmit}>
+          <form
+            noValidate
+            className="form  form--default  mla  mra"
+            onSubmit={onSubmit}
+          >
             <div className="pv2">
               <Input
                 /* Options */

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 import { Heading, Button, Icon, Input } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
@@ -11,7 +11,6 @@ import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Forgot({ siteConfig }) {
   const dispatch = useDispatchApp();
-  const { addToast } = useToasts();
   const [buttonLoading, setButtonLoading] = useState(false);
 
   async function onSubmit(e) {
@@ -32,18 +31,11 @@ export default function Forgot({ siteConfig }) {
 
     if (response.ok) {
       // Success
-      addToast("We've sent you an email with some instructions", {
-        appearance: 'info',
-        autoDismiss: true,
-      });
+      toast.info("We've sent you an email with some instructions");
     } else {
       // Error
-      addToast(
-        'Something went wrong, are you sure you used the correct email?',
-        {
-          appearance: 'error',
-          autoDismiss: true,
-        }
+      toast.error(
+        'Something went wrong, are you sure you used the correct email?'
       );
     }
 
@@ -82,7 +74,11 @@ export default function Forgot({ siteConfig }) {
             />
           </div>
 
-          <form className="form  form--default  mla  mra" onSubmit={onSubmit}>
+          <form
+            noValidate
+            className="form  form--default  mla  mra"
+            onSubmit={onSubmit}
+          >
             <div className="pv2">
               <Input
                 /* Options */

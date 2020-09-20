@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
-import { useToasts } from 'react-toast-notifications';
 import BlockContent from '@sanity/block-content-to-react';
 import { useKeenSlider } from 'keen-slider/react';
 

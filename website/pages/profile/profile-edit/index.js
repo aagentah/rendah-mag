@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import Router from 'next/router';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 
 import {
@@ -27,7 +27,6 @@ export default function ProfileEdit() {
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [avatarModalActive, setAvatarModalActive] = useState(false);
   const [user, { mutate }] = useUser();
-  const { addToast } = useToasts();
   const [avatarBlob, setAvatarBlob] = useState(null);
   const [avatarImage, setAvatarImage] = useState(null);
 
@@ -45,10 +44,7 @@ export default function ProfileEdit() {
     (acceptedFiles) => {
       setAvatarModalActive(false);
 
-      addToast(`To save your image, make sure to hit Update.`, {
-        appearance: 'info',
-        autoDismiss: true,
-      });
+      toast.info(`To save your image, make sure to hit Update.`);
 
       if (acceptedFiles.length > 0) {
         const file = acceptedFiles[0];
@@ -59,7 +55,7 @@ export default function ProfileEdit() {
         reader.onload = () => setAvatarBlob(reader.result);
       }
     },
-    [setAvatarModalActive, addToast]
+    [setAvatarModalActive]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -102,37 +98,21 @@ export default function ProfileEdit() {
       body.password = e.currentTarget.password.value;
 
       if (body.password !== e.currentTarget.rpassword.value) {
-        addToast("The passwords don't match", {
-          appearance: 'error',
-          autoDismiss: true,
-        });
-        return;
+        return toast.error("The passwords don't match");
       }
 
       if (body.password === e.currentTarget.username.value) {
-        addToast('Password should not match Username', {
-          appearance: 'error',
-          autoDismiss: true,
-        });
-        return;
+        return toast.error('Password should not match Username');
       }
 
       if (body.password === e.currentTarget.name.value) {
-        addToast('Password should not match Name', {
-          appearance: 'error',
-          autoDismiss: true,
-        });
-        return;
+        return toast.error('Password should not match Name');
       }
 
       // Check password strength
       const isPasswordValid = passwordStrength(body.password);
       if (!isPasswordValid.isValid) {
-        addToast(isPasswordValid.message, {
-          appearance: 'error',
-          autoDismiss: true,
-        });
-        return;
+        return toast.error(isPasswordValid.message);
       }
     }
 
@@ -149,16 +129,10 @@ export default function ProfileEdit() {
     if (response.ok) {
       // Success
       mutate(await response.json());
-      addToast('Successfully updated', {
-        appearance: 'success',
-        autoDismiss: true,
-      });
+      toast.success('Successfully updated');
     } else {
       // Error
-      addToast('Error whilst updating, try again, or a different browser.', {
-        appearance: 'error',
-        autoDismiss: true,
-      });
+      toast.error('Error whilst updating, try again, or a different browser.');
     }
 
     dispatch({ type: 'TOGGLE_LOADING' });
@@ -177,10 +151,7 @@ export default function ProfileEdit() {
       mutate({ user: null });
       Router.replace('/');
     } else {
-      addToast('Error whilst deleting, try again.', {
-        appearance: 'error',
-        autoDismiss: true,
-      });
+      toast.error('Error whilst deleting, try again.');
     }
 
     dispatch({ type: 'TOGGLE_LOADING' });
@@ -380,7 +351,7 @@ export default function ProfileEdit() {
           </div>
         </div>
 
-        <form className="w-100" onSubmit={handleEditProfile}>
+        <form noValidate className="w-100" onSubmit={handleEditProfile}>
           <div className="flex  flex-wrap">
             <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
               <div className="pv2">

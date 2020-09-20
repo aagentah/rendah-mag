@@ -10,7 +10,7 @@ export default function SearchBar() {
   };
 
   return (
-    <form className="search-bar__wrapper" onSubmit={handleSearch}>
+    <form noValidate className="search-bar__wrapper" onSubmit={handleSearch}>
       <div className="flex  flex-wrap">
         <input
           className="search-bar__input  di"
