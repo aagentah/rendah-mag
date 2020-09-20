@@ -1,4 +1,5 @@
 import SpotifyPlayer from 'react-spotify-player';
+import LazyLoad from 'react-lazyload';
 
 export default function Spotify({ uri }) {
   const size = {
@@ -11,7 +12,9 @@ export default function Spotify({ uri }) {
   return (
     <div className="flex  justify-center  ph4">
       <div className="bg-dark-grey  pa2  w-100">
-        <SpotifyPlayer uri={uri} size={size} view={view} theme={theme} />
+        <LazyLoad once offset={150} height={100}>
+          <SpotifyPlayer uri={uri} size={size} view={view} theme={theme} />
+        </LazyLoad>
       </div>
     </div>
   );
