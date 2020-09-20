@@ -11,8 +11,7 @@ import { useUser } from '~/lib/hooks';
 export default function HeaderDestop({
   meta,
   navColour,
-  logoWhite,
-  logoBlack,
+  navOnWhite,
   handleLogout,
   showBasket,
   buttonIcons,
@@ -22,47 +21,51 @@ export default function HeaderDestop({
   return (
     <div className="header  header--desktop  bg-almost-white  justify-center  align-center  dn  df-md">
       <div className="flex  align-center  w-100">
-        <div className={`header__logo  ${logoWhite}`}>
-          <Image
-            /* Options */
-            src="/images/logo-medium-white.png"
-            placeholder="/images/logo-medium-white.png"
-            alt="This is the alt text."
-            figcaption={null}
-            height={null}
-            width={null}
-            customClass={null}
-            onClick={null}
-            /* Children */
-            withLinkProps={{
-              type: 'next',
-              href: '/',
-              target: null,
-              routerLink: Link,
-              routerLinkProps: null,
-            }}
-          />
+        <div className={`header__logo  ${!navOnWhite || 'o-0'}`}>
+          {!navOnWhite && (
+            <Image
+              /* Options */
+              src="/images/logo-medium-white.png"
+              placeholder="/images/logo-medium-white.png"
+              alt="This is the alt text."
+              figcaption={null}
+              height={null}
+              width={null}
+              customClass={null}
+              onClick={null}
+              /* Children */
+              withLinkProps={{
+                type: 'next',
+                href: '/',
+                target: null,
+                routerLink: Link,
+                routerLinkProps: null,
+              }}
+            />
+          )}
         </div>
-        <div className={`header__logo   ${logoBlack}`}>
-          <Image
-            /* Options */
-            src="/images/logo-medium-black.png"
-            placeholder="/images/logo-medium-black.png"
-            alt="This is the alt text."
-            figcaption={null}
-            height={null}
-            width={null}
-            customClass={null}
-            onClick={null}
-            /* Children */
-            withLinkProps={{
-              type: 'next',
-              href: '/',
-              target: null,
-              routerLink: Link,
-              routerLinkProps: null,
-            }}
-          />
+        <div className={`header__logo  ${navOnWhite || 'o-0'}`}>
+          {navOnWhite && (
+            <Image
+              /* Options */
+              src="/images/logo-medium-black.png"
+              placeholder="/images/logo-medium-black.png"
+              alt="This is the alt text."
+              figcaption={null}
+              height={null}
+              width={null}
+              customClass={null}
+              onClick={null}
+              /* Children */
+              withLinkProps={{
+                type: 'next',
+                href: '/',
+                target: null,
+                routerLink: Link,
+                routerLinkProps: null,
+              }}
+            />
+          )}
         </div>
 
         <div className="col-12  ph4">

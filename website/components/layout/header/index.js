@@ -16,9 +16,6 @@ export default function Header({ navOnWhite, meta }) {
   const [user, { mutate }] = useUser();
   const [navColour, setNavColour] = useState('black');
 
-  const logoWhite = cx({ 'o-0': navOnWhite });
-  const logoBlack = cx({ 'o-0': !navOnWhite });
-
   const signIn = <Icon icon={['fas', 'sign-in-alt']} />;
   const signOut = <Icon icon={['fas', 'sign-out-alt']} />;
   const store = <Icon icon={['fas', 'store-alt']} />;
@@ -67,8 +64,7 @@ export default function Header({ navOnWhite, meta }) {
           <HeaderDesktop
             meta={meta}
             navColour={navColour}
-            logoWhite={logoWhite}
-            logoBlack={logoBlack}
+            navOnWhite={navOnWhite}
             handleLogout={handleLogout}
             showBasket={showBasket}
             buttonIcons={buttonIcons}
@@ -78,8 +74,7 @@ export default function Header({ navOnWhite, meta }) {
           <HeaderMobile
             meta={meta}
             navColour={navColour}
-            logoWhite={logoWhite}
-            logoBlack={logoBlack}
+            navOnWhite={navOnWhite}
             handleLogout={handleLogout}
             showBasket={showBasket}
             buttonIcons={buttonIcons}
