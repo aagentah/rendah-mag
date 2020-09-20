@@ -44,8 +44,8 @@ export default function HeaderMobile({
         {!navOnWhite && (
           <Image
             /* Options */
-            src="/images/logo-medium-white.png"
-            placeholder="/images/logo-medium-white.png"
+            src="/images/logo-white.svg"
+            placeholder={null}
             alt="This is the alt text."
             figcaption={null}
             height={null}
@@ -67,8 +67,8 @@ export default function HeaderMobile({
         {!navOnWhite && (
           <Image
             /* Options */
-            src="/images/logo-medium-black.png"
-            placeholder="/images/logo-medium-black.png"
+            src="/images/logo-black.svg"
+            placeholder={null}
             alt="This is the alt text."
             figcaption={null}
             height={null}
