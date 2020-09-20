@@ -21,12 +21,12 @@ export default function CardDefault({ product }) {
           .image(product.image1)
           .height(app.deviceType === 'mobile' ? 800 : 500)
           .width(app.deviceType === 'mobile' ? 800 : 500)
-          .url()}
+          .auto('format').url()}
         placeholder={imageBuilder
           .image(product.image1)
           .height(20)
           .width(25)
-          .url()}
+          .auto('format').url()}
         alt={product.title}
         figcaption={null}
         height={app.deviceType === 'mobile' ? 300 : 220}

@@ -157,12 +157,12 @@ export default function Cyphers({ siteConfig, cyphers }) {
                           .image(cyphers.current.imageLandscape)
                           .height(300)
                           .width(300)
-                          .url()}
+                          .auto('format').url()}
                         placeholder={imageBuilder
                           .image(cyphers.current.imageLandscape)
                           .height(25)
                           .width(25)
-                          .url()}
+                          .auto('format').url()}
                         alt="This is the alt text."
                         figcaption={null}
                         height={300}

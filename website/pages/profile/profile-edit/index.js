@@ -66,7 +66,7 @@ export default function ProfileEdit() {
   useEffect(() => {
     if (user?.avatar) {
       setAvatarImage(
-        imageBuilder.image(user.avatar).height(500).width(500).url()
+        imageBuilder.image(user.avatar).height(500).width(500).auto('format').url()
       );
     }
   }, [user]);

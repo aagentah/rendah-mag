@@ -26,11 +26,13 @@ export default function CardBlog({ post, columnCount }) {
           .image(post.coverImage)
           .height(app.deviceType === 'mobile' ? 800 : 500)
           .width(app.deviceType === 'mobile' ? 800 : 500)
+          .auto('format')
           .url()}
         placeholder={imageBuilder
           .image(post.coverImage)
           .height(20)
           .width(25)
+          .auto('format')
           .url()}
         alt={post.title}
         figcaption={null}
@@ -60,11 +62,13 @@ export default function CardBlog({ post, columnCount }) {
           .image(post.coverImage)
           .height(app.deviceType === 'mobile' ? 800 : 1000)
           .width(app.deviceType === 'mobile' ? 800 : 1000)
+          .auto('format')
           .url()}
         placeholder={imageBuilder
           .image(post.coverImage)
           .height(20)
           .width(25)
+          .auto('format')
           .url()}
         alt={post.title}
         figcaption={null}

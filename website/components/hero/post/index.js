@@ -12,12 +12,12 @@ export default function HeroPost({ post }) {
   const heroImage = (
     <Image
       /* Options */
-      src={imageBuilder.image(post.coverImage).height(1000).width(2000).url()}
+      src={imageBuilder.image(post.coverImage).height(1000).width(2000).auto('format').url()}
       placeholder={imageBuilder
         .image(post.coverImage)
         .height(50)
         .width(108)
-        .url()}
+        .auto('format').url()}
       alt="This is the alt text."
       figcaption={null}
       height={700}

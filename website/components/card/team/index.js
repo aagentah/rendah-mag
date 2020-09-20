@@ -25,12 +25,12 @@ export default function CardBlog({ teamMember, columnCount }) {
           .image(teamMember.image)
           .height(app.deviceType === 'mobile' ? 800 : 500)
           .width(app.deviceType === 'mobile' ? 800 : 500)
-          .url()}
+          .auto('format').url()}
         placeholder={imageBuilder
           .image(teamMember.image)
           .height(20)
           .width(25)
-          .url()}
+          .auto('format').url()}
         alt={teamMember.title}
         figcaption={null}
         height={app.deviceType === 'mobile' ? 300 : 220}
