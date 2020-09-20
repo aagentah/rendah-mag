@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 import { Heading, Button, Icon, Input, Checkbox } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
@@ -14,11 +14,9 @@ import validEmail from '~/lib/valid-email';
 
 export default function Sigup({ siteConfig }) {
   const [user, { mutate }] = useUser();
-  const { addToast } = useToasts();
 
   async function onSubmit(e) {
     e.preventDefault();
-    let hasError = false;
 
     const body = {
       username: e.currentTarget.username.value,
@@ -29,81 +27,37 @@ export default function Sigup({ siteConfig }) {
     };
 
     if (!body.username || !validEmail(body.username)) {
-      addToast('Please enter a valid email.', {
-        appearance: 'error',
-        autoDismiss: true,
-      });
-
-      hasError = true;
+      return toast.error('Please enter a valid email.');
     }
 
     if (!body.name) {
-      addToast('Please enter your name.', {
-        appearance: 'error',
-        autoDismiss: true,
-      });
-
-      hasError = true;
+      return toast.error('Please enter your name.');
     }
 
     if (!body.password) {
-      addToast('Please enter a password.', {
-        appearance: 'error',
-        autoDismiss: true,
-      });
-
-      hasError = true;
+      return toast.error('Please enter a password.');
     }
 
     if (!body.terms) {
-      addToast(`Please check that you accept the T&C's`, {
-        appearance: 'error',
-        autoDismiss: true,
-      });
-
-      hasError = true;
+      return toast.error(`Please check that you accept the T&C's`);
     }
 
     if (body.password !== e.currentTarget.rpassword.value) {
-      addToast("The passwords don't match.", {
-        appearance: 'error',
-        autoDismiss: true,
-      });
-
-      hasError = true;
+      return toast.error("The passwords don't match.");
     }
 
     if (body.password === e.currentTarget.username.value) {
-      addToast('Password should not match email.', {
-        appearance: 'error',
-        autoDismiss: true,
-      });
-
-      hasError = true;
+      return toast.error('Password should not match email.');
     }
 
     if (body.password === e.currentTarget.name.value) {
-      addToast('Password should not match name.', {
-        appearance: 'error',
-        autoDismiss: true,
-      });
-
-      hasError = true;
+      return toast.error('Password should not match name.');
     }
 
     // Check password strength
     const isPasswordValid = passwordStrength(body.password);
     if (!isPasswordValid.isValid) {
-      addToast(isPasswordValid.message, {
-        appearance: 'error',
-        autoDismiss: true,
-      });
-
-      hasError = true;
-    }
-
-    if (hasError) {
-      return;
+      return toast.error(isPasswordValid.message);
     }
 
     const res = await fetch('../api/users', {
@@ -116,10 +70,7 @@ export default function Sigup({ siteConfig }) {
       const userObj = await res.json();
       mutate(userObj);
     } else {
-      addToast(await res.text(), {
-        appearance: 'error',
-        autoDismiss: true,
-      });
+      toast.error(await res.text());
     }
   }
 
@@ -162,9 +113,9 @@ export default function Sigup({ siteConfig }) {
           </div>
 
           <form
+            noValidate
             className="form  form--default  mla  mra"
             onSubmit={onSubmit}
-            noValidate
           >
             <div className="pv2">
               <Input

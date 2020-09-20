@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 
 import { Heading } from 'next-pattern-library';
 
 import { useUser } from '~/lib/hooks';
 
 export default function ProfileOrders() {
-  const { addToast } = useToasts();
   const [user, { loading, mutate, error }] = useUser();
   const [customerOrders, setCustomerOrders] = useState(null);
 
@@ -28,16 +27,13 @@ export default function ProfileOrders() {
         setCustomerOrders(json);
       } else {
         // Error
-        addToast(json.error, {
-          appearance: 'error',
-          autoDismiss: true,
-        });
+        toast.error(json.error);
         setCustomerOrders([]);
       }
     };
 
     if (user) fetchCustomerOrders();
-  }, [user, addToast]);
+  }, [user]);
 
   // Fetch subscription items and check if is dominion subscription
   useEffect(() => {
@@ -62,12 +58,8 @@ export default function ProfileOrders() {
         mutate(await response.json());
       } else {
         // Error
-        addToast(
-          'There was an issue adding you to the Dominion, please contact support right away.',
-          {
-            appearance: 'error',
-            autoDismiss: true,
-          }
+        toast.error(
+          'There was an issue adding you to the Dominion, please contact support right away.'
         );
       }
     }
@@ -89,7 +81,7 @@ export default function ProfileOrders() {
         }
       }
     }
-  }, [user, customerOrders, addToast, mutate]);
+  }, [user, customerOrders, mutate]);
 
   if (customerOrders?.length) {
     return (

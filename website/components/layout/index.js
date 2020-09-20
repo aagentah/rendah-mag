@@ -1,3 +1,4 @@
+import { ToastContainer } from 'react-toastify';
 import deviceType from '~/lib/device-type';
 
 import Alert from './alert';
@@ -31,6 +32,7 @@ export default function Layout({
   return (
     <>
       <Meta {...meta} />
+      <ToastContainer />
       {preview && <Alert preview={preview} />}
       <Header navOnWhite={navOnWhite} meta={meta} />
       <main className={`page ${navOffsetType}`}>{children}</main>

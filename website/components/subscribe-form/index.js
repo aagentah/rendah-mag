@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import fetch from 'isomorphic-unfetch';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 
 import { Button, Icon } from 'next-pattern-library';
 
@@ -9,7 +9,6 @@ import { useApp, useDispatchApp } from '../../context-provider/app';
 export default function SubscribeForm({ onSuccess }) {
   const app = useApp();
   const dispatch = useDispatchApp();
-  const { addToast } = useToasts();
   const [buttonLoading, setButtonLoading] = useState(false);
 
   const inputEl = useRef(null);
@@ -18,10 +17,7 @@ export default function SubscribeForm({ onSuccess }) {
     e.preventDefault();
 
     if (!inputEl.current.value) {
-      return addToast('You must enter a valid email.', {
-        appearance: 'info',
-        autoDismiss: true,
-      });
+      return toast.info('You must enter a valid email.');
     }
 
     dispatch({ type: 'TOGGLE_LOADING' });
@@ -41,18 +37,11 @@ export default function SubscribeForm({ onSuccess }) {
 
     if (response.ok) {
       // Success
-      addToast('Welcome to the newsletter!', {
-        appearance: 'success',
-        autoDismiss: true,
-      });
-
-      onSuccess();
+      toast.success('Welcome to the newsletter');
+      onSuccess && onSuccess();
     } else {
       // Error
-      addToast(json.error, {
-        appearance: 'error',
-        autoDismiss: true,
-      });
+      toast.error('Error');
     }
 
     inputEl.current.value = '';
@@ -64,9 +53,9 @@ export default function SubscribeForm({ onSuccess }) {
 
   return (
     <form
+      noValidate
       className="w-100  flex  flex-wrap  justify-center  align-center"
       onSubmit={subscribe}
-      noValidate
     >
       <div className="flex  flex-wrap  mt2  ph4  ph0-md">
         <input
