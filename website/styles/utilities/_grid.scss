@@ -28,25 +28,25 @@
 
 // push / pull
 
-@for $i from 1 through $columns {
-  .push-#{$i} {
-    left: percentage($i / $columns);
-  }
-  .pull-#{$i} {
-    right: percentage($i / $columns);
-  }
-}
-
-@each $modifier, $breakpoint in $grid-breakpoints {
-  $infix: breakpoint-infix($modifier, $grid-breakpoints);
-  @include breakpoint-up($modifier, $grid-breakpoints) {
-    @for $i from 1 through $columns {
-      .push-#{$i}-#{$infix} {
-        left: percentage($i / $columns);
-      }
-      .pull-#{$i}-#{$infix} {
-        right: percentage($i / $columns);
-      }
-    }
-  }
-}
+// @for $i from 1 through $columns {
+//   .push-#{$i} {
+//     left: percentage($i / $columns);
+//   }
+//   .pull-#{$i} {
+//     right: percentage($i / $columns);
+//   }
+// }
+//
+// @each $modifier, $breakpoint in $grid-breakpoints {
+//   $infix: breakpoint-infix($modifier, $grid-breakpoints);
+//   @include breakpoint-up($modifier, $grid-breakpoints) {
+//     @for $i from 1 through $columns {
+//       .push-#{$i}-#{$infix} {
+//         left: percentage($i / $columns);
+//       }
+//       .pull-#{$i}-#{$infix} {
+//         right: percentage($i / $columns);
+//       }
+//     }
+//   }
+// }
