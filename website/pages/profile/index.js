@@ -28,7 +28,7 @@ export default function Profile({ siteConfig }) {
 
   const handleToggle = (visibleTab, current) => {
     // Handles tab scroll on mobile
-    if (app.deviceType === 'mobile') {
+    if (app.deviceSize === 'md') {
       zenscroll.setup(300, 15);
       if (visibleTab) {
         zenscroll.to(current, 400);

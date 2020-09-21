@@ -3,30 +3,34 @@ import { useMediaQuery } from 'react-responsive';
 import { useDispatchApp } from '~/context-provider/app';
 import { useApp } from '~/context-provider/app';
 
-export default function deviceType() {
+export default function deviceSize() {
   const app = useApp();
   const dispatch = useDispatchApp();
 
+  // Big screen
   const isBigScreen = useMediaQuery({
     query: '(min-width: 1550px)',
   });
 
+  // Desktop
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1250px)',
   });
 
+  // Mobile
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 950px)' });
 
-  const getDeviceType = () => {
-    if (isBigScreen) return 'big-screen';
-    if (isDesktopOrLaptop) return 'desktop';
-    if (isTabletOrMobile) return 'mobile';
+  const getDeviceSize = () => {
+    if (isBigScreen) return 'xl';
+    if (isDesktopOrLaptop) return 'lg';
+    if (isTabletOrMobile) return 'md';
   };
 
-  const deviceType = getDeviceType();
+  const deviceSize = getDeviceSize();
+  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
 
-  if (!deviceType) return;
-  if (app.deviceType !== deviceType) {
-    dispatch({ type: 'SET_DEVICE_TYPE', deviceType });
+  if (!deviceSize) return;
+  if (app.deviceSize !== deviceSize) {
+    dispatch({ type: 'SET_DEVICE', deviceSize, isRetina });
   }
 }

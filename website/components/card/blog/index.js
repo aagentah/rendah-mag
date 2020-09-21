@@ -11,26 +11,29 @@ import { useApp } from '~/context-provider/app';
 
 export default function CardBlog({ post, columnCount }) {
   const app = useApp();
-  if (!app.deviceType) return null;
   const [inView, setInView] = useState(false);
-  let imageUrlWidth = app.deviceType === 'mobile' ? 600 : 230;
-  let imageUrlHeight = app.deviceType === 'mobile' ? 600 : 180;
-  let imageHeight = app.deviceType === 'mobile' ? 260 : 180;
+  if (!app.deviceSize) return null;
+
+  let scale = 1;
+  if (app.isRetina) scale = 2;
+  let imageUrlWidth = app.deviceSize === 'md' ? 260 : 230;
+  let imageUrlHeight = app.deviceSize === 'md' ? 260 : 180;
+  let imageHeight = app.deviceSize === 'md' ? 260 : 180;
 
   if (columnCount === 2) {
-    imageUrlWidth = app.deviceType === 'mobile' ? 600 : 500;
-    imageUrlHeight = app.deviceType === 'mobile' ? 600 : 300;
-    imageHeight = app.deviceType === 'mobile' ? 260 : 300;
+    imageUrlWidth = app.deviceSize === 'md' ? 260 : 500;
+    imageUrlHeight = app.deviceSize === 'md' ? 260 : 300;
+    imageHeight = app.deviceSize === 'md' ? 260 : 300;
   }
 
   const cardImage = (
-    <LazyLoad once offset={100} height={imageUrlHeight}>
+    <LazyLoad once offset={100} height={imageHeight}>
       <Image
         /* Options */
         src={imageBuilder
           .image(post.coverImage)
-          .width(imageUrlWidth)
-          .height(imageUrlHeight)
+          .width(imageUrlWidth * scale)
+          .height(imageUrlHeight * scale)
           .auto('format')
           .url()}
         placeholder={imageBuilder

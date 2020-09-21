@@ -13,10 +13,11 @@ const reducer = (state, action) => {
 
       return newState;
     }
-    case 'SET_DEVICE_TYPE': {
+    case 'SET_DEVICE': {
       const newState = {
         ...state,
-        deviceType: action.deviceType,
+        deviceSize: action.deviceSize,
+        isRetina: action.isRetina,
       };
 
       return newState;
@@ -40,7 +41,8 @@ const reducer = (state, action) => {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     isLoading: false,
-    deviceType: null,
+    deviceSize: null,
+    isRetina: false,
     hasSnipcartLoaded: false,
   });
 

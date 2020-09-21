@@ -9,27 +9,29 @@ import { useApp } from '~/context-provider/app';
 
 export default function HeroPost({ post }) {
   const app = useApp();
-  if (!app.deviceType) return null;
+  if (!app.deviceSize) return null;
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
+  let scale = 1;
+  if (app.isRetina) scale = 2;
   let imageUrlWidth;
   let imageUrlHeight;
   let imageHeight;
 
-  if (app.deviceType === 'mobile') {
+  if (app.deviceSize === 'md') {
     imageUrlWidth = 680;
     imageUrlHeight = 1000;
     imageHeight = 700;
   }
 
-  if (app.deviceType === 'desktop') {
+  if (app.deviceSize === 'lg') {
     imageUrlWidth = 1550;
     imageUrlHeight = 700;
     imageHeight = 700;
   }
 
-  if (app.deviceType === 'big-screen') {
+  if (app.deviceSize === 'xl') {
     imageUrlWidth = 1800;
     imageUrlHeight = 700;
     imageHeight = 700;
@@ -40,8 +42,8 @@ export default function HeroPost({ post }) {
       /* Options */
       src={imageBuilder
         .image(post.coverImage)
-        .width(imageUrlWidth)
-        .height(imageUrlHeight)
+        .width(imageUrlWidth * scale)
+        .height(imageUrlHeight * scale)
         .auto('format')
         .url()}
       placeholder={imageBuilder
