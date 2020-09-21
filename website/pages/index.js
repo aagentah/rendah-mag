@@ -104,7 +104,7 @@ export default function Home({
 }
 
 export async function getServerSideProps({ req }) {
-  const cookies = req.headers?.cookie;
+  const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const latestFeaturedPost = await getLatestFeaturedPost();
   const latestInterviews = await getLatestInterviews();

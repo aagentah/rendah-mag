@@ -62,7 +62,7 @@ export default function Post({ siteConfig, allTeam }) {
 }
 
 export async function getServerSideProps({ req }) {
-  const cookies = req.headers?.cookie;
+  const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const allTeam = await getTeamMembers();
 

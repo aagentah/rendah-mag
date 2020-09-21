@@ -123,7 +123,7 @@ export default function Post({ siteConfig, teamMember }) {
 }
 
 export async function getServerSideProps({ req, params, preview = false }) {
-  const cookies = req.headers?.cookie;
+  const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const teamMember = await getTeamMemberAndPosts(params.slug);
 

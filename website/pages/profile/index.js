@@ -98,7 +98,7 @@ export default function Profile({ siteConfig }) {
 }
 
 export async function getServerSideProps({ req }) {
-  const cookies = req.headers?.cookie;
+  const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
 
   return {

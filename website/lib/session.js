@@ -3,7 +3,7 @@ import Iron from '@hapi/iron';
 
 export default function session({ name, secret, cookie: cookieOpts }) {
   return async (req, res, next) => {
-    const cookie = req.headers?.cookie ? parse(req.headers.cookie) : null;
+    const cookie = req?.headers?.cookie ? parse(req.headers.cookie) : null;
     let unsealed;
     if (cookie?.[name]) {
       try {

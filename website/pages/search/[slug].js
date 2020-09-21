@@ -70,7 +70,7 @@ export default function Post({ siteConfig, allPosts, params }) {
 }
 
 export async function getServerSideProps({ req, params, preview = false }) {
-  const cookies = req.headers?.cookie;
+  const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const allPosts = await getPostWithSearch(params.slug);
 
