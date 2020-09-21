@@ -22,14 +22,8 @@
   }
 }
 
-.image {
-  width: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
 .image__loading {
-  transition: opacity ease-in 0.3s;
+  transition: all ease-in 0.5s;
   transition-delay: 0.3s;
   top: 0;
   left: 0;
@@ -39,5 +33,18 @@
   clip-path: inset(0);
   object-fit: cover;
   pointer-events: none;
+  transform: scale(1.1);
   z-index: 2;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.image__loading.is-loaded,
+.image__loading.is-loaded + .image {
+  transform: scale(1);
 }

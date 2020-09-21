@@ -102,20 +102,22 @@
   }
 }
 
-.card--scroll.in-view {
-  .card__title {
-    opacity: 1;
-    transform: translateY(0px);
-  }
+@media only screen and (max-width: 950px) {
+  .card--scroll.in-view {
+    .card__title {
+      opacity: 1;
+      transform: translateY(0px);
+    }
 
-  .card__label {
-    opacity: 1;
-    transform: translateY(0px);
-  }
+    .card__label {
+      opacity: 1;
+      transform: translateY(0px);
+    }
 
-  .image {
-    filter: brightness(65%);
-    transform: scale(1.1);
+    .image__loading.is-loaded + .image {
+      filter: brightness(65%);
+      transform: scale(1.1);
+    }
   }
 }
 
@@ -131,7 +133,7 @@
       transform: translateY(10px);
     }
 
-    .image {
+    .image__loading.is-loaded + .image {
       filter: brightness(100%);
       transform: scale(1);
     }
@@ -148,7 +150,7 @@
       transform: translateY(0px);
     }
 
-    .image {
+    .image__loading.is-loaded + .image {
       filter: brightness(65%);
       transform: scale(1.1);
     }
