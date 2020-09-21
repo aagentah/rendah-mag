@@ -108,7 +108,7 @@ export default function Login({ siteConfig }) {
 
           <form
             noValidate
-            className="form  form--default  mla  mra"
+            className="form  form--default  mla  mra  ph3  ph0-md"
             onSubmit={onSubmit}
           >
             <div className="pv2">

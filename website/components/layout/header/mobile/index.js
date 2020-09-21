@@ -96,10 +96,15 @@ export default function HeaderMobile({
         </>
       ) : null}
 
-      <nav className="nav  w-100  flex  justify-end">
+      <nav className="nav  w-100">
         <div className="flex  flex-wrap">
+          <div className="col-12  flex  align-center  justify-start  pa4">
+            <span className="t-secondary  bg-black  white  ph2  pv1  f4">
+              Menu
+            </span>
+          </div>
           <button
-            className="absolute  top  right  mt3  mr3"
+            className="col-12  flex  align-center  justify-end  pa4"
             onClick={toggleNav}
             type="button"
           >
@@ -108,7 +113,7 @@ export default function HeaderMobile({
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              fill="white"
+              fill="black"
             >
               <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
             </svg>
@@ -116,223 +121,101 @@ export default function HeaderMobile({
         </div>
         <ul className="w-100  pt4">
           <li className="db  pl4  pb3">
-            <Button
-              /* Options */
-              type="secondary"
-              size="large"
-              text="Home"
-              color="white"
-              fluid={false}
-              icon={null}
-              iconFloat={null}
-              inverted
-              loading={false}
-              disabled={false}
-              onClick={toggleNav}
-              /* Children */
-              withLinkProps={{
-                type: 'next',
-                href: '/',
-                target: null,
-                routerLink: Link,
-                routerLinkProps: null,
-              }}
-            />
+            <Link href="/">
+              <span
+                className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                onClick={toggleNav}
+              >
+                Home
+              </span>
+            </Link>
           </li>
           <li className="db  pl4  pb3">
-            <Button
-              /* Options */
-              type="secondary"
-              size="large"
-              text="Cyphers"
-              color="white"
-              fluid={false}
-              icon={null}
-              iconFloat={null}
-              inverted
-              loading={false}
-              disabled={false}
-              onClick={toggleNav}
-              /* Children */
-              withLinkProps={{
-                type: 'next',
-                href: '/cyphers',
-                target: null,
-                routerLink: Link,
-                routerLinkProps: null,
-              }}
-            />
+            <Link href="/cyphers">
+              <span
+                className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                onClick={toggleNav}
+              >
+                Cyphers
+              </span>
+            </Link>
           </li>
           <li className="db  pl4  pb3">
-            <Button
-              /* Options */
-              type="secondary"
-              size="large"
-              text="Team"
-              color="white"
-              fluid={false}
-              icon={null}
-              iconFloat={null}
-              inverted
-              loading={false}
-              disabled={false}
-              onClick={toggleNav}
-              /* Children */
-              withLinkProps={{
-                type: 'next',
-                href: '/team',
-                target: null,
-                routerLink: Link,
-                routerLinkProps: null,
-              }}
-            />
+            <Link href="/team">
+              <span
+                className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                onClick={toggleNav}
+              >
+                Team
+              </span>
+            </Link>
           </li>
           <li className="db  pl4  pb3">
-            <Button
-              /* Options */
-              type="secondary"
-              size="large"
-              text="Mixes"
-              color="white"
-              fluid={false}
-              icon={null}
-              iconFloat={null}
-              inverted
-              loading={false}
-              disabled={false}
-              onClick={toggleNav}
-              /* Children */
-              withLinkProps={{
-                type: 'next',
-                href: '/guest-mixes',
-                target: null,
-                routerLink: Link,
-                routerLinkProps: null,
-              }}
-            />
+            <Link href="/guest-mixes">
+              <span
+                className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                onClick={toggleNav}
+              >
+                Mixes
+              </span>
+            </Link>
           </li>
           <li className="db  pl4  pb3">
-            <Button
-              /* Options */
-              type="secondary"
-              size="large"
-              text="Store"
-              color="white"
-              fluid={false}
-              icon={buttonIcons.store}
-              iconFloat={null}
-              inverted
-              loading={false}
-              disabled={false}
-              onClick={toggleNav}
-              /* Children */
-              withLinkProps={{
-                type: 'next',
-                href: '/store',
-                target: null,
-                routerLink: Link,
-                routerLinkProps: null,
-              }}
-            />
+            <Link href="/store">
+              <span
+                className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                onClick={toggleNav}
+              >
+                Store
+              </span>
+            </Link>
           </li>
 
           {user ? (
             <>
               <li className="db  pl4  pb3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="large"
-                  text="Profile"
-                  color="white"
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={toggleNav}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/profile',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: null,
-                  }}
-                />
+                <Link href="/profile">
+                  <span
+                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                    onClick={toggleNav}
+                  >
+                    Profile
+                  </span>
+                </Link>
               </li>
               <li className="db  pl4  pb3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="large"
-                  text="Log Out"
-                  color="white"
-                  fluid={false}
-                  icon={buttonIcons.signOut}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
+                <span
+                  className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                   onClick={() => {
                     toggleNav();
                     handleLogout();
                   }}
-                  /* Children */
-                  withLinkProps={null}
-                />
+                >
+                  Log Out
+                </span>
               </li>
             </>
           ) : (
             <>
               <li className="db  pl4  pb3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="large"
-                  text="Sign Up"
-                  color="white"
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={toggleNav}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/signup',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: null,
-                  }}
-                />
+                <Link href="/signup">
+                  <span
+                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                    onClick={toggleNav}
+                  >
+                    Sign Up
+                  </span>
+                </Link>
               </li>
               <li className="db  pl4  pb3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="large"
-                  text="Login"
-                  color="white"
-                  fluid={false}
-                  icon={buttonIcons.signIn}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={toggleNav}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/login',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: null,
-                  }}
-                />
+                <Link href="/login">
+                  <span
+                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                    onClick={toggleNav}
+                  >
+                    Login
+                  </span>
+                </Link>
               </li>
             </>
           )}
