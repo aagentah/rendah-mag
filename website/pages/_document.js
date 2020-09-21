@@ -54,35 +54,30 @@ export default class MyDocument extends Document {
 
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
-          <link
-            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-            rel="stylesheet"
-            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-            crossOrigin="anonymous"
-          />
-
-          {process.env.NODE_ENV === 'production' && (
-            <>
-              {/* Global Site Tag (gtag.js) - Google Analytics */}
-              <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-              />
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-
-                    gtag('config', '${GA_TRACKING_ID}', {
-                      page_path: window.location.pathname,
-                    });
-                  `,
-                }}
-              />
-            </>
-          )}
+          {
+            // {process.env.NODE_ENV === 'production' && (
+            //   <>
+            //     {/* Global Site Tag (gtag.js) - Google Analytics */}
+            //     <script
+            //       async
+            //       src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+            //     />
+            //     <script
+            //       dangerouslySetInnerHTML={{
+            //         __html: `
+            //           window.dataLayer = window.dataLayer || [];
+            //           function gtag(){dataLayer.push(arguments);}
+            //           gtag('js', new Date());
+            //
+            //           gtag('config', '${GA_TRACKING_ID}', {
+            //             page_path: window.location.pathname,
+            //           });
+            //         `,
+            //       }}
+            //     />
+            //   </>
+            // )}
+          }
         </Head>
 
         <div
