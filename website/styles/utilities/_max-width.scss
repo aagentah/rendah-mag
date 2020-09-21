@@ -8,7 +8,7 @@ $max-widths: (
   6: 32rem,
   7: 48rem,
   8: 64rem,
-  9: 96rem
+  9: 96rem,
 );
 
 @each $i, $value in $max-widths {
@@ -23,9 +23,9 @@ $max-widths: (
   }
 }
 
-.mw-none {
-  max-width: none;
-}
+// .mw-none {
+//   max-width: none;
+// }
 
 @each $modifier, $breakpoint in $grid-breakpoints {
   $infix: breakpoint-infix($modifier, $grid-breakpoints);
@@ -42,8 +42,8 @@ $max-widths: (
       }
     }
 
-    .mw-none-#{$infix} {
-      max-width: none;
-    }
+    // .mw-none-#{$infix} {
+    //   max-width: none;
+    // }
   }
 }

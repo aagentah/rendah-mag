@@ -1,6 +1,6 @@
-.lh-solid {
-  line-height: 1;
-}
+// .lh-solid {
+//   line-height: 1;
+// }
 
 .lh-title {
   line-height: 1.25;
@@ -10,19 +10,19 @@
   line-height: 1.5;
 }
 
-@each $modifier, $breakpoint in $grid-breakpoints {
-  $infix: breakpoint-infix($modifier, $grid-breakpoints);
-  @include breakpoint-up($modifier, $grid-breakpoints) {
-    .lh-solid-#{$infix} {
-      line-height: 1;
-    }
-
-    .lh-title-#{$infix} {
-      line-height: 1.25;
-    }
-
-    .lh-copy-#{$infix} {
-      line-height: 1.5;
-    }
-  }
-}
+// @each $modifier, $breakpoint in $grid-breakpoints {
+//   $infix: breakpoint-infix($modifier, $grid-breakpoints);
+//   @include breakpoint-up($modifier, $grid-breakpoints) {
+//     .lh-solid-#{$infix} {
+//       line-height: 1;
+//     }
+//
+//     .lh-title-#{$infix} {
+//       line-height: 1.25;
+//     }
+//
+//     .lh-copy-#{$infix} {
+//       line-height: 1.5;
+//     }
+//   }
+// }
