@@ -52,7 +52,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   const [modalActive, setModalActive] = useState(null);
 
   const sliderOptions = {
-    slidesPerView: app.deviceType === 'mobile' ? 1 : 2,
+    slidesPerView: app.deviceSize === 'md' ? 1 : 2,
     mode: 'snap',
     spacing: 0,
     initial: 0,

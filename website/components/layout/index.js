@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import deviceType from '~/lib/device-type';
+import deviceSize from '~/lib/device-size';
 
 import setSiteConfigCookies from '~/lib/set-site-config-cookies';
 
@@ -19,7 +19,7 @@ export default function Layout({
   setSiteConfigCookies(meta.siteConfig);
 
   // set device type in context API
-  deviceType();
+  deviceSize();
 
   let navOffsetType;
 

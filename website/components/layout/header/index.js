@@ -57,10 +57,10 @@ export default function Header({ navOnWhite, meta }) {
     }
   }, [navOnWhite]);
 
-  if (app?.deviceType) {
+  if (app?.deviceSize) {
     return (
       <>
-        {app.deviceType !== 'mobile' && (
+        {app.deviceSize !== 'mobile' && (
           <HeaderDesktop
             meta={meta}
             navColour={navColour}
@@ -70,7 +70,7 @@ export default function Header({ navOnWhite, meta }) {
             buttonIcons={buttonIcons}
           />
         )}
-        {app.deviceType === 'mobile' && (
+        {app.deviceSize === 'md' && (
           <HeaderMobile
             meta={meta}
             navColour={navColour}
