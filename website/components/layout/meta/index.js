@@ -15,7 +15,12 @@ const Meta = (props) => {
   const siteTitle = siteConfig.title || '';
   const siteDesc = siteConfig.description || '';
   const siteImage =
-    imageBuilder.image(siteConfig.logo).height(1000).width(1000).auto('format').url() || '';
+    imageBuilder
+      .image(siteConfig.logo)
+      .height(1000)
+      .width(1000)
+      .auto('format')
+      .url() || '';
 
   const titleVal = title || '';
   const descVal = description || '';
@@ -120,7 +125,8 @@ const Meta = (props) => {
         <link rel="canonical" href={`${SITE_URL}${router.asPath}`} />
 
         <title>
-          {titleVal} | {siteTitle}
+          {process.env.NODE_ENV === 'development' && `(Local)${' '}`}
+          {titleVal} | {siteTitle}{' '}
         </title>
 
         <meta

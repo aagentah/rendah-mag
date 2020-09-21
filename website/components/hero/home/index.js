@@ -103,7 +103,7 @@ export default function HeroPost({ post }) {
       <div className="hero--darken-all">
         <Hero
           /* Options */
-          height={500}
+          height={imageHeight}
           /* Children */
           image={heroImage}
           title={heroHeading}

@@ -15,6 +15,7 @@ export default function Header({ navOnWhite, meta }) {
   const app = useApp();
   const [user, { mutate }] = useUser();
   const [navColour, setNavColour] = useState('black');
+  const [navHex, setNavHex] = useState(null);
 
   const signIn = <Icon icon={['fas', 'sign-in-alt']} />;
   const signOut = <Icon icon={['fas', 'sign-out-alt']} />;
@@ -52,18 +53,21 @@ export default function Header({ navOnWhite, meta }) {
   useEffect(() => {
     if (navOnWhite) {
       setNavColour('black');
+      setNavHex('#000000');
     } else {
       setNavColour('white');
+      setNavHex('#FFFFFF');
     }
   }, [navOnWhite]);
 
-  if (app?.deviceSize) {
+  if (app?.deviceSize && navHex) {
     return (
       <>
         {app.deviceSize !== 'mobile' && (
           <HeaderDesktop
             meta={meta}
             navColour={navColour}
+            navHex={navHex}
             navOnWhite={navOnWhite}
             handleLogout={handleLogout}
             showBasket={showBasket}
@@ -74,6 +78,7 @@ export default function Header({ navOnWhite, meta }) {
           <HeaderMobile
             meta={meta}
             navColour={navColour}
+            navHex={navHex}
             navOnWhite={navOnWhite}
             handleLogout={handleLogout}
             showBasket={showBasket}
