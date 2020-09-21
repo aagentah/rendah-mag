@@ -40,7 +40,7 @@ export default function HeaderMobile({
         </button>
       </div>
 
-      <div className={`header__logo  ${!navOnWhite || 'o-0'}`}>
+      <div className={`header__logo  ${navOnWhite && 'o-0'}`}>
         {!navOnWhite && (
           <Image
             /* Options */
@@ -63,7 +63,7 @@ export default function HeaderMobile({
           />
         )}
       </div>
-      <div className={`header__logo  ${navOnWhite || 'o-0'}`}>
+      <div className={`header__logo  ${!navOnWhite && 'o-0'}`}>
         {!navOnWhite && (
           <Image
             /* Options */

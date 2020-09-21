@@ -12,17 +12,14 @@ import { useApp } from '~/context-provider/app';
 export default function CardBlog({ teamMember, columnCount }) {
   const app = useApp();
   const [inView, setInView] = useState(false);
-  if (!app.deviceSize) return null;
 
-  let scale = 1;
-  if (app.isRetina) scale = 2;
+  if (!app.deviceSize) return null;
+  let scale = app.isRetina ? 2 : 1;
   let imageUrlWidth = app.deviceSize === 'md' ? 260 : 230;
-  let imageUrlHeight = app.deviceSize === 'md' ? 260 : 180;
   let imageHeight = app.deviceSize === 'md' ? 260 : 180;
 
   if (columnCount === 2) {
     imageUrlWidth = app.deviceSize === 'md' ? 260 : 500;
-    imageUrlHeight = app.deviceSize === 'md' ? 260 : 300;
     imageHeight = app.deviceSize === 'md' ? 260 : 300;
   }
 
@@ -33,12 +30,12 @@ export default function CardBlog({ teamMember, columnCount }) {
         src={imageBuilder
           .image(teamMember.image)
           .width(imageUrlWidth * scale)
-          .height(imageUrlHeight * scale)
+          .height(imageHeight * scale)
           .auto('format')
           .url()}
         placeholder={imageBuilder
           .image(teamMember.image)
-          .height(imageUrlHeight / 10)
+          .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
           .url()}

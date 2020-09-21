@@ -12,12 +12,10 @@ import { useApp } from '~/context-provider/app';
 export default function CardCypher({ post, columnCount }) {
   const app = useApp();
   const [inView, setInView] = useState(false);
-  if (!app.deviceSize) return null;
 
-  let scale = 1;
-  if (app.isRetina) scale = 2;
+  if (!app.deviceSize) return null;
+  let scale = app.isRetina ? 2 : 1;
   const imageUrlWidth = app.deviceSize === 'md' ? 200 : 230;
-  const imageUrlHeight = app.deviceSize === 'md' ? 200 : 230;
   const imageHeight = app.deviceSize === 'md' ? 200 : 230;
 
   const cardImage = (
@@ -27,12 +25,12 @@ export default function CardCypher({ post, columnCount }) {
         src={imageBuilder
           .image(post.imageSquare)
           .width(imageUrlWidth * scale)
-          .height(imageUrlHeight * scale)
+          .height(imageHeight * scale)
           .auto('format')
           .url()}
         placeholder={imageBuilder
           .image(post.imageSquare)
-          .height(imageUrlHeight / 10)
+          .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
           .url()}

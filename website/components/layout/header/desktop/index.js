@@ -21,7 +21,7 @@ export default function HeaderDestop({
   return (
     <div className="header  header--desktop  bg-almost-white  justify-center  align-center  dn  df-md">
       <div className="flex  align-center  w-100">
-        <div className={`header__logo  ${!navOnWhite || 'o-0'}`}>
+        <div className={`header__logo  ${navOnWhite && 'o-0'}`}>
           {!navOnWhite && (
             <Image
               /* Options */
@@ -44,7 +44,7 @@ export default function HeaderDestop({
             />
           )}
         </div>
-        <div className={`header__logo  ${navOnWhite || 'o-0'}`}>
+        <div className={`header__logo  ${!navOnWhite && 'o-0'}`}>
           {navOnWhite && (
             <Image
               /* Options */
