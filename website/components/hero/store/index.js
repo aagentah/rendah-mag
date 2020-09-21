@@ -9,33 +9,17 @@ import { useApp } from '~/context-provider/app';
 
 export default function HeroCypher({ cypher }) {
   const app = useApp();
-  if (!app.deviceSize) return null;
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
-  let scale = 1;
-  if (app.isRetina) scale = 2;
+  if (!app.deviceSize) return null;
+  let scale = app.isRetina ? 2 : 1;
   let imageUrlWidth;
-  let imageUrlHeight;
-  let imageHeight;
+  let imageHeight = 500;
 
-  if (app.deviceSize === 'md') {
-    imageUrlWidth = 680;
-    imageUrlHeight = 1000;
-    imageHeight = 500;
-  }
-
-  if (app.deviceSize === 'lg') {
-    imageUrlWidth = 1550;
-    imageUrlHeight = 500;
-    imageHeight = 500;
-  }
-
-  if (app.deviceSize === 'xl') {
-    imageUrlWidth = 1800;
-    imageUrlHeight = 500;
-    imageHeight = 500;
-  }
+  if (app.deviceSize === 'md') imageUrlWidth = 680;
+  if (app.deviceSize === 'lg') imageUrlWidth = 1550;
+  if (app.deviceSize === 'xl') imageUrlWidth = 1800;
 
   const heroImage = (
     <Image

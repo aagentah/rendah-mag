@@ -9,33 +9,17 @@ import { useApp } from '~/context-provider/app';
 
 export default function HeroPost({ post }) {
   const app = useApp();
-  if (!app.deviceSize) return null;
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
-  let scale = 1;
-  if (app.isRetina) scale = 2;
+  if (!app.deviceSize) return null;
+  let scale = app.isRetina ? 2 : 1;
   let imageUrlWidth;
-  let imageUrlHeight;
-  let imageHeight;
+  let imageHeight = 700;
 
-  if (app.deviceSize === 'md') {
-    imageUrlWidth = 680;
-    imageUrlHeight = 1000;
-    imageHeight = 700;
-  }
-
-  if (app.deviceSize === 'lg') {
-    imageUrlWidth = 1550;
-    imageUrlHeight = 700;
-    imageHeight = 700;
-  }
-
-  if (app.deviceSize === 'xl') {
-    imageUrlWidth = 1800;
-    imageUrlHeight = 700;
-    imageHeight = 700;
-  }
+  if (app.deviceSize === 'md') imageUrlWidth = 680;
+  if (app.deviceSize === 'lg') imageUrlWidth = 1550;
+  if (app.deviceSize === 'xl') imageUrlWidth = 1800;
 
   const heroImage = (
     <Image
@@ -43,12 +27,12 @@ export default function HeroPost({ post }) {
       src={imageBuilder
         .image(post.coverImage)
         .width(imageUrlWidth * scale)
-        .height(imageUrlHeight * scale)
+        .height(imageHeight * scale)
         .auto('format')
         .url()}
       placeholder={imageBuilder
         .image(post.coverImage)
-        .height(imageUrlHeight / 10)
+        .height(imageHeight / 10)
         .width(imageUrlWidth / 10)
         .auto('format')
         .url()}
