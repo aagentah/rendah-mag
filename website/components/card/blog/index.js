@@ -13,30 +13,39 @@ export default function CardBlog({ post, columnCount }) {
   const app = useApp();
   const [inView, setInView] = useState(false);
   let cardImage;
+  let imageUrlWidth;
+  let imageUrlHeight;
+  let imageHeight;
+
+  imageUrlWidth = app.deviceType === 'mobile' ? 600 : 230;
+  imageUrlHeight = app.deviceType === 'mobile' ? 600 : 180;
+  imageHeight = app.deviceType === 'mobile' ? 260 : 180;
+
+  if (columnCount === 2) {
+    imageUrlWidth = app.deviceType === 'mobile' ? 600 : 500;
+    imageUrlHeight = app.deviceType === 'mobile' ? 600 : 300;
+    imageHeight = app.deviceType === 'mobile' ? 260 : 300;
+  }
 
   cardImage = (
-    <LazyLoad
-      once
-      offset={100}
-      height={app.deviceType === 'mobile' ? 300 : 180}
-    >
+    <LazyLoad once offset={100} height={imageUrlHeight}>
       <Image
         /* Options */
         src={imageBuilder
           .image(post.coverImage)
-          .height(app.deviceType === 'mobile' ? 800 : 500)
-          .width(app.deviceType === 'mobile' ? 800 : 500)
+          .width(imageUrlWidth)
+          .height(imageUrlHeight)
           .auto('format')
           .url()}
         placeholder={imageBuilder
           .image(post.coverImage)
-          .height(20)
-          .width(25)
+          .height(imageUrlHeight / 10)
+          .width(imageUrlWidth / 10)
           .auto('format')
           .url()}
         alt={post.title}
         figcaption={null}
-        height={app.deviceType === 'mobile' ? 300 : 180}
+        height={imageHeight}
         width={null}
         customClass={null}
         onClick={null}
@@ -56,37 +65,39 @@ export default function CardBlog({ post, columnCount }) {
 
   if (columnCount === 2) {
     cardImage = (
-      <Image
-        /* Options */
-        src={imageBuilder
-          .image(post.coverImage)
-          .height(app.deviceType === 'mobile' ? 800 : 1000)
-          .width(app.deviceType === 'mobile' ? 800 : 1000)
-          .auto('format')
-          .url()}
-        placeholder={imageBuilder
-          .image(post.coverImage)
-          .height(20)
-          .width(25)
-          .auto('format')
-          .url()}
-        alt={post.title}
-        figcaption={null}
-        height={300}
-        width={null}
-        customClass={null}
-        onClick={null}
-        /* Children */
-        withLinkProps={{
-          type: 'next',
-          href: '/post/[slug]',
-          target: null,
-          routerLink: Link,
-          routerLinkProps: {
-            as: `/post/${post.slug}`,
-          },
-        }}
-      />
+      <LazyLoad once offset={100} height={imageUrlHeight}>
+        <Image
+          /* Options */
+          src={imageBuilder
+            .image(post.coverImage)
+            .width(imageUrlWidth)
+            .height(imageUrlHeight)
+            .auto('format')
+            .url()}
+          placeholder={imageBuilder
+            .image(post.coverImage)
+            .height(imageUrlHeight / 10)
+            .width(imageUrlWidth / 10)
+            .auto('format')
+            .url()}
+          alt={post.title}
+          figcaption={null}
+          height={imageHeight}
+          width={null}
+          customClass={null}
+          onClick={null}
+          /* Children */
+          withLinkProps={{
+            type: 'next',
+            href: '/post/[slug]',
+            target: null,
+            routerLink: Link,
+            routerLinkProps: {
+              as: `/post/${post.slug}`,
+            },
+          }}
+        />
+      </LazyLoad>
     );
   }
 

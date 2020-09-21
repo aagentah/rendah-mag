@@ -13,28 +13,33 @@ export default function CardCypher({ post, columnCount }) {
   const app = useApp();
   const [inView, setInView] = useState(false);
   let cardImage;
+  let imageUrlWidth;
+  let imageUrlHeight;
+  let imageHeight;
+
+  imageUrlWidth = app.deviceType === 'mobile' ? 600 : 230;
+  imageUrlHeight = app.deviceType === 'mobile' ? 600 : 230;
+  imageHeight = app.deviceType === 'mobile' ? 200 : 230;
 
   cardImage = (
-    <LazyLoad
-      once
-      offset={100}
-      height={app.deviceType === 'mobile' ? 300 : 220}
-    >
+    <LazyLoad once offset={100} height={imageUrlHeight}>
       <Image
         /* Options */
         src={imageBuilder
           .image(post.imageSquare)
-          .height(app.deviceType === 'mobile' ? 800 : 500)
-          .width(app.deviceType === 'mobile' ? 800 : 500)
-          .auto('format').url()}
+          .width(imageUrlWidth)
+          .height(imageUrlHeight)
+          .auto('format')
+          .url()}
         placeholder={imageBuilder
           .image(post.imageSquare)
-          .height(50)
-          .width(50)
-          .auto('format').url()}
+          .height(imageUrlHeight / 10)
+          .width(imageUrlWidth / 10)
+          .auto('format')
+          .url()}
         alt={post.title}
         figcaption={null}
-        height={app.deviceType === 'mobile' ? 300 : 220}
+        height={imageHeight}
         width={null}
         customClass={null}
         onClick={null}

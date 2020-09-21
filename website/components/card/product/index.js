@@ -8,28 +8,34 @@ import { useApp } from '~/context-provider/app';
 
 export default function CardDefault({ product }) {
   const app = useApp();
+  let cardImage;
+  let imageUrlWidth;
+  let imageUrlHeight;
+  let imageHeight;
 
-  const cardImage = (
-    <LazyLoad
-      once
-      offset={100}
-      height={app.deviceType === 'mobile' ? 300 : 220}
-    >
+  imageUrlWidth = app.deviceType === 'mobile' ? 600 : 230;
+  imageUrlHeight = app.deviceType === 'mobile' ? 600 : 230;
+  imageHeight = app.deviceType === 'mobile' ? 200 : 230;
+
+  cardImage = (
+    <LazyLoad once offset={100} height={imageUrlHeight}>
       <Image
         /* Options */
         src={imageBuilder
           .image(product.image1)
-          .height(app.deviceType === 'mobile' ? 800 : 500)
-          .width(app.deviceType === 'mobile' ? 800 : 500)
-          .auto('format').url()}
+          .width(imageUrlWidth)
+          .height(imageUrlHeight)
+          .auto('format')
+          .url()}
         placeholder={imageBuilder
           .image(product.image1)
-          .height(20)
-          .width(25)
-          .auto('format').url()}
+          .height(imageUrlHeight / 10)
+          .width(imageUrlWidth / 10)
+          .auto('format')
+          .url()}
         alt={product.title}
         figcaption={null}
-        height={app.deviceType === 'mobile' ? 300 : 220}
+        height={imageHeight}
         width={null}
         customClass={null}
         onClick={null}
