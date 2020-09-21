@@ -25,16 +25,19 @@
 .image {
   width: 100%;
   object-fit: cover;
+  z-index: 1;
 }
 
 .image__loading {
-  transition: opacity ease-in 0.5s;
+  transition: opacity ease-in 0.3s;
+  transition-delay: 0.3s;
   top: 0;
   left: 0;
   width: 100%;
   position: absolute;
-  filter: blur(5px);
+  filter: blur(8px);
   clip-path: inset(0);
   object-fit: cover;
   pointer-events: none;
+  z-index: 2;
 }
