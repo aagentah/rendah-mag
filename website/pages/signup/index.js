@@ -249,10 +249,9 @@ export default function Sigup({ siteConfig }) {
   );
 }
 
-export async function getServerSideProps{req}) {
+export async function getServerSideProps({ req }) {
   const cookies = req.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
-  const siteConfig = await getSiteConfig();
 
   return {
     props: { siteConfig },
