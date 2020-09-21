@@ -41,7 +41,6 @@ const getClient = (preview) => (preview ? previewClient : client);
 export const imageBuilder = sanityImage(client);
 
 export async function getSiteConfig() {
-  console.log('make req');
   const data = await client.fetch('*[_type == "siteSettings"] [0] { ..., }');
   return data;
 }
