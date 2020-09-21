@@ -70,13 +70,13 @@
 }
 
 .header--mobile > .nav {
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.5s cubic-bezier(0.985, 0.33, 0.155, 0.87);
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--black);
+  background-color: var(--white);
   transform: translateX(-100vw);
 }
 
