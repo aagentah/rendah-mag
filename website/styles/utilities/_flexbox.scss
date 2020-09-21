@@ -66,25 +66,25 @@
   align-items: stretch;
 }
 
-.self-start {
-  align-self: flex-start;
-}
-
-.self-end {
-  align-self: flex-end;
-}
-
-.self-center {
-  align-self: center;
-}
-
-.self-baseline {
-  align-self: baseline;
-}
-
-.self-stretch {
-  align-self: stretch;
-}
+// .self-start {
+//   align-self: flex-start;
+// }
+//
+// .self-end {
+//   align-self: flex-end;
+// }
+//
+// .self-center {
+//   align-self: center;
+// }
+//
+// .self-baseline {
+//   align-self: baseline;
+// }
+//
+// .self-stretch {
+//   align-self: stretch;
+// }
 
 .justify-start {
   justify-content: flex-start;
@@ -106,69 +106,69 @@
   justify-content: space-around;
 }
 
-.content-start {
-  align-content: flex-start;
-}
-
-.content-end {
-  align-content: flex-end;
-}
-
-.content-center {
-  align-content: center;
-}
-
-.content-between {
-  align-content: space-between;
-}
-
-.content-around {
-  align-content: space-around;
-}
-
-.content-stretch {
-  align-content: stretch;
-}
-
-.order-0 {
-  order: 0;
-}
-
-.order-1 {
-  order: 1;
-}
-
-.order-2 {
-  order: 2;
-}
-
-.order-3 {
-  order: 3;
-}
-
-.order-4 {
-  order: 4;
-}
-
-.order-5 {
-  order: 5;
-}
-
-.order-6 {
-  order: 6;
-}
-
-.order-7 {
-  order: 7;
-}
-
-.order-8 {
-  order: 8;
-}
-
-.order-last {
-  order: 99999;
-}
+// .content-start {
+//   align-content: flex-start;
+// }
+//
+// .content-end {
+//   align-content: flex-end;
+// }
+//
+// .content-center {
+//   align-content: center;
+// }
+//
+// .content-between {
+//   align-content: space-between;
+// }
+//
+// .content-around {
+//   align-content: space-around;
+// }
+//
+// .content-stretch {
+//   align-content: stretch;
+// }
+//
+// .order-0 {
+//   order: 0;
+// }
+//
+// .order-1 {
+//   order: 1;
+// }
+//
+// .order-2 {
+//   order: 2;
+// }
+//
+// .order-3 {
+//   order: 3;
+// }
+//
+// .order-4 {
+//   order: 4;
+// }
+//
+// .order-5 {
+//   order: 5;
+// }
+//
+// .order-6 {
+//   order: 6;
+// }
+//
+// .order-7 {
+//   order: 7;
+// }
+//
+// .order-8 {
+//   order: 8;
+// }
+//
+// .order-last {
+//   order: 99999;
+// }
 
 @each $modifier, $breakpoint in $grid-breakpoints {
   $infix: breakpoint-infix($modifier, $grid-breakpoints);
@@ -239,25 +239,25 @@
       align-items: stretch;
     }
 
-    .self-start-#{$infix} {
-      align-self: flex-start;
-    }
-
-    .self-end-#{$infix} {
-      align-self: flex-end;
-    }
-
-    .self-center-#{$infix} {
-      align-self: center;
-    }
-
-    .self-baseline-#{$infix} {
-      align-self: baseline;
-    }
-
-    .self-stretch-#{$infix} {
-      align-self: stretch;
-    }
+    // .self-start-#{$infix} {
+    //   align-self: flex-start;
+    // }
+    //
+    // .self-end-#{$infix} {
+    //   align-self: flex-end;
+    // }
+    //
+    // .self-center-#{$infix} {
+    //   align-self: center;
+    // }
+    //
+    // .self-baseline-#{$infix} {
+    //   align-self: baseline;
+    // }
+    //
+    // .self-stretch-#{$infix} {
+    //   align-self: stretch;
+    // }
 
     .justify-start-#{$infix} {
       justify-content: flex-start;
@@ -278,68 +278,68 @@
     .justify-around-#{$infix} {
       justify-content: space-around;
     }
+    //
+    // .content-start-#{$infix} {
+    //   align-content: flex-start;
+    // }
+    //
+    // .content-end-#{$infix} {
+    //   align-content: flex-end;
+    // }
+    //
+    // .content-center-#{$infix} {
+    //   align-content: center;
+    // }
+    //
+    // .content-between-#{$infix} {
+    //   align-content: space-between;
+    // }
+    //
+    // .content-around-#{$infix} {
+    //   align-content: space-around;
+    // }
+    //
+    // .content-stretch-#{$infix} {
+    //   align-content: stretch;
+    // }
 
-    .content-start-#{$infix} {
-      align-content: flex-start;
-    }
-
-    .content-end-#{$infix} {
-      align-content: flex-end;
-    }
-
-    .content-center-#{$infix} {
-      align-content: center;
-    }
-
-    .content-between-#{$infix} {
-      align-content: space-between;
-    }
-
-    .content-around-#{$infix} {
-      align-content: space-around;
-    }
-
-    .content-stretch-#{$infix} {
-      align-content: stretch;
-    }
-
-    .order-0-#{$infix} {
-      order: 0;
-    }
-
-    .order-1-#{$infix} {
-      order: 1;
-    }
-
-    .order-2-#{$infix} {
-      order: 2;
-    }
-
-    .order-3-#{$infix} {
-      order: 3;
-    }
-
-    .order-4-#{$infix} {
-      order: 4;
-    }
-
-    .order-5-#{$infix} {
-      order: 5;
-    }
-
-    .order-6-#{$infix} {
-      order: 6;
-    }
-    .order-7-#{$infix} {
-      order: 7;
-    }
-
-    .order-8-#{$infix} {
-      order: 8;
-    }
-
-    .order-last-#{$infix} {
-      order: 99999;
-    }
+    // .order-0-#{$infix} {
+    //   order: 0;
+    // }
+    //
+    // .order-1-#{$infix} {
+    //   order: 1;
+    // }
+    //
+    // .order-2-#{$infix} {
+    //   order: 2;
+    // }
+    //
+    // .order-3-#{$infix} {
+    //   order: 3;
+    // }
+    //
+    // .order-4-#{$infix} {
+    //   order: 4;
+    // }
+    //
+    // .order-5-#{$infix} {
+    //   order: 5;
+    // }
+    //
+    // .order-6-#{$infix} {
+    //   order: 6;
+    // }
+    // .order-7-#{$infix} {
+    //   order: 7;
+    // }
+    //
+    // .order-8-#{$infix} {
+    //   order: 8;
+    // }
+    //
+    // .order-last-#{$infix} {
+    //   order: 99999;
+    // }
   }
 }
