@@ -77,7 +77,7 @@ export default function GuestMixes({ siteConfig, guestMixes }) {
 }
 
 export async function getServerSideProps({ req }) {
-  const cookies = req.headers?.cookie;
+  const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const guestMixes = await getGuestMixes();
 

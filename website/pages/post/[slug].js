@@ -197,7 +197,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 }
 
 export async function getServerSideProps({ req, params, preview = false }) {
-  const cookies = req.headers?.cookie;
+  const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const data = await getPostAndMore(params.slug, preview);
 

@@ -110,7 +110,7 @@ export default function Post({ siteConfig, allProducts }) {
 }
 
 export async function getServerSideProps({ req }) {
-  const cookies = req.headers?.cookie;
+  const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const allProducts = await getAllProducts();
 

@@ -1452,7 +1452,7 @@ export default function Error404({ siteConfig }) {
 }
 
 export async function getStaticProps({ req }) {
-  const cookies = req.headers?.cookie;
+  const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
 
   return {
