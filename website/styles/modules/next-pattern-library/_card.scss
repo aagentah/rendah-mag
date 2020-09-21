@@ -114,7 +114,7 @@
       transform: translateY(0px);
     }
 
-    .image__loading.is-loaded + .image {
+    .image {
       filter: brightness(65%);
       transform: scale(1.1);
     }
@@ -133,7 +133,7 @@
       transform: translateY(10px);
     }
 
-    .image__loading.is-loaded + .image {
+    .image {
       filter: brightness(100%);
       transform: scale(1);
     }
@@ -150,7 +150,7 @@
       transform: translateY(0px);
     }
 
-    .image__loading.is-loaded + .image {
+    .image {
       filter: brightness(65%);
       transform: scale(1.1);
     }

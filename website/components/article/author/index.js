@@ -31,12 +31,15 @@ export default function Author({ siteConfig, author }) {
               .height(500)
               .width(500)
               .auto('format')
+              .fit('clip')
               .url()}
             placeholder={imageBuilder
               .image(author.image)
               .height(25)
               .width(25)
               .auto('format')
+              .fit('clip')
+              .blur('20')
               .url()}
             alt={author.name}
             figcaption={null}

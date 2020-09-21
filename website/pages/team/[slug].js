@@ -36,12 +36,15 @@ export default function Post({ siteConfig, teamMember }) {
                 .height(250)
                 .width(250)
                 .auto('format')
+                .fit('clip')
                 .url()}
               placeholder={imageBuilder
                 .image(teamMember.image)
                 .height(25)
                 .width(25)
                 .auto('format')
+                .fit('clip')
+                .blur('20')
                 .url()}
               alt={teamMember.title}
               figcaption={null}

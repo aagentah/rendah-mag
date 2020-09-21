@@ -29,22 +29,14 @@
   left: 0;
   width: 100%;
   position: absolute;
-  filter: blur(8px);
   clip-path: inset(0);
   object-fit: cover;
   pointer-events: none;
-  transform: scale(1.1);
   z-index: 2;
 }
 
 .image {
   width: 100%;
   object-fit: cover;
-  transform: scale(1.1);
   z-index: 1;
-}
-
-.image__loading.is-loaded,
-.image__loading.is-loaded + .image {
-  transform: scale(1);
 }

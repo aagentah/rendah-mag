@@ -23,12 +23,15 @@ export default function CardDefault({ product }) {
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
+          .fit('clip')
           .url()}
         placeholder={imageBuilder
           .image(product.image1)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
+          .fit('clip')
+          .blur('20')
           .url()}
         alt={product.title}
         figcaption={null}

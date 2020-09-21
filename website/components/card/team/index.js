@@ -32,12 +32,15 @@ export default function CardBlog({ teamMember, columnCount }) {
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
+          .fit('clip')
           .url()}
         placeholder={imageBuilder
           .image(teamMember.image)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
+          .fit('clip')
+          .blur('20')
           .url()}
         alt={teamMember.title}
         figcaption={null}
