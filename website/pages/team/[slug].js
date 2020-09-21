@@ -4,6 +4,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
+import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
   getTeamMemberAndPosts,
@@ -34,12 +35,14 @@ export default function Post({ siteConfig, teamMember }) {
                 .image(teamMember.image)
                 .height(250)
                 .width(250)
-                .auto('format').url()}
+                .auto('format')
+                .url()}
               placeholder={imageBuilder
                 .image(teamMember.image)
                 .height(25)
                 .width(25)
-                .auto('format').url()}
+                .auto('format')
+                .url()}
               alt={teamMember.title}
               figcaption={null}
               height={250}
@@ -119,8 +122,9 @@ export default function Post({ siteConfig, teamMember }) {
   );
 }
 
-export async function getServerSideProps({ params, preview = false }) {
-  const siteConfig = await getSiteConfig();
+export async function getServerSideProps({ req, params, preview = false }) {
+  const cookies = req.headers?.cookie;
+  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const teamMember = await getTeamMemberAndPosts(params.slug);
 
   return {
