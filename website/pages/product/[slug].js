@@ -64,12 +64,15 @@ export default function Post({ siteConfig, product }) {
                     .height(1000)
                     .width(1000)
                     .auto('format')
+                    .fit('clip')
                     .url()}
                   placeholder={imageBuilder
                     .image(product.image1)
                     .height(25)
                     .width(25)
                     .auto('format')
+                    .fit('clip')
+                    .blur('20')
                     .url()}
                   alt={product.title}
                   figcaption={null}

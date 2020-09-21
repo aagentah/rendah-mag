@@ -27,12 +27,15 @@ export default function Cardmix({ mix, columnCount }) {
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
+          .fit('clip')
           .url()}
         placeholder={imageBuilder
           .image(mix.image)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
+          .fit('clip')
+          .blur('20')
           .url()}
         alt={mix.title}
         figcaption={null}

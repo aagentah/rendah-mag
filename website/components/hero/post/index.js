@@ -29,12 +29,15 @@ export default function HeroPost({ post }) {
         .width(imageUrlWidth * scale)
         .height(imageHeight * scale)
         .auto('format')
+        .fit('clip')
         .url()}
       placeholder={imageBuilder
         .image(post.coverImage)
         .height(imageHeight / 10)
         .width(imageUrlWidth / 10)
         .auto('format')
+        .fit('clip')
+        .blur('100')
         .url()}
       alt={post.title}
       figcaption={null}
