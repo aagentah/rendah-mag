@@ -8,6 +8,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
 import { useUser } from '~/lib/hooks';
+import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Login({ siteConfig }) {
@@ -218,8 +219,9 @@ export default function Login({ siteConfig }) {
   );
 }
 
-export async function getServerSideProps() {
-  const siteConfig = await getSiteConfig();
+export async function getServerSideProps({ req }) {
+  const cookies = req.headers?.cookie;
+  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
 
   return {
     props: { siteConfig },

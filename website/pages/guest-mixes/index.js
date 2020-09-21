@@ -13,6 +13,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardGuestMix from '~/components/card/guest-mix';
 
+import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
   imageBuilder,
@@ -75,8 +76,9 @@ export default function GuestMixes({ siteConfig, guestMixes }) {
   );
 }
 
-export async function getServerSideProps() {
-  const siteConfig = await getSiteConfig();
+export async function getServerSideProps({ req }) {
+  const cookies = req.headers?.cookie;
+  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const guestMixes = await getGuestMixes();
 
   return {

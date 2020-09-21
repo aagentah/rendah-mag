@@ -3,6 +3,7 @@ import { Heading, Copy } from 'next-pattern-library';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
+import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Error404({ siteConfig }) {
@@ -42,8 +43,9 @@ export default function Error404({ siteConfig }) {
   );
 }
 
-export async function getStaticProps() {
-  const siteConfig = await getSiteConfig();
+export async function getStaticProps({ req }) {
+  const cookies = req.headers?.cookie;
+  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
 
   return {
     props: { siteConfig },

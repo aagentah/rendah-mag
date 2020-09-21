@@ -13,6 +13,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
+import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import { getSiteConfig, getProduct, imageBuilder } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, product }) {
@@ -62,12 +63,14 @@ export default function Post({ siteConfig, product }) {
                     .image(product.image1)
                     .height(1000)
                     .width(1000)
-                    .auto('format').url()}
+                    .auto('format')
+                    .url()}
                   placeholder={imageBuilder
                     .image(product.image1)
                     .height(25)
                     .width(25)
-                    .auto('format').url()}
+                    .auto('format')
+                    .url()}
                   alt={product.title}
                   figcaption={null}
                   height={500}
@@ -181,8 +184,9 @@ export default function Post({ siteConfig, product }) {
   );
 }
 
-export async function getServerSideProps({ params, preview = false }) {
-  const siteConfig = await getSiteConfig();
+export async function getServerSideProps({ req, params, preview = false }) {
+  const cookies = req.headers?.cookie;
+  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const product = await getProduct(params.slug);
   return {
     props: {

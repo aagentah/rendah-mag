@@ -11,6 +11,7 @@ import CardProduct from '~/components/card/product';
 import HeroStore from '~/components/hero/store';
 import { SNIPCART_API_KEY } from '~/constants';
 
+import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import { getSiteConfig, getAllProducts } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, allProducts }) {
@@ -108,8 +109,9 @@ export default function Post({ siteConfig, allProducts }) {
   );
 }
 
-export async function getServerSideProps() {
-  const siteConfig = await getSiteConfig();
+export async function getServerSideProps({ req }) {
+  const cookies = req.headers?.cookie;
+  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const allProducts = await getAllProducts();
 
   return {

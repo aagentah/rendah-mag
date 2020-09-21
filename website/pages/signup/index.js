@@ -8,6 +8,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
 import { useUser } from '~/lib/hooks';
+import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import { getSiteConfig } from '~/lib/sanity/requests';
 import passwordStrength from '~/lib/password-strength';
 import validEmail from '~/lib/valid-email';
@@ -248,7 +249,9 @@ export default function Sigup({ siteConfig }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps{req}) {
+  const cookies = req.headers?.cookie;
+  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const siteConfig = await getSiteConfig();
 
   return {

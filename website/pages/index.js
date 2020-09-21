@@ -6,6 +6,7 @@ import HeroHome from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
 import CardProduct from '~/components/card/product';
 
+import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
   getLatestFeaturedPost,
@@ -102,8 +103,9 @@ export default function Home({
   );
 }
 
-export async function getServerSideProps() {
-  const siteConfig = await getSiteConfig();
+export async function getServerSideProps({ req }) {
+  const cookies = req.headers?.cookie;
+  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const latestFeaturedPost = await getLatestFeaturedPost();
   const latestInterviews = await getLatestInterviews();
   const allPosts = await getAllPosts();
