@@ -5,9 +5,35 @@ import { Parallax } from 'react-scroll-parallax';
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
+import { useApp } from '~/context-provider/app';
 
 export default function HeroCypher({ cypher }) {
+  const app = useApp();
+  if (!app.deviceType) return null;
+
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
+
+  let imageUrlWidth;
+  let imageUrlHeight;
+  let imageHeight;
+
+  if (app.deviceType === 'mobile') {
+    imageUrlWidth = 680;
+    imageUrlHeight = 1000;
+    imageHeight = 500;
+  }
+
+  if (app.deviceType === 'desktop') {
+    imageUrlWidth = 1550;
+    imageUrlHeight = 500;
+    imageHeight = 500;
+  }
+
+  if (app.deviceType === 'big-screen') {
+    imageUrlWidth = 1800;
+    imageUrlHeight = 500;
+    imageHeight = 500;
+  }
 
   const heroImage = (
     <Image
