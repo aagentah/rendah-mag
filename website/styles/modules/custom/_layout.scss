@@ -53,25 +53,3 @@ main {
   opacity: 1;
   transition: opacity $transitionTimeout;
 }
-
-// Page
-
-.layout--split {
-  @extend .flex;
-  @extend .flex-wrap;
-}
-
-.layout--split__left {
-  height: 100vh;
-  background-color: var(--black);
-
-  @extend .col-24;
-
-  .layout--split__left__background {
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-}

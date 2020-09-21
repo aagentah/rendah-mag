@@ -17,7 +17,11 @@ export default function HeroPost({ post }) {
   let imageUrlWidth;
   let imageHeight = 700;
 
-  if (app.deviceSize === 'md') imageUrlWidth = 680;
+  if (app.deviceSize === 'md') {
+    imageUrlWidth = 680;
+    let imageHeight = 500;
+  }
+
   if (app.deviceSize === 'lg') imageUrlWidth = 1550;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
 
@@ -63,7 +67,7 @@ export default function HeroPost({ post }) {
       <div className="hero--darken-top">
         <Hero
           /* Options */
-          height={700}
+          height={imageHeight}
           /* Children */
           image={heroImage}
           title={null}
