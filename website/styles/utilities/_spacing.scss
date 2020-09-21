@@ -1,8 +1,8 @@
 // margin
 
-.ma {
-  margin: auto;
-}
+// .ma {
+//   margin: auto;
+// }
 
 .mla {
   margin-left: auto;
@@ -15,9 +15,9 @@
 @each $modifier, $breakpoint in $grid-breakpoints {
   $infix: breakpoint-infix($modifier, $grid-breakpoints);
   @include breakpoint-up($modifier, $grid-breakpoints) {
-    .ma-#{$infix} {
-      margin: auto;
-    }
+    // .ma-#{$infix} {
+    //   margin: auto;
+    // }
 
     .mla-#{$infix} {
       margin-left: auto;
@@ -30,9 +30,9 @@
 }
 
 @each $i, $value in $spacings {
-  .ma#{$i} {
-    margin: $value;
-  }
+  // .ma#{$i} {
+  //   margin: $value;
+  // }
 
   .mt#{$i} {
     margin-top: $value;
@@ -65,9 +65,9 @@
   $infix: breakpoint-infix($modifier, $grid-breakpoints);
   @include breakpoint-up($modifier, $grid-breakpoints) {
     @each $i, $value in $spacings {
-      .ma#{$i}-#{$infix} {
-        margin: $value;
-      }
+      // .ma#{$i}-#{$infix} {
+      //   margin: $value;
+      // }
 
       .mt#{$i}-#{$infix} {
         margin-top: $value;

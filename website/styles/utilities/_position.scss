@@ -10,13 +10,13 @@
   position: fixed;
 }
 
-.static {
-  position: static;
-}
+// .static {
+//   position: static;
+// }
 
-.sticky {
-  position: sticky;
-}
+// .sticky {
+//   position: sticky;
+// }
 
 @each $modifier, $breakpoint in $grid-breakpoints {
   $infix: breakpoint-infix($modifier, $grid-breakpoints);
@@ -33,13 +33,13 @@
       position: fixed;
     }
 
-    .static-#{$infix} {
-      position: static;
-    }
+    // .static-#{$infix} {
+    //   position: static;
+    // }
 
-    .sticky-#{$infix} {
-      position: sticky;
-    }
+    // .sticky-#{$infix} {
+    //   position: sticky;
+    // }
   }
 }
 
