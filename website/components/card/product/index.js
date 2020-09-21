@@ -8,16 +8,12 @@ import { useApp } from '~/context-provider/app';
 
 export default function CardDefault({ product }) {
   const app = useApp();
-  let cardImage;
-  let imageUrlWidth;
-  let imageUrlHeight;
-  let imageHeight;
+  if (!app.deviceType) return null;
+  const imageUrlWidth = app.deviceType === 'mobile' ? 600 : 230;
+  const imageUrlHeight = app.deviceType === 'mobile' ? 600 : 230;
+  const imageHeight = app.deviceType === 'mobile' ? 200 : 230;
 
-  imageUrlWidth = app.deviceType === 'mobile' ? 600 : 230;
-  imageUrlHeight = app.deviceType === 'mobile' ? 600 : 230;
-  imageHeight = app.deviceType === 'mobile' ? 200 : 230;
-
-  cardImage = (
+  const cardImage = (
     <LazyLoad once offset={100} height={imageUrlHeight}>
       <Image
         /* Options */

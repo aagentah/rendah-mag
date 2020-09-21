@@ -11,15 +11,11 @@ import { useApp } from '~/context-provider/app';
 
 export default function CardBlog({ post, columnCount }) {
   const app = useApp();
+  if (!app.deviceType) return null;
   const [inView, setInView] = useState(false);
-  let cardImage;
-  let imageUrlWidth;
-  let imageUrlHeight;
-  let imageHeight;
-
-  imageUrlWidth = app.deviceType === 'mobile' ? 600 : 230;
-  imageUrlHeight = app.deviceType === 'mobile' ? 600 : 180;
-  imageHeight = app.deviceType === 'mobile' ? 260 : 180;
+  let imageUrlWidth = app.deviceType === 'mobile' ? 600 : 230;
+  let imageUrlHeight = app.deviceType === 'mobile' ? 600 : 180;
+  let imageHeight = app.deviceType === 'mobile' ? 260 : 180;
 
   if (columnCount === 2) {
     imageUrlWidth = app.deviceType === 'mobile' ? 600 : 500;
@@ -27,7 +23,7 @@ export default function CardBlog({ post, columnCount }) {
     imageHeight = app.deviceType === 'mobile' ? 260 : 300;
   }
 
-  cardImage = (
+  const cardImage = (
     <LazyLoad once offset={100} height={imageUrlHeight}>
       <Image
         /* Options */
@@ -62,44 +58,6 @@ export default function CardBlog({ post, columnCount }) {
       />
     </LazyLoad>
   );
-
-  if (columnCount === 2) {
-    cardImage = (
-      <LazyLoad once offset={100} height={imageUrlHeight}>
-        <Image
-          /* Options */
-          src={imageBuilder
-            .image(post.coverImage)
-            .width(imageUrlWidth)
-            .height(imageUrlHeight)
-            .auto('format')
-            .url()}
-          placeholder={imageBuilder
-            .image(post.coverImage)
-            .height(imageUrlHeight / 10)
-            .width(imageUrlWidth / 10)
-            .auto('format')
-            .url()}
-          alt={post.title}
-          figcaption={null}
-          height={imageHeight}
-          width={null}
-          customClass={null}
-          onClick={null}
-          /* Children */
-          withLinkProps={{
-            type: 'next',
-            href: '/post/[slug]',
-            target: null,
-            routerLink: Link,
-            routerLinkProps: {
-              as: `/post/${post.slug}`,
-            },
-          }}
-        />
-      </LazyLoad>
-    );
-  }
 
   const cardHeading = (
     <Heading
