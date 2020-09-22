@@ -85,7 +85,7 @@ export default function Profile({ siteConfig }) {
                       tabContent: <ProfileOrders />,
                     },
                   ]}
-                  defaultSelected="1"
+                  defaultSelected={app.deviceSize === 'md' ? null : '1'}
                   onToggle={handleToggle}
                 />
               </div>
