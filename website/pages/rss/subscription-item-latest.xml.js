@@ -12,14 +12,16 @@ const sitemapXml = (item) => {
 
   const title = item?.title || '';
 
-  const description = item?.briefDescription
-    ? `<p>${item.briefDescription}</p>`
-    : '';
+  const description = item?.description ? `<p>${item.description}</p>` : '';
+
+  // TODO: if action buttons
+  // const loginText = '<p><ii>Log in to your dominion profile</i></p>'
 
   const image = item?.image
     ? `<img width="300" style="width: 300px;" src="${imageBuilder
         .image(item.image)
-        .auto('format').url()}" />`
+        .auto('format')
+        .url()}" />`
     : '';
 
   postsXML += `

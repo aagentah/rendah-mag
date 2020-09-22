@@ -125,8 +125,8 @@ const Meta = (props) => {
         <link rel="canonical" href={`${SITE_URL}${router.asPath}`} />
 
         <title>
-          {process.env.NODE_ENV === 'development' && `(Local)${' '}`}
-          {titleVal} | {siteTitle}{' '}
+          {process.env.NODE_ENV === 'development' ? '(Local) ' : ''}
+          {titleVal} | {siteTitle}
         </title>
 
         <meta
