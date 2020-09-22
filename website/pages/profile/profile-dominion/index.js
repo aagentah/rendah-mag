@@ -56,7 +56,7 @@ export default function ProfileDominion({ refreshDominion }) {
           />
         </div>
 
-        <div className="mb3">
+        <div>
           {refreshDominion && (
             <Carousel
               dominionItems={dominionItems}
