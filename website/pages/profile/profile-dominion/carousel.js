@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Router from 'next/router';
 import BlockContent from '@sanity/block-content-to-react';
 import { useKeenSlider } from 'keen-slider/react';
@@ -72,6 +73,8 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   const [sliderNavRef, sliderNav] = useKeenSlider(sliderNavOptions);
   const [sliderBodyRef, sliderBody] = useKeenSlider(sliderBodyOptions);
 
+  console.log('dominionItems', dominionItems);
+
   if (refreshDominion && dominionItems.length) {
     return (
       <>
@@ -81,7 +84,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
               <article className="keen-slider__slide  pa3" key={item._id}>
                 <div className="relative">
                   <div
-                    className={`br4  ph4  pv3  ba  bw1  bc-black  ${
+                    className={`br4  ph4  pv3  ba  bw1  bc-black  ease-in-out  ${
                       currentNavSlide === i
                         ? 'bg-black  white'
                         : 'bg-white  black'
@@ -144,7 +147,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
           {dominionItems.map((item, i) => (
             <article className="keen-slider__slide" key={item._id}>
               <div className="flex  flex-wrap">
-                <div className={`col-24  ${item.image && 'col-12-md'}`}>
+                <div className={`col-24  ${item.image && ''}`}>
                   <div className="relative  pa4">
                     <p className="t-secondary  f7  grey  pb2">
                       {new Date(item.activeFrom).toDateString()}
@@ -154,51 +157,83 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                       {item.title}
                     </p>
 
-                    <div className="flex  flex-wrap  pb3">
-                      {item?.tags &&
-                        item.tags.map((tag) => (
-                          <div key={tag} className="mr2  mb3">
-                            <Label
+                    {
+                      // {item?.tags && (
+                      //   <div className="flex  flex-wrap  pb3">
+                      //     {item.tags.map((tag) => (
+                      //       <div key={tag} className="mr2  mb3">
+                      //         <Label
+                      //           /* Options */
+                      //           customClass="ph2"
+                      //           text={tag}
+                      //           color="white"
+                      //           backgroundColor="black"
+                      //           onClick={null}
+                      //           /* Children */
+                      //           withLinkProps={null}
+                      //         />
+                      //       </div>
+                      //     ))}
+                      //   </div>
+                      // )}
+                    }
+
+                    <div className="post__body  pb2">
+                      <BlockContent blocks={item.description} />
+                    </div>
+
+                    {item?.buttons && (
+                      <div className="flex  flex-wrap">
+                        {item.buttons.map((button) => (
+                          <div key={button.title} className="mr2  mb3">
+                            <Button
                               /* Options */
-                              customClass="ph2"
-                              text={tag}
-                              color="white"
-                              backgroundColor="black"
+                              type="primary"
+                              size="small"
+                              text={button.title}
+                              color="black"
+                              fluid={false}
+                              icon={null}
+                              iconFloat={null}
+                              inverted={false}
+                              loading={false}
+                              disabled={false}
                               onClick={null}
                               /* Children */
-                              withLinkProps={null}
+                              withLinkProps={{
+                                type: 'external',
+                                href: button.link,
+                                target: '_blank',
+                                routerLink: Link,
+                                routerLinkProps: null,
+                              }}
                             />
                           </div>
                         ))}
-                    </div>
-
-                    <div className="post__body">
-                      <BlockContent blocks={item.mainDescription} />
-                    </div>
+                      </div>
+                    )}
                   </div>
                 </div>
                 {item.image && (
-                  <div className="col-24  col-12-md  ph2  pa4-md">
+                  <div className="col-24  ph2  ph4-md  pb4-md">
                     <Image
                       /* Options */
                       src={imageBuilder
                         .image(item.image)
-                        .width(200)
-                        .height(200)
+                        .width(800)
                         .auto('format')
                         .fit('clip')
                         .url()}
                       placeholder={imageBuilder
                         .image(item.image)
-                        .height(200 / 10)
-                        .width(200 / 10)
+                        .width(800 / 10)
                         .auto('format')
                         .fit('clip')
                         .blur('20')
                         .url()}
                       alt={item.title}
                       figcaption={null}
-                      height={200}
+                      height={null}
                       width={null}
                       customClass={null}
                       onClick={null}

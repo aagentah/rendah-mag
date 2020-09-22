@@ -66,7 +66,12 @@ export default function ProfileEdit() {
   useEffect(() => {
     if (user?.avatar) {
       setAvatarImage(
-        imageBuilder.image(user.avatar).height(500).width(500).auto('format').url()
+        imageBuilder
+          .image(user.avatar)
+          .height(500)
+          .width(500)
+          .auto('format')
+          .url()
       );
     }
   }, [user]);
@@ -431,15 +436,6 @@ export default function ProfileEdit() {
                     onClick={null}
                     /* Children */
                     withLinkProps={null}
-                  />
-                </div>
-                <div className="pb3">
-                  <Copy
-                    /* Options */
-                    text="We strive to deliver more relevant content."
-                    color="black"
-                    size="small"
-                    truncate={null}
                   />
                 </div>
                 <div className="flex  flex-wrap">

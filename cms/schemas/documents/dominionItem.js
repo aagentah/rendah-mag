@@ -40,16 +40,33 @@ export default {
       ],
     },
     {
-      name: "briefDescription",
-      title: "Brief Description",
+      name: "description",
+      title: "Description",
       type: "array",
       of: [{ type: "block" }],
     },
     {
-      name: "mainDescription",
-      title: "Main Description",
+      title: "Buttons",
+      name: "buttons",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        {
+          title: "Button",
+          type: "object",
+          fields: [
+            {
+              title: "Title",
+              name: "title",
+              type: "string",
+            },
+            {
+              title: "Link",
+              name: "link",
+              type: "string",
+            },
+          ],
+        },
+      ],
     },
     {
       title: "Tags",
