@@ -12,7 +12,7 @@ export default async (req, res) => {
       firstName,
       lastName,
       address,
-      isSubscription
+      isDominion
     ) => {
       const emailHashed = md5(email.toLowerCase());
       const DATACENTER = process.env.MAILCHIMP_API_KEY.split('-')[1];
@@ -55,7 +55,7 @@ export default async (req, res) => {
         ],
       };
 
-      if (isSubscription) {
+      if (isDominion) {
         tagsData.tags.push({
           name: 'Dominion Subscription',
           status: 'active',
@@ -99,14 +99,14 @@ export default async (req, res) => {
         country: shippingAddress?.country || null,
       };
 
-      let isSubscription = false;
+      let isDominion = false;
 
       for (let i = 0; i < items.length; i += 1) {
         const item = items[i];
 
-        // Send subscription email
+        // Send dominion email
         if (item.id === 'dominion-subscription') {
-          isSubscription = true;
+          isDominion = true;
           welcomeDominionEmail(email);
           break;
         }
@@ -118,7 +118,7 @@ export default async (req, res) => {
         firstName,
         lastName,
         address,
-        isSubscription
+        isDominion
       );
     }
 
