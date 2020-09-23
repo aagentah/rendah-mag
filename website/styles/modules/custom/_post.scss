@@ -18,10 +18,10 @@
 }
 
 .post__body h2,
-h3,
-h4,
-h5,
-h6 {
+.post__body h3,
+.post__body h4,
+.post__body h5,
+.post__body h6 {
   @extend .t-primary;
   @extend .lh-title;
   @extend .pb3;

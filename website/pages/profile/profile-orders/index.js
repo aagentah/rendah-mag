@@ -35,7 +35,7 @@ export default function ProfileOrders() {
     if (user) fetchCustomerOrders();
   }, [user]);
 
-  // Fetch subscription items and check if is dominion subscription
+  // Fetch items and check if is dominion subscription
   useEffect(() => {
     if (user?.isDominion) return;
 
