@@ -34,7 +34,7 @@ export default async (tags, email) => {
 
     if (!addMembertags.ok) {
       // Error
-      throw new Error(addMembertags.json());
+      throw new Error(await addMembertags.json());
     }
 
     return true;
