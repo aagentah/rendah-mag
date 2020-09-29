@@ -26,14 +26,16 @@ const handler = async (req, res) => {
     const resized = await source.resize({ method: 'scale', width: size });
 
     // Compress image
-    await resized.toFile(`tmp/optimized.png`);
+    await resized.toFile(`/tmp/optimized.png`);
+
+    console.log('resized', resized);
 
     // Write to temporary folder
-    const file = fs.readFileSync('tmp/optimized.png');
+    const file = fs.readFileSync('/tmp/optimized.png');
 
     // Delete temp image
     try {
-      fs.unlinkSync('tmp/optimized.png');
+      fs.unlinkSync('/tmp/optimized.png');
     } catch (error) {
       console.log('unlinkSync error:', error.message);
     }
