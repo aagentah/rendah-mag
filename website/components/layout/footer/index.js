@@ -54,54 +54,58 @@ export default function Footer() {
                     }}
                   />
                 </li>
-                <li className="db  pb3">
-                  <Button
-                    /* Options */
-                    type="secondary"
-                    size="small"
-                    text="Return Policy"
-                    color="white"
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted
-                    loading={false}
-                    disabled={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'next',
-                      href: '/return-policy',
-                      target: null,
-                      routerLink: Link,
-                      routerLinkProps: null,
-                    }}
-                  />
-                </li>
-                <li className="db  pb3">
-                  <Button
-                    /* Options */
-                    type="secondary"
-                    size="small"
-                    text="Terms & Conditions"
-                    color="white"
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted
-                    loading={false}
-                    disabled={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'next',
-                      href: '/terms-conditions',
-                      target: null,
-                      routerLink: Link,
-                      routerLinkProps: null,
-                    }}
-                  />
-                </li>
+                {
+                  // <li className="db  pb3">
+                  //   <Button
+                  //     /* Options */
+                  //     type="secondary"
+                  //     size="small"
+                  //     text="Return Policy"
+                  //     color="white"
+                  //     fluid={false}
+                  //     icon={null}
+                  //     iconFloat={null}
+                  //     inverted
+                  //     loading={false}
+                  //     disabled={false}
+                  //     onClick={null}
+                  //     /* Children */
+                  //     withLinkProps={{
+                  //       type: 'next',
+                  //       href: '/return-policy',
+                  //       target: null,
+                  //       routerLink: Link,
+                  //       routerLinkProps: null,
+                  //     }}
+                  //   />
+                  // </li>
+                }
+                {
+                  // <li className="db  pb3">
+                  //   <Button
+                  //     /* Options */
+                  //     type="secondary"
+                  //     size="small"
+                  //     text="Terms & Conditions"
+                  //     color="white"
+                  //     fluid={false}
+                  //     icon={null}
+                  //     iconFloat={null}
+                  //     inverted
+                  //     loading={false}
+                  //     disabled={false}
+                  //     onClick={null}
+                  //     /* Children */
+                  //     withLinkProps={{
+                  //       type: 'next',
+                  //       href: '/terms-conditions',
+                  //       target: null,
+                  //       routerLink: Link,
+                  //       routerLinkProps: null,
+                  //     }}
+                  //   />
+                  // </li>
+                }
                 <li className="db  pb3">
                   <Button
                     /* Options */

@@ -25,7 +25,7 @@ export default function Error404({ siteConfig }) {
             <Heading
               /* Options */
               htmlEntity="h1"
-              text="Privacy Policy"
+              text="Terms & Conditions"
               color="black"
               size="large"
               truncate={0}

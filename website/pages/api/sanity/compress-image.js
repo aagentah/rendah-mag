@@ -14,6 +14,7 @@ const cors = initMiddleware(
 );
 
 const handler = async (req, res) => {
+  console.log('handler');
   try {
     // Run cors
     await cors(req, res);
@@ -42,7 +43,9 @@ const handler = async (req, res) => {
   } catch (error) {
     // Handle catch
     // console.error(error.message || error.toString());
-    return res.status(500).json({ error: 'Error compressing image.' });
+    return res
+      .status(500)
+      .json({ error: `Error compressing image: ${error.message}` });
   }
 };
 
