@@ -42,3 +42,7 @@
 .post__body h2 {
   @extend .f2;
 }
+
+.post__body a {
+  color: var(--black);
+}

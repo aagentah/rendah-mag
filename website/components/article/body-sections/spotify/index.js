@@ -10,7 +10,7 @@ export default function Spotify({ uri }) {
   const theme = 'black'; // or 'white'
 
   return (
-    <div className="flex  justify-center  ph4">
+    <div className="flex  justify-center  ph4-md">
       <div className="bg-dark-grey  pa2  w-100">
         <LazyLoad once offset={150} height={100}>
           <SpotifyPlayer uri={uri} size={size} view={view} theme={theme} />

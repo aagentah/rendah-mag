@@ -61,7 +61,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
                       <Copy
                         /* Options */
                         text={`
-                      We usually host a new Cypher each month, so keep an eye on our socials for the next one!
+                      We usually host a new Cypher each month, keep an eye out for the next one!
                       `}
                         color="black"
                         size="medium"
@@ -157,12 +157,14 @@ export default function Cyphers({ siteConfig, cyphers }) {
                           .image(cyphers.current.imageLandscape)
                           .height(300)
                           .width(300)
-                          .auto('format').url()}
+                          .auto('format')
+                          .url()}
                         placeholder={imageBuilder
                           .image(cyphers.current.imageLandscape)
                           .height(25)
                           .width(25)
-                          .auto('format').url()}
+                          .auto('format')
+                          .url()}
                         alt="This is the alt text."
                         figcaption={null}
                         height={300}

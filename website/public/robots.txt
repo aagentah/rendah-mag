@@ -3,5 +3,7 @@ Disallow: /404/
 Disallow: /forgot/
 Disallow: /profile/
 Disallow: /article-preview/
-
 SITEMAP: http://www.rendahmag.com/feeds/sitemap.xml
+
+Disallow everything:
+Disallow: /
