@@ -42,17 +42,8 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  const handleIntersection = (event) => {
-    if (event.isIntersecting && !user && !hasShownModal) {
-      setHasShownModal(true);
-      setModalActive(true);
-    }
-  };
-
-  const options = {
-    onChange: handleIntersection,
-    rootMargin: '0% 0% -30% 0%',
-  };
+  const handleIntersect = (event) => setInView(event.isIntersecting);
+  const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   useEffect(() => {
     if (!router.isFallback && !post?.slug) Router.push('/404');
@@ -157,7 +148,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 <Sections body={post.body} />
               </div>
 
-              <Observer {...options}>
+              <Observer {...observer}>
                 <div className="pb4  mb2">
                   <SocialLinks article={post} />
                 </div>
