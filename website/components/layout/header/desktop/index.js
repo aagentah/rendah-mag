@@ -111,30 +111,32 @@ export default function HeaderDestop({
                   }}
                 />
               </li>
-              <li className="dib  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Mixes"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/guest-mixes',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: null,
-                  }}
-                />
-              </li>
+              {
+                // <li className="dib  pr3">
+                //   <Button
+                //     /* Options */
+                //     type="secondary"
+                //     size="medium"
+                //     text="Mixes"
+                //     color={navColour}
+                //     fluid={false}
+                //     icon={null}
+                //     iconFloat={null}
+                //     inverted
+                //     loading={false}
+                //     disabled={false}
+                //     onClick={null}
+                //     /* Children */
+                //     withLinkProps={{
+                //       type: 'next',
+                //       href: '/guest-mixes',
+                //       target: null,
+                //       routerLink: Link,
+                //       routerLinkProps: null,
+                //     }}
+                //   />
+                // </li>
+              }
               {
                 // <li className="dib  pr3">
                 //   <Button
