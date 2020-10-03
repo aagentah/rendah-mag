@@ -23,6 +23,9 @@ export default function CardBlog({ post, columnCount }) {
     imageHeight = app.deviceSize === 'md' ? 260 : 300;
   }
 
+  const handleIntersect = (event) => setInView(event.isIntersecting);
+  const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
+
   const cardImage = (
     <LazyLoad once offset={100} height={imageHeight}>
       <Image
@@ -76,21 +79,8 @@ export default function CardBlog({ post, columnCount }) {
     />
   );
 
-  const handleIntersection = (event) => {
-    if (event.isIntersecting) {
-      return setInView(true);
-    }
-
-    return setInView(false);
-  };
-
-  const options = {
-    onChange: handleIntersection,
-    rootMargin: '0% 0% -30% 0%',
-  };
-
   return (
-    <Observer {...options}>
+    <Observer {...observer}>
       <div className={`card--scroll ${inView && 'in-view'}`}>
         <Card
           /* Options */
