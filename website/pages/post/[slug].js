@@ -42,7 +42,13 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  const handleIntersect = (event) => setInView(event.isIntersecting);
+  const handleIntersect = (event) => {
+    if (event.isIntersecting && !user && !hasShownModal) {
+      setHasShownModal(true);
+      setModalActive(true);
+    }
+  };
+
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   useEffect(() => {
