@@ -129,6 +129,7 @@ export default function Dominion({ siteConfig }) {
                   data-item-image=""
                   data-item-name="Dominion Subscription"
                   data-item-max-quantity="1"
+                  data-item-weight="0"
                 >
                   <Button
                     /* Options */
