@@ -124,7 +124,7 @@ export default function Dominion({ siteConfig }) {
                   className="snipcart-add-item"
                   data-item-id="dominion-subscription"
                   data-item-price="7.99"
-                  data-item-url="/subscription"
+                  data-item-url="/dominion"
                   data-item-description=""
                   data-item-image=""
                   data-item-name="Dominion Subscription"
