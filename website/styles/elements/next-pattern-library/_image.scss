@@ -5,7 +5,7 @@
   position: relative;
   height: 100%;
   overflow: hidden;
-  background-color: var(--almost-white);
+  background-color: var(--grey);
 }
 
 .image__wrapper:after {
@@ -17,7 +17,7 @@
 // Placeholder
 
 .image__loading {
-  transition: all ease-in 0.3s;
+  transition: all ease-in-out 0.3s;
   transition-delay: 0.3s;
   opacity: 0;
   pointer-events: none;
@@ -35,8 +35,7 @@
 // Image
 
 .image {
-  transition: opacity ease-in 0.5s;
-  transition-delay: 0.5s;
+  transition: all ease-in-out 0.3s;
   opacity: 0;
   object-fit: cover;
   width: 100%;

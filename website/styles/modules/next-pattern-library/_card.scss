@@ -75,7 +75,6 @@
 // Custom
 
 .card--scroll {
-  //
   .card__title {
     transition: all 0.2s ease-in-out;
     opacity: 0;
@@ -106,11 +105,11 @@
     transform: translateY(20px);
   }
 
-  .image {
-    transition: filter 0.4s ease-in-out, transform 0.4s ease-in-out,
-      opacity ease-in 0.5s;
-    filter: brightness(100%);
-    transform: scale(1);
+  @media only screen and (max-width: 950px) {
+    .image {
+      filter: brightness(100%);
+      transform: scale(1);
+    }
   }
 }
 
@@ -134,23 +133,6 @@
 }
 
 @include breakpoint-up(md) {
-  .card--scroll.in-view {
-    .card__title {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    .card__label {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    .image {
-      filter: brightness(100%);
-      transform: scale(1);
-    }
-  }
-
   .card--scroll:hover {
     .card__title {
       opacity: 1;
