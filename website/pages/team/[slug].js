@@ -14,6 +14,8 @@ import {
 export default function Post({ siteConfig, teamMember }) {
   const { posts } = teamMember;
 
+  console.log('teamMember', teamMember);
+
   return (
     <Layout
       navOffset="top"
@@ -57,7 +59,7 @@ export default function Post({ siteConfig, teamMember }) {
             />
           </div>
           <div className="measure-wide  ph3-md">
-            <div className="db  ph2  pb2">
+            <div className="dib  ph2  pb2">
               <Heading
                 /* Options */
                 htmlEntity="h1"
@@ -70,11 +72,23 @@ export default function Post({ siteConfig, teamMember }) {
                 withLinkProps={null}
               />
             </div>
+            <div className="dib  pb3">
+              <Label
+                /* Options */
+                customClass={null}
+                text={`(${teamMember.alias})`}
+                color="black"
+                backgroundColor="white"
+                onClick={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
             <div className="db  ph2  pb3">
               <Label
                 /* Options */
                 customClass="ph2"
-                text={teamMember.alias}
+                text={teamMember.role}
                 color="white"
                 backgroundColor="black"
                 onClick={null}
@@ -93,6 +107,7 @@ export default function Post({ siteConfig, teamMember }) {
             </div>
           </div>
         </div>
+
         {posts.length > 0 && (
           <section className="pb5">
             <div className="pb4">
