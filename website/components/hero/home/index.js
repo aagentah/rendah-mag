@@ -52,6 +52,7 @@ export default function HeroPost({ post }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/post/${post.slug}`,
+          scroll: false,
         },
       }}
     />
@@ -93,6 +94,7 @@ export default function HeroPost({ post }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/post/${post.slug}`,
+          scroll: false,
         },
       }}
     />

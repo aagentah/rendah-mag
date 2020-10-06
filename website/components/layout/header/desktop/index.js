@@ -61,7 +61,9 @@ export default function HeaderDestop({
                     href: '/',
                     target: null,
                     routerLink: Link,
-                    routerLinkProps: null,
+                    routerLinkProps: {
+                      scroll: false,
+                    },
                   }}
                 />
               </li>
@@ -85,7 +87,9 @@ export default function HeaderDestop({
                     href: '/cyphers',
                     target: null,
                     routerLink: Link,
-                    routerLinkProps: null,
+                    routerLinkProps: {
+                      scroll: false,
+                    },
                   }}
                 />
               </li>
@@ -109,7 +113,9 @@ export default function HeaderDestop({
                     href: '/team',
                     target: null,
                     routerLink: Link,
-                    routerLinkProps: null,
+                    routerLinkProps: {
+                      scroll: false,
+                    },
                   }}
                 />
               </li>
@@ -134,7 +140,9 @@ export default function HeaderDestop({
                 //       href: '/guest-mixes',
                 //       target: null,
                 //       routerLink: Link,
-                //       routerLinkProps: null,
+                //       routerLinkProps: {
+                //         scroll: false,
+                //       },
                 //     }}
                 //   />
                 // </li>
@@ -160,7 +168,9 @@ export default function HeaderDestop({
                 //       href: '/store',
                 //       target: null,
                 //       routerLink: Link,
-                //       routerLinkProps: null,
+                //       routerLinkProps: {
+                //         scroll: false,
+                //       },
                 //     }}
                 //   />
                 // </li>
@@ -211,7 +221,9 @@ export default function HeaderDestop({
                     //       href: '/profile',
                     //       target: null,
                     //       routerLink: Link,
-                    //       routerLinkProps: null,
+                    //       routerLinkProps: {
+                    //         scroll: false,
+                    //       },
                     //     }}
                     //   />
                     // </li>
@@ -258,7 +270,9 @@ export default function HeaderDestop({
                     //       href: '/signup',
                     //       target: null,
                     //       routerLink: Link,
-                    //       routerLinkProps: null,
+                    //       routerLinkProps: {
+                    //         scroll: false,
+                    //       },
                     //     }}
                     //   />
                     // </li>
@@ -282,7 +296,9 @@ export default function HeaderDestop({
                     //       href: '/login',
                     //       target: null,
                     //       routerLink: Link,
-                    //       routerLinkProps: null,
+                    //       routerLinkProps: {
+                    //         scroll: false,
+                    //       },
                     //     }}
                     //   />
                     // </li>

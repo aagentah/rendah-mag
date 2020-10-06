@@ -59,6 +59,7 @@ export default function CardBlog({ teamMember, columnCount }) {
           routerLink: Link,
           routerLinkProps: {
             as: `/team/${teamMember.slug.current}`,
+            scroll: false,
           },
         }}
       />

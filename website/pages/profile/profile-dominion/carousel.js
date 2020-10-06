@@ -207,7 +207,9 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                                 href: button.link,
                                 target: '_blank',
                                 routerLink: Link,
-                                routerLinkProps: null,
+                                routerLinkProps: {
+                                  scroll: false,
+                                },
                               }}
                             />
                           </div>

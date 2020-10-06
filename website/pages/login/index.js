@@ -183,7 +183,9 @@ export default function Login({ siteConfig }) {
                     href: '/signup',
                     target: null,
                     routerLink: Link,
-                    routerLinkProps: null,
+                    routerLinkProps: {
+                      scroll: false,
+                    },
                   }}
                 />
               </div>
@@ -207,7 +209,7 @@ export default function Login({ siteConfig }) {
                     href: '/forgot',
                     target: null,
                     routerLink: Link,
-                    routerLinkProps: null,
+                    routerLinkProps: [(scroll: false)],
                   }}
                 />
               </div>
