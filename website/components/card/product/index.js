@@ -47,6 +47,7 @@ export default function CardDefault({ product }) {
           routerLink: Link,
           routerLinkProps: {
             as: `/product/${product.slug}`,
+            scroll: false,
           },
         }}
       />

@@ -59,6 +59,7 @@ export default function CardBlog({ post, columnCount }) {
           routerLink: Link,
           routerLinkProps: {
             as: `/post/${post.slug}`,
+            scroll: false,
           },
         }}
       />

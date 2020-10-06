@@ -237,7 +237,9 @@ export default function Sigup({ siteConfig }) {
                     href: '/login',
                     target: null,
                     routerLink: Link,
-                    routerLinkProps: null,
+                    routerLinkProps: {
+                      scroll: false,
+                    },
                   }}
                 />
               </div>

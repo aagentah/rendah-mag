@@ -50,7 +50,9 @@ export default function Footer() {
                       href: '/privacy-policy',
                       target: null,
                       routerLink: Link,
-                      routerLinkProps: null,
+                      routerLinkProps: {
+                        scroll: false,
+                      },
                     }}
                   />
                 </li>
@@ -75,7 +77,9 @@ export default function Footer() {
                   //       href: '/return-policy',
                   //       target: null,
                   //       routerLink: Link,
-                  //       routerLinkProps: null,
+                  //       routerLinkProps: {
+                  //         scroll: false,
+                  //       },
                   //     }}
                   //   />
                   // </li>
@@ -101,7 +105,9 @@ export default function Footer() {
                   //       href: '/terms-conditions',
                   //       target: null,
                   //       routerLink: Link,
-                  //       routerLinkProps: null,
+                  //       routerLinkProps: {
+                  //         scroll: false,
+                  //       },
                   //     }}
                   //   />
                   // </li>

@@ -121,7 +121,9 @@ export default function HeroCypher({ cypher }) {
                 href: '/login',
                 target: null,
                 routerLink: Link,
-                routerLinkProps: null,
+                routerLinkProps: {
+                  scroll: false,
+                },
               }}
             />
           </div>
@@ -145,7 +147,9 @@ export default function HeroCypher({ cypher }) {
                 href: '/signup',
                 target: null,
                 routerLink: Link,
-                routerLinkProps: null,
+                routerLinkProps: {
+                  scroll: false,
+                },
               }}
             />
           </div>
