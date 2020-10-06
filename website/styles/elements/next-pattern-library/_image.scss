@@ -1,42 +1,53 @@
+// Wrapper
+
 .image__wrapper {
   display: block;
   position: relative;
   height: 100%;
   overflow: hidden;
-  opacity: 0;
-
-  -webkit-animation-name: image__wrapper;
-  animation-name: image__wrapper;
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;
 }
 
-@keyframes image__wrapper {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+// Placeholder
 
 .image__loading {
-  transition: all ease-in 0.5s;
+  transition: all ease-in 0.3s;
   transition-delay: 0.3s;
-  top: 0;
-  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  object-fit: cover;
   width: 100%;
   position: absolute;
-  clip-path: inset(0);
-  object-fit: cover;
-  pointer-events: none;
-  z-index: 2;
+  top: 0;
+  left: 0;
 }
 
+.image__loading--done {
+  opacity: 1;
+}
+
+// Image
+
 .image {
-  width: 100%;
+  transition: all ease-in 0.5s;
+  transition-delay: 0.5s;
+  opacity: 0;
   object-fit: cover;
-  z-index: 1;
+  width: 100%;
+  position: relative;
+}
+
+.image--loaded {
+  opacity: 1;
+}
+
+// Figcaption
+
+.image__figcaption {
+  @extend .black;
+  @extend .f6;
+  @extend .t-secondary;
+  @extend .tac;
+  @extend .mla;
+  @extend .mra;
+  @extend .pt3;
 }
