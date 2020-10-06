@@ -83,7 +83,7 @@ export async function getLatestFeaturedPost(preview) {
 
 export async function getAllPosts(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) {
+    .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) [0..31] {
       ${postFields}
     }`);
   return getUniquePosts(results);
