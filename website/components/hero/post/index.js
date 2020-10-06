@@ -19,7 +19,7 @@ export default function HeroPost({ post }) {
 
   if (app.deviceSize === 'md') {
     imageUrlWidth = 680;
-    let imageHeight = 500;
+    imageHeight = null;
   }
 
   if (app.deviceSize === 'lg') imageUrlWidth = 1550;
@@ -31,13 +31,11 @@ export default function HeroPost({ post }) {
       src={imageBuilder
         .image(post.coverImage)
         .width(imageUrlWidth * scale)
-        .height(imageHeight * scale)
         .auto('format')
         .fit('clip')
         .url()}
       placeholder={imageBuilder
         .image(post.coverImage)
-        .height(imageHeight / 10)
         .width(imageUrlWidth / 10)
         .auto('format')
         .fit('clip')

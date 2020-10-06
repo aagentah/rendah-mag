@@ -53,7 +53,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   const [currentNavSlide, setCurrentNavSlide] = useState(0);
 
   const sliderNavOptions = {
-    slidesPerView: app.deviceSize === 'md' ? 1 : 3,
+    slidesPerView: app.deviceSize === 'md' ? 1 : 4,
     mode: 'snap',
     centered: false,
     spacing: 0,
@@ -104,7 +104,9 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                         />
                       </div>
                     )}
-                    <p className="t-primary  f5">{item.title}</p>
+                    <p className="t-primary  f5  f6-md  tac">
+                      {item.activeFrom}
+                    </p>
                   </div>
                 </div>
               </article>

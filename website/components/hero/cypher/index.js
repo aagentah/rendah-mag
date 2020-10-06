@@ -58,25 +58,27 @@ export default function HeroCypher({ cypher }) {
       withLinkProps={null}
     />
   );
+  //
+  // const heroButton = (
+  //   <Button
+  //     /* Options */
+  //     type="secondary"
+  //     size="medium"
+  //     text="Enter this month's Cypher"
+  //     color="white"
+  //     fluid={false}
+  //     icon={buttonIcon}
+  //     iconFloat={null}
+  //     inverted={false}
+  //     loading={false}
+  //     disabled={false}
+  //     onClick={() => setModalActive(!modalActive)}
+  //     /* Children */
+  //     withLinkProps={null}
+  //   />
+  // );
 
-  const heroButton = (
-    <Button
-      /* Options */
-      type="secondary"
-      size="medium"
-      text="Enter this month's Cypher"
-      color="white"
-      fluid={false}
-      icon={buttonIcon}
-      iconFloat={null}
-      inverted={false}
-      loading={false}
-      disabled={false}
-      onClick={() => setModalActive(!modalActive)}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
+  const heroButton = null;
 
   return (
     <>

@@ -122,7 +122,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           </div>
         </Modal>
 
-        <div className="pb5">
+        <div className="pb4  pb5-md">
           <HeroPost post={post} />
         </div>
 
