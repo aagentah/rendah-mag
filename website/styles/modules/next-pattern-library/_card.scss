@@ -107,7 +107,8 @@
   }
 
   .image {
-    transition: filter 0.4s ease-in-out, transform 0.4s ease-in-out;
+    transition: filter 0.4s ease-in-out, transform 0.4s ease-in-out,
+      opacity ease-in 0.5s;
     filter: brightness(100%);
     transform: scale(1);
   }
