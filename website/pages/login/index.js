@@ -209,7 +209,9 @@ export default function Login({ siteConfig }) {
                     href: '/forgot',
                     target: null,
                     routerLink: Link,
-                    routerLinkProps: [(scroll: false)],
+                    routerLinkProps: {
+                      scroll: false,
+                    },
                   }}
                 />
               </div>
