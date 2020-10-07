@@ -37,7 +37,7 @@ export default function Error404({ siteConfig }) {
           {
             // https://htmltidy.net/
           }
-          <div className="post__body  measure-wide  mla  mra  pb5">
+          <div className="rich-text  measure-wide  mla  mra  pb5">
             <div>
               <p>
                 <strong>

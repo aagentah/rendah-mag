@@ -150,7 +150,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 | <Date dateString={post.publishedAt} />
               </p>
 
-              <div className="post__body">
+              <div className="rich-text">
                 <Sections body={post.body} />
               </div>
 

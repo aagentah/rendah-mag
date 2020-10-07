@@ -53,7 +53,7 @@ export default function ProfileCypher() {
               />
             </div>
 
-            <div className="post__body  measure-wide  pb3">
+            <div className="rich-text  measure-wide  pb3">
               <BlockContent
                 blocks={
                   cyphers.current.announcementFields.announcementDescription

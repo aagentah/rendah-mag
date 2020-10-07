@@ -139,7 +139,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
                       />
                     </div>
 
-                    <div className="post__body  measure-wide">
+                    <div className="rich-text  measure-wide">
                       <BlockContent
                         blocks={
                           cyphers.current.announcementFields
