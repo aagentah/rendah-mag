@@ -1,0 +1,45 @@
+.cookie-banner {
+  transition: transform 0.3s ease-in-out;
+  transition-delay: 0s;
+  height: 90px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 400px;
+  max-width: 90vw;
+  background: var(--white);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-top: 1px solid var(--light-grey);
+  border-left: 1px solid var(--light-grey);
+  border-right: 1px solid var(--light-grey);
+  transform: translateY(90px);
+  @extend .shadow4;
+  @extend .z9;
+}
+
+.cookie-banner--active {
+  transition-delay: 1.5s;
+  transform: translateY(0px);
+}
+
+.page-transition-enter,
+.page-transition-exit-active {
+  .cookie-banner--active {
+    transition-delay: 0s;
+    transform: translateY(90px);
+  }
+}
+
+.cookie-banner__body {
+  @extend .t-secondary;
+  @extend .f6-md;
+  @extend .f7;
+  @extend .lh-copy;
+}
+
+.cookie-banner__button {
+  //
+}

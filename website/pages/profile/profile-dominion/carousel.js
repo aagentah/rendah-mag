@@ -180,7 +180,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                       // )}
                     }
 
-                    <div className="post__body  pb2">
+                    <div className="rich-text  pb2">
                       <BlockContent blocks={item.description} />
                     </div>
 

@@ -7,6 +7,7 @@ import Alert from './alert';
 import Footer from './footer';
 import Meta from './meta';
 import Header from './header';
+import CookieBanner from './cookie-banner';
 
 export default function Layout({
   navOffset,
@@ -42,6 +43,7 @@ export default function Layout({
       {preview && <Alert preview={preview} />}
       <Header navOnWhite={navOnWhite} meta={meta} />
       <main className={`page ${navOffsetType}`}>{children}</main>
+      <CookieBanner />
       <Footer />
     </>
   );

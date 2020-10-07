@@ -56,6 +56,32 @@ export default function Footer() {
                     }}
                   />
                 </li>
+                <li className="db  pb3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="small"
+                    text="Cookie Policy"
+                    color="white"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/cookie-policy',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        scroll: false,
+                      },
+                    }}
+                  />
+                </li>
                 {
                   // <li className="db  pb3">
                   //   <Button
