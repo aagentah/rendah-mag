@@ -77,7 +77,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
             <Heading
               /* Options */
               htmlEntity="h3"
-              text="Thanks for reading ❤️"
+              text="You made it to the bottom ❤️"
               color="black"
               size="medium"
               truncate={0}
@@ -89,13 +89,13 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           <div className="pb3">
             <Copy
               /* Options */
-              text="Can we add you to our Newsletter? We strive to only send relevant content."
+              text="Can we add you to our Mailing List? We'll only send you occasional bits."
               color="black"
               size="medium"
               truncate={null}
             />
           </div>
-          <div className="pb4">
+          <div className="pb3">
             <SubscribeForm onSuccess={() => setModalActive(false)} />
           </div>
           <div className="flex  flex-wrap  pb2">
