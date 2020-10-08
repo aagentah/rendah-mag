@@ -46,7 +46,7 @@ export default function Post({ siteConfig, allProducts }) {
     >
       <HeroStore />
 
-      <div className="pt6">
+      <div className="pt5  pt6-md">
         <Container>
           <div className="pb2">
             <Heading

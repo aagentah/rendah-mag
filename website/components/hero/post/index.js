@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import { Parallax } from 'react-scroll-parallax';
+// import { Parallax } from 'react-scroll-parallax';
 
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
@@ -19,7 +19,7 @@ export default function HeroPost({ post }) {
 
   if (app.deviceSize === 'md') {
     imageUrlWidth = 680;
-    imageHeight = null;
+    imageHeight = 380;
   }
 
   if (app.deviceSize === 'lg') imageUrlWidth = 1550;
@@ -61,8 +61,14 @@ export default function HeroPost({ post }) {
     />
   );
 
+  console.log('app.deviceSize', app.deviceSize);
+  console.log('imageHeight', imageHeight);
+
   return (
-    <Parallax className="z1  nt3" y={['-50px', '50px']} tagOuter="figure">
+    <>
+      {
+        // <Parallax className="z1  nt3" y={['-50px', '50px']} tagOuter="figure">
+      }
       <div className="hero--darken-top">
         <Hero
           /* Options */
@@ -74,6 +80,9 @@ export default function HeroPost({ post }) {
           button={null}
         />
       </div>
-    </Parallax>
+      {
+        //   </Parallax>
+      }
+    </>
   );
 }

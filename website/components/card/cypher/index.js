@@ -22,7 +22,7 @@ export default function CardCypher({ post, columnCount }) {
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   const cardImage = (
-    <LazyLoad once offset={125} height={imageHeight}>
+    <LazyLoad once offset={150} height={imageHeight}>
       <Image
         /* Options */
         src={imageBuilder

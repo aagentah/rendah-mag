@@ -122,12 +122,10 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           </div>
         </Modal>
 
-        <div className="pb4  pb5-md">
-          <HeroPost post={post} />
-        </div>
+        <HeroPost post={post} />
 
         <Container>
-          <article className="pt5  pb4  mt3  ph3  ph4-md">
+          <article className="pt5  pt6-md  pb4  ph3  ph4-md">
             <section className="measure-wide  mla  mra">
               <div className="pb3">
                 <Heading

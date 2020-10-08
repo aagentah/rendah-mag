@@ -39,7 +39,7 @@ export default function Home({
       >
         <HeroHome post={latestFeaturedPost} />
 
-        <div className="pt6">
+        <div className="pt5  pt6-md">
           <Container>
             {latestInterviews.length > 0 && (
               <section className="pb5">

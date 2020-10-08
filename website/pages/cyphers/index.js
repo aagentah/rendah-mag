@@ -38,7 +38,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
         <>
           <HeroCypher cypher={cyphers?.current} />
 
-          <div className="pt5  mt4-md  ph3  ph4-md">
+          <div className="pt5  pt6-md  ph3  ph4-md">
             <Container>
               {!cyphers?.current && (
                 <div className="flex  flex-wrap  mb3  mb5-md  pb0  pb4-md">
