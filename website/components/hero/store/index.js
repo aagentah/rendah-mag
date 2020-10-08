@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import { Parallax } from 'react-scroll-parallax';
+// import { Parallax } from 'react-scroll-parallax';
 
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
@@ -81,7 +81,10 @@ export default function HeroCypher({ cypher }) {
   );
 
   return (
-    <Parallax className="z1  nt3" y={['-50px', '50px']} tagOuter="figure">
+    <>
+      {
+        // <Parallax className="z1  nt3" y={['-50px', '50px']} tagOuter="figure">
+      }
       <div className="hero--cypher  hero--darken-all">
         <Hero
           /* Options */
@@ -93,6 +96,9 @@ export default function HeroCypher({ cypher }) {
           button={heroButton}
         />
       </div>
-    </Parallax>
+      {
+        //   </Parallax>
+      }
+    </>
   );
 }

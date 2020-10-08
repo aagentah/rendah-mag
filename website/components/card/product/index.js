@@ -15,7 +15,7 @@ export default function CardDefault({ product }) {
   const imageHeight = app.deviceSize === 'md' ? 200 : 230;
 
   const cardImage = (
-    <LazyLoad once offset={125} height={imageHeight}>
+    <LazyLoad once offset={150} height={imageHeight}>
       <Image
         /* Options */
         src={imageBuilder
