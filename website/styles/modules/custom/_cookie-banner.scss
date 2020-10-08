@@ -29,7 +29,23 @@
 
 .cookie-banner--active {
   animation: cookie-banner--active 0.3s forwards;
+  animation-timing-function: ease-in-out;
   animation-delay: 1s;
+}
+
+@keyframes cookie-banner--accepted {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(90px);
+  }
+}
+
+.cookie-banner--accepted {
+  animation: cookie-banner--accepted 0.3s forwards;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
 }
 
 .cookie-banner__body {

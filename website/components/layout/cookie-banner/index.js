@@ -9,11 +9,13 @@ import { useApp } from '~/context-provider/app';
 export default function CookieBanner() {
   const app = useApp();
   const [active, setActive] = useState(false);
+  const [accepted, setAccepted] = useState(false);
   let buttonSize = app.deviceSize === 'md' ? 'small' : 'medium';
 
   const handleOnClick = () => {
     Cookies.set('rndh-cookie-set', true, { expires: 365 });
     setActive(false);
+    setAccepted(true);
   };
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export default function CookieBanner() {
     <div
       className={`flex  flex-wrap  cookie-banner  ${
         active ? 'cookie-banner--active' : ''
-      }`}
+      } ${accepted ? 'cookie-banner--accepted' : ''}`}
     >
       <div className="col-16  ph4  flex  align-center  justify-start">
         <div>
