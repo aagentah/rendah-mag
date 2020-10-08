@@ -12,14 +12,12 @@ export default function CookieBanner() {
   let buttonSize = app.deviceSize === 'md' ? 'small' : 'medium';
 
   const handleOnClick = () => {
-    console.log('se2');
     Cookies.set('rndh-cookie-set', true, { expires: 365 });
     setActive(false);
   };
 
   useEffect(() => {
     if (!Cookies.get('rndh-cookie-set')) {
-      console.log('se');
       setActive(true);
     }
   }, []);

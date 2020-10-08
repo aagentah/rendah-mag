@@ -1,15 +1,10 @@
-$transitionTimeout: 300ms;
+$transitionTimeout: 0.3s;
 
 main {
   min-height: calc(100vh - 70px);
 }
 
 // Page transition
-
-.page {
-  transition: opacity $transitionTimeout;
-  opacity: 0;
-}
 
 .page-transition-enter {
   .page {
@@ -20,12 +15,7 @@ main {
 .page-transition-enter-active {
   .page {
     opacity: 1;
-  }
-}
-
-.page-transition-enter-done {
-  .page {
-    opacity: 1;
+    transition: opacity $transitionTimeout;
   }
 }
 
@@ -38,6 +28,7 @@ main {
 .page-transition-exit-active {
   .page {
     opacity: 0;
+    transition: opacity $transitionTimeout;
   }
 }
 

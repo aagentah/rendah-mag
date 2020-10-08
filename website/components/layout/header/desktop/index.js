@@ -20,7 +20,11 @@ export default function HeaderDestop({
   const [user] = useUser();
 
   return (
-    <div className="header  header--desktop  bg-almost-white  justify-center  align-center  dn  df-md">
+    <div
+      className={`header  header--desktop  bg-almost-white  justify-center  align-center  dn  df-md  ${
+        navOnWhite ? 'nav-on-white' : ''
+      }`}
+    >
       <div className="flex  align-center  w-100">
         <div className="header__logo">
           <Link href="/">
@@ -41,7 +45,7 @@ export default function HeaderDestop({
         <div className="col-12  ph4">
           <nav className="nav  w-100  flex  justify-start">
             <ul className="flex  flex-wrap">
-              <li className="dib  pr3">
+              <li className="nav__item  dib  pr3">
                 <Button
                   /* Options */
                   type="secondary"
@@ -67,7 +71,7 @@ export default function HeaderDestop({
                   }}
                 />
               </li>
-              <li className="dib  pr3">
+              <li className="nav__item  dib  pr3">
                 <Button
                   /* Options */
                   type="secondary"
@@ -93,7 +97,7 @@ export default function HeaderDestop({
                   }}
                 />
               </li>
-              <li className="dib  pr3">
+              <li className="nav__item  dib  pr3">
                 <Button
                   /* Options */
                   type="secondary"
@@ -120,7 +124,7 @@ export default function HeaderDestop({
                 />
               </li>
               {
-                // <li className="dib  pr3">
+                // <li className="nav__item  dib  pr3">
                 //   <Button
                 //     /* Options */
                 //     type="secondary"
@@ -148,32 +152,32 @@ export default function HeaderDestop({
                 // </li>
               }
               {
-                // <li className="dib  pr3">
-                //   <Button
-                //     /* Options */
-                //     type="secondary"
-                //     size="medium"
-                //     text="Store"
-                //     color={navColour}
-                //     fluid={false}
-                //     icon={buttonIcons.store}
-                //     iconFloat={null}
-                //     inverted
-                //     loading={false}
-                //     disabled={false}
-                //     onClick={null}
-                //     /* Children */
-                //     withLinkProps={{
-                //       type: 'next',
-                //       href: '/store',
-                //       target: null,
-                //       routerLink: Link,
-                //       routerLinkProps: {
-                //         scroll: false,
-                //       },
-                //     }}
-                //   />
-                // </li>
+                <li className="nav__item  dib  pr3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="medium"
+                    text="Store"
+                    color={navColour}
+                    fluid={false}
+                    icon={buttonIcons.store}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/store',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        scroll: false,
+                      },
+                    }}
+                  />
+                </li>
               }
             </ul>
           </nav>
@@ -184,7 +188,7 @@ export default function HeaderDestop({
               {showBasket ? (
                 <>
                   {
-                    // <li className="dib  pr3  mr1">
+                    // <li className="nav__item  dib  pr3  mr1">
                     //   <div className="flex  snipcart-checkout">
                     //     <span
                     //       className={`button white secondary  inverted   =medium  pr2  ${navColour}`}
@@ -201,7 +205,7 @@ export default function HeaderDestop({
               {user ? (
                 <>
                   {
-                    // <li className="dib  pr3">
+                    // <li className="nav__item  dib  pr3">
                     //   <Button
                     //     /* Options */
                     //     type="secondary"
@@ -227,7 +231,7 @@ export default function HeaderDestop({
                     //     }}
                     //   />
                     // </li>
-                    // <li className="dib  pr3">
+                    // <li className="nav__item  dib  pr3">
                     //   <Button
                     //     /* Options */
                     //     type="secondary"
@@ -250,7 +254,7 @@ export default function HeaderDestop({
               ) : (
                 <>
                   {
-                    // <li className="dib  pr3">
+                    // <li className="nav__item  dib  pr3">
                     //   <Button
                     //     /* Options */
                     //     type="secondary"
@@ -276,7 +280,7 @@ export default function HeaderDestop({
                     //     }}
                     //   />
                     // </li>
-                    // <li className="dib  pr3">
+                    // <li className="nav__item  dib  pr3">
                     //   <Button
                     //     /* Options */
                     //     type="secondary"

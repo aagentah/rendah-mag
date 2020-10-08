@@ -94,6 +94,40 @@
   }
 }
 
+// Page transition
+
+.page-transition-exit-active {
+  .header.nav-on-white {
+    .header__logo svg *,
+    .header__burger * {
+      fill: var(--white);
+      transition-duration: 0s;
+      transition-delay: 0.3s;
+    }
+
+    .nav__item .button {
+      color: var(--white);
+      fill: var(--white);
+      transition-duration: 0s;
+      transition-delay: 0.3s;
+    }
+  }
+
+  .header:not(.nav-on-white) {
+    .header__logo svg *,
+    .header__burger * {
+      fill: var(--black);
+      transition-duration: 0s;
+    }
+
+    .nav__item .button {
+      color: var(--black);
+      fill: var(--black);
+      transition-duration: 0s;
+    }
+  }
+}
+
 // Snipcart
 
 .snipcart-checkout {
