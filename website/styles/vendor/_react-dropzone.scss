@@ -1,0 +1,18 @@
+.react-dropzone__wrapper {
+  cursor: pointer;
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: var(--grey);
+  border-style: dashed;
+  background-color: var(--almost-white);
+  color: var(--black);
+  outline: none;
+  transition: border 0.24s ease-in-out 0s;
+  @extend .f6;
+  @extend .t-secondary;
+}

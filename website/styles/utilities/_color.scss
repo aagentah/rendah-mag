@@ -1,0 +1,32 @@
+@each $color, $hex in $colors {
+  .#{$color} {
+    color: var($hex);
+  }
+
+  .bg-#{$color} {
+    background-color: var($hex);
+  }
+}
+
+// .bg-transparent {
+//   background-color: transparent;
+// }
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    @each $color, $hex in $colors {
+      .#{$color}-#{$infix} {
+        color: var($hex);
+      }
+
+      .bg-#{$color}-#{$infix} {
+        background-color: var($hex);
+      }
+    }
+
+    // .bg-transparent-#{$infix} {
+    //   background-color: transparent;
+    // }
+  }
+}

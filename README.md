@@ -1,38 +1,88 @@
-# rendah-mag
+# next-boilerplate
 
-## Requirements
+## Features
 
-* [node](https://nodejs.org/en/) >= 6.0
-* [npm](https://www.npmjs.com/) >= 3.0
+### Profile
 
+- Sign-up
+- Log-in
+- Profile editing
+- Password reset (With SendGrid)
 
-## Getting Started
+### Sanity Querying
 
-You can start by cloning the repository on your local machine by running:**
+- Latest Blog/Product fetching
+- Blog post page
+- Product Page
 
-**2. Install all of the dependencies:**
+### E-commerce
 
-```bash
-npm install
-```
+- Product page includes Snipcart configuration
 
-**3. Start to run it:**
+### Mailchimp
 
-```bash
-npm run start              # Running in development
-npm run start:prodlocal    # Building bundle and running production server
-```
+- Newsletter sign-up form, hooked up to Mailchimp's API
 
-Now the app should be running at [http://localhost:8080/](http://localhost:8080/)
+### XML Feeds
 
+- Sitemap
+- Blog Post RSS
 
-## NPM Script Commands
+## Config/Setup
 
-[better-npm-run](https://github.com/benoror/better-npm-run) manages the scripts in a better way, which also provides the compatibility of cross-platform. All of the scripts are listed as following:
+### - Website
 
-`npm run <script>`|Description
-------------------|-----------
-`start`|Run your app on the development server at `localhost:3000`. HMR will be enabled.
-`start:prodlocal`|Bundle files to `./public/assets` and run it on the production server at `localhost:8080`.
-`build`|Remove the previous bundled files and bundle it to `./public/assets`.
-`clean:all`|Remove the client/server bundled stuff and the coverage report.
+#### Running Locally
+
+`cd website`
+
+`npm i`
+
+`npm run dev`
+
+#### Linting
+
+`cd website`
+
+`npm i`
+
+`lint` or `lint-fix`
+
+### - CMS
+
+#### Running Sanity
+
+`cd cms`
+
+`sanity install`
+
+`sanity start`
+
+#### Deploying Sanity
+
+`sanity deploy`
+
+### - Heroku
+
+#### Heroku Variables
+
+- MAILCHIMP_LIST_ID=XXX
+- MAILCHIMP_API_KEY=XXX
+- SEND_IN_BLUE_API_KEY=XXX
+- SANITY_PREVIEW_SECRET=XXX
+- SANITY_API_TOKEN=XXX
+- SANITY_API_TOKEN_WRITE=XXX
+- SANITY_PROJECT_ID=XXX
+- SNIPCART_PROD_SECRET_KEY=XXX
+- SNIPCART_PROD_API_KEY=XXX
+- SNIPCART_DEV_SECRET_KEY=XXX
+- SNIPCART_DEV_API_KEY=XXX
+- IRON_PASSWORD=some_not_random_password_that_is_at_least_32_characters
+- NODE_MODULES_CACHE=false
+- PROJECT_PATH=website
+- NEXT_TELEMETRY_DISABLED=1
+
+#### Heroku Buildpacks (In order)
+
+- https://github.com/timanovsky/subdir-heroku-buildpack
+- heroku/nodejs

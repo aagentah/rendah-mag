@@ -1,0 +1,54 @@
+$transitionTimeout: 0.3s;
+
+main {
+  min-height: calc(100vh - 70px);
+}
+
+// Page transition
+
+.page-transition-enter {
+  .page,
+  .footer,
+  .cookie-banner {
+    opacity: 0;
+  }
+}
+
+.page-transition-enter-active {
+  .page,
+  .footer,
+  .cookie-banner {
+    opacity: 1;
+    transition: opacity $transitionTimeout;
+  }
+}
+
+.page-transition-exit {
+  .page,
+  .footer,
+  .cookie-banner {
+    opacity: 1;
+  }
+}
+
+.page-transition-exit-active {
+  .page,
+  .footer,
+  .cookie-banner {
+    opacity: 0;
+    transition: opacity $transitionTimeout;
+  }
+}
+
+// Indicator
+
+.loading-indicator-appear,
+.loading-indicator-enter {
+  opacity: 0;
+}
+
+.loading-indicator-appear-active,
+.loading-indicator-enter-active {
+  opacity: 1;
+  transition: opacity $transitionTimeout;
+}
