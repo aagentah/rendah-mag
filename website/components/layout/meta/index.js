@@ -152,12 +152,17 @@ const Meta = (props) => {
         {handleSnipcart()}
 
         <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=GTM-TGGN2DJ"
+        />
+
+        <script
           dangerouslySetInnerHTML={{
             __html: `
                    window.dataLayer = window.dataLayer || [];
                    function gtag(){dataLayer.push(arguments);}
                    gtag('js', new Date());
-                   gtag('config', 'UA-120300345-1');
+                   gtag('config', 'GTM-TGGN2DJ');
                `,
           }}
         />
