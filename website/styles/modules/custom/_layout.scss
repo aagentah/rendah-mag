@@ -7,26 +7,34 @@ main {
 // Page transition
 
 .page-transition-enter {
-  .page {
+  .page,
+  .footer,
+  .cookie-banner {
     opacity: 0;
   }
 }
 
 .page-transition-enter-active {
-  .page {
+  .page,
+  .footer,
+  .cookie-banner {
     opacity: 1;
     transition: opacity $transitionTimeout;
   }
 }
 
 .page-transition-exit {
-  .page {
+  .page,
+  .footer,
+  .cookie-banner {
     opacity: 1;
   }
 }
 
 .page-transition-exit-active {
-  .page {
+  .page,
+  .footer,
+  .cookie-banner {
     opacity: 0;
     transition: opacity $transitionTimeout;
   }

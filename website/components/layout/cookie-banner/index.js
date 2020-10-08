@@ -22,8 +22,6 @@ export default function CookieBanner() {
     }
   }, []);
 
-  console.log('active', active);
-
   return (
     <div
       className={`flex  flex-wrap  cookie-banner  ${
