@@ -1,6 +1,4 @@
 .cookie-banner {
-  transition: transform 0.3s ease-in-out;
-  transition-delay: 0s;
   height: 90px;
   position: fixed;
   bottom: 0;
@@ -20,9 +18,18 @@
   @extend .z9;
 }
 
+@keyframes cookie-banner--active {
+  0% {
+    transform: translateY(90px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
 .cookie-banner--active {
-  transition-delay: 1.5s;
-  transform: translateY(0px);
+  animation: cookie-banner--active 0.3s forwards;
+  animation-delay: 1s;
 }
 
 .cookie-banner__body {
