@@ -1,0 +1,112 @@
+// Vendor before config
+@import 'vendor/normalize';
+
+// Config
+@import 'functions';
+@import 'mixins';
+@import 'vars';
+@import 'utilities';
+
+// Vendor after config
+@import 'vendor/nprogress';
+// @import 'vendor/toast';
+@import 'vendor/react-dropzone';
+@import 'vendor/snipcart';
+
+// Elements
+@import 'elements/next-pattern-library/button';
+@import 'elements/next-pattern-library/copy';
+@import 'elements/next-pattern-library/heading';
+@import 'elements/next-pattern-library/image';
+@import 'elements/next-pattern-library/label';
+@import 'elements/next-pattern-library/input';
+@import 'elements/next-pattern-library/checkbox';
+@import 'elements/next-pattern-library/radio';
+
+@import 'elements/custom/search-bar';
+
+// Modules
+@import 'modules/next-pattern-library/avatar';
+@import 'modules/next-pattern-library/card';
+@import 'modules/next-pattern-library/hero';
+@import 'modules/next-pattern-library/modal';
+@import 'modules/next-pattern-library/tabs';
+
+@import 'modules/custom/cookie-banner';
+@import 'modules/custom/rich-text';
+@import 'modules/custom/theme';
+@import 'modules/custom/subscribe-banner';
+@import 'modules/custom/header';
+@import 'modules/custom/footer';
+@import 'modules/custom/layout';
+@import 'modules/custom/form';
+
+.navigation-wrapper {
+  position: relative;
+}
+
+.dots {
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.dot {
+  border: none;
+  width: 10px;
+  height: 10px;
+  background: #c5c5c5;
+  border-radius: 50%;
+  margin: 0 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.dot:focus {
+  outline: none;
+}
+
+.dot.active {
+  background: #000;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  fill: var(--black);
+  cursor: pointer;
+}
+
+.arrow--left {
+  left: 5px;
+}
+
+.arrow--right {
+  left: auto;
+  right: 5px;
+}
+
+.arrow--disabled {
+  fill: var(--grey);
+}
+
+//
+
+.carousel-arrow--left {
+  position: absolute;
+  top: 35%;
+  left: -30px;
+  cursor: pointer;
+}
+
+.carousel-arrow--right {
+  position: absolute;
+  top: 35%;
+  right: -30px;
+}
+
+///

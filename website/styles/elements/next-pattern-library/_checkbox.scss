@@ -1,0 +1,78 @@
+.checkbox__control {
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox__input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: none;
+}
+
+.checkbox__indicator {
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  min-width: 20px;
+  background: var(--white);
+  border: 1px solid var(--black);
+  @extend .br1;
+}
+
+.checkbox__label {
+  padding-top: 2px;
+  padding-left: 12px;
+  display: inline-block;
+  @extend .t-secondary;
+  @extend .lh-copy;
+  @extend .f6;
+  @extend .black;
+}
+
+.checkbox__indicator:after {
+  transition: all 0.3s ease-in-out;
+  content: '';
+  position: absolute;
+  display: block;
+  opacity: 0;
+  left: 8px;
+  top: 5px;
+  width: 3px;
+  height: 8px;
+  border: solid var(--white);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox__control .checkbox__input:checked ~ .checkbox__indicator:after {
+  opacity: 1;
+}
+
+// Hover
+.checkbox__control:hover
+  .checkbox__input:not(:checked):not(:disabled)
+  ~ .checkbox__indicator:after {
+  opacity: 1;
+  border-color: var(--grey);
+}
+
+// Checked
+.checkbox__control .checkbox__input:checked ~ .checkbox__indicator {
+  background: var(--black);
+}
+
+// Disabled
+.checkbox__control .checkbox__input:disabled ~ .checkbox__indicator {
+  background: var(--almost-white);
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.checkbox__control .checkbox__input:disabled ~ .checkbox__label {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

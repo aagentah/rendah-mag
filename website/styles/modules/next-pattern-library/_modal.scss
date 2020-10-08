@@ -1,0 +1,84 @@
+.modal {
+  transition: opacity 0.2s ease-in;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.modal.active {
+  opacity: 1;
+  height: auto;
+  pointer-events: auto;
+  z-index: 1080;
+}
+
+.modal--small .modal__dialog {
+  max-height: 90vh;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal--medium .modal__dialog {
+  max-height: 90vh;
+  max-width: 600px;
+  width: 90%;
+}
+
+.modal--large .modal__dialog {
+  max-height: 90vh;
+  max-width: 800px;
+  width: 90%;
+}
+
+.modal__dialog {
+  position: relative;
+  background: #fff;
+  overflow-y: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+
+  @extend .pa4;
+  @extend .br3;
+  @extend .shadow4;
+}
+
+@include breakpoint-up(md) {
+  .modal--small .modal__dialog,
+  .modal--medium .modal__dialog,
+  .modal--large .modal__dialog {
+    max-height: 60vh;
+  }
+}
+
+/* width */
+.modal__dialog::-webkit-scrollbar {
+  background: var(--black);
+  border-radius: 2px;
+  width: 8px;
+}
+
+/* Track */
+.modal__dialog::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.modal__dialog::-webkit-scrollbar-thumb {
+  background: var(--black);
+  border-radius: 2px;
+  width: 8px;
+}
+
+/* Handle on hover */
+.modal__dialog::-webkit-scrollbar-thumb:hover {
+  background: var(--black);
+}

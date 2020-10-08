@@ -1,0 +1,48 @@
+.rich-text {
+  @extend .taj;
+}
+
+.rich-text p,
+.rich-text ul,
+.rich-text ol,
+.rich-text blockquote {
+  @extend .t-secondary;
+  @extend .lh-copy;
+  @extend .f6;
+  @extend .pb3;
+}
+
+.rich-text ul,
+.rich-text ol {
+  @extend .ml3;
+}
+
+.rich-text h2,
+.rich-text h3,
+.rich-text h4,
+.rich-text h5,
+.rich-text h6 {
+  @extend .t-primary;
+  @extend .lh-title;
+  @extend .pb3;
+}
+
+.rich-text h6 {
+  @extend .f5;
+}
+.rich-text h5 {
+  @extend .f4;
+}
+.rich-text h4 {
+  @extend .f4;
+}
+.rich-text h3 {
+  @extend .f3;
+}
+.rich-text h2 {
+  @extend .f2;
+}
+
+.rich-text a {
+  color: var(--black);
+}
