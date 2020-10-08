@@ -1,0 +1,34 @@
+.label {
+  transition: all 0.3s ease-in-out;
+  @extend .pv1;
+  @extend .f6;
+
+  &.date {
+    @extend .tal;
+    @extend .f6;
+  }
+
+  &.author {
+    @extend .tal;
+    @extend .f6;
+  }
+
+  &.price {
+    @extend .tal;
+    @extend .f6;
+  }
+
+  &.sale-price {
+    @extend .tal;
+    @extend .f6;
+  }
+
+  &.category {
+    @extend .tac;
+    @extend .shadow1;
+    @extend .br1;
+    @extend .ph3;
+    @extend .f7;
+    vertical-align: top;
+  }
+}

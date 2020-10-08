@@ -1,0 +1,82 @@
+.hero--darken-all {
+  .image__wrapper {
+    .image {
+      filter: brightness(65%);
+    }
+  }
+}
+
+.hero--darken-top {
+  background-color: var(--black);
+
+  .hero__image {
+    -webkit-mask-image: linear-gradient(
+      to top,
+      rgba(125, 125, 125, 1) 0%,
+      rgba(125, 125, 125, 1) 85%,
+      rgba(139, 139, 139, 0) 99.9%,
+      rgba(255, 255, 255, 0) 100%
+    );
+
+    mask-image: linear-gradient(
+      to top,
+      rgba(125, 125, 125, 1) 0%,
+      rgba(125, 125, 125, 1) 85%,
+      rgba(139, 139, 139, 0) 99.9%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
+
+.hero {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  animation: fade-in 0.3s forwards;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .image__wrapper {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+  }
+}
+
+.hero__dialog {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  @extend .pa4;
+}
+
+.hero__title {
+  max-width: 400px;
+  @extend .t-primary;
+  @extend .f2;
+  @extend .mb3;
+}
+
+.hero__description {
+  @extend .f5;
+  @extend .mb3;
+}
+
+.hero__button {
+  //
+}
+
+.hero__image {
+  //
+}
