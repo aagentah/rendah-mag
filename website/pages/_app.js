@@ -5,7 +5,7 @@ import NProgress from 'nprogress';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
 import { AppProvider } from '~/context-provider/app';
-import * as gtag from '~/lib/gtag';
+// import * as gtag from '~/lib/gtag';
 
 import '~/styles/index.scss';
 import 'keen-slider/keen-slider.min.css';
@@ -16,7 +16,7 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 // Track pageview when route is changed
-Router.events.on('routeChangeComplete', (url) => gtag.pageview(url));
+// Router.events.on('routeChangeComplete', (url) => gtag.pageview(url));
 
 // Performance metrics
 // export function reportWebVitals(metric) {
