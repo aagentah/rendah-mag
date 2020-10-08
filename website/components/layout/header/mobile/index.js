@@ -25,7 +25,9 @@ export default function HeaderMobile({
     <div
       className={`header  header--mobile  ${
         navOpen ? 'collapsed' : ''
-      }  bg-almost-white  justify-center  align-center  df  dn-md`}
+      }  bg-almost-white  justify-center  align-center  df  dn-md  ${
+        navOnWhite ? 'nav-on-white' : ''
+      }`}
     >
       <div className="flex  flex-wrap">
         <button className="header__burger" onClick={toggleNav} type="button">
@@ -34,7 +36,7 @@ export default function HeaderMobile({
             width="24"
             height="24"
             viewBox="0 0 24 24"
-            fill={navColour}
+            fill={navHex}
           >
             <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
           </svg>
@@ -91,7 +93,7 @@ export default function HeaderMobile({
           </button>
         </div>
         <ul className="w-100  pt4">
-          <li className="db  pl4  pb3">
+          <li className="nav__item  db  pl4  pb3">
             <Link href="/">
               <span
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
@@ -101,7 +103,7 @@ export default function HeaderMobile({
               </span>
             </Link>
           </li>
-          <li className="db  pl4  pb3">
+          <li className="nav__item  db  pl4  pb3">
             <Link href="/cyphers">
               <span
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
@@ -111,7 +113,7 @@ export default function HeaderMobile({
               </span>
             </Link>
           </li>
-          <li className="db  pl4  pb3">
+          <li className="nav__item  db  pl4  pb3">
             <Link href="/team">
               <span
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
@@ -122,7 +124,7 @@ export default function HeaderMobile({
             </Link>
           </li>
           {
-            // <li className="db  pl4  pb3">
+            // <li className="nav__item  db  pl4  pb3">
             //   <Link href="/guest-mixes">
             //     <span
             //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
@@ -134,7 +136,7 @@ export default function HeaderMobile({
             // </li>
           }
           {
-            // <li className="db  pl4  pb3">
+            // <li className="nav__item  db  pl4  pb3">
             //   <Link href="/store">
             //     <span
             //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
@@ -149,7 +151,7 @@ export default function HeaderMobile({
           {user ? (
             <>
               {
-                // <li className="db  pl4  pb3">
+                // <li className="nav__item  db  pl4  pb3">
                 //   <Link href="/profile">
                 //     <span
                 //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
@@ -159,7 +161,7 @@ export default function HeaderMobile({
                 //     </span>
                 //   </Link>
                 // </li>
-                // <li className="db  pl4  pb3">
+                // <li className="nav__item  db  pl4  pb3">
                 //   <span
                 //     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                 //     onClick={() => {
@@ -175,7 +177,7 @@ export default function HeaderMobile({
           ) : (
             <>
               {
-                // <li className="db  pl4  pb3">
+                // <li className="nav__item  db  pl4  pb3">
                 //   <Link href="/signup">
                 //     <span
                 //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
@@ -185,7 +187,7 @@ export default function HeaderMobile({
                 //     </span>
                 //   </Link>
                 // </li>
-                // <li className="db  pl4  pb3">
+                // <li className="nav__item  db  pl4  pb3">
                 //   <Link href="/login">
                 //     <span
                 //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
