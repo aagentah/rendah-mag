@@ -77,7 +77,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
             <Heading
               /* Options */
               htmlEntity="h3"
-              text="You made it to the bottom ❤️"
+              text="You made it to the bottom"
               color="black"
               size="medium"
               truncate={0}
@@ -89,7 +89,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           <div className="pb3">
             <Copy
               /* Options */
-              text="Can we add you to our Mailing List? We'll only send you occasional bits."
+              text="Can we add you to our Mailing List? (Relevant content only 💥)"
               color="black"
               size="medium"
               truncate={null}
