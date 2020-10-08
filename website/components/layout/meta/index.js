@@ -150,6 +150,17 @@ const Meta = (props) => {
         <meta name="twitter:image" content={imageVal || siteImage} />
 
         {handleSnipcart()}
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                   window.dataLayer = window.dataLayer || [];
+                   function gtag(){dataLayer.push(arguments);}
+                   gtag('js', new Date());
+                   gtag('config', 'UA-120300345-1');
+               `,
+          }}
+        />
       </Head>
     </>
   );
