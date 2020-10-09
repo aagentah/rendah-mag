@@ -50,11 +50,11 @@ export default function HeroPost({ post }) {
       /* Children */
       withLinkProps={{
         type: 'next',
-        href: '/post/[slug]',
+        href: '/article/[slug]',
         target: null,
         routerLink: Link,
         routerLinkProps: {
-          as: `/post/${post.slug}`,
+          as: `/article/${post.slug}`,
           scroll: false,
         },
       }}
