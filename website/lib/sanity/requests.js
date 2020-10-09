@@ -89,9 +89,46 @@ export async function getAllPosts(preview) {
   return getUniquePosts(results);
 }
 
+export async function getLatestCategoryPosts(category, range) {
+  const rangeFrom = range[0];
+  const rangeTo = range[1];
+
+  const results = await getClient(null).fetch(
+    `*[_type == "category" && slug.current == $category] [0] {
+      ...,
+          "articles": *[_type == "post" && references(^._id)] | order(date desc, _updatedAt desc) [$rangeFrom..$rangeTo] {
+            ${postFields}
+            }
+          }`,
+    { category, rangeFrom, rangeTo }
+  );
+
+  return results;
+}
+
 export async function getLatestInterviews(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "category" && slug.current == "interviews"] [0] {
+          "articles": *[_type == "post" && references(^._id)] | order(date desc, _updatedAt desc) [0..3] {
+            ${postFields}
+            }
+          }`);
+  return getUniquePosts(results.articles);
+}
+
+export async function getLatestNews(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "category" && slug.current == "news"] [0] {
+          "articles": *[_type == "post" && references(^._id)] | order(date desc, _updatedAt desc) [0..3] {
+            ${postFields}
+            }
+          }`);
+  return getUniquePosts(results.articles);
+}
+
+export async function getLatestInsights(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "category" && slug.current == "insights"] [0] {
           "articles": *[_type == "post" && references(^._id)] | order(date desc, _updatedAt desc) [0..3] {
             ${postFields}
             }

@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
@@ -10,17 +12,15 @@ import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
   getLatestFeaturedPost,
-  getLatestInterviews,
-  getAllPosts,
-  getAllProducts,
+  getLatestCategoryPosts,
 } from '~/lib/sanity/requests';
 
 export default function Home({
   siteConfig,
   latestFeaturedPost,
   latestInterviews,
-  allPosts,
-  allProducts,
+  latestNews,
+  latestInsights,
 }) {
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
@@ -46,7 +46,7 @@ export default function Home({
                 <div className="pb4">
                   <Heading
                     /* Options */
-                    htmlEntity="h1"
+                    htmlEntity="h2"
                     text="Latest interviews."
                     color="black"
                     size="medium"
@@ -66,36 +66,153 @@ export default function Home({
                     </div>
                   ))}
                 </div>
-              </section>
-            )}
 
-            {allPosts.length > 0 && (
-              <section className="pb5">
-                <div className="pb4">
-                  <Heading
+                <div className="flex  justify-end  pr2">
+                  <Button
                     /* Options */
-                    htmlEntity="h1"
-                    text="Latest news."
-                    color="black"
+                    type="secondary"
                     size="medium"
-                    truncate={null}
-                    reveal={null}
+                    text="More Interviews"
+                    color="black"
+                    fluid={false}
+                    icon={buttonIcon}
+                    iconFloat={null}
+                    inverted={false}
+                    loading={false}
+                    disabled={false}
+                    onClick={null}
                     /* Children */
-                    withLinkProps={null}
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/category/[slug]',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        as: `/category/interviews`,
+                        scroll: false,
+                      },
+                    }}
                   />
                 </div>
-
-                <div className="flex  flex-wrap">
-                  {allPosts.map((post, i) => (
-                    <div key={post.slug} className="col-24  col-6-md">
-                      <div className="ph3  pv2">
-                        <CardBlog i={i} post={post} columnCount={4} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </section>
             )}
+
+            <div className="flex  flex-wrap">
+              {latestNews.length > 0 && (
+                <div className="col-24  col-12-md  pr0  pr3-md">
+                  <section className="pb5">
+                    <div className="pb4">
+                      <Heading
+                        /* Options */
+                        htmlEntity="h2"
+                        text="Latest news."
+                        color="black"
+                        size="medium"
+                        truncate={null}
+                        reveal={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+
+                    <div className="flex  flex-wrap">
+                      {latestNews.map((post, i) => (
+                        <div key={post.slug} className="col-24  col-12-md">
+                          <div className="ph3  pv2">
+                            <CardBlog i={i} post={post} columnCount={4} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex  justify-end  pr2">
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="medium"
+                        text="More News"
+                        color="black"
+                        fluid={false}
+                        icon={buttonIcon}
+                        iconFloat={null}
+                        inverted={false}
+                        loading={false}
+                        disabled={false}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={{
+                          type: 'next',
+                          href: '/category/[slug]',
+                          target: null,
+                          routerLink: Link,
+                          routerLinkProps: {
+                            as: `/category/news`,
+                            scroll: false,
+                          },
+                        }}
+                      />
+                    </div>
+                  </section>
+                </div>
+              )}
+              {latestInsights.length > 0 && (
+                <div className="col-24  col-12-md  pl0  pl3-md">
+                  <section className="pb5">
+                    <div className="pb4">
+                      <Heading
+                        /* Options */
+                        htmlEntity="h2"
+                        text="Latest Insights."
+                        color="black"
+                        size="medium"
+                        truncate={null}
+                        reveal={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+
+                    <div className="flex  flex-wrap">
+                      {latestInsights.map((post, i) => (
+                        <div key={post.slug} className="col-24  col-12-md">
+                          <div className="ph3  pv2">
+                            <CardBlog i={i} post={post} columnCount={4} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex  justify-end  pr2">
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="medium"
+                        text="More Insights"
+                        color="black"
+                        fluid={false}
+                        icon={buttonIcon}
+                        iconFloat={null}
+                        inverted={false}
+                        loading={false}
+                        disabled={false}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={{
+                          type: 'next',
+                          href: '/category/[slug]',
+                          target: null,
+                          routerLink: Link,
+                          routerLinkProps: {
+                            as: `/category/insights`,
+                            scroll: false,
+                          },
+                        }}
+                      />
+                    </div>
+                  </section>
+                </div>
+              )}
+            </div>
           </Container>
         </div>
       </Layout>
@@ -107,17 +224,21 @@ export async function getServerSideProps({ req }) {
   const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const latestFeaturedPost = await getLatestFeaturedPost();
-  const latestInterviews = await getLatestInterviews();
-  const allPosts = await getAllPosts();
-  const allProducts = await getAllProducts();
+
+  const latestInterviews = await getLatestCategoryPosts('interviews', [0, 3]);
+  const latestNews = await getLatestCategoryPosts('news', [0, 5]);
+  const latestInsights = await getLatestCategoryPosts('insights', [0, 5]);
+
+  // const allProducts = await getAllProducts();
 
   return {
     props: {
       siteConfig,
       latestFeaturedPost,
-      latestInterviews,
-      allPosts,
-      allProducts,
+      latestInterviews: latestInterviews.articles,
+      latestNews: latestNews.articles,
+      latestInsights: latestInsights.articles,
+      // allProducts,
     },
   };
 }
