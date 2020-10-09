@@ -144,6 +144,8 @@ const Meta = (props) => {
         <meta property="og:description" content={descVal || siteDesc} />
         <meta property="og:image" content={imageVal || siteImage} />
 
+        <meta property="fb:app_id" content="154881868603516" />
+
         <meta name="twitter:card" content="Summary" />
         <meta name="twitter:title" content={`${titleVal} | ${siteTitle}`} />
         <meta name="twitter:description" content={descVal || siteDesc} />
