@@ -5,7 +5,9 @@
 .subscribe-banner__input {
   box-shadow: 0;
   outline: 0;
-  @extend .w5;
+  @extend .f7;
+  @extend .f6-md;
+  @extend .w5-md;
   @extend .pa2;
   @extend .ba;
   @extend .bc-black;

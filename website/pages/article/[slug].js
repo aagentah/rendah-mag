@@ -73,7 +73,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           size="small"
           active={modalActive}
         >
-          <div className="pb2">
+          <div className="pb2  mb2">
             <Heading
               /* Options */
               htmlEntity="h3"
@@ -86,16 +86,16 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
               withLinkProps={null}
             />
           </div>
-          <div className="pb3">
+          <div className="pb2">
             <Copy
               /* Options */
-              text="Can we add you to our Mailing List? (Relevant content only 💥)"
+              text="Can we add you to our Mailing List? We usually only send a few emails each month, and keep the content relevant as ever."
               color="black"
               size="medium"
               truncate={null}
             />
           </div>
-          <div className="pb3">
+          <div className="pb3  mb2">
             <SubscribeForm onSuccess={() => setModalActive(false)} />
           </div>
           <div className="flex  flex-wrap  pb2">

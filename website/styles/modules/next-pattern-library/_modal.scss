@@ -22,19 +22,19 @@
 .modal--small .modal__dialog {
   max-height: 90vh;
   max-width: 400px;
-  width: 90%;
+  width: calc(100% - 60px);
 }
 
 .modal--medium .modal__dialog {
   max-height: 90vh;
   max-width: 600px;
-  width: 90%;
+  width: calc(100% - 60px);
 }
 
 .modal--large .modal__dialog {
   max-height: 90vh;
   max-width: 800px;
-  width: 90%;
+  width: calc(100% - 60px);
 }
 
 .modal__dialog {

@@ -17,6 +17,8 @@ export default function CardBlog({ post, columnCount }) {
   let scale = app.isRetina ? 2 : 1;
   let imageUrlWidth = app.deviceSize === 'md' ? 260 : 230;
   let imageHeight = app.deviceSize === 'md' ? 260 : 180;
+  const headingSize =
+    app.deviceSize === 'md' || columnCount === 2 ? 'medium' : 'small';
 
   if (columnCount === 2) {
     imageUrlWidth = app.deviceSize === 'md' ? 260 : 500;
@@ -72,7 +74,7 @@ export default function CardBlog({ post, columnCount }) {
       htmlEntity="h2"
       text={post.title}
       color="black"
-      size="small"
+      size={headingSize}
       truncate={4}
       reveal={null}
       /* Children */
