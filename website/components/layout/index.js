@@ -41,9 +41,9 @@ export default function Layout({
       <Meta {...meta} />
       <ToastContainer />
       {preview && <Alert preview={preview} />}
-      <Header navOnWhite={navOnWhite} meta={meta} />
+      {!preview && <Header navOnWhite={navOnWhite} meta={meta} />}
       <main className={`page ${navOffsetType}`}>{children}</main>
-      <CookieBanner />
+      {!preview && <CookieBanner />}
       <Footer />
     </>
   );
