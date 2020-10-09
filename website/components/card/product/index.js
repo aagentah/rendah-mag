@@ -13,6 +13,7 @@ export default function CardDefault({ product }) {
   let scale = app.isRetina ? 2 : 1;
   const imageUrlWidth = app.deviceSize === 'md' ? 200 : 230;
   const imageHeight = app.deviceSize === 'md' ? 200 : 230;
+  const headingSize = app.deviceSize === 'md' ? 'medium' : 'small';
 
   const cardImage = (
     <LazyLoad once offset={150} height={imageHeight}>
@@ -73,7 +74,7 @@ export default function CardDefault({ product }) {
       htmlEntity="h2"
       text={product.title}
       color="black"
-      size="small"
+      size={headingSize}
       truncate={1}
       reveal={null}
       /* Children */

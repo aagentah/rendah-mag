@@ -57,9 +57,9 @@ export default function SubscribeForm({ onSuccess }) {
       className="w-100  flex  flex-wrap  justify-center  align-center"
       onSubmit={subscribe}
     >
-      <div className="flex  flex-wrap  mt2  ph4  ph0-md">
+      <div className="flex  flex-wrap  mt2">
         <input
-          className="subscribe-banner__input  col-24  col-16-md  flex  justify-center  mb3  mb0-md"
+          className="subscribe-banner__input  col-17  col-16-md  flex  justify-center"
           id="email-input"
           name="email"
           placeholder="Your email"
@@ -67,12 +67,12 @@ export default function SubscribeForm({ onSuccess }) {
           type="email"
         />
 
-        <div className="col-24  col-8-md  flex  justify-center  justify-start-md">
+        <div className="col-7  col-8-md  flex  justify-center  justify-start-md  pr2  pr0-md">
           <Button
             /* Options */
             type="primary"
             size="medium"
-            text="Subscribe"
+            text="Join"
             color="black"
             fluid={false}
             icon={buttonIconArrowRight}

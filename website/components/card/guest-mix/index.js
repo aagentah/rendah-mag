@@ -17,6 +17,7 @@ export default function Cardmix({ mix, columnCount }) {
   let scale = app.isRetina ? 2 : 1;
   const imageUrlWidth = app.deviceSize === 'md' ? 200 : 230;
   const imageHeight = app.deviceSize === 'md' ? 200 : 230;
+  const headingSize = 'small';
 
   const handleIntersect = (event) => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
@@ -64,7 +65,7 @@ export default function Cardmix({ mix, columnCount }) {
       htmlEntity="h2"
       text={mix.title}
       color="black"
-      size="small"
+      size={headingSize}
       truncate={4}
       reveal={null}
       /* Children */
