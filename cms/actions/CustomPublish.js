@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDocumentOperation } from "@sanity/react-hooks";
 import Compressor from "compressorjs";
 
+import { SITE_URL } from "../../website/constants";
 import client from "../config";
 import { imageBuilder } from "../requests";
 
@@ -39,7 +40,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
 
           // Pass to API to tinify & resize
           const compressedBlob = await fetch(
-            "https://rendah-mag.vercel.app/api/sanity/compress-image",
+            `${SITE_URL}/api/sanity/compress-image`,
             // "https://11697e300014.ngrok.io/api/sanity/compress-image",
             {
               body: JSON.stringify({
