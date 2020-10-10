@@ -148,6 +148,16 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 | <Date dateString={post.publishedAt} />
               </p>
 
+              <div className="pb4  mb3  bb  bc-silver">
+                <Copy
+                  /* Options */
+                  text={post.description}
+                  color="black"
+                  size="medium"
+                  truncate={null}
+                />
+              </div>
+
               <div className="rich-text">
                 <Sections body={post.body} />
               </div>
