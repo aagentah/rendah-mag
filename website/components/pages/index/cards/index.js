@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
@@ -9,55 +8,22 @@ import HeroHome from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
 import CardProduct from '~/components/card/product';
 
-import getSiteConfigCookies from '~/lib/get-site-config-cookies';
-import {
-  getSiteConfig,
-  getLatestFeaturedPost,
-  getCategory,
-} from '~/lib/sanity/requests';
-
-export default function Home({ siteConfig }) {
-  const [latestFeaturedPost, setLatestFeaturedPost] = useState(null);
-  const [latestInterviews, setLatestInterviews] = useState(null);
-  const [latestNews, setLatestNews] = useState(null);
-  const [latestInsights, setLatestInsights] = useState(null);
-
-  const interviewsLenth = 4;
-  const newsLength = 6;
-  const insightsLength = 6;
-
+export default function Home({
+  siteConfig,
+  latestFeaturedPost,
+  latestInterviews,
+  latestNews,
+  latestInsights,
+}) {
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
-
-  const handleAsyncTasks = async () => {
-    setLatestFeaturedPost(await getLatestFeaturedPost());
-    setLatestInterviews(
-      await getCategory('interviews', [0, interviewsLenth - 1])
-    );
-    setLatestNews(await getCategory('news', [0, newsLength - 1]));
-    setLatestInsights(await getCategory('insights', [0, insightsLength - 1]));
-  };
-
-  useEffect(() => {
-    handleAsyncTasks();
-  }, []);
 
   return (
     <>
-      <Layout
-        navOffset={null}
-        navOnWhite={false}
-        meta={{
-          siteConfig,
-          title: 'Home',
-          description: null,
-          image: null,
-        }}
-        preview={null}
-      >
-        <HeroHome post={latestFeaturedPost} />
+      <HeroHome post={latestFeaturedPost} />
 
-        <div className="pt5  pt6-md">
-          <Container>
+      <div className="pt5  pt6-md">
+        <Container>
+          {latestInterviews.length > 0 && (
             <section className="pb5">
               <div className="pb4">
                 <Heading
@@ -74,17 +40,10 @@ export default function Home({ siteConfig }) {
               </div>
 
               <div className="flex  flex-wrap">
-                {[...Array(interviewsLenth)].map((post, i) => (
-                  <div key={post?.slug || post} className="col-24  col-12-md">
+                {latestInterviews.map((post, i) => (
+                  <div key={post.slug} className="col-24  col-12-md">
                     <div className="ph3  pv2">
-                      <CardBlog
-                        i={i}
-                        post={
-                          latestInterviews?.articles &&
-                          latestInterviews?.articles[i]
-                        }
-                        columnCount={2}
-                      />
+                      <CardBlog i={i} post={post} columnCount={2} />
                     </div>
                   </div>
                 ))}
@@ -118,8 +77,10 @@ export default function Home({ siteConfig }) {
                 />
               </div>
             </section>
+          )}
 
-            <div className="flex  flex-wrap">
+          <div className="flex  flex-wrap">
+            {latestNews.length > 0 && (
               <div className="col-24  col-12-md  pr0  pr3-md">
                 <section className="pb5">
                   <div className="pb4">
@@ -137,19 +98,10 @@ export default function Home({ siteConfig }) {
                   </div>
 
                   <div className="flex  flex-wrap">
-                    {[...Array(newsLength)].map((post, i) => (
-                      <div
-                        key={post?.slug || post}
-                        className="col-24  col-12-md"
-                      >
+                    {latestNews.map((post, i) => (
+                      <div key={post.slug} className="col-24  col-12-md">
                         <div className="ph3  pv2">
-                          <CardBlog
-                            i={i}
-                            post={
-                              latestNews?.articles && latestNews?.articles[i]
-                            }
-                            columnCount={4}
-                          />
+                          <CardBlog i={i} post={post} columnCount={4} />
                         </div>
                       </div>
                     ))}
@@ -184,7 +136,8 @@ export default function Home({ siteConfig }) {
                   </div>
                 </section>
               </div>
-
+            )}
+            {latestInsights.length > 0 && (
               <div className="col-24  col-12-md  pl0  pl3-md">
                 <section className="pb5">
                   <div className="pb4">
@@ -202,20 +155,10 @@ export default function Home({ siteConfig }) {
                   </div>
 
                   <div className="flex  flex-wrap">
-                    {[...Array(insightsLength)].map((post, i) => (
-                      <div
-                        key={post?.slug || post}
-                        className="col-24  col-12-md"
-                      >
+                    {latestInsights.map((post, i) => (
+                      <div key={post.slug} className="col-24  col-12-md">
                         <div className="ph3  pv2">
-                          <CardBlog
-                            i={i}
-                            post={
-                              latestInsights?.articles &&
-                              latestInsights?.articles[i]
-                            }
-                            columnCount={4}
-                          />
+                          <CardBlog i={i} post={post} columnCount={4} />
                         </div>
                       </div>
                     ))}
@@ -250,21 +193,10 @@ export default function Home({ siteConfig }) {
                   </div>
                 </section>
               </div>
-            </div>
-          </Container>
-        </div>
-      </Layout>
+            )}
+          </div>
+        </Container>
+      </div>
     </>
   );
-}
-
-export async function getServerSideProps({ req }) {
-  const cookies = req?.headers?.cookie;
-  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
-
-  return {
-    props: {
-      siteConfig,
-    },
-  };
 }
