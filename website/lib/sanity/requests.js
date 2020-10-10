@@ -45,6 +45,7 @@ export async function getSiteConfig() {
   return data;
 }
 
+// Posts
 export async function getPreviewPostBySlug(slug) {
   const data = await getClient(true).fetch(
     `*[_type == "post" && slug.current == $slug] | order(date desc){
@@ -54,13 +55,6 @@ export async function getPreviewPostBySlug(slug) {
     { slug }
   );
   return data[0];
-}
-
-export async function getAllPostsWithSlug() {
-  const data = await client.fetch(
-    '*[_type == "post"]{ \'slug\': slug.current }'
-  );
-  return data;
 }
 
 export async function getPostWithSearch(slug) {
@@ -104,36 +98,6 @@ export async function getCategory(category, range) {
   );
 
   return results;
-}
-
-export async function getLatestInterviews(preview) {
-  const results = await getClient(preview)
-    .fetch(`*[_type == "category" && slug.current == "interviews"] [0] {
-          "articles": *[_type == "post" && references(^._id)] | order(date desc, _updatedAt desc) [0..3] {
-            ${postFields}
-            }
-          }`);
-  return getUniquePosts(results.articles);
-}
-
-export async function getLatestNews(preview) {
-  const results = await getClient(preview)
-    .fetch(`*[_type == "category" && slug.current == "news"] [0] {
-          "articles": *[_type == "post" && references(^._id)] | order(date desc, _updatedAt desc) [0..3] {
-            ${postFields}
-            }
-          }`);
-  return getUniquePosts(results.articles);
-}
-
-export async function getLatestInsights(preview) {
-  const results = await getClient(preview)
-    .fetch(`*[_type == "category" && slug.current == "insights"] [0] {
-          "articles": *[_type == "post" && references(^._id)] | order(date desc, _updatedAt desc) [0..3] {
-            ${postFields}
-            }
-          }`);
-  return getUniquePosts(results.articles);
 }
 
 export async function getCurrentAndPreviousCyphers(preview) {
