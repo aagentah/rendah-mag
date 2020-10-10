@@ -9,9 +9,9 @@ import CardBlog from '~/components/card/blog';
 import CardProduct from '~/components/card/product';
 
 import getSiteConfigCookies from '~/lib/get-site-config-cookies';
-import { getSiteConfig, getLatestCategoryPosts } from '~/lib/sanity/requests';
+import { getSiteConfig, getCategory } from '~/lib/sanity/requests';
 
-export default function Category({ siteConfig, title, posts }) {
+export default function Category({ siteConfig, category }) {
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
   return (
@@ -21,21 +21,21 @@ export default function Category({ siteConfig, title, posts }) {
         navOnWhite={true}
         meta={{
           siteConfig,
-          title: title,
-          description: 'This is the Category page.',
+          title: category.title,
+          description: category.description,
           image: null,
         }}
         preview={null}
       >
         <div className="pt6">
           <Container>
-            {posts.length > 0 && (
+            {category.articles.length > 0 && (
               <section className="pb5">
                 <div className="pb4">
                   <Heading
                     /* Options */
                     htmlEntity="h2"
-                    text={`${title}.`}
+                    text={`${category.title}.`}
                     color="black"
                     size="medium"
                     truncate={null}
@@ -46,7 +46,7 @@ export default function Category({ siteConfig, title, posts }) {
                 </div>
 
                 <div className="flex  flex-wrap">
-                  {posts.map((post, i) => (
+                  {category.articles.map((post, i) => (
                     <div key={post.slug} className="col-24  col-6-md">
                       <div className="ph3  pv2">
                         <CardBlog i={i} post={post} columnCount={4} />
@@ -66,15 +66,12 @@ export default function Category({ siteConfig, title, posts }) {
 export async function getServerSideProps({ req, params, preview = false }) {
   const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
-  const latestCategory = await getLatestCategoryPosts(params.slug, [0, 99]);
-  const title = latestCategory.title;
-  const posts = latestCategory.articles;
+  const category = await getCategory(params.slug, [0, 99]);
 
   return {
     props: {
       siteConfig,
-      title,
-      posts,
+      category,
     },
   };
 }

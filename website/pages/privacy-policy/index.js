@@ -15,7 +15,7 @@ export default function Error404({ siteConfig }) {
         meta={{
           siteConfig,
           title: 'Privacy Policy',
-          description: 'Your privacy is important to us.',
+          description: null,
           image: null,
         }}
         preview={null}

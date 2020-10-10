@@ -12,7 +12,7 @@ import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
   getLatestFeaturedPost,
-  getLatestCategoryPosts,
+  getCategory,
 } from '~/lib/sanity/requests';
 
 export default function Home({
@@ -32,7 +32,7 @@ export default function Home({
         meta={{
           siteConfig,
           title: 'Home',
-          description: 'This is the Home page.',
+          description: null,
           image: null,
         }}
         preview={null}
@@ -225,9 +225,9 @@ export async function getServerSideProps({ req }) {
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const latestFeaturedPost = await getLatestFeaturedPost();
 
-  const latestInterviews = await getLatestCategoryPosts('interviews', [0, 3]);
-  const latestNews = await getLatestCategoryPosts('news', [0, 5]);
-  const latestInsights = await getLatestCategoryPosts('insights', [0, 5]);
+  const latestInterviews = await getCategory('interviews', [0, 3]);
+  const latestNews = await getCategory('news', [0, 5]);
+  const latestInsights = await getCategory('insights', [0, 5]);
 
   // const allProducts = await getAllProducts();
 

@@ -34,7 +34,7 @@ export default function Dominion({ siteConfig }) {
       meta={{
         siteConfig,
         title: 'Dominion',
-        description: 'This is the Dominion page.',
+        description: 'Join the Dominion Subscription.',
         image: null,
       }}
       preview={null}

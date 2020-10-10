@@ -15,7 +15,7 @@ export default function Post({ siteConfig, allPosts, params }) {
       meta={{
         siteConfig,
         title: 'Search',
-        description: 'This is the Search page.',
+        description: null,
         image: null,
       }}
       preview={null}

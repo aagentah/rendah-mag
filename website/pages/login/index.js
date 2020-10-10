@@ -86,7 +86,7 @@ export default function Login({ siteConfig }) {
         meta={{
           siteConfig,
           title: 'Log In',
-          description: 'This is the Log In page.',
+          description: null,
           image: null,
         }}
         preview={null}

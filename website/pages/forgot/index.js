@@ -54,7 +54,7 @@ export default function Forgot({ siteConfig }) {
         meta={{
           siteConfig,
           title: 'Forgot Password',
-          description: 'This is the Forgot Password page.',
+          description: 'Forgot your password?.',
           image: null,
         }}
         preview={null}

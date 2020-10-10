@@ -15,7 +15,7 @@ export default function Error404({ siteConfig }) {
         meta={{
           siteConfig,
           title: 'Return Policy',
-          description: '.',
+          description: null,
           image: null,
         }}
         preview={null}
