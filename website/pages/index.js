@@ -259,7 +259,7 @@ export default function Home({ siteConfig }) {
   );
 }
 
-export async function getServerSideProps({ req }) {
+export async function getStaticProps({ req }) {
   const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
 
