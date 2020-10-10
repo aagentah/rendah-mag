@@ -15,7 +15,7 @@ export default function Error404({ siteConfig }) {
         meta={{
           siteConfig,
           title: 'Cookie Policy',
-          description: 'Cookie Policy.',
+          description: null,
           image: null,
         }}
         preview={null}

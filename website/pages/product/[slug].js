@@ -49,9 +49,9 @@ export default function Post({ siteConfig, product }) {
         navOnWhite
         meta={{
           siteConfig,
-          title: 'Product',
-          description: 'This is the Product page.',
-          image: null,
+          title: product.title,
+          description: null,
+          image: product.image1,
         }}
         preview={null}
       >

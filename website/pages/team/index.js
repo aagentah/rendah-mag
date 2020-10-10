@@ -14,8 +14,8 @@ export default function Post({ siteConfig, allTeam }) {
       navOnWhite
       meta={{
         siteConfig,
-        title: 'Search',
-        description: 'This is the Team page.',
+        title: 'Team',
+        description: null,
         image: null,
       }}
       preview={null}

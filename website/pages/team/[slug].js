@@ -22,9 +22,9 @@ export default function Post({ siteConfig, teamMember }) {
       navOnWhite
       meta={{
         siteConfig,
-        title: 'Search',
-        description: 'This is the Search page.',
-        image: null,
+        title: teamMember.name,
+        description: teamMember.description,
+        image: teamMember.image,
       }}
       preview={null}
     >
@@ -48,7 +48,7 @@ export default function Post({ siteConfig, teamMember }) {
                 .fit('clip')
                 .blur('20')
                 .url()}
-              alt={teamMember.title}
+              alt={teamMember.name}
               figcaption={null}
               height={250}
               width={null}

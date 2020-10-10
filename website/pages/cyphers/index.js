@@ -30,7 +30,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
         meta={{
           siteConfig,
           title: 'Cyphers',
-          description: 'This is the Cyphers page.',
+          description: null,
           image: null,
         }}
         preview={null}

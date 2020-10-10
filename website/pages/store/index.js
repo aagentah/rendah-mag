@@ -39,7 +39,7 @@ export default function Post({ siteConfig, allProducts }) {
       meta={{
         siteConfig,
         title: 'Store',
-        description: 'This is the Store page.',
+        description: null,
         image: null,
       }}
       preview={null}

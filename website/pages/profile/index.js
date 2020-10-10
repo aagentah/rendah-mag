@@ -50,7 +50,7 @@ export default function Profile({ siteConfig }) {
         meta={{
           siteConfig,
           title: 'Profile',
-          description: 'This is the Profile page.',
+          description: null,
           image: null,
         }}
         preview={null}

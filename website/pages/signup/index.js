@@ -93,7 +93,7 @@ export default function Sigup({ siteConfig }) {
         meta={{
           siteConfig,
           title: 'Sign Up',
-          description: 'his is the Sign Up page.',
+          description: null,
           image: null,
         }}
         preview={null}

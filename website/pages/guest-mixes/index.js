@@ -29,7 +29,7 @@ export default function GuestMixes({ siteConfig, guestMixes }) {
         meta={{
           siteConfig,
           title: 'Guest Mixes',
-          description: 'This is the Gues Mixes page.',
+          description: null,
           image: null,
         }}
         preview={null}

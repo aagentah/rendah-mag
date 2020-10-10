@@ -89,7 +89,7 @@ export async function getAllPosts(preview) {
   return getUniquePosts(results);
 }
 
-export async function getLatestCategoryPosts(category, range) {
+export async function getCategory(category, range) {
   const rangeFrom = range[0];
   const rangeTo = range[1];
 

@@ -12,8 +12,8 @@ const Meta = (props) => {
   const { router, siteConfig, title, description, image } = props;
 
   // siteConfig
-  const siteTitle = siteConfig.title || '';
-  const siteDesc = siteConfig.description || '';
+  const siteTitle = siteConfig.title || null;
+  const siteDesc = siteConfig.description || null;
   const siteImage =
     imageBuilder
       .image(siteConfig.logo)
@@ -22,9 +22,10 @@ const Meta = (props) => {
       .auto('format')
       .url() || '';
 
-  const titleVal = title || '';
-  const descVal = description || '';
-  const imageVal = image || '';
+  // Page
+  const titleVal = title || null;
+  const descVal = description || null;
+  const imageVal = image || null;
 
   const makeSchemaSocials = () => {
     const arr = [];
