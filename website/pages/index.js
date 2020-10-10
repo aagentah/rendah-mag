@@ -38,6 +38,7 @@ export default function Home({ siteConfig }) {
   };
 
   useEffect(() => {
+    //
     handleAsyncTasks();
   }, []);
 
