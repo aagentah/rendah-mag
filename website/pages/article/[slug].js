@@ -63,7 +63,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
         meta={{
           siteConfig,
           title: post.title,
-          description: post.excerpt,
+          description: post.description,
           image: post.coverImage,
         }}
         preview={preview}
