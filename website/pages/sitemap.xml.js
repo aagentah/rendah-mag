@@ -7,8 +7,9 @@ const sitemapXml = (allPosts, allProducts) => {
   let postsXML = '';
   let productsXML = '';
 
+  // Posts
   allPosts.map((post) => {
-    const url = `${SITE_URL}/${post.slug}`;
+    const url = `${SITE_URL}/article/${post.slug}`;
     const date = Date.parse(post.date);
 
     postsXML += `
@@ -18,11 +19,12 @@ const sitemapXml = (allPosts, allProducts) => {
         <priority>0.50</priority>
       </url>`;
 
-      return true;
+    return true;
   });
 
+  // Products
   allProducts.map((product) => {
-    const url = `${SITE_URL}/${product.slug}`;
+    const url = `${SITE_URL}/product/${product.slug}`;
     const date = Date.parse(product.date);
 
     productsXML += `
@@ -32,7 +34,7 @@ const sitemapXml = (allPosts, allProducts) => {
         <priority>0.50</priority>
       </url>`;
 
-      return true;
+    return true;
   });
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -41,6 +43,18 @@ const sitemapXml = (allPosts, allProducts) => {
         <loc>${SITE_URL}</loc>
         <lastmod>0</lastmod>
         <priority>1.00</priority>
+      </url>
+      <url>
+        <loc>${SITE_URL}/category/interviews</loc>
+        <priority>0.80</priority>
+      </url>
+      <url>
+        <loc>${SITE_URL}/category/insights</loc>
+        <priority>0.80</priority>
+      </url>
+      <url>
+        <loc>${SITE_URL}/category/news</loc>
+        <priority>0.80</priority>
       </url>
       ${postsXML}
       ${productsXML}
