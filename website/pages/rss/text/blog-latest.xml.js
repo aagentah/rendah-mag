@@ -9,10 +9,8 @@ const sitemapXml = (posts) => {
   let postsXML = '';
 
   posts.map((post) => {
-    const title = post?.title || '' ? `${post.title}` : '';
-
-    const titleBlock = post?.title ? `${title}` : '';
-
+    const title = post?.title || '' ? post.title : '';
+    const description = post?.description ? post.description : '';
     const url = post?.slug ? `${SITE_URL}/article/${post.slug}` : SITE_URL;
 
     const image = post?.image
@@ -26,9 +24,7 @@ const sitemapXml = (posts) => {
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link>${escapeXml(encodeSpecialChar(url))}</link>
         <description>
-          ${escapeXml(encodeSpecialChar(image))}
-          ${escapeXml(encodeSpecialChar(titleBlock))}
-          ${escapeXml(encodeSpecialChar(readMoreLink))}
+          ${escapeXml(encodeSpecialChar(description))}
         </description>
       </item>
       `;
