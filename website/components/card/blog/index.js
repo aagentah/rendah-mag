@@ -28,73 +28,48 @@ export default function CardBlog({ post, columnCount }) {
   const handleIntersect = (event) => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
-  const cardImage = post ? (
-    <LazyLoad once offset={150} height={imageHeight}>
-      <Image
-        /* Options */
-        src={imageBuilder
+  const cardImage = (
+    <Image
+      /* Options */
+      src={
+        post &&
+        imageBuilder
           .image(post?.coverImage)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
           .fit('clip')
-          .url()}
-        placeholder={imageBuilder
+          .url()
+      }
+      placeholder={
+        post &&
+        imageBuilder
           .image(post?.coverImage)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
           .fit('clip')
           .blur('20')
-          .url()}
-        alt={post?.title}
-        figcaption={null}
-        height={imageHeight}
-        width={null}
-        customClass={null}
-        onClick={null}
-        /* Children */
-        withLinkProps={{
-          type: 'next',
-          href: '/article/[slug]',
-          target: null,
-          routerLink: Link,
-          routerLinkProps: {
-            as: `/article/${post?.slug}`,
-            scroll: false,
-          },
-        }}
-      />
-    </LazyLoad>
-  ) : (
-    <LazyLoad once offset={150} height={imageHeight}>
-      <Image
-        /* Options */
-        src={imageBuilder
-          .image(null)
-          .width(imageUrlWidth * scale)
-          .height(imageHeight * scale)
-          .auto('format')
-          .fit('clip')
-          .url()}
-        placeholder={imageBuilder
-          .image(null)
-          .height(imageHeight / 10)
-          .width(imageUrlWidth / 10)
-          .auto('format')
-          .fit('clip')
-          .blur('20')
-          .url()}
-        alt={null}
-        figcaption={null}
-        height={imageHeight}
-        width={null}
-        customClass={null}
-        onClick={null}
-        /* Children */
-        withLinkProps={null}
-      />
-    </LazyLoad>
+          .url()
+      }
+      alt={post?.title}
+      figcaption={null}
+      height={imageHeight}
+      width={null}
+      customClass={null}
+      onClick={null}
+      /* Children */
+      withLinkProps={{
+        type: 'next',
+        href: '/article/[slug]',
+        target: null,
+        routerLink: Link,
+        routerLinkProps: {
+          as: `/article/${post?.slug}`,
+          scroll: false,
+        },
+      }}
+    />
   );
 
   const cardHeading = (
@@ -114,17 +89,19 @@ export default function CardBlog({ post, columnCount }) {
   return (
     <Observer {...observer}>
       <div className={`card--scroll ${inView && 'in-view'}`}>
-        <Card
-          /* Options */
-          type="block"
-          onClick={null}
-          /* Children */
-          image={cardImage}
-          labelBlock={null}
-          title={post && cardHeading}
-          description={null}
-          button={null}
-        />
+        <LazyLoad once offset={150} height={imageHeight}>
+          <Card
+            /* Options */
+            type="block"
+            onClick={null}
+            /* Children */
+            image={cardImage}
+            labelBlock={null}
+            title={post && cardHeading}
+            description={null}
+            button={null}
+          />
+        </LazyLoad>
       </div>
     </Observer>
   );
