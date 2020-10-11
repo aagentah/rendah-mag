@@ -36,6 +36,11 @@ const productFields = `
   'image2': image2.asset->url,
 `;
 
+const teamFields = `
+  ...,
+  'slug': slug.current,
+`;
+
 const getClient = (preview) => (preview ? previewClient : client);
 
 export const imageBuilder = sanityImage(client);
@@ -153,7 +158,7 @@ export async function getLatestPublishedCypher(preview) {
 export async function getTeamMembers(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "author" && active] | order(order asc){
-      ...,
+      ${teamFields}
     }`);
   return getUniquePosts(results);
 }
