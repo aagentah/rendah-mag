@@ -1,4 +1,6 @@
 .button {
+  opacity: 0;
+  animation: fade-in 0.3s forwards;
   transition: all 0.3s ease-in-out;
   background: transparent;
   box-shadow: none;
@@ -6,8 +8,6 @@
   cursor: pointer;
   position: relative;
   text-decoration: none;
-  opacity: 0;
-  animation: fade-in 0.3s forwards;
 
   @extend .ph3;
   @extend .flex;

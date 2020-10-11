@@ -20,5 +20,7 @@ module.exports = {
     MAILCHIMP_LIST_ID: process.env.MAILCHIMP_LIST_ID,
     MAILCHIMP_API_KEY: process.env.MAILCHIMP_API_KEY,
     IRON_PASSWORD: process.env.IRON_PASSWORD,
+    SITE_URL: proccess.env.SITE_URL,
+    DOMAIN_TYPE: proccess.env.DOMAIN_TYPE,
   },
 };
