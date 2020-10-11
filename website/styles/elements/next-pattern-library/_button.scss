@@ -6,6 +6,9 @@
   cursor: pointer;
   position: relative;
   text-decoration: none;
+  opacity: 0;
+  animation: fade-in 0.3s forwards;
+
   @extend .ph3;
   @extend .flex;
   @extend .align-center;

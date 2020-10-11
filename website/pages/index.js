@@ -22,23 +22,20 @@ export default function Home({ siteConfig }) {
   const [latestNews, setLatestNews] = useState(null);
   const [latestInsights, setLatestInsights] = useState(null);
 
-  const interviewsLenth = 4;
-  const newsLength = 6;
-  const insightsLength = 6;
+  const interviewsLenth = 3;
+  const newsLength = 5;
+  const insightsLength = 5;
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
   const handleAsyncTasks = async () => {
     setLatestFeaturedPost(await getLatestFeaturedPost());
-    setLatestInterviews(
-      await getCategory('interviews', [0, interviewsLenth - 1])
-    );
-    setLatestNews(await getCategory('news', [0, newsLength - 1]));
-    setLatestInsights(await getCategory('insights', [0, insightsLength - 1]));
+    setLatestInterviews(await getCategory('interviews', [0, interviewsLenth]));
+    setLatestNews(await getCategory('news', [0, newsLength]));
+    setLatestInsights(await getCategory('insights', [0, insightsLength]));
   };
 
   useEffect(() => {
-    //
     handleAsyncTasks();
   }, []);
 
@@ -75,7 +72,7 @@ export default function Home({ siteConfig }) {
               </div>
 
               <div className="flex  flex-wrap">
-                {[...Array(interviewsLenth)].map((post, i) => (
+                {[...Array(interviewsLenth + 1)].map((post, i) => (
                   <div key={post?.slug || post} className="col-24  col-12-md">
                     <div className="ph3  pv2">
                       <CardBlog
@@ -138,7 +135,7 @@ export default function Home({ siteConfig }) {
                   </div>
 
                   <div className="flex  flex-wrap">
-                    {[...Array(newsLength)].map((post, i) => (
+                    {[...Array(newsLength + 1)].map((post, i) => (
                       <div
                         key={post?.slug || post}
                         className="col-24  col-12-md"
@@ -203,7 +200,7 @@ export default function Home({ siteConfig }) {
                   </div>
 
                   <div className="flex  flex-wrap">
-                    {[...Array(insightsLength)].map((post, i) => (
+                    {[...Array(insightsLength + 1)].map((post, i) => (
                       <div
                         key={post?.slug || post}
                         className="col-24  col-12-md"
