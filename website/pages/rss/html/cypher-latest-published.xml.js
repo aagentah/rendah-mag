@@ -3,7 +3,7 @@ import blocksToHtml from '@sanity/block-content-to-html';
 
 import { imageBuilder, getLatestPublishedCypher } from '~/lib/sanity/requests';
 
-import { SITE_URL } from '~/constants';
+
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
@@ -61,7 +61,7 @@ const sitemapXml = (cypher) => {
     <rss version="2.0">
       <channel>
         <title>Latest Published Cypher</title>
-        <link>${SITE_URL}</link>
+        <link>${process.env.SITE_URL}</link>
         <description>This is a RSS feed</description>
         ${postsXML}
       </channel>

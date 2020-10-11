@@ -1,6 +1,6 @@
 import sendinblue from './sendinblue';
 
-import { SITE_URL } from '~/constants';
+
 import emailCommon from '~/emails/component/common';
 
 export default (email) => {
@@ -11,11 +11,11 @@ export default (email) => {
     signed up with to access Dominion content.
   `;
 
-  const image = `${SITE_URL}/images/subscribe-banner.png`;
+  const image = `${process.env.SITE_URL}/images/subscribe-banner.png`;
 
   const buttonText = 'Rendah Mag';
 
-  const buttonLink = SITE_URL;
+  const buttonLink = process.env.SITE_URL;
 
   const sendSmtpEmail = {
     sender: {

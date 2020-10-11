@@ -2,7 +2,7 @@ import fs from 'fs';
 import Cors from 'cors';
 import tinify from 'tinify';
 
-import { SITE_URL } from '~/constants';
+
 import initMiddleware from '~/lib/init-middleware';
 
 // Initialize the cors middleware

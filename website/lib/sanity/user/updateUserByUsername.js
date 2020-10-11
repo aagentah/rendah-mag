@@ -5,7 +5,7 @@ import { promisify } from 'util';
 import cloneDeep from 'lodash/cloneDeep';
 
 import client from '../config-write';
-import { SITE_URL } from '~/constants';
+
 
 import updateUserTags from '~/lib/mailchimp/update-user-tags';
 
