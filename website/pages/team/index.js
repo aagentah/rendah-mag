@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Heading } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
@@ -7,7 +8,20 @@ import CardTeam from '~/components/card/team';
 import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import { getSiteConfig, getTeamMembers } from '~/lib/sanity/requests';
 
-export default function Post({ siteConfig, allTeam }) {
+export default function Post({ siteConfig }) {
+  const [team, setTeam] = useState(null);
+  const [teamLength, setTeamLength] = useState(40);
+
+  const handleAsyncTasks = async () => {
+    const team = await getTeamMembers();
+    setTeamLength(team.length);
+    setTeam(team);
+  };
+
+  useEffect(() => {
+    handleAsyncTasks();
+  }, []);
+
   return (
     <Layout
       navOffset="top"
@@ -35,41 +49,33 @@ export default function Post({ siteConfig, allTeam }) {
           />
         </div>
 
-        {allTeam.length === 0 && (
-          <section className="pb3">
-            <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-              No team found.
-            </h2>
-          </section>
-        )}
-
-        {allTeam.length > 0 && (
-          <section className="pb3">
-            <div className="flex  flex-wrap">
-              {allTeam.map((teamMember, i) => (
-                <div key={teamMember._id} className="col-24  col-6-md">
-                  <div className="pa3">
-                    <CardTeam i={i} teamMember={teamMember} columnCount="4" />
-                  </div>
+        <section className="pb3">
+          <div className="flex  flex-wrap">
+            {[...Array(teamLength)].map((member, i) => (
+              <div key={member?.slug || member} className="col-24  col-6-md">
+                <div className="pa3">
+                  <CardTeam
+                    i={i}
+                    teamMember={team && team[i]}
+                    columnCount="4"
+                  />
                 </div>
-              ))}
-            </div>
-          </section>
-        )}
+              </div>
+            ))}
+          </div>
+        </section>
       </Container>
     </Layout>
   );
 }
 
-export async function getServerSideProps({ req }) {
+export async function getStaticProps({ req }) {
   const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
-  const allTeam = await getTeamMembers();
 
   return {
     props: {
       siteConfig,
-      allTeam,
     },
   };
 }
