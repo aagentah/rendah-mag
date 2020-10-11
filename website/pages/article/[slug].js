@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Router, { useRouter } from 'next/router';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
+import map from 'lodash/map';
 
 import HeroPost from '~/components/hero/post';
 
@@ -32,6 +33,7 @@ import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
   imageBuilder,
+  getAllPostsTotal,
   getPostAndMore,
 } from '~/lib/sanity/requests';
 
@@ -201,7 +203,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   return false;
 }
 
-export async function getServerSideProps({ req, params, preview = false }) {
+export async function getStaticProps({ req, params, preview = false }) {
   const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const data = await getPostAndMore(params.slug, preview);
@@ -213,5 +215,20 @@ export async function getServerSideProps({ req, params, preview = false }) {
       post: data.post || null,
       morePosts: data.morePosts || null,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const data = await getAllPostsTotal();
+  const slugs = map(data, 'slug');
+  const slugMap = [];
+
+  for (let i = 0; i < slugs.length; i++) {
+    slugMap.push({ params: { slug: slugs[i] } });
+  }
+
+  return {
+    paths: [...slugMap],
+    fallback: false,
   };
 }

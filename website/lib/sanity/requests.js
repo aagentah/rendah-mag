@@ -83,6 +83,14 @@ export async function getAllPosts(preview) {
   return getUniquePosts(results);
 }
 
+export async function getAllPostsTotal(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) {
+      ${postFields}
+    }`);
+  return getUniquePosts(results);
+}
+
 export async function getCategory(category, range) {
   const rangeFrom = range[0];
   const rangeTo = range[1];
