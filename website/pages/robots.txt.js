@@ -1,9 +1,9 @@
 import React from 'react';
 
-const renderRobots = () => {
+const renderRobots = (domainType) => {
   let sitemapData;
 
-  if (proccess.env.DOMAIN_TYPE === 'production') {
+  if (domainType === 'production') {
     sitemapData = `
     User-agent: *
     Disallow: /404/
@@ -25,7 +25,7 @@ const renderRobots = () => {
 class Robots extends React.Component {
   static async getInitialProps({ res }) {
     res.setHeader('Content-Type', 'text/plain');
-    res.write(renderRobots());
+    res.write(renderRobots(proccess.env.DOMAIN_TYPE));
     res.end();
   }
 }
