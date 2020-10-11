@@ -8,13 +8,12 @@ import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
   getTeamMemberAndPosts,
+  getTeamMembers,
   imageBuilder,
 } from '~/lib/sanity/requests';
 
-export default function Post({ siteConfig, teamMember }) {
-  const { posts } = teamMember;
-
-  console.log('teamMember', teamMember);
+export default function Post({ siteConfig, member }) {
+  const { posts } = member;
 
   return (
     <Layout
@@ -22,9 +21,9 @@ export default function Post({ siteConfig, teamMember }) {
       navOnWhite
       meta={{
         siteConfig,
-        title: teamMember.name,
-        description: teamMember.description,
-        image: teamMember.image,
+        title: member.name,
+        description: member.description,
+        image: member.image,
       }}
       preview={null}
     >
@@ -34,21 +33,21 @@ export default function Post({ siteConfig, teamMember }) {
             <Image
               /* Options */
               src={imageBuilder
-                .image(teamMember.image)
+                .image(member.image)
                 .height(250)
                 .width(250)
                 .auto('format')
                 .fit('clip')
                 .url()}
               placeholder={imageBuilder
-                .image(teamMember.image)
+                .image(member.image)
                 .height(25)
                 .width(25)
                 .auto('format')
                 .fit('clip')
                 .blur('20')
                 .url()}
-              alt={teamMember.name}
+              alt={member.name}
               figcaption={null}
               height={250}
               width={null}
@@ -63,7 +62,7 @@ export default function Post({ siteConfig, teamMember }) {
               <Heading
                 /* Options */
                 htmlEntity="h1"
-                text={teamMember.name}
+                text={member.name}
                 color="black"
                 size="small"
                 truncate={null}
@@ -76,7 +75,7 @@ export default function Post({ siteConfig, teamMember }) {
               <Label
                 /* Options */
                 customClass={null}
-                text={`(${teamMember.alias})`}
+                text={`(${member.alias})`}
                 color="black"
                 backgroundColor="white"
                 onClick={null}
@@ -88,7 +87,7 @@ export default function Post({ siteConfig, teamMember }) {
               <Label
                 /* Options */
                 customClass="ph2"
-                text={teamMember.role}
+                text={member.role}
                 color="white"
                 backgroundColor="black"
                 onClick={null}
@@ -99,7 +98,7 @@ export default function Post({ siteConfig, teamMember }) {
             <div className="db  ph2  pb3  taj">
               <Copy
                 /* Options */
-                text={teamMember.description}
+                text={member.description}
                 color="black"
                 size="medium"
                 truncate={null}
@@ -114,7 +113,7 @@ export default function Post({ siteConfig, teamMember }) {
               <Heading
                 /* Options */
                 htmlEntity="h2"
-                text={`Latest from ${teamMember.name}.`}
+                text={`Latest from ${member.name}.`}
                 color="black"
                 size="medium"
                 truncate={null}
@@ -140,15 +139,29 @@ export default function Post({ siteConfig, teamMember }) {
   );
 }
 
-export async function getServerSideProps({ req, params, preview = false }) {
+export async function getStaticProps({ req, params, preview = false }) {
   const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
-  const teamMember = await getTeamMemberAndPosts(params.slug);
+  const member = await getTeamMemberAndPosts(params.slug);
 
   return {
     props: {
       siteConfig,
-      teamMember,
+      member,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const team = await getTeamMembers();
+
+  return {
+    paths:
+      team.map((member) => ({
+        params: {
+          slug: member.slug,
+        },
+      })) || [],
+    fallback: true,
   };
 }
