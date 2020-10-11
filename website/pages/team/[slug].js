@@ -16,7 +16,6 @@ import {
 
 export default function Post({ siteConfig, member, preview }) {
   const router = useRouter();
-  const { posts } = member;
 
   if (!router.isFallback && !member?.slug) {
     Router.push('/404');
@@ -115,7 +114,7 @@ export default function Post({ siteConfig, member, preview }) {
             </div>
           </div>
 
-          {posts.length > 0 && (
+          {member?.posts.length > 0 && (
             <section className="pb5">
               <div className="pb4">
                 <Heading
@@ -132,7 +131,7 @@ export default function Post({ siteConfig, member, preview }) {
               </div>
 
               <div className="flex  flex-wrap">
-                {posts.map((post, i) => (
+                {member?.posts.map((post, i) => (
                   <div key={post.slug} className="col-24  col-6-md">
                     <div className="ph3  pv2">
                       <CardBlog i={i} post={post} columnCount={4} />
