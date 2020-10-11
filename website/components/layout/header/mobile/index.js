@@ -123,81 +123,73 @@ export default function HeaderMobile({
               </span>
             </Link>
           </li>
-          {
-            // <li className="nav__item  db  pl4  pb3">
-            //   <Link href="/guest-mixes">
-            //     <span
-            //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-            //       onClick={toggleNav}
-            //     >
-            //       Mixes
-            //     </span>
-            //   </Link>
-            // </li>
-          }
-          {
-            // <li className="nav__item  db  pl4  pb3">
-            //   <Link href="/store">
-            //     <span
-            //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-            //       onClick={toggleNav}
-            //     >
-            //       Store
-            //     </span>
-            //   </Link>
-            // </li>
-          }
+          <li className="nav__item  db  pl4  pb3">
+            <Link href="/guest-mixes">
+              <span
+                className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                onClick={toggleNav}
+              >
+                Mixes
+              </span>
+            </Link>
+          </li>
+          <li className="nav__item  db  pl4  pb3">
+            <Link href="/store">
+              <span
+                className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                onClick={toggleNav}
+              >
+                Store
+              </span>
+            </Link>
+          </li>
 
           {user ? (
             <>
-              {
-                // <li className="nav__item  db  pl4  pb3">
-                //   <Link href="/profile">
-                //     <span
-                //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                //       onClick={toggleNav}
-                //     >
-                //       Profile
-                //     </span>
-                //   </Link>
-                // </li>
-                // <li className="nav__item  db  pl4  pb3">
-                //   <span
-                //     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                //     onClick={() => {
-                //       toggleNav();
-                //       handleLogout();
-                //     }}
-                //   >
-                //     Log Out
-                //   </span>
-                // </li>
-              }
+              <li className="nav__item  db  pl4  pb3">
+                <Link href="/profile">
+                  <span
+                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                    onClick={toggleNav}
+                  >
+                    Profile
+                  </span>
+                </Link>
+              </li>
+              <li className="nav__item  db  pl4  pb3">
+                <span
+                  className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                  onClick={() => {
+                    toggleNav();
+                    handleLogout();
+                  }}
+                >
+                  Log Out
+                </span>
+              </li>
             </>
           ) : (
             <>
-              {
-                // <li className="nav__item  db  pl4  pb3">
-                //   <Link href="/signup">
-                //     <span
-                //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                //       onClick={toggleNav}
-                //     >
-                //       Sign Up
-                //     </span>
-                //   </Link>
-                // </li>
-                // <li className="nav__item  db  pl4  pb3">
-                //   <Link href="/login">
-                //     <span
-                //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                //       onClick={toggleNav}
-                //     >
-                //       Login
-                //     </span>
-                //   </Link>
-                // </li>
-              }
+              <li className="nav__item  db  pl4  pb3">
+                <Link href="/signup">
+                  <span
+                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                    onClick={toggleNav}
+                  >
+                    Sign Up
+                  </span>
+                </Link>
+              </li>
+              <li className="nav__item  db  pl4  pb3">
+                <Link href="/login">
+                  <span
+                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                    onClick={toggleNav}
+                  >
+                    Login
+                  </span>
+                </Link>
+              </li>
             </>
           )}
         </ul>
