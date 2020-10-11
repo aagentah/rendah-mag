@@ -14,7 +14,7 @@ import {
   imageBuilder,
 } from '~/lib/sanity/requests';
 
-export default function Post({ siteConfig, member, preview }) {
+export default function Post({ siteConfig, member }) {
   const router = useRouter();
 
   if (!router.isFallback && !member?.slug) {
@@ -32,7 +32,7 @@ export default function Post({ siteConfig, member, preview }) {
           description: member.description,
           image: member.image,
         }}
-        preview={preview}
+        preview={null}
       >
         <Container>
           <div className="flex  flex-wrap  pt4  pb5">
