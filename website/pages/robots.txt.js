@@ -25,7 +25,7 @@ const renderRobots = (domainType) => {
 class Robots extends React.Component {
   static async getInitialProps({ res }) {
     res.setHeader('Content-Type', 'text/plain');
-    res.write(renderRobots(proccess.env.DOMAIN_TYPE));
+    res.write(renderRobots(process.env.DOMAIN_TYPE));
     res.end();
   }
 }
