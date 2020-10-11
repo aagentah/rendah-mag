@@ -17,16 +17,13 @@ import {
 } from '~/lib/sanity/requests';
 
 export default function Home({ siteConfig }) {
-  const [FeaturedPost, setFeaturedPost] = useState(null);
-  const [Interviews, setInterviews] = useState(null);
-  const [News, setNews] = useState(null);
-  const [Insights, setInsights] = useState(null);
-
+  const [featuredPost, setFeaturedPost] = useState(null);
+  const [interviews, setInterviews] = useState(null);
+  const [news, setNews] = useState(null);
+  const [insights, setInsights] = useState(null);
   const interviewsLenth = 3;
   const newsLength = 5;
   const insightsLength = 5;
-
-  const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
   const handleAsyncTasks = async () => {
     setFeaturedPost(await getFeaturedPost());
@@ -38,6 +35,8 @@ export default function Home({ siteConfig }) {
   useEffect(() => {
     handleAsyncTasks();
   }, []);
+
+  const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
   return (
     <>
@@ -52,7 +51,7 @@ export default function Home({ siteConfig }) {
         }}
         preview={null}
       >
-        <HeroHome post={FeaturedPost} />
+        <HeroHome post={featuredPost} />
 
         <div className="pt5  pt6-md">
           <Container>
@@ -77,7 +76,7 @@ export default function Home({ siteConfig }) {
                     <div className="ph3  pv2">
                       <CardBlog
                         i={i}
-                        post={Interviews?.articles && Interviews?.articles[i]}
+                        post={interviews?.articles && interviews?.articles[i]}
                         columnCount={2}
                       />
                     </div>
@@ -90,7 +89,7 @@ export default function Home({ siteConfig }) {
                   /* Options */
                   type="secondary"
                   size="medium"
-                  text="More Interviews"
+                  text="More interviews"
                   color="black"
                   fluid={false}
                   icon={buttonIcon}
@@ -121,7 +120,7 @@ export default function Home({ siteConfig }) {
                     <Heading
                       /* Options */
                       htmlEntity="h2"
-                      text=" News."
+                      text=" news."
                       color="black"
                       size="medium"
                       truncate={null}
@@ -140,7 +139,7 @@ export default function Home({ siteConfig }) {
                         <div className="ph3  pv2">
                           <CardBlog
                             i={i}
-                            post={News?.articles && News?.articles[i]}
+                            post={news?.articles && news?.articles[i]}
                             columnCount={4}
                           />
                         </div>
@@ -153,7 +152,7 @@ export default function Home({ siteConfig }) {
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="More News"
+                      text="More news"
                       color="black"
                       fluid={false}
                       icon={buttonIcon}
@@ -184,7 +183,7 @@ export default function Home({ siteConfig }) {
                     <Heading
                       /* Options */
                       htmlEntity="h2"
-                      text=" Insights."
+                      text=" insights."
                       color="black"
                       size="medium"
                       truncate={null}
@@ -203,7 +202,7 @@ export default function Home({ siteConfig }) {
                         <div className="ph3  pv2">
                           <CardBlog
                             i={i}
-                            post={Insights?.articles && Insights?.articles[i]}
+                            post={insights?.articles && insights?.articles[i]}
                             columnCount={4}
                           />
                         </div>
@@ -216,7 +215,7 @@ export default function Home({ siteConfig }) {
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="More Insights"
+                      text="More insights"
                       color="black"
                       fluid={false}
                       icon={buttonIcon}
