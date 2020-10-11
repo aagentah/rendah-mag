@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useState } from 'react';
-// import { Parallax } from 'react-scroll-parallax';
 
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
@@ -20,25 +19,25 @@ export default function HeroPost({ post }) {
   if (app.deviceSize === 'lg') imageUrlWidth = 1550;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
 
-  const heroImage = (
+  const heroImage = post ? (
     <Image
       /* Options */
       src={imageBuilder
-        .image(post.coverImage)
+        .image(post?.coverImage)
         .width(imageUrlWidth * scale)
         .height(imageHeight * scale)
         .auto('format')
         .fit('clip')
         .url()}
       placeholder={imageBuilder
-        .image(post.coverImage)
+        .image(post?.coverImage)
         .height(imageHeight / 10)
         .width(imageUrlWidth / 10)
         .auto('format')
         .fit('clip')
         .blur('50')
         .url()}
-      alt={post.title}
+      alt={post?.title}
       figcaption={null}
       height={imageHeight}
       width={null}
@@ -51,10 +50,24 @@ export default function HeroPost({ post }) {
         target: null,
         routerLink: Link,
         routerLinkProps: {
-          as: `/article/${post.slug}`,
+          as: `/article/${post?.slug}`,
           scroll: false,
         },
       }}
+    />
+  ) : (
+    <Image
+      /* Options */
+      src={null}
+      placeholder={null}
+      alt={null}
+      figcaption={null}
+      height={imageHeight}
+      width={null}
+      customClass={null}
+      onClick={null}
+      /* Children */
+      withLinkProps={null}
     />
   );
 
@@ -62,7 +75,7 @@ export default function HeroPost({ post }) {
     <Heading
       /* Options */
       htmlEntity="h1"
-      text={post.title}
+      text={post?.title}
       color="white"
       size="x-large"
       truncate={null}
@@ -93,7 +106,7 @@ export default function HeroPost({ post }) {
         target: null,
         routerLink: Link,
         routerLinkProps: {
-          as: `/article/${post.slug}`,
+          as: `/article/${post?.slug}`,
           scroll: false,
         },
       }}
@@ -102,23 +115,17 @@ export default function HeroPost({ post }) {
 
   return (
     <>
-      {
-        //   <Parallax className="z1  nt3" y={['-50px', '50px']} tagOuter="figure">
-      }
       <div className="hero--darken-all">
         <Hero
           /* Options */
           height={imageHeight}
           /* Children */
           image={heroImage}
-          title={heroHeading}
+          title={post && heroHeading}
           description={null}
-          button={heroButton}
+          button={post && heroButton}
         />
       </div>
-      {
-        //     </Parallax>
-      }
     </>
   );
 }

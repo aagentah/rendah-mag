@@ -67,7 +67,7 @@ export async function getPostWithSearch(slug) {
   return data;
 }
 
-export async function getLatestFeaturedPost(preview) {
+export async function getFeaturedPost(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "post" && featured] | order(publishedAt desc) [0] {
       ${postFields}
