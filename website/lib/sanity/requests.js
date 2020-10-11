@@ -166,7 +166,7 @@ export async function getTeamMembers(preview) {
 export async function getTeamMemberAndPosts(slug, preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "author" && active && slug.current == $slug] [0] {
-      ...,
+      ${teamFields}
       "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc) [0..23] {
       ${postFields}
     }
