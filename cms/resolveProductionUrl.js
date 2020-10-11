@@ -13,5 +13,5 @@ export default function resolveProductionUrl(document) {
     default:
   }
 
-  return `https://rendahmag.com/api/sanity/preview?secret=${previewSecret}&page=${page}&slug=${document.slug.current}`;
+  return `http://localhost:3000/api/sanity/preview?secret=${previewSecret}&page=${page}&slug=${document.slug.current}`;
 }
