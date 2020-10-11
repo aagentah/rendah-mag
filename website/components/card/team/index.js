@@ -28,50 +28,54 @@ export default function CardBlog({ teamMember, columnCount }) {
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   const cardImage = (
-    <LazyLoad once offset={150} height={imageHeight}>
-      <Image
-        /* Options */
-        src={imageBuilder
-          .image(teamMember.image)
+    <Image
+      /* Options */
+      src={
+        teamMember &&
+        imageBuilder
+          .image(teamMember?.image)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
           .fit('clip')
-          .url()}
-        placeholder={imageBuilder
-          .image(teamMember.image)
+          .url()
+      }
+      placeholder={
+        teamMember &&
+        imageBuilder
+          .image(teamMember?.image)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
           .fit('clip')
           .blur('20')
-          .url()}
-        alt={teamMember.title}
-        figcaption={null}
-        height={imageHeight}
-        width={null}
-        customClass={null}
-        onClick={null}
-        /* Children */
-        withLinkProps={{
-          type: 'next',
-          href: '/team/[slug]',
-          target: null,
-          routerLink: Link,
-          routerLinkProps: {
-            as: `/team/${teamMember.slug.current}`,
-            scroll: false,
-          },
-        }}
-      />
-    </LazyLoad>
+          .url()
+      }
+      alt={teamMember?.title}
+      figcaption={null}
+      height={imageHeight}
+      width={null}
+      customClass={null}
+      onClick={null}
+      /* Children */
+      withLinkProps={{
+        type: 'next',
+        href: '/team/[slug]',
+        target: null,
+        routerLink: Link,
+        routerLinkProps: {
+          as: `/team/${teamMember?.slug.current}`,
+          scroll: false,
+        },
+      }}
+    />
   );
 
-  const cardLabel = teamMember.alias ? (
+  const cardLabel = teamMember?.alias ? (
     <Label
       /* Options */
       customClass="ph2"
-      text={teamMember.alias}
+      text={teamMember?.alias}
       color="white"
       backgroundColor="black"
       onClick={null}
@@ -84,7 +88,7 @@ export default function CardBlog({ teamMember, columnCount }) {
     <Heading
       /* Options */
       htmlEntity="h2"
-      text={teamMember.name}
+      text={teamMember?.name}
       color="black"
       size={headingSize}
       truncate={4}
@@ -97,17 +101,19 @@ export default function CardBlog({ teamMember, columnCount }) {
   return (
     <Observer {...observer}>
       <div className={`card--team  card--scroll  ${inView && 'in-view'}`}>
-        <Card
-          /* Options */
-          type="block"
-          onClick={null}
-          /* Children */
-          image={cardImage}
-          labelBlock={[cardLabel]}
-          title={cardHeading}
-          description={null}
-          button={null}
-        />
+        <LazyLoad once offset={150} height={imageHeight}>
+          <Card
+            /* Options */
+            type="block"
+            onClick={null}
+            /* Children */
+            image={cardImage}
+            labelBlock={[cardLabel]}
+            title={cardHeading}
+            description={null}
+            button={null}
+          />
+        </LazyLoad>
       </div>
     </Observer>
   );

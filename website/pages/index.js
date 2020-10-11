@@ -21,15 +21,15 @@ export default function Home({ siteConfig }) {
   const [interviews, setInterviews] = useState(null);
   const [news, setNews] = useState(null);
   const [insights, setInsights] = useState(null);
-  const interviewsLenth = 3;
-  const newsLength = 5;
-  const insightsLength = 5;
+  const interviewsLenth = 4;
+  const newsLength = 6;
+  const insightsLength = 6;
 
   const handleAsyncTasks = async () => {
     setFeaturedPost(await getFeaturedPost());
-    setInterviews(await getCategory('interviews', [0, interviewsLenth]));
-    setNews(await getCategory('news', [0, newsLength]));
-    setInsights(await getCategory('insights', [0, insightsLength]));
+    setInterviews(await getCategory('interviews', [0, interviewsLenth - 1]));
+    setNews(await getCategory('news', [0, newsLength - 1]));
+    setInsights(await getCategory('insights', [0, insightsLength - 1]));
   };
 
   useEffect(() => {
@@ -71,12 +71,12 @@ export default function Home({ siteConfig }) {
               </div>
 
               <div className="flex  flex-wrap">
-                {[...Array(interviewsLenth + 1)].map((post, i) => (
+                {[...Array(interviewsLenth)].map((post, i) => (
                   <div key={post?.slug || post} className="col-24  col-12-md">
                     <div className="ph3  pv2">
                       <CardBlog
                         i={i}
-                        post={interviews?.articles && interviews?.articles[i]}
+                        post={interviews?.articles[i] || null}
                         columnCount={2}
                       />
                     </div>
@@ -131,7 +131,7 @@ export default function Home({ siteConfig }) {
                   </div>
 
                   <div className="flex  flex-wrap">
-                    {[...Array(newsLength + 1)].map((post, i) => (
+                    {[...Array(newsLength)].map((post, i) => (
                       <div
                         key={post?.slug || post}
                         className="col-24  col-12-md"
@@ -194,7 +194,7 @@ export default function Home({ siteConfig }) {
                   </div>
 
                   <div className="flex  flex-wrap">
-                    {[...Array(insightsLength + 1)].map((post, i) => (
+                    {[...Array(insightsLength)].map((post, i) => (
                       <div
                         key={post?.slug || post}
                         className="col-24  col-12-md"
