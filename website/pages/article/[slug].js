@@ -53,11 +53,15 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
-  useEffect(() => {
-    if (!router.isFallback && !post?.slug) Router.push('/404');
-  }, [router.isFallback, post.slug]);
+  if (!router.isFallback && !post?.slug) {
+    return false;
+  }
 
-  if (router.isFallback) return <p>Loading...</p>;
+  // useEffect(() => {
+  //   if (!router.isFallback && !post?.slug) Router.push('/404');
+  // }, [router.isFallback, post?.slug]);
+  //
+  // if (router.isFallback) return <p>Loading...</p>;
 
   if (!router.isFallback && post?.slug) {
     return (
@@ -204,7 +208,6 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 }
 
 export async function getStaticProps({ req, params, preview = false }) {
-  console.log('preview', preview);
   const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const data = await getPostAndMore(params.slug, preview);
@@ -221,15 +224,14 @@ export async function getStaticProps({ req, params, preview = false }) {
 
 export async function getStaticPaths() {
   const data = await getAllPostsTotal();
-  const slugs = map(data, 'slug');
-  const slugMap = [];
-
-  for (let i = 0; i < slugs.length; i++) {
-    slugMap.push({ params: { slug: slugs[i] } });
-  }
 
   return {
-    paths: [...slugMap],
+    paths:
+      data.map((article) => ({
+        params: {
+          slug: article.slug,
+        },
+      })) || [],
     fallback: true,
   };
 }
