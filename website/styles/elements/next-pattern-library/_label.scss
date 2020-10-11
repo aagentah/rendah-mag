@@ -1,5 +1,8 @@
 .label {
   transition: all 0.3s ease-in-out;
+  opacity: 0;
+  animation: fade-in 0.3s forwards;
+
   @extend .pv1;
   @extend .f6;
 

@@ -1,4 +1,7 @@
 .heading {
+  opacity: 0;
+  animation: fade-in 0.3s forwards;
+
   @extend .t-primary;
   @extend .bold;
   @extend .dib;
