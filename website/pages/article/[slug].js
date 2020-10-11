@@ -54,14 +54,8 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   if (!router.isFallback && !post?.slug) {
-    return false;
+    Router.push('/404');
   }
-
-  // useEffect(() => {
-  //   if (!router.isFallback && !post?.slug) Router.push('/404');
-  // }, [router.isFallback, post?.slug]);
-  //
-  // if (router.isFallback) return <p>Loading...</p>;
 
   if (!router.isFallback && post?.slug) {
     return (
