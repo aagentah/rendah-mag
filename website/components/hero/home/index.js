@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useState } from 'react';
-// import { Parallax } from 'react-scroll-parallax';
 
 import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
@@ -116,9 +115,6 @@ export default function HeroPost({ post }) {
 
   return (
     <>
-      {
-        //   <Parallax className="z1  nt3" y={['-50px', '50px']} tagOuter="figure">
-      }
       <div className="hero--darken-all">
         <Hero
           /* Options */
@@ -130,9 +126,6 @@ export default function HeroPost({ post }) {
           button={post && heroButton}
         />
       </div>
-      {
-        //     </Parallax>
-      }
     </>
   );
 }

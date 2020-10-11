@@ -12,15 +12,15 @@ import CardProduct from '~/components/card/product';
 import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
-  getLatestFeaturedPost,
+  getFeaturedPost,
   getCategory,
 } from '~/lib/sanity/requests';
 
 export default function Home({ siteConfig }) {
-  const [latestFeaturedPost, setLatestFeaturedPost] = useState(null);
-  const [latestInterviews, setLatestInterviews] = useState(null);
-  const [latestNews, setLatestNews] = useState(null);
-  const [latestInsights, setLatestInsights] = useState(null);
+  const [FeaturedPost, setFeaturedPost] = useState(null);
+  const [Interviews, setInterviews] = useState(null);
+  const [News, setNews] = useState(null);
+  const [Insights, setInsights] = useState(null);
 
   const interviewsLenth = 3;
   const newsLength = 5;
@@ -29,10 +29,10 @@ export default function Home({ siteConfig }) {
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
   const handleAsyncTasks = async () => {
-    setLatestFeaturedPost(await getLatestFeaturedPost());
-    setLatestInterviews(await getCategory('interviews', [0, interviewsLenth]));
-    setLatestNews(await getCategory('news', [0, newsLength]));
-    setLatestInsights(await getCategory('insights', [0, insightsLength]));
+    setFeaturedPost(await getFeaturedPost());
+    setInterviews(await getCategory('interviews', [0, interviewsLenth]));
+    setNews(await getCategory('news', [0, newsLength]));
+    setInsights(await getCategory('insights', [0, insightsLength]));
   };
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Home({ siteConfig }) {
         }}
         preview={null}
       >
-        <HeroHome post={latestFeaturedPost} />
+        <HeroHome post={FeaturedPost} />
 
         <div className="pt5  pt6-md">
           <Container>
@@ -61,7 +61,7 @@ export default function Home({ siteConfig }) {
                 <Heading
                   /* Options */
                   htmlEntity="h2"
-                  text="Latest interviews."
+                  text=" interviews."
                   color="black"
                   size="medium"
                   truncate={null}
@@ -77,10 +77,7 @@ export default function Home({ siteConfig }) {
                     <div className="ph3  pv2">
                       <CardBlog
                         i={i}
-                        post={
-                          latestInterviews?.articles &&
-                          latestInterviews?.articles[i]
-                        }
+                        post={Interviews?.articles && Interviews?.articles[i]}
                         columnCount={2}
                       />
                     </div>
@@ -124,7 +121,7 @@ export default function Home({ siteConfig }) {
                     <Heading
                       /* Options */
                       htmlEntity="h2"
-                      text="Latest news."
+                      text=" news."
                       color="black"
                       size="medium"
                       truncate={null}
@@ -143,9 +140,7 @@ export default function Home({ siteConfig }) {
                         <div className="ph3  pv2">
                           <CardBlog
                             i={i}
-                            post={
-                              latestNews?.articles && latestNews?.articles[i]
-                            }
+                            post={News?.articles && News?.articles[i]}
                             columnCount={4}
                           />
                         </div>
@@ -189,7 +184,7 @@ export default function Home({ siteConfig }) {
                     <Heading
                       /* Options */
                       htmlEntity="h2"
-                      text="Latest Insights."
+                      text=" Insights."
                       color="black"
                       size="medium"
                       truncate={null}
@@ -208,10 +203,7 @@ export default function Home({ siteConfig }) {
                         <div className="ph3  pv2">
                           <CardBlog
                             i={i}
-                            post={
-                              latestInsights?.articles &&
-                              latestInsights?.articles[i]
-                            }
+                            post={Insights?.articles && Insights?.articles[i]}
                             columnCount={4}
                           />
                         </div>
