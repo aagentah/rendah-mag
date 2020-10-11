@@ -8,7 +8,7 @@ import HeroHome from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
 import CardProduct from '~/components/card/product';
 
-import getSiteConfigCookies from '~/lib/get-site-config-cookies';
+
 import { getSiteConfig, getCategory } from '~/lib/sanity/requests';
 
 export default function Category({ siteConfig, category }) {
@@ -65,7 +65,7 @@ export default function Category({ siteConfig, category }) {
 
 export async function getServerSideProps({ req, params, preview = false }) {
   const cookies = req?.headers?.cookie;
-  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
+  const siteConfig = await getSiteConfig();
   const category = await getCategory(params.slug, [0, 99]);
 
   return {

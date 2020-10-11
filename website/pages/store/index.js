@@ -12,7 +12,7 @@ import CardProduct from '~/components/card/product';
 import HeroStore from '~/components/hero/store';
 import { SNIPCART_API_KEY } from '~/constants';
 
-import getSiteConfigCookies from '~/lib/get-site-config-cookies';
+
 import { getSiteConfig, getAllProducts } from '~/lib/sanity/requests';
 
 export default function Store({ siteConfig }) {
@@ -128,7 +128,7 @@ export default function Store({ siteConfig }) {
 
 export async function getStaticProps({ req }) {
   const cookies = req?.headers?.cookie;
-  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
+  const siteConfig = await getSiteConfig();
 
   return {
     props: {
