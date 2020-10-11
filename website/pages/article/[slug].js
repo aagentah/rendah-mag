@@ -204,6 +204,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 }
 
 export async function getStaticProps({ req, params, preview = false }) {
+  console.log('preview', preview);
   const cookies = req?.headers?.cookie;
   const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
   const data = await getPostAndMore(params.slug, preview);
@@ -229,6 +230,6 @@ export async function getStaticPaths() {
 
   return {
     paths: [...slugMap],
-    fallback: false,
+    fallback: true,
   };
 }
