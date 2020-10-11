@@ -121,7 +121,7 @@ export default function Home({ siteConfig }) {
                     <Heading
                       /* Options */
                       htmlEntity="h2"
-                      text=" news."
+                      text=" News."
                       color="black"
                       size="medium"
                       truncate={null}
