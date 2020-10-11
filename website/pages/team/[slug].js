@@ -145,6 +145,8 @@ export default function Post({ siteConfig, member, preview }) {
       </Layout>
     );
   }
+
+  return false;
 }
 
 export async function getStaticProps({ req, params, preview = false }) {
