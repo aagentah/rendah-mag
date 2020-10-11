@@ -4,7 +4,6 @@ import { withRouter } from 'next/router';
 import { useApp, useDispatchApp } from '~/context-provider/app';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { IS_ECCOMERCE, SNIPCART_API_KEY } from '~/constants';
-import { SITE_URL } from '~/constants';
 
 const Meta = (props) => {
   const app = useApp();
@@ -43,13 +42,13 @@ const Meta = (props) => {
       '@graph': [
         {
           '@type': 'Organization',
-          '@id': `${SITE_URL}/#organization`,
+          '@id': `${process.env.SITE_URL}/#organization`,
           name: siteTitle,
-          url: SITE_URL,
+          url: process.env.SITE_URL,
           sameAs: makeSchemaSocials(),
           logo: {
             '@type': 'ImageObject',
-            '@id': `${SITE_URL}/#logo`,
+            '@id': `${process.env.SITE_URL}/#logo`,
             inLanguage: 'en-US',
             url: siteImage,
             width: 1500,
@@ -59,15 +58,15 @@ const Meta = (props) => {
         },
         {
           '@type': 'WebSite',
-          '@id': `${SITE_URL}/#website`,
-          url: SITE_URL,
+          '@id': `${process.env.SITE_URL}/#website`,
+          url: process.env.SITE_URL,
           name: siteTitle,
           description: siteDesc,
-          publisher: { '@id': `${SITE_URL}/#organization` },
+          publisher: { '@id': `${process.env.SITE_URL}/#organization` },
           potentialAction: [
             {
               '@type': 'SearchAction',
-              target: `${SITE_URL}/search/{search_term_string}`,
+              target: `${process.env.SITE_URL}/search/{search_term_string}`,
               'query-input': 'required name=search_term_string',
             },
           ],
@@ -75,11 +74,11 @@ const Meta = (props) => {
         },
         {
           '@type': 'CollectionPage',
-          '@id': `${SITE_URL}/#webpage`,
-          url: SITE_URL,
+          '@id': `${process.env.SITE_URL}/#webpage`,
+          url: process.env.SITE_URL,
           name: siteTitle,
-          isPartOf: { '@id': `${SITE_URL}#website` },
-          about: { '@id': `${SITE_URL}/#organization` },
+          isPartOf: { '@id': `${process.env.SITE_URL}#website` },
+          about: { '@id': `${process.env.SITE_URL}/#organization` },
           description: siteDesc,
           inLanguage: 'en-US',
         },
@@ -123,7 +122,10 @@ const Meta = (props) => {
   return (
     <>
       <Head>
-        <link rel="canonical" href={`${SITE_URL}${router.asPath}`} />
+        <link
+          rel="canonical"
+          href={`${process.env.SITE_URL}${router.asPath}`}
+        />
 
         <title>
           {process.env.NODE_ENV === 'development' ? '(Local) ' : ''}
@@ -141,7 +143,10 @@ const Meta = (props) => {
         <meta property="og:image" content={imageVal || siteImage} />
         <meta property="og:title" content={`${titleVal} | ${siteTitle}`} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`${SITE_URL}${router.asPath}`} />
+        <meta
+          property="og:url"
+          content={`${process.env.SITE_URL}${router.asPath}`}
+        />
         <meta property="og:description" content={descVal || siteDesc} />
         <meta property="og:image" content={imageVal || siteImage} />
 

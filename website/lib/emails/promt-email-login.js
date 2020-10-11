@@ -13,7 +13,7 @@
 // export default (username, hash, salt) => {
 //   const html = `
 //     <p>
-//       ${SITE_URL}/login?username=${username}&hash=${hash}&salt=${salt}&fwdRoute=profile
+//       ${process.env.SITE_URL}/login?username=${username}&hash=${hash}&salt=${salt}&fwdRoute=profile
 //     </p>
 //   `;
 //
@@ -38,7 +38,7 @@
 //
 import sendinblue from './sendinblue';
 
-import { SITE_URL } from '~/constants';
+
 
 export default (username, hash, salt) => {
   const html = `
@@ -47,7 +47,7 @@ export default (username, hash, salt) => {
         Click below to login and change your Rendah Mag password.
       </p>
       <p>
-        ${SITE_URL}/login?username=${username}&hash=${hash}&salt=${salt}&fwdRoute=profile
+        ${process.env.SITE_URL}/login?username=${username}&hash=${hash}&salt=${salt}&fwdRoute=profile
       </p>
     </div>
     `;

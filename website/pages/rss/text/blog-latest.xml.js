@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { getAllPosts, imageBuilder } from '~/lib/sanity/requests';
-import { SITE_URL } from '~/constants';
+
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
@@ -11,7 +11,7 @@ const sitemapXml = (posts) => {
   posts.map((post) => {
     const title = post?.title || '' ? post.title : '';
     const description = post?.description ? post.description : '';
-    const url = post?.slug ? `${SITE_URL}/article/${post.slug}` : SITE_URL;
+    const url = post?.slug ? `${process.env.SITE_URL}/article/${post.slug}` : process.env.SITE_URL;
 
     const image = post?.image
       ? imageBuilder.image(post.image).auto('format').url()
@@ -36,7 +36,7 @@ const sitemapXml = (posts) => {
     <rss version="2.0">
       <channel>
         <title>RSS Feed</title>
-        <link>${SITE_URL}</link>
+        <link>${process.env.SITE_URL}</link>
         <description>This is a RSS feed</description>
         ${postsXML}
       </channel>

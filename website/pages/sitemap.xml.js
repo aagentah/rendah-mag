@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { getAllPosts, getAllProducts } from '~/lib/sanity/requests';
-import { SITE_URL } from '~/constants';
+
 
 const sitemapXml = (allPosts, allProducts) => {
   let postsXML = '';
@@ -9,7 +9,7 @@ const sitemapXml = (allPosts, allProducts) => {
 
   // Posts
   allPosts.map((post) => {
-    const url = `${SITE_URL}/article/${post.slug}`;
+    const url = `${process.env.SITE_URL}/article/${post.slug}`;
     const date = Date.parse(post.date);
 
     postsXML += `
@@ -24,7 +24,7 @@ const sitemapXml = (allPosts, allProducts) => {
 
   // Products
   allProducts.map((product) => {
-    const url = `${SITE_URL}/product/${product.slug}`;
+    const url = `${process.env.SITE_URL}/product/${product.slug}`;
     const date = Date.parse(product.date);
 
     productsXML += `
@@ -40,20 +40,20 @@ const sitemapXml = (allPosts, allProducts) => {
   return `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
-        <loc>${SITE_URL}</loc>
+        <loc>${process.env.SITE_URL}</loc>
         <lastmod>0</lastmod>
         <priority>1.00</priority>
       </url>
       <url>
-        <loc>${SITE_URL}/category/interviews</loc>
+        <loc>${process.env.SITE_URL}/category/interviews</loc>
         <priority>0.80</priority>
       </url>
       <url>
-        <loc>${SITE_URL}/category/insights</loc>
+        <loc>${process.env.SITE_URL}/category/insights</loc>
         <priority>0.80</priority>
       </url>
       <url>
-        <loc>${SITE_URL}/category/news</loc>
+        <loc>${process.env.SITE_URL}/category/news</loc>
         <priority>0.80</priority>
       </url>
       ${postsXML}
