@@ -9,7 +9,6 @@ import HeroHome from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
 import CardProduct from '~/components/card/product';
 
-import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
   getFeaturedPost,
@@ -251,7 +250,7 @@ export default function Home({ siteConfig }) {
 
 export async function getStaticProps({ req }) {
   const cookies = req?.headers?.cookie;
-  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
+  const siteConfig = await getSiteConfig();
 
   return {
     props: {

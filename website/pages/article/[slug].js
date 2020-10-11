@@ -29,7 +29,6 @@ import CardBlog from '~/components/card/blog';
 import useWindowDimensions from '~/functions/useWindowDimensions';
 import { useUser } from '~/lib/hooks';
 
-import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
   imageBuilder,
@@ -203,7 +202,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 
 export async function getStaticProps({ req, params, preview = false }) {
   const cookies = req?.headers?.cookie;
-  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
+  const siteConfig = await getSiteConfig();
   const data = await getPostAndMore(params.slug, preview);
 
   return {
