@@ -24,7 +24,12 @@ module.exports = {
             './pages/**/*.{js,jsx,ts,tsx}',
             './components/**/*.{js,jsx,ts,tsx}',
             './styles/vendor/**/*.{scss}',
-            './node_modules/next-pattern-library/**/*.{js,jsx,ts,tsx}',
+          ],
+          safelist: [
+            /^nprogress/,
+            /^snipcart/,
+            /^react-toast-notifications/,
+            /^react-dropzone/,
           ],
           defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
         },
