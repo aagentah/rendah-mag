@@ -2,8 +2,8 @@
 
 .snipcart {
   position: relative;
-  @extend .z9;
-  @extend .t-secondary;
+  font-family: $t-secondary;
+  z-index: 1090;
 
   *,
   *:before,
@@ -17,7 +17,7 @@
 
 .snipcart__font--secondary,
 .snipcart__font--subtitle {
-  @extend .t-primary;
+  font-family: $t-primary;
 }
 
 .snipcart-modal__container,
@@ -48,35 +48,31 @@
 }
 
 .snipcart__box {
-  @extend .shadow2;
-  @extend .br4;
+  // @extend .shadow2;
+  // @extend .br4;
 }
 
 .snipcart-cart-button--highlight {
-  @extend .button;
-  @extend .black;
-  @extend .primary;
-  @extend .medium;
-  // transition: all 0.3s ease-in-out;
-  // background: var(--black);
-  // color: var(--white);
-  // fill: var(--white);
-  // border-color: var(--black);
+  transition: all 0.3s ease-in-out;
+  background: var(--black);
+  color: var(--white);
+  fill: var(--white);
+  border-color: var(--black);
   line-height: 12px !important;
   height: 45px !important;
-  // min-width: 100px;
-  // border: 2px solid var(--black);
-  // text-align: center;
-  // display: inline-block;
-  // border-radius: 3px;
-  // font-size: 1rem;
-  // @extend .t-primary;
-  //
-  // &:hover {
-  //   background-color: transparent;
-  //   color: var(--black);
-  //   fill: var(--black);
-  // }
+  min-width: 100px;
+  border: 2px solid var(--black);
+  text-align: center;
+  display: inline-block;
+  border-radius: 3px;
+  font-size: 1rem;
+  @extend .t-primary;
+
+  &:hover {
+    background-color: transparent;
+    color: var(--black);
+    fill: var(--black);
+  }
 
   svg {
     display: none;
