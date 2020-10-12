@@ -9,7 +9,6 @@ import HeroHome from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
 import CardProduct from '~/components/card/product';
 
-import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
   getFeaturedPost,
@@ -21,15 +20,23 @@ export default function Home({ siteConfig }) {
   const [interviews, setInterviews] = useState(null);
   const [news, setNews] = useState(null);
   const [insights, setInsights] = useState(null);
-  const interviewsLenth = 4;
-  const newsLength = 6;
-  const insightsLength = 6;
+  const [interviewsLength, setInterviewsLength] = useState(4);
+  const [newsLength, setNewsLength] = useState(6);
+  const [insightsLength, setInsightsLength] = useState(6);
 
   const handleAsyncTasks = async () => {
-    setFeaturedPost(await getFeaturedPost());
-    setInterviews(await getCategory('interviews', [0, interviewsLenth - 1]));
-    setNews(await getCategory('news', [0, newsLength - 1]));
-    setInsights(await getCategory('insights', [0, insightsLength - 1]));
+    const featuredPostData = await getFeaturedPost();
+    const interviewsData = await getCategory('interviews', [
+      0,
+      interviewsLength - 1,
+    ]);
+    const newsData = await getCategory('news', [0, newsLength - 1]);
+    const insightsData = await getCategory('insights', [0, insightsLength - 1]);
+
+    setFeaturedPost(featuredPostData);
+    setInterviews(interviewsData);
+    setNews(newsData);
+    setInsights(insightsData);
   };
 
   useEffect(() => {
@@ -71,12 +78,12 @@ export default function Home({ siteConfig }) {
               </div>
 
               <div className="flex  flex-wrap">
-                {[...Array(interviewsLenth)].map((post, i) => (
-                  <div key={post?.slug || post} className="col-24  col-12-md">
+                {[...Array(interviewsLength)].map((iteration, i) => (
+                  <div key={iteration} className="col-24  col-12-md">
                     <div className="ph3  pv2">
                       <CardBlog
                         i={i}
-                        post={interviews?.articles[i] || null}
+                        post={interviews?.articles && interviews?.articles[i]}
                         columnCount={2}
                       />
                     </div>
@@ -131,11 +138,8 @@ export default function Home({ siteConfig }) {
                   </div>
 
                   <div className="flex  flex-wrap">
-                    {[...Array(newsLength)].map((post, i) => (
-                      <div
-                        key={post?.slug || post}
-                        className="col-24  col-12-md"
-                      >
+                    {[...Array(newsLength)].map((iteration, i) => (
+                      <div key={iteration} className="col-24  col-12-md">
                         <div className="ph3  pv2">
                           <CardBlog
                             i={i}
@@ -194,11 +198,8 @@ export default function Home({ siteConfig }) {
                   </div>
 
                   <div className="flex  flex-wrap">
-                    {[...Array(insightsLength)].map((post, i) => (
-                      <div
-                        key={post?.slug || post}
-                        className="col-24  col-12-md"
-                      >
+                    {[...Array(insightsLength)].map((iteration, i) => (
+                      <div key={iteration} className="col-24  col-12-md">
                         <div className="ph3  pv2">
                           <CardBlog
                             i={i}
@@ -249,7 +250,7 @@ export default function Home({ siteConfig }) {
 
 export async function getStaticProps({ req }) {
   const cookies = req?.headers?.cookie;
-  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
+  const siteConfig = await getSiteConfig();
 
   return {
     props: {
