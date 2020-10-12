@@ -15,8 +15,8 @@
   color: var(--black);
   outline: none;
   transition: border 0.24s ease-in-out 0s;
-  @extend .f6;
-  @extend .t-secondary;
+  font-size: 0.875rem;
+  font-family: $t-secondary;
 }
 
 /*! purgecss end ignore */
