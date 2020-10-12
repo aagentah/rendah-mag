@@ -5,7 +5,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardTeam from '~/components/card/team';
 
-import getSiteConfigCookies from '~/lib/get-site-config-cookies';
+
 import { getSiteConfig, getTeamMembers } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig }) {
@@ -13,9 +13,9 @@ export default function Post({ siteConfig }) {
   const [teamLength, setTeamLength] = useState(40);
 
   const handleAsyncTasks = async () => {
-    const team = await getTeamMembers();
-    setTeamLength(team.length);
-    setTeam(team);
+    const teamData = await getTeamMembers();
+    setTeamLength(teamData.length);
+    setTeam(teamData);
   };
 
   useEffect(() => {
@@ -51,8 +51,8 @@ export default function Post({ siteConfig }) {
 
         <section className="pb3">
           <div className="flex  flex-wrap">
-            {[...Array(teamLength)].map((member, i) => (
-              <div key={member?.slug || member} className="col-24  col-6-md">
+            {[...Array(teamLength)].map((iteration, i) => (
+              <div key={iteration} className="col-24  col-6-md">
                 <div className="pa3">
                   <CardTeam
                     i={i}
@@ -71,7 +71,7 @@ export default function Post({ siteConfig }) {
 
 export async function getStaticProps({ req }) {
   const cookies = req?.headers?.cookie;
-  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
+  const siteConfig = await getSiteConfig();
 
   return {
     props: {

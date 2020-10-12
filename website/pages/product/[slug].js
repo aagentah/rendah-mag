@@ -13,7 +13,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
-import getSiteConfigCookies from '~/lib/get-site-config-cookies';
+
 import { getSiteConfig, getProduct, imageBuilder } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, product }) {
@@ -191,7 +191,7 @@ export default function Post({ siteConfig, product }) {
 
 export async function getServerSideProps({ req, params, preview = false }) {
   const cookies = req?.headers?.cookie;
-  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
+  const siteConfig = await getSiteConfig();
   const product = await getProduct(params.slug);
   return {
     props: {

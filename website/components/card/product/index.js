@@ -7,6 +7,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 export default function CardDefault({ product }) {
+  console.log('product', product);
   const app = useApp();
 
   if (!app.deviceSize) return null;
@@ -16,50 +17,54 @@ export default function CardDefault({ product }) {
   const headingSize = app.deviceSize === 'md' ? 'medium' : 'small';
 
   const cardImage = (
-    <LazyLoad once offset={150} height={imageHeight}>
-      <Image
-        /* Options */
-        src={imageBuilder
-          .image(product.image1)
+    <Image
+      /* Options */
+      src={
+        product &&
+        imageBuilder
+          .image(product?.image1)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
           .fit('clip')
-          .url()}
-        placeholder={imageBuilder
-          .image(product.image1)
+          .url()
+      }
+      placeholder={
+        product &&
+        imageBuilder
+          .image(product?.image1)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
           .fit('clip')
           .blur('20')
-          .url()}
-        alt={product.title}
-        figcaption={null}
-        height={imageHeight}
-        width={null}
-        customClass={null}
-        onClick={null}
-        /* Children */
-        withLinkProps={{
-          type: 'next',
-          href: '/product/[slug]',
-          target: null,
-          routerLink: Link,
-          routerLinkProps: {
-            as: `/product/${product.slug}`,
-            scroll: false,
-          },
-        }}
-      />
-    </LazyLoad>
+          .url()
+      }
+      alt={product?.title}
+      figcaption={null}
+      height={imageHeight}
+      width={null}
+      customClass={null}
+      onClick={null}
+      /* Children */
+      withLinkProps={{
+        type: 'next',
+        href: '/product/[slug]',
+        target: null,
+        routerLink: Link,
+        routerLinkProps: {
+          as: `/product/${product?.slug}`,
+          scroll: false,
+        },
+      }}
+    />
   );
 
   const cardLabel = (
     <Label
       /* Options */
       customClass="ph2"
-      text={`£${product.price}`}
+      text={`£${product?.price}`}
       color="white"
       backgroundColor="black"
       onClick={null}
@@ -72,7 +77,7 @@ export default function CardDefault({ product }) {
     <Heading
       /* Options */
       htmlEntity="h2"
-      text={product.title}
+      text={product?.title}
       color="black"
       size={headingSize}
       truncate={1}
@@ -85,7 +90,7 @@ export default function CardDefault({ product }) {
   const cardCopy = (
     <Copy
       /* Options */
-      text={product.excerpt}
+      text={product?.excerpt}
       color="black"
       size="medium"
       truncate={1}
@@ -93,16 +98,18 @@ export default function CardDefault({ product }) {
   );
 
   return (
-    <Card
-      /* Options */
-      type="block"
-      onClick={null}
-      /* Children */
-      image={cardImage}
-      labelBlock={[cardLabel]}
-      title={cardHeading}
-      description={cardCopy}
-      button={null}
-    />
+    <LazyLoad once offset={150} height={imageHeight}>
+      <Card
+        /* Options */
+        type="block"
+        onClick={null}
+        /* Children */
+        image={cardImage}
+        labelBlock={[cardLabel]}
+        title={cardHeading}
+        description={cardCopy}
+        button={null}
+      />
+    </LazyLoad>
   );
 }
