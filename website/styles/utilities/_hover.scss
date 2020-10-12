@@ -1,21 +1,21 @@
-.underline-hover {
-  border-bottom: 1px solid transparent;
-}
+// .underline-hover {
+//   border-bottom: 1px solid transparent;
+// }
 
-.underline-hover:hover,
-.underline-hover:focus {
-  border-color: currentColor;
-}
+// .underline-hover:hover,
+// .underline-hover:focus {
+//   border-color: currentColor;
+// }
 
-.fade-hover {
-  opacity: 1;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.fade-hover:hover,
-.fade-hover:focus {
-  opacity: 0.75;
-}
+// .fade-hover {
+//   opacity: 1;
+//   transition: opacity 0.2s ease-in-out;
+// }
+//
+// .fade-hover:hover,
+// .fade-hover:focus {
+//   opacity: 0.75;
+// }
 
 @each $color, $hex in $colors {
   .#{$color}-hover:hover {
