@@ -23,6 +23,7 @@ module.exports = {
           content: [
             './pages/**/*.{js,jsx,ts,tsx}',
             './components/**/*.{js,jsx,ts,tsx}',
+            './styles/vendor/**/*.{scss}',
             './node_modules/next-pattern-library/**/*.{js,jsx,ts,tsx}',
           ],
           defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
