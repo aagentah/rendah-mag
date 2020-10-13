@@ -262,7 +262,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
       color="black"
       size="medium"
       truncate={null}
-      reveal={null}
+      
       /* Children */
       withLinkProps={null}
     />

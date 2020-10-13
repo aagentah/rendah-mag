@@ -95,7 +95,7 @@ export default function Post({ siteConfig, product }) {
                     color="black"
                     size="large"
                     truncate={null}
-                    reveal={null}
+                    
                     /* Children */
                     withLinkProps={null}
                   />

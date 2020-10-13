@@ -73,7 +73,7 @@ export default function Post({ siteConfig, member, preview }) {
                   color="black"
                   size="small"
                   truncate={null}
-                  reveal={null}
+                  
                   /* Children */
                   withLinkProps={null}
                 />
@@ -124,7 +124,7 @@ export default function Post({ siteConfig, member, preview }) {
                   color="black"
                   size="medium"
                   truncate={null}
-                  reveal={null}
+                  
                   /* Children */
                   withLinkProps={null}
                 />

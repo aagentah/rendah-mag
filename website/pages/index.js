@@ -71,7 +71,6 @@ export default function Home({ siteConfig }) {
                   color="black"
                   size="medium"
                   truncate={null}
-                  reveal={null}
                   /* Children */
                   withLinkProps={null}
                 />
@@ -131,7 +130,6 @@ export default function Home({ siteConfig }) {
                       color="black"
                       size="medium"
                       truncate={null}
-                      reveal={null}
                       /* Children */
                       withLinkProps={null}
                     />
@@ -191,7 +189,6 @@ export default function Home({ siteConfig }) {
                       color="black"
                       size="medium"
                       truncate={null}
-                      reveal={null}
                       /* Children */
                       withLinkProps={null}
                     />

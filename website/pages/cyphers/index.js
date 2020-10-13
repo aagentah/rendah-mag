@@ -51,7 +51,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
                         color="black"
                         size="large"
                         truncate={null}
-                        reveal={null}
+                        
                         /* Children */
                         withLinkProps={null}
                       />
@@ -96,7 +96,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
                       color="black"
                       size="large"
                       truncate={null}
-                      reveal={null}
+                      
                       /* Children */
                       withLinkProps={null}
                     />
@@ -133,7 +133,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
                         size="large"
                         v
                         truncate={null}
-                        reveal={null}
+                        
                         /* Children */
                         withLinkProps={null}
                       />
@@ -189,7 +189,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
                       color="black"
                       size="medium"
                       truncate={null}
-                      reveal={null}
+                      
                       /* Children */
                       withLinkProps={null}
                     />

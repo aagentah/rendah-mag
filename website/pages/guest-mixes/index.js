@@ -51,7 +51,7 @@ export default function GuestMixes({ siteConfig, guestMixes }) {
                       color="black"
                       size="medium"
                       truncate={null}
-                      reveal={null}
+                      
                       /* Children */
                       withLinkProps={null}
                     />
