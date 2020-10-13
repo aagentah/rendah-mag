@@ -79,7 +79,7 @@ export default function Dominion({ siteConfig }) {
                   //   color="black"
                   //   size="large"
                   //   truncate={null}
-                  //   reveal={null}
+                  //   
                   //   /* Children */
                   //   withLinkProps={null}
                   // />

@@ -72,7 +72,6 @@ export default function Author({ siteConfig, author }) {
               color="black"
               size="small"
               truncate={null}
-              reveal={null}
               /* Children */
               withLinkProps={{
                 type: 'next',

@@ -79,7 +79,7 @@ export default function HeroPost({ post }) {
       color="white"
       size="x-large"
       truncate={null}
-      reveal={null}
+      
       /* Children */
       withLinkProps={null}
     />

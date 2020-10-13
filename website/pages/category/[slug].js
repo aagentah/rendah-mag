@@ -39,7 +39,7 @@ export default function Category({ siteConfig, category }) {
                     color="black"
                     size="medium"
                     truncate={null}
-                    reveal={null}
+                    
                     /* Children */
                     withLinkProps={null}
                   />

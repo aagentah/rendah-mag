@@ -81,7 +81,7 @@ export default function CardDefault({ product }) {
       color="black"
       size={headingSize}
       truncate={1}
-      reveal={null}
+      
       /* Children */
       withLinkProps={null}
     />

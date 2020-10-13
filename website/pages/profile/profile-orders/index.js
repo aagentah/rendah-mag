@@ -94,7 +94,7 @@ export default function ProfileOrders() {
             color="black"
             size="medium"
             truncate={null}
-            reveal={null}
+            
             /* Children */
             withLinkProps={null}
           />
@@ -140,7 +140,7 @@ export default function ProfileOrders() {
         color="black"
         size="medium"
         truncate={null}
-        reveal={null}
+        
         /* Children */
         withLinkProps={null}
       />
