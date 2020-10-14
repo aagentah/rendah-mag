@@ -57,6 +57,7 @@ export default function CardBlog({ post, columnCount }) {
       height={imageHeight}
       width={null}
       customClass={null}
+      skeleton={post ? false : true}
       onClick={null}
       /* Children */
       withLinkProps={{
@@ -76,10 +77,11 @@ export default function CardBlog({ post, columnCount }) {
     <Heading
       /* Options */
       htmlEntity="h2"
-      text={post?.title}
+      text={null}
       color="black"
       size={headingSize}
       truncate={4}
+      skeleton={post ? false : true}
       /* Children */
       withLinkProps={null}
     />
@@ -96,7 +98,7 @@ export default function CardBlog({ post, columnCount }) {
             /* Children */
             image={cardImage}
             labelBlock={null}
-            title={post && cardHeading}
+            title={cardHeading}
             description={null}
             button={null}
           />

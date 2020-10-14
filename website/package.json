@@ -38,7 +38,7 @@
     "next": "9.5.3",
     "next-connect": "0.6.6",
     "next-page-transitions": "1.0.0-beta.2",
-    "next-pattern-library": "^1.0.0",
+    "next-pattern-library": "~1.1.0",
     "nprogress": "0.2.0",
     "passport": "0.4.1",
     "passport-local": "1.0.0",
