@@ -46,6 +46,7 @@ export default function CardCypher({ post, columnCount }) {
         height={imageHeight}
         width={null}
         customClass={null}
+        skeleton={post ? false : true}
         onClick={null}
         /* Children */
         withLinkProps={{
@@ -59,15 +60,15 @@ export default function CardCypher({ post, columnCount }) {
     </LazyLoad>
   );
 
-  const cardHeading = (
+  const cardHeading = post && (
     <Heading
       /* Options */
       htmlEntity="h2"
-      text={post.title}
+      text={post?.title}
       color="black"
       size={headingSize}
       truncate={4}
-      
+      skeleton={false}
       /* Children */
       withLinkProps={null}
     />

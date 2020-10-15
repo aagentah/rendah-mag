@@ -73,7 +73,7 @@ export default function CardBlog({ post, columnCount }) {
     />
   );
 
-  const cardHeading = (
+  const cardHeading = post && (
     <Heading
       /* Options */
       htmlEntity="h2"
