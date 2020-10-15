@@ -18,12 +18,15 @@ const sitemapXml = (posts) => {
       ? `<h2 style="font-weight: bold; text-align: left;">${title}</h2>`
       : '';
 
-    const url = post?.slug ? `${process.env.SITE_URL}/article/${post.slug}` : process.env.SITE_URL;
+    const url = post?.slug
+      ? `${process.env.SITE_URL}/article/${post.slug}`
+      : process.env.SITE_URL;
 
     const image = post?.image
-      ? `<a href="${url}" target="_blank"><img width="300" style="width: 300px;" src="${imageBuilder
+      ? `<a href="${url}" target="_blank"><img width="400" style="width: 400px;" src="${imageBuilder
           .image(post.image)
-          .auto('format').url()}" alt="${post?.title}" /></a>`
+          .auto('format')
+          .url()}" alt="${post?.title}" /></a>`
       : '';
 
     const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;
