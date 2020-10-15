@@ -1,9 +1,18 @@
+// Header (All)
+
 .header__logo {
   cursor: pointer;
 }
 
 .header__logo svg g {
   transition: fill 0.3s ease-in-out;
+}
+
+// Nav (All)
+
+.nav__item .button {
+  opacity: 1;
+  animation: none;
 }
 
 // Desktop
