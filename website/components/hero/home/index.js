@@ -58,7 +58,7 @@ export default function HeroPost({ post }) {
     />
   );
 
-  const heroHeading = (
+  const heroHeading = post && (
     <Heading
       /* Options */
       htmlEntity="h1"
@@ -66,13 +66,13 @@ export default function HeroPost({ post }) {
       color="white"
       size="x-large"
       truncate={null}
-      skeleton={post ? false : true}
+      skeleton={false}
       /* Children */
       withLinkProps={null}
     />
   );
 
-  const heroButton = (
+  const heroButton = post && (
     <Button
       /* Options */
       type="secondary"
@@ -85,7 +85,7 @@ export default function HeroPost({ post }) {
       inverted={false}
       loading={false}
       disabled={false}
-      skeleton={post ? false : true}
+      skeleton={false}
       onClick={null}
       /* Children */
       withLinkProps={{

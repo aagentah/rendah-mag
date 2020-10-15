@@ -67,7 +67,7 @@ export default function Home({ siteConfig }) {
                 <Heading
                   /* Options */
                   htmlEntity="h2"
-                  text=" interviews."
+                  text="Interviews."
                   color="black"
                   size="medium"
                   truncate={null}
@@ -95,7 +95,7 @@ export default function Home({ siteConfig }) {
                   /* Options */
                   type="secondary"
                   size="medium"
-                  text="More interviews"
+                  text="More Interviews"
                   color="black"
                   fluid={false}
                   icon={buttonIcon}
@@ -126,7 +126,7 @@ export default function Home({ siteConfig }) {
                     <Heading
                       /* Options */
                       htmlEntity="h2"
-                      text=" news."
+                      text="News."
                       color="black"
                       size="medium"
                       truncate={null}
@@ -154,7 +154,7 @@ export default function Home({ siteConfig }) {
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="More news"
+                      text="More News"
                       color="black"
                       fluid={false}
                       icon={buttonIcon}
@@ -185,7 +185,7 @@ export default function Home({ siteConfig }) {
                     <Heading
                       /* Options */
                       htmlEntity="h2"
-                      text=" insights."
+                      text="Insights."
                       color="black"
                       size="medium"
                       truncate={null}
@@ -213,7 +213,7 @@ export default function Home({ siteConfig }) {
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="More insights"
+                      text="More Insights"
                       color="black"
                       fluid={false}
                       icon={buttonIcon}
