@@ -79,7 +79,7 @@ export default function Dominion({ siteConfig }) {
                   //   color="black"
                   //   size="large"
                   //   truncate={null}
-                  //   
+                  //
                   //   /* Children */
                   //   withLinkProps={null}
                   // />
@@ -130,6 +130,8 @@ export default function Dominion({ siteConfig }) {
                   data-item-name="Dominion Subscription"
                   data-item-max-quantity="1"
                   data-item-weight="0"
+                  data-item-payment-interval="Month"
+                  data-item-payment-interval-count="1"
                 >
                   <Button
                     /* Options */
