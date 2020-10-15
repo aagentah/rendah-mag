@@ -3,7 +3,6 @@ import blocksToHtml from '@sanity/block-content-to-html';
 
 import { imageBuilder, getLatestDominionItem } from '~/lib/sanity/requests';
 
-
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
