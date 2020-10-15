@@ -23,12 +23,23 @@ const sitemapXml = (item) => {
         .url()}" />`
     : '';
 
+  const spacer = `
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+              <td>
+                <br />
+              </td>
+            </tr>
+          </table>
+        `;
+
   postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
         <description>
           ${escapeXml(encodeSpecialChar(description))}
+          ${escapeXml(encodeSpecialChar(spacer))}
           ${escapeXml(encodeSpecialChar(image))}
         </description>
       </item>
