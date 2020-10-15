@@ -3,29 +3,29 @@
 $npl-t-primary: $t-primary;
 $npl-t-secondary: $t-secondary;
 
-$npl-f1: 3rem !default;
-$npl-f2: 2.25rem !default;
-$npl-f3: 1.5rem !default;
-$npl-f4: 1.25rem !default;
-$npl-f5: 1rem !default;
-$npl-f6: 0.875rem !default;
-$npl-f7: 0.75rem !default;
+$npl-f1: 3rem;
+$npl-f2: 2.25rem;
+$npl-f3: 1.5rem;
+$npl-f4: 1.25rem;
+$npl-f5: 1rem;
+$npl-f6: 0.875rem;
+$npl-f7: 0.75rem;
 
-$npl-lh-copy: 1.5 !default;
+$npl-lh-copy: 1.5;
 
 // Colors
 
-$npl-base-black: #000000 !default;
-$npl-base-almost-black: #111111 !default;
-$npl-base-dark-grey: #343434 !default;
-$npl-base-mid-grey: #555555 !default;
-$npl-base-grey: #777777 !default;
-$npl-base-silver: #999999 !default;
-$npl-base-light-silver: #aaaaaa !default;
-$npl-base-moon-grey: #cccccc !default;
-$npl-base-light-grey: #eeeeee !default;
-$npl-base-almost-white: #f5f5f5 !default;
-$npl-base-white: #ffffff !default;
+$npl-base-black: #000000;
+$npl-base-almost-black: #111111;
+$npl-base-dark-grey: #343434;
+$npl-base-mid-grey: #555555;
+$npl-base-grey: #777777;
+$npl-base-silver: #999999;
+$npl-base-light-silver: #aaaaaa;
+$npl-base-moon-grey: #cccccc;
+$npl-base-light-grey: #eeeeee;
+$npl-base-almost-white: #f5f5f5;
+$npl-base-white: #ffffff;
 
 $npl-colors: (
   black: #000000,
@@ -39,9 +39,13 @@ $npl-colors: (
   light-grey: #eeeeee,
   almost-white: #f5f5f5,
   white: #ffffff,
-  primary-color: red,
-  secondary-color: blue,
-) !default;
+  blue: #096dff,
+  red: #ff471a,
+  green: #66cc66,
+  primary-color: #00c4b4,
+  secondary-color: #ff00cd,
+  info-color: #6697f4,
+);
 
 // Grid
 
@@ -50,7 +54,7 @@ $npl-grid-breakpoints: (
   md: 950px,
   lg: 1250px,
   xl: 1550px,
-) !default;
+);
 
 // ** Elements **
 
@@ -79,9 +83,9 @@ $npl-button-primary-border-radius: 3px;
 
 // Utilities
 
-$npl-skeleton-bg-color: $npl-base-silver;
-$npl-skeleton-shimmer-color: $npl-base-moon-grey;
+@import 'next-pattern-library/dist/index.scss';
+
+$npl-skeleton-bg-color: $npl-base-black;
+$npl-skeleton-shimmer-color: $npl-base-silver;
 $npl-skeleton-shimmer-speed: 1.5s;
 $npl-skeleton-border-radius: 5px;
-
-@import 'next-pattern-library/dist/index.scss';

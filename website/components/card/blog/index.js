@@ -77,7 +77,7 @@ export default function CardBlog({ post, columnCount }) {
     <Heading
       /* Options */
       htmlEntity="h2"
-      text={null}
+      text={post?.title}
       color="black"
       size={headingSize}
       truncate={4}
