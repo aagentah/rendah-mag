@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Router, { useRouter } from 'next/router';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
+import map from 'lodash/map';
 
 import HeroPost from '~/components/hero/post';
 
@@ -28,10 +29,10 @@ import CardBlog from '~/components/card/blog';
 import useWindowDimensions from '~/functions/useWindowDimensions';
 import { useUser } from '~/lib/hooks';
 
-import getSiteConfigCookies from '~/lib/get-site-config-cookies';
 import {
   getSiteConfig,
   imageBuilder,
+  getAllPostsTotal,
   getPostAndMore,
 } from '~/lib/sanity/requests';
 
@@ -51,11 +52,9 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
-  useEffect(() => {
-    if (!router.isFallback && !post?.slug) Router.push('/404');
-  }, [router.isFallback, post.slug]);
-
-  if (router.isFallback) return <p>Loading...</p>;
+  if (!router.isFallback && !post?.slug) {
+    Router.push('/404');
+  }
 
   if (!router.isFallback && post?.slug) {
     return (
@@ -201,9 +200,9 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   return false;
 }
 
-export async function getServerSideProps({ req, params, preview = false }) {
+export async function getStaticProps({ req, params, preview = false }) {
   const cookies = req?.headers?.cookie;
-  const siteConfig = getSiteConfigCookies(cookies) || (await getSiteConfig());
+  const siteConfig = await getSiteConfig();
   const data = await getPostAndMore(params.slug, preview);
 
   return {
@@ -213,5 +212,19 @@ export async function getServerSideProps({ req, params, preview = false }) {
       post: data.post || null,
       morePosts: data.morePosts || null,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const data = await getAllPostsTotal();
+
+  return {
+    paths:
+      data.map((article) => ({
+        params: {
+          slug: article.slug,
+        },
+      })) || [],
+    fallback: true,
   };
 }

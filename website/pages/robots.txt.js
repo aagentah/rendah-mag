@@ -10,6 +10,9 @@ const renderRobots = (domainType) => {
     Disallow: /forgot/
     Disallow: /profile/
     Disallow: /article-preview/
+    Disallow: /store/
+    Disallow: /product/
+    Disallow: /search/
     SITEMAP: http://www.rendahmag.com/feeds/sitemap.xml
     `;
   } else {

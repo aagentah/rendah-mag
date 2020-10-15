@@ -8,28 +8,28 @@
 @import 'utilities';
 
 // Vendor after config
+@import 'vendor/next-pattern-library';
 @import 'vendor/nprogress';
-// @import 'vendor/toast';
 @import 'vendor/react-dropzone';
 @import 'vendor/snipcart';
 
 // Elements
-@import 'elements/next-pattern-library/button';
-@import 'elements/next-pattern-library/copy';
-@import 'elements/next-pattern-library/heading';
-@import 'elements/next-pattern-library/image';
-@import 'elements/next-pattern-library/label';
-@import 'elements/next-pattern-library/input';
-@import 'elements/next-pattern-library/checkbox';
-@import 'elements/next-pattern-library/radio';
+// @import 'elements/next-pattern-library/button';
+// @import 'elements/next-pattern-library/copy';
+// @import 'elements/next-pattern-library/heading';
+// @import 'elements/next-pattern-library/image';
+// @import 'elements/next-pattern-library/label';
+// @import 'elements/next-pattern-library/input';
+// @import 'elements/next-pattern-library/checkbox';
+// @import 'elements/next-pattern-library/radio';
 
 @import 'elements/custom/search-bar';
 
 // Modules
-@import 'modules/next-pattern-library/avatar';
+// @import 'modules/next-pattern-library/avatar';
 @import 'modules/next-pattern-library/card';
 @import 'modules/next-pattern-library/hero';
-@import 'modules/next-pattern-library/modal';
+// @import 'modules/next-pattern-library/modal';
 @import 'modules/next-pattern-library/tabs';
 
 @import 'modules/custom/cookie-banner';

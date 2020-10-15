@@ -1,10 +1,12 @@
+
+
 .react-toast-notifications__container {
-  @extend .z9;
+  z-index: 1090;
 }
 
 .react-toast-notifications__toast {
-  @extend .t-secondary;
-  @extend .lh-copy;
+  font-family: $t-secondary;
+  line-height: 1.5;
 }
 
 .react-toast-notifications__toast--success {
@@ -22,3 +24,5 @@
 .react-toast-notifications__toast--info {
   //
 }
+
+

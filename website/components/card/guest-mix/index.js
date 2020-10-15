@@ -67,7 +67,7 @@ export default function Cardmix({ mix, columnCount }) {
       color="black"
       size={headingSize}
       truncate={4}
-      reveal={null}
+      
       /* Children */
       withLinkProps={null}
     />
