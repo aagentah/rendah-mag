@@ -83,9 +83,9 @@ $npl-button-primary-border-radius: 3px;
 
 // Utilities
 
-@import 'next-pattern-library/dist/index.scss';
-
-$npl-skeleton-bg-color: $npl-base-black;
-$npl-skeleton-shimmer-color: $npl-base-silver;
+$npl-skeleton-bg-color: $npl-base-silver;
+$npl-skeleton-shimmer-color: $npl-base-moon-grey;
 $npl-skeleton-shimmer-speed: 1.5s;
 $npl-skeleton-border-radius: 5px;
+
+@import 'next-pattern-library/dist/index.scss';
