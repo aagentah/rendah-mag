@@ -33,7 +33,7 @@ export default function Home({
                   color="black"
                   size="medium"
                   truncate={null}
-                  reveal={null}
+                  
                   /* Children */
                   withLinkProps={null}
                 />
@@ -91,7 +91,7 @@ export default function Home({
                       color="black"
                       size="medium"
                       truncate={null}
-                      reveal={null}
+                      
                       /* Children */
                       withLinkProps={null}
                     />
@@ -148,7 +148,7 @@ export default function Home({
                       color="black"
                       size="medium"
                       truncate={null}
-                      reveal={null}
+                      
                       /* Children */
                       withLinkProps={null}
                     />

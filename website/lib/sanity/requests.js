@@ -36,6 +36,11 @@ const productFields = `
   'image2': image2.asset->url,
 `;
 
+const teamFields = `
+  ...,
+  'slug': slug.current,
+`;
+
 const getClient = (preview) => (preview ? previewClient : client);
 
 export const imageBuilder = sanityImage(client);
@@ -78,6 +83,14 @@ export async function getFeaturedPost(preview) {
 export async function getAllPosts(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) [0..31] {
+      ${postFields}
+    }`);
+  return getUniquePosts(results);
+}
+
+export async function getAllPostsTotal(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) {
       ${postFields}
     }`);
   return getUniquePosts(results);
@@ -145,7 +158,7 @@ export async function getLatestPublishedCypher(preview) {
 export async function getTeamMembers(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "author" && active] | order(order asc){
-      ...,
+      ${teamFields}
     }`);
   return getUniquePosts(results);
 }
@@ -153,7 +166,7 @@ export async function getTeamMembers(preview) {
 export async function getTeamMemberAndPosts(slug, preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "author" && active && slug.current == $slug] [0] {
-      ...,
+      ${teamFields}
       "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc) [0..23] {
       ${postFields}
     }

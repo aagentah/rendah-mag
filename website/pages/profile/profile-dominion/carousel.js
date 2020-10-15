@@ -91,7 +91,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                     }`}
                   >
                     {i === 0 && (
-                      <div className="absolute  top  right  mr3  nt2">
+                      <div className="absolute  top  right  mr3  nt3">
                         <Label
                           /* Options */
                           customClass="ph2"
@@ -262,7 +262,6 @@ export default function Carousel({ dominionItems, refreshDominion }) {
       color="black"
       size="medium"
       truncate={null}
-      reveal={null}
       /* Children */
       withLinkProps={null}
     />

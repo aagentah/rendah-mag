@@ -53,7 +53,7 @@ export default function HeroCypher({ cypher }) {
       color="white"
       size="x-large"
       truncate={null}
-      reveal={null}
+      
       /* Children */
       withLinkProps={null}
     />

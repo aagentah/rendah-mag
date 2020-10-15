@@ -309,7 +309,7 @@ export default function ProfileEdit() {
             color="black"
             size="medium"
             truncate={null}
-            reveal={null}
+            
             /* Children */
             withLinkProps={null}
           />

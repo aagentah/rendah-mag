@@ -93,7 +93,7 @@ const Meta = (props) => {
 
     if (
       titleVal === 'Store' ||
-      titleVal === 'Product' ||
+      router.pathname.includes('product') ||
       titleVal === 'Dominion'
     ) {
       canRender = true;

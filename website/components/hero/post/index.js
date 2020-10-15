@@ -45,6 +45,7 @@ export default function HeroPost({ post }) {
       figcaption={null}
       height={imageHeight}
       width={null}
+      skeleton={post ? false : true}
       customClass={null}
       onClick={null}
       /* Children */

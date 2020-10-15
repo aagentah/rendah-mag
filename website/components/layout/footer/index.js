@@ -23,7 +23,7 @@ export default function Footer() {
                   color="white"
                   size="large"
                   truncate={null}
-                  reveal={null}
+                  
                   /* Children */
                   withLinkProps={null}
                 />

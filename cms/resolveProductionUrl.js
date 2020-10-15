@@ -1,5 +1,3 @@
-import { SITE_URL } from "../website/constants";
-
 const previewSecret = "q2r5hm7ds9"; // Copy the string you used for SANITY_PREVIEW_SECRET
 
 export default function resolveProductionUrl(document) {
@@ -9,8 +7,11 @@ export default function resolveProductionUrl(document) {
     case "post":
       page = "article";
       break;
+    case "author":
+      page = "team";
+      break;
     default:
   }
 
-  return `${SITE_URL}/api/sanity/preview?secret=${previewSecret}&page=${page}&slug=${document.slug.current}`;
+  return `https://rendahmag.com/api/sanity/preview?secret=${previewSecret}&page=${page}&slug=${document.slug.current}`;
 }

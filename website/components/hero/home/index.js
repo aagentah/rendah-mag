@@ -19,7 +19,7 @@ export default function HeroPost({ post }) {
   if (app.deviceSize === 'lg') imageUrlWidth = 1550;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
 
-  const heroImage = post ? (
+  const heroImage = (
     <Image
       /* Options */
       src={imageBuilder
@@ -42,6 +42,7 @@ export default function HeroPost({ post }) {
       height={imageHeight}
       width={null}
       customClass={null}
+      skeleton={post ? false : true}
       onClick={null}
       /* Children */
       withLinkProps={{
@@ -55,23 +56,9 @@ export default function HeroPost({ post }) {
         },
       }}
     />
-  ) : (
-    <Image
-      /* Options */
-      src={null}
-      placeholder={null}
-      alt={null}
-      figcaption={null}
-      height={imageHeight}
-      width={null}
-      customClass={null}
-      onClick={null}
-      /* Children */
-      withLinkProps={null}
-    />
   );
 
-  const heroHeading = (
+  const heroHeading = post && (
     <Heading
       /* Options */
       htmlEntity="h1"
@@ -79,13 +66,13 @@ export default function HeroPost({ post }) {
       color="white"
       size="x-large"
       truncate={null}
-      reveal={null}
+      skeleton={false}
       /* Children */
       withLinkProps={null}
     />
   );
 
-  const heroButton = (
+  const heroButton = post && (
     <Button
       /* Options */
       type="secondary"
@@ -98,6 +85,7 @@ export default function HeroPost({ post }) {
       inverted={false}
       loading={false}
       disabled={false}
+      skeleton={false}
       onClick={null}
       /* Children */
       withLinkProps={{
@@ -121,9 +109,9 @@ export default function HeroPost({ post }) {
           height={imageHeight}
           /* Children */
           image={heroImage}
-          title={post && heroHeading}
+          title={heroHeading}
           description={null}
-          button={post && heroButton}
+          button={heroButton}
         />
       </div>
     </>
