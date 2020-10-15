@@ -3,7 +3,6 @@ import blocksToHtml from '@sanity/block-content-to-html';
 
 import { imageBuilder, getLatestAnouncedCypher } from '~/lib/sanity/requests';
 
-
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
@@ -19,9 +18,10 @@ const sitemapXml = (cypher) => {
     : '';
 
   const image = cypher?.imageSquare
-    ? `<img width="300" style="width: 300px;" src="${imageBuilder
+    ? `<img width="400" style="width: 400px;" src="${imageBuilder
         .image(cypher.imageSquare)
-        .auto('format').url()}" alt="${title}" />`
+        .auto('format')
+        .url()}" alt="${title}" />`
     : '';
 
   const packLink = cypher.packLink
