@@ -252,7 +252,7 @@ export default function Sigup({ siteConfig }) {
 }
 
 export async function getServerSideProps({ req }) {
-  const cookies = req?.headers?.cookie;
+  
   const siteConfig = await getSiteConfig();
 
   return {

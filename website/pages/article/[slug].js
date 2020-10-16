@@ -201,7 +201,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 }
 
 export async function getStaticProps({ req, params, preview = false }) {
-  const cookies = req?.headers?.cookie;
+
   const siteConfig = await getSiteConfig();
   const data = await getPostAndMore(params.slug, preview);
 
