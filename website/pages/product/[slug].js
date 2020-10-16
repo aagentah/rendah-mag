@@ -48,9 +48,9 @@ export default function Post({ siteConfig, product }) {
         navOnWhite
         meta={{
           siteConfig,
-          title: product.title,
+          title: product?.title,
           description: null,
-          image: product.image1,
+          image: product?.image1,
         }}
         preview={null}
       >
@@ -61,21 +61,21 @@ export default function Post({ siteConfig, product }) {
                 <Image
                   /* Options */
                   src={imageBuilder
-                    .image(product.image1)
+                    .image(product?.image1)
                     .height(1000)
                     .width(1000)
                     .auto('format')
                     .fit('clip')
                     .url()}
                   placeholder={imageBuilder
-                    .image(product.image1)
+                    .image(product?.image1)
                     .height(25)
                     .width(25)
                     .auto('format')
                     .fit('clip')
                     .blur('20')
                     .url()}
-                  alt={product.title}
+                  alt={product?.title}
                   figcaption={null}
                   height={500}
                   width={null}
@@ -90,7 +90,7 @@ export default function Post({ siteConfig, product }) {
                   <Heading
                     /* Options */
                     htmlEntity="h1"
-                    text={product.title}
+                    text={product?.title}
                     color="black"
                     size="large"
                     truncate={null}
@@ -103,7 +103,7 @@ export default function Post({ siteConfig, product }) {
                   <Label
                     /* Options */
                     customClass="ph2"
-                    text={`£${product.price}`}
+                    text={`£${product?.price}`}
                     color="white"
                     backgroundColor="black"
                     onClick={null}
@@ -134,12 +134,12 @@ export default function Post({ siteConfig, product }) {
                 <div className="dib  ph2  pb3">
                   <div
                     className="snipcart-add-item"
-                    data-item-id={product.slug}
-                    data-item-price={product.price}
-                    data-item-url={`/product/${product.slug}`}
+                    data-item-id={product?.slug}
+                    data-item-price={product?.price}
+                    data-item-url={`/product/${product?.slug}`}
                     data-item-description=""
-                    data-item-image={product.image1}
-                    data-item-name={product.title}
+                    data-item-image={product?.image1}
+                    data-item-name={product?.title}
                   >
                     <Button
                       /* Options */
