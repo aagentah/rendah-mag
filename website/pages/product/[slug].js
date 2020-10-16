@@ -20,11 +20,10 @@ export default function Post({ siteConfig, product }) {
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
   const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
 
-  console.log('product.description', product.description);
 
   const descriptionTab = (
     <div className="db  pb3">
-      <BlockContent blocks={product.description} />
+      <BlockContent blocks={product?.description} />
     </div>
   );
 
