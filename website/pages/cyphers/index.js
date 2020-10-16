@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import { Parallax } from 'react-scroll-parallax';
 
@@ -21,7 +22,20 @@ import {
   getCurrentAndPreviousCyphers,
 } from '~/lib/sanity/requests';
 
-export default function Cyphers({ siteConfig, cyphers }) {
+export default function Cyphers({ siteConfig }) {
+  const [cyphers, setCyphers] = useState(null);
+  const [cyphersLength, setCyphersLength] = useState(24);
+
+  const handleAsyncTasks = async () => {
+    const cyphersData = await getCurrentAndPreviousCyphers();
+    setCyphersLength(cyphersData.previous.length);
+    setCyphers(cyphersData);
+  };
+
+  useEffect(() => {
+    handleAsyncTasks();
+  }, []);
+
   return (
     <>
       <Layout
@@ -41,9 +55,9 @@ export default function Cyphers({ siteConfig, cyphers }) {
           <div className="pt5  pt6-md  ph3  ph4-md">
             <Container>
               {!cyphers?.current && (
-                <div className="flex  flex-wrap  mb3  mb5-md  pb0  pb4-md">
+                <div className="flex  flex-wrap  measure-wide  mla  mra mb3  mb5-md  pb0  pb4-md">
                   <div className="col-24  pt3  pb5  pb0-md">
-                    <div className="pb3  tac-md">
+                    <div className="pb2  tac-md">
                       <Heading
                         /* Options */
                         htmlEntity="h1"
@@ -51,7 +65,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
                         color="black"
                         size="large"
                         truncate={null}
-                        
+                        skeleton={!cyphers}
                         /* Children */
                         withLinkProps={null}
                       />
@@ -66,6 +80,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
                         color="black"
                         size="medium"
                         truncate={null}
+                        skeleton={!cyphers}
                       />
                     </div>
                   </div>
@@ -96,7 +111,6 @@ export default function Cyphers({ siteConfig, cyphers }) {
                       color="black"
                       size="large"
                       truncate={null}
-                      
                       /* Children */
                       withLinkProps={null}
                     />
@@ -121,7 +135,7 @@ export default function Cyphers({ siteConfig, cyphers }) {
                 </div>
               </div>
 
-              {cyphers?.current && (
+              {cyphers && cyphers?.current && (
                 <div className="flex  flex-wrap  mt5-md  pt3-md  mb5  pb0  pb3-md">
                   <div className="col-24  col-12-md  pr5-md  pt3  pb5  pb0-md">
                     <div className="pb3">
@@ -133,7 +147,6 @@ export default function Cyphers({ siteConfig, cyphers }) {
                         size="large"
                         v
                         truncate={null}
-                        
                         /* Children */
                         withLinkProps={null}
                       />
@@ -179,33 +192,34 @@ export default function Cyphers({ siteConfig, cyphers }) {
                 </div>
               )}
 
-              {cyphers.previous.length > 0 && (
-                <section className="pb5">
-                  <div className="pb4">
-                    <Heading
-                      /* Options */
-                      htmlEntity="h1"
-                      text="Previous Cyphers."
-                      color="black"
-                      size="medium"
-                      truncate={null}
-                      
-                      /* Children */
-                      withLinkProps={null}
-                    />
-                  </div>
+              <section className="pb5">
+                <div className="pb4">
+                  <Heading
+                    /* Options */
+                    htmlEntity="h1"
+                    text="Previous Cyphers."
+                    color="black"
+                    size="medium"
+                    truncate={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
 
-                  <div className="flex  flex-wrap">
-                    {cyphers.previous.map((cypher, i) => (
-                      <div key={cypher.slug} className="col-24  col-6-md">
-                        <div className="ph3  pv2">
-                          <CardCypher i={i} post={cypher} columnCount={4} />
-                        </div>
+                <div className="flex  flex-wrap">
+                  {[...Array(cyphersLength)].map((iteration, i) => (
+                    <div key={iteration} className="col-24  col-6-md">
+                      <div className="ph3  pv2">
+                        <CardCypher
+                          i={i}
+                          post={cyphers?.previous && cyphers.previous[i]}
+                          columnCount={4}
+                        />
                       </div>
-                    ))}
-                  </div>
-                </section>
-              )}
+                    </div>
+                  ))}
+                </div>
+              </section>
             </Container>
           </div>
         </>
@@ -216,9 +230,8 @@ export default function Cyphers({ siteConfig, cyphers }) {
 
 export async function getServerSideProps() {
   const siteConfig = await getSiteConfig();
-  const cyphers = await getCurrentAndPreviousCyphers();
 
   return {
-    props: { siteConfig, cyphers },
+    props: { siteConfig },
   };
 }
