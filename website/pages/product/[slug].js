@@ -14,7 +14,7 @@ import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
 
-import { getSiteConfig, getProduct, imageBuilder } from '~/lib/sanity/requests';
+import { getSiteConfig, getProduct, getAllProductsTotal, imageBuilder } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, product }) {
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
@@ -95,7 +95,7 @@ export default function Post({ siteConfig, product }) {
                     color="black"
                     size="large"
                     truncate={null}
-                    
+
                     /* Children */
                     withLinkProps={null}
                   />
@@ -189,8 +189,7 @@ export default function Post({ siteConfig, product }) {
   );
 }
 
-export async function getServerSideProps({ req, params, preview = false }) {
-  const cookies = req?.headers?.cookie;
+export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const product = await getProduct(params.slug);
   return {
@@ -198,5 +197,19 @@ export async function getServerSideProps({ req, params, preview = false }) {
       siteConfig,
       product,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const data = await getAllProductsTotal();
+
+  return {
+    paths:
+      data.map((product) => ({
+        params: {
+          slug: product.slug,
+        },
+      })) || [],
+    fallback: true,
   };
 }

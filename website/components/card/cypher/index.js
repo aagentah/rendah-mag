@@ -27,21 +27,21 @@ export default function CardCypher({ post, columnCount }) {
       <Image
         /* Options */
         src={imageBuilder
-          .image(post.imageSquare)
+          .image(post?.imageSquare)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
           .fit('clip')
           .url()}
         placeholder={imageBuilder
-          .image(post.imageSquare)
+          .image(post?.imageSquare)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
           .fit('clip')
           .blur('20')
           .url()}
-        alt={post.title}
+        alt={post?.title}
         figcaption={null}
         height={imageHeight}
         width={null}
@@ -51,7 +51,7 @@ export default function CardCypher({ post, columnCount }) {
         /* Children */
         withLinkProps={{
           type: 'external',
-          href: post.publishedFields.publishedUrl,
+          href: post?.publishedFields?.publishedUrl,
           target: '_blank',
           routerLink: null,
           routerLinkProps: null,

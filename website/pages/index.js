@@ -246,7 +246,6 @@ export default function Home({ siteConfig }) {
 }
 
 export async function getStaticProps({ req }) {
-  const cookies = req?.headers?.cookie;
   const siteConfig = await getSiteConfig();
 
   return {

@@ -178,7 +178,15 @@ export async function getTeamMemberAndPosts(slug, preview) {
 
 export async function getAllProducts(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "storeItem"] | order(date desc, _updatedAt desc){
+    .fetch(`*[_type == "storeItem"] | order(date desc, _updatedAt desc) {
+      ${productFields}
+    }`);
+  return getUniquePosts(results);
+}
+
+export async function getAllProductsTotal(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "storeItem"] | order(date desc, _updatedAt desc) {
       ${productFields}
     }`);
   return getUniquePosts(results);

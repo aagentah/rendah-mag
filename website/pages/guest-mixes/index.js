@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+import BlockContent from '@sanity/block-content-to-react';
+import { Parallax } from 'react-scroll-parallax';
+
 import {
   Heading,
   Image,
@@ -6,21 +10,27 @@ import {
   Icon,
   Input,
 } from 'next-pattern-library';
-import BlockContent from '@sanity/block-content-to-react';
-import { Parallax } from 'react-scroll-parallax';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardGuestMix from '~/components/card/guest-mix';
 
+import { getSiteConfig, getGuestMixes } from '~/lib/sanity/requests';
 
-import {
-  getSiteConfig,
-  imageBuilder,
-  getGuestMixes,
-} from '~/lib/sanity/requests';
+export default function GuestMixes({ siteConfig }) {
+  const [mixes, setMixes] = useState(null);
+  const [mixesLength, setMixesLength] = useState(24);
 
-export default function GuestMixes({ siteConfig, guestMixes }) {
+  const handleAsyncTasks = async () => {
+    const mixesData = await getGuestMixes();
+    setMixesLength(mixesData.length);
+    setMixes(mixesData);
+  };
+
+  useEffect(() => {
+    handleAsyncTasks();
+  }, []);
+
   return (
     <>
       <Layout
@@ -41,33 +51,30 @@ export default function GuestMixes({ siteConfig, guestMixes }) {
 
           <div className="pt5  mt4  ph3  ph4-md">
             <Container>
-              {guestMixes.length > 0 && (
-                <section className="pb5">
-                  <div className="pb4">
-                    <Heading
-                      /* Options */
-                      htmlEntity="h1"
-                      text="Guest Mixes."
-                      color="black"
-                      size="medium"
-                      truncate={null}
-                      
-                      /* Children */
-                      withLinkProps={null}
-                    />
-                  </div>
+              <section className="pb5">
+                <div className="pb4">
+                  <Heading
+                    /* Options */
+                    htmlEntity="h1"
+                    text="Guest Mixes."
+                    color="black"
+                    size="medium"
+                    truncate={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
 
-                  <div className="flex  flex-wrap">
-                    {guestMixes.map((mix, i) => (
-                      <div key={mix.slug} className="col-24  col-6-md">
-                        <div className="ph3  pv2">
-                          <CardGuestMix mix={mix} />
-                        </div>
+                <div className="flex  flex-wrap">
+                  {[...Array(mixesLength)].map((iteration, i) => (
+                    <div key={iteration} className="col-24  col-6-md">
+                      <div className="ph3  pv2">
+                        <CardGuestMix mix={mixes && mixes[i]} />
                       </div>
-                    ))}
-                  </div>
-                </section>
-              )}
+                    </div>
+                  ))}
+                </div>
+              </section>
             </Container>
           </div>
         </>
@@ -77,11 +84,11 @@ export default function GuestMixes({ siteConfig, guestMixes }) {
 }
 
 export async function getServerSideProps({ req }) {
-  const cookies = req?.headers?.cookie;
   const siteConfig = await getSiteConfig();
-  const guestMixes = await getGuestMixes();
 
   return {
-    props: { siteConfig, guestMixes },
+    props: {
+      siteConfig,
+    },
   };
 }
