@@ -27,21 +27,21 @@ export default function Cardmix({ mix, columnCount }) {
       <Image
         /* Options */
         src={imageBuilder
-          .image(mix.image)
+          .image(mix?.image)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
           .fit('clip')
           .url()}
         placeholder={imageBuilder
-          .image(mix.image)
+          .image(mix?.image)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
           .fit('clip')
           .blur('20')
           .url()}
-        alt={mix.title}
+        alt={mix?.title}
         figcaption={null}
         height={imageHeight}
         width={null}
@@ -59,15 +59,14 @@ export default function Cardmix({ mix, columnCount }) {
     </LazyLoad>
   );
 
-  const cardHeading = (
+  const cardHeading = mix && (
     <Heading
       /* Options */
       htmlEntity="h2"
-      text={mix.title}
+      text={mix?.title}
       color="black"
       size={headingSize}
       truncate={4}
-      
       /* Children */
       withLinkProps={null}
     />

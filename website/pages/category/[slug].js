@@ -64,7 +64,7 @@ export default function Category({ siteConfig, category }) {
 }
 
 export async function getServerSideProps({ req, params, preview = false }) {
-  const cookies = req?.headers?.cookie;
+  
   const siteConfig = await getSiteConfig();
   const category = await getCategory(params.slug, [0, 99]);
 

@@ -45,7 +45,6 @@ export default function HeroCypher({ cypher }) {
       color="white"
       size="x-large"
       truncate={null}
-      
       /* Children */
       withLinkProps={null}
     />
@@ -55,9 +54,9 @@ export default function HeroCypher({ cypher }) {
     <Copy
       /* Options */
       text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      color="black"
+      color="medium"
       size="white"
-      truncate={2}
+      truncate={null}
     />
   );
 

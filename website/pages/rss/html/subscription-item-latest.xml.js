@@ -11,7 +11,7 @@ const sitemapXml = (item) => {
 
   const title = item?.title || '';
 
-  const description = item?.description ? `<p>${item.description}</p>` : '';
+  const description = blocksToHtml({ blocks: item?.description });
 
   // TODO: if action buttons
   // const loginText = '<p><ii>Log in to your dominion profile</i></p>'
