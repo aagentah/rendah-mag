@@ -5,7 +5,6 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardTeam from '~/components/card/team';
 
-
 import { getSiteConfig, getTeamMembers } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig }) {
@@ -70,7 +69,6 @@ export default function Post({ siteConfig }) {
 }
 
 export async function getStaticProps({ req }) {
-  const cookies = req?.headers?.cookie;
   const siteConfig = await getSiteConfig();
 
   return {

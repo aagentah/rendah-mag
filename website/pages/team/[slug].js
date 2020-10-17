@@ -73,7 +73,7 @@ export default function Post({ siteConfig, member }) {
                   color="black"
                   size="small"
                   truncate={null}
-                  
+
                   /* Children */
                   withLinkProps={null}
                 />
@@ -124,7 +124,7 @@ export default function Post({ siteConfig, member }) {
                   color="black"
                   size="medium"
                   truncate={null}
-                  
+
                   /* Children */
                   withLinkProps={null}
                 />
@@ -150,7 +150,7 @@ export default function Post({ siteConfig, member }) {
 }
 
 export async function getStaticProps({ req, params, preview = false }) {
-  const cookies = req?.headers?.cookie;
+
   const siteConfig = await getSiteConfig();
   const member = await getTeamMemberAndPosts(params.slug);
 

@@ -178,7 +178,15 @@ export async function getTeamMemberAndPosts(slug, preview) {
 
 export async function getAllProducts(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "storeItem"] | order(date desc, _updatedAt desc){
+    .fetch(`*[_type == "storeItem"] | order(date desc, _updatedAt desc) {
+      ${productFields}
+    }`);
+  return getUniquePosts(results);
+}
+
+export async function getAllProductsTotal(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "storeItem"] | order(date desc, _updatedAt desc) {
       ${productFields}
     }`);
   return getUniquePosts(results);
@@ -270,7 +278,7 @@ export async function getGuestMixes(preview) {
 
 export async function getLatestDominionItem(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "dominionItem"] | order(publishedAt desc) [0] {
+    .fetch(`*[_type == "dominionItem"] | order(activeFrom desc) [0] {
       ...,
     }`);
   return results;
@@ -278,7 +286,7 @@ export async function getLatestDominionItem(preview) {
 
 export async function getDominionItemsSinceDate(sinceStartOfMonth) {
   const results = await getClient().fetch(
-    `*[_type == "dominionItem" && activeFrom >= $sinceStartOfMonth] | order(publishedAt desc) {
+    `*[_type == "dominionItem" && activeFrom >= $sinceStartOfMonth] | order(activeFrom desc) {
       ...,
     }`,
     { sinceStartOfMonth }
