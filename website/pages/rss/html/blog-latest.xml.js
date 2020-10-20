@@ -12,7 +12,7 @@ const sitemapXml = (posts) => {
     const title = post?.title;
 
     const titleBlock = post?.title
-      ? `<h2 style="font-weight: bold; text-align: left; font-size: 22px; line-height: 26px;">${title}</h2>`
+      ? `<h2 style="font-weight: bold; text-align: left; font-size: 20px; line-height: 26px;">${title}</h2>`
       : '';
 
     const url = post?.slug
