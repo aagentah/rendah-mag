@@ -12,14 +12,14 @@ const sitemapXml = (posts) => {
     const title = post?.title;
 
     const titleBlock = post?.title
-      ? `<h2 style="font-weight: bold; text-align: left;">${title}</h2>`
+      ? `<h2 style="font-weight: bold; text-align: left; font-size: 22px; line-height: 26px;">${title}</h2>`
       : '';
 
     const url = post?.slug
       ? `${process.env.SITE_URL}/article/${post.slug}`
       : process.env.SITE_URL;
 
-    const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;
+    const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left; font-size: 20px; line-height: 26px;" href="${url}" target="_blank">Read full article</a></p>`;
 
     const spacer = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
