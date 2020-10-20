@@ -9,22 +9,15 @@ const sitemapXml = (posts) => {
   let postsXML = '';
 
   posts.map((post) => {
-    const title =
-      post?.title || ''
-        ? `<h2 style="font-weight: bold; text-align: left;">${post.title}</h2>`
-        : '';
+    const title = post?.title;
 
     const titleBlock = post?.title
       ? `<h2 style="font-weight: bold; text-align: left;">${title}</h2>`
       : '';
 
-    const url = post?.slug ? `${process.env.SITE_URL}/article/${post.slug}` : process.env.SITE_URL;
-
-    const image = post?.image
-      ? `<a href="${url}" target="_blank"><img width="300" style="width: 300px;" src="${imageBuilder
-          .image(post.image)
-          .auto('format').url()}" alt="${post?.title}" /></a>`
-      : '';
+    const url = post?.slug
+      ? `${process.env.SITE_URL}/article/${post.slug}`
+      : process.env.SITE_URL;
 
     const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;
 
@@ -38,15 +31,34 @@ const sitemapXml = (posts) => {
         </table>
       `;
 
+    const iteration = `
+      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+          <td width="120" valign="top">
+            <img width="120" style="width: 120px;" src="${imageBuilder
+              .image(post.image)
+              .height(240)
+              .width(240)
+              .auto('format')
+              .url()}" alt="${post?.title}">
+          </td>
+          <td width="20" valign="middle">
+          </td>
+          <td width="210" valign="middle">
+            ${titleBlock}
+            ${readMoreLink}
+          </td>
+        </tr>
+      </table>
+      `;
+
     postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link>${escapeXml(encodeSpecialChar(url))}</link>
         <description>
-          ${escapeXml(encodeSpecialChar(image))}
+          ${escapeXml(encodeSpecialChar(iteration))}
           ${escapeXml(encodeSpecialChar(spacer))}
-          ${escapeXml(encodeSpecialChar(titleBlock))}
-          ${escapeXml(encodeSpecialChar(readMoreLink))}
         </description>
       </item>
       `;
