@@ -20,6 +20,11 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "showAuthor",
+      title: "Show Author",
+      type: "boolean",
+    },
+    {
       name: "author",
       title: "Author",
       type: "reference",
