@@ -56,35 +56,37 @@ $npl-grid-breakpoints: (
   xl: 1550px,
 );
 
-// ** Elements **
-
-// Button
+//== Button
 
 $npl-button-transition-ease: ease-in-out;
 $npl-button-transition-speed: 0.3s;
-$npl-button-primary-padding-horizontal: 8px;
+$npl-button-primary-padding-horizontal: 0.7em;
+$npl-button-primary-padding-vertical: 0.7em;
 $npl-button-primary-border-radius: 3px;
 
-// Checkbox
-// Copy
-// Heading
-// Image
+//== Checkbox
+//== Copy
+//== Heading
+//== Image
 
 $npl-image-bg-color: $npl-base-silver;
 
-// Input
-// Label
-// Radio
+//== Input
 
-// ** Modules **
+$npl-input-height: 35px;
+$npl-input-padding-horizontal: 0.7em;
+$npl-input-padding-vertical: 0.7em;
 
-// Avatar
-// Card
-// Hero
-// Modal
-// Tabs
+//== Label
+//== Radio
 
-// Utilities
+//== Avatar
+//== Card
+//== Hero
+//== Modal
+//== Tabs
+
+//== Utilities
 
 $npl-skeleton-bg-color: $npl-base-silver;
 $npl-skeleton-shimmer-color: $npl-base-moon-grey;
