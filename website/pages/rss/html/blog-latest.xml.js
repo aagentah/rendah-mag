@@ -19,13 +19,6 @@ const sitemapXml = (posts) => {
       ? `${process.env.SITE_URL}/article/${post.slug}`
       : process.env.SITE_URL;
 
-    const image = post?.image
-      ? `<a href="${url}" target="_blank"><img width="400" style="width: 400px;" src="${imageBuilder
-          .image(post.image)
-          .auto('format')
-          .url()}" alt="${post?.title}" /></a>`
-      : '';
-
     const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left; font-size: 16px; line-height: 22px;" href="${url}" target="_blank">Read full article</a></p>`;
 
     const spacer = `
