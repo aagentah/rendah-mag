@@ -57,6 +57,13 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   }
 
   if (!router.isFallback && post?.slug) {
+    const shouldShowAuthor = () => {
+      if (typeof post?.showAuthor === 'boolean' && post?.showAuthor === false) {
+        return false;
+      }
+
+      return true;
+    };
     return (
       <Layout
         meta={{
@@ -141,10 +148,16 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
               </div>
 
               <p className="t-secondary  f6  almost-black  lh-copy  pb4">
-                <Link href={`/team/${post.author.slug.current}`}>
-                  <span className="cp  black  fw7">{post.author.name}</span>
-                </Link>{' '}
-                | <Date dateString={post.publishedAt} />
+                {shouldShowAuthor() && (
+                  <>
+                    <Link href={`/team/${post.author.slug.current}`}>
+                      <span className="cp  black  fw7">{post.author.name}</span>
+                    </Link>{' '}
+                    |{' '}
+                  </>
+                )}
+
+                {post?.publishedAt && <Date dateString={post.publishedAt} />}
               </p>
 
               <div className="pb4  mb3  bb  bc-silver">
@@ -168,11 +181,13 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
               </Observer>
             </section>
 
-            <section className="measure-wide  mla  mra">
-              <div className="pb4">
-                <Author author={post.author} />
-              </div>
-            </section>
+            {shouldShowAuthor() && (
+              <section className="measure-wide  mla  mra">
+                <div className="pb4">
+                  <Author author={post.author} />
+                </div>
+              </section>
+            )}
           </article>
 
           {morePosts.length > 0 && (
@@ -201,7 +216,6 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 }
 
 export async function getStaticProps({ req, params, preview = false }) {
-
   const siteConfig = await getSiteConfig();
   const data = await getPostAndMore(params.slug, preview);
 
