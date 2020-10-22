@@ -42,19 +42,39 @@ const sitemapXml = (cypher) => {
   `
     : '';
 
-  const spacer = `<br />`;
-
   postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
         <description>
-          ${escapeXml(encodeSpecialChar(description))}
-          ${escapeXml(encodeSpecialChar(spacer))}
-          ${escapeXml(encodeSpecialChar(image))}
-          ${escapeXml(encodeSpecialChar(spacer))}
-          ${escapeXml(encodeSpecialChar(packLink))}
-          ${escapeXml(encodeSpecialChar(submissionLink))}
+          <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+              <td width="400" valign="top">
+                ${escapeXml(encodeSpecialChar(description))}
+              </td>
+            </tr>
+            <tr>
+              <td height="40">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="400" valign="top">
+                ${escapeXml(encodeSpecialChar(image))}
+              </td>
+            </tr>
+            <tr>
+              <td height="40">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="400" valign="top">
+              ${escapeXml(encodeSpecialChar(packLink))}
+              </td>
+            </tr>
+            <tr>
+              <td width="400" valign="top">
+              ${escapeXml(encodeSpecialChar(submissionLink))}
+              </td>
+            </tr>
+          </table>
         </description>
       </item>
       `;
