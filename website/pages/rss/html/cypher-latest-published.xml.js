@@ -3,7 +3,6 @@ import blocksToHtml from '@sanity/block-content-to-html';
 
 import { imageBuilder, getLatestPublishedCypher } from '~/lib/sanity/requests';
 
-
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
@@ -19,9 +18,10 @@ const sitemapXml = (cypher) => {
     : '';
 
   const image = cypher?.imageLandscape
-    ? `<img width="300" style="width: 300px;" src="${imageBuilder
+    ? `<img width="400" style="width: 400px;" src="${imageBuilder
         .image(cypher.imageLandscape)
-        .auto('format').url()}" />`
+        .auto('format')
+        .url()}" />`
     : '';
 
   const url = cypher?.publishedFields?.shortUrl
@@ -33,15 +33,7 @@ const sitemapXml = (cypher) => {
   `
     : '';
 
-  const spacer = `
-      <table cellspacing="0" cellpadding="0" border="0" width="100%">
-          <tr>
-            <td>
-              <br />
-            </td>
-          </tr>
-        </table>
-      `;
+  const spacer = `<br />`;
 
   postsXML += `
       <item>
