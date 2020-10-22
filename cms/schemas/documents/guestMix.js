@@ -1,6 +1,6 @@
 export default {
-  name: "guestMix",
-  title: "Guest Mix",
+  name: "mix",
+  title: "Mix",
   type: "document",
   fields: [
     {
