@@ -19,7 +19,7 @@ const sitemapXml = (item) => {
   const image = item?.image
     ? `<img width="400" style="width: 400px;" src="${imageBuilder
         .image(item.image)
-        .width(800)
+        .width(400)
         .auto('format')
         .url()}" />`
     : '';
