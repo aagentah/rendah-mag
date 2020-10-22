@@ -42,39 +42,43 @@ const sitemapXml = (cypher) => {
   `
     : '';
 
+  const html = `
+      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+          <td width="400" valign="top">
+            ${description}
+          </td>
+        </tr>
+        <tr>
+          <td height="40">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="400" valign="top">
+            ${image}
+          </td>
+        </tr>
+        <tr>
+          <td height="40">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="400" valign="top">
+            ${packLink}
+          </td>
+        </tr>
+        <tr>
+          <td width="400" valign="top">
+            ${submissionLink}
+          </td>
+        </tr>
+      </table>
+    `;
+
   postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
         <description>
-          <table cellspacing="0" cellpadding="0" border="0" width="100%">
-            <tr>
-              <td width="400" valign="top">
-                ${escapeXml(encodeSpecialChar(description))}
-              </td>
-            </tr>
-            <tr>
-              <td height="40">&nbsp;</td>
-            </tr>
-            <tr>
-              <td width="400" valign="top">
-                ${escapeXml(encodeSpecialChar(image))}
-              </td>
-            </tr>
-            <tr>
-              <td height="40">&nbsp;</td>
-            </tr>
-            <tr>
-              <td width="400" valign="top">
-              ${escapeXml(encodeSpecialChar(packLink))}
-              </td>
-            </tr>
-            <tr>
-              <td width="400" valign="top">
-              ${escapeXml(encodeSpecialChar(submissionLink))}
-              </td>
-            </tr>
-          </table>
+          ${escapeXml(encodeSpecialChar(html))}
         </description>
       </item>
       `;
