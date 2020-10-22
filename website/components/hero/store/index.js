@@ -17,8 +17,8 @@ export default function HeroCypher({ cypher }) {
   let imageUrlWidth;
   let imageHeight = 500;
 
-  if (app.deviceSize === 'md') imageUrlWidth = 680;
-  if (app.deviceSize === 'lg') imageUrlWidth = 1550;
+  if (app.deviceSize === 'md') imageUrlWidth = 700;
+  if (app.deviceSize === 'lg') imageUrlWidth = 1600;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
 
   const heroImage = (

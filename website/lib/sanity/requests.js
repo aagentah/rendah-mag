@@ -114,23 +114,20 @@ export async function getCategory(category, range) {
 }
 
 export async function getCurrentAndPreviousCyphers(preview) {
-  const dateToday = dateTodayISO();
   const curClient = getClient(preview);
 
   const [current, previous] = await Promise.all([
     curClient
       .fetch(
-        `*[_type == "cypher" && announcementFields.isAnnounced] {
+        `*[_type == "cypher" && announcementFields.isAnnounced] | order(announcementFields.announcedAt desc) {
               ...,
-            } | order(announcementFields.announcedAt desc) [0]`,
-        { dateToday }
+            } `
       )
       .then((res) => res?.[0]),
     curClient.fetch(
       `*[_type == "cypher" && publishedFields.isPublished] {
             ...,
-            }  | order(publishedFields.publishedAt desc)`,
-      { dateToday }
+            }  | order(publishedFields.publishedAt desc)`
     ),
   ]);
 

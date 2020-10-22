@@ -22,9 +22,9 @@ const sitemapXml = (mix) => {
 
   const link = mix?.soundcloudLink
     ? `
-    <p>
+    <p style="text-align: left;">
       Link:
-      <a href="${mix.soundcloudLink}">${mix.soundcloudLink}</a>
+      <a style="text-align: left;" href="${mix.soundcloudLink}">${mix.soundcloudLink}</a>
     </p>
   `
     : '';

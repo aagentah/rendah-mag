@@ -26,31 +26,22 @@ const sitemapXml = (cypher) => {
 
   const packLink = cypher.packLink
     ? `
-    <p>
-      Download Pack:
-      <a href="${cypher.packLink}">${cypher.packLink}</a>
+    <p style="text-align: left;">
+      Download the pack <a style="text-align: left;" href="${cypher.packLink}">here</a>.
     </p>
   `
     : '';
 
   const submissionLink = cypher.submissionFormLink
     ? `
-    <p>
+    <p style="text-align: left;">
       Submission Form:
-      <a href="${cypher.submissionFormLink}">${cypher.submissionFormLink}</a>
+      <a style="text-align: left;" href="${cypher.submissionFormLink}">${cypher.submissionFormLink}</a>
     </p>
   `
     : '';
 
-  const spacer = `
-    <table cellspacing="0" cellpadding="0" border="0" width="100%">
-        <tr>
-          <td>
-            <br />
-          </td>
-        </tr>
-      </table>
-    `;
+  const spacer = `<br />`;
 
   postsXML += `
       <item>
