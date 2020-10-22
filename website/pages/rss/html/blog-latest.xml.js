@@ -37,8 +37,8 @@ const sitemapXml = (posts) => {
           <td width="120" valign="top">
             <img width="120" style="width: 120px;" src="${imageBuilder
               .image(post.image)
-              .height(240)
-              .width(240)
+              .height(120)
+              .width(120)
               .auto('format')
               .url()}" alt="${post?.title}">
           </td>
