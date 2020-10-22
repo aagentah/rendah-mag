@@ -54,7 +54,7 @@ const sitemapXml = (cypher) => {
         </tr>
         <tr>
           <td width="400" valign="top">
-          
+            ${image}
           </td>
         </tr>
         <tr>
