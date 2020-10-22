@@ -1,7 +1,7 @@
 import React from 'react';
 import blocksToHtml from '@sanity/block-content-to-html';
 
-import { imageBuilder, getLatestGuestMix } from '~/lib/sanity/requests';
+import { imageBuilder, getLatestMix } from '~/lib/sanity/requests';
 
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
@@ -56,7 +56,7 @@ const sitemapXml = (mix) => {
 
 export default class BlogLatest extends React.Component {
   static async getInitialProps({ res }) {
-    const mix = await getLatestGuestMix();
+    const mix = await getLatestMix();
 
     res.setHeader('Content-Type', 'text/xml');
     res.write(sitemapXml(mix));
