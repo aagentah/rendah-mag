@@ -28,6 +28,7 @@ export default function Cyphers({ siteConfig }) {
 
   const handleAsyncTasks = async () => {
     const cyphersData = await getCurrentAndPreviousCyphers();
+    console.log('cyphersData', cyphersData);
     setCyphersLength(cyphersData.previous.length);
     setCyphers(cyphersData);
   };
@@ -137,7 +138,7 @@ export default function Cyphers({ siteConfig }) {
 
               {cyphers && cyphers?.current && (
                 <div className="flex  flex-wrap  mt5-md  pt3-md  mb5  pb0  pb3-md">
-                  <div className="col-24  col-12-md  pr5-md  pt3  pb5  pb0-md">
+                  <div className="col-24  col-16-md  pr5-md  pt3  pb5  pb0-md">
                     <div className="pb3">
                       <Heading
                         /* Options */
@@ -162,25 +163,25 @@ export default function Cyphers({ siteConfig }) {
                     </div>
                   </div>
 
-                  <div className="col-24  col-12-md">
+                  <div className="col-24  col-8-md">
                     <div className="shadow2">
                       <Image
                         /* Options */
                         src={imageBuilder
-                          .image(cyphers.current.imageLandscape)
-                          .height(300)
-                          .width(300)
+                          .image(cyphers.current.imageSquare)
+                          .height(500)
+                          .width(500)
                           .auto('format')
                           .url()}
                         placeholder={imageBuilder
-                          .image(cyphers.current.imageLandscape)
+                          .image(cyphers.current.imageSquare)
                           .height(25)
                           .width(25)
                           .auto('format')
                           .url()}
                         alt="This is the alt text."
                         figcaption={null}
-                        height={300}
+                        height={null}
                         width={null}
                         customClass={null}
                         onClick={null}

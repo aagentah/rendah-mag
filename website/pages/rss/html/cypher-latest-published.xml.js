@@ -26,22 +26,14 @@ const sitemapXml = (cypher) => {
 
   const url = cypher?.publishedFields?.shortUrl
     ? `
-    <p>
+    <p style="text-align: left;">
       Listen here:
-      <a href="${cypher.publishedFields.shortUrl}">${cypher.publishedFields.shortUrl}</a>
+      <a style="text-align: left;" href="${cypher.publishedFields.shortUrl}">${cypher.publishedFields.shortUrl}</a>
     </p>
   `
     : '';
 
-  const spacer = `
-      <table cellspacing="0" cellpadding="0" border="0" width="100%">
-          <tr>
-            <td>
-              <br />
-            </td>
-          </tr>
-        </table>
-      `;
+  const spacer = `<br />`;
 
   postsXML += `
       <item>

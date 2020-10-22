@@ -18,11 +18,11 @@ export default function HeroPost({ post }) {
   let imageHeight = 700;
 
   if (app.deviceSize === 'md') {
-    imageUrlWidth = 680;
-    imageHeight = 380;
+    imageUrlWidth = 700;
+    imageHeight = 400;
   }
 
-  if (app.deviceSize === 'lg') imageUrlWidth = 1550;
+  if (app.deviceSize === 'lg') imageUrlWidth = 1600;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
 
   const heroImage = (
