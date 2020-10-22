@@ -17,7 +17,7 @@ const sitemapXml = (item) => {
   // const loginText = '<p><ii>Log in to your dominion profile</i></p>'
 
   const image = item?.image
-    ? `<img width="300" style="width: 300px;" src="${imageBuilder
+    ? `<img width="400" style="width: 400px;" src="${imageBuilder
         .image(item.image)
         .auto('format')
         .url()}" />`

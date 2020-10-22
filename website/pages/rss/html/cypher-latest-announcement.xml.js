@@ -27,8 +27,7 @@ const sitemapXml = (cypher) => {
   const packLink = cypher.packLink
     ? `
     <p>
-      Download Pack:
-      <a href="${cypher.packLink}">${cypher.packLink}</a>
+      Download the pack <a href="${cypher.packLink}">here</a>.
     </p>
   `
     : '';
