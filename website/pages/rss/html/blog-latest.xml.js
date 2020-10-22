@@ -21,17 +21,7 @@ const sitemapXml = (posts) => {
 
     const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left; font-size: 16px; line-height: 22px;" href="${url}" target="_blank">Read full article</a></p>`;
 
-    const spacer = `
-      <table cellspacing="0" cellpadding="0" border="0" width="100%">
-          <tr>
-            <td>
-              <br />
-            </td>
-          </tr>
-        </table>
-      `;
-
-    const iteration = `
+    const html = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
           <td width="120" valign="top">
@@ -49,6 +39,9 @@ const sitemapXml = (posts) => {
             ${readMoreLink}
           </td>
         </tr>
+        <tr>
+          <td height="40">&nbsp;</td>
+        </tr>
       </table>
       `;
 
@@ -57,8 +50,7 @@ const sitemapXml = (posts) => {
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link>${escapeXml(encodeSpecialChar(url))}</link>
         <description>
-          ${escapeXml(encodeSpecialChar(iteration))}
-          ${escapeXml(encodeSpecialChar(spacer))}
+          ${escapeXml(encodeSpecialChar(html))}
         </description>
       </item>
       `;
