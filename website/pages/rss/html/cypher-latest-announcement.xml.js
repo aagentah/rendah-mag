@@ -50,7 +50,7 @@ const sitemapXml = (cypher) => {
           </td>
         </tr>
         <tr>
-          <td height="40">&nbsp;</td>
+          <td><br /></td>
         </tr>
         <tr>
           <td width="400" valign="top">
@@ -58,7 +58,7 @@ const sitemapXml = (cypher) => {
           </td>
         </tr>
         <tr>
-          <td height="40">&nbsp;</td>
+          <td><br /></td>
         </tr>
         <tr>
           <td width="400" valign="top">
