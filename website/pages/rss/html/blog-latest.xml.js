@@ -40,7 +40,7 @@ const sitemapXml = (posts) => {
           </td>
         </tr>
         <tr>
-          <td height="40">&nbsp;</td>
+          <td><br /></td>
         </tr>
       </table>
       `;
