@@ -20,6 +20,7 @@ const sitemapXml = (cypher) => {
   const image = cypher?.imageSquare
     ? `<img width="400" style="width: 400px;" src="${imageBuilder
         .image(cypher.imageSquare)
+        .width(400)
         .auto('format')
         .url()}" alt="${title}" />`
     : '';
@@ -41,19 +42,43 @@ const sitemapXml = (cypher) => {
   `
     : '';
 
-  const spacer = `<br />`;
+  const html = `
+      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+          <td width="400" valign="top">
+            ${description}
+          </td>
+        </tr>
+        <tr>
+          <td><br /></td>
+        </tr>
+        <tr>
+          <td width="400" valign="top">
+            ${image}
+          </td>
+        </tr>
+        <tr>
+          <td><br /></td>
+        </tr>
+        <tr>
+          <td width="400" valign="top">
+            ${packLink}
+          </td>
+        </tr>
+        <tr>
+          <td width="400" valign="top">
+            ${submissionLink}
+          </td>
+        </tr>
+      </table>
+    `;
 
   postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
         <description>
-          ${escapeXml(encodeSpecialChar(description))}
-          ${escapeXml(encodeSpecialChar(spacer))}
-          ${escapeXml(encodeSpecialChar(image))}
-          ${escapeXml(encodeSpecialChar(spacer))}
-          ${escapeXml(encodeSpecialChar(packLink))}
-          ${escapeXml(encodeSpecialChar(submissionLink))}
+          ${escapeXml(encodeSpecialChar(html))}
         </description>
       </item>
       `;

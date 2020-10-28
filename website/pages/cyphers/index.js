@@ -53,8 +53,116 @@ export default function Cyphers({ siteConfig }) {
         <>
           <HeroCypher cypher={cyphers?.current} />
 
-          <div className="pt5  pt6-md  ph3  ph4-md">
+          <div className="pt5  pt4-md  ph3  ph4-md">
             <Container>
+              {cyphers && cyphers?.current && (
+                <div className="flex  flex-wrap  mt5-md  pt3-md  mb5  pb4">
+                  <div className="col-24  col-15-md  pr5-md  pt3  pb4  pb0-md">
+                    <div className="pb3">
+                      <Heading
+                        /* Options */
+                        htmlEntity="h1"
+                        text="This month's Cypher."
+                        color="black"
+                        size="large"
+                        truncate={null}
+                        skeleton={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+
+                    <div className="rich-text  measure-wide  mb3">
+                      <BlockContent
+                        blocks={
+                          cyphers.current.announcementFields
+                            .announcementDescription
+                        }
+                      />
+                    </div>
+
+                    <div className="flex  flex-wrap">
+                      <div className="pb3  pr3">
+                        <Button
+                          /* Options */
+                          type="primary"
+                          size="small"
+                          text="Download Pack"
+                          color="black"
+                          fluid={false}
+                          icon={null}
+                          iconFloat={null}
+                          inverted={false}
+                          loading={false}
+                          disabled={false}
+                          onClick={null}
+                          /* Children */
+                          withLinkProps={{
+                            type: 'external',
+                            href: cyphers.current.packLink,
+                            target: '_blank',
+                            routerLink: null,
+                            routerLinkProps: null,
+                          }}
+                        />
+                      </div>
+                      <div className="pb3  pr3">
+                        <Button
+                          /* Options */
+                          type="primary"
+                          size="small"
+                          text="Submission Form"
+                          color="black"
+                          fluid={false}
+                          icon={null}
+                          iconFloat={null}
+                          inverted={false}
+                          loading={false}
+                          disabled={false}
+                          onClick={null}
+                          /* Children */
+                          withLinkProps={{
+                            type: 'external',
+                            href: cyphers.current.submissionFormLink,
+                            target: '_blank',
+                            routerLink: null,
+                            routerLinkProps: null,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col-24  col-9-md">
+                    <div className="shadow2">
+                      <Image
+                        /* Options */
+                        src={imageBuilder
+                          .image(cyphers.current.imageSquare)
+                          .height(500)
+                          .width(500)
+                          .auto('format')
+                          .url()}
+                        placeholder={imageBuilder
+                          .image(cyphers.current.imageSquare)
+                          .height(25)
+                          .width(25)
+                          .auto('format')
+                          .url()}
+                        alt="This is the alt text."
+                        figcaption={null}
+                        height={null}
+                        width={null}
+                        customClass={null}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {!cyphers?.current && (
                 <div className="flex  flex-wrap  measure-wide  mla  mra mb3  mb5-md  pb0  pb4-md">
                   <div className="col-24  pt3  pb5  pb0-md">
@@ -135,63 +243,6 @@ export default function Cyphers({ siteConfig }) {
                   />
                 </div>
               </div>
-
-              {cyphers && cyphers?.current && (
-                <div className="flex  flex-wrap  mt5-md  pt3-md  mb5  pb0  pb3-md">
-                  <div className="col-24  col-16-md  pr5-md  pt3  pb5  pb0-md">
-                    <div className="pb3">
-                      <Heading
-                        /* Options */
-                        htmlEntity="h1"
-                        text="This month's Cypher."
-                        color="black"
-                        size="large"
-                        v
-                        truncate={null}
-                        /* Children */
-                        withLinkProps={null}
-                      />
-                    </div>
-
-                    <div className="rich-text  measure-wide">
-                      <BlockContent
-                        blocks={
-                          cyphers.current.announcementFields
-                            .announcementDescription
-                        }
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-24  col-8-md">
-                    <div className="shadow2">
-                      <Image
-                        /* Options */
-                        src={imageBuilder
-                          .image(cyphers.current.imageSquare)
-                          .height(500)
-                          .width(500)
-                          .auto('format')
-                          .url()}
-                        placeholder={imageBuilder
-                          .image(cyphers.current.imageSquare)
-                          .height(25)
-                          .width(25)
-                          .auto('format')
-                          .url()}
-                        alt="This is the alt text."
-                        figcaption={null}
-                        height={null}
-                        width={null}
-                        customClass={null}
-                        onClick={null}
-                        /* Children */
-                        withLinkProps={null}
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
 
               <section className="pb5">
                 <div className="pb4">

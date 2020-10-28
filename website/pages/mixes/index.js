@@ -13,16 +13,16 @@ import {
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import CardGuestMix from '~/components/card/guest-mix';
+import CardMix from '~/components/card/mix';
 
-import { getSiteConfig, getGuestMixes } from '~/lib/sanity/requests';
+import { getSiteConfig, getMixes } from '~/lib/sanity/requests';
 
-export default function GuestMixes({ siteConfig }) {
+export default function Mixes({ siteConfig }) {
   const [mixes, setMixes] = useState(null);
   const [mixesLength, setMixesLength] = useState(24);
 
   const handleAsyncTasks = async () => {
-    const mixesData = await getGuestMixes();
+    const mixesData = await getMixes();
     setMixesLength(mixesData.length);
     setMixes(mixesData);
   };
@@ -38,7 +38,7 @@ export default function GuestMixes({ siteConfig }) {
         navOnWhite
         meta={{
           siteConfig,
-          title: 'Guest Mixes',
+          title: 'Mixes',
           description: null,
           image: null,
         }}
@@ -56,7 +56,7 @@ export default function GuestMixes({ siteConfig }) {
                   <Heading
                     /* Options */
                     htmlEntity="h1"
-                    text="Guest Mixes."
+                    text="Mixes."
                     color="black"
                     size="medium"
                     truncate={null}
@@ -69,7 +69,7 @@ export default function GuestMixes({ siteConfig }) {
                   {[...Array(mixesLength)].map((iteration, i) => (
                     <div key={iteration} className="col-24  col-6-md">
                       <div className="ph3  pv2">
-                        <CardGuestMix mix={mixes && mixes[i]} />
+                        <CardMix mix={mixes && mixes[i]} />
                       </div>
                     </div>
                   ))}
