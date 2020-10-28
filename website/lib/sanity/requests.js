@@ -257,17 +257,17 @@ export async function getProductAndMore(slug, preview) {
   return { product, moreProducts: getUniquePosts(moreProducts) };
 }
 
-export async function getLatestGuestMix(preview) {
-  const results = await getClient(preview).fetch(`*[_type == "guestMix"] [0] {
+export async function getLatestMix(preview) {
+  const results = await getClient(preview).fetch(`*[_type == "mix"] [0] {
       ...,
     }`);
 
   return results;
 }
 
-export async function getGuestMixes(preview) {
+export async function getMixes(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "guestMix"] | order(date desc, _updatedAt desc) [0..15] {
+    .fetch(`*[_type == "mix"] | order(date desc, _updatedAt desc) [0..15] {
       ...,
     }`);
   return getUniquePosts(results);
