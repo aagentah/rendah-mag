@@ -4,6 +4,7 @@ import Router, { useRouter } from 'next/router';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
 import map from 'lodash/map';
+import Cookies from 'js-cookie';
 
 import HeroPost from '~/components/hero/post';
 
@@ -44,9 +45,15 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   const [modalActive, setModalActive] = useState(false);
 
   const handleIntersect = (event) => {
-    if (event.isIntersecting && !user && !hasShownModal) {
+    if (
+      event.isIntersecting &&
+      !user &&
+      !hasShownModal &&
+      !Cookies.get('rndh-newsletter-set')
+    ) {
       setHasShownModal(true);
       setModalActive(true);
+      Cookies.set('rndh-newsletter-set', true, { expires: 5 });
     }
   };
 
