@@ -18,7 +18,7 @@ import storeVariant from "./documents/storeVariant";
 import cypher from "./documents/cypher";
 
 // Guest Mix
-import guestMix from "./documents/guestMix";
+import mix from "./documents/mix";
 
 // User
 import user from "./documents/user";
@@ -41,7 +41,7 @@ export default createSchema({
     storeItem,
     storeVariant,
     cypher,
-    guestMix,
+    mix,
     user,
     dominionItem,
     //
