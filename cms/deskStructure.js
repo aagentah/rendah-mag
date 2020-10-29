@@ -53,7 +53,7 @@ export default () =>
       // Cypher
       S.documentTypeListItem("cypher").icon(MDMusic),
       // Guest Mix
-      S.documentTypeListItem("guestMix").icon(MDMusicVideo),
+      S.documentTypeListItem("mix").icon(MDMusicVideo),
       // User
       S.documentTypeListItem("user").icon(MDPerson),
       // Dominion
