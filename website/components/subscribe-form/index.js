@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 import { Button, Icon } from 'next-pattern-library';
 
@@ -38,6 +39,7 @@ export default function SubscribeForm({ onSuccess }) {
     if (response.ok) {
       // Success
       toast.success('Welcome to the newsletter');
+      Cookies.set('rndh-newsletter-set', true, { expires: 365 });
       onSuccess && onSuccess();
     } else {
       // Error
