@@ -147,6 +147,7 @@ const Meta = (props) => {
 
         <meta name="description" content={descVal || siteDesc} />
 
+        <meta property="fb:pages" content="302421033575970" />
         <meta property="og:site_name" content={siteTitle} />
         <meta property="og:image" content={imageVal || siteImage} />
         <meta property="og:title" content={`${titleVal} | ${siteTitle}`} />
