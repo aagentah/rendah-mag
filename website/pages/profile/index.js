@@ -5,7 +5,6 @@ import zenscroll from 'zenscroll';
 import { Tabs } from 'next-pattern-library';
 
 import ProfileEdit from './profile-edit';
-import ProfileCypher from './profile-cypher';
 import ProfileOrders from './profile-orders';
 import ProfileDominion from './profile-dominion';
 import Layout from '~/components/layout';
@@ -37,7 +36,7 @@ export default function Profile({ siteConfig }) {
       }
     }
     // Handles dominion carousel refresh
-    if (visibleTab === '3') {
+    if (visibleTab === '2') {
       setRefreshDominion(true);
     }
   };
@@ -69,18 +68,13 @@ export default function Profile({ siteConfig }) {
                     },
                     {
                       id: '2',
-                      tabTitle: 'Cypher',
-                      tabContent: <ProfileCypher />,
-                    },
-                    {
-                      id: '3',
                       tabTitle: 'Dominion',
                       tabContent: (
                         <ProfileDominion refreshDominion={refreshDominion} />
                       ),
                     },
                     {
-                      id: '4',
+                      id: '3',
                       tabTitle: 'Orders',
                       tabContent: <ProfileOrders />,
                     },
@@ -98,7 +92,7 @@ export default function Profile({ siteConfig }) {
 }
 
 export async function getServerSideProps({ req }) {
-  
+
   const siteConfig = await getSiteConfig();
 
   return {

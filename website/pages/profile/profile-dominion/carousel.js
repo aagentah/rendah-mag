@@ -73,7 +73,9 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   const [sliderNavRef, sliderNav] = useKeenSlider(sliderNavOptions);
   const [sliderBodyRef, sliderBody] = useKeenSlider(sliderBodyOptions);
 
+  console.log('refreshDominion', refreshDominion);
   console.log('dominionItems', dominionItems);
+
 
   if (refreshDominion && dominionItems.length) {
     return (
@@ -84,7 +86,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
               <article className="keen-slider__slide  pa3" key={item._id}>
                 <div className="relative">
                   <div
-                    className={`br4  ph4  pv3  ba  bw1  bc-black  ease-in-out  ${
+                    className={`br1  ph4  pv3  ba  bw1  bc-black  ease-in-out  ${
                       currentNavSlide === i
                         ? 'bg-black  white'
                         : 'bg-white  black'
