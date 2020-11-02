@@ -25,11 +25,11 @@ const sitemapXml = (cypher) => {
         .url()}" />`
     : '';
 
-  const url = cypher?.publishedFields?.shortUrl
+  const url = cypher?.publishedFields?.publishedUrl
     ? `
     <p style="text-align: left;">
       Listen here:
-      <a style="text-align: left;" href="${cypher.publishedFields.shortUrl}">${cypher.publishedFields.shortUrl}</a>
+      <a style="text-align: left;" href="${cypher.publishedFields.publishedUrl}">${cypher.publishedFields.publishedUrl}</a>
     </p>
   `
     : '';
