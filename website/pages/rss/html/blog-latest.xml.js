@@ -16,14 +16,14 @@ const sitemapXml = (posts) => {
       : '';
 
     const tagLineBlock = post?.socialTagline
-      ? `<p style="color: #000000; text-decoration: underline; text-align: left; font-size: 16px; line-height: 22px;">${post.socialTagline}</p>`
+      ? `<p style="color: #000000; text-align: left; font-size: 16px; line-height: 22px;">${post.socialTagline}</p>`
       : '';
 
     const url = post?.slug
       ? `${process.env.SITE_URL}/article/${post.slug}`
       : process.env.SITE_URL;
 
-    const readMoreLink = `<p><a style="color: #000000; text-align: left; font-size: 16px; line-height: 22px;" href="${url}" target="_blank">Read full article</a></p>`;
+    const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left; font-size: 16px; line-height: 22px;" href="${url}" target="_blank">Read full article</a></p>`;
 
     const html = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
