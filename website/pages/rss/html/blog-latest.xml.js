@@ -15,6 +15,10 @@ const sitemapXml = (posts) => {
       ? `<h2 style="font-weight: bold; text-align: left; font-size: 16px; line-height: 22px;">${title}</h2>`
       : '';
 
+    const tagLineBlock = post?.socialTagline
+      ? `<p style="color: #000000; text-decoration: underline; text-align: left; font-size: 16px; line-height: 22px;">${socialTagline}</p>`
+      : '';
+
     const url = post?.slug
       ? `${process.env.SITE_URL}/article/${post.slug}`
       : process.env.SITE_URL;
@@ -39,6 +43,7 @@ const sitemapXml = (posts) => {
         <tr>
           <td width="300" valign="top">
             ${titleBlock}
+            ${tagLineBlock}
             ${readMoreLink}
           </td>
         </tr>
