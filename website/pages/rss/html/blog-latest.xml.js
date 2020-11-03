@@ -24,17 +24,17 @@ const sitemapXml = (posts) => {
     const html = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
-          <td width="120" valign="top">
+          <td width="190" valign="top">
             <img style="width: 100%;" src="${imageBuilder
               .image(post.image)
-              .height(120)
-              .width(120)
+              .height(200)
+              .width(200)
               .auto('format')
               .url()}" alt="${post?.title}">
           </td>
           <td width="20" valign="middle">
           </td>
-          <td width="210" valign="middle">
+          <td width="190" valign="middle">
             ${titleBlock}
             ${readMoreLink}
           </td>
