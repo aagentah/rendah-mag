@@ -16,7 +16,7 @@ const sitemapXml = (posts) => {
       : '';
 
     const tagLineBlock = post?.socialTagline
-      ? `<p style="color: #000000; text-decoration: underline; text-align: left; font-size: 16px; line-height: 22px;">${socialTagline}</p>`
+      ? `<p style="color: #000000; text-decoration: underline; text-align: left; font-size: 16px; line-height: 22px;">${post.socialTagline}</p>`
       : '';
 
     const url = post?.slug
