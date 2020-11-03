@@ -25,7 +25,7 @@ const sitemapXml = (posts) => {
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
           <td width="120" valign="top">
-            <img width="120" style="width: 120px;" src="${imageBuilder
+            <img style="width: 100%;" src="${imageBuilder
               .image(post.image)
               .height(120)
               .width(120)
