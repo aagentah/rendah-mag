@@ -24,13 +24,30 @@ const sitemapXml = (item) => {
         .url()}" />`
     : '';
 
+    const html = `
+      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+          <td width="400" valign="top">
+            ${description}
+          </td>
+        </tr>
+        <tr>
+          <td><br /></td>
+        </tr>
+        <tr>
+          <td width="400" valign="top">
+            ${image}
+          </td>
+        </tr>
+      </table>
+      `;
+
   postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
         <description>
-          ${escapeXml(encodeSpecialChar(description))}
-          ${escapeXml(encodeSpecialChar(image))}
+          ${escapeXml(encodeSpecialChar(html))}
         </description>
       </item>
       `;
