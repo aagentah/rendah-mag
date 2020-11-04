@@ -126,6 +126,27 @@ export default {
       ],
     },
     {
+      name: "iframeEmbedBlock",
+      title: "Iframe Embed",
+      type: "object",
+      fields: [
+        {
+          name: "iframeUrl",
+          title: "Iframe URL",
+          type: "string",
+          description: "",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "iframeHeight",
+          title: "Iframe Height (px)",
+          type: "string",
+          description: "",
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+    },
+    {
       name: "spotifyEmbedBlock",
       title: "Spotify Embed",
       type: "object",
