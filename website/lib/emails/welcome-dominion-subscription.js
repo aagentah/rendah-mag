@@ -12,7 +12,7 @@ export default (email) => {
     access your Dominion profile.
   `;
 
-  const image = `${process.env.SITE_URL}/images/subscribe-banner.png`;
+  const image = null;
 
   const buttonText = 'Create Account';
 

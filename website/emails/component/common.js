@@ -82,7 +82,7 @@ export default (title, body, image, buttonText, buttonLink) => {
                     <a class="btn" href="${buttonLink}"
                       style="border-radius:0px;display:inline-block;font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;"
                      >
-                      ${buttonText}1
+                      ${buttonText}
                     </a>
                   </div>
                 </td>
