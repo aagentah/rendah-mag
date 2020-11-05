@@ -5,6 +5,7 @@ import Paragraph from './paragraph';
 import ListItem from './list-item';
 import Quote from './quote';
 import Image from './image';
+import IframeBlock from './iframe';
 import Soundcloud from './soundcloud';
 import Spotify from './spotify';
 import Youtube from './youtube';
@@ -49,6 +50,15 @@ export default function Sections({ body }) {
       return (
         <div key={i} className="pv4">
           <Image section={section} />
+        </div>
+      );
+    }
+
+    // soundcloud embed
+    if (section._type === 'iframeEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <IframeBlock url={section.iframeUrl} height={section.iframeHeight} />
         </div>
       );
     }
