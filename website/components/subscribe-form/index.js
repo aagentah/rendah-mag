@@ -56,10 +56,10 @@ export default function SubscribeForm({ onSuccess }) {
   return (
     <form
       noValidate
-      className="w-100  flex  flex-wrap  justify-center  align-center"
+      className="subscribe-banner  w-100  flex  flex-wrap  justify-center  align-center"
       onSubmit={subscribe}
     >
-      <div className="flex  flex-wrap  mt2">
+      <div className="flex  flex-wrap  mt2  w-100">
         <input
           className="subscribe-banner__input  col-17  col-16-md  flex  justify-center"
           id="email-input"
@@ -69,7 +69,7 @@ export default function SubscribeForm({ onSuccess }) {
           type="email"
         />
 
-        <div className="col-7  col-8-md  flex  justify-center  justify-start-md  pr2  pr0-md">
+        <div className="subscribe-banner__submit  col-7  col-8-md  flex  justify-center  justify-start-md  pr2  pr0-md">
           <Button
             /* Options */
             type="primary"
