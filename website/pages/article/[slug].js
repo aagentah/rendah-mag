@@ -28,6 +28,7 @@ import SubscribeForm from '~/components/subscribe-form';
 import Date from '~/components/date';
 import CardBlog from '~/components/card/blog';
 import useWindowDimensions from '~/functions/useWindowDimensions';
+import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 
 import {
@@ -38,6 +39,7 @@ import {
 } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, post, morePosts, preview }) {
+  const app = useApp();
   const router = useRouter();
   const [user] = useUser();
   const { height, width } = useWindowDimensions();
@@ -138,7 +140,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
         <HeroPost post={post} />
 
         <Container>
-          <article className="pt5  pt6-md  pb4  ph3  ph4-md">
+          <article className="pt5  pb4  ph3  ph4-md">
             <section className="measure-wide  mla  mra">
               <div className="pb3">
                 <Heading
@@ -146,7 +148,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                   htmlEntity="h1"
                   text={post.title}
                   color="black"
-                  size="large"
+                  size={app.deviceSize === 'md' ? 'large' : 'x-large'}
                   truncate={0}
                   onClick={null}
                   /* Children */
