@@ -309,7 +309,6 @@ export default function ProfileEdit() {
             color="black"
             size="medium"
             truncate={null}
-            
             /* Children */
             withLinkProps={null}
           />
@@ -446,7 +445,7 @@ export default function ProfileEdit() {
                           /* Options */
                           label={tag}
                           name={tag}
-                          checked={user.tags.includes(tag)}
+                          checked={user.tags?.length && user.tags.includes(tag)}
                           required={false}
                           disabled={false}
                           onClick={null}
