@@ -24,7 +24,7 @@ export default function HeroCypher({ cypher }) {
   const heroImage = (
     <Image
       /* Options */
-      src="/images/cypher-youtube.jpg"
+      src="/images/dominion-hero.png"
       placeholder={null}
       alt="This is the alt text."
       figcaption={null}
@@ -41,7 +41,7 @@ export default function HeroCypher({ cypher }) {
     <Heading
       /* Options */
       htmlEntity="h1"
-      text="Join the Dominion"
+      text="Join the Dominion Subscription"
       color="white"
       size="x-large"
       truncate={null}
@@ -53,7 +53,11 @@ export default function HeroCypher({ cypher }) {
   const heroCopy = (
     <Copy
       /* Options */
-      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      text={`
+        The Dominion Subscription offers a new way to explore the depths of
+        underground bass music through monthly care packages, exlusive content,
+        printed magazine issues, discounts, and more.
+      `}
       color="medium"
       size="white"
       truncate={null}
@@ -75,7 +79,16 @@ export default function HeroCypher({ cypher }) {
       disabled={false}
       onClick={null}
       /* Children */
-      withLinkProps={null}
+      withLinkProps={{
+        type: 'next',
+        href: '/dominion',
+        target: null,
+        routerLink: Link,
+        routerLinkProps: {
+          as: '/dominion',
+          scroll: false,
+        },
+      }}
     />
   );
 

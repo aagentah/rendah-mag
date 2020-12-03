@@ -149,32 +149,34 @@ export default function HeaderDestop({
                   }}
                 />
               </li>
-              <li className="nav__item  dib  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Store"
-                  color={navColour}
-                  fluid={false}
-                  icon={buttonIcons.store}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/store',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false,
-                    },
-                  }}
-                />
-              </li>
+              {!user && (
+                <li className="nav__item  dib  pr3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="medium"
+                    text="Dominion"
+                    color={navColour}
+                    fluid={false}
+                    icon={buttonIcons.store}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/dominion',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        scroll: false,
+                      },
+                    }}
+                  />
+                </li>
+              )}
             </ul>
           </nav>
         </div>

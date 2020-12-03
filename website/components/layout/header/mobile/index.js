@@ -133,16 +133,18 @@ export default function HeaderMobile({
               </span>
             </Link>
           </li>
-          <li className="nav__item  db  pl4  pb3">
-            <Link href="/store">
-              <span
-                className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                onClick={toggleNav}
-              >
-                Store
-              </span>
-            </Link>
-          </li>
+          {!user && (
+            <li className="nav__item  db  pl4  pb3">
+              <Link href="/dominion">
+                <span
+                  className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                  onClick={toggleNav}
+                >
+                  Dominion
+                </span>
+              </Link>
+            </li>
+          )}
 
           {user ? (
             <>
