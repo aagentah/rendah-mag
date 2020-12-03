@@ -28,6 +28,10 @@
   }
 }
 
+.hero--cypher .hero__description {
+  @extend .measure-wide;
+}
+
 .hero__title {
   max-width: 400px;
 }
