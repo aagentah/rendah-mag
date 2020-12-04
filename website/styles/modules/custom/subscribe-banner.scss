@@ -5,10 +5,16 @@
 .subscribe-banner__input {
   box-shadow: 0;
   outline: 0;
+  border-radius: 0;
+
   @extend .f7;
   @extend .f6-md;
   @extend .w5-md;
   @extend .pa2;
   @extend .ba;
   @extend .bc-black;
+}
+
+.subscribe-banner__submit .button {
+  border-radius: 0;
 }
