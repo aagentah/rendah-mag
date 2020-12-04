@@ -246,68 +246,78 @@ export default (title, body, image, buttonText, buttonLink) => {
                       ${emailImage}
                       ${emailButton}
 
-                      <tr style="border-top: 2px solid #808080;">
-                        <td>
-                          <table cellspacing="0" cellpadding="0" border="0" width="100%">
-                            <tr>
-                              <td height="30">&nbsp;</td>
-                            </tr>
-                            <tr>
-                              <td width="50" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://www.facebook.com/rendahmag/">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1527784080/brand/social/iconmonstr-facebook-5.png" alt="facebook">
+                      <tr style="background-color: #0000000; color: #ffffff">
+                        <td style="background-color: #0000000; color: #ffffff">
+                          <table cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #0000000; color: #ffffff">
+                            <tr style="background-color: #0000000; color: #ffffff">
+                              <td width="84" valign="top">
+                              </td>
+                              <td width="58" valign="top">
+                                <a href="https://www.facebook.com/rendahmag" style="width: 53px;">
+                                  <img style="width: 53px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607117210/brand/social/facebook.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://www.instagram.com/rendahmag/">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1527784080/brand/social/iconmonstr-instagram-5.png" alt="instagram">
+                              <td width="24" valign="top">
+                              </td>
+                              <td width="58" valign="top">
+                                <a href="https://www.instagram.com/rendahmag/" style="width: 53px;">
+                                  <img style="width: 53px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607117210/brand/social/instagram.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://twitter.com/rendahmag">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1527784080/brand/social/iconmonstr-twitter-5.png" alt="twitter">
+                              <td width="24" valign="top">
+                              </td>
+                              <td width="58" valign="top">
+                                <a href="https://twitter.com/RendahMag" style="width: 53px;">
+                                  <img style="width: 53px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607117210/brand/social/twitter.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://soundcloud.com/rendahmag">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1527784080/brand/social/iconmonstr-soundcloud-5.png" alt="soundcloud">
+                              <td width="24" valign="top">
+                              </td>
+                              <td width="58" valign="top">
+                                <a href="https://soundcloud.com/rendahmag" style="width: 53px;">
+                                  <img style="width: 53px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607117210/brand/social/soundcloud.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://www.youtube.com/channel/UC4dYeD1ceX8sSY3J3UuMn8w">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1527784080/brand/social/iconmonstr-youtube-5.png" alt="youtube">
+                              <td width="24" valign="top">
+                              </td>
+                              <td width="58" valign="top">
+                                <a href="https://www.youtube.com/channel/UC4dYeD1ceX8sSY3J3UuMn8w" style="width: 53px;">
+                                  <img style="width: 53px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607117210/brand/social/youtube.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://discordapp.com/invite/ev2Q22C">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1563543859/brand/social/iconmonstr-discord-5-240.png" alt="discord">
+                              <td width="24" valign="top">
+                              </td>
+                              <td width="58" valign="top">
+                                <a href="https://discord.gg/gPkQF8n" style="width: 53px;">
+                                  <img style="width: 53px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607117210/brand/social/discord.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="50" valign="top">
+                              <td width="84" valign="top">
                               </td>
                             </tr>
                             <tr>
-                              <td height="30">&nbsp;</td>
+                              <td height="40">&nbsp;</td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <tr style="background-color: #0000000; color: #ffffff">
+                        <td style="background-color: #0000000; color: #ffffff">
+                          <table cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #0000000; color: #ffffff">
+                            <tr style="background-color: #0000000; color: #ffffff">
+                              <td width="150" valign="top">
+                              </td>
+                              <td mc:edit="description" width="300" style="text-align: center;">
+                                <span style="color: #000000; font-size: 16px; line-height: 24px; text-align: center;">Rendah Mag Ltd.</span>
+                                <span style="color: #000000; font-size: 16px; line-height: 24px; text-align: center;">|</span>
+                                <a style="color: #000000; text-decoration: underline; font-size: 16px; line-height: 24px; text-align: center;" href="*|UNSUB|*">Unsubscribe</a>
+                              </td>
+                              <td width="150" valign="top">
+                              </td>
+                            </tr>
+                            <tr>
+                              <td height="40">&nbsp;</td>
                             </tr>
                           </table>
                         </td>
