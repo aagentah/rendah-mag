@@ -48,9 +48,6 @@ const sitemapXml = (posts) => {
           </td>
         </tr>
         <tr>
-          <td><hr /></td>
-        </tr>
-        <tr>
           <td><br /></td>
         </tr>
       </table>
