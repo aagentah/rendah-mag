@@ -20,8 +20,6 @@ const sitemapXml = (cypher) => {
   const image = cypher?.imageLandscape
     ? `<img width="400" style="width: 400px;" src="${imageBuilder
         .image(cypher.imageLandscape)
-        .width(400)
-        .auto('format')
         .url()}" />`
     : '';
 
