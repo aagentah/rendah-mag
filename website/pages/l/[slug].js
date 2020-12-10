@@ -126,7 +126,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
             <Heading
               /* Options */
               htmlEntity="h3"
-              text="Subscribe to Rendah Mag"
+              text="Join our mailout"
               color="black"
               size="medium"
               truncate={0}
@@ -172,8 +172,8 @@ export default function SmartLink({ siteConfig, post, preview }) {
         </Modal>
 
         <Container>
-          <div className="flex  justify-center  align-center  pv4">
-            <div className="cp">
+          <div className="measure-wide  mla  mra  ph4  ph5-md  pv5  bg-almost-white  black  br3  h-100">
+            <div className="flex  justify-center  cp  mb4">
               <Link href="/">
                 <svg
                   version="1.0"
@@ -189,8 +189,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
                 </svg>
               </Link>
             </div>
-          </div>
-          <div className="measure-wide  mla  mra  ph4  ph5-md  pv5  bg-almost-white  black  br3  h-100">
+
             <div className="flex  justify-center  pb4">
               <Heading
                 /* Options */
@@ -215,12 +214,12 @@ export default function SmartLink({ siteConfig, post, preview }) {
 
             <div className="flex  justify-center  pt3">
               <p
-                className="f-secondary  f5  black  lh-copy  cp"
+                className="f-secondary  f5  black  lh-copy  cp  underline"
                 onClick={() => {
                   setModalActive(true);
                 }}
               >
-                Subscribe to Rendah Mag
+                Join our mailout
                 <span className="dib  pl2">
                   <Icon size="1x" icon={['fas', 'heart']} />
                 </span>
