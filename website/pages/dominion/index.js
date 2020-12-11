@@ -12,6 +12,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
+import HeroDominion from '~/components/hero/dominion';
 
 import { getSiteConfig, getProduct, imageBuilder } from '~/lib/sanity/requests';
 
@@ -39,6 +40,7 @@ export default function Dominion({ siteConfig }) {
       }}
       preview={null}
     >
+      <HeroDominion />
       <div className="pt4  pt0-md">
         <Container>
           <div className="flex  flex-wrap  pb5">

@@ -95,7 +95,7 @@ export default function Home({ siteConfig }) {
                   /* Options */
                   type="secondary"
                   size="medium"
-                  text="More Interviews"
+                  text="All Interviews"
                   color="black"
                   fluid={false}
                   icon={buttonIcon}
@@ -154,7 +154,7 @@ export default function Home({ siteConfig }) {
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="More News"
+                      text="All News"
                       color="black"
                       fluid={false}
                       icon={buttonIcon}
@@ -213,7 +213,7 @@ export default function Home({ siteConfig }) {
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="More Insights"
+                      text="All Insights"
                       color="black"
                       fluid={false}
                       icon={buttonIcon}

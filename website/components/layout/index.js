@@ -10,6 +10,8 @@ import CookieBanner from './cookie-banner';
 export default function Layout({
   navOffset,
   navOnWhite,
+  hasNav,
+  hasFooter,
   meta,
   preview,
   children,
@@ -31,15 +33,18 @@ export default function Layout({
       break;
   }
 
+  const hideNav = typeof hasNav !== 'undefined' && !hasNav;
+  const hideFooter = typeof hasFooter !== 'undefined' && !hasFooter;
+
   return (
     <>
       <Meta {...meta} />
       <ToastContainer />
       {preview && <Alert preview={preview} />}
-      {!preview && <Header navOnWhite={navOnWhite} meta={meta} />}
+      {!preview && !hideNav && <Header navOnWhite={navOnWhite} meta={meta} />}
       <main className={`page ${navOffsetType}`}>{children}</main>
       {!preview && <CookieBanner />}
-      <Footer />
+      {!hideFooter && <Footer />}
     </>
   );
 }
