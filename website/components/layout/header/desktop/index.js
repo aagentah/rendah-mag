@@ -188,7 +188,7 @@ export default function HeaderDestop({
                   <li className="nav__item  dib  pr3  mr1">
                     <div className="flex  snipcart-checkout">
                       <span
-                        className={`button white secondary  inverted  medium  mr2  ${navColour}`}
+                        className={`button  secondary  inverted  medium  mr2  ${navColour}`}
                       >
                         Checkout
                       </span>
