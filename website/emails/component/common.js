@@ -310,8 +310,6 @@ export default (title, body, image, buttonText, buttonLink) => {
                               </td>
                               <td mc:edit="description" width="300" style="text-align: center;">
                                 <span style="color: #000000; font-size: 16px; line-height: 24px; text-align: center;">Rendah Mag Ltd.</span>
-                                <span style="color: #000000; font-size: 16px; line-height: 24px; text-align: center;">|</span>
-                                <a style="color: #000000; text-decoration: underline; font-size: 16px; line-height: 24px; text-align: center;" href="*|UNSUB|*">Unsubscribe</a>
                               </td>
                               <td width="150" valign="top">
                               </td>
