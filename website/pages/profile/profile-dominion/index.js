@@ -50,7 +50,6 @@ export default function ProfileDominion({ refreshDominion }) {
             color="black"
             size="medium"
             truncate={null}
-            
             /* Children */
             withLinkProps={null}
           />
@@ -73,15 +72,29 @@ export default function ProfileDominion({ refreshDominion }) {
     );
   }
 
+  if (!user?.isDominion) {
+    return (
+      <Heading
+        /* Options */
+        htmlEntity="h1"
+        text="You are not in the Dominion."
+        color="black"
+        size="medium"
+        truncate={null}
+        /* Children */
+        withLinkProps={null}
+      />
+    );
+  }
+
   return (
     <Heading
       /* Options */
       htmlEntity="h1"
-      text="You are not in the Dominion."
+      text="No results."
       color="black"
       size="medium"
       truncate={null}
-      
       /* Children */
       withLinkProps={null}
     />
