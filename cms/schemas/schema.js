@@ -26,6 +26,13 @@ import user from "./documents/user";
 // Dominion
 import dominionItem from "./documents/dominionItem";
 
+// Smart Link
+import smartLinkItem from "./documents/smartLinkItem";
+import smartLink from "./documents/smartLink";
+
+// Link In Bio
+import linkInBio from "./documents/linkInBio";
+
 import siteSettings from "./objects/siteSettings";
 
 export default createSchema({
@@ -44,6 +51,9 @@ export default createSchema({
     mix,
     user,
     dominionItem,
+    smartLinkItem,
+    smartLink,
+    linkInBio,
     //
     siteSettings,
   ]),

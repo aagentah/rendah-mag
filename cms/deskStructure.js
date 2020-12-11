@@ -7,6 +7,8 @@ import MDPerson from "react-icons/lib/md/person";
 import MDMusic from "react-icons/lib/md/music-note";
 import MDMusicVideo from "react-icons/lib/md/music-video";
 import MDLoyalty from "react-icons/lib/md/loyalty";
+import MDViewList from "react-icons/lib/md/view-list";
+import MDGridOn from "react-icons/lib/md/grid-on";
 
 const hiddenDocTypes = (listItem) =>
   !["siteSettings", "homePage", "textBlock"].includes(listItem.getId());
@@ -58,4 +60,8 @@ export default () =>
       S.documentTypeListItem("user").icon(MDPerson),
       // Dominion
       S.documentTypeListItem("dominionItem").icon(MDLoyalty),
+      // Smart Link
+      S.documentTypeListItem("smartLink").icon(MDViewList),
+      // Link In Bio
+      S.documentTypeListItem("linkInBio").icon(MDGridOn),
     ]);

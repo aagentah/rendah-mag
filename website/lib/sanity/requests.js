@@ -290,3 +290,13 @@ export async function getDominionItemsSinceDate(sinceStartOfMonth) {
   );
   return results;
 }
+
+export async function getSmartLink(slug, preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "smartLink" && slug.current == $slug] | order(activeFrom desc) [0] {
+      ...,
+    }`,
+    { slug }
+  );
+  return results;
+}
