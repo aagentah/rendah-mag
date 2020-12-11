@@ -46,6 +46,8 @@ export default function ProfileOrders() {
         dominionSince: dominionStartDate.split('T')[0],
       };
 
+      console.log('body', body);
+
       // Put to user API
       const response = await fetch('../api/user', {
         method: 'PUT',
@@ -94,7 +96,6 @@ export default function ProfileOrders() {
             color="black"
             size="medium"
             truncate={null}
-            
             /* Children */
             withLinkProps={null}
           />
@@ -140,7 +141,6 @@ export default function ProfileOrders() {
         color="black"
         size="medium"
         truncate={null}
-        
         /* Children */
         withLinkProps={null}
       />
