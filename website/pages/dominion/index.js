@@ -30,8 +30,8 @@ export default function Dominion({ siteConfig }) {
 
   return (
     <Layout
-      navOffset="top"
-      navOnWhite
+      navOffset={null}
+      navOnWhite={false}
       meta={{
         siteConfig,
         title: 'Dominion',
@@ -44,83 +44,71 @@ export default function Dominion({ siteConfig }) {
       <div className="pt4  pt0-md">
         <Container>
           <div className="flex  flex-wrap  pb5">
-            <div className="col-24  col-12-md  ph2  pb3">
-              <div className="shadow2">
-                {
-                  // <Image
-                  //   /* Options */
-                  //   src={imageBuilder
-                  //     .image(product.image1)
-                  //     .height(1000)
-                  //     .width(1000)
-                  //     .auto('format').url()}
-                  //   placeholder={imageBuilder
-                  //     .image(product.image1)
-                  //     .height(25)
-                  //     .width(25)
-                  //     .auto('format').url()}
-                  //   alt={product.title}
-                  //   figcaption={null}
-                  //   height={500}
-                  //   width={null}
-                  //   customClass={null}
-                  //   onClick={null}
-                  //   /* Children */
-                  //   withLinkProps={null}
-                  // />
-                }
+            <div className="col-24  flex  justify-center">
+              <div className="measure-wide  mt5  mb3">
+                <div className="taj  pb4">
+                  <Copy
+                    /* Options */
+                    text={`
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Eu feugiat pretium nibh ipsum. Nunc lobortis mattis aliquam
+                    faucibus purus in. Sem et tortor consequat id porta nibh. Est
+                    placerat in egestas erat imperdiet sed euismod nisi porta.
+                    Consectetur libero id faucibus nisl. Tortor condimentum lacinia
+                    quis vel eros donec ac odio tempor. Ut ornare lectus sit amet.
+                    Nunc mattis enim ut tellus elementum sagittis vitae et leo.
+                    Nunc aliquet bibendum enim facilisis gravida neque. Scelerisque
+                    mauris pellentesque pulvinar pellentesque habitant.
+                  `}
+                    color="black"
+                    size="medium"
+                    truncate={null}
+                  />
+                </div>
+                <div className="taj  pb4">
+                  <Copy
+                    /* Options */
+                    text={`
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Eu feugiat pretium nibh ipsum. Nunc lobortis mattis aliquam
+                    faucibus purus in. Sem et tortor consequat id porta nibh. Est
+                    placerat in egestas erat imperdiet sed euismod nisi porta.
+                    Consectetur libero id faucibus nisl. Tortor condimentum lacinia
+                    quis vel eros donec ac odio tempor. Ut ornare lectus sit amet.
+                    Nunc mattis enim ut tellus elementum sagittis vitae et leo.
+                    Nunc aliquet bibendum enim facilisis gravida neque. Scelerisque
+                    mauris pellentesque pulvinar pellentesque habitant.
+                  `}
+                    color="black"
+                    size="medium"
+                    truncate={null}
+                  />
+                </div>
+                <div className="taj  pb4">
+                  <Copy
+                    /* Options */
+                    text={`
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Eu feugiat pretium nibh ipsum. Nunc lobortis mattis aliquam
+                    faucibus purus in. Sem et tortor consequat id porta nibh. Est
+                    placerat in egestas erat imperdiet sed euismod nisi porta.
+                    Consectetur libero id faucibus nisl. Tortor condimentum lacinia
+                    quis vel eros donec ac odio tempor. Ut ornare lectus sit amet.
+                    Nunc mattis enim ut tellus elementum sagittis vitae et leo.
+                    Nunc aliquet bibendum enim facilisis gravida neque. Scelerisque
+                    mauris pellentesque pulvinar pellentesque habitant.
+                  `}
+                    color="black"
+                    size="medium"
+                    truncate={null}
+                  />
+                </div>
               </div>
             </div>
-            <div className="col-24  col-12-md  ph3-md">
-              <div className="db  ph2  pt2  pb3">
-                {
-                  // <Heading
-                  //   /* Options */
-                  //   htmlEntity="h1"
-                  //   text={product.title}
-                  //   color="black"
-                  //   size="large"
-                  //   truncate={null}
-                  //
-                  //   /* Children */
-                  //   withLinkProps={null}
-                  // />
-                }
-              </div>
-              <div className="db  ph2  pb4">
-                {
-                  // <Label
-                  //   /* Options */
-                  //   customClass="ph2"
-                  //   text={`£${product.price}`}
-                  //   color="white"
-                  //   backgroundColor="black"
-                  //   onClick={null}
-                  //   /* Children */
-                  //   withLinkProps={null}
-                  // />
-                }
-              </div>
-
-              <div className="bb  bc-black  pb3  mb4">
-                <Tabs
-                  /* Options */
-                  content={[
-                    {
-                      id: '1',
-                      tabTitle: 'Description',
-                      tabContent: descriptionTab,
-                    },
-                    {
-                      id: '2',
-                      tabTitle: 'Deliveries',
-                      tabContent: deliveryTab,
-                    },
-                  ]}
-                  defaultSelected="1"
-                />
-              </div>
-
+            <div className="col-24  flex  justify-center">
               <div className="db  ph2  pb3">
                 <div
                   className="snipcart-add-item"
