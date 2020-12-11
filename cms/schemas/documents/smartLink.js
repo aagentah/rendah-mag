@@ -20,8 +20,8 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "finalUrl",
-      title: "Final URL",
+      name: "shortUrl",
+      title: "Short URL",
       description: "Do not change value",
       type: "slug",
       options: {
