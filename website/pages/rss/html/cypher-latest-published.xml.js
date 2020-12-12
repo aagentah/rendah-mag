@@ -7,34 +7,35 @@ import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
 const sitemapXml = (cypher) => {
-  let postsXML = '';
+  if (cypher?.slug?.current) {
+    let postsXML = '';
 
-  const title = cypher?.title || '';
+    const title = cypher?.title || '';
 
-  const description = cypher?.publishedFields?.publishedDescription
-    ? blocksToHtml({
-        blocks: cypher.publishedFields.publishedDescription,
-      })
-    : '';
+    const description = cypher?.publishedFields?.publishedDescription
+      ? blocksToHtml({
+          blocks: cypher.publishedFields.publishedDescription,
+        })
+      : '';
 
-  const image = cypher?.imageLandscape
-    ? `<img width="400" style="width: 400px;" src="${imageBuilder
-        .image(cypher.imageLandscape)
-        .url()}" />`
-    : '';
+    const image = cypher?.imageLandscape
+      ? `<img width="400" style="width: 400px;" src="${imageBuilder
+          .image(cypher.imageLandscape)
+          .url()}" />`
+      : '';
 
-  const url = cypher?.publishedFields?.publishedUrl
-    ? `
+    const url = cypher?.publishedFields?.publishedUrl
+      ? `
     <p style="text-align: left;">
       Listen here:
       <a style="text-align: left;" href="${cypher.publishedFields.publishedUrl}">${cypher.publishedFields.publishedUrl}</a>
     </p>
   `
-    : '';
+      : '';
 
-  const spacer = `<br />`;
+    const spacer = `<br />`;
 
-  postsXML += `
+    postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
@@ -48,13 +49,24 @@ const sitemapXml = (cypher) => {
       </item>
       `;
 
-  return `
+    return `
     <rss version="2.0">
       <channel>
         <title>Latest Published Cypher</title>
         <link>${process.env.SITE_URL}</link>
         <description>This is a RSS feed</description>
         ${postsXML}
+      </channel>
+    </rss>
+    `;
+  }
+
+  return `
+    <rss version="2.0">
+      <channel>
+        <title></title>
+        <link></link>
+        <description></description>
       </channel>
     </rss>
     `;
