@@ -300,3 +300,12 @@ export async function getSmartLink(slug, preview) {
   );
   return results;
 }
+
+export async function getLinkInBio(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "linkInBio"] [0] {
+      ...,
+    }`
+  );
+  return results;
+}
