@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { Heading, Button, Icon, Input, Checkbox } from 'next-pattern-library';
@@ -14,7 +14,9 @@ import passwordStrength from '~/lib/password-strength';
 import validEmail from '~/lib/valid-email';
 
 export default function Sigup({ siteConfig }) {
+  const router = useRouter();
   const [user, { mutate }] = useUser();
+  const prefillEmail = router.query?.prefillEmail || null;
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -124,7 +126,7 @@ export default function Sigup({ siteConfig }) {
                 type="text"
                 label="Email"
                 name="username"
-                value=""
+                value={prefillEmail}
                 icon={inputIconEnvelope}
                 required
                 disabled={false}
@@ -252,7 +254,6 @@ export default function Sigup({ siteConfig }) {
 }
 
 export async function getServerSideProps({ req }) {
-  
   const siteConfig = await getSiteConfig();
 
   return {

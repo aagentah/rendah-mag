@@ -2,17 +2,17 @@ import sendinblue from './sendinblue';
 import emailCommon from '~/emails/component/common';
 
 export default (email) => {
-  const title = 'Welcome to the Dominion.';
+  const title = 'Welcome to the Dominion!';
 
   const body = `
-    We can't thank you enough, and we're happy to have you on this journey with us!
+    We can't thank you enough, and we're happy to have you on this journey with us.
     <br />
     <br />
     <strong>So what's next?</strong>
     <br />
     <br />
     If you haven't already, please create your Rendah Mag account (using the
-    email you used on purchase) to access your <strong>Dominion profile</strong>.
+    email you used on purchase) to access your Dominion Profile.
     <br />
     <br />
     <strong>My Dominion Profile?</strong>
@@ -32,7 +32,7 @@ export default (email) => {
 
   const buttonText = 'Create Account';
 
-  const buttonLink = `${process.env.SITE_URL}/signup`;
+  const buttonLink = `${process.env.SITE_URL}/signup?prefillEmail=${email}`;
 
   const sendSmtpEmail = {
     sender: {
