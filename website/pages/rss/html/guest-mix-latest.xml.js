@@ -7,30 +7,31 @@ import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
 const sitemapXml = (mix) => {
-  let postsXML = '';
+  if (mix?.slug?.current) {
+    let postsXML = '';
 
-  const title = mix?.title || '';
+    const title = mix?.title || '';
 
-  const description = blocksToHtml({ blocks: mix.description });
+    const description = blocksToHtml({ blocks: mix.description });
 
-  const image = mix?.image
-    ? `<img width="400" style="width: 400px;" src="${imageBuilder
-        .image(mix.image)
-        .width(400)
-        .auto('format')
-        .url()}" />`
-    : '';
+    const image = mix?.image
+      ? `<img width="400" style="width: 400px;" src="${imageBuilder
+          .image(mix.image)
+          .width(400)
+          .auto('format')
+          .url()}" />`
+      : '';
 
-  const link = mix?.soundcloudLink
-    ? `
+    const link = mix?.soundcloudLink
+      ? `
     <p style="text-align: left;">
       Link:
       <a style="text-align: left;" href="${mix.soundcloudLink}">${mix.soundcloudLink}</a>
     </p>
   `
-    : '';
+      : '';
 
-  postsXML += `
+    postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
@@ -42,13 +43,24 @@ const sitemapXml = (mix) => {
       </item>
       `;
 
-  return `
+    return `
     <rss version="2.0">
       <channel>
         <title>RSS Feed</title>
         <link>${process.env.SITE_URL}</link>
         <description>This is a RSS feed</description>
         ${postsXML}
+      </channel>
+    </rss>
+    `;
+  }
+
+  return `
+    <rss version="2.0">
+      <channel>
+        <title></title>
+        <link></link>
+        <description></description>
       </channel>
     </rss>
     `;

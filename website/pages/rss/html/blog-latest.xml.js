@@ -6,26 +6,27 @@ import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
 const sitemapXml = (posts) => {
-  let postsXML = '';
+  if (posts.length) {
+    let postsXML = '';
 
-  posts.map((post) => {
-    const title = post?.title;
+    posts.map((post) => {
+      const title = post?.title;
 
-    const titleBlock = post?.title
-      ? `<h2 style="font-weight: bold; text-align: left; font-size: 16px; line-height: 22px;">${title}</h2>`
-      : '';
+      const titleBlock = post?.title
+        ? `<h2 style="font-weight: bold; text-align: left; font-size: 16px; line-height: 22px;">${title}</h2>`
+        : '';
 
-    const tagLineBlock = post?.socialTagline
-      ? `<p style="color: #000000; text-align: left; font-size: 16px; line-height: 22px;">${post.socialTagline}</p>`
-      : '';
+      const tagLineBlock = post?.socialTagline
+        ? `<p style="color: #000000; text-align: left; font-size: 16px; line-height: 22px;">${post.socialTagline}</p>`
+        : '';
 
-    const url = post?.slug
-      ? `${process.env.SITE_URL}/article/${post.slug}`
-      : process.env.SITE_URL;
+      const url = post?.slug
+        ? `${process.env.SITE_URL}/article/${post.slug}`
+        : process.env.SITE_URL;
 
-    const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left; font-size: 16px; line-height: 22px;" href="${url}" target="_blank">Read full article</a></p>`;
+      const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left; font-size: 16px; line-height: 22px;" href="${url}" target="_blank">Read full article</a></p>`;
 
-    const html = `
+      const html = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
           <td width="300" valign="top">
@@ -53,7 +54,7 @@ const sitemapXml = (posts) => {
       </table>
       `;
 
-    postsXML += `
+      postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link>${escapeXml(encodeSpecialChar(url))}</link>
@@ -63,19 +64,20 @@ const sitemapXml = (posts) => {
       </item>
       `;
 
-    return true;
-  });
+      return true;
+    });
 
-  return `
-    <rss version="2.0">
-      <channel>
-        <title>RSS Feed</title>
-        <link>${process.env.SITE_URL}</link>
-        <description>This is a RSS feed</description>
-        ${postsXML}
-      </channel>
-    </rss>
-    `;
+    return `
+      <rss version="2.0">
+        <channel>
+          <title>RSS Feed</title>
+          <link>${process.env.SITE_URL}</link>
+          <description>This is a RSS feed</description>
+          ${postsXML}
+        </channel>
+      </rss>
+      `;
+  }
 };
 
 export default class BlogLatest extends React.Component {

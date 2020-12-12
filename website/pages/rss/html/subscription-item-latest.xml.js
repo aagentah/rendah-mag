@@ -7,24 +7,25 @@ import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
 const sitemapXml = (item) => {
-  let postsXML = '';
+  if (item?.slug?.current) {
+    let postsXML = '';
 
-  const title = item?.title || '';
+    const title = item?.title || '';
 
-  const description = blocksToHtml({ blocks: item?.description });
+    const description = blocksToHtml({ blocks: item?.description });
 
-  // TODO: if action buttons
-  // const loginText = '<p><ii>Log in to your dominion profile</i></p>'
+    // TODO: if action buttons
+    // const loginText = '<p><ii>Log in to your dominion profile</i></p>'
 
-  const image = item?.image
-    ? `<img width="400" style="width: 400px;" src="${imageBuilder
-        .image(item.image)
-        .width(400)
-        .auto('format')
-        .url()}" />`
-    : '';
+    const image = item?.image
+      ? `<img width="400" style="width: 400px;" src="${imageBuilder
+          .image(item.image)
+          .width(400)
+          .auto('format')
+          .url()}" />`
+      : '';
 
-  const html = `
+    const html = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
           <td width="400" valign="top">
@@ -42,7 +43,7 @@ const sitemapXml = (item) => {
       </table>
       `;
 
-  postsXML += `
+    postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
@@ -52,13 +53,24 @@ const sitemapXml = (item) => {
       </item>
       `;
 
-  return `
+    return `
     <rss version="2.0">
       <channel>
         <title>RSS Feed</title>
         <link>${process.env.SITE_URL}</link>
         <description>This is a RSS feed</description>
         ${postsXML}
+      </channel>
+    </rss>
+    `;
+  }
+
+  return `
+    <rss version="2.0">
+      <channel>
+        <title></title>
+        <link></link>
+        <description></description>
       </channel>
     </rss>
     `;
