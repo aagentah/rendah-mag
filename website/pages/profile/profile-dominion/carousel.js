@@ -76,7 +76,6 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   console.log('refreshDominion', refreshDominion);
   console.log('dominionItems', dominionItems);
 
-
   if (refreshDominion && dominionItems.length) {
     return (
       <>
@@ -96,7 +95,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                       <div className="absolute  top  right  mr3  nt3">
                         <Label
                           /* Options */
-                          customClass="ph2"
+                          customClass=""
                           text="New"
                           color="white"
                           backgroundColor="blue"
@@ -107,7 +106,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                       </div>
                     )}
                     <p className="t-primary  f5  f6-md  tac">
-                      {item.activeFrom}
+                      {new Date(item.activeFrom).toDateString().slice(4)}
                     </p>
                   </div>
                 </div>
