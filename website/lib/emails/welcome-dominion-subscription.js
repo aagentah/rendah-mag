@@ -19,7 +19,7 @@ export default (email) => {
     <br />
     <br />
     Your Dominion Profile will allow you to keep on top of everything related to
-    your Subscription, including information and access to Dominion content.
+    your Subscription, including access to Dominion content.
     We'll also send you a monthly Dominion update via email, just to keep you
     in the loop.
     <br />

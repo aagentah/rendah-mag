@@ -1,20 +1,32 @@
 .button {
   opacity: 0;
-  animation: fade-in 0.3s forwards;
-  transition: all 0.3s ease-in-out;
+  animation: npl-fade-in 0.3s forwards;
+  transition: all $npl-button-transition-speed $npl-button-transition-ease;
   background: transparent;
   box-shadow: none;
   outline: 0;
   cursor: pointer;
   position: relative;
   text-decoration: none;
+  padding-left: 8px;
+  padding-right: 8px;
+  display: inline-block;
+  align-items: center;
+  min-width: 50px;
+  font-family: $npl-t-secondary;
 
-  @extend .ph3;
-  @extend .flex;
-  @extend .align-center;
+  &::after {
+    transition: opacity $npl-button-transition-speed $npl-button-transition-ease;
+    opacity: 0;
+  }
+
+  .button__icon__wrapper {
+    display: flex;
+    align-items: center;
+  }
 
   &.small {
-    @extend .f6;
+    font-size: $npl-f6;
 
     .button__icon {
       width: 14px;
@@ -22,7 +34,7 @@
   }
 
   &.medium {
-    @extend .f5;
+    font-size: $npl-f5;
 
     .button__icon {
       width: 16px;
@@ -30,7 +42,7 @@
   }
 
   &.large {
-    @extend .f4;
+    font-size: $npl-f4;
 
     .button__icon {
       width: 18px;
@@ -38,7 +50,7 @@
   }
 
   &.x-large {
-    @extend .f3;
+    font-size: $npl-f3;
 
     .button__icon {
       width: 20px;
@@ -47,7 +59,8 @@
 
   .button__icon,
   .button__icon + span {
-    transition: transform 0.3s ease-in-out;
+    transition: transform $npl-button-transition-speed
+      $npl-button-transition-ease;
   }
 
   .button__icon--left {
@@ -60,44 +73,41 @@
 }
 
 .button.primary {
-  border: 2px solid var(--black);
+  border: 2px solid $npl-base-black;
   text-align: center;
-  display: inline-block;
-  border-radius: 3px;
+  border-radius: $npl-button-primary-border-radius;
+  padding-left: $npl-button-primary-padding-horizontal;
+  padding-right: $npl-button-primary-padding-horizontal;
+  padding-top: $npl-button-primary-padding-vertical;
+  padding-bottom: $npl-button-primary-padding-vertical;
+
+  .button__icon__wrapper {
+    justify-content: center;
+  }
 
   &.small {
-    line-height: 32px;
-    height: 35px;
     min-width: 0px;
   }
 
   &.medium {
-    line-height: 41px;
-    height: 45px;
     min-width: 100px;
   }
 
   &.large {
-    line-height: 50px;
-    height: 55px;
     min-width: 200px;
   }
 
   &.x-large {
-    line-height: 66px;
-    height: 70px;
     min-width: 200px;
   }
 }
 
 .button.secondary {
   border: 0;
-  max-width: 100%;
-  min-width: 0;
   text-align: left;
-  display: inline-block;
   border-radius: 0px;
-  @extend .ph0;
+  padding-left: 0;
+  padding-right: 0;
 
   &:hover:not(.loading):not(.disabled) {
     .button__icon--right,
@@ -112,13 +122,13 @@
 
   &:after {
     content: '';
-    transition: all 0.3s ease-in-out;
+    transition: all $npl-button-transition-speed $npl-button-transition-ease;
     position: absolute;
     bottom: -6px;
     left: 0;
     height: 2px;
     width: 0%;
-    background-color: var(--black);
+    background-color: $npl-base-black;
   }
 }
 
@@ -126,11 +136,8 @@
   width: 100%;
 }
 
-.button.inverted {
-  //
-}
-
 .button.loading {
+  display: flex;
   cursor: default;
 
   @keyframes loading {
@@ -147,13 +154,11 @@
   }
 
   &.primary {
-    @extend .flex;
-    @extend .justify-center;
+    justify-content: center;
   }
 
   &.secondary {
-    @extend .flex;
-    @extend .justify-start;
+    justify-content: center;
   }
 }
 
@@ -162,35 +167,39 @@
   cursor: not-allowed;
 }
 
-@each $color, $hex in $colors {
-  .button.primary.#{$color} {
-    background-color: var($hex);
-    color: var(--white);
-    fill: var(--white);
-    border-color: var($hex);
+@each $color, $hex in $npl-colors {
+  .button.primary.button--#{$color} {
+    background-color: $hex;
+    color: $npl-base-white;
+    fill: $npl-base-white;
+    border-color: $hex;
 
     &:hover:not(.loading):not(.disabled) {
       background-color: transparent;
-      color: var($hex);
-      fill: var($hex);
+      color: $hex;
+      fill: $hex;
     }
   }
 
-  .button.primary.#{$color}.inverted {
-    color: var($hex);
-    fill: var($hex);
-    border-color: var($hex);
+  .button.primary.button--#{$color}.inverted {
+    color: $hex;
+    fill: $hex;
+    border-color: $hex;
 
     &:hover:not(.loading):not(.disabled) {
-      background-color: var($hex);
-      color: var(--white);
-      fill: var(--white);
+      background-color: $hex;
+      color: $npl-base-white;
+      fill: $npl-base-white;
     }
   }
 
-  .button.secondary.#{$color} {
+  .button.secondary.button--#{$color} {
+    color: $hex;
+    fill: $hex;
+    border-color: $hex;
+
     &:after {
-      background-color: var($hex);
+      background-color: $hex;
     }
   }
 }

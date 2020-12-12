@@ -171,7 +171,7 @@ export default function Login({ siteConfig }) {
                   text={"I don't have an account"}
                   color="black"
                   fluid={false}
-                  icon={null}
+                  icon={buttonIconArrowRight}
                   iconFloat={null}
                   inverted
                   loading={false}
@@ -224,7 +224,6 @@ export default function Login({ siteConfig }) {
 }
 
 export async function getServerSideProps({ req }) {
-  
   const siteConfig = await getSiteConfig();
 
   return {
