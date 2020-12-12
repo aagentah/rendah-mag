@@ -89,7 +89,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
         <a
           href={item.url}
           target="_blank"
-          className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  shadow1  link"
+          className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  shadow2  link"
         >
           <div className="pr3">{icon}</div>
           <p className="t-secondary  f4">{service}</p>
@@ -172,7 +172,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
         </Modal>
 
         <Container>
-          <div className="measure-wide  mla  mra  ph4  ph5-md  pv5  bg-almost-white  black  br3  h-100">
+          <div className="measure-wide  mla  mra  ph4  ph5-md  pv5  black  br3  h-100">
             <div className="flex  justify-center  cp  mb4">
               <Link href="/">
                 <svg

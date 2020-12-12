@@ -31,7 +31,8 @@ import smartLinkItem from "./documents/smartLinkItem";
 import smartLink from "./documents/smartLink";
 
 // Link In Bio
-import linkInBio from "./documents/linkInBio";
+import linkInBioItem from "./objects/linkInBioItem";
+import linkInBio from "./objects/linkInBio";
 
 import siteSettings from "./objects/siteSettings";
 
@@ -53,6 +54,7 @@ export default createSchema({
     dominionItem,
     smartLinkItem,
     smartLink,
+    linkInBioItem,
     linkInBio,
     //
     siteSettings,

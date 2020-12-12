@@ -1,82 +1,86 @@
+// V2
 
-
-.snipcart {
-  position: relative;
-  font-family: $t-secondary;
-  z-index: 1090;
-
-  *,
-  *:before,
-  *:after,
-  *:focus,
-  *:active,
-  *:hover {
-    border-color: var(--grey);
-  }
+.snip-layout.snip-active {
+  @extend .z9;
 }
 
-.snipcart__font--secondary,
-.snipcart__font--subtitle {
-  font-family: $t-primary;
-}
+// V3
 
-.snipcart-modal__container,
-.snipcart-cart__content,
-.snipcart-modal,
-.snipcart-cart-header,
-.snipcart-discount-box {
-  background-color: var(--almost-white);
-}
-
-.snipcart__box--gray {
-  background-color: var(--white);
-}
-
-.snipcart__box--badge {
-  background: var(--dark-grey);
-  color: var(--white);
-}
-
-.snipcart__icon,
-.snipcart__icon path {
-  fill: var(--dark-grey);
-}
-
-.snipcart-discount-box__submit,
-.snipcart__actions--link {
-  color: var(--grey);
-}
-
-.snipcart__box {
-  // @extend .shadow2;
-  // @extend .br4;
-}
-
-.snipcart-cart-button--highlight {
-  transition: all 0.3s ease-in-out;
-  background: var(--black);
-  color: var(--white);
-  fill: var(--white);
-  border-color: var(--black);
-  line-height: 12px !important;
-  height: 45px !important;
-  min-width: 100px;
-  border: 2px solid var(--black);
-  text-align: center;
-  display: inline-block;
-  border-radius: 3px;
-  font-size: 1rem;
-  @extend .t-primary;
-
-  &:hover {
-    background-color: transparent;
-    color: var(--black);
-    fill: var(--black);
-  }
-
-  svg {
-    display: none;
-  }
-}
-
-
+// .snipcart {
+//   position: relative;
+//   font-family: $t-secondary;
+//   z-index: 1090;
+//
+//   *,
+//   *:before,
+//   *:after,
+//   *:focus,
+//   *:active,
+//   *:hover {
+//     border-color: var(--grey);
+//   }
+// }
+//
+// .snipcart__font--secondary,
+// .snipcart__font--subtitle {
+//   font-family: $t-primary;
+// }
+//
+// .snipcart-modal__container,
+// .snipcart-cart__content,
+// .snipcart-modal,
+// .snipcart-cart-header,
+// .snipcart-discount-box {
+//   background-color: var(--almost-white);
+// }
+//
+// .snipcart__box--gray {
+//   background-color: var(--white);
+// }
+//
+// .snipcart__box--badge {
+//   background: var(--dark-grey);
+//   color: var(--white);
+// }
+//
+// .snipcart__icon,
+// .snipcart__icon path {
+//   fill: var(--dark-grey);
+// }
+//
+// .snipcart-discount-box__submit,
+// .snipcart__actions--link {
+//   color: var(--grey);
+// }
+//
+// .snipcart__box {
+//   // @extend .shadow2;
+//   // @extend .br4;
+// }
+//
+// .snipcart-cart-button--highlight {
+//   transition: all 0.3s ease-in-out;
+//   background: var(--black);
+//   color: var(--white);
+//   fill: var(--white);
+//   border-color: var(--black);
+//   line-height: 12px !important;
+//   height: 45px !important;
+//   min-width: 100px;
+//   border: 2px solid var(--black);
+//   text-align: center;
+//   display: inline-block;
+//   border-radius: 3px;
+//   font-size: 1rem;
+//   @extend .t-primary;
+//
+//   &:hover {
+//     background-color: transparent;
+//     color: var(--black);
+//     fill: var(--black);
+//   }
+//
+//   svg {
+//     display: none;
+//   }
+// }
