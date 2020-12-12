@@ -135,6 +135,11 @@ export default function ProfileEdit() {
       // Success
       mutate(await response.json());
       toast.success('Successfully updated');
+    } else if (response.status === 412) {
+      // File too big
+      toast.error(
+        'File too big. Please make sure your file does not exceed 1 MB'
+      );
     } else {
       // Error
       toast.error('Error whilst updating, try again, or a different browser.');
@@ -261,7 +266,7 @@ export default function ProfileEdit() {
           <div className="pb4">
             <Copy
               /* Options */
-              text="Recomended square & at least 720px."
+              text="Recomended square & at least 720px & under 1 MB."
               color="black"
               size="medium"
               truncate={null}
