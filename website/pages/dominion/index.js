@@ -46,66 +46,46 @@ export default function Dominion({ siteConfig }) {
           <div className="flex  flex-wrap  pb5">
             <div className="col-24  flex  justify-center">
               <div className="measure-wide  mt5  mb3">
-                <div className="taj  pb4">
-                  <Copy
-                    /* Options */
-                    text={`
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Eu feugiat pretium nibh ipsum. Nunc lobortis mattis aliquam
-                    faucibus purus in. Sem et tortor consequat id porta nibh. Est
-                    placerat in egestas erat imperdiet sed euismod nisi porta.
-                    Consectetur libero id faucibus nisl. Tortor condimentum lacinia
-                    quis vel eros donec ac odio tempor. Ut ornare lectus sit amet.
-                    Nunc mattis enim ut tellus elementum sagittis vitae et leo.
-                    Nunc aliquet bibendum enim facilisis gravida neque. Scelerisque
-                    mauris pellentesque pulvinar pellentesque habitant.
-                  `}
-                    color="black"
-                    size="medium"
-                    truncate={null}
-                  />
-                </div>
-                <div className="taj  pb4">
-                  <Copy
-                    /* Options */
-                    text={`
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Eu feugiat pretium nibh ipsum. Nunc lobortis mattis aliquam
-                    faucibus purus in. Sem et tortor consequat id porta nibh. Est
-                    placerat in egestas erat imperdiet sed euismod nisi porta.
-                    Consectetur libero id faucibus nisl. Tortor condimentum lacinia
-                    quis vel eros donec ac odio tempor. Ut ornare lectus sit amet.
-                    Nunc mattis enim ut tellus elementum sagittis vitae et leo.
-                    Nunc aliquet bibendum enim facilisis gravida neque. Scelerisque
-                    mauris pellentesque pulvinar pellentesque habitant.
-                  `}
-                    color="black"
-                    size="medium"
-                    truncate={null}
-                  />
-                </div>
-                <div className="taj  pb4">
-                  <Copy
-                    /* Options */
-                    text={`
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Eu feugiat pretium nibh ipsum. Nunc lobortis mattis aliquam
-                    faucibus purus in. Sem et tortor consequat id porta nibh. Est
-                    placerat in egestas erat imperdiet sed euismod nisi porta.
-                    Consectetur libero id faucibus nisl. Tortor condimentum lacinia
-                    quis vel eros donec ac odio tempor. Ut ornare lectus sit amet.
-                    Nunc mattis enim ut tellus elementum sagittis vitae et leo.
-                    Nunc aliquet bibendum enim facilisis gravida neque. Scelerisque
-                    mauris pellentesque pulvinar pellentesque habitant.
-                  `}
-                    color="black"
-                    size="medium"
-                    truncate={null}
-                  />
-                </div>
+                <p className="f-secondary  taj  f5  pb4  lh-copy">
+                  This year, the Rendah Mag team embarks on a new journey,
+                  launching a fully-pledged subscription service for the
+                  community. With so much to explore within Bass music right
+                  now, we want to push our platform into new territory, offering
+                  a new way for you to stay on top of the underground, we
+                  present the <strong>Dominion Subscription</strong>.
+                </p>
+                <p className="f-secondary  taj  f5  pb4  lh-copy">
+                  With the addition to being a magazine subscription, we offer
+                  the following to you:
+                </p>
+                <ul className="pl4  pb3">
+                  <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    Welcome package (Includes membership card & stickers).
+                  </li>
+                  <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    A quarterly-printed issue of Rendah Mag.
+                  </li>
+                  <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    Your own Dominion Profile on our Website.
+                  </li>
+                  <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    Exclusive monthly updates on releases & insights within bass
+                    music.
+                  </li>
+                  <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    20% off all Rendah Mag Products.
+                  </li>
+                  <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    Early access to Rendah Mag Cyphers.
+                  </li>
+                  <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    Exclusive tracks, sample packs, and discounts from artists
+                    and labels.
+                  </li>
+                </ul>
+                <p className="f-secondary  taj  f5  pb4  lh-copy">
+                  We hope you can join us on this new journey ❤️
+                </p>
               </div>
             </div>
             <div className="col-24  flex  justify-center">
@@ -127,7 +107,7 @@ export default function Dominion({ siteConfig }) {
                     /* Options */
                     type="primary"
                     size="medium"
-                    text="Add to cart"
+                    text="Subscribe"
                     color="black"
                     fluid={false}
                     icon={buttonIconPlus}
@@ -141,26 +121,28 @@ export default function Dominion({ siteConfig }) {
                   />
                 </div>
               </div>
-              <div className="db  ph2  pb3">
-                <div className="snipcart-checkout">
-                  <Button
-                    /* Options */
-                    type="primary"
-                    size="medium"
-                    text="View Basket"
-                    color="black"
-                    fluid={false}
-                    icon={buttonIconCart}
-                    iconFloat={null}
-                    inverted
-                    loading={false}
-                    disabled={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
-              </div>
+              {
+                // <div className="db  ph2  pb3">
+                //   <div className="snipcart-checkout">
+                //     <Button
+                //       /* Options */
+                //       type="primary"
+                //       size="medium"
+                //       text="View Basket"
+                //       color="black"
+                //       fluid={false}
+                //       icon={buttonIconCart}
+                //       iconFloat={null}
+                //       inverted
+                //       loading={false}
+                //       disabled={false}
+                //       onClick={null}
+                //       /* Children */
+                //       withLinkProps={null}
+                //     />
+                //   </div>
+                // </div>
+              }
             </div>
           </div>
         </Container>
