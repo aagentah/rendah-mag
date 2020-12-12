@@ -1,8 +1,14 @@
 export default {
-  name: "linkInBio",
+  name: "linkInBioItem",
   title: "Link In Bio",
   type: "document",
   fields: [
+    {
+      name: "title",
+      title: "Title",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
     {
       name: "url",
       title: "URL",

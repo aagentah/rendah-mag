@@ -24,6 +24,10 @@ export default () =>
         .child(
           S.editor().schemaType("siteSettings").documentId("siteSettings")
         ),
+      S.listItem()
+        .icon(MDGridOn)
+        .title("Link In Bio")
+        .child(S.editor().schemaType("linkInBio").documentId("linkInBio")),
       // Divider
       S.divider(),
       // Blog
@@ -62,6 +66,4 @@ export default () =>
       S.documentTypeListItem("dominionItem").icon(MDLoyalty),
       // Smart Link
       S.documentTypeListItem("smartLink").icon(MDViewList),
-      // Link In Bio
-      S.documentTypeListItem("linkInBio").icon(MDGridOn),
     ]);
