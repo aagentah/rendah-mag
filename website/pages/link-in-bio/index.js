@@ -47,7 +47,7 @@ export default function LinkInBio({ siteConfig, linkInBio, preview }) {
         <a
           href={item.url}
           target="_blank"
-          className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  shadow2  link"
+          className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
         >
           <p className="t-secondary  f5  tac  lh-copy">{item.title}</p>
         </a>
