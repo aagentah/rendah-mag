@@ -4,6 +4,27 @@ import LazyLoad from 'react-lazyload';
 import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function ImageSection({ section }) {
+  const handleCaption = () => {
+    let caption = section.caption;
+
+    if (section.source) {
+      caption = (
+        <a
+          className="t-secondary  f7  grey  pv2  lh-copy  tac  underline"
+          href={section.source}
+          target="_blank"
+        >
+          {section.caption}
+        </a>
+      );
+    }
+
+    return (
+      <figcaption className="t-secondary  f7  grey  pv2  lh-copy  tac">
+        {caption}
+      </figcaption>
+    );
+  };
   return (
     <LazyLoad once offset={100} height={360}>
       <figure>
@@ -31,6 +52,7 @@ export default function ImageSection({ section }) {
           /* Children */
           withLinkProps={null}
         />
+        {section.caption && handleCaption()}
       </figure>
     </LazyLoad>
   );
