@@ -30,8 +30,8 @@ const handleAvatar = async (cloneFields, user) => {
 
   const writeFile = promisify(fs.writeFile);
   const image64 = f.avatar.replace(/^data:image\/[a-z]+;base64,/, '');
-  await writeFile('tmp/avatar.png', image64, 'base64');
-  const source = tinify.fromFile('tmp/avatar.png');
+  await writeFile('/tmp/avatar.png', image64, 'base64');
+  const source = tinify.fromFile('/tmp/avatar.png');
   const resized = source.resize({
     method: 'cover',
     width: 720,
@@ -39,7 +39,7 @@ const handleAvatar = async (cloneFields, user) => {
   });
 
   // Tinify image
-  await resized.toFile('tmp/optimized.png');
+  await resized.toFile('/tmp/optimized.png');
 
   const uploadCompressed = async (imageAsset) => {
     const avatarProps = {
@@ -70,7 +70,7 @@ const handleAvatar = async (cloneFields, user) => {
 
   // Upload compressed image to Sanity
   await client.assets
-    .upload('image', fs.createReadStream('tmp/optimized.png'), {
+    .upload('image', fs.createReadStream('/tmp/optimized.png'), {
       contentType: 'image/png',
       filename: `optimized.png`,
     })
@@ -83,8 +83,8 @@ const handleAvatar = async (cloneFields, user) => {
 
   // Delete temp image
   try {
-    fs.unlinkSync('tmp/avatar.png');
-    fs.unlinkSync('tmp/optimized.png');
+    fs.unlinkSync('/tmp/avatar.png');
+    fs.unlinkSync('/tmp/optimized.png');
   } catch (error) {
     console.log('unlinkSync error:', error.message);
   }
