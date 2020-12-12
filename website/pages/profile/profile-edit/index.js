@@ -135,7 +135,7 @@ export default function ProfileEdit() {
       // Success
       mutate(await response.json());
       toast.success('Successfully updated');
-    } else if (response.status === 412) {
+    } else if (response.status === 413) {
       // File too big
       toast.error(
         'File too big. Please make sure your file does not exceed 1 MB'
