@@ -486,26 +486,28 @@ export default function ProfileEdit() {
                 }}
               />
             </div>
-            <div className="db  dib-md  pr3  pb1">
-              <Button
-                /* Options */
-                type="secondary"
-                size="small"
-                text="Delete Profile"
-                color="red"
-                fluid={false}
-                icon={buttonIconTrash}
-                iconFloat="left"
-                inverted
-                loading={false}
-                disabled={app.isLoading}
-                onClick={() => {
-                  setDeleteModalActive(!deleteModalActive);
-                }}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
+            {
+              // <div className="db  dib-md  pr3  pb1">
+              //   <Button
+              //     /* Options */
+              //     type="secondary"
+              //     size="small"
+              //     text="Delete Profile"
+              //     color="red"
+              //     fluid={false}
+              //     icon={buttonIconTrash}
+              //     iconFloat="left"
+              //     inverted
+              //     loading={false}
+              //     disabled={app.isLoading}
+              //     onClick={() => {
+              //       setDeleteModalActive(!deleteModalActive);
+              //     }}
+              //     /* Children */
+              //     withLinkProps={null}
+              //   />
+              // </div>
+            }
           </div>
         </form>
       </>
