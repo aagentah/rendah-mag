@@ -2,7 +2,7 @@ import sendinblue from './sendinblue';
 import emailCommon from '~/emails/component/common';
 
 export default (username, hash, salt) => {
-  const title = 'Password Reset.';
+  const title = 'Password Reset';
 
   const body = `
       Click below to login and change your Rendah Mag password.
@@ -10,7 +10,7 @@ export default (username, hash, salt) => {
 
   const image = null;
 
-  const buttonText = 'Reset Password';
+  const buttonText = 'Reset';
 
   const buttonLink = `${process.env.SITE_URL}/login?username=${username}&hash=${hash}&salt=${salt}&fwdRoute=profile`;
 
