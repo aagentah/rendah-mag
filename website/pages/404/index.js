@@ -11,6 +11,8 @@ export default function Error404({ siteConfig }) {
       <Layout
         navOffset="top"
         navOnWhite={true}
+        hasNav={true}
+        hasFooter={true}
         meta={{
           siteConfig,
           title: '404',

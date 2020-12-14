@@ -6,7 +6,6 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
-
 import {
   getSiteConfig,
   getTeamMemberAndPosts,
@@ -26,6 +25,8 @@ export default function Post({ siteConfig, member }) {
       <Layout
         navOffset="top"
         navOnWhite
+        hasNav={true}
+        hasFooter={true}
         meta={{
           siteConfig,
           title: member.name,
@@ -73,7 +74,6 @@ export default function Post({ siteConfig, member }) {
                   color="black"
                   size="small"
                   truncate={null}
-
                   /* Children */
                   withLinkProps={null}
                 />
@@ -124,7 +124,6 @@ export default function Post({ siteConfig, member }) {
                   color="black"
                   size="medium"
                   truncate={null}
-
                   /* Children */
                   withLinkProps={null}
                 />
@@ -150,7 +149,6 @@ export default function Post({ siteConfig, member }) {
 }
 
 export async function getStaticProps({ req, params, preview = false }) {
-
   const siteConfig = await getSiteConfig();
   const member = await getTeamMemberAndPosts(params.slug);
 
@@ -159,6 +157,7 @@ export async function getStaticProps({ req, params, preview = false }) {
       siteConfig,
       member,
     },
+    revalidate: 1,
   };
 }
 

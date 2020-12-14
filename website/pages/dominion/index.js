@@ -32,6 +32,8 @@ export default function Dominion({ siteConfig }) {
     <Layout
       navOffset={null}
       navOnWhite={false}
+      hasNav={true}
+      hasFooter={true}
       meta={{
         siteConfig,
         title: 'Dominion',

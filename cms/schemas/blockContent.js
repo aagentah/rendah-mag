@@ -61,6 +61,16 @@ export default {
             layout: "radio",
           },
         },
+        {
+          name: "caption",
+          title: "Caption",
+          type: "string",
+        },
+        {
+          name: "source",
+          title: "Source (URL)",
+          type: "string",
+        },
       ],
       validation: (Rule) => Rule.required(),
     },

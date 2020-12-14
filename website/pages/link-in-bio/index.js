@@ -39,8 +39,6 @@ export default function LinkInBio({ siteConfig, linkInBio, preview }) {
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  console.log('post', linkInBio);
-
   const renderItemType = (item) => {
     return (
       <div className="flex  flex-wrap  mb3  cp">

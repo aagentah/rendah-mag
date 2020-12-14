@@ -51,6 +51,8 @@ export default function Forgot({ siteConfig }) {
       <Layout
         navOffset="center"
         navOnWhite
+        hasNav={true}
+        hasFooter={true}
         meta={{
           siteConfig,
           title: 'Forgot Password',

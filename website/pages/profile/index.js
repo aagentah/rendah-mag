@@ -46,6 +46,8 @@ export default function Profile({ siteConfig }) {
       <Layout
         navOffset="top"
         navOnWhite
+        hasNav={true}
+        hasFooter={true}
         meta={{
           siteConfig,
           title: 'Profile',
@@ -92,7 +94,6 @@ export default function Profile({ siteConfig }) {
 }
 
 export async function getServerSideProps({ req }) {
-
   const siteConfig = await getSiteConfig();
 
   return {

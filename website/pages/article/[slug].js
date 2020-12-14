@@ -75,6 +75,10 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
     };
     return (
       <Layout
+        navOffset={null}
+        navOnWhite={false}
+        hasNav={true}
+        hasFooter={true}
         meta={{
           siteConfig,
           title: post.title,
@@ -235,6 +239,7 @@ export async function getStaticProps({ req, params, preview = false }) {
       post: data.post || null,
       morePosts: data.morePosts || null,
     },
+    revalidate: 1,
   };
 }
 

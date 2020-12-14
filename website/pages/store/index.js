@@ -59,6 +59,8 @@ export default function Store({ siteConfig }) {
     <Layout
       navOffset={null}
       navOnWhite={false}
+      hasNav={true}
+      hasFooter={true}
       meta={{
         siteConfig,
         title: 'Store',

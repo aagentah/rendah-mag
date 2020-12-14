@@ -4,7 +4,6 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
-
 import { getSiteConfig, getPostWithSearch } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, allPosts, params }) {
@@ -12,6 +11,8 @@ export default function Post({ siteConfig, allPosts, params }) {
     <Layout
       navOffset="top"
       navOnWhite
+      hasNav={true}
+      hasFooter={true}
       meta={{
         siteConfig,
         title: 'Search',
@@ -70,7 +71,6 @@ export default function Post({ siteConfig, allPosts, params }) {
 }
 
 export async function getServerSideProps({ req, params, preview = false }) {
-  
   const siteConfig = await getSiteConfig();
   const allPosts = await getPostWithSearch(params.slug);
 
