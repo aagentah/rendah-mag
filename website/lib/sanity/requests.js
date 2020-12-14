@@ -303,7 +303,7 @@ export async function getSmartLink(slug, preview) {
 
 export async function getSmartLinksTotal(preview) {
   const results = await getClient(preview).fetch(
-    `*[_type == "smartLink" && slug.current | order(activeFrom desc) {
+    `*[_type == "smartLink" && slug.current] | order(activeFrom desc) {
       ...,
     }`
   );
