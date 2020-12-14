@@ -31,7 +31,11 @@ import useWindowDimensions from '~/functions/useWindowDimensions';
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 
-import { getSiteConfig, getSmartLink } from '~/lib/sanity/requests';
+import {
+  getSiteConfig,
+  getSmartLink,
+  getSmartLinksTotal,
+} from '~/lib/sanity/requests';
 
 export default function SmartLink({ siteConfig, post, preview }) {
   const app = useApp();
@@ -234,7 +238,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
   return false;
 }
 
-export async function getServerSideProps({ req, params, preview = false }) {
+export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const data = await getSmartLink(params.slug, preview);
 
@@ -244,32 +248,22 @@ export async function getServerSideProps({ req, params, preview = false }) {
       post: data || null,
       preview,
     },
+    revalidate: 1,
   };
 }
 
-// export async function getStaticProps({ req, params, preview = false }) {
-//   const siteConfig = await getSiteConfig();
-//   const data = await getSmartLink(params.slug, preview);
-//
-//   return {
-//     props: {
-//       siteConfig,
-//       post: data || null,
-//       preview,
-//     },
-//   };
-// }
+export async function getStaticPaths() {
+  const data = await getSmartLinksTotal();
 
-// export async function getStaticPaths() {
-//   const data = await getAllPostsTotal();
-//
-//   return {
-//     paths:
-//       data.map((article) => ({
-//         params: {
-//           slug: article.slug,
-//         },
-//       })) || [],
-//     fallback: true,
-//   };
-// }
+  console.log('data', data);
+
+  return {
+    paths:
+      data.map((link) => ({
+        params: {
+          slug: link.slug,
+        },
+      })) || [],
+    fallback: true,
+  };
+}
