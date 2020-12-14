@@ -43,7 +43,7 @@ export default function SubscribeForm({ onSuccess }) {
       onSuccess && onSuccess();
     } else {
       // Error
-      toast.error('Error');
+      toast.error(json?.error || 'Error');
     }
 
     inputEl.current.value = '';
