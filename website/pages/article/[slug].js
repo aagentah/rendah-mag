@@ -75,6 +75,10 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
     };
     return (
       <Layout
+        navOffset={null}
+        navOnWhite={false}
+        hasNav={true}
+        hasFooter={true}
         meta={{
           siteConfig,
           title: post.title,

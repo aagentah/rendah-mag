@@ -58,6 +58,8 @@ export default function Product({ siteConfig, product }) {
         <Layout
           navOffset="top"
           navOnWhite
+          hasNav={true}
+          hasFooter={true}
           meta={{
             siteConfig,
             title: product?.title,

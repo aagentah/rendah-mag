@@ -83,6 +83,8 @@ export default function Login({ siteConfig }) {
       <Layout
         navOffset="center"
         navOnWhite
+        hasNav={true}
+        hasFooter={true}
         meta={{
           siteConfig,
           title: 'Log In',
@@ -224,7 +226,6 @@ export default function Login({ siteConfig }) {
 }
 
 export async function getServerSideProps({ req }) {
-  
   const siteConfig = await getSiteConfig();
 
   return {
