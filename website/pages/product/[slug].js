@@ -210,6 +210,7 @@ export async function getStaticProps({ req, params, preview = false }) {
       siteConfig,
       product,
     },
+    revalidate: 1,
   };
 }
 
