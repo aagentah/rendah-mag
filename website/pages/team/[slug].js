@@ -25,6 +25,8 @@ export default function Post({ siteConfig, member }) {
       <Layout
         navOffset="top"
         navOnWhite
+        hasNav={true}
+        hasFooter={true}
         meta={{
           siteConfig,
           title: member.name,

@@ -90,6 +90,8 @@ export default function Sigup({ siteConfig }) {
       <Layout
         navOffset="center"
         navOnWhite
+        hasNav={true}
+        hasFooter={true}
         meta={{
           siteConfig,
           title: 'Sign Up',
@@ -252,7 +254,6 @@ export default function Sigup({ siteConfig }) {
 }
 
 export async function getServerSideProps({ req }) {
-  
   const siteConfig = await getSiteConfig();
 
   return {

@@ -8,7 +8,6 @@ import HeroHome from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
 import CardProduct from '~/components/card/product';
 
-
 import { getSiteConfig, getCategory } from '~/lib/sanity/requests';
 
 export default function Category({ siteConfig, category }) {
@@ -19,6 +18,8 @@ export default function Category({ siteConfig, category }) {
       <Layout
         navOffset={null}
         navOnWhite={true}
+        hasNav={true}
+        hasFooter={true}
         meta={{
           siteConfig,
           title: category.title,
@@ -39,7 +40,6 @@ export default function Category({ siteConfig, category }) {
                     color="black"
                     size="medium"
                     truncate={null}
-                    
                     /* Children */
                     withLinkProps={null}
                   />
@@ -64,7 +64,6 @@ export default function Category({ siteConfig, category }) {
 }
 
 export async function getServerSideProps({ req, params, preview = false }) {
-  
   const siteConfig = await getSiteConfig();
   const category = await getCategory(params.slug, [0, 99]);
 
