@@ -235,6 +235,7 @@ export async function getStaticProps({ req, params, preview = false }) {
       post: data.post || null,
       morePosts: data.morePosts || null,
     },
+    revalidate: 1,
   };
 }
 
@@ -249,6 +250,5 @@ export async function getStaticPaths() {
         },
       })) || [],
     fallback: true,
-    revalidate: 1,
   };
 }
