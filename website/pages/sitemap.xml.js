@@ -1,21 +1,46 @@
 import React from 'react';
 
-import { getAllPosts, getAllProducts } from '~/lib/sanity/requests';
-
+import { getAllPostsTotal, getAllProductsTotal } from '~/lib/sanity/requests';
 
 const sitemapXml = (allPosts, allProducts) => {
+  const staticPages = [
+    { name: 'cyphers', priority: '0.8' },
+    { name: 'dominion', priority: '0.8' },
+    { name: 'login', priority: '0.8' },
+    { name: 'mixes', priority: '0.8' },
+    { name: 'signup', priority: '0.8' },
+    { name: 'store', priority: '0.8' },
+    { name: 'team', priority: '0.8' },
+    { name: 'category/interviews', priority: '0.9' },
+    { name: 'category/insights', priority: '0.9' },
+    { name: 'category/news', priority: '0.9' },
+  ];
+
+  let staticPagesXML = '';
   let postsXML = '';
   let productsXML = '';
 
-  // Posts
-  allPosts.map((post) => {
-    const url = `${process.env.SITE_URL}/article/${post.slug}`;
-    const date = Date.parse(post.date);
+  // Static
+  staticPages.map((page) => {
+    const url = `${process.env.SITE_URL}/${page.name}`;
 
     postsXML += `
       <url>
         <loc>${url}</loc>
-        <lastmod>${date}</lastmod>
+        <priority>${page.priority}</priority>
+      </url>`;
+
+    return true;
+  });
+
+  // Posts
+  allPosts.map((post) => {
+    console.log('post', post);
+    const url = `${process.env.SITE_URL}/article/${post.slug}`;
+
+    postsXML += `
+      <url>
+        <loc>${url}</loc>
         <priority>0.50</priority>
       </url>`;
 
@@ -25,12 +50,10 @@ const sitemapXml = (allPosts, allProducts) => {
   // Products
   allProducts.map((product) => {
     const url = `${process.env.SITE_URL}/product/${product.slug}`;
-    const date = Date.parse(product.date);
 
     productsXML += `
       <url>
         <loc>${url}</loc>
-        <lastmod>${date}</lastmod>
         <priority>0.50</priority>
       </url>`;
 
@@ -41,21 +64,9 @@ const sitemapXml = (allPosts, allProducts) => {
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
         <loc>${process.env.SITE_URL}</loc>
-        <lastmod>0</lastmod>
         <priority>1.00</priority>
       </url>
-      <url>
-        <loc>${process.env.SITE_URL}/category/interviews</loc>
-        <priority>0.80</priority>
-      </url>
-      <url>
-        <loc>${process.env.SITE_URL}/category/insights</loc>
-        <priority>0.80</priority>
-      </url>
-      <url>
-        <loc>${process.env.SITE_URL}/category/news</loc>
-        <priority>0.80</priority>
-      </url>
+      ${staticPagesXML}
       ${postsXML}
       ${productsXML}
     </urlset>`;
@@ -63,8 +74,8 @@ const sitemapXml = (allPosts, allProducts) => {
 
 class Sitemap extends React.Component {
   static async getInitialProps({ res }) {
-    const allPosts = await getAllPosts();
-    const allProducts = await getAllProducts();
+    const allPosts = await getAllPostsTotal();
+    const allProducts = await getAllProductsTotal();
 
     res.setHeader('Content-Type', 'text/xml');
     res.write(sitemapXml(allPosts, allProducts));
