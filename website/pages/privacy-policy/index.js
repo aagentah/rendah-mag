@@ -3,7 +3,6 @@ import { Heading, Copy } from 'next-pattern-library';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
-
 import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Error404({ siteConfig }) {
@@ -12,6 +11,8 @@ export default function Error404({ siteConfig }) {
       <Layout
         navOffset="top"
         navOnWhite={true}
+        hasNav={true}
+        hasFooter={true}
         meta={{
           siteConfig,
           title: 'Privacy Policy',
@@ -1452,7 +1453,6 @@ export default function Error404({ siteConfig }) {
 }
 
 export async function getStaticProps({ req }) {
-  
   const siteConfig = await getSiteConfig();
 
   return {

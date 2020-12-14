@@ -301,6 +301,15 @@ export async function getSmartLink(slug, preview) {
   return results;
 }
 
+export async function getSmartLinksTotal(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "smartLink" && slug.current] | order(activeFrom desc) {
+      ...,
+    }`
+  );
+  return results;
+}
+
 export async function getLinkInBio(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "linkInBio"] [0] {
