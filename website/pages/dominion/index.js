@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import Router, { useRouter } from 'next/router';
 import {
   Tabs,
   Heading,
@@ -27,6 +29,27 @@ export default function Dominion({ siteConfig }) {
   const deliveryTab = (
     <div className="db  pb3">Delivers are blah blah blah...</div>
   );
+
+  useEffect(() => {
+    if (process.browser) {
+      if (window.Snipcart) {
+        Snipcart.subscribe('order.completed', function (data) {
+          if (data.items.length) {
+            for (let i = 0; i < data.items.length; i++) {
+              const item = data.items[i];
+
+              if (item.id === 'dominion-subscription') {
+                setTimeout(() => {
+                  Snipcart.api.modal.close();
+                  Router.push('/dominion-thank-you');
+                }, 3000);
+              }
+            }
+          }
+        });
+      }
+    }
+  });
 
   return (
     <Layout
