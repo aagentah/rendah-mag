@@ -23,7 +23,7 @@ export default function Forgot({ siteConfig }) {
     };
 
     // Post to forgot API
-    const response = await fetch('../api/forgot', {
+    const response = await fetch(`${process.env.SITE_URL}/api/forgot`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),

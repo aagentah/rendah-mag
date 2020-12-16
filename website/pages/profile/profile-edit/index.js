@@ -125,7 +125,7 @@ export default function ProfileEdit() {
     setUpdateButtonLoading(true);
 
     // Update user
-    const response = await fetch('../api/user', {
+    const response = await fetch(`${process.env.SITE_URL}/api/user`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
@@ -153,7 +153,7 @@ export default function ProfileEdit() {
     dispatch({ type: 'TOGGLE_LOADING' });
     setUpdateButtonLoading(true);
 
-    const res = await fetch('../api/user', {
+    const res = await fetch(`${process.env.SITE_URL}/api/user`, {
       method: 'DELETE',
     });
 
