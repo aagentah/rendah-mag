@@ -17,7 +17,7 @@ export default (username, hash, salt) => {
   const sendSmtpEmail = {
     sender: {
       name: 'Rendah Mag',
-      email: 'no-reply@rendahmag.com',
+      email: 'info@rendahmag.com',
     },
     to: [
       {
