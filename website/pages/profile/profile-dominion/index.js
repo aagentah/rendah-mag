@@ -76,11 +76,11 @@ export default function ProfileDominion({ refreshDominion }) {
   if (!user?.isDominion) {
     return (
       <>
-        <div className="pb4">
+        <div className="pb3">
           <Heading
             /* Options */
             htmlEntity="h1"
-            text="You are not in the Dominion."
+            text="You are not currently in the Dominion."
             color="black"
             size="medium"
             truncate={null}
@@ -88,26 +88,51 @@ export default function ProfileDominion({ refreshDominion }) {
             withLinkProps={null}
           />
         </div>
-        <div className="pb4">
-          <Copy
-            /* Options */
-            text={'You can sign up for the Dominion here.'}
-            color={'black'}
-            size={'mediym'}
-            truncate={null}
-          />
+        <div className="measure-wide">
+          <p className="f-secondary  taj  f5  pb4  lh-copy">
+            With the addition to being a magazine subscription, we offer the
+            following to you as part of the Dominion Subscription:
+          </p>
+          <ul className="pl4  pb3">
+            <li className="f-secondary  tal  f5  pb2  lh-copy">
+              Welcome package (Includes membership card & stickers).
+            </li>
+            <li className="f-secondary  tal  f5  pb2  lh-copy">
+              A quarterly-printed issue of Rendah Mag.
+            </li>
+            <li className="f-secondary  tal  f5  pb2  lh-copy">
+              Your own Dominion Profile on our Website.
+            </li>
+            <li className="f-secondary  tal  f5  pb2  lh-copy">
+              Exclusive monthly updates on releases & insights within bass
+              music.
+            </li>
+            <li className="f-secondary  tal  f5  pb2  lh-copy">
+              20% off all Rendah Mag Products.
+            </li>
+            <li className="f-secondary  tal  f5  pb2  lh-copy">
+              Early access to Rendah Mag Cyphers.
+            </li>
+            <li className="f-secondary  tal  f5  pb2  lh-copy">
+              Exclusive tracks, sample packs, and discounts from artists and
+              labels.
+            </li>
+          </ul>
+          <p className="f-secondary  taj  f5  pb4  lh-copy">
+            We hope you can join us on this new journey ❤️
+          </p>
         </div>
-        <div className="pb4">
+        <div className="pb3">
           <Button
             /* Options */
-            type="secondary"
+            type="primary"
             size="medium"
-            text="Home"
+            text="Join the Dominion"
             color="black"
             fluid={false}
             icon={null}
             iconFloat={null}
-            inverted
+            invert={false}
             loading={false}
             disabled={false}
             onClick={null}
