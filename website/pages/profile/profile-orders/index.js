@@ -76,6 +76,7 @@ export default function ProfileOrders() {
             const item = orderItems[ii];
 
             if (item.id === 'dominion-subscription') {
+              console.log('unique', item.uniqueId);
               const dominionStartDate = item.addedOn;
               setUserIsDominion(dominionStartDate);
             }

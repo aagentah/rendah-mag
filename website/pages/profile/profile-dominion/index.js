@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Router from 'next/router';
 import BlockContent from '@sanity/block-content-to-react';
 import { useKeenSlider } from 'keen-slider/react';
@@ -74,16 +75,55 @@ export default function ProfileDominion({ refreshDominion }) {
 
   if (!user?.isDominion) {
     return (
-      <Heading
-        /* Options */
-        htmlEntity="h1"
-        text="You are not in the Dominion."
-        color="black"
-        size="medium"
-        truncate={null}
-        /* Children */
-        withLinkProps={null}
-      />
+      <>
+        <div className="pb4">
+          <Heading
+            /* Options */
+            htmlEntity="h1"
+            text="You are not in the Dominion."
+            color="black"
+            size="medium"
+            truncate={null}
+            /* Children */
+            withLinkProps={null}
+          />
+        </div>
+        <div className="pb4">
+          <Copy
+            /* Options */
+            text={'You can sign up for the Dominion here.'}
+            color={'black'}
+            size={'mediym'}
+            truncate={null}
+          />
+        </div>
+        <div className="pb4">
+          <Button
+            /* Options */
+            type="secondary"
+            size="medium"
+            text="Home"
+            color="black"
+            fluid={false}
+            icon={null}
+            iconFloat={null}
+            inverted
+            loading={false}
+            disabled={false}
+            onClick={null}
+            /* Children */
+            withLinkProps={{
+              type: 'next',
+              href: '/dominion',
+              target: null,
+              routerLink: Link,
+              routerLinkProps: {
+                scroll: false,
+              },
+            }}
+          />
+        </div>
+      </>
     );
   }
 
