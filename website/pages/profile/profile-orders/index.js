@@ -14,11 +14,14 @@ export default function ProfileOrders() {
   useEffect(() => {
     const fetchCustomerOrders = async () => {
       // Fetch orders
-      const response = await fetch('/api/snipcart/get-customer', {
-        body: JSON.stringify({ email: user.username }),
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
-      });
+      const response = await fetch(
+        `${process.env.SITE_URL}/api/snipcart/get-customer`,
+        {
+          body: JSON.stringify({ email: user.username }),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+        }
+      );
 
       const json = await response.json();
 
@@ -49,7 +52,7 @@ export default function ProfileOrders() {
       console.log('body', body);
 
       // Put to user API
-      const response = await fetch('../api/user', {
+      const response = await fetch(`${process.env.SITE_URL}/api/user`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

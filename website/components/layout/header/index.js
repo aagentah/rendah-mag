@@ -32,7 +32,7 @@ export default function Header({ navOnWhite, meta }) {
   };
 
   const handleLogout = async () => {
-    await fetch('/api/logout');
+    await fetch(`${process.env.SITE_URL}/api/logout`);
     mutate({ user: null });
   };
 

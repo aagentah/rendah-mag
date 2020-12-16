@@ -24,15 +24,18 @@ export default function SubscribeForm({ onSuccess }) {
     dispatch({ type: 'TOGGLE_LOADING' });
     setButtonLoading(true);
 
-    const response = await fetch('/api/mailchimp/subscribe', {
-      body: JSON.stringify({
-        email: inputEl.current.value,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    });
+    const response = await fetch(
+      `${process.env.SITE_URL}/api/mailchimp/subscribe`,
+      {
+        body: JSON.stringify({
+          email: inputEl.current.value,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      }
+    );
 
     const json = await response.json();
 
