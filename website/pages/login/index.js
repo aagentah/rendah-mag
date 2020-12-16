@@ -49,7 +49,7 @@ export default function Login({ siteConfig }) {
     };
 
     // Post to log in API
-    const response = await fetch('../api/login', {
+    const response = await fetch(`${process.env.SITE_URL}/api/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
