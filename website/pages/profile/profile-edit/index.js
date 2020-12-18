@@ -174,6 +174,7 @@ export default function ProfileEdit() {
   const inputIconLock = <Icon icon={['fas', 'lock']} />;
 
   if (user) {
+    console.log('user', user);
     return (
       <>
         <Modal
@@ -393,7 +394,7 @@ export default function ProfileEdit() {
                 <Input
                   /* Options */
                   type="password"
-                  label="Password"
+                  label="Change Password"
                   name="password"
                   value=""
                   icon={inputIconLock}
@@ -406,7 +407,7 @@ export default function ProfileEdit() {
                 <Input
                   /* Options */
                   type="password"
-                  label="Repeat Password"
+                  label="Repeat Change Password"
                   name="rpassword"
                   value=""
                   icon={inputIconLock}
@@ -420,7 +421,7 @@ export default function ProfileEdit() {
                   /* Options */
                   label="Public Profile"
                   name="publicProfile"
-                  checked={true}
+                  checked={user.publicProfile}
                   required={false}
                   disabled={false}
                   onClick={null}

@@ -142,7 +142,9 @@ export default function Error404({ siteConfig }) {
                 /* Children */
                 withLinkProps={{
                   type: 'next',
-                  href: `/signup?prefillEmail=${prefillEmail}`,
+                  href: `/signup${
+                    prefillEmail ? `?prefillEmail=${prefillEmail}` : ''
+                  }`,
                   target: null,
                   routerLink: Link,
                   routerLinkProps: {
