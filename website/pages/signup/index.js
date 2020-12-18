@@ -92,8 +92,8 @@ export default function Sigup({ siteConfig }) {
       <Layout
         navOffset="center"
         navOnWhite
-        hasNav={true}
-        hasFooter={true}
+        hasNav
+        hasFooter
         meta={{
           siteConfig,
           title: 'Sign Up',

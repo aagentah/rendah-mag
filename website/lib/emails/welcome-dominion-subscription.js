@@ -2,9 +2,10 @@ import sendinblue from './sendinblue';
 import emailCommon from '~/emails/component/common';
 
 export default (email) => {
-  const title = 'Welcome to the Dominion!';
+  try {
+    const title = 'Welcome to the Dominion!';
 
-  const body = `
+    const body = `
     We can't thank you enough, and we're happy to have you on this journey with us.
     <br />
     <br />
@@ -28,25 +29,34 @@ export default (email) => {
     info@rendahmag.com.
   `;
 
-  const image = null;
+    const image = null;
 
-  const buttonText = 'Create Account';
+    const buttonText = 'Create Account';
 
-  const buttonLink = `${process.env.SITE_URL}/signup?prefillEmail=${email}`;
+    const buttonLink = `${process.env.SITE_URL}/signup?prefillEmail=${email}`;
 
-  const sendSmtpEmail = {
-    sender: {
-      name: 'Dan at Rendah Mag',
-      email: 'dan@rendahmag.com',
-    },
-    to: [
-      {
-        email,
+    const sendSmtpEmail = {
+      sender: {
+        name: 'Dan at Rendah Mag',
+        email: 'dan@rendahmag.com',
       },
-    ],
-    subject: 'Welcome to the Dominion',
-    htmlContent: emailCommon(title, body, image, buttonText, buttonLink),
-  };
+      to: [
+        {
+          email,
+        },
+      ],
+      subject: 'Welcome to the Dominion',
+      htmlContent: emailCommon(title, body, image, buttonText, buttonLink),
+    };
 
-  sendinblue(sendSmtpEmail);
+    sendinblue(sendSmtpEmail);
+  } catch (error) {
+    // Handle catch
+    console.error(
+      `Error in welcome-dominion-subscription: ${
+        error.message || error.toString()
+      }`
+    );
+    return false;
+  }
 };

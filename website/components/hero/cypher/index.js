@@ -21,9 +21,9 @@ export default function HeroCypher({ cypher }) {
   const [modalActive, setModalActive] = useState(false);
 
   if (!app.deviceSize) return null;
-  let scale = app.isRetina ? 2 : 1;
+  const scale = app.isRetina ? 2 : 1;
   let imageUrlWidth;
-  let imageHeight = 500;
+  const imageHeight = 500;
 
   if (app.deviceSize === 'md') imageUrlWidth = 700;
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;

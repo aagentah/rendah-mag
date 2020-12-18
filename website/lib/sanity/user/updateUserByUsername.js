@@ -78,7 +78,7 @@ const handleAvatar = async (cloneFields, user) => {
       await uploadCompressed(imageAsset);
     })
     .catch((error) => {
-      console.error('Upload failed:', error.message);
+      console.error('Upload failed:', error.message || error.toString());
     });
 
   // Delete temp image
@@ -86,7 +86,7 @@ const handleAvatar = async (cloneFields, user) => {
     fs.unlinkSync('/tmp/avatar.png');
     fs.unlinkSync('/tmp/optimized.png');
   } catch (error) {
-    console.log('unlinkSync error:', error.message);
+    console.error('unlinkSync error:', error.message || error.toString());
   }
 
   delete f.avatar;
@@ -100,7 +100,7 @@ const handleTags = async (cloneFields) => {
   // Create array with checked tags
   const checkedTags = [];
 
-  for (let i = 0; i < cloneFields?.tags?.length; i++) {
+  for (let i = 0; i < cloneFields?.tags?.length; i += 1) {
     const tag = cloneFields.tags[i];
     if (tag.status) checkedTags.push(tag.label);
   }
@@ -148,7 +148,9 @@ const updateUserByUsername = async (req, user, fields) => {
 
     return data;
   } catch (error) {
-    console.log('Error in updateUserByUsername(): ', error.message);
+    console.error(
+      `Error in updateUserByUsername(): ${error.message || error.toString()}`
+    );
     return false;
   }
 };

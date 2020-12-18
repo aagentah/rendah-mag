@@ -11,7 +11,7 @@ export default function HeroDominion() {
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
   if (!app.deviceSize) return null;
-  let scale = app.isRetina ? 2 : 1;
+  const scale = app.isRetina ? 2 : 1;
   let imageHeight;
   let imageUrlWidth;
 

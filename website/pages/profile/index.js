@@ -46,8 +46,8 @@ export default function Profile({ siteConfig }) {
       <Layout
         navOffset="top"
         navOnWhite
-        hasNav={true}
-        hasFooter={true}
+        hasNav
+        hasFooter
         meta={{
           siteConfig,
           title: 'Profile',

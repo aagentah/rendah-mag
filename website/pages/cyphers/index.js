@@ -42,8 +42,8 @@ export default function Cyphers({ siteConfig }) {
       <Layout
         navOffset={null}
         navOnWhite={false}
-        hasNav={true}
-        hasFooter={true}
+        hasNav
+        hasFooter
         meta={{
           siteConfig,
           title: 'Cyphers',

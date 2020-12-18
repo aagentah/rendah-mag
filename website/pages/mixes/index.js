@@ -36,8 +36,8 @@ export default function Mixes({ siteConfig }) {
       <Layout
         navOffset={null}
         navOnWhite
-        hasNav={true}
-        hasFooter={true}
+        hasNav
+        hasFooter
         meta={{
           siteConfig,
           title: 'Mixes',

@@ -81,7 +81,7 @@ export default function ProfileEdit() {
 
     const tags = [];
 
-    for (let i = 0; i < userTags.length; i++) {
+    for (let i = 0; i < userTags.length; i += 1) {
       const checkbox = e.currentTarget[userTags[i]];
 
       tags.push({
