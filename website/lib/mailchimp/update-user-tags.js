@@ -11,7 +11,7 @@ export default async (tags, email) => {
       tags: [],
     };
 
-    for (let i = 0; i < tags.length; i++) {
+    for (let i = 0; i < tags.length; i += 1) {
       const tag = tags[i];
 
       tagsData.tags.push({
@@ -40,7 +40,9 @@ export default async (tags, email) => {
     return true;
   } catch (error) {
     // Handle catch
-    console.error(error.message || error.toString());
+    console.error(
+      `Error in update-user-tags: ${error.message || error.toString()}`
+    );
     return false;
   }
 };

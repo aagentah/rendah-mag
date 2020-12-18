@@ -109,14 +109,14 @@ const Meta = (props) => {
         <script
           src="https://code.jquery.com/jquery-3.4.1.min.js"
           integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-          crossorigin="anonymous"
-        ></script>
+          crossOrigin="anonymous"
+        />
 
         <script
           src="https://cdn.snipcart.com/scripts/2.0/snipcart.js"
           data-api-key={SNIPCART_API_KEY}
           id="snipcart"
-        ></script>
+        />
 
         <link
           href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css"

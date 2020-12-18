@@ -164,7 +164,7 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="col-24  col-12-md"></div>
+            <div className="col-24  col-12-md" />
           </div>
         </Container>
       </footer>

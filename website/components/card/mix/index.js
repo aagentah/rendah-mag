@@ -14,7 +14,7 @@ export default function Cardmix({ mix, columnCount }) {
   const [inView, setInView] = useState(false);
 
   if (!app.deviceSize) return null;
-  let scale = app.isRetina ? 2 : 1;
+  const scale = app.isRetina ? 2 : 1;
   const imageUrlWidth = app.deviceSize === 'md' ? 200 : 230;
   const imageHeight = app.deviceSize === 'md' ? 200 : 230;
   const headingSize = 'small';

@@ -6,8 +6,6 @@ import Observer from '@researchgate/react-intersection-observer';
 import map from 'lodash/map';
 import Cookies from 'js-cookie';
 
-import HeroPost from '~/components/hero/post';
-
 import {
   Modal,
   Hero,
@@ -17,6 +15,7 @@ import {
   Button,
   Icon,
 } from 'next-pattern-library';
+import HeroPost from '~/components/hero/post';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -44,6 +43,7 @@ export default function LinkInBio({ siteConfig, linkInBio, preview }) {
       <div className="flex  flex-wrap  mb3  cp">
         <a
           href={item.url}
+          rel="noopener noreferrer"
           target="_blank"
           className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
         >
@@ -60,8 +60,8 @@ export default function LinkInBio({ siteConfig, linkInBio, preview }) {
   if (!router.isFallback) {
     return (
       <Layout
-        navOffset={'center'}
-        navOnWhite={true}
+        navOffset="center"
+        navOnWhite
         hasNav={false}
         hasFooter={false}
         meta={{

@@ -10,7 +10,7 @@ export default function CookieBanner() {
   const app = useApp();
   const [active, setActive] = useState(false);
   const [accepted, setAccepted] = useState(false);
-  let buttonSize = app.deviceSize === 'md' ? 'small' : 'medium';
+  const buttonSize = app.deviceSize === 'md' ? 'small' : 'medium';
 
   const handleOnClick = () => {
     Cookies.set('rndh-cookie-set', true, { expires: 365 });
@@ -35,7 +35,9 @@ export default function CookieBanner() {
           <div className="cookie-banner__body">
             We may use{' '}
             <Link href="/cookie-policy">
-              <a target="_blank">cookies</a>
+              <a rel="noopener noreferrer" target="_blank">
+                cookies
+              </a>
             </Link>{' '}
             to offer a better browsing experience.
           </div>
@@ -45,10 +47,10 @@ export default function CookieBanner() {
         <div className="cookie-banner__button">
           <Button
             /* Options */
-            type={'primary'}
+            type="primary"
             size={buttonSize}
-            text={'Accept'}
-            color={'black'}
+            text="Accept"
+            color="black"
             fluid={false}
             icon={null}
             iconFloat={null}

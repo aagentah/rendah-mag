@@ -38,7 +38,10 @@ export default async (req, res) => {
     return true;
   } catch (error) {
     // Handle catch
-    console.error(error.message || error.toString());
+    console.error(
+      `Error in api/mailchimp/subscribe: ${error.message || error.toString()}`
+    );
+
     if (res) return res.status(500).json({ error: error.message });
     return false;
   }

@@ -59,8 +59,8 @@ export default function Store({ siteConfig }) {
     <Layout
       navOffset={null}
       navOnWhite={false}
-      hasNav={true}
-      hasFooter={true}
+      hasNav
+      hasFooter
       meta={{
         siteConfig,
         title: 'Store',
@@ -90,7 +90,7 @@ export default function Store({ siteConfig }) {
           <section className="pb3  pt4">
             <div className="flex  flex-wrap">
               {[...Array(collectionsLength)].map((collectionIteration, i) => (
-                <div class="col-24" key={collectionIteration}>
+                <div className="col-24" key={collectionIteration}>
                   <div className="flex  flex-wrap  pb3  bb  bc-black  mb3">
                     <Heading
                       /* Options */

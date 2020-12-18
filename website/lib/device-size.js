@@ -1,7 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
 
-import { useDispatchApp } from '~/context-provider/app';
-import { useApp } from '~/context-provider/app';
+import { useDispatchApp , useApp } from '~/context-provider/app';
+
 
 export default function deviceSize() {
   const app = useApp();

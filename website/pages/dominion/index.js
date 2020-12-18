@@ -37,7 +37,7 @@ export default function Dominion({ siteConfig }) {
           const emailQuery = data?.email ? `?prefillEmail=${data.email}` : '';
 
           if (data.items.length) {
-            for (let i = 0; i < data.items.length; i++) {
+            for (let i = 0; i < data.items.length; i += 1) {
               const item = data.items[i];
 
               if (item.id === 'dominion-subscription') {
@@ -57,8 +57,8 @@ export default function Dominion({ siteConfig }) {
     <Layout
       navOffset={null}
       navOnWhite={false}
-      hasNav={true}
-      hasFooter={true}
+      hasNav
+      hasFooter
       meta={{
         siteConfig,
         title: 'Dominion',

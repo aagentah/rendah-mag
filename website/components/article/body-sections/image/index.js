@@ -5,7 +5,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function ImageSection({ section }) {
   const handleCaption = () => {
-    let caption = section.caption;
+    let { caption } = section;
 
     if (section.source) {
       caption = (
@@ -13,6 +13,7 @@ export default function ImageSection({ section }) {
           className="t-secondary  f7  grey  pv2  lh-copy  tac  underline"
           href={section.source}
           target="_blank"
+          rel="noopener noreferrer"
         >
           {section.caption}
         </a>
