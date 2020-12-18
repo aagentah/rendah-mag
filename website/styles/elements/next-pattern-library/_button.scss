@@ -2,6 +2,10 @@
   opacity: 0;
   animation: npl-fade-in 0.3s forwards;
   transition: all $npl-button-transition-speed $npl-button-transition-ease;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   background: transparent;
   box-shadow: none;
   outline: 0;
@@ -10,8 +14,6 @@
   text-decoration: none;
   padding-left: 8px;
   padding-right: 8px;
-  display: inline-block;
-  align-items: center;
   min-width: 50px;
   font-family: $npl-t-secondary;
 
@@ -86,18 +88,22 @@
   }
 
   &.small {
+    height: 40px;
     min-width: 0px;
   }
 
   &.medium {
+    height: 50px;
     min-width: 100px;
   }
 
   &.large {
+    height: 60px;
     min-width: 200px;
   }
 
   &.x-large {
+    height: 65px;
     min-width: 200px;
   }
 }
