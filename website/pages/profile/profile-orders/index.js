@@ -9,6 +9,7 @@ import { useUser } from '~/lib/hooks';
 export default function ProfileOrders() {
   const [user, { loading, mutate, error }] = useUser();
   const [customerOrders, setCustomerOrders] = useState(null);
+  const [customer, setCustomer] = useState(null);
 
   // Fetch orders
   useEffect(() => {
@@ -38,9 +39,37 @@ export default function ProfileOrders() {
     if (user) fetchCustomerOrders();
   }, [user]);
 
+  // Fetch customer
+  useEffect(() => {
+    const fetchCustomer = async () => {
+      // Fetch customer
+      const response = await fetch(
+        `${process.env.SITE_URL}/api/snipcart/get-customer-details`,
+        {
+          body: JSON.stringify({ email: user.username }),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+        }
+      );
+
+      const json = await response.json();
+
+      if (response.ok) {
+        // Success
+        setCustomer(json);
+      } else {
+        // Error
+        toast.error(json.error);
+        setCustomer({});
+      }
+    };
+
+    if (user) fetchCustomer();
+  }, [user]);
+
   // Fetch items and check if is dominion subscription
   useEffect(() => {
-    if (user?.isDominion) return;
+    if (user?.isDominion || user?.isDominionWiteList) return;
 
     // Set the user to Dominion in CMS
     async function setUserIsDominion(dominionStartDate) {
@@ -48,8 +77,6 @@ export default function ProfileOrders() {
         isDominion: true,
         dominionSince: dominionStartDate.split('T')[0],
       };
-
-      console.log('body', body);
 
       // Put to user API
       const response = await fetch(`${process.env.SITE_URL}/api/user`, {
@@ -79,7 +106,6 @@ export default function ProfileOrders() {
             const item = orderItems[ii];
 
             if (item.id === 'dominion-subscription') {
-              console.log('unique', item.uniqueId);
               const dominionStartDate = item.addedOn;
               setUserIsDominion(dominionStartDate);
             }
@@ -92,6 +118,60 @@ export default function ProfileOrders() {
   if (customerOrders?.length) {
     return (
       <section>
+        {customer && (
+          <>
+            <div className="pb4">
+              <Heading
+                /* Options */
+                htmlEntity="h1"
+                text="Current Address."
+                color="black"
+                size="medium"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+
+            <section className="pb4  ph3">
+              {customer?.shippingAddress?.name && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customer.shippingAddress.name}
+                </p>
+              )}
+
+              {customer?.shippingAddress?.address1 && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customer.shippingAddress.address1}
+                </p>
+              )}
+
+              {customer?.shippingAddress?.address2 && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customer.shippingAddress.address2}
+                </p>
+              )}
+
+              {customer?.shippingAddress?.city && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customer.shippingAddress.city}
+                </p>
+              )}
+
+              {customer?.shippingAddress?.postalCode && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customer.shippingAddress.postalCode}
+                </p>
+              )}
+              {customer?.shippingAddress?.country && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customer.shippingAddress.country}
+                </p>
+              )}
+            </section>
+          </>
+        )}
+
         <div className="pb4">
           <Heading
             /* Options */

@@ -35,6 +35,7 @@ export default function Profile({ siteConfig }) {
         zenscroll.toY(0);
       }
     }
+
     // Handles dominion carousel refresh
     if (visibleTab === '2') {
       setRefreshDominion(true);

@@ -174,7 +174,6 @@ export default function ProfileEdit() {
   const inputIconLock = <Icon icon={['fas', 'lock']} />;
 
   if (user) {
-    console.log('user', user);
     return (
       <>
         <Modal

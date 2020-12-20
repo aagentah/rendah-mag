@@ -34,10 +34,15 @@ export default function ProfileDominion({ refreshDominion }) {
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 8, '0');
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
 
+      // If whitelisted, then show all items since 2021
+      if (user?.isDominionWiteList) {
+        sinceStartOfMonth = '2021-01-01';
+      }
+
       setDominionItems(await getDominionItemsSinceDate(sinceStartOfMonth));
     };
 
-    if (user?.isDominion) fetchDominionItems();
+    if (user?.isDominion || user?.isDominionWiteList) fetchDominionItems();
   }, [user]);
 
   if (dominionItems?.length) {
@@ -47,7 +52,7 @@ export default function ProfileDominion({ refreshDominion }) {
           <Heading
             /* Options */
             htmlEntity="h1"
-            text="Your Dominion."
+            text="Dominion."
             color="black"
             size="medium"
             truncate={null}
@@ -65,15 +70,17 @@ export default function ProfileDominion({ refreshDominion }) {
           )}
         </div>
 
-        <p className="t-secondary  f6  grey">
-          <span className="bold  pr1">Member since:</span>
-          {new Date(user?.dominionSince).toDateString()}
-        </p>
+        {user?.dominionSince && (
+          <p className="t-secondary  f6  grey">
+            <span className="bold  pr1">Member since:</span>
+            {new Date(user.dominionSince).toDateString()}
+          </p>
+        )}
       </section>
     );
   }
 
-  if (!user?.isDominion) {
+  if (!user?.isDominion && !user.isDominionWiteList) {
     return (
       <>
         <div className="pb3">

@@ -281,14 +281,29 @@ export async function getLatestDominionItem(preview) {
   return results;
 }
 
-export async function getDominionItemsSinceDate(sinceStartOfMonth) {
-  const results = await getClient().fetch(
-    `*[_type == "dominionItem" && activeFrom >= $sinceStartOfMonth] | order(activeFrom desc) {
-      ...,
-    }`,
-    { sinceStartOfMonth }
-  );
-  return results;
+export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
+  const curClient = getClient(preview);
+
+  const [results, welcome] = await Promise.all([
+    curClient
+      .fetch(
+        `*[_type == "dominionItem" && activeFrom >= $sinceStartOfMonth] | order(activeFrom desc) {
+        ...,
+        "slug": slug.current,
+      }`,
+        { sinceStartOfMonth }
+      )
+      .then((res) => res),
+    curClient.fetch(
+      `*[_type == "dominionItem" && slug.current == "welcome-to-the-dominion"] [0] {
+        ...,
+        "slug": slug.current,
+      }`
+    ),
+  ]);
+
+  results.push(welcome);
+  return getUniquePosts(results);
 }
 
 export async function getSmartLink(slug, preview) {

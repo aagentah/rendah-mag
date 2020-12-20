@@ -73,9 +73,6 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   const [sliderNavRef, sliderNav] = useKeenSlider(sliderNavOptions);
   const [sliderBodyRef, sliderBody] = useKeenSlider(sliderBodyOptions);
 
-  console.log('refreshDominion', refreshDominion);
-  console.log('dominionItems', dominionItems);
-
   if (refreshDominion && dominionItems.length) {
     return (
       <>
@@ -105,8 +102,11 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                         />
                       </div>
                     )}
-                    <p className="t-primary  f5  f6-md  tac">
-                      {new Date(item.activeFrom).toDateString().slice(4)}
+                    <p className="t-primary  f5  f6-md  tac  lh-copy">
+                      {item.title}
+                      {
+                        // new Date(item.activeFrom).toDateString().slice(4)
+                      }
                     </p>
                   </div>
                 </div>
@@ -149,9 +149,9 @@ export default function Carousel({ dominionItems, refreshDominion }) {
         <div ref={sliderBodyRef} className="keen-slider  flex  align-start">
           {dominionItems.map((item, i) => (
             <article className="keen-slider__slide" key={item._id}>
-              <div className="flex  flex-wrap">
+              <div className="flex  flex-wrap  measure-wide  mla  mra">
                 <div className={`col-24  ${item.image && ''}`}>
-                  <div className="relative  pa4">
+                  <div className="relative  ph4  pt4  pb2">
                     <p className="t-secondary  f7  grey  pb2">
                       {new Date(item.activeFrom).toDateString()}
                     </p>
