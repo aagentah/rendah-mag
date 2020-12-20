@@ -14,14 +14,14 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^2.1.2",
+    "@sanity/base": "^2.1.3",
     "@sanity/client": "^2.1.0",
     "@sanity/components": "^2.1.0",
     "@sanity/core": "^2.1.2",
     "@sanity/dashboard": "^2.1.0",
-    "@sanity/default-layout": "^2.1.2",
+    "@sanity/default-layout": "^2.1.3",
     "@sanity/default-login": "^2.1.0",
-    "@sanity/desk-tool": "^2.1.2",
+    "@sanity/desk-tool": "^2.1.3",
     "@sanity/image-url": "^0.140.19",
     "@sanity/production-preview": "^2.1.0",
     "@sanity/vision": "^2.1.0",
