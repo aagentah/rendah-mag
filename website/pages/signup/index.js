@@ -24,6 +24,9 @@ export default function Sigup({ siteConfig }) {
   async function onSubmit(e) {
     e.preventDefault();
 
+    // Prevent double submit
+    if (submitButtonLoading) return;
+
     const body = {
       username: e.currentTarget.username.value,
       password: e.currentTarget.password.value,

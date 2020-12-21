@@ -123,60 +123,34 @@ export default function HeaderDestop({
                   }}
                 />
               </li>
-              <li className="nav__item  dib  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Mixes"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/guest-mixes',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false,
-                    },
-                  }}
-                />
-              </li>
-              {!user && (
-                <li className="nav__item  dib  pr3">
-                  <Button
-                    /* Options */
-                    type="secondary"
-                    size="medium"
-                    text="Dominion"
-                    color={navColour}
-                    fluid={false}
-                    icon={buttonIcons.store}
-                    iconFloat={null}
-                    inverted
-                    loading={false}
-                    disabled={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'next',
-                      href: '/dominion',
-                      target: null,
-                      routerLink: Link,
-                      routerLinkProps: {
-                        scroll: false,
-                      },
-                    }}
-                  />
-                </li>
-              )}
+              {
+                // <li className="nav__item  dib  pr3">
+                //   <Button
+                //     /* Options */
+                //     type="secondary"
+                //     size="medium"
+                //     text="Mixes"
+                //     color={navColour}
+                //     fluid={false}
+                //     icon={null}
+                //     iconFloat={null}
+                //     inverted
+                //     loading={false}
+                //     disabled={false}
+                //     onClick={null}
+                //     /* Children */
+                //     withLinkProps={{
+                //       type: 'next',
+                //       href: '/guest-mixes',
+                //       target: null,
+                //       routerLink: Link,
+                //       routerLinkProps: {
+                //         scroll: false,
+                //       },
+                //     }}
+                //   />
+                // </li>
+              }
             </ul>
           </nav>
         </div>
@@ -252,10 +226,10 @@ export default function HeaderDestop({
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="Sign Up"
+                      text="Dominion"
                       color={navColour}
                       fluid={false}
-                      icon={null}
+                      icon={buttonIcons.store}
                       iconFloat={null}
                       inverted
                       loading={false}
@@ -264,7 +238,7 @@ export default function HeaderDestop({
                       /* Children */
                       withLinkProps={{
                         type: 'next',
-                        href: '/signup',
+                        href: '/dominion',
                         target: null,
                         routerLink: Link,
                         routerLinkProps: {

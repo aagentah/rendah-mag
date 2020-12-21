@@ -3,17 +3,6 @@ import sanityImage from '@sanity/image-url';
 import client, { previewClient } from './config';
 import dateTodayISO from '~/functions/dateTodayISO';
 
-const getUniquePosts = (posts) => {
-  const slugs = new Set();
-  return posts.filter((post) => {
-    if (slugs.has(post.slug)) {
-      return false;
-    }
-    slugs.add(post.slug);
-    return true;
-  });
-};
-
 const postFields = `
   name,
   title,
@@ -85,7 +74,7 @@ export async function getAllPosts(preview) {
     .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) [0..31] {
       ${postFields}
     }`);
-  return getUniquePosts(results);
+  return results;
 }
 
 export async function getAllPostsTotal(preview) {
@@ -93,7 +82,7 @@ export async function getAllPostsTotal(preview) {
     .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) {
       ${postFields}
     }`);
-  return getUniquePosts(results);
+  return results;
 }
 
 export async function getCategory(category, range) {
@@ -131,7 +120,7 @@ export async function getCurrentAndPreviousCyphers(preview) {
     ),
   ]);
 
-  return { current: current || null, previous: getUniquePosts(previous) };
+  return { current: current || null, previous: previous };
 }
 
 export async function getLatestAnouncedCypher(preview) {
@@ -157,7 +146,7 @@ export async function getTeamMembers(preview) {
     .fetch(`*[_type == "author" && active] | order(order asc){
       ${teamFields}
     }`);
-  return getUniquePosts(results);
+  return results;
 }
 
 export async function getTeamMemberAndPosts(slug, preview) {
@@ -178,7 +167,7 @@ export async function getAllProducts(preview) {
     .fetch(`*[_type == "storeItem"] | order(date desc, _updatedAt desc) {
       ${productFields}
     }`);
-  return getUniquePosts(results);
+  return results;
 }
 
 export async function getAllProductsTotal(preview) {
@@ -186,7 +175,7 @@ export async function getAllProductsTotal(preview) {
     .fetch(`*[_type == "storeItem"] | order(date desc, _updatedAt desc) {
       ${productFields}
     }`);
-  return getUniquePosts(results);
+  return results;
 }
 
 export async function getProduct(slug, preview) {
@@ -219,7 +208,7 @@ export async function getPostAndMore(slug, preview) {
       { slug }
     ),
   ]);
-  return { post, morePosts: getUniquePosts(morePosts) };
+  return { post, morePosts: morePosts };
 }
 
 export async function getPreviewProductBySlug(slug) {
@@ -254,7 +243,7 @@ export async function getProductAndMore(slug, preview) {
     ),
   ]);
 
-  return { product, moreProducts: getUniquePosts(moreProducts) };
+  return { product, moreProducts: moreProducts };
 }
 
 export async function getLatestMix(preview) {
@@ -270,7 +259,7 @@ export async function getMixes(preview) {
     .fetch(`*[_type == "mix"] | order(date desc, _updatedAt desc) [0..15] {
       ...,
     }`);
-  return getUniquePosts(results);
+  return results;
 }
 
 export async function getLatestDominionItem(preview) {
@@ -287,7 +276,7 @@ export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
   const [results, welcome] = await Promise.all([
     curClient
       .fetch(
-        `*[_type == "dominionItem" && activeFrom >= $sinceStartOfMonth] | order(activeFrom desc) {
+        `*[_type == "dominionItem" && slug.current != "welcome-to-the-dominion" && activeFrom >= $sinceStartOfMonth] | order(activeFrom desc) {
         ...,
         "slug": slug.current,
       }`,
@@ -303,7 +292,7 @@ export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
   ]);
 
   results.push(welcome);
-  return getUniquePosts(results);
+  return results;
 }
 
 export async function getSmartLink(slug, preview) {

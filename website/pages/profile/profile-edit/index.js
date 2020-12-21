@@ -79,6 +79,9 @@ export default function ProfileEdit() {
   async function handleEditProfile(e) {
     e.preventDefault();
 
+    // Prevent double submit
+    if (updateButtonLoading) return;
+
     const tags = [];
 
     for (let i = 0; i < userTags.length; i += 1) {
