@@ -123,28 +123,18 @@ export default function HeaderMobile({
               </span>
             </Link>
           </li>
-          <li className="nav__item  db  pl4  pb3">
-            <Link href="/guest-mixes">
-              <span
-                className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                onClick={toggleNav}
-              >
-                Mixes
-              </span>
-            </Link>
-          </li>
-          {!user && (
-            <li className="nav__item  db  pl4  pb3">
-              <Link href="/dominion">
-                <span
-                  className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                  onClick={toggleNav}
-                >
-                  Dominion
-                </span>
-              </Link>
-            </li>
-          )}
+          {
+            // <li className="nav__item  db  pl4  pb3">
+            //   <Link href="/guest-mixes">
+            //     <span
+            //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+            //       onClick={toggleNav}
+            //     >
+            //       Mixes
+            //     </span>
+            //   </Link>
+            // </li>
+          }
 
           {user ? (
             <>
@@ -173,12 +163,12 @@ export default function HeaderMobile({
           ) : (
             <>
               <li className="nav__item  db  pl4  pb3">
-                <Link href="/signup">
+                <Link href="/dominion">
                   <span
                     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                     onClick={toggleNav}
                   >
-                    Sign Up
+                    Dominion
                   </span>
                 </Link>
               </li>

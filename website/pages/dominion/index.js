@@ -22,14 +22,6 @@ export default function Dominion({ siteConfig }) {
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
   const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
 
-  const descriptionTab = (
-    <div className="db  pb3">Buy the dom subscription.</div>
-  );
-
-  const deliveryTab = (
-    <div className="db  pb3">Delivers are blah blah blah...</div>
-  );
-
   useEffect(() => {
     if (process.browser) {
       if (window.Snipcart) {
@@ -134,7 +126,7 @@ export default function Dominion({ siteConfig }) {
                     /* Options */
                     type="primary"
                     size="medium"
-                    text="Subscribe"
+                    text="Join the Dominion"
                     color="black"
                     fluid={false}
                     icon={buttonIconPlus}

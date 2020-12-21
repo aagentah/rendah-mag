@@ -10,6 +10,7 @@ import Container from '~/components/layout/container';
 import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import { getSiteConfig } from '~/lib/sanity/requests';
+import validEmail from '~/lib/valid-email';
 
 export default function Login({ siteConfig }) {
   const app = useApp();
@@ -54,13 +55,25 @@ export default function Login({ siteConfig }) {
 
   async function onSubmit(e) {
     e.preventDefault();
-    dispatch({ type: 'TOGGLE_LOADING' });
-    setSubmitButtonLoading(true);
+
+    // Prevent double submit
+    if (submitButtonLoading) return;
 
     const body = {
       username: e.currentTarget.username.value,
       password: e.currentTarget.password.value,
     };
+
+    if (!body.username || !validEmail(body.username)) {
+      return toast.error('Please enter a valid email.');
+    }
+
+    if (!body.password) {
+      return toast.error('Please enter your password.');
+    }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setSubmitButtonLoading(true);
 
     // Post to log in API
     const response = await fetch(`${process.env.SITE_URL}/api/login`, {
@@ -204,7 +217,7 @@ export default function Login({ siteConfig }) {
                   /* Children */
                   withLinkProps={{
                     type: 'next',
-                    href: '/signup',
+                    href: '/dominion',
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {

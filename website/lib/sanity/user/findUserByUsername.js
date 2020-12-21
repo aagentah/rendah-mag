@@ -12,7 +12,7 @@ const findUserByUsername = async (req, username) => {
         throw new Error('User does not exist.');
       }
 
-      console.log(`User was fetched, document ID is ${res}`);
+      console.log(`User was fetched, document ID is ${res._id}`);
       return res;
     });
 

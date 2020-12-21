@@ -19,6 +19,9 @@ export default function Forgot({ siteConfig }) {
   async function onSubmit(e) {
     e.preventDefault();
 
+    // Prevent double submit
+    if (submitButtonLoading) return;
+
     const body = {
       username: e.currentTarget.username.value,
     };
