@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
@@ -7,20 +7,26 @@ import { Heading, Button, Icon, Input } from 'next-pattern-library';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
+import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
-
 import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Login({ siteConfig }) {
+  const app = useApp();
+  const dispatch = useDispatchApp();
   const router = useRouter();
   const [user, { mutate }] = useUser();
   const fwdRoute = router.query?.fwdRoute ? router.query.fwdRoute : null;
+  const [submitButtonLoading, setSubmitButtonLoading] = useState(false);
 
   async function loginViaQuery() {
     const body = {
       username: router.query.username,
       password: `${router.query.salt}:${router.query.hash}`,
     };
+
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setSubmitButtonLoading(true);
 
     // Post to log in API
     const response = await fetch(`${process.env.SITE_URL}/api/login`, {
@@ -37,11 +43,19 @@ export default function Login({ siteConfig }) {
       toast.error(
         'Something went wrong, please try again, or a different browser?'
       );
+
+      setTimeout(() => {
+        setSubmitButtonLoading(false);
+      }, 500);
     }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
   }
 
   async function onSubmit(e) {
     e.preventDefault();
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setSubmitButtonLoading(true);
 
     const body = {
       username: e.currentTarget.username.value,
@@ -63,8 +77,20 @@ export default function Login({ siteConfig }) {
       toast.error(
         'Something went wrong, have you used the correct Username/Password?'
       );
+
+      setTimeout(() => {
+        setSubmitButtonLoading(false);
+      }, 500);
     }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
   }
+
+  useEffect(() => {
+    if (router.query?.username && router.query?.hash && router.query?.salt) {
+      loginViaQuery();
+    }
+  }, []);
 
   useEffect(() => {
     if (user) Router.push(`${fwdRoute ? `/${fwdRoute}` : '/profile'}`);
@@ -73,10 +99,6 @@ export default function Login({ siteConfig }) {
   const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
   const inputIconEnvelope = <Icon icon={['fas', 'envelope']} />;
   const inputIconLock = <Icon icon={['fas', 'lock']} />;
-
-  if (router.query?.username && router.query?.hash && router.query?.salt) {
-    loginViaQuery();
-  }
 
   return (
     <>
@@ -140,8 +162,8 @@ export default function Login({ siteConfig }) {
               />
             </div>
 
-            <div className="df  dib-md  flex-wrap  align-center  pt3">
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+            <div className="db  df-md flex-wrap  align-center  pt3">
+              <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="primary"
@@ -152,7 +174,7 @@ export default function Login({ siteConfig }) {
                   icon={buttonIconArrowRight}
                   iconFloat={null}
                   inverted={false}
-                  loading={false}
+                  loading={submitButtonLoading}
                   disabled={false}
                   onClick={null}
                   /* Children */
@@ -165,7 +187,7 @@ export default function Login({ siteConfig }) {
                   }}
                 />
               </div>
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+              <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="secondary"
@@ -191,7 +213,7 @@ export default function Login({ siteConfig }) {
                   }}
                 />
               </div>
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+              <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="secondary"

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
@@ -7,16 +7,19 @@ import { Heading, Button, Icon, Input, Checkbox } from 'next-pattern-library';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
+import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
-
 import { getSiteConfig } from '~/lib/sanity/requests';
 import passwordStrength from '~/lib/password-strength';
 import validEmail from '~/lib/valid-email';
 
 export default function Sigup({ siteConfig }) {
+  const app = useApp();
+  const dispatch = useDispatchApp();
   const router = useRouter();
   const [user, { mutate }] = useUser();
   const prefillEmail = router.query?.prefillEmail || null;
+  const [submitButtonLoading, setSubmitButtonLoading] = useState(false);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -63,6 +66,9 @@ export default function Sigup({ siteConfig }) {
       return toast.error(isPasswordValid.message);
     }
 
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setSubmitButtonLoading(true);
+
     const res = await fetch(`${process.env.SITE_URL}/api/users`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -74,7 +80,13 @@ export default function Sigup({ siteConfig }) {
       mutate(userObj);
     } else {
       toast.error(await res.text());
+
+      setTimeout(() => {
+        setSubmitButtonLoading(false);
+      }, 500);
     }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
   }
 
   useEffect(() => {
@@ -196,8 +208,8 @@ export default function Sigup({ siteConfig }) {
                 onClick={null}
               />
             </div>
-            <div className="df  dib-md  flex-wrap  align-center  pt3">
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+            <div className="db  df-md  flex-wrap  align-center  pt3">
+              <div className="df  db-md  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="primary"
@@ -208,7 +220,7 @@ export default function Sigup({ siteConfig }) {
                   icon={buttonIconArrowRight}
                   iconFloat={null}
                   inverted={false}
-                  loading={false}
+                  loading={submitButtonLoading}
                   disabled={false}
                   onClick={null}
                   /* Children */
@@ -221,7 +233,7 @@ export default function Sigup({ siteConfig }) {
                   }}
                 />
               </div>
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+              <div className="df  db-md  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="secondary"
@@ -232,7 +244,7 @@ export default function Sigup({ siteConfig }) {
                   icon={null}
                   iconFloat={null}
                   inverted={false}
-                  loading={false}
+                  loading={null}
                   disabled={false}
                   onClick={null}
                   /* Children */

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { Heading, Button, Icon, Input } from 'next-pattern-library';
@@ -6,21 +6,29 @@ import { Heading, Button, Icon, Input } from 'next-pattern-library';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
-import { useDispatchApp } from '~/context-provider/app';
+import { useApp, useDispatchApp } from '~/context-provider/app';
+import { useUser } from '~/lib/hooks';
 import { getSiteConfig } from '~/lib/sanity/requests';
+import validEmail from '~/lib/valid-email';
 
 export default function Forgot({ siteConfig }) {
+  const app = useApp();
   const dispatch = useDispatchApp();
-  const [buttonLoading, setButtonLoading] = useState(false);
+  const [submitButtonLoading, setSubmitButtonLoading] = useState(false);
 
   async function onSubmit(e) {
     e.preventDefault();
-    dispatch({ type: 'TOGGLE_LOADING' });
-    setButtonLoading(true);
 
     const body = {
       username: e.currentTarget.username.value,
     };
+
+    if (!body.username || !validEmail(body.username)) {
+      return toast.error('Please enter a valid email.');
+    }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setSubmitButtonLoading(true);
 
     // Post to forgot API
     const response = await fetch(`${process.env.SITE_URL}/api/forgot`, {
@@ -39,8 +47,10 @@ export default function Forgot({ siteConfig }) {
       );
     }
 
+    setTimeout(() => {
+      setSubmitButtonLoading(false);
+    }, 500);
     dispatch({ type: 'TOGGLE_LOADING' });
-    setButtonLoading(false);
   }
 
   const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
@@ -95,8 +105,8 @@ export default function Forgot({ siteConfig }) {
               />
             </div>
 
-            <div className="df  dib-md  flex-wrap  align-center  pt3">
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+            <div className="db  df-md  flex-wrap  align-center  pt3">
+              <div className="df  db-md  di-md  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="primary"
@@ -107,7 +117,7 @@ export default function Forgot({ siteConfig }) {
                   icon={buttonIconArrowRight}
                   iconFloat={null}
                   inverted={false}
-                  loading={buttonLoading}
+                  loading={submitButtonLoading}
                   disabled={false}
                   onClick={null}
                   /* Children */
@@ -120,7 +130,7 @@ export default function Forgot({ siteConfig }) {
                   }}
                 />
               </div>
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+              <div className="df  db-md  di-md  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="secondary"
