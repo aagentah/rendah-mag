@@ -339,24 +339,26 @@ export default function ProfileEdit() {
           </div>
 
           <div className="col-24  pb4">
-            <Button
-              /* Options */
-              type="primary"
-              size="small"
-              text="Change Avatar"
-              color="black"
-              fluid={false}
-              icon={null}
-              iconFloat={null}
-              inverted
-              loading={false}
-              disabled={app.isLoading}
-              onClick={() => {
-                setAvatarModalActive(!avatarModalActive);
-              }}
-              /* Children */
-              withLinkProps={null}
-            />
+            <div className="dib">
+              <Button
+                /* Options */
+                type="primary"
+                size="small"
+                text="Change Avatar"
+                color="black"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted
+                loading={false}
+                disabled={app.isLoading}
+                onClick={() => {
+                  setAvatarModalActive(!avatarModalActive);
+                }}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
           </div>
         </div>
 
