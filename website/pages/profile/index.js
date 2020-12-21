@@ -42,56 +42,58 @@ export default function Profile({ siteConfig }) {
     }
   };
 
-  return (
-    <div className="bg-white  bg-almost-white-md">
-      <Layout
-        navOffset="top"
-        navOnWhite
-        hasNav
-        hasFooter
-        meta={{
-          siteConfig,
-          title: 'Profile',
-          description: null,
-          image: null,
-        }}
-        preview={null}
-      >
-        <div className="pt4  pt0-md  pb4">
-          <Container>
-            {user && (
-              <div className="tabs-wrapper--side-bar">
-                <Tabs
-                  /* Options */
-                  content={[
-                    {
-                      id: '1',
-                      tabTitle: 'Profile',
-                      tabContent: <ProfileEdit />,
-                    },
-                    {
-                      id: '2',
-                      tabTitle: 'Dominion',
-                      tabContent: (
-                        <ProfileDominion refreshDominion={refreshDominion} />
-                      ),
-                    },
-                    {
-                      id: '3',
-                      tabTitle: 'Orders',
-                      tabContent: <ProfileOrders />,
-                    },
-                  ]}
-                  defaultSelected={app.deviceSize === 'md' ? null : '1'}
-                  onToggle={handleToggle}
-                />
-              </div>
-            )}
-          </Container>
-        </div>
-      </Layout>
-    </div>
-  );
+  if (user) {
+    return (
+      <div className="bg-white  bg-almost-white-md">
+        <Layout
+          navOffset="top"
+          navOnWhite
+          hasNav
+          hasFooter
+          meta={{
+            siteConfig,
+            title: 'Profile',
+            description: null,
+            image: null,
+          }}
+          preview={null}
+        >
+          <div className="pt4  pt0-md  pb4">
+            <Container>
+              {user && (
+                <div className="tabs-wrapper--side-bar">
+                  <Tabs
+                    /* Options */
+                    content={[
+                      {
+                        id: '1',
+                        tabTitle: 'Profile',
+                        tabContent: <ProfileEdit />,
+                      },
+                      {
+                        id: '2',
+                        tabTitle: 'Dominion',
+                        tabContent: (
+                          <ProfileDominion refreshDominion={refreshDominion} />
+                        ),
+                      },
+                      {
+                        id: '3',
+                        tabTitle: 'Orders',
+                        tabContent: <ProfileOrders />,
+                      },
+                    ]}
+                    defaultSelected={app.deviceSize === 'md' ? null : '1'}
+                    onToggle={handleToggle}
+                  />
+                </div>
+              )}
+            </Container>
+          </div>
+        </Layout>
+      </div>
+    );
+  }
 }
 
 export async function getServerSideProps({ req }) {

@@ -80,7 +80,7 @@ export default function ProfileDominion({ refreshDominion }) {
     );
   }
 
-  if (!user?.isDominion && !user.isDominionWiteList) {
+  if (!user?.isDominion && !user?.isDominionWiteList) {
     return (
       <>
         <div className="pb3">
