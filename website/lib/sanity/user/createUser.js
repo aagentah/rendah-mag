@@ -1,7 +1,6 @@
 import crypto from 'crypto';
 
 import client from '../config-write';
-import subscribe from '~/pages/api/mailchimp/subscribe';
 
 const createUser = async (user) => {
   try {
@@ -9,22 +8,6 @@ const createUser = async (user) => {
     const hash = crypto
       .pbkdf2Sync(user.password, salt, 1000, 64, 'sha512')
       .toString('hex');
-
-    // Adds user to Mailchimp
-    if (user.addMailchimp) {
-      try {
-        subscribe({
-          body: {
-            email: user.username,
-          },
-        });
-      } catch (error) {
-        console.error(
-          'Error adding user to Mailchimp:',
-          error.message || error.toString()
-        );
-      }
-    }
 
     const doc = {
       _type: 'user',

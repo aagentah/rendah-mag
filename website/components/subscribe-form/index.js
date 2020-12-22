@@ -28,7 +28,11 @@ export default function SubscribeForm({ onSuccess }) {
       `${process.env.SITE_URL}/api/mailchimp/subscribe`,
       {
         body: JSON.stringify({
-          email: inputEl.current.value,
+          data: {
+            email_address: inputEl.current.value,
+            status: 'subscribed',
+          },
+          methodType: 'POST',
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -44,6 +48,9 @@ export default function SubscribeForm({ onSuccess }) {
       toast.success('Welcome to the newsletter');
       Cookies.set('rndh-newsletter-set', true, { expires: 365 });
       onSuccess && onSuccess();
+    } else if (response.status === 400) {
+      // Already subscribed
+      toast.info('You are already added to our newsletter.');
     } else {
       // Error
       toast.error(json?.error || 'Error');

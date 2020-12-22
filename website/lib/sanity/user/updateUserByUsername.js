@@ -6,8 +6,6 @@ import cloneDeep from 'lodash/cloneDeep';
 
 import client from '../config-write';
 
-import updateUserTags from '~/lib/mailchimp/update-user-tags';
-
 const handlePassword = (cloneFields) => {
   const f = cloneFields;
 
@@ -94,8 +92,27 @@ const handleAvatar = async (cloneFields, user) => {
 };
 
 const handleTags = async (cloneFields) => {
-  // Update tags in Mailchimp
-  await updateUserTags(cloneFields.tags, cloneFields.username);
+  // Update member tags (mailchimp)
+  const response = await fetch(
+    `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
+    {
+      body: JSON.stringify({
+        email: cloneFields.username,
+        tags: cloneFields.tags,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    }
+  );
+
+  const json = await response.json();
+
+  // Error
+  if (!response.ok) {
+    throw new Error(await response.json());
+  }
 
   // Create array with checked tags
   const checkedTags = [];
