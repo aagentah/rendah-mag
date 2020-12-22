@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
+import filter from 'lodash/filter';
 
 import { Heading } from 'next-pattern-library';
 
@@ -8,15 +9,16 @@ import { useUser } from '~/lib/hooks';
 
 export default function ProfileOrders() {
   const [user, { loading, mutate, error }] = useUser();
-  const [customerOrders, setCustomerOrders] = useState(null);
-  const [customer, setCustomer] = useState(null);
+  const [customerOrders, setCustomerOrders] = useState([]);
+  const [customerDetails, setCustomerDetails] = useState(null);
+  const [customerSubscriptions, setCustomerSubscriptions] = useState([]);
+  const dateToday = new Date().toISOString().split('T')[0];
 
   // Fetch orders
   useEffect(() => {
     const fetchCustomerOrders = async () => {
-      // Fetch orders
       const response = await fetch(
-        `${process.env.SITE_URL}/api/snipcart/get-customer`,
+        `${process.env.SITE_URL}/api/snipcart/get-customer-orders`,
         {
           body: JSON.stringify({ email: user.username }),
           headers: { 'Content-Type': 'application/json' },
@@ -41,8 +43,7 @@ export default function ProfileOrders() {
 
   // Fetch customer
   useEffect(() => {
-    const fetchCustomer = async () => {
-      // Fetch customer
+    const fetchCustomerDetails = async () => {
       const response = await fetch(
         `${process.env.SITE_URL}/api/snipcart/get-customer-details`,
         {
@@ -56,26 +57,54 @@ export default function ProfileOrders() {
 
       if (response.ok) {
         // Success
-        setCustomer(json);
+        setCustomerDetails(json);
       } else {
         // Error
         toast.error(json.error);
-        setCustomer({});
+        setCustomerDetails({});
       }
     };
 
-    if (user) fetchCustomer();
+    if (user) fetchCustomerDetails();
   }, [user]);
 
-  // Fetch items and check if is dominion subscription
+  // Fetch items and gather subscription instances
   useEffect(() => {
-    if (user?.isDominion || user?.isDominionWiteList) return;
+    if (user?.isDominionWiteList) return;
+
+    if (user && customerOrders?.length) {
+      const subscriptionInstances = [];
+
+      for (let i = 0; i < customerOrders.length; i += 1) {
+        const order = customerOrders[i];
+        const orderItems = order.items;
+
+        if (orderItems.length) {
+          for (let ii = 0; ii < orderItems.length; ii += 1) {
+            const item = orderItems[ii];
+
+            if (item.id === 'dominion-subscription') {
+              subscriptionInstances.push(item);
+            }
+          }
+        }
+      }
+
+      setCustomerSubscriptions(subscriptionInstances);
+    }
+  }, [user, customerOrders]);
+
+  // Look for valid subscription and see if CMS needs updating
+  useEffect(async () => {
+    if (!customerSubscriptions.length || user?.isDominionWiteList) return;
 
     // Set the user to Dominion in CMS
-    async function setUserIsDominion(dominionStartDate) {
+    async function setUserIsDominion(dominionSince) {
+      if (user?.isDominion) return;
+
       const body = {
         isDominion: true,
-        dominionSince: dominionStartDate.split('T')[0],
+        dominionSince: dominionSince.split('T')[0],
       };
 
       // Put to user API
@@ -96,29 +125,87 @@ export default function ProfileOrders() {
       }
     }
 
-    if (user && customerOrders?.length) {
-      for (let i = 0; i < customerOrders.length; i += 1) {
-        const order = customerOrders[i];
-        const orderItems = order.items;
+    // Unset the user from Dominion in CMS
+    async function setUserNotDominion() {
+      if (!user?.isDominion) return;
 
-        if (orderItems.length) {
-          for (let ii = 0; ii < orderItems.length; ii += 1) {
-            const item = orderItems[ii];
+      const body = {
+        isDominion: false,
+      };
 
-            if (item.id === 'dominion-subscription') {
-              const dominionStartDate = item.addedOn;
-              setUserIsDominion(dominionStartDate);
-            }
-          }
+      // Put to user API
+      const response = await fetch(`${process.env.SITE_URL}/api/user`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      if (response.ok) {
+        // Success
+        mutate(await response.json());
+      } else {
+        // Error
+        toast.error(
+          'There was an issue adding you to the Dominion, please contact support right away.'
+        );
+      }
+    }
+
+    // Fetch subscription data
+    const fetchAllSubscriptionsData = () => {
+      let promiseArray = [];
+
+      for (let i = 0; i < customerSubscriptions.length; i += 1) {
+        const subscription = customerSubscriptions[i];
+
+        promiseArray.push(
+          fetch(`${process.env.SITE_URL}/api/snipcart/get-subscription`, {
+            body: JSON.stringify({
+              subscriptionId: subscription.subscriptionId,
+            }),
+            headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
+          }).then((response) =>
+            response.json().catch((error) => {
+              console.log(error);
+              return {};
+            })
+          )
+        );
+      }
+
+      return Promise.all(promiseArray);
+    };
+
+    const customerSubscriptionDetails = await fetchAllSubscriptionsData();
+
+    console.log('customerSubscriptionDetails', customerSubscriptionDetails);
+
+    // Check if user has an active subscription, and then call CMS update
+    if (customerSubscriptionDetails.length) {
+      for (let i = 0; i < customerSubscriptionDetails.length; i++) {
+        const subscription = customerSubscriptionDetails[i];
+
+        // If user has a subscription that is active or paid for
+        if (
+          subscription?.status === 'Paid' &&
+          !subscription?.cancelledOn &&
+          !subscription?.pausedOn
+        ) {
+          const dominionSince = subscription?.modificationDate;
+          return setUserIsDominion(dominionSince);
         }
       }
     }
-  }, [user, customerOrders, mutate]);
+
+    // Otherwise unset
+    return setUserNotDominion();
+  }, [customerSubscriptions, mutate]);
 
   if (customerOrders?.length) {
     return (
       <section>
-        {customer && (
+        {customerDetails && (
           <>
             <div className="pb4">
               <Heading
@@ -134,38 +221,38 @@ export default function ProfileOrders() {
             </div>
 
             <section className="pb4  ph3">
-              {customer?.shippingAddress?.name && (
+              {customerDetails?.shippingAddress?.name && (
                 <p className="t-secondary  f6  black  lh-copy">
-                  {customer.shippingAddress.name}
+                  {customerDetails.shippingAddress.name}
                 </p>
               )}
 
-              {customer?.shippingAddress?.address1 && (
+              {customerDetails?.shippingAddress?.address1 && (
                 <p className="t-secondary  f6  black  lh-copy">
-                  {customer.shippingAddress.address1}
+                  {customerDetails.shippingAddress.address1}
                 </p>
               )}
 
-              {customer?.shippingAddress?.address2 && (
+              {customerDetails?.shippingAddress?.address2 && (
                 <p className="t-secondary  f6  black  lh-copy">
-                  {customer.shippingAddress.address2}
+                  {customerDetails.shippingAddress.address2}
                 </p>
               )}
 
-              {customer?.shippingAddress?.city && (
+              {customerDetails?.shippingAddress?.city && (
                 <p className="t-secondary  f6  black  lh-copy">
-                  {customer.shippingAddress.city}
+                  {customerDetails.shippingAddress.city}
                 </p>
               )}
 
-              {customer?.shippingAddress?.postalCode && (
+              {customerDetails?.shippingAddress?.postalCode && (
                 <p className="t-secondary  f6  black  lh-copy">
-                  {customer.shippingAddress.postalCode}
+                  {customerDetails.shippingAddress.postalCode}
                 </p>
               )}
-              {customer?.shippingAddress?.country && (
+              {customerDetails?.shippingAddress?.country && (
                 <p className="t-secondary  f6  black  lh-copy">
-                  {customer.shippingAddress.country}
+                  {customerDetails.shippingAddress.country}
                 </p>
               )}
             </section>
