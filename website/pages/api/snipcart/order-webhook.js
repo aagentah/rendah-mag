@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-unfetch';
-import md5 from 'js-md5';
 
 import welcomeDominionEmail from '~/lib/emails/welcome-dominion-subscription';
 
@@ -14,70 +13,74 @@ export default async (req, res) => {
       address,
       isDominion
     ) => {
-      const emailHashed = md5(email.toLowerCase());
-      const DATACENTER = process.env.MAILCHIMP_API_KEY.split('-')[1];
+      // Add or update member
+      const addOrUpdateMember = async () => {
+        const response = await fetch(
+          `${process.env.SITE_URL}/api/mailchimp/subscribe`,
+          {
+            body: JSON.stringify({
+              data: {
+                email_address: email,
+                status: 'subscribed',
+                merge_fields: {
+                  FNAME: firstName,
+                  LNAME: lastName,
+                  ADDRESS: address,
+                },
+              },
+              methodType: 'PUT',
+            }),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            method: 'POST',
+          }
+        );
 
-      const data = {
-        email_address: email,
-        status: 'subscribed',
-        merge_fields: {
-          FNAME: firstName,
-          LNAME: lastName,
-          ADDRESS: address,
-        },
+        if (!response.ok) {
+          // Error
+          throw new Error(await response.json());
+        }
       };
 
-      // Add or update member
-      const addOrUpdateMember = await fetch(
-        `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}`,
-        {
-          body: JSON.stringify(data),
-          headers: {
-            Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          method: 'PUT',
-        }
-      );
-
-      if (!addOrUpdateMember.ok) {
-        // Error
-        throw new Error(await addOrUpdateMember.json());
-      }
-
       // Add tags
-      const tagsData = {
-        tags: [
+      const addMemberTags = async () => {
+        const tags = [
           {
             name: 'Customer',
             status: 'active',
           },
-        ],
+        ];
+
+        if (isDominion) {
+          tags.push({
+            name: 'Dominion Subscription',
+            status: 'active',
+          });
+        }
+
+        const response = await fetch(
+          `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
+          {
+            body: JSON.stringify({
+              email: email,
+              tags: tags,
+            }),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            method: 'POST',
+          }
+        );
+
+        if (!response.ok) {
+          // Error
+          throw new Error(response.json());
+        }
       };
 
-      if (isDominion) {
-        tagsData.tags.push({
-          name: 'Dominion Subscription',
-          status: 'active',
-        });
-      }
-
-      const addMembertags = await fetch(
-        `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}/tags`,
-        {
-          body: JSON.stringify(tagsData),
-          headers: {
-            Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          method: 'POST',
-        }
-      );
-
-      if (!addMembertags.ok) {
-        // Error
-        throw new Error(addMembertags.json());
-      }
+      await addOrUpdateMember();
+      await addMemberTags();
     };
 
     if (order?.eventName === 'order.completed') {

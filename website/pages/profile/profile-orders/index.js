@@ -98,57 +98,129 @@ export default function ProfileOrders() {
   useEffect(async () => {
     if (!customerSubscriptions.length || user?.isDominionWiteList) return;
 
-    // Set the user to Dominion in CMS
+    // Set the user to Dominion
     async function setUserIsDominion(dominionSince) {
       if (user?.isDominion) return;
 
-      const body = {
-        isDominion: true,
-        dominionSince: dominionSince.split('T')[0],
+      // Set the user to Dominion in CMS
+      const updateCMS = async () => {
+        const body = {
+          isDominion: true,
+          dominionSince: dominionSince.split('T')[0],
+        };
+
+        const response = await fetch(`${process.env.SITE_URL}/api/user`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (response.ok) {
+          // Success
+          mutate(await response.json());
+        } else {
+          // Error
+          toast.error(
+            'There was an issue adding you to the Dominion, please contact support right away.'
+          );
+        }
       };
 
-      // Put to user API
-      const response = await fetch(`${process.env.SITE_URL}/api/user`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
+      // Set the user to Dominion in MailChimp
+      const updateMailChimpTags = async () => {
+        const tags = [
+          {
+            label: 'Dominion Subscription',
+            status: true,
+          },
+        ];
 
-      if (response.ok) {
-        // Success
-        mutate(await response.json());
-      } else {
-        // Error
-        toast.error(
-          'There was an issue adding you to the Dominion, please contact support right away.'
+        const response = await fetch(
+          `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
+          {
+            body: JSON.stringify({
+              email: user.username,
+              tags: tags,
+            }),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            method: 'POST',
+          }
         );
-      }
+
+        if (!response.ok) {
+          // Error
+          toast.error(
+            'There was an issue adding you to the Dominion, please contact support right away.'
+          );
+        }
+      };
+
+      await updateMailChimpTags();
+      await updateCMS();
     }
 
     // Unset the user from Dominion in CMS
     async function setUserNotDominion() {
       if (!user?.isDominion) return;
 
-      const body = {
-        isDominion: false,
+      // Unset the user to Dominion in CMS
+      const updateCMS = async () => {
+        const body = {
+          isDominion: false,
+        };
+
+        const response = await fetch(`${process.env.SITE_URL}/api/user`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (response.ok) {
+          // Success
+          mutate(await response.json());
+        } else {
+          // Error
+          toast.error(
+            'There was an issue removing you from the Dominion, please contact support right away.'
+          );
+        }
       };
 
-      // Put to user API
-      const response = await fetch(`${process.env.SITE_URL}/api/user`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
+      // Unset the user to Dominion in MailChimp
+      const updateMailChimpTags = async () => {
+        const tags = [
+          {
+            label: 'Dominion Subscription',
+            status: false,
+          },
+        ];
 
-      if (response.ok) {
-        // Success
-        mutate(await response.json());
-      } else {
-        // Error
-        toast.error(
-          'There was an issue adding you to the Dominion, please contact support right away.'
+        const response = await fetch(
+          `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
+          {
+            body: JSON.stringify({
+              email: user.username,
+              tags: tags,
+            }),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            method: 'POST',
+          }
         );
-      }
+
+        if (!response.ok) {
+          // Error
+          toast.error(
+            'There was an issue removing you to the Dominion, please contact support right away.'
+          );
+        }
+      };
+
+      await updateMailChimpTags();
+      await updateCMS();
     }
 
     // Fetch subscription data

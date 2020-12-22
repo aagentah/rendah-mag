@@ -2,14 +2,10 @@ import fetch from 'isomorphic-unfetch';
 
 export default async (req, res) => {
   try {
-    const { email } = req.body;
+    const { data, methodType } = req.body;
     const DATACENTER = process.env.MAILCHIMP_API_KEY.split('-')[1];
 
-    const data = {
-      email_address: email,
-      status: 'subscribed',
-    };
-
+    // Add member to list
     const response = await fetch(
       `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members`,
       {
@@ -18,7 +14,7 @@ export default async (req, res) => {
           Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`,
           'Content-Type': 'application/json',
         },
-        method: 'POST',
+        method: methodType || 'PUT',
       }
     );
 
@@ -27,10 +23,10 @@ export default async (req, res) => {
     // Error
     if (!response.ok) {
       if (json.title === 'Member Exists') {
-        throw new Error('You are already added to our newsletter.');
+        if (res) return res.status(400).json({ error: '' });
+      } else {
+        throw new Error('There was an issue subscribing.');
       }
-
-      throw new Error('There was an issue subscribing.');
     }
 
     // Success

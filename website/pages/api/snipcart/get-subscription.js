@@ -8,8 +8,6 @@ const getSubscription = async (req, res) => {
     const { subscriptionId } = req.body;
     const secret = Buffer.from(SNIPCART_SECRET_KEY).toString('base64');
 
-    console.log('subscriptionId', subscriptionId);
-
     const fetchSubscriptionData = async () => {
       const subscription = await fetch(
         `http://app.snipcart.com/api/subscriptions/${subscriptionId}`,

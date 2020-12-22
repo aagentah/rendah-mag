@@ -1,8 +1,9 @@
 import fetch from 'isomorphic-unfetch';
 import md5 from 'js-md5';
 
-export default async (tags, email) => {
+export default async (req, res) => {
   try {
+    const { email, tags } = req.body;
     const emailHashed = md5(email.toLowerCase());
     const DATACENTER = process.env.MAILCHIMP_API_KEY.split('-')[1];
 
@@ -20,7 +21,7 @@ export default async (tags, email) => {
       });
     }
 
-    const addMembertags = await fetch(
+    const response = await fetch(
       `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}/tags`,
       {
         body: JSON.stringify(tagsData),
@@ -32,17 +33,22 @@ export default async (tags, email) => {
       }
     );
 
-    if (!addMembertags.ok) {
+    if (!response.ok) {
       // Error
-      throw new Error(await addMembertags.json());
+      throw new Error(await response.json());
     }
 
-    return true;
+    // Success
+    if (res) return res.status(200).json({ error: '' });
   } catch (error) {
     // Handle catch
     console.error(
-      `Error in update-user-tags: ${error.message || error.toString()}`
+      `Error in api/mailchimp/update-member-tags: ${
+        error.message || error.toString()
+      }`
     );
+
+    if (res) return res.status(500).json({ error: error.message });
     return false;
   }
 };

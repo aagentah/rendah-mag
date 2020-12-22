@@ -32,7 +32,6 @@ export default function Sigup({ siteConfig }) {
       password: e.currentTarget.password.value,
       name: e.currentTarget.name.value,
       terms: e.currentTarget.terms.checked,
-      addMailchimp: e.currentTarget.addMailchimp.checked,
     };
 
     if (!body.username || !validEmail(body.username)) {
@@ -196,17 +195,6 @@ export default function Sigup({ siteConfig }) {
                 name="terms"
                 checked={false}
                 required
-                disabled={false}
-                onClick={null}
-              />
-            </div>
-            <div className="pv2  mb2">
-              <Checkbox
-                /* Options */
-                label="Add me to your Newsletter for news and exclusive content."
-                name="addMailchimp"
-                checked={false}
-                required={false}
                 disabled={false}
                 onClick={null}
               />

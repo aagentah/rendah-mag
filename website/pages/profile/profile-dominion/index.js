@@ -71,7 +71,7 @@ export default function ProfileDominion({ refreshDominion }) {
         </div>
 
         {user?.dominionSince && (
-          <p className="t-secondary  f6  grey">
+          <p className="t-secondary  f6  grey  mt4">
             <span className="bold  pr1">Member since:</span>
             {new Date(user.dominionSince).toDateString()}
           </p>
