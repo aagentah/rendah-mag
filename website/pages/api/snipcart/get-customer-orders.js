@@ -3,7 +3,7 @@ import find from 'lodash/find';
 
 import { SNIPCART_SECRET_KEY } from '~/constants';
 
-const getCustomer = async (req, res) => {
+const getCustomerOrders = async (req, res) => {
   try {
     const { email } = req.body;
     const secret = Buffer.from(SNIPCART_SECRET_KEY).toString('base64');
@@ -100,4 +100,4 @@ const getCustomer = async (req, res) => {
   }
 };
 
-export default getCustomer;
+export default getCustomerOrders;

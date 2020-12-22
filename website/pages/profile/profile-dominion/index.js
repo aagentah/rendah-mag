@@ -45,7 +45,7 @@ export default function ProfileDominion({ refreshDominion }) {
     if (user?.isDominion || user?.isDominionWiteList) fetchDominionItems();
   }, [user]);
 
-  if (dominionItems?.length) {
+  if (user?.isDominion && dominionItems?.length) {
     return (
       <section>
         <div className="pb4">

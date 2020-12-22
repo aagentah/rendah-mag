@@ -1,5 +1,4 @@
 import client from '../config-write';
-import isEmpty from 'lodash/isEmpty';
 
 const findUserByUsername = async (req, username) => {
   try {
@@ -8,10 +7,6 @@ const findUserByUsername = async (req, username) => {
     const params = { username };
 
     const data = await client.fetch(query, params).then((res) => {
-      if (isEmpty(res)) {
-        throw new Error('User does not exist.');
-      }
-
       console.log(`User was fetched, document ID is ${res._id}`);
       return res;
     });

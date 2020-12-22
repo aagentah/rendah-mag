@@ -5,14 +5,14 @@ import { SNIPCART_SECRET_KEY } from '~/constants';
 
 const getSubscription = async (req, res) => {
   try {
-    const { uniqueId } = req.body;
+    const { subscriptionId } = req.body;
     const secret = Buffer.from(SNIPCART_SECRET_KEY).toString('base64');
 
-    console.log('uniqueId', uniqueId);
+    console.log('subscriptionId', subscriptionId);
 
     const fetchSubscriptionData = async () => {
       const subscription = await fetch(
-        `http://app.snipcart.com/api/subscriptions/${uniqueId}`,
+        `http://app.snipcart.com/api/subscriptions/${subscriptionId}`,
         {
           headers: {
             Authorization: `Basic ${secret}`,
@@ -33,12 +33,8 @@ const getSubscription = async (req, res) => {
 
     const subscriptionData = await subscriptionDataRes.json();
 
-    console.log('subscriptionData status', subscriptionData);
-
     // Handle response
-    // const response = await action();
-    const response = null;
-    return res.status(200).json(response);
+    return res.status(200).json(subscriptionData);
   } catch (error) {
     // Handle catch
     console.error(
