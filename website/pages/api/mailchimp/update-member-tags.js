@@ -35,6 +35,7 @@ export default async (req, res) => {
 
     if (!response.ok) {
       // Error
+      //
       throw new Error(await response.json());
     }
 
