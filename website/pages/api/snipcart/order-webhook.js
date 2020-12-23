@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 
+import formatHttpError from '~/functions/formatHttpError';
 import welcomeDominionEmail from '~/lib/emails/welcome-dominion-subscription';
 
 export default async (req, res) => {
@@ -38,9 +39,9 @@ export default async (req, res) => {
           }
         );
 
+        // Error
         if (!response.ok) {
-          // Error
-          throw new Error(JSON.stringify(await response.json()));
+          throw new Error(await formatHttpError(response));
         }
       };
 
@@ -75,7 +76,7 @@ export default async (req, res) => {
 
         // Error
         if (!response.ok) {
-          throw new Error(JSON.stringify(await response.json()));
+          throw new Error(await formatHttpError(response));
         }
       };
 

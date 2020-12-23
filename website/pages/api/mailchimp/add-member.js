@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 
+import formatHttpError from '~/functions/formatHttpError';
+
 export default async (req, res) => {
   try {
     const { data } = req.body;
@@ -23,14 +25,14 @@ export default async (req, res) => {
     // Error
     if (!response.ok) {
       if (json.title === 'Member Exists') {
-        if (res) return res.status(400).json({ error: '' });
+        return res.status(400).json({ error: '' });
       } else {
-        throw new Error(JSON.stringify(json));
+        throw new Error(await formatHttpError(response));
       }
     }
 
     // Success
-    if (res) return res.status(200).json({ error: '' });
+    return res.status(200).json({ error: '' });
     return true;
   } catch (error) {
     // Handle catch

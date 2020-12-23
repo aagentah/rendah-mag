@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 import find from 'lodash/find';
 
+import formatHttpError from '~/functions/formatHttpError';
 import { SNIPCART_SECRET_KEY } from '~/constants';
 
 const getCustomerOrders = async (req, res) => {
@@ -62,7 +63,7 @@ const getCustomerOrders = async (req, res) => {
       const customerRes = await fetchCustomer();
 
       if (!customerRes.ok) {
-        throw new Error(JSON.stringify(await customerRes.json()));
+        throw new Error(await formatHttpError(customerRes));
       }
 
       const customer = await customerRes.json();
@@ -72,7 +73,7 @@ const getCustomerOrders = async (req, res) => {
       const ordersRes = await fetchCustomerOrdersById(customer.items[0].id);
 
       if (!ordersRes.ok) {
-        throw new Error(JSON.stringify(await ordersRes.json()));
+        throw new Error(await formatHttpError(ordersRes));
       }
 
       const orders = await ordersRes.json();

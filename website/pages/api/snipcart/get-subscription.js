@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 import find from 'lodash/find';
 
+import formatHttpError from '~/functions/formatHttpError';
 import { SNIPCART_SECRET_KEY } from '~/constants';
 
 const getSubscription = async (req, res) => {
@@ -19,9 +20,9 @@ const getSubscription = async (req, res) => {
       }
     );
 
+    // Error
     if (!response.ok) {
-      // Error
-      throw new Error(JSON.stringify(await response.json()));
+      throw new Error(await formatHttpError(response));
     }
 
     // Handle response

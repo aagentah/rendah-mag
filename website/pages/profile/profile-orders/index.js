@@ -74,6 +74,7 @@ export default function ProfileOrders() {
 
     if (user && customerOrders?.length) {
       const subscriptionInstances = [];
+      console.log('customerOrders', customerOrders);
 
       for (let i = 0; i < customerOrders.length; i += 1) {
         const order = customerOrders[i];
@@ -225,6 +226,7 @@ export default function ProfileOrders() {
 
       for (let i = 0; i < customerSubscriptions.length; i += 1) {
         const subscription = customerSubscriptions[i];
+        if (!subscription?.subscriptionId) continue;
 
         promiseArray.push(
           fetch(`${process.env.SITE_URL}/api/snipcart/get-subscription`, {
@@ -246,8 +248,6 @@ export default function ProfileOrders() {
     };
 
     const customerSubscriptionDetails = await fetchAllSubscriptionsData();
-
-    console.log('customerSubscriptionDetails', customerSubscriptionDetails);
 
     // Check if user has an active subscription, and then call CMS update
     if (customerSubscriptionDetails.length) {

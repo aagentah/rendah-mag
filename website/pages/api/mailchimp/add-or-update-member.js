@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-unfetch';
 import md5 from 'js-md5';
 
+import formatHttpError from '~/functions/formatHttpError';
+
 export default async (req, res) => {
   try {
     const { email, data } = req.body;
@@ -22,11 +24,11 @@ export default async (req, res) => {
 
     // Error
     if (!response.ok) {
-      throw new Error(JSON.stringify(json));
+      throw new Error(await formatHttpError(response));
     }
 
     // Success
-    if (res) return res.status(200).json({ error: '' });
+    return res.status(200).json({ error: '' });
     return true;
   } catch (error) {
     // Handle catch
