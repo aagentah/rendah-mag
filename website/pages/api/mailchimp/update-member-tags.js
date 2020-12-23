@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-unfetch';
 import md5 from 'js-md5';
 
 export default async (req, res) => {
@@ -32,6 +31,9 @@ export default async (req, res) => {
         method: 'POST',
       }
     );
+
+    const test = await response.json();
+    console.log('test', test);
 
     if (!response.ok) {
       // Error
