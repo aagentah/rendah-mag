@@ -62,21 +62,41 @@ export default async (req, res) => {
         });
       }
 
+      // const addMembertags = await fetch(
+      //   `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}/tags`,
+      //   {
+      //     body: JSON.stringify(tagsData),
+      //     headers: {
+      //       Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`,
+      //       'Content-Type': 'application/json',
+      //     },
+      //     method: 'POST',
+      //   }
+      // );
+      //
+      // if (!addMembertags.ok) {
+      //   // Error
+      //   throw new Error(addMembertags.json());
+      // }
+
+      // Update member tags (mailchimp)
       const addMembertags = await fetch(
-        `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}/tags`,
+        `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
         {
-          body: JSON.stringify(tagsData),
+          body: JSON.stringify({
+            email: email,
+            tags: tagsData.tags,
+          }),
           headers: {
-            Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`,
             'Content-Type': 'application/json',
           },
           method: 'POST',
         }
       );
 
+      // Error
       if (!addMembertags.ok) {
-        // Error
-        throw new Error(addMembertags.json());
+        throw new Error(await addMembertags.json());
       }
     };
 
@@ -126,7 +146,9 @@ export default async (req, res) => {
   } catch (error) {
     // Handle catch
     console.error(error.message || error.toString());
-    return res.status(400).json({ error: 'Error fetching customer orders.' });
+    return res
+      .status(400)
+      .json({ error: 'Error in api/snipcart/order-webhook.' });
   }
 };
 

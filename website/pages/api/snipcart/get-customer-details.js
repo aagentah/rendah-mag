@@ -47,7 +47,9 @@ const getCustomer = async (req, res) => {
       if (!customers.items) return [];
 
       // Find customer based on email
-      const customer = find(customers.items, { email });
+      const customer = find(customers.items, (a) => {
+        return a.email.toLowerCase() === email.toLowerCase();
+      });
       if (!customer) return [];
 
       // Fetch customer's orders based on Id
