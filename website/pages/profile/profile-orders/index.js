@@ -128,19 +128,17 @@ export default function ProfileOrders() {
 
       // Set the user to Dominion in MailChimp
       const updateMailChimpTags = async () => {
-        const tags = [
-          {
-            label: 'Dominion Subscription',
-            status: true,
-          },
-        ];
-
         const response = await fetch(
           `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
           {
             body: JSON.stringify({
               email: user.username,
-              tags: tags,
+              tags: [
+                {
+                  name: 'Dominion Subscription',
+                  status: 'active',
+                },
+              ],
             }),
             headers: {
               'Content-Type': 'application/json',
@@ -190,19 +188,17 @@ export default function ProfileOrders() {
 
       // Unset the user to Dominion in MailChimp
       const updateMailChimpTags = async () => {
-        const tags = [
-          {
-            label: 'Dominion Subscription',
-            status: false,
-          },
-        ];
-
         const response = await fetch(
           `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
           {
             body: JSON.stringify({
               email: user.username,
-              tags: tags,
+              tags: [
+                {
+                  name: 'Dominion Subscription',
+                  status: 'inactive',
+                },
+              ],
             }),
             headers: {
               'Content-Type': 'application/json',
