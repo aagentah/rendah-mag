@@ -41,11 +41,11 @@ export default async (req, res) => {
     if (res) return res.status(200).json({ error: '' });
   } catch (error) {
     // Parse error
-    const errorMessage =
-      typeof error === 'object' && error !== null ? JSON.parse(error) : error;
+    // const errorMessage =
+    //   typeof error === 'object' && error !== null ? JSON.parse(error) : error;
 
     // Handle catch
-    console.error('Error in api/mailchimp/update-member-tags:', errorMessage);
+    console.error('Error in api/mailchimp/update-member-tags:', error);
 
     if (res) return res.status(500).json({ error: error });
     return false;
