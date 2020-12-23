@@ -44,9 +44,8 @@ export default async (req, res) => {
   } catch (error) {
     // Handle catch
     console.error(
-      `Error in api/mailchimp/update-member-tags: ${
-        error.message || error.toString()
-      }`
+      'Error in api/mailchimp/update-member-tags:',
+      error.message || error.toString()
     );
 
     if (res) return res.status(500).json({ error: error.message });
