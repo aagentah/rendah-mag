@@ -20,6 +20,9 @@ export default async (req, res) => {
       });
     }
 
+    console.log('tagsData', tagsData);
+    console.log(' JSON.stringify(tagsData)', JSON.stringify(tagsData));
+
     const response = await fetch(
       `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}/tags`,
       {
@@ -32,12 +35,10 @@ export default async (req, res) => {
       }
     );
 
-    const test = await response.json();
-    console.log('test', test);
-
     if (!response.ok) {
       // Error
       //
+      console.log('hit not ok:', await response.json());
       throw new Error(await response.json());
     }
 
