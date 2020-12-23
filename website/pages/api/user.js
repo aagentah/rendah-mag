@@ -1,4 +1,5 @@
 import nextConnect from 'next-connect';
+import isEmpty from 'lodash/isEmpty';
 
 import auth from '../../middleware/auth';
 import deleteUser from '~/lib/sanity/user/deleteUser';
@@ -11,7 +12,8 @@ handler
   .use(auth)
   .get(async (req, res) => {
     const requestUser = await req.user;
-    if (!requestUser) {
+
+    if (isEmpty(requestUser)) {
       return res.json({ user: null });
     }
     // You do not generally want to return the whole user object
@@ -40,7 +42,8 @@ handler
   })
   .delete(async (req, res) => {
     const requestUser = await req.user;
-    if (!requestUser) {
+
+    if (isEmpty(requestUser)) {
       return res.json({ user: null });
     }
 

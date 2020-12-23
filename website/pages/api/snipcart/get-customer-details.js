@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 import find from 'lodash/find';
 
+import formatHttpError from '~/functions/formatHttpError';
 import { SNIPCART_SECRET_KEY } from '~/constants';
 
 const getCustomer = async (req, res) => {
@@ -21,9 +22,9 @@ const getCustomer = async (req, res) => {
       }
     );
 
+    // Error
     if (!response.ok) {
-      // Error
-      throw new Error(JSON.stringify(await response.json()));
+      throw new Error(await formatHttpError(response));
     }
 
     const customer = await response.json();

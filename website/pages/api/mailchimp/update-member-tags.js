@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-unfetch';
 import md5 from 'js-md5';
 
+import formatHttpError from '~/functions/formatHttpError';
+
 export default async (req, res) => {
   try {
     const { email, tags } = req.body;
@@ -19,13 +21,13 @@ export default async (req, res) => {
       }
     );
 
+    // Error
     if (!response.ok) {
-      // Error
-      throw new Error(JSON.stringify(await response.json()));
+      throw new Error(await formatHttpError(response));
     }
 
     // Success
-    if (res) return res.status(200).json({ error: '' });
+    return res.status(200).json({ error: '' });
   } catch (error) {
     // Handle catch
     console.error('Error in api/mailchimp/update-member-tags:', error);
