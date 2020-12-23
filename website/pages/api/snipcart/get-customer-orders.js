@@ -8,16 +8,21 @@ const getCustomerOrders = async (req, res) => {
     const { email } = req.body;
     const secret = Buffer.from(SNIPCART_SECRET_KEY).toString('base64');
 
-    const fetchCustomers = async () => {
-      const customers = await fetch('http://app.snipcart.com/api/customers', {
-        headers: {
-          Authorization: `Basic ${secret}`,
-          Accept: 'application/json',
-        },
-        method: 'GET',
-      });
+    const fetchCustomer = async () => {
+      const customer = await fetch(
+        `http://app.snipcart.com/api/customers?offset=0&limit=1&email=${encodeURIComponent(
+          email.toLowerCase()
+        )}`,
+        {
+          headers: {
+            Authorization: `Basic ${secret}`,
+            Accept: 'application/json',
+          },
+          method: 'GET',
+        }
+      );
 
-      return customers;
+      return customer;
     };
 
     const fetchCustomerOrdersById = async (id) => {
@@ -54,26 +59,20 @@ const getCustomerOrders = async (req, res) => {
 
     const action = async () => {
       // Fetch all customers
-      const customersRes = await fetchCustomers();
+      const customerRes = await fetchCustomer();
 
-      if (!customersRes.ok) {
-        throw new Error(await customersRes.json());
+      if (!customerRes.ok) {
+        throw new Error(JSON.stringify(await customerRes.json()));
       }
 
-      const customers = await customersRes.json();
-      if (!customers.items) return [];
-
-      // Find customer based on email
-      const customer = find(customers.items, (a) => {
-        return a.email.toLowerCase() === email.toLowerCase();
-      });
-      if (!customer) return [];
+      const customer = await customerRes.json();
+      if (!customer.items.length) return [];
 
       // Fetch customer's orders based on Id
-      const ordersRes = await fetchCustomerOrdersById(customer.id);
+      const ordersRes = await fetchCustomerOrdersById(customer.items[0].id);
 
       if (!ordersRes.ok) {
-        throw new Error(await ordersRes.json());
+        throw new Error(JSON.stringify(await ordersRes.json()));
       }
 
       const orders = await ordersRes.json();
@@ -94,11 +93,8 @@ const getCustomerOrders = async (req, res) => {
     return res.status(200).json(response);
   } catch (error) {
     // Handle catch
-    console.error(
-      `Error in api/snipcart/get-customer: ${error.message || error.toString()}`
-    );
-
-    return res.status(400).json({ error: 'Error fetching customer orders.' });
+    console.error('Error in api/snipcart/get-customer:', error);
+    return res.status(400).json({ error: error });
   }
 };
 

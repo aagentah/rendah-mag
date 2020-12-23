@@ -33,7 +33,7 @@ export default function ProfileOrders() {
         setCustomerOrders(json);
       } else {
         // Error
-        toast.error(json.error);
+        toast.error('Error fetching customer orders.');
         setCustomerOrders([]);
       }
     };
@@ -60,7 +60,7 @@ export default function ProfileOrders() {
         setCustomerDetails(json);
       } else {
         // Error
-        toast.error(json.error);
+        toast.error('Error fetching customer details.');
         setCustomerDetails({});
       }
     };
