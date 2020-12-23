@@ -20,9 +20,6 @@ export default async (req, res) => {
       });
     }
 
-    console.log('tagsData', tagsData);
-    console.log(' JSON.stringify(tagsData)', JSON.stringify(tagsData));
-
     const response = await fetch(
       `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}/tags`,
       {
@@ -37,8 +34,6 @@ export default async (req, res) => {
 
     if (!response.ok) {
       // Error
-      //
-      console.log('hit not ok:', await response.json());
       throw new Error(await response.json());
     }
 
@@ -46,10 +41,7 @@ export default async (req, res) => {
     if (res) return res.status(200).json({ error: '' });
   } catch (error) {
     // Handle catch
-    console.error(
-      'Error in api/mailchimp/update-member-tags:',
-      JSON.stringify(error)
-    );
+    console.error('Error in api/mailchimp/update-member-tags:', error);
 
     if (res) return res.status(500).json({ error: error.message });
     return false;
