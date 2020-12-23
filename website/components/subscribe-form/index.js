@@ -40,8 +40,6 @@ export default function SubscribeForm({ onSuccess }) {
       }
     );
 
-    const json = await response.json();
-
     if (response.ok) {
       // Success
       toast.success('Welcome to the newsletter');

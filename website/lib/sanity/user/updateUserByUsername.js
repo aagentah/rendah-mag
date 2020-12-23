@@ -5,6 +5,7 @@ import tinify from 'tinify';
 import { promisify } from 'util';
 import cloneDeep from 'lodash/cloneDeep';
 
+import formatHttpError from '~/functions/formatHttpError';
 import client from '../config-write';
 
 const handlePassword = (cloneFields) => {
@@ -108,11 +109,9 @@ const handleTags = async (cloneFields) => {
     }
   );
 
-  const json = await response.json();
-
   // Error
   if (!response.ok) {
-    throw new Error(JSON.stringify(await response.json()));
+    throw new Error(await formatHttpError(response));
   }
 
   // Create array with checked tags
@@ -166,9 +165,8 @@ const updateUserByUsername = async (req, user, fields) => {
 
     return data;
   } catch (error) {
-    console.error(
-      `Error in updateUserByUsername(): ${error.message || error.toString()}`
-    );
+    // Handle catch
+    console.error('Error in updateUserByUsername():', error);
     return false;
   }
 };

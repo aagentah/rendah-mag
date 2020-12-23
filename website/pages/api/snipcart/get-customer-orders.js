@@ -9,8 +9,8 @@ const getCustomerOrders = async (req, res) => {
     const { email } = req.body;
     const secret = Buffer.from(SNIPCART_SECRET_KEY).toString('base64');
 
-    const fetchCustomer = async () => {
-      const customer = await fetch(
+    const fetchCustomerByEmail = async () => {
+      const response = await fetch(
         `http://app.snipcart.com/api/customers?offset=0&limit=1&email=${encodeURIComponent(
           email.toLowerCase()
         )}`,
@@ -23,11 +23,16 @@ const getCustomerOrders = async (req, res) => {
         }
       );
 
-      return customer;
+      // Error
+      if (!response.ok) {
+        throw new Error(await formatHttpError(response));
+      }
+
+      return await response.json();
     };
 
     const fetchCustomerOrdersById = async (id) => {
-      const orders = await fetch(
+      const response = await fetch(
         `http://app.snipcart.com/api/customers/${id}/orders`,
         {
           headers: {
@@ -38,60 +43,54 @@ const getCustomerOrders = async (req, res) => {
         }
       );
 
-      return orders;
+      // Error
+      if (!response.ok) {
+        throw new Error(await formatHttpError(response));
+      }
+
+      return await response.json();
     };
 
     const fetchCustomerOrderByToken = async (token) => {
-      const order = await fetch(`http://app.snipcart.com/api/orders/${token}`, {
-        headers: {
-          Authorization: `Basic ${secret}`,
-          Accept: 'application/json',
-        },
-        method: 'GET',
-      });
+      const response = await fetch(
+        `http://app.snipcart.com/api/orders/${token}`,
+        {
+          headers: {
+            Authorization: `Basic ${secret}`,
+            Accept: 'application/json',
+          },
+          method: 'GET',
+        }
+      );
 
-      if (!order.ok) {
-        return null;
+      // Error
+      if (!response.ok) {
+        throw new Error(await formatHttpError(response));
       }
 
-      const json = await order.json();
-      return json;
+      return await response.json();
     };
 
     const action = async () => {
-      // Fetch all customers
-      const customerRes = await fetchCustomer();
-
-      if (!customerRes.ok) {
-        throw new Error(await formatHttpError(customerRes));
-      }
-
-      const customer = await customerRes.json();
-      if (!customer.items.length) return [];
+      // Fetch customer based on email
+      const customer = await await fetchCustomerByEmail();
+      if (!customer?.items?.length) return [];
 
       // Fetch customer's orders based on Id
-      const ordersRes = await fetchCustomerOrdersById(customer.items[0].id);
+      const ordersById = await fetchCustomerOrdersById(customer.items[0].id);
+      if (!ordersById?.length) return [];
 
-      if (!ordersRes.ok) {
-        throw new Error(await formatHttpError(ordersRes));
+      const ordersByToken = [];
+      for (let i = 0; i < ordersById.length; i += 1) {
+        ordersByToken.push(fetchCustomerOrderByToken(ordersById[i].token));
       }
+      if (!ordersByToken?.length) return [];
 
-      const orders = await ordersRes.json();
-      if (!orders?.length) return [];
-
-      const promises = [];
-
-      for (let i = 0; i < orders.length; i += 1) {
-        promises.push(fetchCustomerOrderByToken(orders[i].token));
-      }
-
-      const detailedOrders = await Promise.all(promises);
-      return detailedOrders;
+      return await Promise.all(ordersByToken);
     };
 
     // Handle response
-    const response = await action();
-    return res.status(200).json(response);
+    return res.status(200).json(await action());
   } catch (error) {
     // Handle catch
     console.error('Error in api/snipcart/get-customer:', error);
