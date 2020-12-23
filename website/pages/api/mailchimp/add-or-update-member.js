@@ -1,8 +1,10 @@
 import fetch from 'isomorphic-unfetch';
+import md5 from 'js-md5';
 
 export default async (req, res) => {
   try {
     const { email, data } = req.body;
+    const emailHashed = md5(email.toLowerCase());
     const DATACENTER = process.env.MAILCHIMP_API_KEY.split('-')[1];
 
     // Add or update member
