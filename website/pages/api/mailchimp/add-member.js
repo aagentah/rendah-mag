@@ -20,11 +20,9 @@ export default async (req, res) => {
       }
     );
 
-    const json = await response.json();
-
     // Error
     if (!response.ok) {
-      if (json.title === 'Member Exists') {
+      if ((await response.json()).title === 'Member Exists') {
         return res.status(400).json({ error: '' });
       } else {
         throw new Error(await formatHttpError(response));

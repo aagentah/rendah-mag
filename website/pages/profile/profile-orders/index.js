@@ -26,11 +26,9 @@ export default function ProfileOrders() {
         }
       );
 
-      const json = await response.json();
-
       if (response.ok) {
         // Success
-        setCustomerOrders(json);
+        setCustomerOrders(await response.json());
       } else {
         // Error
         toast.error('Error fetching customer orders.');
@@ -53,11 +51,9 @@ export default function ProfileOrders() {
         }
       );
 
-      const json = await response.json();
-
       if (response.ok) {
         // Success
-        setCustomerDetails(json);
+        setCustomerDetails(await response.json());
       } else {
         // Error
         toast.error('Error fetching customer details.');
