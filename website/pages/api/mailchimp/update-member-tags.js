@@ -34,7 +34,7 @@ export default async (req, res) => {
 
     if (!response.ok) {
       // Error
-      throw new Error(await response.json());
+      throw new Error(JSON.stringify(await response.json()));
     }
 
     // Success
@@ -43,7 +43,7 @@ export default async (req, res) => {
     // Handle catch
     console.error('Error in api/mailchimp/update-member-tags:', error);
 
-    if (res) return res.status(500).json({ error: error.message });
+    if (res) return res.status(500).json({ error: error });
     return false;
   }
 };
