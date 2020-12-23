@@ -25,7 +25,7 @@ export default function SubscribeForm({ onSuccess }) {
     setButtonLoading(true);
 
     const response = await fetch(
-      `${process.env.SITE_URL}/api/mailchimp/subscribe`,
+      `${process.env.SITE_URL}/api/mailchimp/add-member`,
       {
         body: JSON.stringify({
           data: {
