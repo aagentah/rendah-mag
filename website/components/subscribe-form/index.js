@@ -32,7 +32,6 @@ export default function SubscribeForm({ onSuccess }) {
             email_address: inputEl.current.value,
             status: 'subscribed',
           },
-          methodType: 'POST',
         }),
         headers: {
           'Content-Type': 'application/json',

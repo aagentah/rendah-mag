@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch';
 
 export default async (req, res) => {
   try {
-    const { data, methodType } = req.body;
+    const { data } = req.body;
     const DATACENTER = process.env.MAILCHIMP_API_KEY.split('-')[1];
 
     // Add member to list
@@ -14,7 +14,7 @@ export default async (req, res) => {
           Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`,
           'Content-Type': 'application/json',
         },
-        method: methodType || 'PUT',
+        method: 'POST',
       }
     );
 
