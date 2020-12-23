@@ -4,7 +4,7 @@ import welcomeDominionEmail from '~/lib/emails/welcome-dominion-subscription';
 
 export default async (req, res) => {
   try {
-    const { order } = req.body;
+    const order = req.body;
 
     const addUpdateMailchimpUser = async (
       email,
