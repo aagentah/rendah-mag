@@ -46,17 +46,15 @@ export default async (req, res) => {
       }
 
       // Add tags
-      const tagsData = {
-        tags: [
-          {
-            name: 'Customer',
-            status: 'active',
-          },
-        ],
-      };
+      const tags = [
+        {
+          name: 'Customer',
+          status: 'active',
+        },
+      ];
 
       if (isDominion) {
-        tagsData.tags.push({
+        tags.push({
           name: 'Dominion Subscription',
           status: 'active',
         });
@@ -85,7 +83,7 @@ export default async (req, res) => {
         {
           body: JSON.stringify({
             email: email,
-            tags: tagsData.tags,
+            tags: tags,
           }),
           headers: {
             'Content-Type': 'application/json',

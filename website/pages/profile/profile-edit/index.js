@@ -88,8 +88,8 @@ export default function ProfileEdit() {
       const checkbox = e.currentTarget[userTags[i]];
 
       tags.push({
-        label: checkbox.name,
-        status: checkbox.checked,
+        name: checkbox.name,
+        status: checkbox.checked ? 'active' : 'inactive',
       });
     }
 
