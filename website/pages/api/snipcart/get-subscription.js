@@ -8,40 +8,28 @@ const getSubscription = async (req, res) => {
     const { subscriptionId } = req.body;
     const secret = Buffer.from(SNIPCART_SECRET_KEY).toString('base64');
 
-    const fetchSubscriptionData = async () => {
-      const subscription = await fetch(
-        `http://app.snipcart.com/api/subscriptions/${subscriptionId}`,
-        {
-          headers: {
-            Authorization: `Basic ${secret}`,
-            Accept: 'application/json',
-          },
-          method: 'GET',
-        }
-      );
-
-      return subscription;
-    };
-
-    const subscriptionDataRes = await fetchSubscriptionData();
-
-    if (!subscriptionDataRes.ok) {
-      throw new Error(await subscriptionDataRes.json());
-    }
-
-    const subscriptionData = await subscriptionDataRes.json();
-
-    // Handle response
-    return res.status(200).json(subscriptionData);
-  } catch (error) {
-    // Handle catch
-    console.error(
-      `Error in api/snipcart/get-subscription: ${
-        error.message || error.toString()
-      }`
+    const response = await fetch(
+      `http://app.snipcart.com/api/subscriptions/${subscriptionId}`,
+      {
+        headers: {
+          Authorization: `Basic ${secret}`,
+          Accept: 'application/json',
+        },
+        method: 'GET',
+      }
     );
 
-    return res.status(400).json({ error: 'Error fetching subscription data.' });
+    if (!response.ok) {
+      // Error
+      throw new Error(JSON.stringify(await response.json()));
+    }
+
+    // Handle response
+    return res.status(200).json(await response.json());
+  } catch (error) {
+    // Handle catch
+    console.error('Error in api/snipcart/get-subscription:', error);
+    return res.status(500).json({ error: error });
   }
 };
 
