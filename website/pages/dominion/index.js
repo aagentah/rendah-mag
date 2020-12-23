@@ -41,6 +41,14 @@ export default function Dominion({ siteConfig }) {
             }
           }
         });
+
+        // Snipcart.subscribe('page.changed', function (page) {
+        //   console.log('page', page);
+        // });
+        //
+        // Snipcart.subscribe('billingaddress.changed', function (address) {
+        //   console.log('address', address);
+        // });
       }
     }
   });
