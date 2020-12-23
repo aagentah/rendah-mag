@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-unfetch';
 import fs from 'fs';
 import crypto from 'crypto';
 import tinify from 'tinify';
@@ -111,7 +112,7 @@ const handleTags = async (cloneFields) => {
 
   // Error
   if (!response.ok) {
-    throw new Error(await response.json());
+    throw new Error(JSON.stringify(await response.json()));
   }
 
   // Create array with checked tags
@@ -119,7 +120,7 @@ const handleTags = async (cloneFields) => {
 
   for (let i = 0; i < cloneFields?.tags?.length; i += 1) {
     const tag = cloneFields.tags[i];
-    if (tag.status) checkedTags.push(tag.label);
+    if (tag.status === 'active') checkedTags.push(tag.name);
   }
 
   // Replace cloneFields tags with array

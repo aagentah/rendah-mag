@@ -52,7 +52,7 @@ export default function SubscribeForm({ onSuccess }) {
       toast.info('You are already added to our newsletter.');
     } else {
       // Error
-      toast.error(json?.error || 'Error');
+      toast.error('There was an issue adding you.');
     }
 
     inputEl.current.value = '';
