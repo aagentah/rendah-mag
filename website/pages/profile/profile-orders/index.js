@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
 import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
 
 import { Heading } from 'next-pattern-library';
 
@@ -10,9 +11,7 @@ import { useUser } from '~/lib/hooks';
 export default function ProfileOrders() {
   const [user, { loading, mutate, error }] = useUser();
   const [customerOrders, setCustomerOrders] = useState([]);
-  const [customerDetails, setCustomerDetails] = useState(null);
-  const [customerSubscriptions, setCustomerSubscriptions] = useState([]);
-  const dateToday = new Date().toISOString().split('T')[0];
+  const [customerDetails, setCustomerDetails] = useState();
 
   // Fetch orders
   useEffect(() => {
@@ -57,49 +56,19 @@ export default function ProfileOrders() {
       } else {
         // Error
         toast.error('Error fetching customer details.');
-        setCustomerDetails({});
+        setCustomerDetails(null);
       }
     };
 
     if (user) fetchCustomerDetails();
   }, [user]);
 
-  // Fetch items and gather subscription instances
+  // Fetch active subscription
   useEffect(() => {
-    if (user?.isDominionWiteList) return;
-
-    if (user && customerOrders?.length) {
-      const subscriptionInstances = [];
-      console.log('customerOrders', customerOrders);
-
-      for (let i = 0; i < customerOrders.length; i += 1) {
-        const order = customerOrders[i];
-        const orderItems = order.items;
-
-        if (orderItems.length) {
-          for (let ii = 0; ii < orderItems.length; ii += 1) {
-            const item = orderItems[ii];
-
-            if (item.id === 'dominion-subscription') {
-              subscriptionInstances.push(item);
-            }
-          }
-        }
-      }
-
-      setCustomerSubscriptions(subscriptionInstances);
-    }
-  }, [user, customerOrders]);
-
-  // Look for valid subscription and see if CMS needs updating
-  useEffect(async () => {
-    if (!customerSubscriptions.length || user?.isDominionWiteList) return;
+    if (user.isDominionWiteList) return;
 
     // Set the user to Dominion
     async function setUserIsDominion(dominionSince) {
-      if (user?.isDominion) return;
-
-      // Set the user to Dominion in CMS
       const updateCMS = async () => {
         const body = {
           isDominion: true,
@@ -123,23 +92,15 @@ export default function ProfileOrders() {
         }
       };
 
-      // Set the user to Dominion in MailChimp
       const updateMailChimpTags = async () => {
         const response = await fetch(
           `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
           {
             body: JSON.stringify({
               email: user.username,
-              tags: [
-                {
-                  name: 'Dominion Subscription',
-                  status: 'active',
-                },
-              ],
+              tags: [{ name: 'Dominion Subscription', status: 'active' }],
             }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             method: 'POST',
           }
         );
@@ -158,9 +119,6 @@ export default function ProfileOrders() {
 
     // Unset the user from Dominion in CMS
     async function setUserNotDominion() {
-      if (!user?.isDominion) return;
-
-      // Unset the user to Dominion in CMS
       const updateCMS = async () => {
         const body = {
           isDominion: false,
@@ -183,23 +141,15 @@ export default function ProfileOrders() {
         }
       };
 
-      // Unset the user to Dominion in MailChimp
       const updateMailChimpTags = async () => {
         const response = await fetch(
           `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
           {
             body: JSON.stringify({
               email: user.username,
-              tags: [
-                {
-                  name: 'Dominion Subscription',
-                  status: 'inactive',
-                },
-              ],
+              tags: [{ name: 'Dominion Subscription', status: 'inactive' }],
             }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             method: 'POST',
           }
         );
@@ -216,55 +166,30 @@ export default function ProfileOrders() {
       await updateCMS();
     }
 
-    // Fetch subscription data
-    const fetchAllSubscriptionsData = () => {
-      let promiseArray = [];
+    const fetchCustomerLatestSubscription = async () => {
+      const response = await fetch(
+        `${process.env.SITE_URL}/api/snipcart/get-customer-latest-subscription`,
+        {
+          body: JSON.stringify({ email: user.username }),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+        }
+      );
 
-      for (let i = 0; i < customerSubscriptions.length; i += 1) {
-        const subscription = customerSubscriptions[i];
-        if (!subscription?.subscriptionId) continue;
+      const json = await response.json();
 
-        promiseArray.push(
-          fetch(`${process.env.SITE_URL}/api/snipcart/get-subscription`, {
-            body: JSON.stringify({
-              subscriptionId: subscription.subscriptionId,
-            }),
-            headers: { 'Content-Type': 'application/json' },
-            method: 'POST',
-          }).then((response) =>
-            response.json().catch((error) => {
-              console.log(error);
-              return {};
-            })
-          )
-        );
-      }
-
-      return Promise.all(promiseArray);
-    };
-
-    const customerSubscriptionDetails = await fetchAllSubscriptionsData();
-
-    // Check if user has an active subscription, and then call CMS update
-    if (customerSubscriptionDetails.length) {
-      for (let i = 0; i < customerSubscriptionDetails.length; i++) {
-        const subscription = customerSubscriptionDetails[i];
-
-        // If user has a subscription that is active or paid for
-        if (
-          subscription?.status === 'Paid' &&
-          !subscription?.cancelledOn &&
-          !subscription?.pausedOn
-        ) {
-          const dominionSince = subscription?.modificationDate;
-          return setUserIsDominion(dominionSince);
+      if (response.ok) {
+        // Success
+        if (isEmpty(json)) {
+          if (user?.isDominion) setUserNotDominion();
+        } else {
+          if (!user?.isDominion) setUserIsDominion(json.schedule.startsOn);
         }
       }
-    }
+    };
 
-    // Otherwise unset
-    return setUserNotDominion();
-  }, [customerSubscriptions, mutate]);
+    if (user) fetchCustomerLatestSubscription();
+  }, [user]);
 
   if (customerOrders?.length) {
     return (
