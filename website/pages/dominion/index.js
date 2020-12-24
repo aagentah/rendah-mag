@@ -1,5 +1,8 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
+import BlockContent from '@sanity/block-content-to-react';
+import isEmpty from 'lodash/isEmpty';
+
 import {
   Tabs,
   Heading,
@@ -9,7 +12,6 @@ import {
   Button,
   Icon,
 } from 'next-pattern-library';
-import BlockContent from '@sanity/block-content-to-react';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -21,6 +23,8 @@ import { getSiteConfig, getProduct, imageBuilder } from '~/lib/sanity/requests';
 export default function Dominion({ siteConfig }) {
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
   const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
+  const [currentTab, setCurrentTab] = useState();
+  const [snipcartData, setSnipcartData] = useState();
 
   useEffect(() => {
     if (process.browser) {
@@ -42,16 +46,51 @@ export default function Dominion({ siteConfig }) {
           }
         });
 
-        // Snipcart.subscribe('page.changed', function (page) {
-        //   console.log('page', page);
-        // });
-        //
-        // Snipcart.subscribe('billingaddress.changed', function (address) {
-        //   console.log('address', address);
-        // });
+        Snipcart.subscribe('page.changed', function (page) {
+          setCurrentTab(page);
+        });
+
+        Snipcart.subscribe('billingaddress.changed', function (address) {
+          setSnipcartData(address);
+        });
       }
     }
   });
+
+  // Check if email already has a subscription
+  useEffect(() => {
+    const fetchCustomerLatestSubscription = async () => {
+      const response = await fetch(
+        `${process.env.SITE_URL}/api/snipcart/get-customer-latest-subscription`,
+        {
+          body: JSON.stringify({ email: snipcartData.email }),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+        }
+      );
+
+      const json = await response.json();
+
+      if (response.ok) {
+        // Success
+        if (!isEmpty(json)) {
+          const emailQuery = snipcartData?.email
+            ? `?prefillEmail=${snipcartData.email}`
+            : '';
+          Snipcart.api.modal.close();
+          Router.push(`/dominion-already-member${emailQuery}`);
+        }
+      }
+    };
+
+    if (
+      currentTab === 'shipping-method' ||
+      currentTab === 'payment-method' ||
+      currentTab === 'order-confirm'
+    ) {
+      if (snipcartData) fetchCustomerLatestSubscription();
+    }
+  }, [currentTab, snipcartData]);
 
   return (
     <Layout

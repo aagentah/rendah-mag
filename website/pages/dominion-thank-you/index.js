@@ -7,7 +7,7 @@ import Container from '~/components/layout/container';
 
 import { getSiteConfig } from '~/lib/sanity/requests';
 
-export default function Error404({ siteConfig }) {
+export default function DominionThankYou({ siteConfig }) {
   const router = useRouter();
   const prefillEmail = router.query?.prefillEmail || null;
 
