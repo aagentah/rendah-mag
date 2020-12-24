@@ -88,20 +88,22 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                         : 'bg-white  black'
                     }`}
                   >
-                    {i === 0 && (
-                      <div className="absolute  top  right  mr3  nt3">
-                        <Label
-                          /* Options */
-                          customClass=""
-                          text="New"
-                          color="white"
-                          backgroundColor="blue"
-                          onClick={null}
-                          /* Children */
-                          withLinkProps={null}
-                        />
-                      </div>
-                    )}
+                    {
+                      // {i === 0 && (
+                      //   <div className="absolute  top  right  mr3  nt3">
+                      //     <Label
+                      //       /* Options */
+                      //       customClass=""
+                      //       text="New"
+                      //       color="white"
+                      //       backgroundColor="blue"
+                      //       onClick={null}
+                      //       /* Children */
+                      //       withLinkProps={null}
+                      //     />
+                      //   </div>
+                      // )}
+                    }
                     <p className="t-primary  f5  f6-md  tac  lh-copy">
                       {item.title}
                       {
@@ -146,7 +148,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
 
         <hr />
 
-        <div ref={sliderBodyRef} className="keen-slider  flex  align-start">
+        <div ref={sliderBodyRef} className="keen-slider">
           {dominionItems.map((item, i) => (
             <article className="keen-slider__slide" key={item._id}>
               <div className="flex  flex-wrap  measure-wide  mla  mra">
