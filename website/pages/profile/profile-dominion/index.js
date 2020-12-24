@@ -47,20 +47,7 @@ export default function ProfileDominion({ refreshDominion }) {
 
   if (user?.isDominion && dominionItems?.length) {
     return (
-      <section>
-        <div className="pb4">
-          <Heading
-            /* Options */
-            htmlEntity="h1"
-            text="Dominion."
-            color="black"
-            size="medium"
-            truncate={null}
-            /* Children */
-            withLinkProps={null}
-          />
-        </div>
-
+      <>
         <div>
           {refreshDominion && (
             <Carousel
@@ -76,7 +63,7 @@ export default function ProfileDominion({ refreshDominion }) {
             {new Date(user.dominionSince).toDateString()}
           </p>
         )}
-      </section>
+      </>
     );
   }
 
