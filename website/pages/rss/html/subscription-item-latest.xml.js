@@ -29,7 +29,9 @@ const sitemapXml = (items) => {
               .url()}" />`
           : '';
 
-        const date = new Date(item?.activeFrom);
+        const url = process.env.SITE_URL;
+
+        const date = new Date(item?.activeFrom).toUTCString();
 
         const html = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -52,7 +54,7 @@ const sitemapXml = (items) => {
         postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
-        <link></link>
+        <link>${escapeXml(encodeSpecialChar(url))}</link>
         <description>
           ${escapeXml(encodeSpecialChar(html))}
         </description>
@@ -63,7 +65,7 @@ const sitemapXml = (items) => {
     }
 
     return `
-      <rss version="2.0">
+      <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
         <channel>
           <title>RSS Feed</title>
           <link>${process.env.SITE_URL}</link>
@@ -75,7 +77,7 @@ const sitemapXml = (items) => {
   }
 
   return `
-    <rss version="2.0">
+    <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
         <title></title>
         <link></link>
