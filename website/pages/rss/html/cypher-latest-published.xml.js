@@ -33,12 +33,15 @@ const sitemapXml = (cypher) => {
   `
       : '';
 
+    const date = new Date(cypher?.publishedFields?.publishedAt).toUTCString();
+
     const spacer = `<br />`;
 
     postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
-        <link></link>
+        <link>${process.env.SITE_URL}</link>
+        <pubDate>${date}</pubDate>
         <description>
           ${escapeXml(encodeSpecialChar(description))}
           ${escapeXml(encodeSpecialChar(spacer))}
@@ -50,7 +53,7 @@ const sitemapXml = (cypher) => {
       `;
 
     return `
-    <rss version="2.0">
+    <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
         <title>Latest Published Cypher</title>
         <link>${process.env.SITE_URL}</link>
@@ -62,7 +65,7 @@ const sitemapXml = (cypher) => {
   }
 
   return `
-    <rss version="2.0">
+    <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
         <title></title>
         <link></link>

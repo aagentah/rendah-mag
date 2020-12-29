@@ -24,6 +24,8 @@ const sitemapXml = (posts) => {
         ? `${process.env.SITE_URL}/article/${post.slug}`
         : process.env.SITE_URL;
 
+      const date = new Date(post?.publishedAt).toUTCString();
+
       const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left; font-size: 16px; line-height: 22px;" href="${url}" target="_blank">Read full article</a></p>`;
 
       const html = `
@@ -58,6 +60,7 @@ const sitemapXml = (posts) => {
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link>${escapeXml(encodeSpecialChar(url))}</link>
+        <pubDate>${date}</pubDate>
         <description>
           ${escapeXml(encodeSpecialChar(html))}
         </description>
@@ -68,7 +71,7 @@ const sitemapXml = (posts) => {
     });
 
     return `
-      <rss version="2.0">
+      <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
         <channel>
           <title>RSS Feed</title>
           <link>${process.env.SITE_URL}</link>
