@@ -262,9 +262,9 @@ export async function getMixes(preview) {
   return results;
 }
 
-export async function getLatestDominionItems(preview) {
+export async function getLatestDominionItem(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "dominionItem"] | order(activeFrom desc) [0..4] {
+    .fetch(`*[_type == "dominionItem"] | order(activeFrom desc) [0] {
       ...,
     }`);
   return results;
