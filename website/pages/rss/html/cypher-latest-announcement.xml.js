@@ -43,6 +43,10 @@ const sitemapXml = (cypher) => {
   `
       : '';
 
+    const date = new Date(
+      cypher?.announcementFields?.announcedAt
+    ).toUTCString();
+
     const html = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
@@ -77,7 +81,8 @@ const sitemapXml = (cypher) => {
     postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
-        <link></link>
+        <link>${process.env.SITE_URL}</link>
+        <pubDate>${date}</pubDate>
         <description>
           ${escapeXml(encodeSpecialChar(html))}
         </description>
@@ -85,7 +90,7 @@ const sitemapXml = (cypher) => {
       `;
 
     return `
-    <rss version="2.0">
+    <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
         <title>New Cypher announced!</title>
         <link>${process.env.SITE_URL}</link>
@@ -97,7 +102,7 @@ const sitemapXml = (cypher) => {
   }
 
   return `
-    <rss version="2.0">
+    <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
         <title></title>
         <link></link>
