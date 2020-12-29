@@ -1,31 +1,35 @@
 import React from 'react';
 import blocksToHtml from '@sanity/block-content-to-html';
 
-import { imageBuilder, getLatestDominionItem } from '~/lib/sanity/requests';
+import { imageBuilder, getLatestDominionItems } from '~/lib/sanity/requests';
 
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
-const sitemapXml = (item) => {
-  if (item?.slug?.current) {
-    let postsXML = '';
+const sitemapXml = (items) => {
+  let postsXML = '';
 
-    const title = item?.title || '';
+  if (items?.length) {
+    for (var i = 0; i < items.length; i++) {
+      const item = items[i];
 
-    const description = blocksToHtml({ blocks: item?.description });
+      if (item?.slug?.current) {
+        const title = item?.title || '';
 
-    // TODO: if action buttons
-    // const loginText = '<p><ii>Log in to your dominion profile</i></p>'
+        const description = blocksToHtml({ blocks: item?.description });
 
-    const image = item?.image
-      ? `<img width="400" style="width: 400px;" src="${imageBuilder
-          .image(item.image)
-          .width(400)
-          .auto('format')
-          .url()}" />`
-      : '';
+        // TODO: if action buttons
+        // const loginText = '<p><ii>Log in to your dominion profile</i></p>'
 
-    const html = `
+        const image = item?.image
+          ? `<img width="400" style="width: 400px;" src="${imageBuilder
+              .image(item.image)
+              .width(400)
+              .auto('format')
+              .url()}" />`
+          : '';
+
+        const html = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
           <td width="400" valign="top">
@@ -43,7 +47,7 @@ const sitemapXml = (item) => {
       </table>
       `;
 
-    postsXML += `
+        postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
@@ -52,17 +56,19 @@ const sitemapXml = (item) => {
         </description>
       </item>
       `;
+      }
+    }
 
     return `
-    <rss version="2.0">
-      <channel>
-        <title>RSS Feed</title>
-        <link>${process.env.SITE_URL}</link>
-        <description>This is a RSS feed</description>
-        ${postsXML}
-      </channel>
-    </rss>
-    `;
+      <rss version="2.0">
+        <channel>
+          <title>RSS Feed</title>
+          <link>${process.env.SITE_URL}</link>
+          <description>This is a RSS feed</description>
+          ${postsXML}
+        </channel>
+      </rss>
+      `;
   }
 
   return `
@@ -78,10 +84,10 @@ const sitemapXml = (item) => {
 
 export default class BlogLatest extends React.Component {
   static async getInitialProps({ res }) {
-    const item = await getLatestDominionItem();
+    const items = await getLatestDominionItems();
 
     res.setHeader('Content-Type', 'text/xml');
-    res.write(sitemapXml(item));
+    res.write(sitemapXml(items));
     res.end();
   }
 }
