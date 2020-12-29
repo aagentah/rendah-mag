@@ -29,6 +29,8 @@ const sitemapXml = (items) => {
               .url()}" />`
           : '';
 
+        const date = new Date(item?.activeFrom);
+
         const html = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
@@ -54,6 +56,7 @@ const sitemapXml = (items) => {
         <description>
           ${escapeXml(encodeSpecialChar(html))}
         </description>
+        <pubDate>${date}</pubDate>
       </item>
       `;
       }
