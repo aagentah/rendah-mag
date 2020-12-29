@@ -24,17 +24,20 @@ const sitemapXml = (mix) => {
 
     const link = mix?.soundcloudLink
       ? `
-    <p style="text-align: left;">
-      Link:
-      <a style="text-align: left;" href="${mix.soundcloudLink}">${mix.soundcloudLink}</a>
-    </p>
-  `
+      <p style="text-align: left;">
+        Link:
+        <a style="text-align: left;" href="${mix.soundcloudLink}">${mix.soundcloudLink}</a>
+      </p>
+    `
       : '';
+
+    const date = new Date(mix?._createdAt).toUTCString();
 
     postsXML += `
       <item>
         <title>${escapeXml(encodeSpecialChar(title))}</title>
-        <link></link>
+        <link>${process.env.SITE_URL}</link>
+        <pubDate>${date}</pubDate>
         <description>
           ${escapeXml(encodeSpecialChar(description))}
           ${escapeXml(encodeSpecialChar(image))}
@@ -44,7 +47,7 @@ const sitemapXml = (mix) => {
       `;
 
     return `
-    <rss version="2.0">
+    <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
         <title>RSS Feed</title>
         <link>${process.env.SITE_URL}</link>
@@ -56,7 +59,7 @@ const sitemapXml = (mix) => {
   }
 
   return `
-    <rss version="2.0">
+    <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
         <title></title>
         <link></link>
