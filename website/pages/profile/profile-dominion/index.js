@@ -84,8 +84,7 @@ export default function ProfileDominion({ refreshDominion }) {
         </div>
         <div className="measure-wide">
           <p className="f-secondary  taj  f5  pb4  lh-copy">
-            With the addition to being a magazine subscription, we offer the
-            following to you as part of the Dominion Subscription:
+            <strong>We offer the following to you:</strong>
           </p>
           <ul className="pl4  pb3">
             <li className="f-secondary  tal  f5  pb2  lh-copy">

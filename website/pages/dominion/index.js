@@ -111,18 +111,17 @@ export default function Dominion({ siteConfig }) {
         <Container>
           <div className="flex  flex-wrap  pb5">
             <div className="col-24  flex  justify-center">
-              <div className="measure-wide  mt5  mb3">
+              <div className="measure-wide  mt3  mt5-md  mb3  ph4  ph0-md">
                 <p className="f-secondary  taj  f5  pb4  lh-copy">
                   This year, the Rendah Mag team embarks on a new journey,
                   launching a fully-pledged subscription service for the
                   community. With so much to explore within Bass music right
                   now, we want to push our platform into new territory, offering
                   a new way for you to stay on top of the underground, we
-                  present the <strong>Dominion Subscription</strong>.
+                  present the Dominion Subscription.
                 </p>
                 <p className="f-secondary  taj  f5  pb4  lh-copy">
-                  With the addition to being a magazine subscription, we offer
-                  the following to you:
+                  <strong>We offer the following to you:</strong>
                 </p>
                 <ul className="pl4  pb3">
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
