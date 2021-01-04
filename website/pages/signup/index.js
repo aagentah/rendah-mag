@@ -31,7 +31,7 @@ export default function Sigup({ siteConfig }) {
       username: e.currentTarget.username.value,
       password: e.currentTarget.password.value,
       name: e.currentTarget.name.value,
-      terms: e.currentTarget.terms.checked,
+      // terms: e.currentTarget.terms.checked,
     };
 
     if (!body.username || !validEmail(body.username)) {
@@ -46,9 +46,9 @@ export default function Sigup({ siteConfig }) {
       return toast.error('Please enter a password.');
     }
 
-    if (!body.terms) {
-      return toast.error(`Please check that you accept the T&C's`);
-    }
+    // if (!body.terms) {
+    //   return toast.error(`Please check that you accept the T&C's`);
+    // }
 
     if (body.password !== e.currentTarget.rpassword.value) {
       return toast.error("The passwords don't match.");
@@ -188,17 +188,19 @@ export default function Sigup({ siteConfig }) {
                 readOnly={false}
               />
             </div>
-            <div className="pv2  mb2">
-              <Checkbox
-                /* Options */
-                label="Confirm that I accept the T&C's."
-                name="terms"
-                checked={false}
-                required
-                disabled={false}
-                onClick={null}
-              />
-            </div>
+            {
+              // <div className="pv2  mb2">
+              //   <Checkbox
+              //     /* Options */
+              //     label="Confirm that I accept the T&C's."
+              //     name="terms"
+              //     checked={false}
+              //     required
+              //     disabled={false}
+              //     onClick={null}
+              //   />
+              // </div>
+            }
             <div className="db  df-md  flex-wrap  align-center  pt3">
               <div className="df  db-md  pb3  pb0-md  pr3-md">
                 <Button
