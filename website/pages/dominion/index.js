@@ -142,9 +142,6 @@ export default function Dominion({ siteConfig }) {
                     20% off all Rendah Mag Products.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Early access to Rendah Mag Cyphers.
-                  </li>
-                  <li className="f-secondary  tal  f5  pb2  lh-copy">
                     Exclusive tracks, sample packs, and discounts from artists
                     and labels.
                   </li>
