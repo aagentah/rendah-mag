@@ -144,6 +144,10 @@ export default function Dominion({ siteConfig }) {
                     Exclusive tracks, sample packs, and discounts from curating
                     artists and labels.
                   </li>
+                  <li className="f-secondary  tal  f5  pb2  lh-copy  fw7  green">
+                    If you're joining us in January, you also get a FREE
+                    Dominion Cassette Tape Cypher!
+                  </li>
                 </ul>
                 <p className="f-secondary  taj  f5  pb4  lh-copy">
                   We hope you can join us on this new journey ❤️
@@ -161,9 +165,10 @@ export default function Dominion({ siteConfig }) {
                   data-item-image=""
                   data-item-name="Dominion Subscription"
                   data-item-max-quantity="1"
-                  data-item-weight="0"
+                  data-item-weight="1"
                   data-item-payment-interval="Month"
                   data-item-payment-interval-count="1"
+                  data-item-recurring-shipping="false"
                 >
                   <Button
                     /* Options */
