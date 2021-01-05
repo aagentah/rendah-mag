@@ -113,19 +113,19 @@ export default function Dominion({ siteConfig }) {
             <div className="col-24  flex  justify-center">
               <div className="measure-wide  mt3  mt5-md  mb3  ph4  ph0-md">
                 <p className="f-secondary  taj  f5  pb4  lh-copy">
-                  This year, the Rendah Mag team embarks on a new journey,
-                  launching a fully-pledged subscription service for the
-                  community. With so much to explore within Bass music right
-                  now, we want to push our platform into new territory, offering
-                  a new way for you to stay on top of the underground, we
-                  present the Dominion Subscription.
+                  This year, the Rendah Mag team embarks upon a new journey.
+                  With so much to explore within Bass music right now, we want
+                  to push our platform into new territory, offering a new way
+                  for you to stay on top of everything to come across the
+                  spectrum. With an absolute pleasure, we bring you the DOMINION
+                  Subscription.
                 </p>
-                <p className="f-secondary  taj  f5  pb4  lh-copy">
+                <p className="f-secondary  taj  f5  pb3  lh-copy">
                   <strong>We offer the following to you:</strong>
                 </p>
                 <ul className="pl4  pb3">
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Welcome package (Includes membership card & stickers).
+                    A welcome package (Includes membership card & stickers).
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
                     A quarterly-printed issue of Rendah Mag.
@@ -141,8 +141,8 @@ export default function Dominion({ siteConfig }) {
                     20% off all Rendah Mag Products.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Exclusive tracks, sample packs, and discounts from artists
-                    and labels.
+                    Exclusive tracks, sample packs, and discounts from curating
+                    artists and labels.
                   </li>
                 </ul>
                 <p className="f-secondary  taj  f5  pb4  lh-copy">
@@ -169,7 +169,7 @@ export default function Dominion({ siteConfig }) {
                     /* Options */
                     type="primary"
                     size="medium"
-                    text="Join the Dominion"
+                    text="Click here to join"
                     color="black"
                     fluid={false}
                     icon={buttonIconPlus}
