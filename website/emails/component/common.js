@@ -108,25 +108,29 @@ export default (title, body, image, buttonText, buttonLink) => {
       <title>Rendah Mag</title>
 
       <style type="text/css">
-        body, .bg {
+        body, .bg, p, span, strong, em, strong, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn) {
           background: #ffffff !important;
           color: #111111 !important;
         }
-        .btn {
+
+        a.btn {
           background: #111111 !important;
           color: #ffffff !important;
         }
+
         @media (prefers-color-scheme: dark) {
-          body, .bg {
+          body, .bg, p, span, strong, em, strong, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn) {
             background: #111111 !important;
             color: #ffffff !important;
           }
-          .btn {
+
+          a.btn {
             background: #111111 !important;
             color: #ffffff !important;
             outline: 1px solid #ffffff !important;
           }
         }
+
         body {
           width: 100%;
           margin: 0;
@@ -134,12 +138,15 @@ export default (title, body, image, buttonText, buttonLink) => {
           -webkit-text-size-adjust: 100%;
           -ms-text-size-adjust: 100%;
         }
+
         #outlook a {
           padding: 0;
         }
+
         .ExternalClass {
           width: 100%;
         }
+
         .ExternalClass,
         .ExternalClass p,
         .ExternalClass span,
@@ -148,6 +155,7 @@ export default (title, body, image, buttonText, buttonLink) => {
         .ExternalClass div {
           line-height: 100%;
         }
+
         p, ul, li, a, span, h1, h2, h3, h4, h5, h6 {
           text-align: justify;
           font-family: Arial, Helvetica, sans-serif;
@@ -155,10 +163,12 @@ export default (title, body, image, buttonText, buttonLink) => {
           font-size: 16px;
           line-height: 22px;
         }
+
         h1 {
           font-size: 20px;
           line-height: 26px;
         }
+
         @media only screen and (max-width: 768px) {
           /* For mobile phones: */
           p, ul, li, a, span, h1, h2, h3, h4, h5, h6 {
@@ -170,36 +180,44 @@ export default (title, body, image, buttonText, buttonLink) => {
             line-height: 36px;
           }
         }
+
         table td {
           border-collapse: collapse;
         }
+
         table {
           border-collapse: collapse;
           mso-table-lspace: 0pt;
           mso-table-rspace: 0pt;
         }
+
         img {
           display: block;
           outline: none;
           text-decoration: none;
           -ms-interpolation-mode: bicubic;
         }
+
         a img {
           border: none;
         }
+
         a {
           text-decoration: none;
         }
+
         a.phone {
           text-decoration: none;
           pointer-events: auto;
           cursor: default;
         }
+
         .showy {
           height: 100% !important;
           width: 100% !important;
         }
       </style>
+
       <!--[if gte mso 9]>
       <style>
       /* Target Outlook 2007 and 2010 */
