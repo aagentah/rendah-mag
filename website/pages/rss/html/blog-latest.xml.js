@@ -13,11 +13,11 @@ const sitemapXml = (posts) => {
       const title = post?.title;
 
       const titleBlock = post?.title
-        ? `<h2 style="font-weight: bold; text-align: left; font-size: 16px; line-height: 22px;">${title}</h2>`
+        ? `<h2 style="font-weight: bold; text-align: left;">${title}</h2>`
         : '';
 
       const tagLineBlock = post?.socialTagline
-        ? `<p style="color: #000000; text-align: left; font-size: 16px; line-height: 22px;">${post.socialTagline}</p>`
+        ? `<p style="color: #000000; text-align: left;">${post.socialTagline}</p>`
         : '';
 
       const url = post?.slug
@@ -26,7 +26,7 @@ const sitemapXml = (posts) => {
 
       const date = new Date(post?.publishedAt).toUTCString();
 
-      const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left; font-size: 16px; line-height: 22px;" href="${url}" target="_blank">Read full article</a></p>`;
+      const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;
 
       const html = `
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
