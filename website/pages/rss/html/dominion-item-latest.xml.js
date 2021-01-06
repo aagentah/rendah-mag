@@ -15,6 +15,7 @@ const sitemapXml = (items) => {
 
       if (item?.slug?.current) {
         const title = item?.title || '';
+        let hasButtonsNotice;
 
         const description = blocksToHtml({ blocks: item?.description });
 
@@ -33,6 +34,24 @@ const sitemapXml = (items) => {
 
         const date = new Date(item?.activeFrom).toUTCString();
 
+        if (item?.buttons?.length) {
+          hasButtonsNotice = `
+            <tr>
+              <td width="400" valign="top">
+                <p>
+                  <em style="font-style: italic;">
+                    Please <a href="${process.env.SITE_URL}/login">log in</a> to
+                    access the downloads/resources.
+                  </em>
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td><br /></td>
+            </tr>
+          `;
+        }
+
         const html = `
           <table cellspacing="0" cellpadding="0" border="0" width="100%">
             <tr>
@@ -43,6 +62,7 @@ const sitemapXml = (items) => {
             <tr>
               <td><br /></td>
             </tr>
+            ${hasButtonsNotice && hasButtonsNotice}
             <tr>
               <td width="400" valign="top">
                 ${image}
