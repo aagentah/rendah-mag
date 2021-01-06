@@ -62,7 +62,7 @@ const sitemapXml = (items) => {
             <tr>
               <td><br /></td>
             </tr>
-            ${hasButtonsNotice && hasButtonsNotice}
+            ${hasButtonsNotice ? hasButtonsNotice : ''}
             <tr>
               <td width="400" valign="top">
                 ${image}
