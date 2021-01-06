@@ -40,8 +40,8 @@ const sitemapXml = (items) => {
               <td width="400" valign="top">
                 <p>
                   <em style="font-style: italic;">
-                    Please <a href="${process.env.SITE_URL}/login">log in</a> to
-                    access the downloads/resources.
+                    Please <a style="text-decoration: underline;" href="${process.env.SITE_URL}/login">log in</a>
+                    to access relevant downloads/resources.
                   </em>
                 </p>
               </td>
