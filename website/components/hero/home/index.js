@@ -11,9 +11,9 @@ export default function HeroPost({ post }) {
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
   if (!app.deviceSize) return null;
-  let scale = app.isRetina ? 2 : 1;
+  const scale = app.isRetina ? 2 : 1;
   let imageUrlWidth;
-  let imageHeight = 500;
+  const imageHeight = 500;
 
   if (app.deviceSize === 'md') imageUrlWidth = 700;
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
@@ -42,7 +42,7 @@ export default function HeroPost({ post }) {
       height={imageHeight}
       width={null}
       customClass={null}
-      skeleton={post ? false : true}
+      skeleton={!post}
       onClick={null}
       /* Children */
       withLinkProps={{

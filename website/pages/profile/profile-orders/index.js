@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
+import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
 
 import { Heading } from 'next-pattern-library';
 
@@ -8,26 +10,27 @@ import { useUser } from '~/lib/hooks';
 
 export default function ProfileOrders() {
   const [user, { loading, mutate, error }] = useUser();
-  const [customerOrders, setCustomerOrders] = useState(null);
+  const [customerOrders, setCustomerOrders] = useState([]);
+  const [customerDetails, setCustomerDetails] = useState();
 
   // Fetch orders
   useEffect(() => {
     const fetchCustomerOrders = async () => {
-      // Fetch orders
-      const response = await fetch('/api/snipcart/get-customer', {
-        body: JSON.stringify({ email: user.username }),
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
-      });
-
-      const json = await response.json();
+      const response = await fetch(
+        `${process.env.SITE_URL}/api/snipcart/get-customer-orders`,
+        {
+          body: JSON.stringify({ email: user.username }),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+        }
+      );
 
       if (response.ok) {
         // Success
-        setCustomerOrders(json);
+        setCustomerOrders(await response.json());
       } else {
         // Error
-        toast.error(json.error);
+        toast.error('Error fetching customer orders.');
         setCustomerOrders([]);
       }
     };
@@ -35,57 +38,216 @@ export default function ProfileOrders() {
     if (user) fetchCustomerOrders();
   }, [user]);
 
-  // Fetch items and check if is dominion subscription
+  // Fetch customer
   useEffect(() => {
-    if (user?.isDominion) return;
-
-    // Set the user to Dominion in CMS
-    async function setUserIsDominion(dominionStartDate) {
-      const body = {
-        isDominion: true,
-        dominionSince: dominionStartDate.split('T')[0],
-      };
-
-      // Put to user API
-      const response = await fetch('../api/user', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
+    const fetchCustomerDetails = async () => {
+      const response = await fetch(
+        `${process.env.SITE_URL}/api/snipcart/get-customer-details`,
+        {
+          body: JSON.stringify({ email: user.username }),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+        }
+      );
 
       if (response.ok) {
         // Success
-        mutate(await response.json());
+        setCustomerDetails(await response.json());
       } else {
         // Error
-        toast.error(
-          'There was an issue adding you to the Dominion, please contact support right away.'
-        );
+        toast.error('Error fetching customer details.');
+        setCustomerDetails(null);
       }
+    };
+
+    if (user) fetchCustomerDetails();
+  }, [user]);
+
+  // Fetch active subscription
+  useEffect(() => {
+    if (user.isDominionWiteList) return;
+
+    // Set the user to Dominion
+    async function setUserIsDominion(dominionSince) {
+      const updateCMS = async () => {
+        const body = {
+          isDominion: true,
+          dominionSince: dominionSince.split('T')[0],
+        };
+
+        const response = await fetch(`${process.env.SITE_URL}/api/user`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (response.ok) {
+          // Success
+          mutate(await response.json());
+        } else {
+          // Error
+          toast.error(
+            'There was an issue adding you to the Dominion, please contact support right away.'
+          );
+        }
+      };
+
+      const updateMailChimpTags = async () => {
+        const response = await fetch(
+          `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
+          {
+            body: JSON.stringify({
+              email: user.username,
+              tags: [{ name: 'Dominion Subscription', status: 'active' }],
+            }),
+            headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
+          }
+        );
+
+        if (!response.ok) {
+          // Error
+          toast.error(
+            'There was an issue adding you to the Dominion, please contact support right away.'
+          );
+        }
+      };
+
+      await updateMailChimpTags();
+      await updateCMS();
     }
 
-    if (user && customerOrders?.length) {
-      for (let i = 0; i < customerOrders.length; i += 1) {
-        const order = customerOrders[i];
-        const orderItems = order.items;
+    // Unset the user from Dominion in CMS
+    async function setUserNotDominion() {
+      const updateCMS = async () => {
+        const body = {
+          isDominion: false,
+        };
 
-        if (orderItems.length) {
-          for (let ii = 0; ii < orderItems.length; ii += 1) {
-            const item = orderItems[ii];
+        const response = await fetch(`${process.env.SITE_URL}/api/user`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
 
-            if (item.id === 'dominion-subscription') {
-              const dominionStartDate = item.addedOn;
-              setUserIsDominion(dominionStartDate);
-            }
+        if (response.ok) {
+          // Success
+          mutate(await response.json());
+        } else {
+          // Error
+          toast.error(
+            'There was an issue removing you from the Dominion, please contact support right away.'
+          );
+        }
+      };
+
+      const updateMailChimpTags = async () => {
+        const response = await fetch(
+          `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
+          {
+            body: JSON.stringify({
+              email: user.username,
+              tags: [{ name: 'Dominion Subscription', status: 'inactive' }],
+            }),
+            headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
           }
+        );
+
+        if (!response.ok) {
+          // Error
+          toast.error(
+            'There was an issue removing you to the Dominion, please contact support right away.'
+          );
+        }
+      };
+
+      await updateMailChimpTags();
+      await updateCMS();
+    }
+
+    const fetchCustomerLatestSubscription = async () => {
+      const response = await fetch(
+        `${process.env.SITE_URL}/api/snipcart/get-customer-latest-subscription`,
+        {
+          body: JSON.stringify({ email: user.username }),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+        }
+      );
+
+      const json = await response.json();
+
+      if (response.ok) {
+        // Success
+        if (isEmpty(json)) {
+          if (user?.isDominion) setUserNotDominion();
+        } else {
+          if (!user?.isDominion) setUserIsDominion(json.schedule.startsOn);
         }
       }
-    }
-  }, [user, customerOrders, mutate]);
+    };
+
+    if (user) fetchCustomerLatestSubscription();
+  }, [user]);
 
   if (customerOrders?.length) {
     return (
       <section>
+        {customerDetails && (
+          <>
+            <div className="pb4">
+              <Heading
+                /* Options */
+                htmlEntity="h1"
+                text="Current Address."
+                color="black"
+                size="medium"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+
+            <section className="pb4  ph3">
+              {customerDetails?.shippingAddress?.name && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customerDetails.shippingAddress.name}
+                </p>
+              )}
+
+              {customerDetails?.shippingAddress?.address1 && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customerDetails.shippingAddress.address1}
+                </p>
+              )}
+
+              {customerDetails?.shippingAddress?.address2 && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customerDetails.shippingAddress.address2}
+                </p>
+              )}
+
+              {customerDetails?.shippingAddress?.city && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customerDetails.shippingAddress.city}
+                </p>
+              )}
+
+              {customerDetails?.shippingAddress?.postalCode && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customerDetails.shippingAddress.postalCode}
+                </p>
+              )}
+              {customerDetails?.shippingAddress?.country && (
+                <p className="t-secondary  f6  black  lh-copy">
+                  {customerDetails.shippingAddress.country}
+                </p>
+              )}
+            </section>
+          </>
+        )}
+
         <div className="pb4">
           <Heading
             /* Options */
@@ -94,7 +256,6 @@ export default function ProfileOrders() {
             color="black"
             size="medium"
             truncate={null}
-            
             /* Children */
             withLinkProps={null}
           />
@@ -140,7 +301,6 @@ export default function ProfileOrders() {
         color="black"
         size="medium"
         truncate={null}
-        
         /* Children */
         withLinkProps={null}
       />

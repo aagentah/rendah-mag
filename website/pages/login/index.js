@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
@@ -7,14 +7,18 @@ import { Heading, Button, Icon, Input } from 'next-pattern-library';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
+import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
-
 import { getSiteConfig } from '~/lib/sanity/requests';
+import validEmail from '~/lib/valid-email';
 
 export default function Login({ siteConfig }) {
+  const app = useApp();
+  const dispatch = useDispatchApp();
   const router = useRouter();
   const [user, { mutate }] = useUser();
   const fwdRoute = router.query?.fwdRoute ? router.query.fwdRoute : null;
+  const [submitButtonLoading, setSubmitButtonLoading] = useState(false);
 
   async function loginViaQuery() {
     const body = {
@@ -22,8 +26,11 @@ export default function Login({ siteConfig }) {
       password: `${router.query.salt}:${router.query.hash}`,
     };
 
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setSubmitButtonLoading(true);
+
     // Post to log in API
-    const response = await fetch('../api/login', {
+    const response = await fetch(`${process.env.SITE_URL}/api/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
@@ -37,19 +44,39 @@ export default function Login({ siteConfig }) {
       toast.error(
         'Something went wrong, please try again, or a different browser?'
       );
+
+      setTimeout(() => {
+        setSubmitButtonLoading(false);
+      }, 500);
     }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
   }
 
   async function onSubmit(e) {
     e.preventDefault();
+
+    // Prevent double submit
+    if (submitButtonLoading) return;
 
     const body = {
       username: e.currentTarget.username.value,
       password: e.currentTarget.password.value,
     };
 
+    if (!body.username || !validEmail(body.username)) {
+      return toast.error('Please enter a valid email.');
+    }
+
+    if (!body.password) {
+      return toast.error('Please enter your password.');
+    }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setSubmitButtonLoading(true);
+
     // Post to log in API
-    const response = await fetch('../api/login', {
+    const response = await fetch(`${process.env.SITE_URL}/api/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
@@ -63,8 +90,20 @@ export default function Login({ siteConfig }) {
       toast.error(
         'Something went wrong, have you used the correct Username/Password?'
       );
+
+      setTimeout(() => {
+        setSubmitButtonLoading(false);
+      }, 500);
     }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
   }
+
+  useEffect(() => {
+    if (router.query?.username && router.query?.hash && router.query?.salt) {
+      loginViaQuery();
+    }
+  }, []);
 
   useEffect(() => {
     if (user) Router.push(`${fwdRoute ? `/${fwdRoute}` : '/profile'}`);
@@ -74,17 +113,13 @@ export default function Login({ siteConfig }) {
   const inputIconEnvelope = <Icon icon={['fas', 'envelope']} />;
   const inputIconLock = <Icon icon={['fas', 'lock']} />;
 
-  if (router.query?.username && router.query?.hash && router.query?.salt) {
-    loginViaQuery();
-  }
-
   return (
     <>
       <Layout
         navOffset="center"
         navOnWhite
-        hasNav={true}
-        hasFooter={true}
+        hasNav
+        hasFooter
         meta={{
           siteConfig,
           title: 'Log In',
@@ -140,8 +175,8 @@ export default function Login({ siteConfig }) {
               />
             </div>
 
-            <div className="df  dib-md  flex-wrap  align-center  pt3">
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+            <div className="db  df-md flex-wrap  align-center  pt3">
+              <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="primary"
@@ -152,7 +187,7 @@ export default function Login({ siteConfig }) {
                   icon={buttonIconArrowRight}
                   iconFloat={null}
                   inverted={false}
-                  loading={false}
+                  loading={submitButtonLoading}
                   disabled={false}
                   onClick={null}
                   /* Children */
@@ -165,7 +200,7 @@ export default function Login({ siteConfig }) {
                   }}
                 />
               </div>
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+              <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="secondary"
@@ -173,7 +208,7 @@ export default function Login({ siteConfig }) {
                   text={"I don't have an account"}
                   color="black"
                   fluid={false}
-                  icon={null}
+                  icon={buttonIconArrowRight}
                   iconFloat={null}
                   inverted
                   loading={false}
@@ -182,7 +217,7 @@ export default function Login({ siteConfig }) {
                   /* Children */
                   withLinkProps={{
                     type: 'next',
-                    href: '/signup',
+                    href: '/dominion',
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
@@ -191,7 +226,7 @@ export default function Login({ siteConfig }) {
                   }}
                 />
               </div>
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+              <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="secondary"

@@ -73,8 +73,6 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   const [sliderNavRef, sliderNav] = useKeenSlider(sliderNavOptions);
   const [sliderBodyRef, sliderBody] = useKeenSlider(sliderBodyOptions);
 
-  console.log('dominionItems', dominionItems);
-
   if (refreshDominion && dominionItems.length) {
     return (
       <>
@@ -84,28 +82,33 @@ export default function Carousel({ dominionItems, refreshDominion }) {
               <article className="keen-slider__slide  pa3" key={item._id}>
                 <div className="relative">
                   <div
-                    className={`br4  ph4  pv3  ba  bw1  bc-black  ease-in-out  ${
+                    className={`br1  ph4  pv3  ba  bw1  bc-black  ease-in-out  ${
                       currentNavSlide === i
                         ? 'bg-black  white'
                         : 'bg-white  black'
                     }`}
                   >
-                    {i === 0 && (
-                      <div className="absolute  top  right  mr3  nt3">
-                        <Label
-                          /* Options */
-                          customClass="ph2"
-                          text="New"
-                          color="white"
-                          backgroundColor="blue"
-                          onClick={null}
-                          /* Children */
-                          withLinkProps={null}
-                        />
-                      </div>
-                    )}
-                    <p className="t-primary  f5  f6-md  tac">
-                      {item.activeFrom}
+                    {
+                      // {i === 0 && (
+                      //   <div className="absolute  top  right  mr3  nt3">
+                      //     <Label
+                      //       /* Options */
+                      //       customClass=""
+                      //       text="New"
+                      //       color="white"
+                      //       backgroundColor="blue"
+                      //       onClick={null}
+                      //       /* Children */
+                      //       withLinkProps={null}
+                      //     />
+                      //   </div>
+                      // )}
+                    }
+                    <p className="t-primary  f5  f6-md  tac  lh-copy">
+                      {item.title}
+                      {
+                        // new Date(item.activeFrom).toDateString().slice(4)
+                      }
                     </p>
                   </div>
                 </div>
@@ -145,12 +148,12 @@ export default function Carousel({ dominionItems, refreshDominion }) {
 
         <hr />
 
-        <div ref={sliderBodyRef} className="keen-slider  flex  align-start">
+        <div ref={sliderBodyRef} className="keen-slider">
           {dominionItems.map((item, i) => (
             <article className="keen-slider__slide" key={item._id}>
-              <div className="flex  flex-wrap">
+              <div className="flex  flex-wrap  measure-wide  mla  mra">
                 <div className={`col-24  ${item.image && ''}`}>
-                  <div className="relative  pa4">
+                  <div className="relative  ph4  pt4  pb2">
                     <p className="t-secondary  f7  grey  pb2">
                       {new Date(item.activeFrom).toDateString()}
                     </p>

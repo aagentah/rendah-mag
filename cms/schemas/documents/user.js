@@ -31,6 +31,11 @@ export default {
       type: "date",
     },
     {
+      name: "isDominionWiteList",
+      title: "Dominion Whitelisted",
+      type: "boolean",
+    },
+    {
       name: "publicProfile",
       title: "Public Profile",
       type: "boolean",
@@ -66,8 +71,22 @@ export default {
   ],
   preview: {
     select: {
-      title: "name",
-      media: "picture",
+      name: "name",
+      dominionSince: "dominionSince",
+      isDominionWiteList: "isDominionWiteList",
+      avatar: "avatar",
+    },
+    prepare(selection) {
+      console.log("selection", selection);
+      const { name, dominionSince, isDominionWiteList, avatar } = selection;
+      return {
+        title: name,
+        subtitle: `
+          ${dominionSince ? `Dominion. ` : ""}
+          ${isDominionWiteList ? `White Listed. ` : ""}
+        `,
+        media: avatar,
+      };
     },
   },
 };

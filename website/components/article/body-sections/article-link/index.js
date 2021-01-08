@@ -7,10 +7,10 @@ export default function ArticleLink({ text, url }) {
     <div className="pv3  tal">
       <Button
         /* Options */
-        type={'primary'}
-        size={'small'}
+        type="primary"
+        size="small"
         text={text}
-        color={'black'}
+        color="black"
         fluid={false}
         icon={null}
         iconFloat={null}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getAllPosts, imageBuilder } from '~/lib/sanity/requests';
+import { getAllPosts } from '~/lib/sanity/requests';
 
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
@@ -11,11 +11,9 @@ const sitemapXml = (posts) => {
   posts.map((post) => {
     const title = post?.title || '' ? post.title : '';
     const description = post?.description ? post.description : '';
-    const url = post?.slug ? `${process.env.SITE_URL}/article/${post.slug}` : process.env.SITE_URL;
-
-    const image = post?.image
-      ? imageBuilder.image(post.image).auto('format').url()
-      : '';
+    const url = post?.slug
+      ? `${process.env.SITE_URL}/article/${post.slug}`
+      : process.env.SITE_URL;
 
     const readMoreLink = `url`;
 

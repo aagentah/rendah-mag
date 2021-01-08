@@ -10,9 +10,9 @@ export default function Error404({ siteConfig }) {
     <>
       <Layout
         navOffset="top"
-        navOnWhite={true}
-        hasNav={true}
-        hasFooter={true}
+        navOnWhite
+        hasNav
+        hasFooter
         meta={{
           siteConfig,
           title: 'Cookie Policy',
@@ -47,6 +47,7 @@ export default function Error404({ siteConfig }) {
               at{' '}
               <a
                 href="https://www.rendahmag.com/"
+                rel="noopener noreferrer"
                 target="_blank"
                 data-custom-class="link"
               >
@@ -127,6 +128,7 @@ export default function Error404({ siteConfig }) {
               information, please visit&nbsp;
               <a
                 href="http://www.aboutads.info/choices/"
+                rel="noopener noreferrer"
                 target="_blank"
                 data-custom-class="link"
               >
@@ -135,6 +137,7 @@ export default function Error404({ siteConfig }) {
               &nbsp;or&nbsp;
               <a
                 href="http://www.youronlinechoices.com"
+                rel="noopener noreferrer"
                 target="_blank"
                 data-custom-class="link"
                 data-fr-linked="true"
@@ -187,6 +190,7 @@ export default function Error404({ siteConfig }) {
                           Termly{' '}
                           <a
                             href="https://termly.io/our-privacy-policy/"
+                            rel="noopener noreferrer"
                             target="_blank"
                           >
                             View Service Privacy Policy
@@ -252,6 +256,7 @@ export default function Error404({ siteConfig }) {
                             Google Analytics{' '}
                             <a
                               href="https://policies.google.com/privacy"
+                              rel="noopener noreferrer"
                               target="_blank"
                             >
                               View Service Privacy Policy
@@ -301,6 +306,7 @@ export default function Error404({ siteConfig }) {
                             Google Analytics{' '}
                             <a
                               href="https://policies.google.com/privacy"
+                              rel="noopener noreferrer"
                               target="_blank"
                             >
                               View Service Privacy Policy
@@ -349,6 +355,7 @@ export default function Error404({ siteConfig }) {
                             Google Analytics{' '}
                             <a
                               href="https://policies.google.com/privacy"
+                              rel="noopener noreferrer"
                               target="_blank"
                             >
                               View Service Privacy Policy
@@ -397,6 +404,7 @@ export default function Error404({ siteConfig }) {
                             Soundcloud{' '}
                             <a
                               href="https://soundcloud.com/pages/privacy"
+                              rel="noopener noreferrer"
                               target="_blank"
                             >
                               View Service Privacy Policy
@@ -464,6 +472,7 @@ export default function Error404({ siteConfig }) {
                             Tapad{' '}
                             <a
                               href="https://www.tapad.com/privacy-policy"
+                              rel="noopener noreferrer"
                               target="_blank"
                             >
                               View Service Privacy Policy
@@ -512,6 +521,7 @@ export default function Error404({ siteConfig }) {
                             Tapad{' '}
                             <a
                               href="https://www.tapad.com/privacy-policy"
+                              rel="noopener noreferrer"
                               target="_blank"
                             >
                               View Service Privacy Policy
@@ -578,6 +588,7 @@ export default function Error404({ siteConfig }) {
                             Twitter{' '}
                             <a
                               href="https://twitter.com/en/privacy"
+                              rel="noopener noreferrer"
                               target="_blank"
                             >
                               View Service Privacy Policy
@@ -979,6 +990,7 @@ export default function Error404({ siteConfig }) {
               storage using the tools contained in the&nbsp;
               <a
                 href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager07.html"
+                rel="noopener noreferrer"
                 target="_BLANK"
                 data-custom-class="link"
               >
@@ -987,6 +999,7 @@ export default function Error404({ siteConfig }) {
               . You can also control Flash Cookies by going to the&nbsp;
               <a
                 href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager03.html"
+                rel="noopener noreferrer"
                 target="_BLANK"
                 data-custom-class="link"
               >

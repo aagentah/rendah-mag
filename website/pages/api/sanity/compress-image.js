@@ -2,7 +2,6 @@ import fs from 'fs';
 import Cors from 'cors';
 import tinify from 'tinify';
 
-
 import initMiddleware from '~/lib/init-middleware';
 
 // Initialize the cors middleware
@@ -14,7 +13,6 @@ const cors = initMiddleware(
 );
 
 const handler = async (req, res) => {
-  console.log('handler');
   try {
     // Run cors
     await cors(req, res);
@@ -37,14 +35,17 @@ const handler = async (req, res) => {
     try {
       fs.unlinkSync('/tmp/optimized.png');
     } catch (error) {
-      console.log('unlinkSync error:', error.message);
+      console.error('unlinkSync error:', error.message || error.toString());
     }
 
     // Send image
     return res.send(file);
   } catch (error) {
     // Handle catch
-    // console.error(error.message || error.toString());
+    console.error(
+      `Error in api/sanity/compress-image: ${error.message || error.toString()}`
+    );
+
     return res
       .status(500)
       .json({ error: `Error compressing image: ${error.message}` });

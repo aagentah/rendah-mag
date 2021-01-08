@@ -6,8 +6,6 @@ import Observer from '@researchgate/react-intersection-observer';
 import map from 'lodash/map';
 import Cookies from 'js-cookie';
 
-import HeroPost from '~/components/hero/post';
-
 import {
   Modal,
   Hero,
@@ -17,6 +15,8 @@ import {
   Button,
   Icon,
 } from 'next-pattern-library';
+import HeroPost from '~/components/hero/post';
+
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -77,8 +77,8 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
       <Layout
         navOffset={null}
         navOnWhite={false}
-        hasNav={true}
-        hasFooter={true}
+        hasNav
+        hasFooter
         meta={{
           siteConfig,
           title: post.title,

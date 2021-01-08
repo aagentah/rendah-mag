@@ -5,11 +5,11 @@ import NProgress from 'nprogress';
 
 import { Icon } from 'next-pattern-library';
 
-const HeaderDesktop = dynamic(() => import('./desktop'));
-const HeaderMobile = dynamic(() => import('./mobile'));
-
 import { useApp } from '../../../context-provider/app';
 import { useUser } from '~/lib/hooks';
+
+const HeaderDesktop = dynamic(() => import('./desktop'));
+const HeaderMobile = dynamic(() => import('./mobile'));
 
 export default function Header({ navOnWhite, meta }) {
   const app = useApp();
@@ -32,7 +32,7 @@ export default function Header({ navOnWhite, meta }) {
   };
 
   const handleLogout = async () => {
-    await fetch('/api/logout');
+    await fetch(`${process.env.SITE_URL}/api/logout`);
     mutate({ user: null });
   };
 

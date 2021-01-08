@@ -11,18 +11,27 @@ export default function HeroDominion() {
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
   if (!app.deviceSize) return null;
-  let scale = app.isRetina ? 2 : 1;
+  const scale = app.isRetina ? 2 : 1;
+  let imageHeight;
   let imageUrlWidth;
-  let imageHeight = 500;
 
-  if (app.deviceSize === 'md') imageUrlWidth = 700;
-  if (app.deviceSize === 'lg') imageUrlWidth = 1600;
-  if (app.deviceSize === 'xl') imageUrlWidth = 1800;
+  if (app.deviceSize === 'md') {
+    imageHeight = 200;
+    imageUrlWidth = 700;
+  }
+  if (app.deviceSize === 'lg') {
+    imageHeight = 400;
+    imageUrlWidth = 1600;
+  }
+  if (app.deviceSize === 'xl') {
+    imageHeight = 400;
+    imageUrlWidth = 1800;
+  }
 
   const heroImage = (
     <Image
       /* Options */
-      src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607718915/dominion/dominion-hero.png"
+      src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607719750/dominion/dominion-hero.png"
       // src={imageBuilder
       //   .image(post?.coverImage)
       //   .width(imageUrlWidth * scale)
