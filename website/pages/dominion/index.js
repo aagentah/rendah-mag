@@ -16,7 +16,6 @@ import {
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
-import HeroDominion from '~/components/hero/dominion';
 
 import { getSiteConfig, getProduct, imageBuilder } from '~/lib/sanity/requests';
 
@@ -94,8 +93,8 @@ export default function Dominion({ siteConfig }) {
 
   return (
     <Layout
-      navOffset={null}
-      navOnWhite={false}
+      navOffset="top"
+      navOnWhite={true}
       hasNav
       hasFooter
       meta={{
@@ -106,54 +105,66 @@ export default function Dominion({ siteConfig }) {
       }}
       preview={null}
     >
-      <HeroDominion />
       <div className="pt4  pt0-md">
         <Container>
           <div className="flex  flex-wrap  pb5">
             <div className="col-24  flex  justify-center">
-              <div className="measure-wide  mt3  mt5-md  mb3  ph4  ph0-md">
+              <img
+                className="w-100  ph3  ph0-md  mb4  measure-wide"
+                src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610063765/dominion/dominion-logo.png"
+              />
+            </div>
+
+            <div className="col-24  flex  justify-center">
+              <div className="measure-wide  mb3  ph4  ph0-md">
                 <p className="f-secondary  taj  f5  pb4  lh-copy">
                   This year, the Rendah Mag team embarks upon a new journey.
-                  With so much to explore within Bass music right now, we want
-                  to push our platform into new territory, offering a new way
-                  for you to stay on top of everything to come across the
-                  spectrum. With an absolute pleasure, we bring you the DOMINION
-                  Subscription.
+                  With so much happening right now, we want to push our platform
+                  into new territory, offering a new way for you to explore the
+                  landscape of underground music culture. With an absolute
+                  pleasure, we bring you the DOMINION.
                 </p>
                 <p className="f-secondary  taj  f5  pb3  lh-copy">
                   <strong>We offer the following to you:</strong>
                 </p>
                 <ul className="pl4  pb3">
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    A welcome package (Includes membership card & stickers).
+                    A Welcome package (+ membership card & stickers).
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    A quarterly-printed issue of Rendah Mag.
+                    A quarter-yearly printed issue of Rendah Mag.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Your own Dominion Profile on our Website.
+                    Exclusive monthly updates on releases & insights within
+                    underground music culture.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Exclusive monthly updates on releases & insights within bass
-                    music.
+                    Your own Dominion Profile login.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    20% off all Rendah Mag Products.
+                    Discounts from all coming Rendah Mag products
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Exclusive tracks, sample packs, and discounts from curating
-                    artists and labels.
+                    Exclusive music, samples, and tutorials from featured
+                    artists & collectives.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy  fw7  green">
                     If you're joining us in January, you also get a FREE
                     Dominion Cassette Tape Cypher!
                   </li>
                 </ul>
-                <p className="f-secondary  taj  f5  pb4  lh-copy">
-                  We hope you can join us on this new journey ❤️
+
+                <p className="f-secondary  taj  f5  pb3  lh-copy">
+                  Our mission with this project is to offer something new and
+                  exciting for the community in the hope that we can truly bring
+                  something of value to artists and listeners alike. We want to
+                  work not only with people of the industry, but also yourself
+                  on a personal level to create something unique. I hope you can
+                  join us.
                 </p>
               </div>
             </div>
+
             <div className="col-24  flex  justify-center">
               <div className="db  ph2  pb3">
                 <div
@@ -213,6 +224,15 @@ export default function Dominion({ siteConfig }) {
             </div>
           </div>
         </Container>
+
+        <div className="w-100  pt5  pt6-md  pb5  bg-almost-white  relative  mt5">
+          <div className="col-24  flex  justify-center  w-100  absolute  nt6  top  left">
+            <img
+              className="w-100  ph5  ph6-md  mb3  measure-wide"
+              src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610064911/dominion/cassette.png"
+            />
+          </div>
+        </div>
       </div>
     </Layout>
   );
