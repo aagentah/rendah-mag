@@ -2,12 +2,13 @@ import fetch from 'isomorphic-unfetch';
 import find from 'lodash/find';
 
 import formatHttpError from '~/functions/formatHttpError';
-import { SNIPCART_SECRET_KEY } from '~/constants';
 
 const getCustomer = async (req, res) => {
   try {
     const { email } = req.body;
-    const secret = Buffer.from(SNIPCART_SECRET_KEY).toString('base64');
+    const secret = Buffer.from(process.env.SNIPCART_SECRET_KEY).toString(
+      'base64'
+    );
 
     const response = await fetch(
       `http://app.snipcart.com/api/customers?offset=0&limit=1&email=${encodeURIComponent(

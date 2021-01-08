@@ -3,7 +3,7 @@ import { withRouter } from 'next/router';
 
 import { useApp, useDispatchApp } from '~/context-provider/app';
 import { imageBuilder } from '~/lib/sanity/requests';
-import { IS_ECCOMERCE, SNIPCART_API_KEY } from '~/constants';
+import { IS_ECCOMERCE } from '~/constants';
 
 const Meta = (props) => {
   const app = useApp();
@@ -114,7 +114,7 @@ const Meta = (props) => {
 
         <script
           src="https://cdn.snipcart.com/scripts/2.0/snipcart.js"
-          data-api-key={SNIPCART_API_KEY}
+          data-api-key={process.env.SNIPCART_API_KEY}
           id="snipcart"
         />
 
