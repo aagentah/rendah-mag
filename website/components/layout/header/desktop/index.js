@@ -123,34 +123,6 @@ export default function HeaderDestop({
                   }}
                 />
               </li>
-              {
-                // <li className="nav__item  dib  pr3">
-                //   <Button
-                //     /* Options */
-                //     type="secondary"
-                //     size="medium"
-                //     text="Mixes"
-                //     color={navColour}
-                //     fluid={false}
-                //     icon={null}
-                //     iconFloat={null}
-                //     inverted
-                //     loading={false}
-                //     disabled={false}
-                //     onClick={null}
-                //     /* Children */
-                //     withLinkProps={{
-                //       type: 'next',
-                //       href: '/guest-mixes',
-                //       target: null,
-                //       routerLink: Link,
-                //       routerLinkProps: {
-                //         scroll: false,
-                //       },
-                //     }}
-                //   />
-                // </li>
-              }
             </ul>
           </nav>
         </div>
@@ -174,105 +146,111 @@ export default function HeaderDestop({
               ) : null}
               {user ? (
                 <>
-                  <li className="nav__item  dib  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Profile"
-                      color={navColour}
-                      fluid={false}
-                      icon={null}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={{
-                        type: 'next',
-                        href: '/profile',
-                        target: null,
-                        routerLink: Link,
-                        routerLinkProps: {
-                          scroll: false,
-                        },
-                      }}
-                    />
-                  </li>
-                  <li className="nav__item  dib  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Log Out"
-                      color={navColour}
-                      fluid={false}
-                      icon={buttonIcons.signOut}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      onClick={handleLogout}
-                      /* Children */
-                      withLinkProps={null}
-                    />
-                  </li>
+                  {
+                    // <li className="nav__item  dib  pr3">
+                    //   <Button
+                    //     /* Options */
+                    //     type="secondary"
+                    //     size="medium"
+                    //     text="Profile"
+                    //     color={navColour}
+                    //     fluid={false}
+                    //     icon={null}
+                    //     iconFloat={null}
+                    //     inverted
+                    //     loading={false}
+                    //     disabled={false}
+                    //     onClick={null}
+                    //     /* Children */
+                    //     withLinkProps={{
+                    //       type: 'next',
+                    //       href: '/profile',
+                    //       target: null,
+                    //       routerLink: Link,
+                    //       routerLinkProps: {
+                    //         scroll: false,
+                    //       },
+                    //     }}
+                    //   />
+                    // </li>
+                    // <li className="nav__item  dib  pr3">
+                    //   <Button
+                    //     /* Options */
+                    //     type="secondary"
+                    //     size="medium"
+                    //     text="Log Out"
+                    //     color={navColour}
+                    //     fluid={false}
+                    //     icon={buttonIcons.signOut}
+                    //     iconFloat={null}
+                    //     inverted
+                    //     loading={false}
+                    //     disabled={false}
+                    //     onClick={handleLogout}
+                    //     /* Children */
+                    //     withLinkProps={null}
+                    //   />
+                    // </li>
+                  }
                 </>
               ) : (
                 <>
-                  <li className="nav__item  dib  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Dominion"
-                      color={navColour}
-                      fluid={false}
-                      icon={buttonIcons.store}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={{
-                        type: 'next',
-                        href: '/dominion',
-                        target: null,
-                        routerLink: Link,
-                        routerLinkProps: {
-                          scroll: false,
-                        },
-                      }}
-                    />
-                  </li>
-                  <li className="nav__item  dib  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Login"
-                      color={navColour}
-                      fluid={false}
-                      icon={buttonIcons.signIn}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={{
-                        type: 'next',
-                        href: '/login',
-                        target: null,
-                        routerLink: Link,
-                        routerLinkProps: {
-                          scroll: false,
-                        },
-                      }}
-                    />
-                  </li>
+                  {
+                    // <li className="nav__item  dib  pr3">
+                    //   <Button
+                    //     /* Options */
+                    //     type="secondary"
+                    //     size="medium"
+                    //     text="Dominion"
+                    //     color={navColour}
+                    //     fluid={false}
+                    //     icon={buttonIcons.store}
+                    //     iconFloat={null}
+                    //     inverted
+                    //     loading={false}
+                    //     disabled={false}
+                    //     onClick={null}
+                    //     /* Children */
+                    //     withLinkProps={{
+                    //       type: 'next',
+                    //       href: '/dominion',
+                    //       target: null,
+                    //       routerLink: Link,
+                    //       routerLinkProps: {
+                    //         scroll: false,
+                    //       },
+                    //     }}
+                    //   />
+                    // </li>
+                  }
+                  {
+                    // <li className="nav__item  dib  pr3">
+                    //   <Button
+                    //     /* Options */
+                    //     type="secondary"
+                    //     size="medium"
+                    //     text="Login"
+                    //     color={navColour}
+                    //     fluid={false}
+                    //     icon={buttonIcons.signIn}
+                    //     iconFloat={null}
+                    //     inverted
+                    //     loading={false}
+                    //     disabled={false}
+                    //     onClick={null}
+                    //     /* Children */
+                    //     withLinkProps={{
+                    //       type: 'next',
+                    //       href: '/login',
+                    //       target: null,
+                    //       routerLink: Link,
+                    //       routerLinkProps: {
+                    //         scroll: false,
+                    //       },
+                    //     }}
+                    //   />
+                    // </li>
+                  }
                 </>
               )}
             </ul>
