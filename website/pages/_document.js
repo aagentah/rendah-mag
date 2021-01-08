@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-import { IS_ECCOMERCE, SNIPCART_API_KEY } from '~/constants';
+import { IS_ECCOMERCE } from '~/constants';
 import { GA_TRACKING_ID } from '~/lib/gtag';
 
 export default class MyDocument extends Document {
@@ -83,7 +83,7 @@ export default class MyDocument extends Document {
         <div
           hidden
           id="snipcart"
-          data-api-key={SNIPCART_API_KEY}
+          data-api-key={process.env.SNIPCART_API_KEY}
           data-config-add-product-behavior="none"
         />
 
