@@ -108,25 +108,29 @@ export default (title, body, image, buttonText, buttonLink) => {
       <title>Rendah Mag</title>
 
       <style type="text/css">
-        body, .bg {
-          background: #ffffff;
-          color: #111111;
+        body, .bg, p, span, strong, em, strong, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn) {
+          background: #ffffff !important;
+          color: #111111 !important;
         }
-        .btn {
-          background: #111111;
-          color: #ffffff;
+
+        a.btn {
+          background: #111111 !important;
+          color: #ffffff !important;
         }
+
         @media (prefers-color-scheme: dark) {
-          body, .bg {
-            background: #111111;
-            color: #ffffff;
+          body, .bg, p, span, strong, em, strong, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn) {
+            background: #111111 !important;
+            color: #ffffff !important;
           }
-          .btn {
-            background: #111111;
-            color: #ffffff;
-            outline: 1px solid #ffffff;;
+
+          a.btn {
+            background: #111111 !important;
+            color: #ffffff !important;
+            outline: 1px solid #ffffff !important;
           }
         }
+
         body {
           width: 100%;
           margin: 0;
@@ -134,12 +138,15 @@ export default (title, body, image, buttonText, buttonLink) => {
           -webkit-text-size-adjust: 100%;
           -ms-text-size-adjust: 100%;
         }
+
         #outlook a {
           padding: 0;
         }
+
         .ExternalClass {
           width: 100%;
         }
+
         .ExternalClass,
         .ExternalClass p,
         .ExternalClass span,
@@ -148,6 +155,7 @@ export default (title, body, image, buttonText, buttonLink) => {
         .ExternalClass div {
           line-height: 100%;
         }
+
         p, ul, li, a, span, h1, h2, h3, h4, h5, h6 {
           text-align: justify;
           font-family: Arial, Helvetica, sans-serif;
@@ -155,51 +163,61 @@ export default (title, body, image, buttonText, buttonLink) => {
           font-size: 16px;
           line-height: 22px;
         }
+
         h1 {
           font-size: 20px;
           line-height: 26px;
         }
+
         @media only screen and (max-width: 768px) {
           /* For mobile phones: */
           p, ul, li, a, span, h1, h2, h3, h4, h5, h6 {
-            font-size: 20px;
-            line-height: 26px;
+            font-size: 26px;
+            line-height: 34px;
           }
           h1 {
-            font-size: 22px;
-            line-height: 26px;
+            font-size: 30px;
+            line-height: 36px;
           }
         }
+
         table td {
           border-collapse: collapse;
         }
+
         table {
           border-collapse: collapse;
           mso-table-lspace: 0pt;
           mso-table-rspace: 0pt;
         }
+
         img {
           display: block;
           outline: none;
           text-decoration: none;
           -ms-interpolation-mode: bicubic;
         }
+
         a img {
           border: none;
         }
+
         a {
           text-decoration: none;
         }
+
         a.phone {
           text-decoration: none;
           pointer-events: auto;
           cursor: default;
         }
+
         .showy {
           height: 100% !important;
           width: 100% !important;
         }
       </style>
+
       <!--[if gte mso 9]>
       <style>
       /* Target Outlook 2007 and 2010 */
@@ -246,68 +264,85 @@ export default (title, body, image, buttonText, buttonLink) => {
                       ${emailImage}
                       ${emailButton}
 
-                      <tr style="border-top: 2px solid #808080;">
+                      <tr>
                         <td>
                           <table cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tr>
-                              <td height="30">&nbsp;</td>
-                            </tr>
-                            <tr>
-                              <td width="50" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://www.facebook.com/rendahmag/">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1527784080/brand/social/iconmonstr-facebook-5.png" alt="facebook">
+                              <td width="144" valign="top">
+                              </td>
+                              <td width="43" valign="top">
+                                <a href="https://www.facebook.com/rendahmag" style="width: 43px;">
+                                  <img style="width: 43px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607130749/email/social-icons/facebook_1.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://www.instagram.com/rendahmag/">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1527784080/brand/social/iconmonstr-instagram-5.png" alt="instagram">
+                              <td width="24" valign="top">
+                              </td>
+                              <td width="43" valign="top">
+                                <a href="https://www.instagram.com/rendahmag/" style="width: 43px;">
+                                  <img style="width: 43px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607130749/email/social-icons/instagram_1.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://twitter.com/rendahmag">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1527784080/brand/social/iconmonstr-twitter-5.png" alt="twitter">
+                              <td width="24" valign="top">
+                              </td>
+                              <td width="43" valign="top">
+                                <a href="https://twitter.com/RendahMag" style="width: 43px;">
+                                  <img style="width: 43px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607130749/email/social-icons/twitter_1.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://soundcloud.com/rendahmag">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1527784080/brand/social/iconmonstr-soundcloud-5.png" alt="soundcloud">
+                              <td width="24" valign="top">
+                              </td>
+                              <td width="43" valign="top">
+                                <a href="https://soundcloud.com/rendahmag" style="width: 43px;">
+                                  <img style="width: 43px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607130749/email/social-icons/soundcloud_1.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://www.youtube.com/channel/UC4dYeD1ceX8sSY3J3UuMn8w">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1527784080/brand/social/iconmonstr-youtube-5.png" alt="youtube">
+                              <td width="24" valign="top">
+                              </td>
+                              <td width="43" valign="top">
+                                <a href="https://www.youtube.com/channel/UC4dYeD1ceX8sSY3J3UuMn8w" style="width: 43px;">
+                                  <img style="width: 43px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607130749/email/social-icons/youtube_1.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="22" valign="top"></td>
-                              <td width="40" valign="top">
-                                <a href="https://discordapp.com/invite/ev2Q22C">
-                                  <img width="40" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/w_40/v1563543859/brand/social/iconmonstr-discord-5-240.png" alt="discord">
+                              <td width="24" valign="top">
+                              </td>
+                              <td width="43" valign="top">
+                                <a href="https://discord.gg/gPkQF8n" style="width: 43px;">
+                                  <img style="width: 43px;" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607130749/email/social-icons/discord_1.png" alt="">
                                 </a>
                               </td>
-                              <td width="22" valign="top"></td>
-
-                              <td width="50" valign="top">
+                              <td width="144" valign="top">
                               </td>
                             </tr>
                             <tr>
-                              <td height="30">&nbsp;</td>
+                              <td height="40">&nbsp;</td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <tr style="background-color: #0000000; color: #ffffff">
+                        <td style="background-color: #0000000; color: #ffffff">
+                          <table cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #0000000; color: #ffffff">
+                            <tr style="background-color: #0000000; color: #ffffff">
+                              <td width="150" valign="top">
+                              </td>
+                              <td mc:edit="description" width="300" style="text-align: center;">
+                                <span style="color: #000000; font-size: 16px; line-height: 24px; text-align: center;">Rendah Mag Ltd.</span>
+                              </td>
+                              <td width="150" valign="top">
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                              <td width="600" valign="top" style="text-align: center;">
+                                <img width="600" src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607125368/email/ghost-padding.png" alt="Rendah Mag">
+                              </td>
                             </tr>
                           </table>
                         </td>

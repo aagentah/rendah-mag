@@ -11,8 +11,8 @@ export default function Post({ siteConfig, allPosts, params }) {
     <Layout
       navOffset="top"
       navOnWhite
-      hasNav={true}
-      hasFooter={true}
+      hasNav
+      hasFooter
       meta={{
         siteConfig,
         title: 'Search',

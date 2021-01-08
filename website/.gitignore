@@ -4,4 +4,3 @@ node_modules
 *.log
 .env
 .DS_Store
-package-lock.json

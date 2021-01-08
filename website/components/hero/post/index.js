@@ -13,7 +13,7 @@ export default function HeroPost({ post }) {
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
   if (!app.deviceSize) return null;
-  let scale = app.isRetina ? 2 : 1;
+  const scale = app.isRetina ? 2 : 1;
   let imageUrlWidth;
   let imageHeight = 700;
 
@@ -45,7 +45,7 @@ export default function HeroPost({ post }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      skeleton={post ? false : true}
+      skeleton={!post}
       customClass={null}
       onClick={null}
       /* Children */

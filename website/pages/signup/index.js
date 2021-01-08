@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import Router from 'next/router';
+import { useState, useEffect } from 'react';
+import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { Heading, Button, Icon, Input, Checkbox } from 'next-pattern-library';
@@ -7,24 +7,31 @@ import { Heading, Button, Icon, Input, Checkbox } from 'next-pattern-library';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
+import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
-
 import { getSiteConfig } from '~/lib/sanity/requests';
 import passwordStrength from '~/lib/password-strength';
 import validEmail from '~/lib/valid-email';
 
 export default function Sigup({ siteConfig }) {
+  const app = useApp();
+  const dispatch = useDispatchApp();
+  const router = useRouter();
   const [user, { mutate }] = useUser();
+  const prefillEmail = router.query?.prefillEmail || null;
+  const [submitButtonLoading, setSubmitButtonLoading] = useState(false);
 
   async function onSubmit(e) {
     e.preventDefault();
+
+    // Prevent double submit
+    if (submitButtonLoading) return;
 
     const body = {
       username: e.currentTarget.username.value,
       password: e.currentTarget.password.value,
       name: e.currentTarget.name.value,
-      terms: e.currentTarget.terms.checked,
-      addMailchimp: e.currentTarget.addMailchimp.checked,
+      // terms: e.currentTarget.terms.checked,
     };
 
     if (!body.username || !validEmail(body.username)) {
@@ -39,9 +46,9 @@ export default function Sigup({ siteConfig }) {
       return toast.error('Please enter a password.');
     }
 
-    if (!body.terms) {
-      return toast.error(`Please check that you accept the T&C's`);
-    }
+    // if (!body.terms) {
+    //   return toast.error(`Please check that you accept the T&C's`);
+    // }
 
     if (body.password !== e.currentTarget.rpassword.value) {
       return toast.error("The passwords don't match.");
@@ -61,7 +68,10 @@ export default function Sigup({ siteConfig }) {
       return toast.error(isPasswordValid.message);
     }
 
-    const res = await fetch('../api/users', {
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setSubmitButtonLoading(true);
+
+    const res = await fetch(`${process.env.SITE_URL}/api/users`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
@@ -72,7 +82,13 @@ export default function Sigup({ siteConfig }) {
       mutate(userObj);
     } else {
       toast.error(await res.text());
+
+      setTimeout(() => {
+        setSubmitButtonLoading(false);
+      }, 500);
     }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
   }
 
   useEffect(() => {
@@ -90,8 +106,8 @@ export default function Sigup({ siteConfig }) {
       <Layout
         navOffset="center"
         navOnWhite
-        hasNav={true}
-        hasFooter={true}
+        hasNav
+        hasFooter
         meta={{
           siteConfig,
           title: 'Sign Up',
@@ -126,7 +142,7 @@ export default function Sigup({ siteConfig }) {
                 type="text"
                 label="Email"
                 name="username"
-                value=""
+                value={prefillEmail}
                 icon={inputIconEnvelope}
                 required
                 disabled={false}
@@ -172,30 +188,21 @@ export default function Sigup({ siteConfig }) {
                 readOnly={false}
               />
             </div>
-            <div className="pv2  mb2">
-              <Checkbox
-                /* Options */
-                label="Confirm that I accept the T&C's."
-                name="terms"
-                checked={false}
-                required
-                disabled={false}
-                onClick={null}
-              />
-            </div>
-            <div className="pv2  mb2">
-              <Checkbox
-                /* Options */
-                label="Add me to your Newsletter for news and exclusive content."
-                name="addMailchimp"
-                checked={false}
-                required={false}
-                disabled={false}
-                onClick={null}
-              />
-            </div>
-            <div className="df  dib-md  flex-wrap  align-center  pt3">
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+            {
+              // <div className="pv2  mb2">
+              //   <Checkbox
+              //     /* Options */
+              //     label="Confirm that I accept the T&C's."
+              //     name="terms"
+              //     checked={false}
+              //     required
+              //     disabled={false}
+              //     onClick={null}
+              //   />
+              // </div>
+            }
+            <div className="db  df-md  flex-wrap  align-center  pt3">
+              <div className="df  db-md  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="primary"
@@ -206,7 +213,7 @@ export default function Sigup({ siteConfig }) {
                   icon={buttonIconArrowRight}
                   iconFloat={null}
                   inverted={false}
-                  loading={false}
+                  loading={submitButtonLoading}
                   disabled={false}
                   onClick={null}
                   /* Children */
@@ -219,7 +226,7 @@ export default function Sigup({ siteConfig }) {
                   }}
                 />
               </div>
-              <div className="col-24  di-md  pb3  pb0-md  pr3-md">
+              <div className="df  db-md  pb3  pb0-md  pr3-md">
                 <Button
                   /* Options */
                   type="secondary"
@@ -230,7 +237,7 @@ export default function Sigup({ siteConfig }) {
                   icon={null}
                   iconFloat={null}
                   inverted={false}
-                  loading={false}
+                  loading={null}
                   disabled={false}
                   onClick={null}
                   /* Children */

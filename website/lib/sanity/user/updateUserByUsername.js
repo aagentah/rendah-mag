@@ -1,13 +1,12 @@
+import fetch from 'isomorphic-unfetch';
 import fs from 'fs';
 import crypto from 'crypto';
 import tinify from 'tinify';
 import { promisify } from 'util';
 import cloneDeep from 'lodash/cloneDeep';
 
+import formatHttpError from '~/functions/formatHttpError';
 import client from '../config-write';
-
-
-import updateUserTags from '~/lib/mailchimp/update-user-tags';
 
 const handlePassword = (cloneFields) => {
   const f = cloneFields;
@@ -31,8 +30,8 @@ const handleAvatar = async (cloneFields, user) => {
 
   const writeFile = promisify(fs.writeFile);
   const image64 = f.avatar.replace(/^data:image\/[a-z]+;base64,/, '');
-  await writeFile('tmp/avatar.png', image64, 'base64');
-  const source = tinify.fromFile('tmp/avatar.png');
+  await writeFile('/tmp/avatar.png', image64, 'base64');
+  const source = tinify.fromFile('/tmp/avatar.png');
   const resized = source.resize({
     method: 'cover',
     width: 720,
@@ -40,7 +39,7 @@ const handleAvatar = async (cloneFields, user) => {
   });
 
   // Tinify image
-  await resized.toFile('tmp/optimized.png');
+  await resized.toFile('/tmp/optimized.png');
 
   const uploadCompressed = async (imageAsset) => {
     const avatarProps = {
@@ -71,7 +70,7 @@ const handleAvatar = async (cloneFields, user) => {
 
   // Upload compressed image to Sanity
   await client.assets
-    .upload('image', fs.createReadStream('tmp/optimized.png'), {
+    .upload('image', fs.createReadStream('/tmp/optimized.png'), {
       contentType: 'image/png',
       filename: `optimized.png`,
     })
@@ -79,15 +78,15 @@ const handleAvatar = async (cloneFields, user) => {
       await uploadCompressed(imageAsset);
     })
     .catch((error) => {
-      console.error('Upload failed:', error.message);
+      console.error('Upload failed:', error.message || error.toString());
     });
 
   // Delete temp image
   try {
-    fs.unlinkSync('tmp/avatar.png');
-    fs.unlinkSync('tmp/optimized.png');
+    fs.unlinkSync('/tmp/avatar.png');
+    fs.unlinkSync('/tmp/optimized.png');
   } catch (error) {
-    console.log('unlinkSync error:', error.message);
+    console.error('unlinkSync error:', error.message || error.toString());
   }
 
   delete f.avatar;
@@ -95,15 +94,32 @@ const handleAvatar = async (cloneFields, user) => {
 };
 
 const handleTags = async (cloneFields) => {
-  // Update tags in Mailchimp
-  await updateUserTags(cloneFields.tags, cloneFields.username);
+  // Update member tags (mailchimp)
+  const response = await fetch(
+    `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
+    {
+      body: JSON.stringify({
+        email: cloneFields.username,
+        tags: cloneFields.tags,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    }
+  );
+
+  // Error
+  if (!response.ok) {
+    throw new Error(await formatHttpError(response));
+  }
 
   // Create array with checked tags
   const checkedTags = [];
 
-  for (let i = 0; i < cloneFields.tags.length; i++) {
+  for (let i = 0; i < cloneFields?.tags?.length; i += 1) {
     const tag = cloneFields.tags[i];
-    if (tag.status) checkedTags.push(tag.label);
+    if (tag.status === 'active') checkedTags.push(tag.name);
   }
 
   // Replace cloneFields tags with array
@@ -129,11 +145,9 @@ const updateUserByUsername = async (req, user, fields) => {
     }
 
     // Handle tags
-    if (cloneFields?.tags.length > 0) {
+    if (cloneFields?.tags?.length > 0) {
       cloneFields = await handleTags(cloneFields);
     }
-
-    console.log('cloneFields', cloneFields);
 
     // Update user
     const data = await client
@@ -151,7 +165,8 @@ const updateUserByUsername = async (req, user, fields) => {
 
     return data;
   } catch (error) {
-    console.log('Error in updateUserByUsername(): ', error.message);
+    // Handle catch
+    console.error('Error in updateUserByUsername():', error);
     return false;
   }
 };

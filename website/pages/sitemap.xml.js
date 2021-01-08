@@ -16,7 +16,7 @@ const sitemapXml = (allPosts, allProducts) => {
     { name: 'category/news', priority: '0.9' },
   ];
 
-  let staticPagesXML = '';
+  const staticPagesXML = '';
   let postsXML = '';
   let productsXML = '';
 

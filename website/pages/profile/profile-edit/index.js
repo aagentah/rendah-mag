@@ -79,14 +79,17 @@ export default function ProfileEdit() {
   async function handleEditProfile(e) {
     e.preventDefault();
 
+    // Prevent double submit
+    if (updateButtonLoading) return;
+
     const tags = [];
 
-    for (let i = 0; i < userTags.length; i++) {
+    for (let i = 0; i < userTags.length; i += 1) {
       const checkbox = e.currentTarget[userTags[i]];
 
       tags.push({
-        label: checkbox.name,
-        status: checkbox.checked,
+        name: checkbox.name,
+        status: checkbox.checked ? 'active' : 'inactive',
       });
     }
 
@@ -125,7 +128,7 @@ export default function ProfileEdit() {
     setUpdateButtonLoading(true);
 
     // Update user
-    const response = await fetch('../api/user', {
+    const response = await fetch(`${process.env.SITE_URL}/api/user`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
@@ -135,6 +138,11 @@ export default function ProfileEdit() {
       // Success
       mutate(await response.json());
       toast.success('Successfully updated');
+    } else if (response.status === 413) {
+      // File too big
+      toast.error(
+        'File too big. Please make sure your file does not exceed 1 MB'
+      );
     } else {
       // Error
       toast.error('Error whilst updating, try again, or a different browser.');
@@ -148,7 +156,7 @@ export default function ProfileEdit() {
     dispatch({ type: 'TOGGLE_LOADING' });
     setUpdateButtonLoading(true);
 
-    const res = await fetch('../api/user', {
+    const res = await fetch(`${process.env.SITE_URL}/api/user`, {
       method: 'DELETE',
     });
 
@@ -261,7 +269,7 @@ export default function ProfileEdit() {
           <div className="pb4">
             <Copy
               /* Options */
-              text="Recomended square & at least 720px."
+              text="Recomended square & at least 720px & under 1 MB."
               color="black"
               size="medium"
               truncate={null}
@@ -309,7 +317,6 @@ export default function ProfileEdit() {
             color="black"
             size="medium"
             truncate={null}
-            
             /* Children */
             withLinkProps={null}
           />
@@ -335,24 +342,26 @@ export default function ProfileEdit() {
           </div>
 
           <div className="col-24  pb4">
-            <Button
-              /* Options */
-              type="primary"
-              size="small"
-              text="Change Avatar"
-              color="black"
-              fluid={false}
-              icon={null}
-              iconFloat={null}
-              inverted
-              loading={false}
-              disabled={app.isLoading}
-              onClick={() => {
-                setAvatarModalActive(!avatarModalActive);
-              }}
-              /* Children */
-              withLinkProps={null}
-            />
+            <div className="dib">
+              <Button
+                /* Options */
+                type="primary"
+                size="small"
+                text="Change Avatar"
+                color="black"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted
+                loading={false}
+                disabled={app.isLoading}
+                onClick={() => {
+                  setAvatarModalActive(!avatarModalActive);
+                }}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
           </div>
         </div>
 
@@ -389,7 +398,7 @@ export default function ProfileEdit() {
                 <Input
                   /* Options */
                   type="password"
-                  label="Password"
+                  label="Change Password"
                   name="password"
                   value=""
                   icon={inputIconLock}
@@ -402,7 +411,7 @@ export default function ProfileEdit() {
                 <Input
                   /* Options */
                   type="password"
-                  label="Repeat Password"
+                  label="Repeat Change Password"
                   name="rpassword"
                   value=""
                   icon={inputIconLock}
@@ -416,7 +425,7 @@ export default function ProfileEdit() {
                   /* Options */
                   label="Public Profile"
                   name="publicProfile"
-                  checked={true}
+                  checked={user.publicProfile}
                   required={false}
                   disabled={false}
                   onClick={null}
@@ -446,7 +455,7 @@ export default function ProfileEdit() {
                           /* Options */
                           label={tag}
                           name={tag}
-                          checked={user.tags.includes(tag)}
+                          checked={user.tags?.length && user.tags.includes(tag)}
                           required={false}
                           disabled={false}
                           onClick={null}
@@ -482,26 +491,28 @@ export default function ProfileEdit() {
                 }}
               />
             </div>
-            <div className="db  dib-md  pr3  pb1">
-              <Button
-                /* Options */
-                type="secondary"
-                size="small"
-                text="Delete Profile"
-                color="red"
-                fluid={false}
-                icon={buttonIconTrash}
-                iconFloat="left"
-                inverted
-                loading={false}
-                disabled={app.isLoading}
-                onClick={() => {
-                  setDeleteModalActive(!deleteModalActive);
-                }}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
+            {
+              // <div className="db  dib-md  pr3  pb1">
+              //   <Button
+              //     /* Options */
+              //     type="secondary"
+              //     size="small"
+              //     text="Delete Profile"
+              //     color="red"
+              //     fluid={false}
+              //     icon={buttonIconTrash}
+              //     iconFloat="left"
+              //     inverted
+              //     loading={false}
+              //     disabled={app.isLoading}
+              //     onClick={() => {
+              //       setDeleteModalActive(!deleteModalActive);
+              //     }}
+              //     /* Children */
+              //     withLinkProps={null}
+              //   />
+              // </div>
+            }
           </div>
         </form>
       </>

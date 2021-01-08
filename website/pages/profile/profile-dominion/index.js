@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Router from 'next/router';
 import BlockContent from '@sanity/block-content-to-react';
 import { useKeenSlider } from 'keen-slider/react';
@@ -33,29 +34,20 @@ export default function ProfileDominion({ refreshDominion }) {
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 8, '0');
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
 
+      // If whitelisted, then show all items since 2021
+      if (user?.isDominionWiteList) {
+        sinceStartOfMonth = '2021-01-01';
+      }
+
       setDominionItems(await getDominionItemsSinceDate(sinceStartOfMonth));
     };
 
-    if (user?.isDominion) fetchDominionItems();
+    if (user?.isDominion || user?.isDominionWiteList) fetchDominionItems();
   }, [user]);
 
-  if (dominionItems?.length) {
+  if (user?.isDominion && dominionItems?.length) {
     return (
-      <section>
-        <div className="pb4">
-          <Heading
-            /* Options */
-            htmlEntity="h1"
-            text="Your Dominion."
-            color="black"
-            size="medium"
-            truncate={null}
-            
-            /* Children */
-            withLinkProps={null}
-          />
-        </div>
-
+      <>
         <div>
           {refreshDominion && (
             <Carousel
@@ -65,11 +57,58 @@ export default function ProfileDominion({ refreshDominion }) {
           )}
         </div>
 
-        <p className="t-secondary  f6  grey">
-          <span className="bold  pr1">Member since:</span>
-          {new Date(user?.dominionSince).toDateString()}
-        </p>
-      </section>
+        {user?.dominionSince && (
+          <p className="t-secondary  f6  grey  mt4">
+            <span className="bold  pr1">Member since:</span>
+            {new Date(user.dominionSince).toDateString()}
+          </p>
+        )}
+      </>
+    );
+  }
+
+  if (!user?.isDominion && !user?.isDominionWiteList) {
+    return (
+      <>
+        <div className="pb3">
+          <Heading
+            /* Options */
+            htmlEntity="h1"
+            text="You are not currently in the Dominion."
+            color="black"
+            size="medium"
+            truncate={null}
+            /* Children */
+            withLinkProps={null}
+          />
+        </div>
+        <div className="pb3">
+          <Button
+            /* Options */
+            type="primary"
+            size="medium"
+            text="Click here to join"
+            color="black"
+            fluid={false}
+            icon={null}
+            iconFloat={null}
+            invert={false}
+            loading={false}
+            disabled={false}
+            onClick={null}
+            /* Children */
+            withLinkProps={{
+              type: 'next',
+              href: '/dominion',
+              target: null,
+              routerLink: Link,
+              routerLinkProps: {
+                scroll: false,
+              },
+            }}
+          />
+        </div>
+      </>
     );
   }
 
@@ -77,11 +116,10 @@ export default function ProfileDominion({ refreshDominion }) {
     <Heading
       /* Options */
       htmlEntity="h1"
-      text="You are not in the Dominion."
+      text="No results."
       color="black"
       size="medium"
       truncate={null}
-      
       /* Children */
       withLinkProps={null}
     />

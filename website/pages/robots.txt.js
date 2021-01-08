@@ -13,6 +13,15 @@ const renderRobots = (domainType) => {
     Disallow: /store/
     Disallow: /product/
     Disallow: /search/
+    Disallow: /login/
+    Disallow: /signup/
+    Disallow: /dominion-thank-you/
+    Disallow: /dominion-already-member/
+    Disallow: /i/
+    Disallow: /link-in-bio/
+    Disallow: /return-policy/
+    Disallow: /cookie-policy/
+    Disallow: /terms-conditions/
     SITEMAP: http://www.rendahmag.com/feeds/sitemap.xml
     `;
   } else {

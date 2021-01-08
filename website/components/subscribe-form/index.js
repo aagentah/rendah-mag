@@ -24,26 +24,33 @@ export default function SubscribeForm({ onSuccess }) {
     dispatch({ type: 'TOGGLE_LOADING' });
     setButtonLoading(true);
 
-    const response = await fetch('/api/mailchimp/subscribe', {
-      body: JSON.stringify({
-        email: inputEl.current.value,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    });
-
-    const json = await response.json();
+    const response = await fetch(
+      `${process.env.SITE_URL}/api/mailchimp/add-member`,
+      {
+        body: JSON.stringify({
+          data: {
+            email_address: inputEl.current.value,
+            status: 'subscribed',
+          },
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      }
+    );
 
     if (response.ok) {
       // Success
       toast.success('Welcome to the newsletter');
       Cookies.set('rndh-newsletter-set', true, { expires: 365 });
       onSuccess && onSuccess();
+    } else if (response.status === 400) {
+      // Already subscribed
+      toast.info('You are already added to our newsletter.');
     } else {
       // Error
-      toast.error(json?.error || 'Error');
+      toast.error('There was an issue adding you.');
     }
 
     inputEl.current.value = '';

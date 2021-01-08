@@ -14,7 +14,7 @@ export default function CardBlog({ teamMember, columnCount }) {
   const [inView, setInView] = useState(false);
 
   if (!app.deviceSize) return null;
-  let scale = app.isRetina ? 2 : 1;
+  const scale = app.isRetina ? 2 : 1;
   let imageUrlWidth = app.deviceSize === 'md' ? 260 : 230;
   let imageHeight = app.deviceSize === 'md' ? 260 : 180;
   const headingSize = app.deviceSize === 'md' ? 'medium' : 'small';

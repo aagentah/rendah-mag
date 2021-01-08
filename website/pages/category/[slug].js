@@ -17,9 +17,9 @@ export default function Category({ siteConfig, category }) {
     <>
       <Layout
         navOffset={null}
-        navOnWhite={true}
-        hasNav={true}
-        hasFooter={true}
+        navOnWhite
+        hasNav
+        hasFooter
         meta={{
           siteConfig,
           title: category.title,

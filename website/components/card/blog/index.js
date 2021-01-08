@@ -14,7 +14,7 @@ export default function CardBlog({ post, columnCount }) {
   const [inView, setInView] = useState(false);
 
   if (!app.deviceSize) return null;
-  let scale = app.isRetina ? 2 : 1;
+  const scale = app.isRetina ? 2 : 1;
   let imageUrlWidth = app.deviceSize === 'md' ? 260 : 230;
   let imageHeight = app.deviceSize === 'md' ? 260 : 180;
   const headingSize =
@@ -57,7 +57,7 @@ export default function CardBlog({ post, columnCount }) {
       height={imageHeight}
       width={null}
       customClass={null}
-      skeleton={post ? false : true}
+      skeleton={!post}
       onClick={null}
       /* Children */
       withLinkProps={{
@@ -81,7 +81,7 @@ export default function CardBlog({ post, columnCount }) {
       color="black"
       size={headingSize}
       truncate={4}
-      skeleton={post ? false : true}
+      skeleton={!post}
       /* Children */
       withLinkProps={null}
     />

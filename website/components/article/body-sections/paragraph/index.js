@@ -11,9 +11,9 @@ export default function Paragraph({ text, markDefs }) {
           return (
             <a
               key={i}
+              rel="noopener noreferrer"
               target="_blank"
               href={currentMark.url}
-              rel="noopener noreferrer"
               className="di  underline  rendah-red-dark"
             >
               {child.text}
