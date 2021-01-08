@@ -82,43 +82,6 @@ export default function ProfileDominion({ refreshDominion }) {
             withLinkProps={null}
           />
         </div>
-        <div className="measure-wide">
-          <p className="f-secondary  taj  f5  pb4  lh-copy">
-            This year, the Rendah Mag team embarks upon a new journey. With so
-            much to explore within Bass music right now, we want to push our
-            platform into new territory, offering a new way for you to stay on
-            top of everything to come across the spectrum. With an absolute
-            pleasure, we bring you the DOMINION Subscription.
-          </p>
-          <p className="f-secondary  taj  f5  pb3  lh-copy">
-            <strong>We offer the following to you:</strong>
-          </p>
-          <ul className="pl4  pb3">
-            <li className="f-secondary  tal  f5  pb2  lh-copy">
-              A welcome package (Includes membership card & stickers).
-            </li>
-            <li className="f-secondary  tal  f5  pb2  lh-copy">
-              A quarterly-printed issue of Rendah Mag.
-            </li>
-            <li className="f-secondary  tal  f5  pb2  lh-copy">
-              Your own Dominion Profile on our Website.
-            </li>
-            <li className="f-secondary  tal  f5  pb2  lh-copy">
-              Exclusive monthly updates on releases & insights within bass
-              music.
-            </li>
-            <li className="f-secondary  tal  f5  pb2  lh-copy">
-              20% off all Rendah Mag Products.
-            </li>
-            <li className="f-secondary  tal  f5  pb2  lh-copy">
-              Exclusive tracks, sample packs, and discounts from curating
-              artists and labels.
-            </li>
-          </ul>
-          <p className="f-secondary  taj  f5  pb4  lh-copy">
-            We hope you can join us on this new journey ❤️
-          </p>
-        </div>
         <div className="pb3">
           <Button
             /* Options */
