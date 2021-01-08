@@ -8,10 +8,8 @@ module.exports = withPrefresh({
     SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
     SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
     SANITY_API_TOKEN_WRITE: process.env.SANITY_API_TOKEN_WRITE,
-    SNIPCART_PROD_SECRET_KEY: process.env.SNIPCART_PROD_SECRET_KEY,
-    SNIPCART_PROD_API_KEY: process.env.SNIPCART_PROD_API_KEY,
-    SNIPCART_DEV_SECRET_KEY: process.env.SNIPCART_DEV_SECRET_KEY,
-    SNIPCART_DEV_API_KEY: process.env.SNIPCART_DEV_API_KEY,
+    SNIPCART_SECRET_KEY: process.env.SNIPCART_SECRET_KEY,
+    SNIPCART_API_KEY: process.env.SNIPCART_API_KEY,
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
     MAILCHIMP_LIST_ID: process.env.MAILCHIMP_LIST_ID,
     MAILCHIMP_API_KEY: process.env.MAILCHIMP_API_KEY,
@@ -23,7 +21,7 @@ module.exports = withPrefresh({
     // Move Preact into the framework chunk instead of duplicating in routes:
     const splitChunks = config.optimization && config.optimization.splitChunks;
     if (splitChunks) {
-      const {cacheGroups} = splitChunks;
+      const { cacheGroups } = splitChunks;
       const test = /[\\/]node_modules[\\/](preact|preact-render-to-string|preact-context-provider)[\\/]/;
       if (cacheGroups.framework) {
         cacheGroups.preact = Object.assign({}, cacheGroups.framework, { test });
@@ -45,7 +43,7 @@ module.exports = withPrefresh({
 
     // Automatically inject Preact DevTools:
     if (dev && !isServer) {
-      const {entry} = config;
+      const { entry } = config;
       config.entry = () =>
         entry().then((entries) => {
           entries['main.js'] = ['preact/debug'].concat(
