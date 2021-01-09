@@ -100,8 +100,9 @@ export default function Dominion({ siteConfig }) {
       meta={{
         siteConfig,
         title: 'Dominion',
-        description: 'Join the Dominion Subscription.',
-        image: null,
+        description: 'Something new & exciting.',
+        image:
+          'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610196181/dominion/dominion-social-facebook-meta.png',
       }}
       preview={null}
     >

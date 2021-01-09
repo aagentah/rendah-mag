@@ -22,7 +22,8 @@ export default function DominionAlreadyMember({ siteConfig }) {
           siteConfig,
           title: 'Already in Dominon',
           description: null,
-          image: null,
+          image:
+            'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610196181/dominion/dominion-social-facebook-meta.png',
         }}
         preview={null}
       >
