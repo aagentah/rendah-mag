@@ -22,7 +22,7 @@ export default async (order) => {
       password: temporaryPassword,
       name: fullName,
       isDominion: true,
-      dominionSince: schedule.startsOn,
+      dominionSince: schedule.startsOn.split('T')[0],
     };
 
     const tags = [];

@@ -11,7 +11,10 @@ export default async (order) => {
     const { email } = user;
 
     const userData = await findUserByUsername(email);
-    const updatefields = { isDominion: true, dominionSince: schedule.startsOn };
+    const updatefields = {
+      isDominion: true,
+      dominionSince: schedule.startsOn.split('T')[0],
+    };
     const tags = [];
 
     tags.push({
