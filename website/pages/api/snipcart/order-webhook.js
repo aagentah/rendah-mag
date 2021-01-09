@@ -8,22 +8,27 @@ export default async (req, res) => {
     const order = req.body;
 
     if (order?.eventName === 'order.completed') {
+      console.log('order.completed');
       await orderCompleted(order);
     }
 
     if (order?.eventName === 'subscription.created') {
+      console.log('subscription.created');
       subscriptionCreated(order);
     }
 
     if (order?.eventName === 'subscription.resumed') {
+      console.log('subscription.resumed');
       subscriptionResumed(order);
     }
 
     if (order?.eventName === 'subscription.cancelled') {
+      console.log('subscription.cancelled');
       await subscriptionCancelled(order);
     }
 
     if (order?.eventName === 'subcription.paused') {
+      console.log('subcription.paused');
       await subscriptionCancelled(order);
     }
 
