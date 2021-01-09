@@ -31,6 +31,7 @@ export default async (order) => {
 
       // Error
       if (!response.ok) {
+        console.log('a');
         throw new Error(await formatHttpError(response));
       }
     };

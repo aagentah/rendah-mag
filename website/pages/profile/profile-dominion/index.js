@@ -34,15 +34,10 @@ export default function ProfileDominion({ refreshDominion }) {
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 8, '0');
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
 
-      // If whitelisted, then show all items since 2021
-      if (user?.isDominionWiteList) {
-        sinceStartOfMonth = '2021-01-01';
-      }
-
       setDominionItems(await getDominionItemsSinceDate(sinceStartOfMonth));
     };
 
-    if (user?.isDominion || user?.isDominionWiteList) fetchDominionItems();
+    if (user?.isDominion) fetchDominionItems();
   }, [user]);
 
   if (user?.isDominion && dominionItems?.length) {
@@ -67,7 +62,7 @@ export default function ProfileDominion({ refreshDominion }) {
     );
   }
 
-  if (!user?.isDominion && !user?.isDominionWiteList) {
+  if (!user?.isDominion) {
     return (
       <>
         <div className="pb3">
