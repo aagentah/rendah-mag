@@ -9,8 +9,7 @@ import welcomeDominionEmail from '~/lib/emails/welcome-dominion-subscription';
 export default async (order) => {
   try {
     const { content } = order;
-    const { user } = content;
-    const { items } = content;
+    const { user, schedule } = content;
     const { billingAddress, shippingAddress } = user;
     const { email } = user;
     const fullName = billingAddress?.fullName || shippingAddress?.fullName;
@@ -22,6 +21,8 @@ export default async (order) => {
       username: email,
       password: temporaryPassword,
       name: fullName,
+      isDominion: true,
+      dominionSince: schedule.startsOn,
     };
 
     const tags = [];
