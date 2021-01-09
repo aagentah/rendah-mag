@@ -31,6 +31,8 @@ export default function Sigup({ siteConfig }) {
       username: e.currentTarget.username.value,
       password: e.currentTarget.password.value,
       name: e.currentTarget.name.value,
+      isDominion: null,
+      dominionSince: null,
       // terms: e.currentTarget.terms.checked,
     };
 
