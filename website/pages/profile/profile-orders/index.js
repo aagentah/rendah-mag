@@ -64,132 +64,132 @@ export default function ProfileOrders() {
   }, [user]);
 
   // Fetch active subscription
-  useEffect(() => {
-    if (user.isDominionWiteList) return;
-
-    // Set the user to Dominion
-    async function setUserIsDominion(dominionSince) {
-      const updateCMS = async () => {
-        const body = {
-          isDominion: true,
-          dominionSince: dominionSince.split('T')[0],
-        };
-
-        const response = await fetch(`${process.env.SITE_URL}/api/user`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        });
-
-        if (response.ok) {
-          // Success
-          mutate(await response.json());
-        } else {
-          // Error
-          toast.error(
-            'There was an issue adding you to the Dominion, please contact support right away.'
-          );
-        }
-      };
-
-      const updateMailChimpTags = async () => {
-        const response = await fetch(
-          `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
-          {
-            body: JSON.stringify({
-              email: user.username,
-              tags: [{ name: 'Dominion Subscription', status: 'active' }],
-            }),
-            headers: { 'Content-Type': 'application/json' },
-            method: 'POST',
-          }
-        );
-
-        if (!response.ok) {
-          // Error
-          toast.error(
-            'There was an issue adding you to the Dominion, please contact support right away.'
-          );
-        }
-      };
-
-      await updateMailChimpTags();
-      await updateCMS();
-    }
-
-    // Unset the user from Dominion in CMS
-    async function setUserNotDominion() {
-      const updateCMS = async () => {
-        const body = {
-          isDominion: false,
-        };
-
-        const response = await fetch(`${process.env.SITE_URL}/api/user`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        });
-
-        if (response.ok) {
-          // Success
-          mutate(await response.json());
-        } else {
-          // Error
-          toast.error(
-            'There was an issue removing you from the Dominion, please contact support right away.'
-          );
-        }
-      };
-
-      const updateMailChimpTags = async () => {
-        const response = await fetch(
-          `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
-          {
-            body: JSON.stringify({
-              email: user.username,
-              tags: [{ name: 'Dominion Subscription', status: 'inactive' }],
-            }),
-            headers: { 'Content-Type': 'application/json' },
-            method: 'POST',
-          }
-        );
-
-        if (!response.ok) {
-          // Error
-          toast.error(
-            'There was an issue removing you to the Dominion, please contact support right away.'
-          );
-        }
-      };
-
-      await updateMailChimpTags();
-      await updateCMS();
-    }
-
-    const fetchCustomerLatestSubscription = async () => {
-      const response = await fetch(
-        `${process.env.SITE_URL}/api/snipcart/get-customer-latest-subscription`,
-        {
-          body: JSON.stringify({ email: user.username }),
-          headers: { 'Content-Type': 'application/json' },
-          method: 'POST',
-        }
-      );
-
-      const json = await response.json();
-
-      if (response.ok) {
-        // Success
-        if (isEmpty(json)) {
-          if (user?.isDominion) setUserNotDominion();
-        } else {
-          if (!user?.isDominion) setUserIsDominion(json.schedule.startsOn);
-        }
-      }
-    };
-
-    if (user) fetchCustomerLatestSubscription();
-  }, [user]);
+  // useEffect(() => {
+  //   if (user.isDominionWiteList) return;
+  //
+  //   // Set the user to Dominion
+  //   async function setUserIsDominion(dominionSince) {
+  //     const updateCMS = async () => {
+  //       const body = {
+  //         isDominion: true,
+  //         dominionSince: dominionSince.split('T')[0],
+  //       };
+  //
+  //       const response = await fetch(`${process.env.SITE_URL}/api/user`, {
+  //         method: 'PUT',
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify(body),
+  //       });
+  //
+  //       if (response.ok) {
+  //         // Success
+  //         mutate(await response.json());
+  //       } else {
+  //         // Error
+  //         toast.error(
+  //           'There was an issue adding you to the Dominion, please contact support right away.'
+  //         );
+  //       }
+  //     };
+  //
+  //     const updateMailChimpTags = async () => {
+  //       const response = await fetch(
+  //         `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
+  //         {
+  //           body: JSON.stringify({
+  //             email: user.username,
+  //             tags: [{ name: 'Dominion Subscription', status: 'active' }],
+  //           }),
+  //           headers: { 'Content-Type': 'application/json' },
+  //           method: 'POST',
+  //         }
+  //       );
+  //
+  //       if (!response.ok) {
+  //         // Error
+  //         toast.error(
+  //           'There was an issue adding you to the Dominion, please contact support right away.'
+  //         );
+  //       }
+  //     };
+  //
+  //     await updateMailChimpTags();
+  //     await updateCMS();
+  //   }
+  //
+  //   // Unset the user from Dominion in CMS
+  //   async function setUserNotDominion() {
+  //     const updateCMS = async () => {
+  //       const body = {
+  //         isDominion: false,
+  //       };
+  //
+  //       const response = await fetch(`${process.env.SITE_URL}/api/user`, {
+  //         method: 'PUT',
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify(body),
+  //       });
+  //
+  //       if (response.ok) {
+  //         // Success
+  //         mutate(await response.json());
+  //       } else {
+  //         // Error
+  //         toast.error(
+  //           'There was an issue removing you from the Dominion, please contact support right away.'
+  //         );
+  //       }
+  //     };
+  //
+  //     const updateMailChimpTags = async () => {
+  //       const response = await fetch(
+  //         `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
+  //         {
+  //           body: JSON.stringify({
+  //             email: user.username,
+  //             tags: [{ name: 'Dominion Subscription', status: 'inactive' }],
+  //           }),
+  //           headers: { 'Content-Type': 'application/json' },
+  //           method: 'POST',
+  //         }
+  //       );
+  //
+  //       if (!response.ok) {
+  //         // Error
+  //         toast.error(
+  //           'There was an issue removing you to the Dominion, please contact support right away.'
+  //         );
+  //       }
+  //     };
+  //
+  //     await updateMailChimpTags();
+  //     await updateCMS();
+  //   }
+  //
+  //   const fetchCustomerLatestSubscription = async () => {
+  //     const response = await fetch(
+  //       `${process.env.SITE_URL}/api/snipcart/get-customer-latest-subscription`,
+  //       {
+  //         body: JSON.stringify({ email: user.username }),
+  //         headers: { 'Content-Type': 'application/json' },
+  //         method: 'POST',
+  //       }
+  //     );
+  //
+  //     const json = await response.json();
+  //
+  //     if (response.ok) {
+  //       // Success
+  //       if (isEmpty(json)) {
+  //         if (user?.isDominion) setUserNotDominion();
+  //       } else {
+  //         if (!user?.isDominion) setUserIsDominion(json.schedule.startsOn);
+  //       }
+  //     }
+  //   };
+  //
+  //   if (user) fetchCustomerLatestSubscription();
+  // }, [user]);
 
   if (customerOrders?.length) {
     return (

@@ -21,10 +21,10 @@ export default (email, temporaryPassword) => {
     <br />
     Your Dominion Profile will allow you to keep on top of everything related to
     your Subscription, including access to Dominion content. We'll also send you
-    Dominion updates via email, just to keep you in the loop.
+    updates via email, just to keep you in the loop.
     <br />
     <br />
-    <strong>Login details</strong>
+    <strong>Login details:</strong>
     <br />
     <br />
     <ul>

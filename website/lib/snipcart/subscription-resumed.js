@@ -1,13 +1,17 @@
 import fetch from 'isomorphic-unfetch';
 
 import formatHttpError from '~/functions/formatHttpError';
+import findUserByUsername from '~/lib/sanity/user/findUserByUsername';
+import updateUserByUsername from '~/lib/sanity/user/updateUserByUsername';
 
 export default async (order) => {
   try {
     const { content } = order;
-    const { user } = content;
+    const { user, schedule } = content;
     const { email } = user;
 
+    const userData = await findUserByUsername(email);
+    const updatefields = { isDominion: true, dominionSince: schedule.startsOn };
     const tags = [];
 
     tags.push({
@@ -31,6 +35,7 @@ export default async (order) => {
       }
     };
 
+    await updateUserByUsername(null, userData, updatefields);
     await addMembertags();
   } catch (error) {
     // Handle catch
