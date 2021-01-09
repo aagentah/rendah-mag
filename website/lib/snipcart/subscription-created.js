@@ -58,9 +58,9 @@ export default async (order) => {
       throw new Error('The username has already been used.');
     }
 
-    await createUser(userData);
-    await welcomeDominionEmail(email, temporaryPassword);
-    await addMembertags();
+    createUser(userData);
+    welcomeDominionEmail(email, temporaryPassword);
+    addMembertags();
   } catch (error) {
     // Handle catch
     console.error(

@@ -12,11 +12,11 @@ export default async (req, res) => {
     }
 
     if (order?.eventName === 'subscription.created') {
-      subscriptionCreated(order);
+      await subscriptionCreated(order);
     }
 
     if (order?.eventName === 'subscription.resumed') {
-      subscriptionResumed(order);
+      await subscriptionResumed(order);
     }
 
     if (order?.eventName === 'subscription.cancelled') {

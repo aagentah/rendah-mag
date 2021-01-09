@@ -38,8 +38,8 @@ export default async (order) => {
       }
     };
 
-    await updateUserByUsername(null, userData, updatefields);
-    await addMembertags();
+    updateUserByUsername(null, userData, updatefields);
+    addMembertags();
   } catch (error) {
     // Handle catch
     console.error(
