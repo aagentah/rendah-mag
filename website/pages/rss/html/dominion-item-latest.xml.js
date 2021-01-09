@@ -1,41 +1,34 @@
 import React from 'react';
 import blocksToHtml from '@sanity/block-content-to-html';
 
-import { imageBuilder, getLatestDominionItems } from '~/lib/sanity/requests';
+import { imageBuilder, getLatestDominionItem } from '~/lib/sanity/requests';
 
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
-const sitemapXml = (items) => {
-  let postsXML = '';
+const sitemapXml = (item) => {
+  let postXML;
 
-  if (items.length) {
-    for (var i = 0; i < items.length; i++) {
-      const item = items[i];
+  if (item?.slug?.current) {
+    const title = item?.title || '';
+    let hasButtonsNotice;
 
-      if (item?.slug?.current) {
-        const title = item?.title || '';
-        let hasButtonsNotice;
+    const description = blocksToHtml({ blocks: item?.description });
 
-        const description = blocksToHtml({ blocks: item?.description });
+    const image = item?.image
+      ? `<img width="400" style="width: 400px;" src="${imageBuilder
+          .image(item.image)
+          .width(400)
+          .auto('format')
+          .url()}" />`
+      : '';
 
-        // TODO: if action buttons
-        // const loginText = '<p><ii>Log in to your dominion profile</i></p>'
+    const url = process.env.SITE_URL;
 
-        const image = item?.image
-          ? `<img width="400" style="width: 400px;" src="${imageBuilder
-              .image(item.image)
-              .width(400)
-              .auto('format')
-              .url()}" />`
-          : '';
+    const date = new Date(item?.activeFrom).toUTCString();
 
-        const url = process.env.SITE_URL;
-
-        const date = new Date(item?.activeFrom).toUTCString();
-
-        if (item?.buttons?.length) {
-          hasButtonsNotice = `
+    if (item?.buttons?.length) {
+      hasButtonsNotice = `
             <tr>
               <td width="400" valign="top">
                 <p>
@@ -50,9 +43,9 @@ const sitemapXml = (items) => {
               <td><br /></td>
             </tr>
           `;
-        }
+    }
 
-        const html = `
+    const html = `
           <table cellspacing="0" cellpadding="0" border="0" width="100%">
             <tr>
               <td width="400" valign="top">
@@ -71,7 +64,7 @@ const sitemapXml = (items) => {
           </table>
           `;
 
-        postsXML += `
+    postXML = `
           <item>
             <title>${escapeXml(encodeSpecialChar(title))}</title>
             <link>${escapeXml(encodeSpecialChar(url))}</link>
@@ -81,8 +74,6 @@ const sitemapXml = (items) => {
             </description>
           </item>
           `;
-      }
-    }
   }
 
   return `
@@ -91,8 +82,8 @@ const sitemapXml = (items) => {
           <title>Dominion Items Latest</title>
           <link>${process.env.SITE_URL}</link>
           <description>Dominion Items Latest</description>
-          <pubDate>${new Date(items[0].activeFrom).toUTCString()}</pubDate>
-          ${postsXML}
+          <pubDate>${new Date(item.activeFrom).toUTCString()}</pubDate>
+          ${postXML}
         </channel>
       </rss>
       `;
@@ -110,7 +101,7 @@ const sitemapXml = (items) => {
 
 export default class BlogLatest extends React.Component {
   static async getInitialProps({ res }) {
-    const item = await getLatestDominionItems();
+    const item = await getLatestDominionItem();
 
     res.setHeader('Content-Type', 'text/xml');
     res.write(sitemapXml(item));
