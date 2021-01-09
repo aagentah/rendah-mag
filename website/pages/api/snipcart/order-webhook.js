@@ -7,6 +7,8 @@ export default async (req, res) => {
   try {
     const order = req.body;
 
+    console.log('order', order);
+
     if (order?.eventName === 'order.completed') {
       console.log('order.completed');
       await orderCompleted(order);
@@ -27,8 +29,8 @@ export default async (req, res) => {
       await subscriptionCancelled(order);
     }
 
-    if (order?.eventName === 'subcription.paused') {
-      console.log('subcription.paused');
+    if (order?.eventName === 'subscription.paused') {
+      console.log('subscription.paused');
       await subscriptionCancelled(order);
     }
 
