@@ -1,129 +1,30 @@
-import fetch from 'isomorphic-unfetch';
-
-import formatHttpError from '~/functions/formatHttpError';
-import welcomeDominionEmail from '~/lib/emails/welcome-dominion-subscription';
+import orderCompleted from '~/lib/snipcart/order-completed';
+import subscriptionCancelled from '~/lib/snipcart/subscription-cancelled';
+import subscriptionCreated from '~/lib/snipcart/subscription-created';
+import subscriptionResumed from '~/lib/snipcart/subscription-resumed';
 
 export default async (req, res) => {
   try {
     const order = req.body;
 
-    const addUpdateMailchimpUser = async (
-      email,
-      firstName,
-      lastName,
-      address,
-      isDominion
-    ) => {
-      const data = {
-        email_address: email,
-        status: 'subscribed',
-        merge_fields: {
-          FNAME: firstName,
-          LNAME: lastName,
-          ADDRESS: address,
-        },
-      };
-
-      const addOrUpdateMember = async () => {
-        const response = await fetch(
-          `${process.env.SITE_URL}/api/mailchimp/add-or-update-member`,
-          {
-            body: JSON.stringify({
-              email: email,
-              data: data,
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            method: 'POST',
-          }
-        );
-
-        // Error
-        if (!response.ok) {
-          throw new Error(await formatHttpError(response));
-        }
-      };
-
-      const addMembertags = async () => {
-        const tags = [
-          {
-            name: 'Customer',
-            status: 'active',
-          },
-        ];
-
-        if (isDominion) {
-          tags.push({
-            name: 'Dominion Subscription',
-            status: 'active',
-          });
-        }
-
-        const response = await fetch(
-          `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
-          {
-            body: JSON.stringify({
-              email: email,
-              tags: tags,
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            method: 'POST',
-          }
-        );
-
-        // Error
-        if (!response.ok) {
-          throw new Error(await formatHttpError(response));
-        }
-      };
-
-      await addOrUpdateMember();
-      await addMembertags();
-    };
-
     if (order?.eventName === 'order.completed') {
-      const { content } = order;
-      const { user } = content;
-      const { items } = content;
-      const { billingAddress, shippingAddress } = user;
-      const { email } = user;
-      const fullName = billingAddress?.fullName || shippingAddress?.fullName;
-      const firstName = fullName.split(' ')[0];
-      const lastName = fullName.split(' ')[1];
+      await orderCompleted(order);
+    }
 
-      const address = {
-        addr1: shippingAddress?.address1 || null,
-        addr2: shippingAddress?.address2 || null,
-        city: shippingAddress?.city || null,
-        state: shippingAddress?.province || null,
-        zip: shippingAddress?.postalCode || null,
-        country: shippingAddress?.country || null,
-      };
+    if (order?.eventName === 'subscription.created') {
+      subscriptionCreated(order);
+    }
 
-      let isDominion = false;
+    if (order?.eventName === 'subscription.resumed') {
+      subscriptionResumed(order);
+    }
 
-      for (let i = 0; i < items.length; i += 1) {
-        const item = items[i];
+    if (order?.eventName === 'subscription.cancelled') {
+      await subscriptionCancelled(order);
+    }
 
-        // Send dominion email
-        if (item.id === 'dominion-subscription') {
-          isDominion = true;
-          welcomeDominionEmail(email);
-          break;
-        }
-      }
-
-      // Add or update mailchimp user
-      await addUpdateMailchimpUser(
-        email,
-        firstName,
-        lastName,
-        address,
-        isDominion
-      );
+    if (order?.eventName === 'subcription.paused') {
+      await subscriptionCancelled(order);
     }
 
     return res.status(200).json({ error: '' });
