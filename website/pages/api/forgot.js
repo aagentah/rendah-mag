@@ -4,7 +4,7 @@ import promptEmailLogin from '~/lib/emails/promt-email-login';
 export default async (req, res) => {
   try {
     const { username } = req.body;
-    const user = await findUserByUsername(null, username);
+    const user = await findUserByUsername(username);
 
     if (user) {
       promptEmailLogin(username, user.hash, user.salt);

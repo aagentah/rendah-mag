@@ -18,7 +18,7 @@ handler
     }
     // You do not generally want to return the whole user object
     // because it may contain sensitive field such as !!password!! Only return what needed
-    const user = await findUserByUsername(req, requestUser.username);
+    const user = await findUserByUsername(requestUser.username);
     return res.json({ user });
   })
   .use(async (req, res, next) => {

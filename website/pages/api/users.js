@@ -11,7 +11,7 @@ handler
   //
   .post(async (req, res) => {
     // Here you check if the username has already been used
-    const userExisted = await findUserByUsername(req, req.body.username);
+    const userExisted = await findUserByUsername(req.body.username);
     const isUserEmpty =
       Object.keys(userExisted).length === 0 &&
       userExisted.constructor === Object;

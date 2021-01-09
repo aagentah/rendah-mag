@@ -1,6 +1,6 @@
 import client from '../config-write';
 
-const findUserByUsername = async (req, username) => {
+const findUserByUsername = async (username) => {
   try {
     // Here you find the user based on id/username in the database
     const query = '*[_type == "user" && username == $username] [0] { ..., }';

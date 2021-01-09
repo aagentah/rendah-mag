@@ -18,6 +18,7 @@ export default function Login({ siteConfig }) {
   const router = useRouter();
   const [user, { mutate }] = useUser();
   const fwdRoute = router.query?.fwdRoute ? router.query.fwdRoute : null;
+  const prefillEmail = router.query?.prefillEmail || null;
   const [submitButtonLoading, setSubmitButtonLoading] = useState(false);
 
   async function loginViaQuery() {
@@ -154,7 +155,7 @@ export default function Login({ siteConfig }) {
                 type="email"
                 label="Email"
                 name="username"
-                value=""
+                value={prefillEmail}
                 icon={inputIconEnvelope}
                 required
                 disabled={false}
