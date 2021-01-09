@@ -11,7 +11,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((req, id, done) => {
   // deserialize the username back into user object
-  const user = findUserByUsername(req, id);
+  const user = findUserByUsername(id);
   done(null, user);
 });
 
@@ -20,7 +20,7 @@ passport.use(
     { passReqToCallback: true },
     async (req, username, password, done) => {
       // Here you lookup the user in your DB and compare the password/hashed password
-      const user = await findUserByUsername(req, username);
+      const user = await findUserByUsername(username);
 
       // User doesn't exist
       if (Object.keys(user).length === 0 && user.constructor === Object) {

@@ -24,13 +24,8 @@ export default async (order) => {
         const response = await fetch(
           `${process.env.SITE_URL}/api/mailchimp/add-or-update-member`,
           {
-            body: JSON.stringify({
-              email: email,
-              data: data,
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
+            body: JSON.stringify({ email: email, data: data }),
+            headers: { 'Content-Type': 'application/json' },
             method: 'POST',
           }
         );
@@ -42,23 +37,13 @@ export default async (order) => {
       };
 
       const addMembertags = async () => {
-        const tags = [
-          {
-            name: 'Customer',
-            status: 'active',
-          },
-        ];
+        const tags = [{ name: 'Customer', status: 'active' }];
 
         const response = await fetch(
           `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
           {
-            body: JSON.stringify({
-              email: email,
-              tags: tags,
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
+            body: JSON.stringify({ email: email, tags: tags }),
+            headers: { 'Content-Type': 'application/json' },
             method: 'POST',
           }
         );
