@@ -14,8 +14,8 @@ const createUser = async (user) => {
       username: user.username,
       name: user.name,
       publicProfile: true,
-      isDominion: user?.isDominion || null,
-      dominionSince: user?.dominionSince || null,
+      isDominion: user.isDominion,
+      dominionSince: user.dominionSince,
       salt,
       hash,
     };
