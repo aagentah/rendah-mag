@@ -9,7 +9,6 @@ import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function DominionThankYou({ siteConfig }) {
   const router = useRouter();
-  const prefillEmail = router.query?.prefillEmail || null;
 
   return (
     <>
@@ -74,9 +73,8 @@ export default function DominionThankYou({ siteConfig }) {
               <Copy
                 /* Options */
                 text={`
-                  If you haven't already, please create your Rendah Mag account
-                  (using the email you used on purchase) to access your
-                  Dominion Profile.
+                  Check your email! We've created your account and have sent
+                  login details to access your Dominion profile.
                 `}
                 color="black"
                 size="large"
@@ -123,35 +121,6 @@ export default function DominionThankYou({ siteConfig }) {
                 color="black"
                 size="large"
                 truncate={null}
-              />
-            </div>
-
-            <div className="flex  justify-center  pb5">
-              <Button
-                /* Options */
-                type="primary"
-                size="medium"
-                text="Create Account"
-                color="black"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                invert={false}
-                loading={false}
-                disabled={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={{
-                  type: 'next',
-                  href: `/signup${
-                    prefillEmail ? `?prefillEmail=${prefillEmail}` : ''
-                  }`,
-                  target: null,
-                  routerLink: Link,
-                  routerLinkProps: {
-                    scroll: false,
-                  },
-                }}
               />
             </div>
           </div>
