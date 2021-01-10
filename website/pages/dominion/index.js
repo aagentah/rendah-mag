@@ -107,12 +107,10 @@ export default function Dominion({ siteConfig }) {
       <div className="pt4  pt0-md">
         <Container>
           <div className="flex  flex-wrap  pb5">
-            <div className="col-24  flex  justify-center">
-              <img
-                className="w-100  ph3  ph0-md  mb4  measure-wide"
-                src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610063765/dominion/dominion-logo.png"
-              />
-            </div>
+            <img
+              className="measure-wide  ph3  ph0-md  mb4  mla  mra"
+              src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610063765/dominion/dominion-logo.png"
+            />
 
             <div className="col-24  flex  justify-center">
               <div className="measure-wide  mb3  ph4  ph0-md">
@@ -225,12 +223,10 @@ export default function Dominion({ siteConfig }) {
         </Container>
 
         <div className="w-100  pt5  pt6-md  pb5  bg-almost-white  relative  mt5">
-          <div className="col-24  flex  justify-center  w-100  absolute  nt6  top  left">
-            <img
-              className="w-100  ph5  ph6-md  mb3  measure-wide"
-              src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610064911/dominion/cassette.png"
-            />
-          </div>
+          <img
+            className="measure-wide  ph5  ph6-md  mb3  mla  mra  absolute  nt6  top  left  right"
+            src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610064911/dominion/cassette.png"
+          />
         </div>
       </div>
     </Layout>
