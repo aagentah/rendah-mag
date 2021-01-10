@@ -206,6 +206,32 @@ export default function Login({ siteConfig }) {
                   /* Options */
                   type="secondary"
                   size="medium"
+                  text={"I don't have an account"}
+                  color="black"
+                  fluid={false}
+                  icon={buttonIconArrowRight}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'next',
+                    href: '/dominion',
+                    target: null,
+                    routerLink: Link,
+                    routerLinkProps: {
+                      scroll: false,
+                    },
+                  }}
+                />
+              </div>
+              <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
+                <Button
+                  /* Options */
+                  type="secondary"
+                  size="medium"
                   text="Forgot Password"
                   color="black"
                   fluid={false}
