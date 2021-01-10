@@ -11,6 +11,7 @@ const options = {
 };
 
 export default sanityClient(options);
+
 export const previewClient = sanityClient({
   ...options,
   useCdn: false,
