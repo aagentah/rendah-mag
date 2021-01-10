@@ -31,11 +31,6 @@ export default {
       type: "date",
     },
     {
-      name: "isDominionWiteList",
-      title: "Dominion Whitelisted",
-      type: "boolean",
-    },
-    {
       name: "publicProfile",
       title: "Public Profile",
       type: "boolean",
