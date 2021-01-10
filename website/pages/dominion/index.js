@@ -106,12 +106,24 @@ export default function Dominion({ siteConfig }) {
     >
       <div className="pt4  pt0-md">
         <Container>
-          <div className="flex  flex-wrap  pb5">
-            <img
-              className="measure-wide  ph3  ph0-md  mb4  mla  mra"
-              src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610063765/dominion/dominion-logo.png"
+          <div className="measure-wide  mla  mra  mb4">
+            <Image
+              /* Options */
+              src={
+                'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610317978/dominion/dominion-logo.png'
+              }
+              placeholder={null}
+              alt={'Dominion'}
+              figcaption={null}
+              height={null}
+              width={null}
+              customClass={null}
+              skeleton={false}
+              onClick={null}
             />
+          </div>
 
+          <div className="flex  flex-wrap  pb5">
             <div className="col-24  flex  justify-center">
               <div className="measure-wide  mb3  ph4  ph0-md">
                 <p className="f-secondary  taj  f5  pb4  lh-copy">
@@ -221,13 +233,6 @@ export default function Dominion({ siteConfig }) {
             </div>
           </div>
         </Container>
-
-        <div className="w-100  pt5  pt6-md  pb5  bg-almost-white  relative  mt5">
-          <img
-            className="measure-wide  ph5  ph6-md  mb3  mla  mra  absolute  nt6  top  left  right"
-            src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610064911/dominion/cassette.png"
-          />
-        </div>
       </div>
     </Layout>
   );
