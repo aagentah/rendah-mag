@@ -29,8 +29,6 @@ export default function Dominion({ siteConfig }) {
     if (process.browser) {
       if (window.Snipcart) {
         Snipcart.subscribe('order.completed', function (data) {
-          const emailQuery = data?.email ? `?prefillEmail=${data.email}` : '';
-
           if (data.items.length) {
             for (let i = 0; i < data.items.length; i += 1) {
               const item = data.items[i];
@@ -38,7 +36,7 @@ export default function Dominion({ siteConfig }) {
               if (item.id === 'dominion-subscription') {
                 setTimeout(() => {
                   Snipcart.api.modal.close();
-                  Router.push(`/dominion-thank-you${emailQuery}`);
+                  Router.push('/dominion-thank-you');
                 }, 3000);
               }
             }
