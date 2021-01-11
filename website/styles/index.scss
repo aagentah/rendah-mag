@@ -41,6 +41,7 @@
 @import 'modules/custom/footer';
 @import 'modules/custom/layout';
 @import 'modules/custom/form';
+@import 'modules/custom/profile';
 
 .navigation-wrapper {
   position: relative;
@@ -100,14 +101,26 @@
 .carousel-arrow--left {
   position: absolute;
   top: 35%;
-  left: -30px;
+  left: -25px;
   cursor: pointer;
+}
+
+@include breakpoint-up(md) {
+  .carousel-arrow--left {
+    left: -30px;
+  }
 }
 
 .carousel-arrow--right {
   position: absolute;
   top: 35%;
-  right: -30px;
+  right: -25px;
+}
+
+@include breakpoint-up(md) {
+  .carousel-arrow--right {
+    right: -30px;
+  }
 }
 
 ///
