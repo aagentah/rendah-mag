@@ -25,7 +25,7 @@ export default () =>
           S.editor().schemaType("siteSettings").documentId("siteSettings")
         ),
       S.listItem()
-        .icon(MDGridOn)
+        .icon(MDViewList)
         .title("Link In Bio")
         .child(S.editor().schemaType("linkInBio").documentId("linkInBio")),
       // Divider
@@ -56,14 +56,30 @@ export default () =>
               S.documentTypeListItem("storeCategory"),
             ])
         ),
+      // Dominion
+      S.listItem()
+        .icon(MDLoyalty)
+        .title("Dominion")
+        .child(
+          S.list()
+            .title("Dominion")
+            .items([
+              S.documentTypeListItem("user").icon(MDPerson),
+              S.documentTypeListItem("dominionItem"),
+              S.listItem()
+                .icon(MDViewList)
+                .title("Dominion Pipeline")
+                .child(
+                  S.editor()
+                    .schemaType("dominionPipeline")
+                    .documentId("dominionPipeline")
+                ),
+            ])
+        ),
       // Cypher
       S.documentTypeListItem("cypher").icon(MDMusic),
       // Guest Mix
       S.documentTypeListItem("mix").icon(MDMusicVideo),
-      // User
-      S.documentTypeListItem("user").icon(MDPerson),
-      // Dominion
-      S.documentTypeListItem("dominionItem").icon(MDLoyalty),
       // Smart Link
       S.documentTypeListItem("smartLink").icon(MDViewList),
     ]);

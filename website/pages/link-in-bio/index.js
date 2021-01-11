@@ -158,7 +158,7 @@ export default function LinkInBio({ siteConfig, linkInBio, preview }) {
               />
             </div>
 
-            <div className="flex  flex-wrap  justify-center  pb">
+            <div className="flex  flex-wrap  justify-center">
               {linkInBio.items?.length &&
                 linkInBio.items.map((item, i) => (
                   <div key={i._key} className="col-24">
