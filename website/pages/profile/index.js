@@ -7,6 +7,7 @@ import { Tabs } from 'next-pattern-library';
 import ProfileEdit from './profile-edit';
 import ProfileOrders from './profile-orders';
 import ProfileDominion from './profile-dominion';
+import ProfilePipeline from './profile-pipeline';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
@@ -79,6 +80,11 @@ export default function Profile({ siteConfig }) {
                       },
                       {
                         id: '3',
+                        tabTitle: 'Pipeline',
+                        tabContent: <ProfilePipeline />,
+                      },
+                      {
+                        id: '4',
                         tabTitle: 'Orders',
                         tabContent: <ProfileOrders />,
                       },

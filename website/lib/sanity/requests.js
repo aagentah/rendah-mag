@@ -322,3 +322,12 @@ export async function getLinkInBio(preview) {
   );
   return results;
 }
+
+export async function getDominionPipeline(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "dominionPipeline"] [0] {
+      ...,
+    }`
+  );
+  return results;
+}

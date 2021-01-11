@@ -21,10 +21,11 @@ import cypher from "./documents/cypher";
 import mix from "./documents/mix";
 
 // User
-import user from "./documents/user";
-
 // Dominion
 import dominionItem from "./documents/dominionItem";
+import user from "./documents/user";
+import dominionPipelineItem from "./objects/dominionPipelineItem";
+import dominionPipeline from "./objects/dominionPipeline";
 
 // Smart Link
 import smartLinkItem from "./documents/smartLinkItem";
@@ -56,6 +57,8 @@ export default createSchema({
     smartLink,
     linkInBioItem,
     linkInBio,
+    dominionPipelineItem,
+    dominionPipeline,
     //
     siteSettings,
   ]),
