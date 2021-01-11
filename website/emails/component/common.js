@@ -268,6 +268,21 @@ export default (title, body, image, buttonText, buttonLink) => {
                         <td>
                           <table cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tr>
+                              <td width="600" valign="top">
+                                <hr />
+                              </td>
+                            </tr>
+                            <tr>
+                              <td height="10">&nbsp;</td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
                               <td width="144" valign="top">
                               </td>
                               <td width="43" valign="top">
