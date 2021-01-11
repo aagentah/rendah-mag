@@ -16,8 +16,6 @@ export default function ProfileOrders() {
   useEffect(async () => {
     const dominionPipeline = await getDominionPipeline();
 
-    console.log('dominionPipeline', dominionPipeline);
-
     if (dominionPipeline) setPipelineItems(dominionPipeline);
   }, []);
 
