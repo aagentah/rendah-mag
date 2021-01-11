@@ -14,5 +14,6 @@
 
 .profile__dominion__carousel-item__modal-content {
   max-height: 70vh;
-  overflow-y: visible;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
