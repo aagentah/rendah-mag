@@ -17,3 +17,19 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
+
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #c3c3c3;
+  border: 2px solid #eee;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+}
