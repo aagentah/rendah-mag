@@ -68,7 +68,7 @@ export default function ProfileOrders() {
       <section>
         {customerDetails && (
           <>
-            <div className="pb4">
+            <div className="pb3">
               <Heading
                 /* Options */
                 htmlEntity="h1"
@@ -120,7 +120,7 @@ export default function ProfileOrders() {
           </>
         )}
 
-        <div className="pb4">
+        <div className="pb3">
           <Heading
             /* Options */
             htmlEntity="h1"

@@ -309,7 +309,7 @@ export default function ProfileEdit() {
           </div>
         </Modal>
 
-        <div className="pb4">
+        <div className="pb3">
           <Heading
             /* Options */
             htmlEntity="h1"
