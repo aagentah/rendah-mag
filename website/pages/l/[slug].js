@@ -42,8 +42,6 @@ export default function SmartLink({ siteConfig, post, preview }) {
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  console.log('post', post);
-
   const renderItemType = (item) => {
     let service;
     let icon;
@@ -255,8 +253,6 @@ export async function getStaticProps({ req, params, preview = false }) {
 
 export async function getStaticPaths() {
   const data = await getSmartLinksTotal();
-
-  console.log('data', data);
 
   return {
     paths:

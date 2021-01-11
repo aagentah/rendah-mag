@@ -26,8 +26,6 @@ const handler = async (req, res) => {
     // Compress image
     await resized.toFile(`/tmp/optimized.png`);
 
-    console.log('resized', resized);
-
     // Write to temporary folder
     const file = fs.readFileSync('/tmp/optimized.png');
 

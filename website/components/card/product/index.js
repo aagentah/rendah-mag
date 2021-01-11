@@ -7,7 +7,6 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 export default function CardDefault({ product }) {
-  console.log('product', product);
   const app = useApp();
 
   if (!app.deviceSize) return null;
@@ -81,7 +80,6 @@ export default function CardDefault({ product }) {
       color="black"
       size={headingSize}
       truncate={1}
-      
       /* Children */
       withLinkProps={null}
     />

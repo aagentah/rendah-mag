@@ -28,7 +28,7 @@ export default function Cyphers({ siteConfig }) {
 
   const handleAsyncTasks = async () => {
     const cyphersData = await getCurrentAndPreviousCyphers();
-    console.log('cyphersData', cyphersData);
+
     setCyphersLength(cyphersData.previous.length);
     setCyphers(cyphersData);
   };

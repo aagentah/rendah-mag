@@ -23,12 +23,6 @@ Router.events.on('routeChangeComplete', (url) => gtag.pageview(url));
 //   console.log(metric);
 // }
 
-export function reportWebVitals(metric) {
-  if (metric.label === 'web-vital') {
-    console.log(metric); // The metric object ({ id, name, startTime, value, label }) is logged to the console
-  }
-}
-
 function MyApp({ Component, pageProps }) {
   const transitionTimeout = 300;
 

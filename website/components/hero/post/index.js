@@ -62,9 +62,6 @@ export default function HeroPost({ post }) {
     />
   );
 
-  console.log('app.deviceSize', app.deviceSize);
-  console.log('imageHeight', imageHeight);
-
   return (
     <>
       {
