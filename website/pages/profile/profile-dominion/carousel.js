@@ -212,7 +212,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                     )}
                   </div>
 
-                  <div className="col-24  flex  justify-center  pt2">
+                  <div className="col-24  flex  justify-center  pt3">
                     <Button
                       /* Options */
                       type="primary"
