@@ -239,7 +239,12 @@ export default function Carousel({ dominionItems, refreshDominion }) {
             <article className="www  keen-slider__slide  relative  pt3  ph3  pb4">
               <div className="relative  profile__dominion__carousel-item__wrapper">
                 <div
-                  className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br-100  ba  bw1  bc-silver  ease-in-out  bg-white  silver`}
+                  className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br-100  ba  bw1  bc-silver  ease-in-out ${
+                    sliderNav &&
+                    currentNavSlide === sliderNav.details().size - 1
+                      ? 'bg-silver  white'
+                      : 'bg-white  silver'
+                  }`}
                 >
                   <div className="flex  flex-wrap">
                     <p className="col-24  t-primary  f5  f6-md  tac  lh-copy  pb2">
@@ -276,6 +281,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
             <>
               <ArrowLeft
                 onClick={(e) => {
+                  console.log('currentNavSlide', currentNavSlide);
                   // If not first slide
                   if (currentNavSlide !== 0) {
                     setCurrentNavSlide(currentNavSlide - 1);
@@ -289,13 +295,13 @@ export default function Carousel({ dominionItems, refreshDominion }) {
               <ArrowRight
                 onClick={(e) => {
                   // If not last slide
-                  if (currentNavSlide !== sliderNav.details().size - 2) {
+                  if (currentNavSlide !== sliderNav.details().size - 1) {
                     setCurrentNavSlide(currentNavSlide + 1);
                   }
 
                   sliderNav.next();
                 }}
-                disabled={currentNavSlide === sliderNav.details().size - 2}
+                disabled={currentNavSlide === sliderNav.details().size - 1}
               />
             </>
           )}
