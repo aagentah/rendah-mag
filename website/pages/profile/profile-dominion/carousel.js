@@ -19,7 +19,7 @@ import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import setCharAt from '~/functions/setCharAt';
 
-import { imageBuilder, getDominionItemsSinceDate } from '~/lib/sanity/requests';
+import { imageBuilder } from '~/lib/sanity/requests';
 
 const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
 
@@ -281,7 +281,6 @@ export default function Carousel({ dominionItems, refreshDominion }) {
             <>
               <ArrowLeft
                 onClick={(e) => {
-                  console.log('currentNavSlide', currentNavSlide);
                   // If not first slide
                   if (currentNavSlide !== 0) {
                     setCurrentNavSlide(currentNavSlide - 1);

@@ -78,18 +78,21 @@ export default function Post({ siteConfig, member }) {
                   withLinkProps={null}
                 />
               </div>
-              <div className="dib  pb3">
-                <Label
-                  /* Options */
-                  customClass={null}
-                  text={`(${member.alias})`}
-                  color="black"
-                  backgroundColor="white"
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
+              {member?.alias && (
+                <div className="dib  pb3">
+                  <Label
+                    /* Options */
+                    customClass={null}
+                    text={`(${member.alias})`}
+                    color="black"
+                    backgroundColor="white"
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
+              )}
+
               <div className="db  ph2  pb3">
                 <Label
                   /* Options */
