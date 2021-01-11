@@ -35,7 +35,6 @@ const sitemapXml = (allPosts, allProducts) => {
 
   // Posts
   allPosts.map((post) => {
-    console.log('post', post);
     const url = `${process.env.SITE_URL}/article/${post.slug}`;
 
     postsXML += `

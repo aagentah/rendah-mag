@@ -28,6 +28,5 @@ export function useJsonData(url) {
   const { data, error } = useSWR(url, fetcher);
   // if data is not defined, the query has not completed
   const loading = !data;
-  console.log('data', data);
   return [data, { loading, error }];
 }
