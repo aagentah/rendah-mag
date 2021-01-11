@@ -43,14 +43,33 @@ export default function ProfileDominion({ refreshDominion }) {
   if (user?.isDominion && dominionItems?.length) {
     return (
       <>
-        <div>
+        <section>
+          <div className="pb2">
+            <Heading
+              /* Options */
+              htmlEntity="h1"
+              text="Dominion."
+              color="black"
+              size="medium"
+              truncate={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <div className="pb4  mb2">
+            <p className="black  f6  lh-copy">
+              Here is where you can access your monthly Dominion content. We'll
+              usually email you when new items pop up here.
+            </p>
+          </div>
+
           {refreshDominion && (
             <Carousel
               dominionItems={dominionItems}
               refreshDominion={refreshDominion}
             />
           )}
-        </div>
+        </section>
 
         {user?.dominionSince && (
           <p className="t-secondary  f6  grey  mt4">
