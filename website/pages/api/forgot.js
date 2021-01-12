@@ -7,7 +7,12 @@ export default async (req, res) => {
     const user = await findUserByUsername(username);
 
     if (user?.username) {
-      await promptEmailLogin(username, user.hash, user.salt);
+      const response = await promptEmailLogin(username, user.hash, user.salt);
+
+      if (response?.error) {
+        throw new Error(response.error);
+      }
+
       return res.status(200).json({ error: '' });
     }
 
@@ -15,6 +20,6 @@ export default async (req, res) => {
   } catch (error) {
     // Handle catch
     console.error(`Error in api/forgot: ${error.message || error.toString()}`);
-    return false;
+    return res.status(501).json({ error: error.message || error.toString() });
   }
 };

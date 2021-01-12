@@ -29,12 +29,21 @@ export default async (username, hash, salt) => {
       htmlContent: emailCommon(title, body, image, buttonText, buttonLink),
     };
 
-    await sendinblue(sendSmtpEmail);
+    const response = await sendinblue(sendSmtpEmail);
+
+    if (response?.error) {
+      throw new Error(response.error);
+    }
+
+    return true;
   } catch (error) {
     // Handle catch
     console.error(
-      `Error in promt-email-login: ${error.message || error.toString()}`
+      `Error in lib/emails/promt-email-login: ${
+        error.message || error.toString()
+      }`
     );
-    return false;
+
+    return { error: error.message || error.toString() };
   }
 };
