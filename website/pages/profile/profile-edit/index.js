@@ -420,17 +420,19 @@ export default function ProfileEdit() {
                   readOnly={false}
                 />
               </div>
-              <div className="pv2">
-                <Checkbox
-                  /* Options */
-                  label="Public Profile"
-                  name="publicProfile"
-                  checked={user.publicProfile}
-                  required={false}
-                  disabled={false}
-                  onClick={null}
-                />
-              </div>
+              {
+                // <div className="pv2">
+                //   <Checkbox
+                //     /* Options */
+                //     label="Public Profile"
+                //     name="publicProfile"
+                //     checked={user.publicProfile}
+                //     required={false}
+                //     disabled={false}
+                //     onClick={null}
+                //   />
+                // </div>
+              }
             </div>
             <div className="col-24  col-12-md  pb3  pb0-md">
               <div className="bg-almost-white  pa3  pa4-md">

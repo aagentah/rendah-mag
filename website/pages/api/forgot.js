@@ -7,7 +7,7 @@ export default async (req, res) => {
     const user = await findUserByUsername(username);
 
     if (user?.username) {
-      promptEmailLogin(username, user.hash, user.salt);
+      await promptEmailLogin(username, user.hash, user.salt);
       return res.status(200).json({ error: '' });
     }
 

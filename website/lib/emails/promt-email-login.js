@@ -1,7 +1,7 @@
 import sendinblue from './sendinblue';
 import emailCommon from '~/emails/component/common';
 
-export default (username, hash, salt) => {
+export default async (username, hash, salt) => {
   try {
     const title = 'Password Reset';
 
@@ -29,7 +29,7 @@ export default (username, hash, salt) => {
       htmlContent: emailCommon(title, body, image, buttonText, buttonLink),
     };
 
-    sendinblue(sendSmtpEmail);
+    await sendinblue(sendSmtpEmail);
   } catch (error) {
     // Handle catch
     console.error(
