@@ -36,9 +36,8 @@ export default function ProfileOrders() {
         </div>
         <div className="pb4  mb2">
           <p className="black  f6  lh-copy">
-            Here we document our progress in upcoming features and services for
-            our subscription base. If you'd like something as part of your
-            Dominion membership,{' '}
+            Here we document progress in upcoming features and services. If
+            you'd like something as part of your Dominion subscription,{' '}
             <a className="underline" href="mailto:info@rendahmag.com">
               reach out to us!
             </a>

@@ -144,18 +144,14 @@ export default function Dominion({ siteConfig }) {
                     A quarter-yearly printed issue of Rendah Mag.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Exclusive monthly updates on releases & insights within
-                    underground music culture.
+                    Frequent exclusive music, samples, tutorials, and more from
+                    featured artists & collectives.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
                     Your own Dominion Profile login.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Discounts from all coming Rendah Mag products
-                  </li>
-                  <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Exclusive music, samples, and tutorials from featured
-                    artists & collectives.
+                    Discounts from all coming Rendah Mag products.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy  fw7  green">
                     If you're joining us in January, you also get a FREE
@@ -164,7 +160,7 @@ export default function Dominion({ siteConfig }) {
                 </ul>
 
                 <p className="f-secondary  taj  f5  pb3  lh-copy">
-                  Our mission with this project is to offer something new and
+                  Our mission with this project is to present something new and
                   exciting for the community in the hope that we can truly bring
                   something of value to artists and listeners alike. We want to
                   work not only with people of the industry, but also yourself

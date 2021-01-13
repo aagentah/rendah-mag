@@ -31,10 +31,6 @@ export default (email, temporaryPassword) => {
       <li><strong>Username:</strong> ${email}</li>
       <li><strong>Password:</strong> ${temporaryPassword}</li>
     </ul>
-    <br />
-    <br />
-    If you have any questions at all, please don't hesitate to contact the team at
-    info@rendahmag.com.
   `;
 
     const image = null;
