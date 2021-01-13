@@ -13,8 +13,9 @@ export default function HeroPost({ post }) {
   if (!app.deviceSize) return null;
   const scale = app.isRetina ? 2 : 1;
   let imageUrlWidth;
-  const imageHeight = 500;
+  let imageHeight = null;
 
+  if (app.deviceSize === 'md') imageHeight = 700;
   if (app.deviceSize === 'md') imageUrlWidth = 700;
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
@@ -25,13 +26,11 @@ export default function HeroPost({ post }) {
       src={imageBuilder
         .image(post?.coverImage)
         .width(imageUrlWidth * scale)
-        .height(imageHeight * scale)
         .auto('format')
         .fit('clip')
         .url()}
       placeholder={imageBuilder
         .image(post?.coverImage)
-        .height(imageHeight / 10)
         .width(imageUrlWidth / 10)
         .auto('format')
         .fit('clip')
@@ -103,7 +102,7 @@ export default function HeroPost({ post }) {
 
   return (
     <>
-      <div className="hero--darken-all">
+      <div className="hero--home  hero--darken-all">
         <Hero
           /* Options */
           height={imageHeight}
