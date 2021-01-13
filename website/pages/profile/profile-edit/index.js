@@ -96,7 +96,7 @@ export default function ProfileEdit() {
     const body = {
       username: e.currentTarget.username.value,
       name: e.currentTarget.name.value,
-      publicProfile: e.currentTarget.publicProfile.checked,
+      // publicProfile: e.currentTarget.publicProfile.checked,
     };
 
     if (tags.length > 0) body.tags = tags;
