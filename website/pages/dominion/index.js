@@ -185,7 +185,7 @@ export default function Dominion({ siteConfig }) {
                   data-item-image=""
                   data-item-name="Dominion Subscription"
                   data-item-max-quantity="1"
-                  data-item-weight="0"
+                  data-item-weight="1"
                   data-item-payment-interval="Month"
                   data-item-payment-interval-count="1"
                   data-item-recurring-shipping="false"

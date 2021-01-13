@@ -108,7 +108,7 @@ export default (title, body, image, buttonText, buttonLink) => {
       <title>Rendah Mag</title>
 
       <style type="text/css">
-        body, .bg, p, span, strong, em, strong, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn) {
+        body, .bg, p, span, strong, em, strong, ul, li, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn) {
           background: #ffffff !important;
           color: #111111 !important;
         }
@@ -119,7 +119,7 @@ export default (title, body, image, buttonText, buttonLink) => {
         }
 
         @media (prefers-color-scheme: dark) {
-          body, .bg, p, span, strong, em, strong, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn) {
+          body, .bg, p, span, strong, em, strong, ul, li, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn) {
             background: #111111 !important;
             color: #ffffff !important;
           }
