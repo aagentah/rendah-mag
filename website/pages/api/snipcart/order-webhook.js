@@ -10,7 +10,7 @@ export default async (req, res) => {
 
     if (order?.eventName === 'order.completed') {
       const orderCompletedRes = await orderCompleted(order);
-      if (orderCompletedRed?.error) e += orderCompletedRed.error;
+      if (orderCompletedRes?.error) e += orderCompletedRes.error;
     }
 
     if (order?.eventName === 'subscription.created') {
@@ -19,8 +19,8 @@ export default async (req, res) => {
     }
 
     if (order?.eventName === 'subscription.resumed') {
-      const subscriptionResumedRed = await subscriptionResumed(order);
-      if (subscriptionResumedRed?.error) e += subscriptionResumedRed.error;
+      const subscriptionResumedRes = await subscriptionResumed(order);
+      if (subscriptionResumedRes?.error) e += subscriptionResumedRes.error;
     }
 
     if (order?.eventName === 'subscription.cancelled') {
@@ -29,8 +29,8 @@ export default async (req, res) => {
     }
 
     if (order?.eventName === 'subscription.paused') {
-      const subscriptionCancelledRes = await subscriptionCancelled(order);
-      if (subscriptionCancelledRes?.error) e += subscriptionCancelledRes.error;
+      const subscriptionPausedRes = await subscriptionCancelled(order);
+      if (subscriptionPausedRes?.error) e += subscriptionPausedRes.error;
     }
 
     if (e) {
