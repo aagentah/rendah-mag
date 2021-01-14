@@ -56,6 +56,16 @@
   }
 }
 
+.snip-btn--small {
+  height: 30px !important;
+  line-height: 26px !important;
+
+  &:hover {
+    height: 30px !important;
+    line-height: 26px !important;
+  }
+}
+
 .snip-btn--full,
 .snip-btn--highlight {
   background-color: var(--black) !important;
@@ -72,6 +82,10 @@
 
 .snip-static__title {
   @extend .t-primary;
+}
+
+.snip-footer__copyright {
+  color: var(--white) !important;
 }
 
 // V3
