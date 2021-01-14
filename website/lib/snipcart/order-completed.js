@@ -69,6 +69,11 @@ export default async (order) => {
     console.error(
       `Error in snipcart/order-completed: ${error.message || error.toString()}`
     );
-    return false;
+
+    return {
+      error: `Error in snipcart/order-completed: ${
+        error.message || error.toString()
+      }`,
+    };
   }
 };

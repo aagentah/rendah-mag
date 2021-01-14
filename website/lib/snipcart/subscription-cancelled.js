@@ -44,6 +44,11 @@ export default async (order) => {
         error.message || error.toString()
       }`
     );
-    return false;
+
+    return {
+      error: `Error in snipcart/subscription-cancelled: ${
+        error.message || error.toString()
+      }`,
+    };
   }
 };

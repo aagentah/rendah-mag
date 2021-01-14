@@ -32,7 +32,11 @@ export default async (req, res) => {
     return true;
   } catch (error) {
     // Handle catch
-    console.error('Error in api/mailchimp/add-or-update-member:', error);
-    return res.status(500).json({ error: error });
+    console.error(
+      'Error in api/mailchimp/add-or-update-member:',
+      error.message || error.toString()
+    );
+
+    return res.status(500).json({ error: error.message || error.toString() });
   }
 };
