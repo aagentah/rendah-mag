@@ -111,7 +111,7 @@ export default function DominionThankYou({ siteConfig }) {
               />
             </div>
 
-            <div className="pb4  taj">
+            <div className="pb5  taj">
               <Copy
                 /* Options */
                 text={`
