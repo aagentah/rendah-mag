@@ -80,12 +80,21 @@
   }
 }
 
+#snipcart-apply-discount .snip-btn {
+  height: 36px !important;
+  line-height: 32px !important;
+}
+
 .snip-static__title {
   @extend .t-primary;
 }
 
 .snip-footer__copyright {
   color: var(--white) !important;
+}
+
+.snip-loader--bar::before {
+  background-color: var(--almost-white) !important;
 }
 
 // V3
