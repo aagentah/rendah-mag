@@ -16,6 +16,11 @@ export default {
       required: true,
     },
     {
+      name: "handle",
+      title: "Handle",
+      type: "string",
+    },
+    {
       name: "avatar",
       title: "Avatar",
       type: "image",

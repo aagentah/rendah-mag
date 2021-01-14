@@ -19,12 +19,17 @@ import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import passwordStrength from '~/lib/password-strength';
 import { imageBuilder } from '~/lib/sanity/requests';
+import findUserByHandle from '~/lib/sanity/user/findUserByHandle';
 
 export default function ProfileEdit() {
   const app = useApp();
   const dispatch = useDispatchApp();
   const [updateButtonLoading, setUpdateButtonLoading] = useState(false);
-  const [deleteModalActive, setDeleteModalActive] = useState(false);
+  const [passwordModalActive, setPasswordModalActive] = useState(false);
+  const [
+    updatePasswordButtonLoading,
+    setUpdatePasswordButtonLoading,
+  ] = useState(false);
   const [avatarModalActive, setAvatarModalActive] = useState(false);
   const [user, { mutate }] = useUser();
   const [avatarBlob, setAvatarBlob] = useState(null);
@@ -76,6 +81,58 @@ export default function ProfileEdit() {
     }
   }, [user]);
 
+  async function handleUpdatePassword(e) {
+    e.preventDefault();
+
+    // Prevent double submit
+    if (updatePasswordButtonLoading) return;
+
+    const body = {
+      password: e.currentTarget.password.value,
+      rpassword: e.currentTarget.rpassword.value,
+    };
+
+    if (!body.password) {
+      return toast.error('Please enter a new password');
+    }
+
+    if (e.currentTarget.password.value) {
+      body.password = e.currentTarget.password.value;
+
+      if (body.password !== body.rpassword) {
+        return toast.error("The passwords don't match");
+      }
+
+      // Check password strength
+      const isPasswordValid = passwordStrength(body.password);
+      if (!isPasswordValid.isValid) {
+        return toast.error(isPasswordValid.message);
+      }
+    }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setUpdatePasswordButtonLoading(true);
+
+    // Update user
+    const response = await fetch(`${process.env.SITE_URL}/api/user`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+
+    if (response.ok) {
+      // Success
+      mutate(await response.json());
+      toast.success('Successfully updated');
+    } else {
+      // Error
+      toast.error('Error whilst updating, try again, or a different browser.');
+    }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setUpdatePasswordButtonLoading(false);
+  }
+
   async function handleEditProfile(e) {
     e.preventDefault();
 
@@ -96,33 +153,36 @@ export default function ProfileEdit() {
     const body = {
       username: e.currentTarget.username.value,
       name: e.currentTarget.name.value,
-      // publicProfile: e.currentTarget.publicProfile.checked,
+      handle: e.currentTarget.handle.value,
+      publicProfile: e.currentTarget.publicProfile.checked,
     };
+
+    if (!body.name) {
+      return toast.error('Please enter your name');
+    }
+
+    if (!body.handle) {
+      return toast.error('Please add a Dominion handle');
+    }
+
+    if (!/^[a-zA-Z0-9]*$/.test(body.handle)) {
+      return toast.error(
+        'The Dominion handle should only contain alphanumeric characters'
+      );
+    }
+
+    if (body.handle && body.handle !== body.handle) {
+      const userByHandle = await findUserByHandle(body.handle);
+
+      console.log('userByHandle', userByHandle);
+
+      if (userByHandle?.username) {
+        return toast.error('This Dominion handle is already in use');
+      }
+    }
 
     if (tags.length > 0) body.tags = tags;
     if (avatarBlob) body.avatar = avatarBlob;
-
-    if (e.currentTarget.password.value) {
-      body.password = e.currentTarget.password.value;
-
-      if (body.password !== e.currentTarget.rpassword.value) {
-        return toast.error("The passwords don't match");
-      }
-
-      if (body.password === e.currentTarget.username.value) {
-        return toast.error('Password should not match Username');
-      }
-
-      if (body.password === e.currentTarget.name.value) {
-        return toast.error('Password should not match Name');
-      }
-
-      // Check password strength
-      const isPasswordValid = passwordStrength(body.password);
-      if (!isPasswordValid.isValid) {
-        return toast.error(isPasswordValid.message);
-      }
-    }
 
     dispatch({ type: 'TOGGLE_LOADING' });
     setUpdateButtonLoading(true);
@@ -152,29 +212,11 @@ export default function ProfileEdit() {
     setUpdateButtonLoading(false);
   }
 
-  async function handleDeleteProfile() {
-    dispatch({ type: 'TOGGLE_LOADING' });
-    setUpdateButtonLoading(true);
-
-    const res = await fetch(`${process.env.SITE_URL}/api/user`, {
-      method: 'DELETE',
-    });
-
-    if (res.status === 204) {
-      mutate({ user: null });
-      Router.replace('/');
-    } else {
-      toast.error('Error whilst deleting, try again.');
-    }
-
-    dispatch({ type: 'TOGGLE_LOADING' });
-    setUpdateButtonLoading(false);
-  }
-
   const buttonIconTrash = <Icon icon={['fas', 'trash']} />;
   const inputIconEnvelope = <Icon icon={['fas', 'envelope']} />;
   const inputIconUser = <Icon icon={['fas', 'user']} />;
   const inputIconLock = <Icon icon={['fas', 'lock']} />;
+  const inputIconAt = <Icon icon={['fas', 'at']} />;
 
   if (user) {
     return (
@@ -182,13 +224,13 @@ export default function ProfileEdit() {
         <Modal
           /* Options */
           size="small"
-          active={deleteModalActive}
+          active={passwordModalActive}
         >
           <div className="pb2">
             <Heading
               /* Options */
               htmlEntity="h1"
-              text="Are you sure?"
+              text="Change your password"
               color="black"
               size="large"
               truncate={0}
@@ -200,52 +242,95 @@ export default function ProfileEdit() {
           <div className="pb3">
             <Copy
               /* Options */
-              text="This is the point of no return. Are you sure you want to DELETE your account?"
+              text="Enter your new password."
               color="black"
               size="medium"
               truncate={null}
             />
           </div>
-          <div className="flex  flex-wrap  pb2">
-            <div className="col-12  flex  justify-center  justify-start-md  align-center">
-              <Button
-                /* Options */
-                type="primary"
-                size="medium"
-                text="Delete"
-                color="red"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted={false}
-                loading={false}
-                disabled={false}
-                onClick={handleDeleteProfile}
-                /* Children */
-                withLinkProps={null}
-              />
+          <form
+            noValidate
+            autocomplete="off"
+            name="lastpass-disable-search"
+            className="w-100"
+            onSubmit={handleUpdatePassword}
+          >
+            <div className="flex  flex-wrap">
+              <div className="col-24  pb3">
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="password"
+                    label="Change Password"
+                    name="password"
+                    value=""
+                    icon={inputIconLock}
+                    required={true}
+                    disabled={false}
+                    readOnly={false}
+                  />
+                </div>
+                <div className="pv2  mb3">
+                  <Input
+                    /* Options */
+                    type="password"
+                    label="Repeat Change Password"
+                    name="rpassword"
+                    value=""
+                    icon={inputIconLock}
+                    required={true}
+                    disabled={false}
+                    readOnly={false}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="col-12  flex  justify-center  justify-start-md  align-center">
-              <Button
-                /* Options */
-                type="secondary"
-                size="medium"
-                text="Cancel"
-                color="black"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted={false}
-                loading={false}
-                disabled={false}
-                onClick={() => {
-                  setDeleteModalActive(false);
-                }}
-                /* Children */
-                withLinkProps={null}
-              />
+            <div className="flex  flex-wrap  pb2">
+              <div className="col-12  flex  justify-center  justify-start-md  align-center">
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="medium"
+                  text="Update"
+                  color="black"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={updatePasswordButtonLoading}
+                  disabled={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'form',
+                    url: null,
+                    target: null,
+                    routerLink: null,
+                  }}
+                />
+              </div>
+              <div className="col-12  flex  justify-center  justify-start-md  align-center">
+                <Button
+                  /* Options */
+                  type="secondary"
+                  size="medium"
+                  text="Cancel"
+                  color="black"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={false}
+                  disabled={false}
+                  onClick={() => {
+                    setPasswordModalActive(false);
+                  }}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
             </div>
-          </div>
+          </form>
         </Modal>
 
         <Modal
@@ -331,7 +416,7 @@ export default function ProfileEdit() {
                 placeholder={null}
                 alt={user?.username || ''}
                 figcaption={null}
-                height={150}
+                height={null}
                 width={null}
                 customClass="shadow2"
                 onClick={null}
@@ -397,42 +482,27 @@ export default function ProfileEdit() {
               <div className="pv2">
                 <Input
                   /* Options */
-                  type="password"
-                  label="Change Password"
-                  name="password"
-                  value=""
-                  icon={inputIconLock}
-                  required={false}
+                  type="text"
+                  label="Dominion Handle"
+                  name="handle"
+                  value={user?.handle || ''}
+                  icon={inputIconAt}
+                  required
                   disabled={false}
                   readOnly={false}
                 />
               </div>
-              <div className="pv2  mb3">
-                <Input
+              <div className="pv3">
+                <Checkbox
                   /* Options */
-                  type="password"
-                  label="Repeat Change Password"
-                  name="rpassword"
-                  value=""
-                  icon={inputIconLock}
+                  label="Public Profile (Coming Soon)"
+                  name="publicProfile"
+                  checked={user.publicProfile}
                   required={false}
                   disabled={false}
-                  readOnly={false}
+                  onClick={null}
                 />
               </div>
-              {
-                // <div className="pv2">
-                //   <Checkbox
-                //     /* Options */
-                //     label="Public Profile"
-                //     name="publicProfile"
-                //     checked={user.publicProfile}
-                //     required={false}
-                //     disabled={false}
-                //     onClick={null}
-                //   />
-                // </div>
-              }
             </div>
             <div className="col-24  col-12-md  pb3  pb0-md">
               <div className="bg-almost-white  pa3  pa4-md">
@@ -493,28 +563,26 @@ export default function ProfileEdit() {
                 }}
               />
             </div>
-            {
-              // <div className="db  dib-md  pr3  pb1">
-              //   <Button
-              //     /* Options */
-              //     type="secondary"
-              //     size="small"
-              //     text="Delete Profile"
-              //     color="red"
-              //     fluid={false}
-              //     icon={buttonIconTrash}
-              //     iconFloat="left"
-              //     inverted
-              //     loading={false}
-              //     disabled={app.isLoading}
-              //     onClick={() => {
-              //       setDeleteModalActive(!deleteModalActive);
-              //     }}
-              //     /* Children */
-              //     withLinkProps={null}
-              //   />
-              // </div>
-            }
+            <div className="db  dib-md  pr3  pb1">
+              <Button
+                /* Options */
+                type="secondary"
+                size="small"
+                text="Change Password"
+                color="black"
+                fluid={false}
+                icon={inputIconLock}
+                iconFloat="left"
+                inverted
+                loading={false}
+                disabled={app.isLoading}
+                onClick={() => {
+                  setPasswordModalActive(!passwordModalActive);
+                }}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
           </div>
         </form>
       </>
