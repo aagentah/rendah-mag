@@ -64,6 +64,8 @@ export default async (order) => {
 
     // Add or update mailchimp user
     await addUpdateMailchimpUser(email, firstName, lastName);
+
+    return { error: '' };
   } catch (error) {
     // Handle catch
     console.error(
