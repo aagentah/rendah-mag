@@ -42,7 +42,7 @@ export default async (order) => {
         }
       );
 
-      console.log('created: ', response.status);
+      console.log('yo 2:', response.status);
 
       // Error
       if (!response.ok) {
