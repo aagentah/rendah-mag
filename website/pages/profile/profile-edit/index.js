@@ -89,7 +89,6 @@ export default function ProfileEdit() {
 
     const body = {
       password: e.currentTarget.password.value,
-      rpassword: e.currentTarget.rpassword.value,
     };
 
     if (!body.password) {
@@ -99,8 +98,16 @@ export default function ProfileEdit() {
     if (e.currentTarget.password.value) {
       body.password = e.currentTarget.password.value;
 
-      if (body.password !== body.rpassword) {
+      if (body.password !== e.currentTarget.rpassword.value) {
         return toast.error("The passwords don't match");
+      }
+
+      if (body.password === user?.username) {
+        return toast.error('Password should not match Username');
+      }
+
+      if (body.password === user?.name) {
+        return toast.error('Password should not match Name');
       }
 
       // Check password strength
@@ -123,7 +130,8 @@ export default function ProfileEdit() {
     if (response.ok) {
       // Success
       mutate(await response.json());
-      toast.success('Successfully updated');
+      toast.success('Password successfully updated');
+      setPasswordModalActive(false);
     } else {
       // Error
       toast.error('Error whilst updating, try again, or a different browser.');
