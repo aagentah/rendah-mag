@@ -7,6 +7,7 @@ export default async (order) => {
     const addUpdateMailchimpUser = async (email, firstName, lastName) => {
       const data = {
         email_address: email,
+        status_if_new: 'subscribed',
         status: 'subscribed',
         merge_fields: {
           FNAME: firstName,
