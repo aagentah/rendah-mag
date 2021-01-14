@@ -43,10 +43,15 @@ export default async (order) => {
   } catch (error) {
     // Handle catch
     console.error(
-      `Error in snipcart/subscription-cancelled: ${
+      `Error in snipcart/subscription-resumed: ${
         error.message || error.toString()
       }`
     );
-    return false;
+
+    return {
+      error: `Error in snipcart/subscription-resumed: ${
+        error.message || error.toString()
+      }`,
+    };
   }
 };

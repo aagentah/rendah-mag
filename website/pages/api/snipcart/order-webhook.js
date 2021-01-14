@@ -6,25 +6,35 @@ import subscriptionResumed from '~/lib/snipcart/subscription-resumed';
 export default async (req, res) => {
   try {
     const order = req.body;
+    let e = null;
 
     if (order?.eventName === 'order.completed') {
-      await orderCompleted(order);
+      const orderCompletedRes = await orderCompleted(order);
+      if (orderCompletedRed?.error) e += orderCompletedRed.error;
     }
 
     if (order?.eventName === 'subscription.created') {
-      await subscriptionCreated(order);
+      const subscriptionCreatedRes = await subscriptionCreated(order);
+      if (subscriptionCreatedRes?.error) e += subscriptionCreatedRes.error;
     }
 
     if (order?.eventName === 'subscription.resumed') {
-      await subscriptionResumed(order);
+      const subscriptionResumedRed = await subscriptionResumed(order);
+      if (subscriptionResumedRed?.error) e += subscriptionResumedRed.error;
     }
 
     if (order?.eventName === 'subscription.cancelled') {
-      await subscriptionCancelled(order);
+      const subscriptionCancelledRes = await subscriptionCancelled(order);
+      if (subscriptionCancelledRes?.error) e += subscriptionCancelledRes.error;
     }
 
     if (order?.eventName === 'subscription.paused') {
-      await subscriptionCancelled(order);
+      const subscriptionCancelledRes = await subscriptionCancelled(order);
+      if (subscriptionCancelledRes?.error) e += subscriptionCancelledRes.error;
+    }
+
+    if (e) {
+      throw new Error(e);
     }
 
     return res.status(200).json({ error: '' });
