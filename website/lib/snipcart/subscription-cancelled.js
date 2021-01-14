@@ -35,8 +35,10 @@ export default async (order) => {
       }
     };
 
-    updateUserByUsername(null, userData, updatefields);
-    addMembertags();
+    await updateUserByUsername(null, userData, updatefields);
+    await addMembertags();
+
+    return { error: '' };
   } catch (error) {
     // Handle catch
     console.error(

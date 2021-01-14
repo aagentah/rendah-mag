@@ -34,8 +34,6 @@ export default async (username, hash, salt) => {
     if (response?.error) {
       throw new Error(response.error);
     }
-
-    return true;
   } catch (error) {
     // Handle catch
     console.error(

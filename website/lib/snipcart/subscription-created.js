@@ -42,6 +42,8 @@ export default async (order) => {
         }
       );
 
+      console.log('created: ', response.status);
+
       // Error
       if (!response.ok) {
         throw new Error(await formatHttpError(response));
@@ -58,9 +60,11 @@ export default async (order) => {
       throw new Error('The username has already been used.');
     }
 
-    createUser(userData);
-    welcomeDominionEmail(email, temporaryPassword);
-    addMembertags();
+    await createUser(userData);
+    await welcomeDominionEmail(email, temporaryPassword);
+    await addMembertags();
+
+    return { error: '' };
   } catch (error) {
     // Handle catch
     console.error(

@@ -1,7 +1,7 @@
 import sendinblue from './sendinblue';
 import emailCommon from '~/emails/component/common';
 
-export default (email, temporaryPassword) => {
+export default async (email, temporaryPassword) => {
   try {
     const title = 'Welcome to the Dominion!';
 
@@ -53,7 +53,11 @@ export default (email, temporaryPassword) => {
       htmlContent: emailCommon(title, body, image, buttonText, buttonLink),
     };
 
-    sendinblue(sendSmtpEmail);
+    const response = await sendinblue(sendSmtpEmail);
+
+    if (response?.error) {
+      throw new Error(response.error);
+    }
   } catch (error) {
     // Handle catch
     console.error(
@@ -61,6 +65,7 @@ export default (email, temporaryPassword) => {
         error.message || error.toString()
       }`
     );
+
     return false;
   }
 };
