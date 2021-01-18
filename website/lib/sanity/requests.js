@@ -108,7 +108,7 @@ export async function getCurrentAndPreviousCyphers(preview) {
   const [current, previous] = await Promise.all([
     curClient
       .fetch(
-        `*[_type == "cypher" && announcementFields.isAnnounced] | order(announcementFields.announcedAt desc) {
+        `*[_type == "cypher" && announcementFields.isAnnounced && !publishedFields.isPublished] | order(announcementFields.announcedAt desc) {
               ...,
             } `
       )
