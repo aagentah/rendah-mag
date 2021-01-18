@@ -106,7 +106,7 @@ export default function Login({ siteConfig }) {
     if (router.query?.username && router.query?.hash && router.query?.salt) {
       loginViaQuery();
     }
-  }, []);
+  }, [router.query.username, router.query.hash, router.query.salt]);
 
   useEffect(() => {
     if (user) Router.push(`${fwdRoute ? `/${fwdRoute}` : '/profile'}`);
