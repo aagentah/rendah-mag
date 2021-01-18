@@ -85,7 +85,7 @@ export default function ProfileEdit() {
     e.preventDefault();
 
     // Prevent double submit
-    if (updatePasswordButtonLoading) return;
+    if (updatePasswordButtonLoading) return false;
 
     const body = {
       password: e.currentTarget.password.value,
@@ -139,13 +139,14 @@ export default function ProfileEdit() {
 
     dispatch({ type: 'TOGGLE_LOADING' });
     setUpdatePasswordButtonLoading(false);
+    return true;
   }
 
   async function handleEditProfile(e) {
     e.preventDefault();
 
     // Prevent double submit
-    if (updateButtonLoading) return;
+    if (updateButtonLoading) return false;
 
     const tags = [];
 
@@ -179,7 +180,7 @@ export default function ProfileEdit() {
       );
     }
 
-    if (body.handle && body.handle !== body.handle) {
+    if (body.handle && body.handle !== user.handle) {
       const userByHandle = await findUserByHandle(body.handle);
 
       console.log('userByHandle', userByHandle);
@@ -218,6 +219,7 @@ export default function ProfileEdit() {
 
     dispatch({ type: 'TOGGLE_LOADING' });
     setUpdateButtonLoading(false);
+    return true;
   }
 
   const buttonIconTrash = <Icon icon={['fas', 'trash']} />;
@@ -258,7 +260,7 @@ export default function ProfileEdit() {
           </div>
           <form
             noValidate
-            autocomplete="off"
+            autoComplete="off"
             name="lastpass-disable-search"
             className="w-100"
             onSubmit={handleUpdatePassword}
@@ -273,7 +275,7 @@ export default function ProfileEdit() {
                     name="password"
                     value=""
                     icon={inputIconLock}
-                    required={true}
+                    required
                     disabled={false}
                     readOnly={false}
                   />
@@ -286,7 +288,7 @@ export default function ProfileEdit() {
                     name="rpassword"
                     value=""
                     icon={inputIconLock}
-                    required={true}
+                    required
                     disabled={false}
                     readOnly={false}
                   />

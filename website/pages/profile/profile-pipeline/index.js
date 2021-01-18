@@ -49,13 +49,13 @@ export default function ProfileOrders() {
             <div key={i._key} className="timeline-block timeline-block-right">
               {item?.completed && (
                 <div className="marker active">
-                  <i className="fa fa-check active" aria-hidden="true"></i>
+                  <i className="fa fa-check active" aria-hidden="true" />
                 </div>
               )}
 
               {!item?.completed && (
                 <div className="marker">
-                  <i className="fa fa-check" aria-hidden="true"></i>
+                  <i className="fa fa-check" aria-hidden="true" />
                 </div>
               )}
 

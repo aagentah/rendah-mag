@@ -92,7 +92,7 @@ export default function Dominion({ siteConfig }) {
   return (
     <Layout
       navOffset="top"
-      navOnWhite={true}
+      navOnWhite
       hasNav
       hasFooter
       meta={{
@@ -109,11 +109,9 @@ export default function Dominion({ siteConfig }) {
           <div className="measure-wide  mla  mra  mb4">
             <Image
               /* Options */
-              src={
-                'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610317978/dominion/dominion-logo.png'
-              }
+              src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610317978/dominion/dominion-logo.png"
               placeholder={null}
-              alt={'Dominion'}
+              alt="Dominion"
               figcaption={null}
               height={null}
               width={null}

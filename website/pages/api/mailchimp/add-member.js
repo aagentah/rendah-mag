@@ -24,9 +24,9 @@ export default async (req, res) => {
     if (!response.ok) {
       if ((await response.json()).title === 'Member Exists') {
         return res.status(400).json({ error: '' });
-      } else {
+      } 
         throw new Error(await formatHttpError(response));
-      }
+      
     }
 
     // Success
@@ -35,6 +35,6 @@ export default async (req, res) => {
   } catch (error) {
     // Handle catch
     console.error('Error in api/mailchimp/add-member:', error);
-    return res.status(500).json({ error: error });
+    return res.status(500).json({ error });
   }
 };
