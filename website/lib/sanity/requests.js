@@ -120,7 +120,7 @@ export async function getCurrentAndPreviousCyphers(preview) {
     ),
   ]);
 
-  return { current: current || null, previous: previous };
+  return { current: current || null, previous };
 }
 
 export async function getLatestAnouncedCypher(preview) {
@@ -208,7 +208,7 @@ export async function getPostAndMore(slug, preview) {
       { slug }
     ),
   ]);
-  return { post, morePosts: morePosts };
+  return { post, morePosts };
 }
 
 export async function getPreviewProductBySlug(slug) {
@@ -243,7 +243,7 @@ export async function getProductAndMore(slug, preview) {
     ),
   ]);
 
-  return { product, moreProducts: moreProducts };
+  return { product, moreProducts };
 }
 
 export async function getLatestMix(preview) {

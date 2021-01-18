@@ -12,7 +12,7 @@ export default async (req, res) => {
     const response = await fetch(
       `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/${emailHashed}/tags`,
       {
-        body: JSON.stringify({ tags: tags }),
+        body: JSON.stringify({ tags }),
         headers: {
           Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`,
           'Content-Type': 'application/json',
@@ -33,6 +33,6 @@ export default async (req, res) => {
   } catch (error) {
     // Handle catch
     console.error('Error in api/mailchimp/update-member-tags:', error);
-    return res.status(500).json({ error: error });
+    return res.status(500).json({ error });
   }
 };

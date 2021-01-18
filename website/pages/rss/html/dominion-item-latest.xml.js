@@ -55,7 +55,7 @@ const sitemapXml = (item) => {
             <tr>
               <td><br /></td>
             </tr>
-            ${hasButtonsNotice ? hasButtonsNotice : ''}
+            ${hasButtonsNotice || ''}
             <tr>
               <td width="400" valign="top">
                 ${image}
@@ -74,9 +74,8 @@ const sitemapXml = (item) => {
             </description>
           </item>
           `;
-  }
 
-  return `
+    return `
       <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
         <channel>
           <title>Dominion Items Latest</title>
@@ -87,6 +86,7 @@ const sitemapXml = (item) => {
         </channel>
       </rss>
       `;
+  }
 
   return `
     <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">

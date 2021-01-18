@@ -36,7 +36,7 @@ export default async (order) => {
       const response = await fetch(
         `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
         {
-          body: JSON.stringify({ email: email, tags: tags }),
+          body: JSON.stringify({ email, tags }),
           headers: { 'Content-Type': 'application/json' },
           method: 'POST',
         }

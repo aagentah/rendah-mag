@@ -269,7 +269,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                   iconFloat={null}
                   inverted
                   loading={false}
-                  disabled={true}
+                  disabled
                   onClick={null}
                   /* Children */
                   withLinkProps={null}

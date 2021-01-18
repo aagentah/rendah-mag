@@ -42,7 +42,7 @@ const getSubscription = async (req, res) => {
       'Error in api/snipcart/get-customer-latest-subscription:',
       error
     );
-    return res.status(500).json({ error: error });
+    return res.status(500).json({ error });
   }
 };
 

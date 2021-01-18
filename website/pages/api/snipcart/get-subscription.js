@@ -31,7 +31,7 @@ const getSubscription = async (req, res) => {
   } catch (error) {
     // Handle catch
     console.error('Error in api/snipcart/get-subscription:', error);
-    return res.status(500).json({ error: error });
+    return res.status(500).json({ error });
   }
 };
 

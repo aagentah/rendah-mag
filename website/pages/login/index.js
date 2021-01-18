@@ -52,13 +52,14 @@ export default function Login({ siteConfig }) {
     }
 
     dispatch({ type: 'TOGGLE_LOADING' });
+    return true;
   }
 
   async function onSubmit(e) {
     e.preventDefault();
 
     // Prevent double submit
-    if (submitButtonLoading) return;
+    if (submitButtonLoading) return false;
 
     const body = {
       username: e.currentTarget.username.value,
@@ -98,6 +99,7 @@ export default function Login({ siteConfig }) {
     }
 
     dispatch({ type: 'TOGGLE_LOADING' });
+    return true;
   }
 
   useEffect(() => {
