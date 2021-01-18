@@ -33,9 +33,7 @@ export default function SubscribeForm({ onSuccess }) {
             status: 'subscribed',
           },
         }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         method: 'POST',
       }
     );

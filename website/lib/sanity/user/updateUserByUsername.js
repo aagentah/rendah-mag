@@ -102,9 +102,7 @@ const handleTags = async (cloneFields) => {
         email: cloneFields.username,
         tags: cloneFields.tags,
       }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       method: 'POST',
     }
   );
