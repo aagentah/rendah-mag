@@ -29,7 +29,7 @@ const getCustomerOrders = async (req, res) => {
         throw new Error(await formatHttpError(response));
       }
 
-      return await response.json();
+      return response.json();
     };
 
     const fetchCustomerOrdersById = async (id) => {
@@ -49,7 +49,7 @@ const getCustomerOrders = async (req, res) => {
         throw new Error(await formatHttpError(response));
       }
 
-      return await response.json();
+      return response.json();
     };
 
     const fetchCustomerOrderByToken = async (token) => {
@@ -69,7 +69,7 @@ const getCustomerOrders = async (req, res) => {
         throw new Error(await formatHttpError(response));
       }
 
-      return await response.json();
+      return response.json();
     };
 
     const action = async () => {
@@ -87,7 +87,7 @@ const getCustomerOrders = async (req, res) => {
       }
       if (!ordersByToken?.length) return [];
 
-      return await Promise.all(ordersByToken);
+      return Promise.all(ordersByToken);
     };
 
     // Handle response
