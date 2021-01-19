@@ -218,7 +218,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
             </div>
 
             <div className="flex  justify-center  pt3">
-              <p
+              <button
                 className="f-secondary  f5  black  lh-copy  cp  underline"
                 onClick={() => {
                   setModalActive(true);
@@ -228,7 +228,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
                 <span className="dib  pl2">
                   <Icon size="1x" icon={['fas', 'heart']} />
                 </span>
-              </p>
+              </button>
             </div>
           </div>
         </Container>

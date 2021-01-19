@@ -46,9 +46,7 @@ export default function Login({ siteConfig }) {
         'Something went wrong, please try again, or a different browser?'
       );
 
-      setTimeout(() => {
-        setSubmitButtonLoading(false);
-      }, 500);
+      setTimeout(() => setSubmitButtonLoading(false), 500);
     }
 
     dispatch({ type: 'TOGGLE_LOADING' });
@@ -93,9 +91,7 @@ export default function Login({ siteConfig }) {
         'Something went wrong, have you used the correct Username/Password?'
       );
 
-      setTimeout(() => {
-        setSubmitButtonLoading(false);
-      }, 500);
+      setTimeout(() => setSubmitButtonLoading(false), 500);
     }
 
     dispatch({ type: 'TOGGLE_LOADING' });
