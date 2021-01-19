@@ -94,8 +94,8 @@ export default function Error404({ siteConfig }) {
                     https://www.rendahmag.com/{' '}
                   </a>{' '}
                   ), and/or any related services, sales, marketing or events (we
-                  refer to them collectively in this privacy policy as the "{' '}
-                  <strong>Sites</strong>").&nbsp;{' '}
+                  refer to them collectively in this privacy policy as the
+                  &quot; <strong>Sites</strong>").&nbsp;{' '}
                 </span>
               </p>
               <p>

@@ -21,7 +21,6 @@ const reducer = (state, action) => {
       };
 
       return newState;
-      return true;
     }
     case 'SET_SNIPCART_LOADED': {
       const newState = {
@@ -30,7 +29,6 @@ const reducer = (state, action) => {
       };
 
       return newState;
-      return true;
     }
 
     default:

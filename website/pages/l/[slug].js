@@ -84,6 +84,8 @@ export default function SmartLink({ siteConfig, post, preview }) {
         service = 'View Web Link';
         icon = <Icon size="2x" icon={['fas', 'window-restore']} />;
         break;
+      default:
+        break;
     }
 
     return (

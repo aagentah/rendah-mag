@@ -35,7 +35,9 @@ export default function Error404({ siteConfig }) {
               withLinkProps={null}
             />
           </div>
-          <div className="measure-wide  mla  mra  pb3  taj">tc's go here.</div>
+          <div className="measure-wide  mla  mra  pb3  taj">
+            tc&apos;s go here.
+          </div>
         </Container>
       </Layout>
     </>

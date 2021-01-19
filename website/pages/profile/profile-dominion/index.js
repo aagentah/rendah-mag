@@ -15,7 +15,7 @@ import {
   Label,
 } from 'next-pattern-library';
 
-import Carousel from './carousel.js';
+import Carousel from './carousel';
 
 import { useUser } from '~/lib/hooks';
 import setCharAt from '~/functions/setCharAt';
@@ -58,8 +58,8 @@ export default function ProfileDominion({ refreshDominion }) {
           </div>
           <div className="pb4  mb2">
             <p className="black  f6  lh-copy">
-              Here you can access your monthly Dominion content. We'll usually
-              email you when new items pop up here.
+              Here you can access your monthly Dominion content. We&apos;ll
+              usually email you when new items pop up here.
             </p>
           </div>
 

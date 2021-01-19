@@ -267,7 +267,10 @@ export default function ProfileEdit() {
 
           <div className="flex  flex-wrap  pb2">
             <div className="col-24  col-8-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
-              <a className="link  snipcart-edit-profile" href="#">
+              <a
+                className="link  snipcart-edit-profile"
+                href="#billing-settings"
+              >
                 <Button
                   /* Options */
                   type="primary"
@@ -287,7 +290,10 @@ export default function ProfileEdit() {
               </a>
             </div>
             <div className="col-24  col-11-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
-              <a className="link  snipcart-user-profile" href="#">
+              <a
+                className="link  snipcart-user-profile"
+                href="#orders-subscriptions"
+              >
                 <Button
                   /* Options */
                   type="primary"

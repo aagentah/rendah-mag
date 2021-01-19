@@ -23,8 +23,6 @@ export default function ProfileOrders() {
     action();
   }, []);
 
-  console.log('pipelineItems', pipelineItems);
-
   if (user?.isDominion && pipelineItems?.items?.length) {
     return (
       <section>
@@ -43,7 +41,7 @@ export default function ProfileOrders() {
         <div className="pb4  mb2">
           <p className="black  f6  lh-copy">
             Here we document progress in upcoming features and services. If
-            you'd like something as part of your Dominion subscription,{' '}
+            you&apos;d like something as part of your Dominion subscription,{' '}
             <a className="underline" href="mailto:info@rendahmag.com">
               reach out to us!
             </a>
