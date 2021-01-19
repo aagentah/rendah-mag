@@ -95,35 +95,35 @@ export default function HeaderMobile({
         <ul className="w-100  pt4">
           <li className="nav__item  db  pl4  pb3">
             <Link href="/">
-              <span
+              <button
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                 onClick={toggleNav}
-                role="menuitem"
+                type="button"
               >
                 Home
-              </span>
+              </button>
             </Link>
           </li>
           <li className="nav__item  db  pl4  pb3">
             <Link href="/cyphers">
-              <span
+              <button
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                 onClick={toggleNav}
-                role="menuitem"
+                type="button"
               >
                 Cyphers
-              </span>
+              </button>
             </Link>
           </li>
           <li className="nav__item  db  pl4  pb3">
             <Link href="/team">
-              <span
+              <button
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                 onClick={toggleNav}
-                role="menuitem"
+                type="button"
               >
                 Team
-              </span>
+              </button>
             </Link>
           </li>
 
@@ -131,50 +131,50 @@ export default function HeaderMobile({
             <>
               <li className="nav__item  db  pl4  pb3">
                 <Link href="/profile">
-                  <span
+                  <button
                     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                     onClick={toggleNav}
-                    role="menuitem"
+                    type="button"
                   >
                     Profile
-                  </span>
+                  </button>
                 </Link>
               </li>
               <li className="nav__item  db  pl4  pb3">
-                <span
+                <button
                   className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                   onClick={() => {
                     toggleNav();
                     handleLogout();
                   }}
-                  role="menuitem"
+                  type="button"
                 >
                   Log Out
-                </span>
+                </button>
               </li>
             </>
           ) : (
             <>
               <li className="nav__item  db  pl4  pb3">
                 <Link href="/dominion">
-                  <span
+                  <button
                     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                     onClick={toggleNav}
-                    role="menuitem"
+                    type="button"
                   >
                     Dominion
-                  </span>
+                  </button>
                 </Link>
               </li>
               <li className="nav__item  db  pl4  pb3">
                 <Link href="/login">
-                  <span
+                  <button
                     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                     onClick={toggleNav}
-                    role="menuitem"
+                    type="button"
                   >
                     Login
-                  </span>
+                  </button>
                 </Link>
               </li>
             </>

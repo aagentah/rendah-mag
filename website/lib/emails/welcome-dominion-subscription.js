@@ -58,6 +58,8 @@ export default async (email, temporaryPassword) => {
     if (error) {
       throw new Error(error);
     }
+
+    return { error: '' };
   } catch (error) {
     // Handle catch
     console.error(
