@@ -7,10 +7,10 @@ export default async (req, res) => {
     const user = await findUserByUsername(username);
 
     if (user?.username) {
-      const response = await promptEmailLogin(username, user.hash, user.salt);
+      const { error } = await promptEmailLogin(username, user.hash, user.salt);
 
-      if (response?.error) {
-        throw new Error(response.error);
+      if (error) {
+        throw new Error(error);
       }
 
       return res.status(200).json({ error: '' });
