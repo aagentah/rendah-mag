@@ -46,7 +46,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     return (
       <button
         onClick={onClick}
-        role="button"
+        type="button"
         className={`carousel-arrow--left  pa2 ${
           disabled ? 'light-grey' : 'black  cp'
         }`}
@@ -65,7 +65,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     return (
       <button
         onClick={onClick}
-        role="button"
+        type="button"
         className={`carousel-arrow--right  pa2 ${
           disabled ? 'light-grey' : 'black  cp'
         }`}
