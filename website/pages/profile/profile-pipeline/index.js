@@ -14,11 +14,16 @@ export default function ProfileOrders() {
   const [pipelineItems, setPipelineItems] = useState();
 
   // Fetch orders
-  useEffect(async () => {
-    const dominionPipeline = await getDominionPipeline();
+  useEffect(() => {
+    const action = async () => {
+      const dominionPipeline = await getDominionPipeline();
+      if (dominionPipeline) setPipelineItems(dominionPipeline);
+    };
 
-    if (dominionPipeline) setPipelineItems(dominionPipeline);
+    action();
   }, []);
+
+  console.log('pipelineItems', pipelineItems);
 
   if (user?.isDominion && pipelineItems?.items?.length) {
     return (

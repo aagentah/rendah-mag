@@ -21,14 +21,14 @@ export default function Mixes({ siteConfig }) {
   const [mixes, setMixes] = useState(null);
   const [mixesLength, setMixesLength] = useState(24);
 
-  const handleAsyncTasks = async () => {
-    const mixesData = await getMixes();
-    setMixesLength(mixesData.length);
-    setMixes(mixesData);
-  };
-
   useEffect(() => {
-    handleAsyncTasks();
+    const action = async () => {
+      const mixesData = await getMixes();
+      setMixesLength(mixesData.length);
+      setMixes(mixesData);
+    };
+
+    action();
   }, []);
 
   return (

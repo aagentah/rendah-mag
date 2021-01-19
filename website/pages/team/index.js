@@ -9,16 +9,16 @@ import { getSiteConfig, getTeamMembers } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig }) {
   const [team, setTeam] = useState(null);
-  const [teamLength, setTeamLength] = useState(40);
-
-  const handleAsyncTasks = async () => {
-    const teamData = await getTeamMembers();
-    setTeamLength(teamData.length);
-    setTeam(teamData);
-  };
+  const [teamLength, setTeamLength] = useState(24);
 
   useEffect(() => {
-    handleAsyncTasks();
+    const action = async () => {
+      const teamRes = await getTeamMembers();
+      setTeamLength(teamRes.length);
+      setTeam(teamRes);
+    };
+
+    action();
   }, []);
 
   return (

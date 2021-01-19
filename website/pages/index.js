@@ -24,24 +24,21 @@ export default function Home({ siteConfig }) {
   const [newsLength, setNewsLength] = useState(6);
   const [insightsLength, setInsightsLength] = useState(6);
 
-  const handleAsyncTasks = async () => {
-    const featuredPostData = await getFeaturedPost();
-    const interviewsData = await getCategory('interviews', [
-      0,
-      interviewsLength - 1,
-    ]);
-    const newsData = await getCategory('news', [0, newsLength - 1]);
-    const insightsData = await getCategory('insights', [0, insightsLength - 1]);
-
-    setFeaturedPost(featuredPostData);
-    setInterviews(interviewsData);
-    setNews(newsData);
-    setInsights(insightsData);
-  };
-
   useEffect(() => {
-    handleAsyncTasks();
-  }, []);
+    const action = async () => {
+      const featuredPostRes = await getFeaturedPost();
+      const interviewsRes = await getCategory('interviews', [1, 4]);
+      const newsRes = await getCategory('news', [1, 6]);
+      const insightsRes = await getCategory('insights', [1, 6]);
+
+      setFeaturedPost(featuredPostRes);
+      setInterviews(interviewsRes);
+      setNews(newsRes);
+      setInsights(insightsRes);
+    };
+
+    action();
+  }, [newsLength, newsLength, insightsLength]);
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 

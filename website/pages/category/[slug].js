@@ -65,7 +65,7 @@ export default function Category({ siteConfig, category }) {
 
 export async function getServerSideProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
-  const category = await getCategory(params.slug, [0, 99]);
+  const category = await getCategory(params.slug, [1, 100]);
 
   return {
     props: {

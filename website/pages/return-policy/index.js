@@ -36,7 +36,7 @@ export default function Error404({ siteConfig }) {
             />
           </div>
           <div className="measure-wide  mla  mra  pb3  taj">
-            return policy go here.
+            Return policy go here.
           </div>
         </Container>
       </Layout>

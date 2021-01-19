@@ -285,12 +285,13 @@ export default function Error404({ siteConfig }) {
                   We use personal information collected via our Sites for a
                   variety of business purposes described below. We process your
                   personal information for these purposes in reliance on our
-                  legitimate business interests ("Business Purposes"), in order
-                  to enter into or perform a contract with you ("Contractual"),
-                  with your consent ("Consent"), and/or for compliance with our
-                  legal obligations ("Legal Reasons"). We indicate the specific
-                  processing grounds we rely on next to each purpose listed
-                  below.&nbsp;{' '}
+                  legitimate business interests (&apos;Business Purposes&apos;),
+                  in order to enter into or perform a contract with you
+                  (&apos;Contractual&apos;), with your consent
+                  (&apos;Consent&apos;), and/or for compliance with our legal
+                  obligations (&apos;Legal Reasons&apos;). We indicate the
+                  specific processing grounds we rely on next to each purpose
+                  listed below.&nbsp;{' '}
                 </span>{' '}
                 &nbsp;
               </p>
@@ -334,7 +335,7 @@ export default function Error404({ siteConfig }) {
                     the personal information you send to us for our marketing
                     purposes, if this is in accordance with your marketing
                     preferences. You can opt-out of our marketing emails at any
-                    time (see the "{' '}
+                    time (see the &apos;{' '}
                   </span>{' '}
                   <span>
                     {' '}
@@ -343,7 +344,7 @@ export default function Error404({ siteConfig }) {
                       WHAT ARE YOUR PRIVACY RIGHTS{' '}
                     </a>{' '}
                   </span>{' '}
-                  <span>" below).</span> <br />{' '}
+                  <span>&apos; below).</span> <br />{' '}
                 </li>
                 <li>
                   <strong>
