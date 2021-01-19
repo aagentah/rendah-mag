@@ -241,7 +241,7 @@ export default function ProfileEdit() {
             <Heading
               /* Options */
               htmlEntity="h1"
-              text="Change Billing Settings"
+              text="Billing Settings"
               color="black"
               size="large"
               truncate={0}
@@ -254,7 +254,7 @@ export default function ProfileEdit() {
             <Copy
               /* Options */
               text={`
-                PLEASE READ: To update your billing settings, you'll need to
+                PLEASE READ: To update your billing details, you'll need to
                 create an account (If you haven't already) with our Shipping
                 Cart service. Please sign up via either button bellow using
                 your Rendah Mag email & password (${user.username}).
