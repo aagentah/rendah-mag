@@ -266,7 +266,27 @@ export default function ProfileEdit() {
           </div>
 
           <div className="flex  flex-wrap  pb2">
-            <div className="col-12  flex  justify-center  justify-start-md  align-center">
+            <div className="col-24  col-11-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
+              <a className="link  snipcart-user-profile" href="#">
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="medium"
+                  text="Orders & Subscriptions"
+                  color="black"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={false}
+                  disabled={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </a>
+            </div>
+            <div className="col-24  col-9-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
               <a className="link  snipcart-edit-profile" href="#">
                 <Button
                   /* Options */
@@ -280,15 +300,13 @@ export default function ProfileEdit() {
                   inverted={false}
                   loading={false}
                   disabled={false}
-                  onClick={() => {
-                    setBillingModalActive(false);
-                  }}
+                  onClick={null}
                   /* Children */
                   withLinkProps={null}
                 />
               </a>
             </div>
-            <div className="col-12  flex  justify-center  justify-start-md  align-center">
+            <div className="col-24  col-4-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
               <Button
                 /* Options */
                 type="secondary"
