@@ -29,10 +29,10 @@ export default async (username, hash, salt) => {
       htmlContent: emailCommon(title, body, image, buttonText, buttonLink),
     };
 
-    const response = await sendinblue(sendSmtpEmail);
+    const { error } = await sendinblue(sendSmtpEmail);
 
-    if (response?.error) {
-      throw new Error(response.error);
+    if (error) {
+      throw new Error(error);
     }
   } catch (error) {
     // Handle catch
