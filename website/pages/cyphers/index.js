@@ -26,15 +26,15 @@ export default function Cyphers({ siteConfig }) {
   const [cyphers, setCyphers] = useState(null);
   const [cyphersLength, setCyphersLength] = useState(24);
 
-  const handleAsyncTasks = async () => {
-    const cyphersData = await getCurrentAndPreviousCyphers();
-
-    setCyphersLength(cyphersData.previous.length);
-    setCyphers(cyphersData);
-  };
-
   useEffect(() => {
-    handleAsyncTasks();
+    const action = async () => {
+      const cyphersData = await getCurrentAndPreviousCyphers();
+
+      setCyphersLength(cyphersData.previous.length);
+      setCyphers(cyphersData);
+    };
+
+    action();
   }, []);
 
   return (

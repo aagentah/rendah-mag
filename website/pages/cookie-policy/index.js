@@ -40,11 +40,12 @@ export default function Error404({ siteConfig }) {
               <strong>Last updated October 07, 2020</strong>
             </div>
             <div>
-              This Cookie Policy explains how Rendah Mag ("
-              <strong>Company</strong>", "<strong>we</strong>", "
-              <strong>us</strong>", and "<strong>our</strong>") uses cookies and
-              similar technologies to recognize you when you visit our websites
-              at{' '}
+              This Cookie Policy explains how Rendah Mag (&quot;
+              <strong>Company</strong>&quot;, &quot;<strong>we</strong>&quot;,
+              &quot;
+              <strong>us</strong>&quot;, and &quot;<strong>our</strong>&quot;)
+              uses cookies and similar technologies to recognize you when you
+              visit our websites at{' '}
               <a
                 href="https://www.rendahmag.com/"
                 rel="noopener noreferrer"
@@ -53,7 +54,7 @@ export default function Error404({ siteConfig }) {
               >
                 https://www.rendahmag.com/
               </a>
-              , ("<strong>Websites</strong>"). It explains what these
+              , (&quot;<strong>Websites</strong>&quot;). It explains what these
               technologies are and why we use them, as well as your rights to
               control our use of them.
             </div>
@@ -73,14 +74,14 @@ export default function Error404({ siteConfig }) {
             </div>
             <div>
               Cookies set by the website owner (in this case, Rendah Mag) are
-              called "first party cookies". Cookies set by parties other than
-              the website owner are called "third party cookies". Third party
-              cookies enable third party features or functionality to be
-              provided on or through the website (e.g. like advertising,
-              interactive content and analytics). The parties that set these
-              third party cookies can recognize your computer both when it
-              visits the website in question and also when it visits certain
-              other websites.
+              called &quot;first party cookies&quot;. Cookies set by parties
+              other than the website owner are called &quot;third party
+              cookies&quot;. Third party cookies enable third party features or
+              functionality to be provided on or through the website (e.g. like
+              advertising, interactive content and analytics). The parties that
+              set these third party cookies can recognize your computer both
+              when it visits the website in question and also when it visits
+              certain other websites.
             </div>
             <div>
               <strong>Why do we use cookies?</strong>
@@ -88,12 +89,13 @@ export default function Error404({ siteConfig }) {
             <div>
               We use first and third party cookies for several reasons. Some
               cookies are required for technical reasons in order for our
-              Websites to operate, and we refer to these as "essential" or
-              "strictly necessary" cookies. Other cookies also enable us to
-              track and target the interests of our users to enhance the
-              experience on our Online Properties. Third parties serve cookies
-              through our Websites for advertising, analytics and other
-              purposes. This is described in more detail below.
+              Websites to operate, and we refer to these as
+              &quot;essential&quot; or &quot;strictly necessary&quot; cookies.
+              Other cookies also enable us to track and target the interests of
+              our users to enhance the experience on our Online Properties.
+              Third parties serve cookies through our Websites for advertising,
+              analytics and other purposes. This is described in more detail
+              below.
             </div>
             <div>
               The specific types of first and third party cookies served through

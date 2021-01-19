@@ -19,15 +19,15 @@ export default function Store({ siteConfig }) {
   const [collectionsLength, setCollectionsLength] = useState(4);
   const [productsLength, setProductsLength] = useState(8);
 
-  const handleAsyncTasks = async () => {
-    const productsData = await getAllProducts();
-
-    setProductsLength(productsData.length);
-    setProducts(productsData);
-  };
-
   useEffect(() => {
-    handleAsyncTasks();
+    const action = async () => {
+      const productsData = await getAllProducts();
+
+      setProductsLength(productsData.length);
+      setProducts(productsData);
+    };
+
+    action();
   }, []);
 
   useEffect(() => {

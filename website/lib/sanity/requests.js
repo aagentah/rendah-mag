@@ -86,8 +86,8 @@ export async function getAllPostsTotal(preview) {
 }
 
 export async function getCategory(category, range) {
-  const rangeFrom = range[0];
-  const rangeTo = range[1];
+  const rangeFrom = range[0] - 1;
+  const rangeTo = range[1] - 1;
 
   const results = await getClient(null).fetch(
     `*[_type == "category" && slug.current == $category] [0] {
