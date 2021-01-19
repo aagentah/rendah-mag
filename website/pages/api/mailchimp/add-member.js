@@ -24,14 +24,13 @@ export default async (req, res) => {
     if (!response.ok) {
       if ((await response.json()).title === 'Member Exists') {
         return res.status(400).json({ error: '' });
-      } 
-        throw new Error(await formatHttpError(response));
-      
+      }
+
+      throw new Error(await formatHttpError(response));
     }
 
     // Success
     return res.status(200).json({ error: '' });
-    return true;
   } catch (error) {
     // Handle catch
     console.error('Error in api/mailchimp/add-member:', error);

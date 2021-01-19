@@ -44,8 +44,9 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     const { onClick, disabled } = props;
 
     return (
-      <div
+      <button
         onClick={onClick}
+        role="button"
         className={`carousel-arrow--left  pa2 ${
           disabled ? 'light-grey' : 'black  cp'
         }`}
@@ -54,7 +55,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
           icon={['fas', 'chevron-left']}
           size={app.deviceSize === 'md' ? '3x' : '2x'}
         />
-      </div>
+      </button>
     );
   };
 
@@ -62,8 +63,9 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     const { onClick, disabled } = props;
 
     return (
-      <div
+      <button
         onClick={onClick}
+        role="button"
         className={`carousel-arrow--right  pa2 ${
           disabled ? 'light-grey' : 'black  cp'
         }`}
@@ -72,7 +74,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
           icon={['fas', 'chevron-right']}
           size={app.deviceSize === 'md' ? '3x' : '2x'}
         />
-      </div>
+      </button>
     );
   };
 

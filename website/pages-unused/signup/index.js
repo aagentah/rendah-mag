@@ -84,10 +84,7 @@ export default function Sigup({ siteConfig }) {
       mutate(userObj);
     } else {
       toast.error(await res.text());
-
-      setTimeout(() => {
-        setSubmitButtonLoading(false);
-      }, 500);
+      setTimeout(() => setSubmitButtonLoading(false), 500);
     }
 
     dispatch({ type: 'TOGGLE_LOADING' });

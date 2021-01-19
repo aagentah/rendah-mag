@@ -50,10 +50,9 @@ export default function Forgot({ siteConfig }) {
       );
     }
 
-    setTimeout(() => {
-      setSubmitButtonLoading(false);
-    }, 500);
+    setTimeout(() => setSubmitButtonLoading(false), 500);
     dispatch({ type: 'TOGGLE_LOADING' });
+    return true;
   }
 
   const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;

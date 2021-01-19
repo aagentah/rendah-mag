@@ -121,8 +121,8 @@ export default function Error404({ siteConfig }) {
               of our website may be restricted. You may also set or amend your
               web browser controls to accept or refuse cookies. As the means by
               which you can refuse cookies through your web browser controls
-              vary from browser-to-browser, you should visit your browser's help
-              menu for more information.
+              vary from browser-to-browser, you should visit your browser&apos;s
+              help menu for more information.
             </div>
             <div>
               In addition, most advertising networks offer you a way to opt out
