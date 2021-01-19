@@ -30,6 +30,7 @@ export default function ProfileEdit() {
     updatePasswordButtonLoading,
     setUpdatePasswordButtonLoading,
   ] = useState(false);
+  const [billingModalActive, setBillingModalActive] = useState(false);
   const [avatarModalActive, setAvatarModalActive] = useState(false);
   const [user, { mutate }] = useUser();
   const [avatarBlob, setAvatarBlob] = useState(null);
@@ -222,15 +223,94 @@ export default function ProfileEdit() {
     return true;
   }
 
-  const buttonIconTrash = <Icon icon={['fas', 'trash']} />;
   const inputIconEnvelope = <Icon icon={['fas', 'envelope']} />;
   const inputIconUser = <Icon icon={['fas', 'user']} />;
   const inputIconLock = <Icon icon={['fas', 'lock']} />;
+  const inputIconReceipt = <Icon icon={['fas', 'receipt']} />;
   const inputIconAt = <Icon icon={['fas', 'at']} />;
 
   if (user) {
     return (
       <>
+        <Modal
+          /* Options */
+          size="medium"
+          active={billingModalActive}
+        >
+          <div className="pb2">
+            <Heading
+              /* Options */
+              htmlEntity="h1"
+              text="Change Billing Settings"
+              color="black"
+              size="large"
+              truncate={0}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <div className="pb4">
+            <Copy
+              /* Options */
+              text={`
+                PLEASE READ: To update your billing settings, you'll need to
+                create an account (If you haven't already) with our Shipping
+                Cart service 'SnipCart'. Please sign up using your Rendah Mag
+                email & password (${user.username}).
+                `}
+              color="black"
+              size="medium"
+              truncate={null}
+            />
+          </div>
+
+          <div className="flex  flex-wrap  pb2">
+            <div className="col-12  flex  justify-center  justify-start-md  align-center">
+              <a className="link  snipcart-edit-profile" href="#">
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="medium"
+                  text="Billing Settings"
+                  color="black"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={false}
+                  disabled={false}
+                  onClick={() => {
+                    setBillingModalActive(false);
+                  }}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </a>
+            </div>
+            <div className="col-12  flex  justify-center  justify-start-md  align-center">
+              <Button
+                /* Options */
+                type="secondary"
+                size="medium"
+                text="Cancel"
+                color="black"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted={false}
+                loading={false}
+                disabled={false}
+                onClick={() => {
+                  setBillingModalActive(false);
+                }}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+          </div>
+        </Modal>
+
         <Modal
           /* Options */
           size="small"
@@ -550,7 +630,7 @@ export default function ProfileEdit() {
             </div>
           </div>
           <div className="flex-md  flex-wrap  align-end-md  justify-between-md  pt4">
-            <div className="db  dib-md  pr3  pb4  pb0-md">
+            <div className="col-24  col-12-md  pr3  pb4  pb0-md">
               <Button
                 /* Options */
                 type="primary"
@@ -573,25 +653,47 @@ export default function ProfileEdit() {
                 }}
               />
             </div>
-            <div className="db  dib-md  pr3  pb1">
-              <Button
-                /* Options */
-                type="secondary"
-                size="small"
-                text="Change Password"
-                color="black"
-                fluid={false}
-                icon={inputIconLock}
-                iconFloat="left"
-                inverted
-                loading={false}
-                disabled={app.isLoading}
-                onClick={() => {
-                  setPasswordModalActive(!passwordModalActive);
-                }}
-                /* Children */
-                withLinkProps={null}
-              />
+            <div className="col-24  col-12-md  flex  flex-wrap  justify-end-md">
+              <div className="pr3  pb3  pb1-md">
+                <Button
+                  /* Options */
+                  type="secondary"
+                  size="small"
+                  text="Billing Settings"
+                  color="black"
+                  fluid={false}
+                  icon={inputIconReceipt}
+                  iconFloat="left"
+                  inverted
+                  loading={false}
+                  disabled={app.isLoading}
+                  onClick={() => {
+                    setBillingModalActive(!passwordModalActive);
+                  }}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
+              <div className="pr3  pb3  pb1-md">
+                <Button
+                  /* Options */
+                  type="secondary"
+                  size="small"
+                  text="Change Password"
+                  color="black"
+                  fluid={false}
+                  icon={inputIconLock}
+                  iconFloat="left"
+                  inverted
+                  loading={false}
+                  disabled={app.isLoading}
+                  onClick={() => {
+                    setPasswordModalActive(!passwordModalActive);
+                  }}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
             </div>
           </div>
         </form>
