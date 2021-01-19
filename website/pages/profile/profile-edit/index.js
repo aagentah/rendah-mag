@@ -256,8 +256,8 @@ export default function ProfileEdit() {
               text={`
                 PLEASE READ: To update your billing settings, you'll need to
                 create an account (If you haven't already) with our Shipping
-                Cart service 'SnipCart'. Please sign up using your Rendah Mag
-                email & password (${user.username}).
+                Cart service. Please sign up via either button bellow using
+                your Rendah Mag email & password (${user.username}).
                 `}
               color="black"
               size="medium"
@@ -266,6 +266,26 @@ export default function ProfileEdit() {
           </div>
 
           <div className="flex  flex-wrap  pb2">
+            <div className="col-24  col-8-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
+              <a className="link  snipcart-edit-profile" href="#">
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="medium"
+                  text="Billing Settings"
+                  color="black"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={false}
+                  disabled={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </a>
+            </div>
             <div className="col-24  col-11-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
               <a className="link  snipcart-user-profile" href="#">
                 <Button
@@ -286,27 +306,7 @@ export default function ProfileEdit() {
                 />
               </a>
             </div>
-            <div className="col-24  col-9-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
-              <a className="link  snipcart-edit-profile" href="#">
-                <Button
-                  /* Options */
-                  type="primary"
-                  size="medium"
-                  text="Billing Settings"
-                  color="black"
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted={false}
-                  loading={false}
-                  disabled={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </a>
-            </div>
-            <div className="col-24  col-4-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
+            <div className="col-24  col-5-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
               <Button
                 /* Options */
                 type="secondary"
@@ -672,7 +672,7 @@ export default function ProfileEdit() {
               />
             </div>
             <div className="col-24  col-12-md  flex  flex-wrap  justify-end-md">
-              <div className="pr3  pb3  pb1-md">
+              <div className="col-24  col-10-md  flex  justify-end-md  pr0  pr3-md  pb3  pb1-md">
                 <Button
                   /* Options */
                   type="secondary"
@@ -692,7 +692,7 @@ export default function ProfileEdit() {
                   withLinkProps={null}
                 />
               </div>
-              <div className="pr3  pb3  pb1-md">
+              <div className="col-24  col-10-md  flex  justify-end-md  pr0  pr3-md  pb3  pb1-md">
                 <Button
                   /* Options */
                   type="secondary"

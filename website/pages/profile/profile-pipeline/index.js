@@ -4,12 +4,13 @@ import { toast } from 'react-toastify';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import BlockContent from '@sanity/block-content-to-react';
-
 import { Heading, Copy } from 'next-pattern-library';
 
+import { useUser } from '~/lib/hooks';
 import { getDominionPipeline } from '~/lib/sanity/requests';
 
 export default function ProfileOrders() {
+  const [user, { loading, mutate, error }] = useUser();
   const [pipelineItems, setPipelineItems] = useState();
 
   // Fetch orders
@@ -19,7 +20,7 @@ export default function ProfileOrders() {
     if (dominionPipeline) setPipelineItems(dominionPipeline);
   }, []);
 
-  if (pipelineItems?.items?.length) {
+  if (user?.isDominion && pipelineItems?.items?.length) {
     return (
       <section>
         <div className="pb2">
@@ -87,5 +88,16 @@ export default function ProfileOrders() {
     );
   }
 
-  return <p>Loading...</p>;
+  return (
+    <Heading
+      /* Options */
+      htmlEntity="h1"
+      text="No results."
+      color="black"
+      size="medium"
+      truncate={null}
+      /* Children */
+      withLinkProps={null}
+    />
+  );
 }
