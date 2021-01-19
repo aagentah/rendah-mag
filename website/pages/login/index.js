@@ -21,39 +21,7 @@ export default function Login({ siteConfig }) {
   const prefillEmail = router.query?.prefillEmail || null;
   const [submitButtonLoading, setSubmitButtonLoading] = useState(false);
 
-  async function loginViaQuery() {
-    const body = {
-      username: router.query.username,
-      password: `${router.query.salt}:${router.query.hash}`,
-    };
-
-    dispatch({ type: 'TOGGLE_LOADING' });
-    setSubmitButtonLoading(true);
-
-    // Post to log in API
-    const response = await fetch(`${process.env.SITE_URL}/api/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    });
-
-    if (response.ok) {
-      // Success
-      mutate(await response.json());
-    } else {
-      // Error
-      toast.error(
-        'Something went wrong, please try again, or a different browser?'
-      );
-
-      setTimeout(() => setSubmitButtonLoading(false), 500);
-    }
-
-    dispatch({ type: 'TOGGLE_LOADING' });
-    return true;
-  }
-
-  async function onSubmit(e) {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     // Prevent double submit
@@ -96,10 +64,42 @@ export default function Login({ siteConfig }) {
 
     dispatch({ type: 'TOGGLE_LOADING' });
     return true;
-  }
+  };
 
   useEffect(() => {
     if (router.query?.username && router.query?.hash && router.query?.salt) {
+      const loginViaQuery = async () => {
+        const body = {
+          username: router.query.username,
+          password: `${router.query.salt}:${router.query.hash}`,
+        };
+
+        dispatch({ type: 'TOGGLE_LOADING' });
+        setSubmitButtonLoading(true);
+
+        // Post to log in API
+        const response = await fetch(`${process.env.SITE_URL}/api/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (response.ok) {
+          // Success
+          mutate(await response.json());
+        } else {
+          // Error
+          toast.error(
+            'Something went wrong, please try again, or a different browser?'
+          );
+
+          setTimeout(() => setSubmitButtonLoading(false), 500);
+        }
+
+        dispatch({ type: 'TOGGLE_LOADING' });
+        return true;
+      };
+
       loginViaQuery();
     }
   }, [router.query.username, router.query.hash, router.query.salt]);
