@@ -223,6 +223,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
                 onClick={() => {
                   setModalActive(true);
                 }}
+                type="button"
               >
                 Join our mailout
                 <span className="dib  pl2">
