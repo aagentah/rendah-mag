@@ -100,7 +100,7 @@ const Meta = (props) => {
       canRender = true;
     }
 
-    if (!canRender) return;
+    if (!canRender) return false;
 
     if (!app?.hasSnipcartLoaded)
       dispatch({ type: 'SET_SNIPCART_LOADED', hasSnipcartLoaded: true });

@@ -41,11 +41,13 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   const [sliderNavRef, sliderNav] = useKeenSlider(sliderNavOptions);
 
   const ArrowLeft = (props) => {
+    const { onClick, disabled } = props;
+
     return (
       <div
-        onClick={props.onClick}
+        onClick={onClick}
         className={`carousel-arrow--left  pa2 ${
-          props.disabled ? 'light-grey' : 'black  cp'
+          disabled ? 'light-grey' : 'black  cp'
         }`}
       >
         <Icon
@@ -57,11 +59,13 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   };
 
   const ArrowRight = (props) => {
+    const { onClick, disabled } = props;
+
     return (
       <div
-        onClick={props.onClick}
+        onClick={onClick}
         className={`carousel-arrow--right  pa2 ${
-          props.disabled ? 'light-grey' : 'black  cp'
+          disabled ? 'light-grey' : 'black  cp'
         }`}
       >
         <Icon

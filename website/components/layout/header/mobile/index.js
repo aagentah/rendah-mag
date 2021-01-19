@@ -98,6 +98,7 @@ export default function HeaderMobile({
               <span
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                 onClick={toggleNav}
+                role="menuitem"
               >
                 Home
               </span>
@@ -108,6 +109,7 @@ export default function HeaderMobile({
               <span
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                 onClick={toggleNav}
+                role="menuitem"
               >
                 Cyphers
               </span>
@@ -118,6 +120,7 @@ export default function HeaderMobile({
               <span
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                 onClick={toggleNav}
+                role="menuitem"
               >
                 Team
               </span>
@@ -131,6 +134,7 @@ export default function HeaderMobile({
                   <span
                     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                     onClick={toggleNav}
+                    role="menuitem"
                   >
                     Profile
                   </span>
@@ -143,6 +147,7 @@ export default function HeaderMobile({
                     toggleNav();
                     handleLogout();
                   }}
+                  role="menuitem"
                 >
                   Log Out
                 </span>
@@ -155,6 +160,7 @@ export default function HeaderMobile({
                   <span
                     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                     onClick={toggleNav}
+                    role="menuitem"
                   >
                     Dominion
                   </span>
@@ -165,6 +171,7 @@ export default function HeaderMobile({
                   <span
                     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                     onClick={toggleNav}
+                    role="menuitem"
                   >
                     Login
                   </span>

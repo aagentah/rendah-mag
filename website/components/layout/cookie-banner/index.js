@@ -34,11 +34,9 @@ export default function CookieBanner() {
         <div>
           <div className="cookie-banner__body">
             We may use{' '}
-            <Link href="/cookie-policy">
-              <a rel="noopener noreferrer" target="_blank">
-                cookies
-              </a>
-            </Link>{' '}
+            <a href="/cookie-policy" target="_blank">
+              cookies
+            </a>{' '}
             to offer a better browsing experience.
           </div>
         </div>

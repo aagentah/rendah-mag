@@ -54,6 +54,7 @@ export default function SubscribeForm({ onSuccess }) {
     inputEl.current.value = '';
     dispatch({ type: 'TOGGLE_LOADING' });
     setButtonLoading(false);
+    return true;
   };
 
   const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;

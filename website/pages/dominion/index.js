@@ -1,3 +1,5 @@
+/* global Snipcart */
+
 import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import BlockContent from '@sanity/block-content-to-react';
@@ -43,11 +45,11 @@ export default function Dominion({ siteConfig }) {
           }
         });
 
-        Snipcart.subscribe('page.changed', function (page) {
+        Snipcart.subscribe('page.changed', (page) => {
           setCurrentTab(page);
         });
 
-        Snipcart.subscribe('billingaddress.changed', function (address) {
+        Snipcart.subscribe('billingaddress.changed', (address) => {
           setSnipcartData(address);
         });
       }
@@ -152,7 +154,7 @@ export default function Dominion({ siteConfig }) {
                     Discounts from all coming Rendah Mag products.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy  fw7  green">
-                    If you're joining us in January, you also get a FREE
+                    If you&apos;re joining us in January, you also get a FREE
                     Dominion Cassette Tape Cypher!
                   </li>
                 </ul>
