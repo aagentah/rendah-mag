@@ -2,6 +2,7 @@ import sanityImage from '@sanity/image-url';
 
 import client, { previewClient } from './config';
 import dateTodayISO from '~/functions/dateTodayISO';
+import dateTodayYyyyMmDd from '~/functions/dateTodayYyyyMmDd';
 
 const postFields = `
   name,
@@ -263,10 +264,13 @@ export async function getMixes(preview) {
 }
 
 export async function getLatestDominionItem(preview) {
-  const results = await getClient(preview)
-    .fetch(`*[_type == "dominionItem"] | order(activeFrom desc) [0] {
+  const today = dateTodayYyyyMmDd();
+  const results = await getClient(preview).fetch(
+    `*[_type == "dominionItem" && activeFrom <= $today] | [0] {
       ...,
-    }`);
+    }`,
+    { today }
+  );
   return results;
 }
 

@@ -88,5 +88,6 @@ export default function Header({ navOnWhite, meta }) {
       </>
     );
   }
+
   return false;
 }
