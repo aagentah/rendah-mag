@@ -4,14 +4,6 @@ import Router from 'next/router';
 import BlockContent from '@sanity/block-content-to-react';
 import { useKeenSlider } from 'keen-slider/react';
 import {
-  Video,
-  Transformation,
-  CloudinaryContext,
-  Audio,
-} from 'cloudinary-react';
-import AudioPlayer from 'react-h5-audio-player';
-
-import {
   Hero,
   Heading,
   Copy,
@@ -22,10 +14,11 @@ import {
   Modal,
 } from 'next-pattern-library';
 
+import Sections from '~/components/article/body-sections';
+
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import setCharAt from '~/functions/setCharAt';
-
 import { imageBuilder } from '~/lib/sanity/requests';
 
 const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
@@ -304,41 +297,21 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                       {new Date(item.activeFrom).toDateString()}
                     </p>
 
-                    <AudioPlayer
-                      showSkipControls={false}
-                      showJumpControls={false}
-                      src="https://res.cloudinary.com/dzz8ji5lj/video/upload/fl_attachment/v1611694553/evidence.wav"
-                      customAdditionalControls={[]}
-                      layout="horizontal-reverse"
-                      onPlay={(e) => console.log('onPlay')}
-                      // other props here
-                    />
-
-                    <Audio
-                      cloudName="dzz8ji5lj"
-                      sourceTypes={['wav', 'mp3']}
-                      publicId="https://res.cloudinary.com/dzz8ji5lj/video/upload/v1611694553/evidence.wav"
-                      controls
-                      fallback="Cannot play audio"
-                      sourceTransformation={{
-                        wav: { effect: 'volume:30' },
-                        mp3: { effect: 'volume:45' },
-                      }}
-                    >
-                      <Transformation duration="2" />
-                    </Audio>
-
-                    <a href="https://res.cloudinary.com/dzz8ji5lj/video/upload/fl_attachment/v1611694553/evidence.wav">
-                      download
-                    </a>
-
                     <p className="t-primary  f5  f4-md  black  pb3  mb2">
                       {item.title}
                     </p>
 
-                    <div className="rich-text  pb2">
-                      <BlockContent blocks={item.description} />
-                    </div>
+                    {
+                      // <div className="rich-text  pb2">
+                      //   <BlockContent blocks={item.description} />
+                      // </div>
+                    }
+
+                    {item?.body && (
+                      <div className="rich-text  pb2">
+                        <Sections body={item.body} />
+                      </div>
+                    )}
 
                     {item?.buttons && (
                       <div className="flex  flex-wrap">

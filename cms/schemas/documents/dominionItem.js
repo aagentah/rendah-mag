@@ -41,9 +41,15 @@ export default {
     },
     {
       name: "description",
+      description: "Included only in the email",
       title: "Description",
       type: "array",
       of: [{ type: "block" }],
+    },
+    {
+      name: "body",
+      title: "Body",
+      type: "blockContent",
     },
     {
       title: "Buttons",

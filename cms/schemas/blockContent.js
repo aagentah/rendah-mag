@@ -6,6 +6,7 @@ import iconSoundcloud from "react-icons/lib/fa/soundcloud";
 import iconYoutube from "react-icons/lib/fa/youtube";
 import iconFacebook from "react-icons/lib/fa/facebook";
 import iconButton from "react-icons/lib/md/touch-app";
+import iconAudioTrack from "react-icons/lib/md/audiotrack";
 
 export default {
   title: "Block Content",
@@ -214,6 +215,27 @@ export default {
           description:
             "For example: https://www.facebook.com/Bloc2BlocEnt/videos/453723538461181/",
           validation: (Rule) => Rule.required(),
+        },
+      ],
+    },
+    {
+      name: "audioEmbedBlock",
+      title: "Audio Embed (via URL)",
+      type: "object",
+      icon: iconAudioTrack,
+      fields: [
+        {
+          name: "audioEmbed",
+          title: "Facebook Video Embed",
+          type: "string",
+          description:
+            "For example: https://res.cloudinary.com/dzz8ji5lj/video/upload/v1611694553/evidence.wav",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "allowDownload",
+          title: "Allow Download",
+          type: "boolean",
         },
       ],
     },

@@ -10,6 +10,7 @@ import Soundcloud from './soundcloud';
 import Spotify from './spotify';
 import Youtube from './youtube';
 import FacebookVideo from './facebook-video';
+import AudioEmbed from './audio';
 import ArticleLink from './article-link';
 
 export default function Sections({ body }) {
@@ -95,6 +96,18 @@ export default function Sections({ body }) {
       return (
         <div key={i} className="pv4">
           <FacebookVideo url={section.facebookVideoEmbed} />
+        </div>
+      );
+    }
+
+    // audio embed
+    if (section._type === 'audioEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <AudioEmbed
+            url={section?.audioEmbed}
+            allowDownload={section?.allowDownload}
+          />
         </div>
       );
     }
