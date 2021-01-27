@@ -133,7 +133,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                       <div
                         className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br-100  ba  bw1  bc-black  ease-in-out  ${
                           currentNavSlide === i
-                            ? 'bg-black  white'
+                            ? 'bg-black-md  white-md'
                             : 'bg-white  black'
                         }`}
                       >
@@ -263,32 +263,30 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                 ${canSectionHide ? 'dominion-fadeOut' : ''}
                 `}
             >
-              <div className="pb3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="small"
-                  text="Back"
-                  color="black"
-                  fluid={false}
-                  icon={buttonIconArrowLeft}
-                  iconFloat={'left'}
-                  inverted={false}
-                  loading={false}
-                  disabled={false}
-                  onClick={() => {
-                    setCanSectionHide(true);
+              <Button
+                /* Options */
+                type="secondary"
+                size="small"
+                text="Back"
+                color="black"
+                fluid={false}
+                icon={buttonIconArrowLeft}
+                iconFloat={'left'}
+                inverted={false}
+                loading={false}
+                disabled={false}
+                onClick={() => {
+                  setCanSectionHide(true);
 
-                    setTimeout(() => {
-                      setCanCarouselHide(false);
-                      setModalActive(null);
-                      setCanSectionShow(false);
-                    }, 300);
-                  }}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
+                  setTimeout(() => {
+                    setCanCarouselHide(false);
+                    setModalActive(null);
+                    setCanSectionShow(false);
+                  }, 300);
+                }}
+                /* Children */
+                withLinkProps={null}
+              />
 
               <div className="flex  flex-wrap  pb2">
                 <div className={`col-24  ${item.image && ''}`}>
