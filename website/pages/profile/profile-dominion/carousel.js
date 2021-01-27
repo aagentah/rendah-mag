@@ -3,6 +3,13 @@ import Link from 'next/link';
 import Router from 'next/router';
 import BlockContent from '@sanity/block-content-to-react';
 import { useKeenSlider } from 'keen-slider/react';
+import {
+  Video,
+  Transformation,
+  CloudinaryContext,
+  Audio,
+} from 'cloudinary-react';
+import AudioPlayer from 'react-h5-audio-player';
 
 import {
   Hero,
@@ -105,7 +112,9 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                           {item.title}
                         </p>
                         <p className="col-24  t-secondary  f7  tac  lh-copy">
-                          {new Date(item.activeFrom).toDateString().slice(4)}
+                          {i === 0
+                            ? '<3'
+                            : new Date(item.activeFrom).toDateString().slice(4)}
                         </p>
                       </div>
                     </div>
@@ -144,6 +153,34 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                         <p className="t-secondary  f7  grey  pb2">
                           {new Date(item.activeFrom).toDateString()}
                         </p>
+
+                        <AudioPlayer
+                          showSkipControls={false}
+                          showJumpControls={false}
+                          src="https://res.cloudinary.com/dzz8ji5lj/video/upload/fl_attachment/v1611694553/evidence.wav"
+                          customAdditionalControls={[]}
+                          layout="horizontal-reverse"
+                          onPlay={(e) => console.log('onPlay')}
+                          // other props here
+                        />
+
+                        <Audio
+                          cloudName="dzz8ji5lj"
+                          sourceTypes={['wav', 'mp3']}
+                          publicId="https://res.cloudinary.com/dzz8ji5lj/video/upload/v1611694553/evidence.wav"
+                          controls
+                          fallback="Cannot play audio"
+                          sourceTransformation={{
+                            wav: { effect: 'volume:30' },
+                            mp3: { effect: 'volume:45' },
+                          }}
+                        >
+                          <Transformation duration="2" />
+                        </Audio>
+
+                        <a href="https://res.cloudinary.com/dzz8ji5lj/video/upload/fl_attachment/v1611694553/evidence.wav">
+                          download
+                        </a>
 
                         <p className="t-primary  f5  f4-md  black  pb3  mb2">
                           {item.title}
