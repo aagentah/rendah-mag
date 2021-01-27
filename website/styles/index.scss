@@ -236,9 +236,11 @@ $rhap_font-family: inherit !default;
   line-height: 1;
   font-family: $rhap_font-family;
   width: 100%;
-  padding: 2px 15px;
+  padding: 3px 15px;
+  padding-left: 3px;
+  padding-right: 10px;
   background-color: $rhap_background-color;
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--black);
 
   &:focus:not(:focus-visible) {
     outline: 0;
@@ -246,6 +248,12 @@ $rhap_font-family: inherit !default;
 
   svg {
     vertical-align: initial; // overwrite Bootstrap default
+  }
+}
+
+@include breakpoint-up(md) {
+  .rhap_container {
+    padding: 3px 15px;
   }
 }
 
@@ -375,6 +383,12 @@ $rhap_font-family: inherit !default;
   display: flex;
   flex: 1 0 auto;
   align-items: center;
+}
+
+// override
+
+.rhap_additional-controls {
+  display: none;
 }
 
 .rhap_repeat-button {
