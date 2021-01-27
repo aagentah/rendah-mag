@@ -4,16 +4,15 @@ import { Button } from 'next-pattern-library';
 import { useApp } from '~/context-provider/app';
 
 export default function Audip({ url, allowDownload }) {
-  console.log('allowDownload', allowDownload);
   const app = useApp();
 
   return (
     <div className="tac  db  w-100  mla  mra">
       <div className="flex  flex-wrap">
         <div
-          className={`${
+          className={
             allowDownload ? 'col-24  col-20-md  pr0  pr2-md' : 'col-24'
-          }`}
+          }
         >
           <AudioPlayer
             showSkipControls={false}
