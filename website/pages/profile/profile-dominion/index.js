@@ -44,25 +44,6 @@ export default function ProfileDominion({ refreshDominion }) {
     return (
       <>
         <section>
-          <div className="pb2">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text="Dominion."
-              color="black"
-              size="medium"
-              truncate={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-          <div className="pb4  mb2">
-            <p className="black  f6  lh-copy">
-              Here you can access your monthly Dominion content. We&apos;ll
-              usually email you when new items pop up here.
-            </p>
-          </div>
-
           {refreshDominion && (
             <Carousel
               dominionItems={dominionItems}
@@ -70,13 +51,6 @@ export default function ProfileDominion({ refreshDominion }) {
             />
           )}
         </section>
-
-        {user?.dominionSince && (
-          <p className="t-secondary  f6  grey  mt4">
-            <span className="bold  pr1">Member since:</span>
-            {new Date(user.dominionSince).toDateString()}
-          </p>
-        )}
       </>
     );
   }
