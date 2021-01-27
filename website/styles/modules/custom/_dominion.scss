@@ -1,0 +1,59 @@
+.min {
+  min-height: 500px;
+}
+
+// Carousel
+
+.dominion-carousel-wrapper {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: calc(100% - 30px);
+  margin: 0 auto;
+  min-height: 300px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+// @include breakpoint-up(md) {
+//   .dominion-carousel-wrapper {
+//     top: 0;
+//     width: 100%;
+//   }
+// }
+
+.dominion-carousel-wrapper.dominion-fadeIn {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.dominion-carousel-wrapper.dominion-fadeOut {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+// Sectiom
+
+.dominion-section {
+  display: none;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(50px);
+}
+
+.dominion-section.dominion-fadeIn {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.dominion-section.dominion-fadeOut {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+// General
+
+.dominion-canDisplay {
+  display: block;
+  opacity: 0;
+}
