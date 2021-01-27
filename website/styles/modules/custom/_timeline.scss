@@ -1,0 +1,94 @@
+.timeline {
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -1px;
+  width: 2px;
+  height: 100%;
+  background: #ccd1d9;
+  z-index: 1;
+}
+
+.timeline-block {
+  width: -webkit-calc(50% + 8px);
+  width: -moz-calc(50% + 8px);
+  width: calc(50% + 8px);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  clear: both;
+}
+
+.timeline-block-right {
+  float: right;
+}
+
+.timeline-block-left {
+  float: left;
+  direction: rtl;
+}
+
+.marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #f5f7fa;
+  background: #b8b8b8;
+  margin-top: 10px;
+  z-index: 9999;
+  text-align: center;
+  position: relative;
+  left: 4px;
+}
+
+.marker.active {
+  background: #5bd040;
+}
+
+.timeline-content {
+  width: 95%;
+  padding: 0 15px;
+  color: #666;
+}
+i.fa.fa-check {
+  display: none;
+}
+i.fa.fa-check.active {
+  display: block !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  height: 50%;
+  color: #fff;
+}
+
+.timeline:before {
+  left: 19px;
+  width: 2px;
+}
+.timeline-block {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.timeline-block-right {
+  float: none;
+}
+
+.timeline-block-left {
+  float: none;
+  direction: ltr;
+}

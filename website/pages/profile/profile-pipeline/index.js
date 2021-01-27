@@ -48,7 +48,7 @@ export default function ProfileOrders() {
           </p>
         </div>
 
-        <div className="ccc">
+        <div className="timeline">
           {pipelineItems.items.map((item, i) => (
             <div key={i._key} className="timeline-block timeline-block-right">
               {item?.completed && (
