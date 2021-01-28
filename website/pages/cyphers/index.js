@@ -167,7 +167,7 @@ export default function Cyphers({ siteConfig }) {
 
               {!cyphers?.current && (
                 <div className="flex  flex-wrap  measure-wide  mla  mra mb3  mb5-md  pb0  pb4-md">
-                  <div className="col-24  pt3  pb5  pb0-md">
+                  <div className="col-24  pt4  mt0  mt3-md  pb5  pb0-md">
                     <div className="pb2  tac-md">
                       <Heading
                         /* Options */

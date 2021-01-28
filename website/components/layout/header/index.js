@@ -63,7 +63,7 @@ export default function Header({ navOnWhite, meta }) {
   if (app?.deviceSize && navHex) {
     return (
       <>
-        {app.deviceSize !== 'mobile' && (
+        {app.deviceSize !== 'md' && (
           <HeaderDesktop
             meta={meta}
             navColour={navColour}
