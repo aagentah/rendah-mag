@@ -273,7 +273,7 @@ export default (title, body, image, buttonText, buttonLink) => {
                               </td>
                             </tr>
                             <tr>
-                              <td height="10">&nbsp;</td>
+                              <td height="40">&nbsp;</td>
                             </tr>
                           </table>
                         </td>
