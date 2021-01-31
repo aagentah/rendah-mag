@@ -32,10 +32,10 @@ const sitemapXml = (posts) => {
       <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
           <td width="300" valign="top">
-            <img style="width: 100%;" src="${imageBuilder
+            <img width="300" style="width: 100%;" src="${imageBuilder
               .image(post.image)
-              .height(400)
-              .width(400)
+              .height(300)
+              .width(300)
               .auto('format')
               .url()}" alt="${post?.title}">
           </td>
