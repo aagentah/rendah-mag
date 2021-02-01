@@ -32,6 +32,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   const [canCarouselHide, setCanCarouselHide] = useState(false);
   const [canSectionShow, setCanSectionShow] = useState(false);
   const [canSectionHide, setCanSectionHide] = useState(false);
+  const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
 
   const sliderNavOptions = {
     slidesPerView: app.deviceSize === 'md' ? 1 : 3,
@@ -43,6 +44,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   };
 
   const [sliderNavRef, sliderNav] = useKeenSlider(sliderNavOptions);
+  const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
 
   const ArrowLeft = (props) => {
     const { onClick, disabled } = props;
@@ -307,7 +309,12 @@ export default function Carousel({ dominionItems, refreshDominion }) {
 
                     {item?.body && (
                       <div className="rich-text  pb2">
-                        <Sections body={item.body} />
+                        <Sections
+                          test="123"
+                          handleAudioPlay={handleAudioPlay}
+                          currentAudioSelected={currentAudioSelected}
+                          body={item.body}
+                        />
                       </div>
                     )}
 
