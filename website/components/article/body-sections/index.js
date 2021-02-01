@@ -13,7 +13,7 @@ import FacebookVideo from './facebook-video';
 import AudioEmbed from './audio';
 import ArticleLink from './article-link';
 
-export default function Sections({ body }) {
+export default function Sections({ body, ...props }) {
   const renderSections = (section, i) => {
     // para
     if (section._type === 'block' && !section.listItem) {
@@ -103,8 +103,10 @@ export default function Sections({ body }) {
     // audio embed
     if (section._type === 'audioEmbedBlock') {
       return (
-        <div key={i} className="pv4">
+        <div key={i} className="pb4">
           <AudioEmbed
+            {...props}
+            i={i}
             url={section?.audioEmbed}
             allowDownload={section?.allowDownload}
           />

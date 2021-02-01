@@ -15,7 +15,9 @@ $rhap_font-family: inherit !default;
   padding-left: 3px;
   padding-right: 10px;
   background-color: $rhap_background-color;
-  border: 2px solid var(--black);
+  border: 1px solid var(--almost-white);
+  border-radius: 30px;
+  @extend .shadow1;
 
   &:focus:not(:focus-visible) {
     outline: 0;

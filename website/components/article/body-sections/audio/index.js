@@ -1,10 +1,19 @@
+import { useState, useEffect, useRef } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import { Button } from 'next-pattern-library';
 
 import { useApp } from '~/context-provider/app';
 
-export default function Audip({ url, allowDownload }) {
+export default function Audio({ url, allowDownload, ...props }) {
+  const PlayerRef = useRef(null);
   const app = useApp();
+  const { currentAudioSelected, handleAudioPlay } = { ...props };
+
+  useEffect(() => {
+    if (currentAudioSelected !== PlayerRef) {
+      PlayerRef.current.audio.current.pause();
+    }
+  }, [currentAudioSelected]);
 
   return (
     <div className="tac  db  w-100  mla  mra">
@@ -15,6 +24,7 @@ export default function Audip({ url, allowDownload }) {
           }
         >
           <AudioPlayer
+            ref={PlayerRef}
             showSkipControls={false}
             showJumpControls={false}
             src={url}
@@ -24,16 +34,19 @@ export default function Audip({ url, allowDownload }) {
               RHAP_UI.CURRENT_TIME,
             ]}
             layout="horizontal-reverse"
+            onPlay={() => {
+              if (handleAudioPlay) handleAudioPlay(PlayerRef);
+            }}
           />
         </div>
 
         {allowDownload && (
-          <div className="col-4  dn  df-md">
+          <div className="col-4  dn  df-md  align-center  ph2">
             <a className="link" href={url}>
               <Button
                 /* Options */
                 type="primary"
-                size="medium"
+                size="small"
                 text="Download"
                 color="black"
                 fluid={false}
