@@ -16,6 +16,7 @@ export const event = ({ action, category, label, value }) => {
   if (process.env.NODE_ENV !== 'production') return;
 
   if (window?.gtag) {
+    console.log('aaa', action, category, label, value);
     window.gtag('event', action, {
       event_category: category,
       event_label: label,

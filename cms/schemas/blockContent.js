@@ -225,6 +225,18 @@ export default {
       icon: iconAudioTrack,
       fields: [
         {
+          name: "title",
+          title: "Title",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "array",
+          of: [{ type: "block" }],
+        },
+        {
           name: "audioEmbed",
           title: "Facebook Video Embed",
           type: "string",
