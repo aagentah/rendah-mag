@@ -118,7 +118,7 @@ export default function Post({ siteConfig, member }) {
           </div>
 
           {member?.posts.length > 0 && (
-            <section className="pb5">
+            <section className="pb5  pb6-md">
               <div className="pb4">
                 <Heading
                   /* Options */

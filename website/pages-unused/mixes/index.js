@@ -53,7 +53,7 @@ export default function Mixes({ siteConfig }) {
 
           <div className="pt5  mt4  ph3  ph4-md">
             <Container>
-              <section className="pb5">
+              <section className="pb5  pb6-md">
                 <div className="pb4">
                   <Heading
                     /* Options */

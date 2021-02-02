@@ -36,21 +36,21 @@ export default function Post({ siteConfig }) {
       preview={null}
     >
       <Container>
-        <div className="pt4  pb2">
-          <Heading
-            /* Options */
-            htmlEntity="h1"
-            text="Team"
-            color="black"
-            size="large"
-            truncate={0}
-            onClick={null}
-            /* Children */
-            withLinkProps={null}
-          />
-        </div>
+        <section className="pb5  pb6-md">
+          <div className="pt4  pb2">
+            <Heading
+              /* Options */
+              htmlEntity="h1"
+              text="Team"
+              color="black"
+              size="large"
+              truncate={0}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
 
-        <section className="pb3">
           <div className="flex  flex-wrap">
             {[...Array(teamLength)].map((iteration, i) => (
               <div key={iteration} className="col-24  col-6-md">
