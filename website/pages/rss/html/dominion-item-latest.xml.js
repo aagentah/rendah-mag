@@ -11,6 +11,7 @@ const sitemapXml = (item) => {
 
   if (item?.slug?.current) {
     const title = item?.title || '';
+    let hasLoginPrompt;
 
     const description = blocksToHtml({ blocks: item?.description });
 
@@ -26,6 +27,24 @@ const sitemapXml = (item) => {
 
     const date = new Date(item?.activeFrom).toUTCString();
 
+    if (item?.includeLoginPrompt) {
+      hasLoginPrompt = `
+            <tr>
+              <td width="400" valign="top">
+                <p>
+                  <em style="font-style: italic;">
+                    Please <a style="text-decoration: underline;" href="${process.env.SITE_URL}/login">log in</a>
+                    to access relevant downloads/resources.
+                  </em>
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td><br /></td>
+            </tr>
+          `;
+    }
+
     const html = `
           <table cellspacing="0" cellpadding="0" border="0" width="100%">
             <tr>
@@ -36,6 +55,7 @@ const sitemapXml = (item) => {
             <tr>
               <td><br /></td>
             </tr>
+            ${hasLoginPrompt || ''}
             <tr>
               <td width="400" valign="top">
                 ${image}

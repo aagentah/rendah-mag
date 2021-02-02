@@ -52,6 +52,11 @@ export default {
       type: "blockContent",
     },
     {
+      name: "includeLoginPrompt",
+      title: "Include Login Prompt",
+      type: "boolean",
+    },
+    {
       title: "Buttons",
       name: "buttons",
       type: "array",
