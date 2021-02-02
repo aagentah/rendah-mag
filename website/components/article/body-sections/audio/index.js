@@ -2,12 +2,22 @@ import { useState, useEffect, useRef } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import { Button } from 'next-pattern-library';
 
+import { useUser } from '~/lib/hooks';
 import { useApp } from '~/context-provider/app';
+import * as gtag from '~/lib/gtag';
 
-export default function Audio({ url, allowDownload, ...props }) {
+export default function Audio({
+  url,
+  title,
+  description,
+  allowDownload,
+  ...props
+}) {
   const PlayerRef = useRef(null);
   const app = useApp();
+  const [user, { loading, mutate, error }] = useUser();
   const { currentAudioSelected, handleAudioPlay } = { ...props };
+  console.log('props', props);
 
   useEffect(() => {
     if (currentAudioSelected !== PlayerRef) {
@@ -15,8 +25,30 @@ export default function Audio({ url, allowDownload, ...props }) {
     }
   }, [currentAudioSelected]);
 
+  const triggerOnPlayEvt = () => {
+    gtag.event({
+      category: 'Audio',
+      action: 'play',
+      label: title,
+    });
+  };
+
+  const triggerOnDownloadEvt = () => {
+    gtag.event({
+      category: 'Audio',
+      action: 'download',
+      label: title,
+    });
+  };
+
   return (
-    <div className="tac  db  w-100  mla  mra">
+    <div className="w-100  mla  mra  bg-almost-white  pa3  br4">
+      <p className="db  t-body  lh-copy  f6  dark-grey  pv2  bold">{title}</p>
+
+      {
+        // todo: add description
+      }
+
       <div className="flex  flex-wrap">
         <div
           className={
@@ -36,30 +68,36 @@ export default function Audio({ url, allowDownload, ...props }) {
             layout="horizontal-reverse"
             onPlay={() => {
               if (handleAudioPlay) handleAudioPlay(PlayerRef);
+              triggerOnPlayEvt();
             }}
           />
         </div>
 
         {allowDownload && (
           <div className="col-4  dn  df-md  align-center  ph2">
-            <a className="link" href={url}>
-              <Button
-                /* Options */
-                type="primary"
-                size="small"
-                text="Download"
-                color="black"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted={false}
-                loading={false}
-                disabled={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </a>
+            <Button
+              /* Options */
+              type="primary"
+              size="small"
+              text="Download"
+              color="black"
+              fluid={false}
+              icon={null}
+              iconFloat={null}
+              inverted={false}
+              loading={false}
+              disabled={false}
+              onClick={() => {
+                triggerOnDownloadEvt();
+              }}
+              /* Children */
+              withLinkProps={{
+                type: 'external',
+                href: url,
+                target: '_self',
+                routerLink: null,
+              }}
+            />
           </div>
         )}
       </div>

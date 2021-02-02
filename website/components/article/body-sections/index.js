@@ -102,11 +102,14 @@ export default function Sections({ body, ...props }) {
 
     // audio embed
     if (section._type === 'audioEmbedBlock') {
+      console.log('section', section);
       return (
-        <div key={i} className="pb4">
+        <div key={i} className="pv3">
           <AudioEmbed
             {...props}
             i={i}
+            title={section?.title}
+            description={section?.description}
             url={section?.audioEmbed}
             allowDownload={section?.allowDownload}
           />
