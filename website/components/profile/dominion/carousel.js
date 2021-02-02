@@ -199,7 +199,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                         ???
                       </p>
                       <p className="col-24  t-secondary  f7  tac  lh-copy">
-                        Next month
+                        Coming soon
                       </p>
                     </div>
                   </div>
@@ -354,7 +354,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                 </div>
 
                 {item.image && (
-                  <div className="w-100  w-50-md  mla  mra">
+                  <div className="w-100  mla  mra  ph4  ph5-md">
                     <Image
                       /* Options */
                       src={imageBuilder
@@ -374,7 +374,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                       figcaption={null}
                       height={null}
                       width={null}
-                      customClass={null}
+                      customClass={'br4'}
                       onClick={null}
                       /* Children */
                       withLinkProps={null}

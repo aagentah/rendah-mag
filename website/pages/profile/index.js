@@ -4,10 +4,9 @@ import zenscroll from 'zenscroll';
 
 import { Tabs } from 'next-pattern-library';
 
-import ProfileEdit from './profile-edit';
-// import ProfileOrders from './profile-orders';
-import ProfileDominion from './profile-dominion';
-import ProfilePipeline from './profile-pipeline';
+import ProfileEdit from '~/components/profile/edit';
+import ProfileDominion from '~/components/profile/dominion';
+import ProfilePipeline from '~/components/profile/pipeline';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
@@ -83,11 +82,6 @@ export default function Profile({ siteConfig }) {
                         tabTitle: 'Pipeline',
                         tabContent: <ProfilePipeline />,
                       },
-                      // {
-                      //   id: '4',
-                      //   tabTitle: 'Orders',
-                      //   tabContent: <ProfileOrders />,
-                      // },
                     ]}
                     defaultSelected={app.deviceSize === 'md' ? null : '1'}
                     onToggle={handleToggle}

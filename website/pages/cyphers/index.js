@@ -246,7 +246,7 @@ export default function Cyphers({ siteConfig }) {
                 </div>
               </div>
 
-              <section className="pb5">
+              <section className="pb5  pb6-md">
                 <div className="pb4">
                   <Heading
                     /* Options */

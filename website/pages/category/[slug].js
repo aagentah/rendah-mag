@@ -31,7 +31,7 @@ export default function Category({ siteConfig, category }) {
         <div className="pt6">
           <Container>
             {category.articles.length > 0 && (
-              <section className="pb5">
+              <section className="pb5  pb6-md">
                 <div className="pb4">
                   <Heading
                     /* Options */

@@ -120,7 +120,7 @@ export default function Home({ siteConfig }) {
 
             <div className="flex  flex-wrap">
               <div className="col-24  col-12-md  pr0  pr3-md">
-                <section className="pb5">
+                <section className="pb5  pb6-md">
                   <div className="pb4">
                     <Heading
                       /* Options */
@@ -179,7 +179,7 @@ export default function Home({ siteConfig }) {
               </div>
 
               <div className="col-24  col-12-md  pl0  pl3-md">
-                <section className="pb5">
+                <section className="pb5  pb6-md">
                   <div className="pb4">
                     <Heading
                       /* Options */
