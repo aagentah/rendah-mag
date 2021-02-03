@@ -153,10 +153,6 @@ export default function Dominion({ siteConfig }) {
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
                     Discounts from all coming Rendah Mag products.
                   </li>
-                  <li className="f-secondary  tal  f5  pb2  lh-copy  fw7  green">
-                    If you&apos;re joining us in January, you also get a FREE
-                    Dominion Cassette Tape Cypher!
-                  </li>
                 </ul>
 
                 <p className="f-secondary  taj  f5  pb3  lh-copy">
