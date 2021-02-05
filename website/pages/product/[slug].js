@@ -167,6 +167,7 @@ export default function Product({ siteConfig, product }) {
                         inverted={false}
                         loading={false}
                         disabled={false}
+                        skeleton={false}
                         onClick={null}
                         /* Children */
                         withLinkProps={null}
@@ -187,6 +188,7 @@ export default function Product({ siteConfig, product }) {
                         inverted="transparent"
                         loading={false}
                         disabled={false}
+                        skeleton={false}
                         onClick={null}
                         /* Children */
                         withLinkProps={null}

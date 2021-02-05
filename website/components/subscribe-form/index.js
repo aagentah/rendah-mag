@@ -88,6 +88,7 @@ export default function SubscribeForm({ onSuccess }) {
             inverted={false}
             loading={buttonLoading}
             disabled={false}
+            skeleton={false}
             onClick={null}
             /* Children */
             withLinkProps={{

@@ -283,6 +283,7 @@ export default function ProfileEdit() {
                   inverted={false}
                   loading={false}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={null}
@@ -306,6 +307,7 @@ export default function ProfileEdit() {
                   inverted={false}
                   loading={false}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={null}
@@ -325,6 +327,7 @@ export default function ProfileEdit() {
                 inverted={false}
                 loading={false}
                 disabled={false}
+                skeleton={false}
                 onClick={() => {
                   setBillingModalActive(false);
                 }}
@@ -413,6 +416,7 @@ export default function ProfileEdit() {
                   inverted={false}
                   loading={updatePasswordButtonLoading}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{
@@ -436,6 +440,7 @@ export default function ProfileEdit() {
                   inverted={false}
                   loading={false}
                   disabled={false}
+                  skeleton={false}
                   onClick={() => {
                     setPasswordModalActive(false);
                   }}
@@ -498,6 +503,7 @@ export default function ProfileEdit() {
                 inverted={false}
                 loading={false}
                 disabled={false}
+                skeleton={false}
                 onClick={() => {
                   setAvatarModalActive(!avatarModalActive);
                 }}
@@ -555,6 +561,7 @@ export default function ProfileEdit() {
                 inverted
                 loading={false}
                 disabled={app.isLoading}
+                skeleton={false}
                 onClick={() => {
                   setAvatarModalActive(!avatarModalActive);
                 }}
@@ -668,6 +675,7 @@ export default function ProfileEdit() {
                 inverted={false}
                 loading={updateButtonLoading}
                 disabled={app.isLoading}
+                skeleton={false}
                 onClick={null}
                 /* Children */
                 withLinkProps={{
@@ -692,6 +700,7 @@ export default function ProfileEdit() {
                   inverted
                   loading={false}
                   disabled={app.isLoading}
+                  skeleton={false}
                   onClick={() => {
                     setBillingModalActive(!passwordModalActive);
                   }}
@@ -712,6 +721,7 @@ export default function ProfileEdit() {
                   inverted
                   loading={false}
                   disabled={app.isLoading}
+                  skeleton={false}
                   onClick={() => {
                     setPasswordModalActive(!passwordModalActive);
                   }}

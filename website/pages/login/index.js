@@ -188,6 +188,7 @@ export default function Login({ siteConfig }) {
                   inverted={false}
                   loading={submitButtonLoading}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{
@@ -212,6 +213,7 @@ export default function Login({ siteConfig }) {
                   inverted
                   loading={false}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{
@@ -238,6 +240,7 @@ export default function Login({ siteConfig }) {
                   inverted
                   loading={false}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{

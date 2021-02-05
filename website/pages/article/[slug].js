@@ -17,7 +17,6 @@ import {
 } from 'next-pattern-library';
 import HeroPost from '~/components/hero/post';
 
-
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';
@@ -131,6 +130,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 inverted={false}
                 loading={false}
                 disabled={false}
+                skeleton={false}
                 onClick={() => {
                   setModalActive(false);
                 }}

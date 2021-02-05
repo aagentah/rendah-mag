@@ -73,6 +73,7 @@ export default function DominionAlreadyMember({ siteConfig }) {
                 invert={false}
                 loading={false}
                 disabled={false}
+                skeleton={false}
                 onClick={null}
                 /* Children */
                 withLinkProps={{

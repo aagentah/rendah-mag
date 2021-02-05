@@ -167,6 +167,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                         inverted
                         loading={false}
                         disabled={false}
+                        skeleton={false}
                         onClick={() => {
                           setModalActive(i);
                           setCanCarouselHide(true);
@@ -218,6 +219,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                     inverted
                     loading={false}
                     disabled
+                    skeleton={false}
                     onClick={null}
                     /* Children */
                     withLinkProps={null}
@@ -277,6 +279,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                 inverted={false}
                 loading={false}
                 disabled={false}
+                skeleton={false}
                 onClick={() => {
                   setCanSectionHide(true);
 
@@ -334,6 +337,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                               inverted={false}
                               loading={false}
                               disabled={false}
+                              skeleton={false}
                               onClick={null}
                               /* Children */
                               withLinkProps={{

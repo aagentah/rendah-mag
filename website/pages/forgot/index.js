@@ -121,6 +121,7 @@ export default function Forgot({ siteConfig }) {
                   inverted={false}
                   loading={submitButtonLoading}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{
@@ -145,6 +146,7 @@ export default function Forgot({ siteConfig }) {
                   inverted={false}
                   loading={false}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{

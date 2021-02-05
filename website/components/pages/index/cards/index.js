@@ -33,7 +33,6 @@ export default function Home({
                   color="black"
                   size="medium"
                   truncate={null}
-                  
                   /* Children */
                   withLinkProps={null}
                 />
@@ -62,6 +61,7 @@ export default function Home({
                   inverted={false}
                   loading={false}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{
@@ -91,7 +91,6 @@ export default function Home({
                       color="black"
                       size="medium"
                       truncate={null}
-                      
                       /* Children */
                       withLinkProps={null}
                     />
@@ -120,6 +119,7 @@ export default function Home({
                       inverted={false}
                       loading={false}
                       disabled={false}
+                      skeleton={false}
                       onClick={null}
                       /* Children */
                       withLinkProps={{
@@ -148,7 +148,6 @@ export default function Home({
                       color="black"
                       size="medium"
                       truncate={null}
-                      
                       /* Children */
                       withLinkProps={null}
                     />
@@ -177,6 +176,7 @@ export default function Home({
                       inverted={false}
                       loading={false}
                       disabled={false}
+                      skeleton={false}
                       onClick={null}
                       /* Children */
                       withLinkProps={{

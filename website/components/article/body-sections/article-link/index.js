@@ -17,6 +17,7 @@ export default function ArticleLink({ text, url }) {
         inverted={false}
         loading={false}
         disabled={false}
+        skeleton={false}
         onClick={null}
         /* Children */
         withLinkProps={{

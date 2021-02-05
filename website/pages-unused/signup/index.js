@@ -214,6 +214,7 @@ export default function Sigup({ siteConfig }) {
                   inverted={false}
                   loading={submitButtonLoading}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{
@@ -238,6 +239,7 @@ export default function Sigup({ siteConfig }) {
                   inverted={false}
                   loading={null}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{

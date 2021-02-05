@@ -194,6 +194,7 @@ export default function Dominion({ siteConfig }) {
                     inverted={false}
                     loading={false}
                     disabled={false}
+                    skeleton={false}
                     onClick={null}
                     /* Children */
                     withLinkProps={null}
@@ -215,6 +216,7 @@ export default function Dominion({ siteConfig }) {
                 //       inverted
                 //       loading={false}
                 //       disabled={false}
+                //       skeleton={false}
                 //       onClick={null}
                 //       /* Children */
                 //       withLinkProps={null}
