@@ -60,6 +60,7 @@ export default function Post({ siteConfig, member }) {
                 height={250}
                 width={null}
                 customClass="shadow2"
+                skeleton={false}
                 onClick={null}
                 /* Children */
                 withLinkProps={null}

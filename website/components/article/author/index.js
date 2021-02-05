@@ -46,6 +46,7 @@ export default function Author({ siteConfig, author }) {
             height={150}
             width={null}
             customClass="shadow2"
+            skeleton={false}
             onClick={null}
             /* Children */
             withLinkProps={{

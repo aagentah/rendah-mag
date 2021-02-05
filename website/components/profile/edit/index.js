@@ -533,6 +533,7 @@ export default function ProfileEdit() {
                 height={null}
                 width={null}
                 customClass="shadow2"
+                skeleton={false}
                 onClick={null}
                 /* Children */
                 withLinkProps={null}

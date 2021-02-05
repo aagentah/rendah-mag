@@ -44,6 +44,7 @@ export default function CardDefault({ product }) {
       height={imageHeight}
       width={null}
       customClass={null}
+      skeleton={false}
       onClick={null}
       /* Children */
       withLinkProps={{

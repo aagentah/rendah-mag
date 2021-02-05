@@ -156,6 +156,7 @@ export default function Cyphers({ siteConfig }) {
                         height={null}
                         width={null}
                         customClass={null}
+                        skeleton={false}
                         onClick={null}
                         /* Children */
                         withLinkProps={null}

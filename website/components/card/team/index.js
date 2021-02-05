@@ -56,6 +56,7 @@ export default function CardBlog({ teamMember, columnCount }) {
       height={imageHeight}
       width={null}
       customClass={null}
+      skeleton={false}
       onClick={null}
       /* Children */
       withLinkProps={{
@@ -92,7 +93,6 @@ export default function CardBlog({ teamMember, columnCount }) {
       color="black"
       size={headingSize}
       truncate={4}
-      
       /* Children */
       withLinkProps={null}
     />
