@@ -94,6 +94,7 @@ export default function Product({ siteConfig, product }) {
                     height={500}
                     width={null}
                     customClass="shadow2"
+                    skeleton={false}
                     onClick={null}
                     /* Children */
                     withLinkProps={null}

@@ -49,6 +49,7 @@ export default function ImageSection({ section }) {
           height={null}
           width={null}
           customClass={null}
+          skeleton={false}
           onClick={null}
           /* Children */
           withLinkProps={null}

@@ -375,6 +375,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                       height={null}
                       width={null}
                       customClass={'br4'}
+                      skeleton={false}
                       onClick={null}
                       /* Children */
                       withLinkProps={null}

@@ -31,6 +31,7 @@ export default function HeroCypher({ cypher }) {
       height={500}
       width={null}
       customClass={null}
+      skeleton={false}
       onClick={null}
       /* Children */
       withLinkProps={null}
