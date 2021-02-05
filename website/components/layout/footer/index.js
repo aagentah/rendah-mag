@@ -23,7 +23,6 @@ export default function Footer() {
                   color="white"
                   size="large"
                   truncate={null}
-                  
                   /* Children */
                   withLinkProps={null}
                 />
@@ -43,6 +42,7 @@ export default function Footer() {
                     inverted
                     loading={false}
                     disabled={false}
+                    skeleton={false}
                     onClick={null}
                     /* Children */
                     withLinkProps={{
@@ -69,6 +69,7 @@ export default function Footer() {
                     inverted
                     loading={false}
                     disabled={false}
+                    skeleton={false}
                     onClick={null}
                     /* Children */
                     withLinkProps={{
@@ -96,6 +97,7 @@ export default function Footer() {
                   //     inverted
                   //     loading={false}
                   //     disabled={false}
+                  //     skeleton={false}
                   //     onClick={null}
                   //     /* Children */
                   //     withLinkProps={{
@@ -124,6 +126,7 @@ export default function Footer() {
                   //     inverted
                   //     loading={false}
                   //     disabled={false}
+                  //     skeleton={false}
                   //     onClick={null}
                   //     /* Children */
                   //     withLinkProps={{
@@ -151,6 +154,7 @@ export default function Footer() {
                     inverted
                     loading={false}
                     disabled={false}
+                    skeleton={false}
                     onClick={null}
                     /* Children */
                     withLinkProps={{

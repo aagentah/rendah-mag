@@ -87,6 +87,7 @@ export default function Audio({
               inverted={false}
               loading={false}
               disabled={false}
+              skeleton={false}
               onClick={() => {
                 triggerOnDownloadEvt();
               }}

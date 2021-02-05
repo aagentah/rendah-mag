@@ -116,6 +116,7 @@ export default function LinkInBio({ siteConfig, linkInBio, preview }) {
                 inverted={false}
                 loading={false}
                 disabled={false}
+                skeleton={false}
                 onClick={() => {
                   setModalActive(false);
                 }}

@@ -102,6 +102,7 @@ export default function Home({ siteConfig }) {
                   inverted={false}
                   loading={false}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{
@@ -161,6 +162,7 @@ export default function Home({ siteConfig }) {
                       inverted={false}
                       loading={false}
                       disabled={false}
+                      skeleton={false}
                       onClick={null}
                       /* Children */
                       withLinkProps={{
@@ -220,6 +222,7 @@ export default function Home({ siteConfig }) {
                       inverted={false}
                       loading={false}
                       disabled={false}
+                      skeleton={false}
                       onClick={null}
                       /* Children */
                       withLinkProps={{

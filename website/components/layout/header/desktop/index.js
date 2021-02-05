@@ -58,6 +58,8 @@ export default function HeaderDestop({
                   inverted
                   loading={false}
                   disabled={false}
+                  skeleton={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{
@@ -84,6 +86,7 @@ export default function HeaderDestop({
                   inverted
                   loading={false}
                   disabled={false}
+                  skeleton={false}
                   onClick={null}
                   /* Children */
                   withLinkProps={{
@@ -159,6 +162,7 @@ export default function HeaderDestop({
                       inverted
                       loading={false}
                       disabled={false}
+                      skeleton={false}
                       onClick={null}
                       /* Children */
                       withLinkProps={{
@@ -185,6 +189,7 @@ export default function HeaderDestop({
                       inverted
                       loading={false}
                       disabled={false}
+                      skeleton={false}
                       onClick={handleLogout}
                       /* Children */
                       withLinkProps={null}
@@ -206,6 +211,7 @@ export default function HeaderDestop({
                       inverted
                       loading={false}
                       disabled={false}
+                      skeleton={false}
                       onClick={null}
                       /* Children */
                       withLinkProps={{
@@ -232,6 +238,7 @@ export default function HeaderDestop({
                       inverted
                       loading={false}
                       disabled={false}
+                      skeleton={false}
                       onClick={null}
                       /* Children */
                       withLinkProps={{

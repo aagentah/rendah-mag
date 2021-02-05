@@ -97,6 +97,7 @@ export default function Cyphers({ siteConfig }) {
                           inverted={false}
                           loading={false}
                           disabled={false}
+                          skeleton={false}
                           onClick={null}
                           /* Children */
                           withLinkProps={{
@@ -121,6 +122,7 @@ export default function Cyphers({ siteConfig }) {
                           inverted={false}
                           loading={false}
                           disabled={false}
+                          skeleton={false}
                           onClick={null}
                           /* Children */
                           withLinkProps={{

@@ -55,6 +55,7 @@ export default function CookieBanner() {
             inverted={false}
             loading={false}
             disabled={false}
+            skeleton={false}
             onClick={handleOnClick}
             /* Children */
             withLinkProps={null}

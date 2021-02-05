@@ -166,6 +166,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
                 inverted={false}
                 loading={false}
                 disabled={false}
+                skeleton={false}
                 onClick={() => {
                   setModalActive(false);
                 }}

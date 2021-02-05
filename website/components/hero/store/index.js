@@ -78,6 +78,7 @@ export default function HeroCypher({ cypher }) {
       inverted={false}
       loading={false}
       disabled={false}
+      skeleton={false}
       onClick={null}
       /* Children */
       withLinkProps={{
