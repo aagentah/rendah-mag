@@ -78,7 +78,7 @@ const sitemapXml = (item) => {
     return `
       <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
         <channel>
-          <title>Dominion Items Latest</title>
+          <title>${escapeXml(encodeSpecialChar(title))}</title>
           <link>${process.env.SITE_URL}</link>
           <description>Dominion Items Latest</description>
           <pubDate>${new Date(item.activeFrom).toUTCString()}</pubDate>
@@ -91,7 +91,7 @@ const sitemapXml = (item) => {
   return `
     <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
-        <title>${escapeXml(encodeSpecialChar(title))}</title>
+        <title></title>
         <link></link>
         <description></description>
       </channel>
