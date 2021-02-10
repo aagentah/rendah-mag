@@ -91,7 +91,7 @@ const sitemapXml = (item) => {
   return `
     <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
-        <title></title>
+        <title>${escapeXml(encodeSpecialChar(title))}</title>
         <link></link>
         <description></description>
       </channel>
