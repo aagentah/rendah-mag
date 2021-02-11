@@ -81,7 +81,6 @@ const sitemapXml = (item) => {
           <title>${escapeXml(encodeSpecialChar(title))}</title>
           <link>${process.env.SITE_URL}</link>
           <description>Dominion Items Latest</description>
-          <pubDate>${new Date(item.activeFrom).toUTCString()}</pubDate>
           ${postXML}
         </channel>
       </rss>
