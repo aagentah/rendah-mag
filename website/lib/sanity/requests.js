@@ -43,7 +43,7 @@ export async function getSiteConfig() {
 // Posts
 export async function getPreviewPostBySlug(slug) {
   const data = await getClient(true).fetch(
-    `*[_type == "post" && slug.current == $slug] | order(date desc){
+    `*[_type == "post" && slug.current == $slug]{
       ${postFields}
       content
     }`,
@@ -54,7 +54,7 @@ export async function getPreviewPostBySlug(slug) {
 
 export async function getPostWithSearch(slug) {
   const data = await client.fetch(
-    `*[_type == "post" && title match $slug || _type == "post" && excerpt match $slug]{
+    `*[_type == "post" && title match $slug || _type == "post" && excerpt match $slug] | order(publishedAt desc) {
       ${postFields}
      }`,
     { slug }
@@ -72,7 +72,7 @@ export async function getFeaturedPost(preview) {
 
 export async function getAllPosts(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) [0..31] {
+    .fetch(`*[_type == "post"] | order(publishedAt desc) [0..31] {
       ${postFields}
     }`);
   return results;
@@ -80,9 +80,10 @@ export async function getAllPosts(preview) {
 
 export async function getAllPostsTotal(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "post"] | order(date desc, _updatedAt desc) {
+    .fetch(`*[_type == "post"] | order(publishedAt desc) {
       ${postFields}
     }`);
+
   return results;
 }
 
@@ -93,12 +94,20 @@ export async function getCategory(category, range) {
   const results = await getClient(null).fetch(
     `*[_type == "category" && slug.current == $category] [0] {
       ...,
-          "articles": *[_type == "post" && references(^._id)] | order(date desc, _updatedAt desc) [$rangeFrom..$rangeTo] {
+          "articles": *[_type == "post" && references(^._id)] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
             ${postFields}
             }
           }`,
     { category, rangeFrom, rangeTo }
   );
+
+  return results;
+}
+
+export async function getAllCategoriesTotal(preview) {
+  const results = await getClient(preview).fetch(`*[_type == "category"] {
+      ...,
+    }`);
 
   return results;
 }
@@ -165,7 +174,7 @@ export async function getTeamMemberAndPosts(slug, preview) {
 
 export async function getAllProducts(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "storeItem"] | order(date desc, _updatedAt desc) {
+    .fetch(`*[_type == "storeItem"] | order(publishedAt desc) {
       ${productFields}
     }`);
   return results;
@@ -173,7 +182,7 @@ export async function getAllProducts(preview) {
 
 export async function getAllProductsTotal(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "storeItem"] | order(date desc, _updatedAt desc) {
+    .fetch(`*[_type == "storeItem"] | order(publishedAt desc) {
       ${productFields}
     }`);
   return results;
@@ -181,7 +190,7 @@ export async function getAllProductsTotal(preview) {
 
 export async function getProduct(slug, preview) {
   const results = await getClient(preview).fetch(
-    `*[_type == "storeItem" && slug.current == $slug] | order(date desc, _updatedAt desc) [0] {
+    `*[_type == "storeItem" && slug.current == $slug] | order(publishedAt desc) [0] {
       ${productFields}
     }`,
     { slug }
@@ -194,7 +203,7 @@ export async function getPostAndMore(slug, preview) {
   const [post, morePosts] = await Promise.all([
     curClient
       .fetch(
-        `*[_type == "post" && slug.current == $slug] | order(_updatedAt desc) {
+        `*[_type == "post" && slug.current == $slug] | order(publishedAt desc) {
         ${postFields}
         content,
       }`,
@@ -202,7 +211,7 @@ export async function getPostAndMore(slug, preview) {
       )
       .then((res) => res?.[0]),
     curClient.fetch(
-      `*[_type == "post" && slug.current != $slug] | order(date desc, _updatedAt desc){
+      `*[_type == "post" && slug.current != $slug] | order(publishedAt desc){
         ${postFields}
         content,
       }[0...4]`,
@@ -214,7 +223,7 @@ export async function getPostAndMore(slug, preview) {
 
 export async function getPreviewProductBySlug(slug) {
   const data = await getClient(true).fetch(
-    `*[_type == "product" && slug.current == $slug] | order(date desc){
+    `*[_type == "product" && slug.current == $slug] {
       ${productFields}
       content,
     }`,
@@ -228,7 +237,7 @@ export async function getProductAndMore(slug, preview) {
   const [product, moreProducts] = await Promise.all([
     curClient
       .fetch(
-        `*[_type == "product" && slug.current == $slug] | order(_updatedAt desc) {
+        `*[_type == "product" && slug.current == $slug] | order(publishedAt desc) {
         ${productFields}
         content,
       }`,
@@ -236,7 +245,7 @@ export async function getProductAndMore(slug, preview) {
       )
       .then((res) => res?.[0]),
     curClient.fetch(
-      `*[_type == "product" && slug.current != $slug] | order(date desc, _updatedAt desc){
+      `*[_type == "product" && slug.current != $slug] | order(publishedAt desc){
         ${productFields}
         content,
       }[0...4]`,
@@ -257,7 +266,7 @@ export async function getLatestMix(preview) {
 
 export async function getMixes(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "mix"] | order(date desc, _updatedAt desc) [0..15] {
+    .fetch(`*[_type == "mix"] | order(publishedAt desc) [0..15] {
       ...,
     }`);
   return results;
