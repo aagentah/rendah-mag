@@ -28,18 +28,17 @@ const sitemapXml = (cypher) => {
 
     const packLink = cypher.packLink
       ? `
-    <p style="text-align: left;">
-      Download the pack <a style="text-align: left;" href="${cypher.packLink}">here</a>.
-    </p>
-  `
+      <p style="text-align: left;">
+        Download the pack <a style="text-align: left; text-decoration: underline;" href="${cypher.packLink}">here</a>.
+      </p>
+    `
       : '';
 
     const submissionLink = cypher.submissionFormLink
       ? `
-    <p style="text-align: left;">
-      Submission Form:
-      <a style="text-align: left;" href="${cypher.submissionFormLink}">${cypher.submissionFormLink}</a>
-    </p>
+      <p style="text-align: left;">
+        Submit your track <a style="text-align: left; text-decoration: underline;" href="${cypher.submissionFormLink}">here</a>.
+      </p>
   `
       : '';
 
