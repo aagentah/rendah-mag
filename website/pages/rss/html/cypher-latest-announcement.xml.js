@@ -67,7 +67,7 @@ const sitemapXml = (cypher) => {
           </td>
         </tr>
         <tr>
-          <td height="30"><br /></td>
+          <td height="50"><br /></td>
         </tr>
         <tr>
           <td width="400" valign="top">
