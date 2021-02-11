@@ -28,7 +28,7 @@ const sitemapXml = (cypher) => {
 
     const packLink = cypher.packLink
       ? `
-      <p style="text-align: left;">
+      <p style="text-align: left; margin-bottom: 0px !important;">
         Download the pack <a style="text-align: left; text-decoration: underline;" href="${cypher.packLink}">here</a>.
       </p>
     `
@@ -36,7 +36,7 @@ const sitemapXml = (cypher) => {
 
     const submissionLink = cypher.submissionFormLink
       ? `
-      <p style="text-align: left;">
+      <p style="text-align: left; margin-bottom: 0px !important;">
         Submit your track <a style="text-align: left; text-decoration: underline;" href="${cypher.submissionFormLink}">here</a>.
       </p>
   `
@@ -58,7 +58,12 @@ const sitemapXml = (cypher) => {
         </tr>
         <tr>
           <td width="400" valign="top">
-            ${image}
+            ${packLink}
+          </td>
+        </tr>
+        <tr>
+          <td width="400" valign="top">
+            ${submissionLink}
           </td>
         </tr>
         <tr>
@@ -66,12 +71,7 @@ const sitemapXml = (cypher) => {
         </tr>
         <tr>
           <td width="400" valign="top">
-            ${packLink}
-          </td>
-        </tr>
-        <tr>
-          <td width="400" valign="top">
-            ${submissionLink}
+            ${image}
           </td>
         </tr>
       </table>
