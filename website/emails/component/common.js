@@ -109,6 +109,8 @@ export default (title, body, image, buttonText, buttonLink) => {
 
       <style type="text/css">
         body, .bg, p, span, strong, em, strong, ul, li, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn) {
+          font-family: Arial, Helvetica, sans-serif;
+          color: #000000;
           background: #ffffff !important;
           color: #111111 !important;
         }
@@ -128,6 +130,10 @@ export default (title, body, image, buttonText, buttonLink) => {
             background: #111111 !important;
             color: #ffffff !important;
             outline: 1px solid #ffffff !important;
+          }
+
+          a {
+            color: #ffffff !important;
           }
         }
 
@@ -156,28 +162,37 @@ export default (title, body, image, buttonText, buttonLink) => {
           line-height: 100%;
         }
 
-        p, ul, li, a, span, h1, h2, h3, h4, h5, h6 {
+        p, ul, li, a, span, strong, em, h2, h3, h4, h5, h6 {
           text-align: justify;
-          font-family: Arial, Helvetica, sans-serif;
-          color: #000000;
           font-size: 16px;
           line-height: 22px;
         }
 
         h1 {
           font-size: 20px;
-          line-height: 26px;
+          line-height: 28px;
         }
 
-        @media only screen and (max-width: 768px) {
+        .footnote {
+          font-size: 16px !important;
+          line-height: 22px !important;
+        }
+
+        @media only screen and (max-width:768px) {
           /* For mobile phones: */
-          p, ul, li, a, span, h1, h2, h3, h4, h5, h6 {
-            font-size: 26px;
-            line-height: 34px;
+          p, ul, li, a:not(.btn), span, strong, em, h2, h3, h4, h5, h6 {
+            font-size: 26px !important;
+            line-height: 38px !important;
           }
+
           h1 {
-            font-size: 30px;
-            line-height: 36px;
+            font-size: 28px !important;
+            line-height: 40px !important;
+          }
+
+          .footnote {
+            font-size: 16px !important;
+            line-height: 22px !important;
           }
         }
 
