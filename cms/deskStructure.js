@@ -66,6 +66,7 @@ export default () =>
             .items([
               S.documentTypeListItem("user").icon(MDPerson),
               S.documentTypeListItem("dominionItem"),
+              S.documentTypeListItem("creations"),
               S.listItem()
                 .icon(MDViewList)
                 .title("Dominion Pipeline")

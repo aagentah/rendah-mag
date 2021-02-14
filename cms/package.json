@@ -24,6 +24,7 @@
     "@sanity/desk-tool": "^2.3.4",
     "@sanity/image-url": "^0.140.22",
     "@sanity/production-preview": "^2.2.6",
+    "@sanity/react-hooks": "2.2.6",
     "@sanity/vision": "^2.2.6",
     "compressorjs": "^1.0.6",
     "prop-types": "^15.6",

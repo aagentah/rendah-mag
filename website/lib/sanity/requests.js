@@ -11,6 +11,7 @@ const postFields = `
   description,
   'slug': slug.current,
   'coverImage': image.asset->url,
+  'category': category->title,
   'author': author->{
     ...,
   },
@@ -83,6 +84,25 @@ export async function getAllPostsTotal(preview) {
     .fetch(`*[_type == "post"] | order(publishedAt desc) {
       ${postFields}
     }`);
+
+  return results;
+}
+
+export async function getAllCreationsTotal(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "creations"] | order(publishedAt desc) {
+      ${postFields}
+    }`);
+  return results;
+}
+
+export async function getCreation(slug, preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "creations" && slug.current == $slug] | [0] {
+      ${postFields}
+    }`,
+    { slug }
+  );
 
   return results;
 }

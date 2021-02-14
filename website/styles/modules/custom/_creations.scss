@@ -1,0 +1,24 @@
+.creations {
+  background-color: var(--almost-black);
+
+  .rich-text * {
+    color: var(--white) !important;
+  }
+}
+
+.creations__label-wrapper {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@include breakpoint-up(md) {
+  .creations__label-wrapper {
+    left: 100px;
+    margin: auto;
+    text-align: left;
+  }
+}
