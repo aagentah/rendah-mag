@@ -62,8 +62,8 @@ export default function ProfileCreations() {
           <p className="black  f6  lh-copy">
             Creations serves as our internal offering for additional exclusive
             content on the Dominion. The idea behind this is to share insights
-            not only on music, but a wider-appeal to the undustry as a whole,
-            such a tutorials, technical interviews, branding tips, creative
+            not only on music, but as a wider-appeal to the undustry as a whole,
+            including tutorials, technical interviews, branding tips, creative
             features, and much more!
           </p>
         </div>
