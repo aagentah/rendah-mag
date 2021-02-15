@@ -24,7 +24,6 @@ export default function Profile({ siteConfig }) {
   useEffect(() => {
     // redirect user to login if not authenticated
     if ((!loading && !user) || error) Router.replace('/login');
-    setRefreshDominion(true);
   }, [user, loading, error]);
 
   const handleToggle = (visibleTab, current) => {
@@ -39,9 +38,9 @@ export default function Profile({ siteConfig }) {
     }
 
     // Handles dominion carousel refresh
-    // if (visibleTab === '2') {
-    //   setRefreshDominion(true);
-    // }
+    if (visibleTab === '2') {
+      setRefreshDominion(true);
+    }
   };
 
   if (user) {
