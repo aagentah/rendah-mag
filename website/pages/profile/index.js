@@ -80,13 +80,13 @@ export default function Profile({ siteConfig }) {
                       },
                       {
                         id: '3',
-                        tabTitle: 'Pipeline',
-                        tabContent: <ProfilePipeline />,
+                        tabTitle: 'Creations',
+                        tabContent: <ProfileCreations />,
                       },
                       {
                         id: '4',
-                        tabTitle: 'Creations',
-                        tabContent: <ProfileCreations />,
+                        tabTitle: 'Pipeline',
+                        tabContent: <ProfilePipeline />,
                       },
                     ]}
                     defaultSelected={app.deviceSize === 'md' ? null : '1'}

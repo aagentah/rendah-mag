@@ -13,18 +13,35 @@ import { getAllCreationsTotal } from '~/lib/sanity/requests';
 
 export default function ProfileCreations() {
   const [user, { loading, mutate, error }] = useUser();
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([]);
+  const [recomendedPosts, setRecomendedPosts] = useState([]);
+  const [otherPosts, setOtherPosts] = useState([]);
 
   // Fetch orders
   useEffect(() => {
     const action = async () => {
       const data = await getAllCreationsTotal();
-      console.log('data', data);
       if (data) setPosts(data);
     };
 
     action();
-  }, []);
+
+    if (user && posts) {
+      let rP = [];
+      let oP = [];
+
+      const found = posts.map((post) => {
+        if (post?.tags.some((r) => user?.tags.includes(r))) {
+          rP.push(post);
+        } else {
+          oP.push(post);
+        }
+      });
+
+      setRecomendedPosts(rP);
+      setOtherPosts(oP);
+    }
+  }, [posts]);
 
   if (user?.isDominion && posts?.length) {
     return (
@@ -42,18 +59,68 @@ export default function ProfileCreations() {
           />
         </div>
         <div className="pb4  mb2">
-          <p className="black  f6  lh-copy">XXX</p>
+          <p className="black  f6  lh-copy">
+            Creations serves as our internal offering for additional exclusive
+            content on the Dominion. The idea behind this is to share insights
+            not only on music, but a wider-appeal to the undustry as a whole,
+            such a tutorials, technical interviews, branding tips, creative
+            features, and much more!
+          </p>
         </div>
 
-        <div className="flex  flex-wrap">
-          {posts.map((post, i) => (
-            <div key={post.slug} className="col-24  col-12-md">
-              <div className="ph3  pv2">
-                <CardCreations i={i} post={post} columnCount={2} />
-              </div>
+        {recomendedPosts?.length ? (
+          <>
+            <div className="pb3">
+              <Heading
+                /* Options */
+                htmlEntity="h2"
+                text="Recomended for you"
+                color="black"
+                size="small"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
             </div>
-          ))}
-        </div>
+
+            <div className="flex  flex-wrap">
+              {recomendedPosts.map((post, i) => (
+                <div key={post.slug} className="col-24  col-8-md">
+                  <div className="ph3  pv2">
+                    <CardCreations i={i} post={post} columnCount={3} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : null}
+
+        {otherPosts?.length ? (
+          <>
+            <div className="pb3">
+              <Heading
+                /* Options */
+                htmlEntity="h2"
+                text="More"
+                color="black"
+                size="small"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+
+            <div className="flex  flex-wrap">
+              {otherPosts.map((post, i) => (
+                <div key={post.slug} className="col-24  col-6-md">
+                  <div className="ph3  pv2">
+                    <CardCreations i={i} post={post} columnCount={4} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : null}
       </section>
     );
   }

@@ -16,10 +16,8 @@ export default function CardCreations({ post, columnCount }) {
   const scale = app.isRetina ? 2 : 1;
   let imageUrlWidth = app.deviceSize === 'md' ? 260 : 230;
   let imageHeight = app.deviceSize === 'md' ? 260 : 180;
-  const headingSize =
-    app.deviceSize === 'md' || columnCount === 2 ? 'medium' : 'small';
 
-  if (columnCount === 2) {
+  if (columnCount === 3) {
     imageUrlWidth = app.deviceSize === 'md' ? 260 : 500;
     imageHeight = app.deviceSize === 'md' ? 200 : 200;
   }
@@ -78,13 +76,32 @@ export default function CardCreations({ post, columnCount }) {
       htmlEntity="h2"
       text={post?.title}
       color="black"
-      size={headingSize}
-      truncate={2}
+      size="small"
+      truncate={columnCount === 3 ? 2 : 3}
       skeleton={!post}
       /* Children */
       withLinkProps={null}
     />
   );
+
+  let labelBlock = [];
+
+  if (post?.tags?.length) {
+    post.tags.map((label) => {
+      labelBlock.push(
+        <Label
+          /* Options */
+          customClass="category"
+          text={label}
+          color="white"
+          backgroundColor="black"
+          onClick={null}
+          /* Children */
+          withLinkProps={null}
+        />
+      );
+    });
+  }
 
   return (
     <Observer {...observer}>
@@ -95,7 +112,7 @@ export default function CardCreations({ post, columnCount }) {
           onClick={null}
           /* Children */
           image={cardImage}
-          labelBlock={null}
+          labelBlock={post?.tags?.length ? labelBlock : null}
           title={cardHeading}
           description={null}
           button={null}
