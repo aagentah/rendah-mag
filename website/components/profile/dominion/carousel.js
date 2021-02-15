@@ -120,7 +120,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
             </p>
           </div>
 
-          <div className="navigation-wrapper  mb3-md">
+          <div className="dominion__carousel  navigation-wrapper  mb3-md">
             <div
               ref={sliderNavRef}
               className="keen-slider  flex  align-center  pb4"

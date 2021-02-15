@@ -4,6 +4,12 @@
 
 // Carousel
 
+.dominion__carousel {
+  opacity: 0;
+  animation: fade-in 0.3s forwards;
+  animation-delay: 0.1s;
+}
+
 .dominion-carousel-wrapper {
   position: absolute;
   top: 15px;
