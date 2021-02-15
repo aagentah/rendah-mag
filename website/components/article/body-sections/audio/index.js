@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import { Button } from 'next-pattern-library';
+import BlockContent from '@sanity/block-content-to-react';
 
 import { useUser } from '~/lib/hooks';
 import { useApp } from '~/context-provider/app';
@@ -42,12 +43,12 @@ export default function Audio({
   };
 
   return (
-    <div className="w-100  mla  mra  bg-almost-white  pa3  br4">
-      <p className="db  t-body  lh-copy  f6  dark-grey  pv2  bold">{title}</p>
+    <div className="w-100  mla  mra  bg-almost-white  pa3  pa4-md  br4">
+      {title ? (
+        <p className="db  t-body  lh-copy  f6  dark-grey  pv2  bold">{title}</p>
+      ) : null}
 
-      {
-        // todo: add description
-      }
+      {description ? <BlockContent blocks={description} /> : null}
 
       <div className="flex  flex-wrap">
         <div
