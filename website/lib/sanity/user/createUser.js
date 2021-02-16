@@ -11,7 +11,7 @@ const createUser = async (user) => {
 
     const doc = {
       _type: 'user',
-      username: user.username,
+      username: user.username.toLowerCase(),
       name: user.name,
       publicProfile: true,
       isDominion: user.isDominion,
