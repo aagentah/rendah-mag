@@ -99,7 +99,7 @@ const handleTags = async (cloneFields) => {
     `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
     {
       body: JSON.stringify({
-        email: cloneFields.username,
+        email: cloneFields.username.toLowerCase(),
         tags: cloneFields.tags,
       }),
       headers: { 'Content-Type': 'application/json' },
