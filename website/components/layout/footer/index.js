@@ -173,6 +173,7 @@ export default function Footer() {
                 <div className="col-8  col-4-md  flex  justify-end  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://www.instagram.com/rendahmag/"
+                    target="_blank"
                     className="white"
                   >
                     <Icon icon={['fab', 'instagram']} size="2x" />
@@ -181,25 +182,35 @@ export default function Footer() {
                 <div className="col-8  col-4-md  flex  justify-center  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://www.facebook.com/rendahmag/"
+                    target="_blank"
                     className="white"
                   >
                     <Icon icon={['fab', 'facebook']} size="2x" />
                   </a>
                 </div>
                 <div className="col-8  col-4-md  flex  justify-start  justify-end-md  pt4  pt0-md">
-                  <a href="https://twitter.com/RendahMag" className="white">
+                  <a
+                    href="https://twitter.com/RendahMag"
+                    target="_blank"
+                    className="white"
+                  >
                     <Icon icon={['fab', 'twitter']} size="2x" />
                   </a>
                 </div>
 
                 <div className="col-8  col-4-md  flex  justify-end  justify-end-md  pt4  pt0-md">
-                  <a href="https://soundcloud.com/rendahmag" className="white">
+                  <a
+                    href="https://soundcloud.com/rendahmag"
+                    target="_blank"
+                    className="white"
+                  >
                     <Icon icon={['fab', 'soundcloud']} size="2x" />
                   </a>
                 </div>
                 <div className="col-8  col-4-md  flex  justify-center  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://www.youtube.com/channel/UC4dYeD1ceX8sSY3J3UuMn8w"
+                    target="_blank"
                     className="white"
                   >
                     <Icon icon={['fab', 'youtube']} size="2x" />
@@ -208,6 +219,7 @@ export default function Footer() {
                 <div className="col-8  col-4-md  flex  justify-start  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://discord.com/invite/ev2Q22C"
+                    target="_blank"
                     className="white"
                   >
                     <Icon icon={['fab', 'discord']} size="2x" />
