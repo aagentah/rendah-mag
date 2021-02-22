@@ -196,7 +196,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
               </Link>
             </div>
 
-            <div className="flex  justify-center  pb4">
+            <div className="flex  justify-center  pb4  tac">
               <Heading
                 /* Options */
                 htmlEntity="h2"
