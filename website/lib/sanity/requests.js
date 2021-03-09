@@ -96,6 +96,16 @@ export async function getAllCreationsTotal(preview) {
   return results;
 }
 
+export async function getLatestDominionCreation(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "creations"] | order(publishedAt desc) [0] {
+      ${postFields}
+    }`
+  );
+
+  return results;
+}
+
 export async function getCreation(slug, preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "creations" && slug.current == $slug] | [0] {
