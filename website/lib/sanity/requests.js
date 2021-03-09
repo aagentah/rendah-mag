@@ -96,9 +96,9 @@ export async function getAllCreationsTotal(preview) {
   return results;
 }
 
-export async function getLatestDominionCreation(preview) {
+export async function getLatestDominionCreations(preview) {
   const results = await getClient(preview).fetch(
-    `*[_type == "creations"] | order(publishedAt desc) [0] {
+    `*[_type == "creations"] | order(publishedAt desc) [0..23] {
       ${postFields}
     }`
   );
