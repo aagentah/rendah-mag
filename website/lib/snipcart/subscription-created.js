@@ -11,6 +11,14 @@ export default async (order) => {
     const { content } = order;
     const { user, schedule } = content;
     const { billingAddress, shippingAddress } = user;
+    const {
+      address1,
+      address2,
+      city,
+      country,
+      postalCode,
+      province,
+    } = shippingAddress;
     const { email } = user;
     const fullName = billingAddress?.fullName || shippingAddress?.fullName;
     const firstName = fullName.split(' ')[0];
@@ -23,6 +31,14 @@ export default async (order) => {
       name: fullName,
       isDominion: true,
       dominionSince: schedule.startsOn.split('T')[0],
+      address: {
+        line1: address1,
+        line2: address2,
+        city: city,
+        postal_code: postalCode,
+        state: province,
+        country: country,
+      },
     };
 
     const tags = [];
