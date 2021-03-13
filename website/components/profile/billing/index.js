@@ -319,6 +319,29 @@ export default function ProfileOrders() {
             />
           </div>
         </form>
+
+        <section className="w-100  mb4">
+          <div className="pb3">
+            <Heading
+              /* Options */
+              htmlEntity="h2"
+              text="Pause/Cancel Subscription"
+              color="black"
+              size="small"
+              truncate={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+
+          <div className="pa3  pa4-md  mb4  shadow2  br4">
+            <p class="t-body  f6  lh-copy  black">
+              If you'd like to pause or cancel your Dominion Subscription,
+              please email us at{' '}
+              <a href="mailto:info@rendahmag.com">info@rendahmag.com</a>.
+            </p>
+          </div>
+        </section>
       </section>
     );
   }
