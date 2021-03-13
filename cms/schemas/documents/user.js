@@ -50,6 +50,47 @@ export default {
       },
     },
     {
+      type: "object",
+      name: "address",
+      title: "Address",
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+      fields: [
+        {
+          name: "line1",
+          title: "Line 1",
+          type: "string",
+        },
+        {
+          name: "line2",
+          title: "Line 2",
+          type: "string",
+        },
+        {
+          name: "city",
+          title: "City",
+          type: "string",
+        },
+        {
+          name: "postal_code",
+          title: "Postcode",
+          type: "string",
+        },
+        {
+          name: "state",
+          title: "State",
+          type: "string",
+        },
+        {
+          name: "country",
+          title: "Country",
+          type: "string",
+        },
+      ],
+    },
+    {
       name: "salt",
       title: "Salt",
       type: "string",
