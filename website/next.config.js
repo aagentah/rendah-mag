@@ -14,6 +14,7 @@ module.exports = withPrefresh({
     MAILCHIMP_LIST_ID: process.env.MAILCHIMP_LIST_ID,
     MAILCHIMP_API_KEY: process.env.MAILCHIMP_API_KEY,
     IRON_PASSWORD: process.env.IRON_PASSWORD,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     SITE_URL: process.env.SITE_URL,
     DOMAIN_TYPE: process.env.DOMAIN_TYPE,
   },

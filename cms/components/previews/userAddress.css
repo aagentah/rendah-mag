@@ -1,0 +1,14 @@
+.section {
+  padding: 20px;
+  margin: 20px;
+  font-size: 16px;
+  line-height: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.h1 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 12px;
+}

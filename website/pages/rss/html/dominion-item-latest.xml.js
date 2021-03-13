@@ -20,7 +20,7 @@ const sitemapXml = (item) => {
           .image(item.image)
           .width(400)
           .auto('format')
-          .url()}" />`
+          .url()}" alt="${title}" />`
       : '';
 
     const url = process.env.SITE_URL;

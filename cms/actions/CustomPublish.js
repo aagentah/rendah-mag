@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDocumentOperation } from "@sanity/react-hooks";
 import Compressor from "compressorjs";
+import imageUrlBuilder from "@sanity/image-url";
+import sanityClient from "part:@sanity/base/client";
 
-import client from "../config";
-import { imageBuilder } from "../requests";
+const builder = imageUrlBuilder(sanityClient);
 
 export function CustomPublish({ id, type, published, draft, onComplete }) {
   const [isActioning, setIsActioning] = useState(false);
@@ -23,7 +24,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
           if (!resizeVal || resizeVal === "none") continue;
 
           // Fetch imageURL
-          const imageUrl = await imageBuilder.image(item).url();
+          const imageUrl = await builder.image(item).url();
 
           const getImageWidth = (src) => {
             return new Promise((resolve, reject) => {
@@ -54,7 +55,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
           ).then((response) => response.blob());
 
           // Upload compressed image to Sanity
-          const uploadedDocument = await client.assets
+          const uploadedDocument = await sanityClient.assets
             .upload("image", compressedBlob, {
               contentType: "image/png",
               filename: `compressed-${prop}-${parseInt(resizeVal, 10)}.png`,
@@ -71,7 +72,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
 
           if (isBody) {
             // Patch current document's image with uploaded image
-            await client
+            await sanityClient
               .patch(id)
               .setIfMissing({ body: [] })
               .insert("replace", `body[${prop}]`, [newItem])
@@ -85,7 +86,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
               });
           } else {
             // Patch current document's image with uploaded image
-            await client
+            await sanityClient
               .patch(id)
               .set({ [prop]: newItem })
               .commit()
@@ -99,7 +100,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
           }
 
           // Delete previous image from Sanity
-          await client.delete(item.asset._ref).then((result) => {
+          await sanityClient.delete(item.asset._ref).then((result) => {
             console.log("Deleted image", result);
           });
         }

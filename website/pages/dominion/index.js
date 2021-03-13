@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import BlockContent from '@sanity/block-content-to-react';
 import isEmpty from 'lodash/isEmpty';
+import shuffle from 'lodash/shuffle';
 
 import {
   Tabs,
@@ -19,13 +20,28 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
-import { getSiteConfig, getProduct, imageBuilder } from '~/lib/sanity/requests';
+import {
+  getSiteConfig,
+  getDominionUsers,
+  imageBuilder,
+} from '~/lib/sanity/requests';
 
 export default function Dominion({ siteConfig }) {
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
   const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
   const [currentTab, setCurrentTab] = useState();
   const [snipcartData, setSnipcartData] = useState();
+  const [dominionUsers, setDominionUsers] = useState([]);
+
+  useEffect(() => {
+    const action = async () => {
+      const dominionUsersRes = await getDominionUsers();
+      console.log('dominionUsersRes', dominionUsersRes);
+      setDominionUsers(shuffle(dominionUsersRes));
+    };
+
+    action();
+  }, []);
 
   useEffect(() => {
     if (process.browser) {
@@ -225,6 +241,31 @@ export default function Dominion({ siteConfig }) {
                 // </div>
               }
             </div>
+
+            {
+              // {dominionUsers.length && (
+              //   <div class="fff">
+              //     <div class="fff-track">
+              //       {dominionUsers.map((iteration, i) => (
+              //         <div class="fff2">
+              //           <img
+              //             src={imageBuilder
+              //               .image(iteration?.avatar)
+              //               .width(250)
+              //               .height(100)
+              //               .auto('format')
+              //               .fit('clip')
+              //               .url()}
+              //             height="100"
+              //             width="250"
+              //             alt=""
+              //           />
+              //         </div>
+              //       ))}
+              //     </div>
+              //   </div>
+              // )}
+            }
           </div>
         </Container>
       </div>

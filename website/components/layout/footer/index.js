@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Heading, Button } from 'next-pattern-library';
+import { Heading, Button, Icon } from 'next-pattern-library';
 
 import Container from '../container';
 import SubscribeForm from '~/components/subscribe-form';
@@ -14,8 +14,8 @@ export default function Footer() {
       <footer className="footer  pv5">
         <Container>
           <div className="flex  flex-wrap">
-            <div className="col-24  col-12-md">
-              <div className="pb3">
+            <div className="col-24  col-16-md">
+              <div className="pb3  tac  tal-md">
                 <Heading
                   /* Options */
                   htmlEntity="h3"
@@ -28,8 +28,8 @@ export default function Footer() {
                 />
               </div>
 
-              <ul className="pb3">
-                <li className="db  pb3">
+              <ul className="pb3  pb0-md">
+                <li className="db  pb3  tac  tal-md">
                   <Button
                     /* Options */
                     type="secondary"
@@ -56,7 +56,7 @@ export default function Footer() {
                     }}
                   />
                 </li>
-                <li className="db  pb3">
+                <li className="db  pb3  tac  tal-md">
                   <Button
                     /* Options */
                     type="secondary"
@@ -141,7 +141,7 @@ export default function Footer() {
                   //   />
                   // </li>
                 }
-                <li className="db  pb3">
+                <li className="db  pb3  tac  tal-md">
                   <Button
                     /* Options */
                     type="secondary"
@@ -168,7 +168,65 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="col-24  col-12-md" />
+            <div className="col-24  col-8-md  flex  justify-end-md  align-end-md  pb3">
+              <div className="flex  flex-wrap  col-24">
+                <div className="col-8  col-4-md  flex  justify-end  justify-end-md  pt4  pt0-md">
+                  <a
+                    href="https://www.instagram.com/rendahmag/"
+                    target="_blank"
+                    className="white"
+                  >
+                    <Icon icon={['fab', 'instagram']} size="2x" />
+                  </a>
+                </div>
+                <div className="col-8  col-4-md  flex  justify-center  justify-end-md  pt4  pt0-md">
+                  <a
+                    href="https://www.facebook.com/rendahmag/"
+                    target="_blank"
+                    className="white"
+                  >
+                    <Icon icon={['fab', 'facebook']} size="2x" />
+                  </a>
+                </div>
+                <div className="col-8  col-4-md  flex  justify-start  justify-end-md  pt4  pt0-md">
+                  <a
+                    href="https://twitter.com/RendahMag"
+                    target="_blank"
+                    className="white"
+                  >
+                    <Icon icon={['fab', 'twitter']} size="2x" />
+                  </a>
+                </div>
+
+                <div className="col-8  col-4-md  flex  justify-end  justify-end-md  pt4  pt0-md">
+                  <a
+                    href="https://soundcloud.com/rendahmag"
+                    target="_blank"
+                    className="white"
+                  >
+                    <Icon icon={['fab', 'soundcloud']} size="2x" />
+                  </a>
+                </div>
+                <div className="col-8  col-4-md  flex  justify-center  justify-end-md  pt4  pt0-md">
+                  <a
+                    href="https://www.youtube.com/channel/UC4dYeD1ceX8sSY3J3UuMn8w"
+                    target="_blank"
+                    className="white"
+                  >
+                    <Icon icon={['fab', 'youtube']} size="2x" />
+                  </a>
+                </div>
+                <div className="col-8  col-4-md  flex  justify-start  justify-end-md  pt4  pt0-md">
+                  <a
+                    href="https://discord.com/invite/ev2Q22C"
+                    target="_blank"
+                    className="white"
+                  >
+                    <Icon icon={['fab', 'discord']} size="2x" />
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </Container>
       </footer>

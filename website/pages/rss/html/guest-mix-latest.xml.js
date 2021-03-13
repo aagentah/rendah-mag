@@ -19,7 +19,7 @@ const sitemapXml = (mix) => {
           .image(mix.image)
           .width(400)
           .auto('format')
-          .url()}" />`
+          .url()}" alt="${title}" />`
       : '';
 
     const link = mix?.soundcloudLink

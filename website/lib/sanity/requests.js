@@ -376,3 +376,14 @@ export async function getDominionPipeline(preview) {
   );
   return results;
 }
+
+export async function getDominionUsers(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "user" && publicProfile] [0..13] {
+      name,
+      handle,
+      avatar
+    }`
+  );
+  return results;
+}

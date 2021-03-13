@@ -10,6 +10,8 @@ import MDLoyalty from "react-icons/lib/md/loyalty";
 import MDViewList from "react-icons/lib/md/view-list";
 import MDGridOn from "react-icons/lib/md/grid-on";
 
+import SeoPreview from "./components/previews/userAddress";
+
 const hiddenDocTypes = (listItem) =>
   !["siteSettings", "homePage", "textBlock"].includes(listItem.getId());
 
@@ -64,7 +66,26 @@ export default () =>
           S.list()
             .title("Dominion")
             .items([
-              S.documentTypeListItem("user").icon(MDPerson),
+              // S.documentTypeListItem("user").icon(MDPerson),
+              S.listItem()
+                .title("User")
+                .schemaType("user")
+                .child(
+                  S.documentTypeList("user")
+                    .title("Projects")
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType("user")
+                        .views([
+                          S.view.form().icon(MdSettings),
+                          S.view
+                            .component(SeoPreview)
+                            .icon(MDViewList)
+                            .title("Address Label"),
+                        ])
+                    )
+                ),
               S.documentTypeListItem("dominionItem"),
               S.documentTypeListItem("creations"),
               S.listItem()
