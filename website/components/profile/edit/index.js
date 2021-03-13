@@ -30,7 +30,6 @@ export default function ProfileEdit() {
     updatePasswordButtonLoading,
     setUpdatePasswordButtonLoading,
   ] = useState(false);
-  const [billingModalActive, setBillingModalActive] = useState(false);
   const [avatarModalActive, setAvatarModalActive] = useState(false);
   const [user, { mutate }] = useUser();
   const [avatarBlob, setAvatarBlob] = useState(null);
@@ -232,112 +231,6 @@ export default function ProfileEdit() {
   if (user) {
     return (
       <>
-        <Modal
-          /* Options */
-          size="medium"
-          active={billingModalActive}
-        >
-          <div className="pb2">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text="Billing Settings"
-              color="black"
-              size="large"
-              truncate={0}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-          <div className="pb4">
-            <Copy
-              /* Options */
-              text={`
-                PLEASE READ: To update your billing details, you'll need to
-                create an account (If you haven't already) with our Shipping
-                Cart service. Please sign up via either button bellow using
-                your Rendah Mag email & password (${user.username}).
-                `}
-              color="black"
-              size="medium"
-              truncate={null}
-            />
-          </div>
-
-          <div className="flex  flex-wrap  pb2">
-            <div className="col-24  col-8-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
-              <a
-                className="link  snipcart-edit-profile"
-                href="#billing-settings"
-              >
-                <Button
-                  /* Options */
-                  type="primary"
-                  size="medium"
-                  text="Billing Settings"
-                  color="black"
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted={false}
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </a>
-            </div>
-            <div className="col-24  col-11-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
-              <a
-                className="link  snipcart-user-profile"
-                href="#orders-subscriptions"
-              >
-                <Button
-                  /* Options */
-                  type="primary"
-                  size="medium"
-                  text="Orders & Subscriptions"
-                  color="black"
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted={false}
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </a>
-            </div>
-            <div className="col-24  col-5-md  mb3  mb0-md  flex  justify-center  justify-start-md  align-center">
-              <Button
-                /* Options */
-                type="secondary"
-                size="medium"
-                text="Cancel"
-                color="black"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted={false}
-                loading={false}
-                disabled={false}
-                skeleton={false}
-                onClick={() => {
-                  setBillingModalActive(false);
-                }}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-          </div>
-        </Modal>
-
         <Modal
           /* Options */
           size="small"
@@ -687,27 +580,6 @@ export default function ProfileEdit() {
               />
             </div>
             <div className="col-24  col-12-md  flex  flex-wrap  justify-end-md">
-              <div className="col-24  col-10-md  flex  justify-end-md  pr0  pr3-md  pb3  pb1-md">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="small"
-                  text="Billing Settings"
-                  color="black"
-                  fluid={false}
-                  icon={inputIconReceipt}
-                  iconFloat="left"
-                  inverted
-                  loading={false}
-                  disabled={app.isLoading}
-                  skeleton={false}
-                  onClick={() => {
-                    setBillingModalActive(!passwordModalActive);
-                  }}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
               <div className="col-24  col-10-md  flex  justify-end-md  pr0  pr3-md  pb3  pb1-md">
                 <Button
                   /* Options */
