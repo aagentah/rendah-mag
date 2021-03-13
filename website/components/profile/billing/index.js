@@ -18,6 +18,7 @@ export default function ProfileOrders() {
   const dispatch = useDispatchApp();
   const stripe = useStripe();
   const elements = useElements();
+  const [updateCardButtonLoading, setUpdateCardButtonLoading] = useState(false);
   const [updateButtonLoading, setUpdateButtonLoading] = useState(false);
 
   const updatePaymentMethod = async (paymentMethod) => {
@@ -46,6 +47,12 @@ export default function ProfileOrders() {
     // Block native form submission.
     event.preventDefault();
 
+    // Prevent double submit
+    if (updateCardButtonLoading) return false;
+
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setUpdateCardButtonLoading(true);
+
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
       // form submission until Stripe.js has loaded.
@@ -69,6 +76,10 @@ export default function ProfileOrders() {
       console.log('[PaymentMethod]', paymentMethod);
       updatePaymentMethod(paymentMethod);
     }
+
+    dispatch({ type: 'TOGGLE_LOADING' });
+    setUpdateCardButtonLoading(false);
+    return true;
   };
 
   async function handleEditProfile(e) {
@@ -176,7 +187,7 @@ export default function ProfileOrders() {
               icon={null}
               iconFloat={null}
               inverted={false}
-              loading={false}
+              loading={updateCardButtonLoading}
               disabled={!stripe}
               skeleton={false}
               onClick={null}
