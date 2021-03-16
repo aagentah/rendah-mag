@@ -7,13 +7,14 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 export default function CardDefault({ product }) {
+  console.log('product', product);
   const app = useApp();
 
   if (!app.deviceSize) return null;
   const scale = app.isRetina ? 2 : 1;
   const imageUrlWidth = app.deviceSize === 'md' ? 200 : 230;
   const imageHeight = app.deviceSize === 'md' ? 200 : 230;
-  const headingSize = app.deviceSize === 'md' ? 'medium' : 'small';
+  const headingSize = 'medium';
 
   const cardImage = (
     <Image

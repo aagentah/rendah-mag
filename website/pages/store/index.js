@@ -14,9 +14,9 @@ import HeroStore from '~/components/hero/store';
 import { getSiteConfig, getAllProducts } from '~/lib/sanity/requests';
 
 export default function Store({ siteConfig }) {
-  const [collections, setCollections] = useState(null);
+  const [categorys, setCategorys] = useState(null);
   const [products, setProducts] = useState(null);
-  const [collectionsLength, setCollectionsLength] = useState(4);
+  const [categorysLength, setCategorysLength] = useState(4);
   const [productsLength, setProductsLength] = useState(8);
 
   useEffect(() => {
@@ -32,32 +32,34 @@ export default function Store({ siteConfig }) {
 
   useEffect(() => {
     if (products) {
-      const collectionNames = map(products, 'collection');
-      const uniqueCollectionNames = uniqBy(collectionNames, 'collection');
-      const collectionGroups = [];
+      console.log('products', products);
+      const categoryNames = map(products, 'category');
+      const uniqueCategoryNames = uniqBy(categoryNames, 'category');
+      const categoryGroups = [];
+      console.log('uniqueCategoryNames', uniqueCategoryNames);
 
-      for (let i = 0; i < uniqueCollectionNames.length; i += 1) {
-        const collectionProducts = filter(products, {
-          collection: uniqueCollectionNames[i],
+      for (let i = 0; i < uniqueCategoryNames.length; i += 1) {
+        const categoryProducts = filter(products, {
+          category: uniqueCategoryNames[i],
         });
 
-        const collectionWithProducts = {
-          name: uniqueCollectionNames[i],
-          products: collectionProducts,
+        const categoryWithProducts = {
+          name: uniqueCategoryNames[i],
+          products: categoryProducts,
         };
 
-        collectionGroups.push(collectionWithProducts);
+        categoryGroups.push(categoryWithProducts);
       }
 
-      setCollectionsLength(collectionGroups.length);
-      setCollections(collectionGroups);
+      setCategorysLength(categoryGroups.length);
+      setCategorys(categoryGroups);
     }
   }, [products]);
 
   return (
     <Layout
-      navOffset={null}
-      navOnWhite={false}
+      navOffset="top"
+      navOnWhite={true}
       hasNav
       hasFooter
       meta={{
@@ -68,9 +70,11 @@ export default function Store({ siteConfig }) {
       }}
       preview={null}
     >
-      <HeroStore />
+      {
+        // <HeroStore />
+      }
 
-      <div className="pt5  pt6-md">
+      <div className="">
         <Container>
           <div className="pb2">
             <Heading
@@ -88,13 +92,13 @@ export default function Store({ siteConfig }) {
 
           <section className="pb3  pt4">
             <div className="flex  flex-wrap">
-              {[...Array(collectionsLength)].map((collectionIteration, i) => (
-                <div className="col-24" key={collectionIteration}>
+              {[...Array(categorysLength)].map((categoryIteration, i) => (
+                <div className="col-24" key={categoryIteration}>
                   <div className="flex  flex-wrap  pb3  bb  bc-black  mb3">
                     <Heading
                       /* Options */
                       htmlEntity="h1"
-                      text={collections && products && collections[i]?.name}
+                      text={categorys && products && categorys[i]?.name}
                       color="black"
                       size="medium"
                       truncate={0}
@@ -111,7 +115,7 @@ export default function Store({ siteConfig }) {
                       >
                         <CardProduct
                           i={ii}
-                          product={collections && collections[i]?.products[ii]}
+                          product={categorys && categorys[i]?.products[ii]}
                         />
                       </div>
                     ))}
