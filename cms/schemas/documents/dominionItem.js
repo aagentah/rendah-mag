@@ -21,7 +21,29 @@ export default {
     },
     {
       name: "image",
-      title: "Image",
+      title: "Image (Landscape)",
+      description: "Used on website profile",
+      type: "image",
+      fields: [
+        {
+          name: "resize",
+          title: "Resize",
+          type: "string",
+          options: {
+            list: [
+              { title: "None", value: "none" },
+              { title: "1080px", value: "1080" },
+              { title: "1920px", value: "1920" },
+            ],
+            layout: "radio",
+          },
+        },
+      ],
+    },
+    {
+      name: "imagePortrait",
+      title: "Image (Portrait)",
+      description: "Used on email",
       type: "image",
       fields: [
         {
