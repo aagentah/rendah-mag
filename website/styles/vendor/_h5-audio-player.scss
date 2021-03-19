@@ -1,7 +1,7 @@
-$rhap_theme-color: #868686 !default;
+$rhap_theme-color: #000000 !default;
 $rhap_background-color: #fff !default;
 $rhap_bar-color: #dddddd !default;
-$rhap_time-color: #333 !default;
+$rhap_time-color: #000000 !default;
 $rhap_font-family: inherit !default;
 
 .rhap_container {
@@ -16,7 +16,7 @@ $rhap_font-family: inherit !default;
   padding-right: 10px;
   background-color: $rhap_background-color;
   border: 1px solid var(--almost-white);
-  border-radius: 30px;
+  @extend .br4;
   @extend .shadow1;
 
   &:focus:not(:focus-visible) {
@@ -125,7 +125,7 @@ $rhap_font-family: inherit !default;
 }
 
 .rhap_progress-bar-show-download {
-  background-color: rgba($rhap_bar-color, 0.5);
+  background-color: rgba($rhap_bar-color, 0.2);
 }
 
 .rhap_download-progress {
@@ -151,9 +151,14 @@ $rhap_font-family: inherit !default;
 
 .rhap_controls-section {
   display: flex;
-  flex: 1 1 auto;
   justify-content: space-between;
   align-items: center;
+}
+
+@include breakpoint-up(md) {
+  .rhap_controls-section {
+    flex: 1 1 auto;
+  }
 }
 
 .rhap_additional-controls {
@@ -218,10 +223,16 @@ $rhap_font-family: inherit !default;
 }
 
 .rhap_volume-container {
-  display: flex;
+  display: none;
   align-items: center;
   flex: 0 1 100px;
   -webkit-user-select: none;
+}
+
+@include breakpoint-up(md) {
+  .rhap_volume-container {
+    display: flex;
+  }
 }
 
 .rhap_volume-bar-area {

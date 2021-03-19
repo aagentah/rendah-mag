@@ -15,6 +15,8 @@ import {
   Modal,
 } from 'next-pattern-library';
 
+import { imageBuilder } from '~/lib/sanity/requests';
+
 const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
 import { useApp } from '~/context-provider/app';
@@ -133,13 +135,25 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                   >
                     <div className="relative  profile__dominion__carousel-item__wrapper">
                       <div
-                        className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br-100  ba  bw1  bc-black  ease-in-out  bg-white  black`}
+                        style={{
+                          backgroundImage: item.image
+                            ? `url(${imageBuilder
+                                .image(item.image)
+                                .auto('format')
+                                .height(75)
+                                .width(75)
+                                .fit('clip')
+                                .blur('20')
+                                .url()})`
+                            : 'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)',
+                        }}
+                        className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow3`}
                       >
                         <div className="flex  flex-wrap">
-                          <p className="col-24  t-primary  f5  f6-md  tac  lh-copy  pb2">
+                          <p className="col-24  t-primary  white  f5  f6-md  tac  lh-copy  pb2  text-shadow">
                             {item.title}
                           </p>
-                          <p className="col-24  t-secondary  f7  tac  lh-copy">
+                          <p className="col-24  t-secondary  white  f7  tac  lh-copy  text-shadow">
                             {i === 0
                               ? '<3'
                               : new Date(item.activeFrom)

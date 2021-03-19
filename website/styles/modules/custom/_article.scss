@@ -1,0 +1,12 @@
+.audio__icon {
+  top: 20px;
+  right: -20px;
+
+  @extend .absolute;
+  @extend .ba;
+  @extend .bw1;
+  @extend .bc-black;
+  @extend .bg-white;
+  @extend .pa2;
+  @extend .br-100;
+}
