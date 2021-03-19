@@ -147,7 +147,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                                 .url()})`
                             : 'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)',
                         }}
-                        className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow3`}
+                        className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow2`}
                       >
                         <div className="flex  flex-wrap">
                           <p className="col-24  t-primary  white  f5  f6-md  tac  lh-copy  pb2  text-shadow">
