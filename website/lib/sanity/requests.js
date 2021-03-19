@@ -321,7 +321,7 @@ export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
   const [results, welcome] = await Promise.all([
     curClient
       .fetch(
-        `*[_type == "dominionItem" && slug.current != "welcome-to-the-dominion" && activeFrom >= $sinceStartOfMonth && activeFrom <= $today] | order(activeFrom asc) {
+        `*[_type == "dominionItem" && slug.current != "welcome-to-the-dominion" && activeFrom >= $sinceStartOfMonth && activeFrom <= $today && showInProfile] | order(activeFrom asc) {
         ...,
         "slug": slug.current,
       }`,
@@ -329,7 +329,7 @@ export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
       )
       .then((res) => res),
     curClient.fetch(
-      `*[_type == "dominionItem" && slug.current == "welcome-to-the-dominion"] [0] {
+      `*[_type == "dominionItem" && slug.current == "welcome-to-the-dominion" && showInProfile] [0] {
         ...,
         "slug": slug.current,
       }`

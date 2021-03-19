@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
-import { Button } from 'next-pattern-library';
+import { Button, Icon } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';
 
 import { useUser } from '~/lib/hooks';
@@ -43,9 +43,15 @@ export default function Audio({
   };
 
   return (
-    <div className="w-100  mla  mra  bg-almost-white  pa3  pa4-md  br4">
+    <div className="w-100  mla  mra  ba  bw1  bc-black  pa4  br4  relative">
+      <div className="audio__icon">
+        <Icon icon={['fas', 'music']} />
+      </div>
+
       {title ? (
-        <p className="db  t-body  lh-copy  f6  dark-grey  pv2  bold">{title}</p>
+        <p className="db  t-body  lh-copy  f6  dark-grey  pb2  pr4  pr0-md  bold">
+          {title}
+        </p>
       ) : null}
 
       {description ? <BlockContent blocks={description} /> : null}
@@ -61,7 +67,6 @@ export default function Audio({
             showSkipControls={false}
             showJumpControls={false}
             src={url}
-            customAdditionalControls={[]}
             customProgressBarSection={[
               RHAP_UI.PROGRESS_BAR,
               RHAP_UI.CURRENT_TIME,

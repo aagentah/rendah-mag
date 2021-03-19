@@ -12,16 +12,33 @@ const sitemapXml = (item) => {
   if (item?.slug?.current) {
     const title = item?.title || '';
     let hasLoginPrompt;
+    let image;
 
     const description = blocksToHtml({ blocks: item?.description });
 
-    const image = item?.image
-      ? `<img width="400" style="width: 400px;" src="${imageBuilder
-          .image(item.image)
-          .width(400)
-          .auto('format')
-          .url()}" alt="${title}" />`
-      : '';
+    if (item?.imagePortrait) {
+      image = `
+        <img width="400" style="width: 400px;"
+          src="${imageBuilder
+            .image(item.imagePortrait)
+            .width(800)
+            .auto('format')
+            .url()}"
+          alt="${title}"
+        />`;
+    } else if (item?.image) {
+      image = `
+        <img width="400" style="width: 400px;"
+          src="${imageBuilder
+            .image(item.image)
+            .width(800)
+            .auto('format')
+            .url()}"
+          alt="${title}"
+        />`;
+    } else {
+      image = '';
+    }
 
     const url = process.env.SITE_URL;
 
