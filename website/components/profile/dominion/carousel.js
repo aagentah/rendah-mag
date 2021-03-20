@@ -136,7 +136,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                     <div className="relative  profile__dominion__carousel-item__wrapper">
                       <div
                         style={{
-                          backgroundImage: item.image
+                          backgroundImage: item?.image?.asset?._ref
                             ? `url(${imageBuilder
                                 .image(item.image)
                                 .auto('format')
