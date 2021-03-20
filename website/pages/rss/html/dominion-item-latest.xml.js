@@ -47,6 +47,9 @@ const sitemapXml = (item) => {
     if (item?.includeLoginPrompt) {
       hasLoginPrompt = `
             <tr>
+              <td><br /></td>
+            </tr>
+            <tr>
               <td width="50" valign="top">
               </td>
               <td width="400" valign="top">
@@ -61,7 +64,7 @@ const sitemapXml = (item) => {
               </td>
             </tr>
             <tr>
-              <td><br /></td>
+              <td height="50">&nbsp;</td>
             </tr>
           `;
     }
@@ -77,10 +80,13 @@ const sitemapXml = (item) => {
               <td width="50" valign="top">
               </td>
             </tr>
+            ${
+              hasLoginPrompt ||
+              `
             <tr>
-              <td><br /></td>
-            </tr>
-            ${hasLoginPrompt || ''}
+              <td height="50">&nbsp;</td>
+            </tr>`
+            }
             <tr>
               <td colspan="3" width="500" valign="top">
                 ${image}
