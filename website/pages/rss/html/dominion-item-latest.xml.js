@@ -18,7 +18,7 @@ const sitemapXml = (item) => {
 
     if (item?.imagePortrait) {
       image = `
-        <img width="500" style="width: 500px; border-radius: 16px; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);"
+        <img width="500" style="width: 500px; border-radius: 16px;"
           src="${imageBuilder
             .image(item.imagePortrait)
             .width(1000)
@@ -28,7 +28,7 @@ const sitemapXml = (item) => {
         />`;
     } else if (item?.image) {
       image = `
-        <img width="500" style="width: 500px; border-radius: 16px; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);"
+        <img width="500" style="width: 500px; border-radius: 16px;"
           src="${imageBuilder
             .image(item.image)
             .width(1000)
