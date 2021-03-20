@@ -47,7 +47,7 @@ const sitemapXml = (item) => {
     if (item?.includeLoginPrompt) {
       hasLoginPrompt = `
             <tr>
-              <td width="100" valign="top">
+              <td width="50" valign="top">
               </td>
               <td width="400" valign="top">
                 <p>
@@ -57,7 +57,7 @@ const sitemapXml = (item) => {
                   </em>
                 </p>
               </td>
-              <td width="100" valign="top">
+              <td width="50" valign="top">
               </td>
             </tr>
             <tr>
@@ -69,12 +69,12 @@ const sitemapXml = (item) => {
     const html = `
           <table cellspacing="0" cellpadding="0" border="0" width="100%">
             <tr>
-              <td width="100" valign="top">
+              <td width="50" valign="top">
               </td>
               <td width="400" valign="top">
                 ${description}
               </td>
-              <td width="100" valign="top">
+              <td width="50" valign="top">
               </td>
             </tr>
             <tr>
