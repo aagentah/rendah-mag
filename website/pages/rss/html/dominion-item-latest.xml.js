@@ -64,7 +64,7 @@ const sitemapXml = (item) => {
               </td>
             </tr>
             <tr>
-              <td height="50">&nbsp;</td>
+              <td><br /><br /><br /></td>
             </tr>
           `;
     }
