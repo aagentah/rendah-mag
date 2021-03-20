@@ -18,20 +18,20 @@ const sitemapXml = (item) => {
 
     if (item?.imagePortrait) {
       image = `
-        <img width="400" style="width: 400px;"
+        <img width="500" style="width: 400px; border-radius: 16px; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);"
           src="${imageBuilder
             .image(item.imagePortrait)
-            .width(800)
+            .width(1000)
             .auto('format')
             .url()}"
           alt="${title}"
         />`;
     } else if (item?.image) {
       image = `
-        <img width="400" style="width: 400px;"
+        <img width="500" style="width: 400px; border-radius: 16px; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);"
           src="${imageBuilder
             .image(item.image)
-            .width(800)
+            .width(1000)
             .auto('format')
             .url()}"
           alt="${title}"
@@ -47,6 +47,8 @@ const sitemapXml = (item) => {
     if (item?.includeLoginPrompt) {
       hasLoginPrompt = `
             <tr>
+              <td width="100" valign="top">
+              </td>
               <td width="400" valign="top">
                 <p>
                   <em style="font-style: italic;">
@@ -54,6 +56,8 @@ const sitemapXml = (item) => {
                     to access relevant downloads/resources.
                   </em>
                 </p>
+              </td>
+              <td width="100" valign="top">
               </td>
             </tr>
             <tr>
@@ -65,8 +69,12 @@ const sitemapXml = (item) => {
     const html = `
           <table cellspacing="0" cellpadding="0" border="0" width="100%">
             <tr>
+              <td width="100" valign="top">
+              </td>
               <td width="400" valign="top">
                 ${description}
+              </td>
+              <td width="100" valign="top">
               </td>
             </tr>
             <tr>
@@ -74,7 +82,7 @@ const sitemapXml = (item) => {
             </tr>
             ${hasLoginPrompt || ''}
             <tr>
-              <td width="400" valign="top">
+              <td width="500" valign="top">
                 ${image}
               </td>
             </tr>
