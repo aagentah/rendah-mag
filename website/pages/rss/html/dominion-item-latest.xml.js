@@ -83,9 +83,9 @@ const sitemapXml = (item) => {
             ${
               hasLoginPrompt ||
               `
-            <tr>
-              <td height="50">&nbsp;</td>
-            </tr>`
+              <tr>
+                <td><br /><br /><br /></td>
+              </tr>`
             }
             <tr>
               <td colspan="3" width="500" valign="top">
