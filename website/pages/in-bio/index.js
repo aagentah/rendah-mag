@@ -33,7 +33,7 @@ import { useUser } from '~/lib/hooks';
 
 import { getSiteConfig, getLinkInBio } from '~/lib/sanity/requests';
 
-export default function LinkInBio({ siteConfig, linkInBio, preview }) {
+export default function LinkInBio({ siteConfig, items, preview }) {
   const app = useApp();
   const router = useRouter();
   const [hasShownModal, setHasShownModal] = useState(false);
@@ -196,8 +196,8 @@ export default function LinkInBio({ siteConfig, linkInBio, preview }) {
                 </div>
               </div>
 
-              {linkInBio.items?.length &&
-                reverse(linkInBio.items).map((item, i) => (
+              {items?.length &&
+                items.map((item, i) => (
                   <div key={i._key} className="col-24">
                     {renderItemType(item)}
                   </div>
@@ -233,7 +233,7 @@ export async function getServerSideProps({ req, preview = false }) {
   return {
     props: {
       siteConfig,
-      linkInBio: data || null,
+      items: reverse(data?.items) || null,
       preview,
     },
   };
