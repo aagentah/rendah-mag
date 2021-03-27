@@ -4,6 +4,7 @@ import Router, { useRouter } from 'next/router';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
 import map from 'lodash/map';
+import reverse from 'lodash/reverse';
 import Cookies from 'js-cookie';
 
 import {
@@ -39,10 +40,32 @@ export default function LinkInBio({ siteConfig, linkInBio, preview }) {
   const [modalActive, setModalActive] = useState(false);
 
   const renderItemType = (item) => {
+    console.log('item', item);
+    let url;
+
+    if (item?.field?.condition === 'documentInternal') {
+      const doc = item.field.documentInternal.document;
+
+      switch (doc?._type) {
+        case 'post':
+          url = `/article/${doc.slug.current}`;
+          break;
+        case 'smartLink':
+          url = `/l/${doc.slug.current}`;
+          break;
+        default:
+          url = null;
+      }
+    }
+
+    if (item?.field?.condition === 'linkExternal') {
+      url = item.field.linkExternal;
+    }
+
     return (
       <div className="flex  flex-wrap  mb3  cp">
         <a
-          href={item.url}
+          href={url}
           rel="noopener noreferrer"
           target="_blank"
           className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
@@ -160,8 +183,21 @@ export default function LinkInBio({ siteConfig, linkInBio, preview }) {
             </div>
 
             <div className="flex  flex-wrap  justify-center">
+              <div className="col-24">
+                <div className="flex  flex-wrap  mb3  cp">
+                  <a
+                    href="https://rendahmag.com/dominion"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
+                  >
+                    <img src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610317978/dominion/dominion-logo.png" />
+                  </a>
+                </div>
+              </div>
+
               {linkInBio.items?.length &&
-                linkInBio.items.map((item, i) => (
+                reverse(linkInBio.items).map((item, i) => (
                   <div key={i._key} className="col-24">
                     {renderItemType(item)}
                   </div>
