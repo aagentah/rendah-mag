@@ -18,20 +18,20 @@ const sitemapXml = (item) => {
 
     if (item?.imagePortrait) {
       image = `
-        <img width="400" style="width: 400px;"
+        <img width="500" style="width: 500px; border-radius: 16px;"
           src="${imageBuilder
             .image(item.imagePortrait)
-            .width(800)
+            .width(1000)
             .auto('format')
             .url()}"
           alt="${title}"
         />`;
     } else if (item?.image) {
       image = `
-        <img width="400" style="width: 400px;"
+        <img width="500" style="width: 500px; border-radius: 16px;"
           src="${imageBuilder
             .image(item.image)
-            .width(800)
+            .width(1000)
             .auto('format')
             .url()}"
           alt="${title}"
@@ -47,6 +47,11 @@ const sitemapXml = (item) => {
     if (item?.includeLoginPrompt) {
       hasLoginPrompt = `
             <tr>
+              <td><br /></td>
+            </tr>
+            <tr>
+              <td width="50" valign="top">
+              </td>
               <td width="400" valign="top">
                 <p>
                   <em style="font-style: italic;">
@@ -55,9 +60,11 @@ const sitemapXml = (item) => {
                   </em>
                 </p>
               </td>
+              <td width="50" valign="top">
+              </td>
             </tr>
             <tr>
-              <td><br /></td>
+              <td><br /><br /><br /></td>
             </tr>
           `;
     }
@@ -65,16 +72,23 @@ const sitemapXml = (item) => {
     const html = `
           <table cellspacing="0" cellpadding="0" border="0" width="100%">
             <tr>
+              <td width="50" valign="top">
+              </td>
               <td width="400" valign="top">
                 ${description}
               </td>
+              <td width="50" valign="top">
+              </td>
             </tr>
+            ${
+              hasLoginPrompt ||
+              `
+              <tr>
+                <td><br /><br /><br /></td>
+              </tr>`
+            }
             <tr>
-              <td><br /></td>
-            </tr>
-            ${hasLoginPrompt || ''}
-            <tr>
-              <td width="400" valign="top">
+              <td colspan="3" width="500" valign="top">
                 ${image}
               </td>
             </tr>

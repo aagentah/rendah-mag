@@ -194,8 +194,8 @@ export async function getTeamMemberAndPosts(slug, preview) {
     `*[_type == "author" && active && slug.current == $slug] [0] {
       ${teamFields}
       "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc) [0..23] {
-      ${postFields}
-    }
+        ${postFields}
+      }
     }`,
     { slug }
   );
@@ -362,7 +362,17 @@ export async function getSmartLinksTotal(preview) {
 export async function getLinkInBio(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "linkInBio"] [0] {
-      ...,
+      'items': items[] {
+        'field': field {
+          'documentInternal': documentInternal {
+            'document': *[_id == ^._ref] [0] {
+              ...,
+            },
+          },
+          ...,
+        },
+        ...,
+      }
     }`
   );
   return results;

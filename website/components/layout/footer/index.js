@@ -146,7 +146,7 @@ export default function Footer() {
                     /* Options */
                     type="secondary"
                     size="small"
-                    text="info@rendahmag.com"
+                    text="Contact"
                     color="white"
                     fluid={false}
                     icon={null}
@@ -159,7 +159,7 @@ export default function Footer() {
                     /* Children */
                     withLinkProps={{
                       type: 'external',
-                      href: 'mailto:info@rendahmag.com',
+                      href: 'https://forms.gle/SzNLmrd5TfPkpSxF9',
                       target: '_blank',
                       routerLink: null,
                       routerLinkProps: null,
