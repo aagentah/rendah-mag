@@ -3,6 +3,8 @@ import Router from 'next/router';
 import { toast } from 'react-toastify';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
+import includes from 'lodash/includes';
+import some from 'lodash/some';
 import BlockContent from '@sanity/block-content-to-react';
 import { Heading, Copy } from 'next-pattern-library';
 
@@ -26,22 +28,19 @@ export default function ProfileCreations() {
 
     action();
 
-    if (user && posts) {
+    if (user?.isDominion && posts?.length) {
       let rP = [];
       let oP = [];
 
-      const found = posts.map((post) => {
-        if (post?.tags.some((r) => user?.tags.includes(r))) {
-          rP.push(post);
-        } else {
-          oP.push(post);
-        }
+      posts.map((post) => {
+        const tagMatchUser = post?.tags?.some((r) => user?.tags?.includes(r));
+        return tagMatchUser ? rP.push(post) : oP.push(post);
       });
 
       setRecomendedPosts(rP);
       setOtherPosts(oP);
     }
-  }, [posts]);
+  }, [posts?.length]);
 
   if (user?.isDominion && posts?.length) {
     return (
@@ -97,18 +96,20 @@ export default function ProfileCreations() {
 
         {otherPosts?.length ? (
           <>
-            <div className="pb3">
-              <Heading
-                /* Options */
-                htmlEntity="h2"
-                text="More"
-                color="black"
-                size="small"
-                truncate={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
+            {recomendedPosts?.length ? (
+              <div className="pb3">
+                <Heading
+                  /* Options */
+                  htmlEntity="h2"
+                  text="More"
+                  color="black"
+                  size="small"
+                  truncate={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
+            ) : null}
 
             <div className="flex  flex-wrap">
               {otherPosts.map((post, i) => (
