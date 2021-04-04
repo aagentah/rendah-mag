@@ -43,7 +43,7 @@ export default function Audio({
   };
 
   return (
-    <div className="w-100  mla  mra  ba  bw1  bc-black  pa4  br4  relative">
+    <div className="audio__wrapper">
       <div className="audio__icon">
         <Icon icon={['fas', 'music']} />
       </div>

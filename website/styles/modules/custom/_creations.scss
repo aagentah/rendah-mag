@@ -5,6 +5,20 @@
     color: var(--almost-white) !important;
   }
 
+  .audio__wrapper {
+    border-color: var(--almost-white);
+  }
+
+  .audio__icon * {
+    fill: var(--almost-black) !important;
+  }
+
+  .rhap_progress-indicator,
+  .rhap_volume-indicator,
+  .rhap_progress-filled {
+    background-color: var(--almost-white) !important;
+  }
+
   .rhap_container {
     background-color: var(--almost-black);
   }
