@@ -57,9 +57,10 @@ export default function Creations({ siteConfig, post, preview }) {
     };
 
     const renderSections = () => {
+      console.log('preview', preview);
       if (!post?.body) return;
 
-      if (!user?.isDominion || !preview) {
+      if (!user?.isDominion && !preview) {
         return (
           <div className="relative  br4  shadow2  bg-light-grey  pa3  pa4-md  mt3">
             <div className="absolute  pa2  w4  top  left  right  mla  mra  nt3  bg-light-grey  br4  shadow2">
