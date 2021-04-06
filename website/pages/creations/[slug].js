@@ -168,15 +168,13 @@ export default function Creations({ siteConfig, post, preview }) {
                 </div>
               </section>
 
-              {
-                // {shouldShowAuthor() && (
-                //   <section className="measure-wide  mla  mra">
-                //     <div className="pb4">
-                //       <Author author={post.author} />
-                //     </div>
-                //   </section>
-                // )}
-              }
+              {shouldShowAuthor() && (
+                <section className="measure-wide  mla  mra">
+                  <div className="pb4">
+                    <Author author={post.author} />
+                  </div>
+                </section>
+              )}
             </article>
           </Container>
         </div>

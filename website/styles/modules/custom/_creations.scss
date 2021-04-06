@@ -22,6 +22,16 @@
   .rhap_container {
     background-color: var(--almost-black);
   }
+
+  .article__author {
+    @extend .ba;
+    @extend .bw1;
+    @extend .bc-almost-white;
+
+    *:not(.label) {
+      color: var(--almost-white);
+    }
+  }
 }
 
 .creations__label-wrapper {
