@@ -112,7 +112,7 @@ export default function CardCreations({ post, columnCount }) {
           onClick={null}
           /* Children */
           image={cardImage}
-          labelBlock={post?.tags?.length ? labelBlock : null}
+          labelBlock={null}
           title={cardHeading}
           description={null}
           button={null}
