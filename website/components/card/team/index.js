@@ -33,7 +33,7 @@ export default function CardBlog({ teamMember, columnCount }) {
       src={
         teamMember &&
         imageBuilder
-          .image(teamMember?.image)
+          .image(teamMember.image)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
@@ -43,7 +43,7 @@ export default function CardBlog({ teamMember, columnCount }) {
       placeholder={
         teamMember &&
         imageBuilder
-          .image(teamMember?.image)
+          .image(teamMember.image)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
@@ -107,7 +107,7 @@ export default function CardBlog({ teamMember, columnCount }) {
             type="block"
             onClick={null}
             /* Children */
-            image={cardImage}
+            image={teamMember?.image?.asset && cardImage}
             labelBlock={[cardLabel]}
             title={cardHeading}
             description={null}

@@ -14,7 +14,7 @@ const sitemapXml = (mix) => {
 
     const description = blocksToHtml({ blocks: mix.description });
 
-    const image = mix?.image
+    const image = mix?.image?.asset
       ? `<img width="400" style="width: 400px;" src="${imageBuilder
           .image(mix.image)
           .width(400)

@@ -18,7 +18,7 @@ const sitemapXml = (posts) => {
 
       const description = post?.excerpt || '';
 
-      const image = post?.image
+      const image = post?.image?.asset
         ? `<img width="400" style="width: 400px;" src="${imageBuilder
             .image(post.image)
             .width(400)

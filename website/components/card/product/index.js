@@ -21,7 +21,7 @@ export default function CardDefault({ product }) {
       src={
         product &&
         imageBuilder
-          .image(product?.image1)
+          .image(product.image1)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
@@ -31,7 +31,7 @@ export default function CardDefault({ product }) {
       placeholder={
         product &&
         imageBuilder
-          .image(product?.image1)
+          .image(product.image1)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
@@ -103,7 +103,7 @@ export default function CardDefault({ product }) {
         type="block"
         onClick={null}
         /* Children */
-        image={cardImage}
+        image={product?.image1?.asset && cardImage}
         labelBlock={[cardLabel]}
         title={cardHeading}
         description={cardCopy}

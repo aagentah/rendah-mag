@@ -27,14 +27,14 @@ export default function Cardmix({ mix, columnCount }) {
       <Image
         /* Options */
         src={imageBuilder
-          .image(mix?.image)
+          .image(mix.image)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
           .fit('clip')
           .url()}
         placeholder={imageBuilder
-          .image(mix?.image)
+          .image(mix.image)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
@@ -81,7 +81,7 @@ export default function Cardmix({ mix, columnCount }) {
           type="block"
           onClick={null}
           /* Children */
-          image={cardImage}
+          image={mix?.image?.asset && cardImage}
           labelBlock={null}
           title={cardHeading}
           description={null}

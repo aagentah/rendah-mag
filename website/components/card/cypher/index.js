@@ -27,14 +27,14 @@ export default function CardCypher({ post, columnCount }) {
       <Image
         /* Options */
         src={imageBuilder
-          .image(post?.imageSquare)
+          .image(post.imageSquare)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
           .fit('clip')
           .url()}
         placeholder={imageBuilder
-          .image(post?.imageSquare)
+          .image(post.imageSquare)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
@@ -82,7 +82,7 @@ export default function CardCypher({ post, columnCount }) {
           type="block"
           onClick={null}
           /* Children */
-          image={cardImage}
+          image={post?.imageSquare?.asset && cardImage}
           labelBlock={null}
           title={cardHeading}
           description={null}
