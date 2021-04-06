@@ -4,7 +4,15 @@ import Router, { useRouter } from 'next/router';
 import map from 'lodash/map';
 import Cookies from 'js-cookie';
 import { parseISO, format } from 'date-fns';
-import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
+import {
+  Hero,
+  Heading,
+  Copy,
+  Image,
+  Button,
+  Icon,
+  Label,
+} from 'next-pattern-library';
 
 import HeroCreations from '~/components/hero/creations';
 import Layout from '~/components/layout';
@@ -38,6 +46,38 @@ export default function Creations({ siteConfig, post, preview }) {
   }
 
   if (!router.isFallback && post.slug) {
+    const renderTags = () => {
+      if (!post?.tags?.length) return;
+      const labelBlock = [];
+
+      post.tags.map((label) => {
+        labelBlock.push(
+          <div className="pr2">
+            <Label
+              /* Options */
+              customClass="category"
+              text={label}
+              color="white"
+              backgroundColor="black"
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+        );
+      });
+
+      return (
+        <section className="measure-wide  mla  mra  flex  align-center">
+          <div className="flex  flex-wrap  align-center">
+            <div className="pr2">
+              <span className="t-primary  lh-title  white">Tags:</span>
+            </div>
+            {labelBlock}
+          </div>
+        </section>
+      );
+    };
     const shouldShowAuthor = () => {
       if (typeof post?.showAuthor === 'boolean' && post?.showAuthor === false) {
         return false;
@@ -175,6 +215,8 @@ export default function Creations({ siteConfig, post, preview }) {
                   </div>
                 </section>
               )}
+
+              {renderTags()}
             </article>
           </Container>
         </div>

@@ -48,7 +48,7 @@ export default function ImageSection({ section }) {
           figcaption={null}
           height={null}
           width={null}
-          customClass={null}
+          customClass="shadow2"
           skeleton={false}
           onClick={null}
           /* Children */

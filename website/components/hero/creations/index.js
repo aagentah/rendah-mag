@@ -46,7 +46,7 @@ export default function HeroCreations({ post }) {
       height={imageHeight}
       width={null}
       skeleton={!post}
-      customClass="shadow2  br4"
+      customClass=""
       onClick={null}
       /* Children */
       withLinkProps={null}
@@ -58,7 +58,7 @@ export default function HeroCreations({ post }) {
       {
         // <Parallax className="z1  nt3" y={['-50px', '50px']} tagOuter="figure">
       }
-      <div className="hero">
+      <div className="hero  br4  shadow2">
         <Hero
           /* Options */
           height={imageHeight}
