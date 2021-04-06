@@ -9,6 +9,8 @@ import encodeSpecialChar from '~/functions/encodeSpecialChar';
 const sitemapXml = (item) => {
   let postXML;
 
+  console.log('item', item);
+
   if (item?.slug?.current) {
     const title = item?.title || '';
     let hasLoginPrompt;
@@ -16,7 +18,7 @@ const sitemapXml = (item) => {
 
     const description = blocksToHtml({ blocks: item?.description });
 
-    if (item?.imagePortrait) {
+    if (item?.imagePortrait?.asset) {
       image = `
         <img width="500" style="width: 500px; border-radius: 16px;"
           src="${imageBuilder
@@ -26,7 +28,7 @@ const sitemapXml = (item) => {
             .url()}"
           alt="${title}"
         />`;
-    } else if (item?.image) {
+    } else if (item?.image?.asset) {
       image = `
         <img width="500" style="width: 500px; border-radius: 16px;"
           src="${imageBuilder
