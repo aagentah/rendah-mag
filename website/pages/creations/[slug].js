@@ -59,14 +59,22 @@ export default function Creations({ siteConfig, post, preview }) {
     const renderSections = () => {
       if (!post?.body) return;
 
-      if (!user?.isDominion) {
+      if (!user?.isDominion || !preview) {
         return (
-          <div className="br4  shadow2  bg-light-grey  pa3  pa4-md  mt3">
+          <div className="relative  br4  shadow2  bg-light-grey  pa3  pa4-md  mt3">
+            <div className="absolute  pa2  w4  top  left  right  mla  mra  nt3  bg-light-grey  br4  shadow2">
+              <img
+                /* Options */
+                src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1617575443/dominion/dominion-logo-transparent.png"
+                alt="Dominion"
+              />
+            </div>
+
             <div className="pb2">
               <Heading
                 /* Options */
                 htmlEntity="h1"
-                text="Dominion exclusive"
+                text="Hold up!"
                 color="black"
                 size="small"
                 truncate={null}
@@ -77,7 +85,7 @@ export default function Creations({ siteConfig, post, preview }) {
             </div>
 
             <p className="t-body  f6  lh-copy  taj  black">
-              This artilce is exclusive to the Dominion. To read the full
+              This article is exclusive to the Dominion. To read the full
               article, please <a href="/login">log in</a> or{' '}
               <a href="/dominion">sign up</a>.
             </p>
