@@ -14,19 +14,30 @@ const sitemapXml = (posts) => {
     let postsXML = '';
 
     posts.map((post) => {
-      const title = post?.title || '';
+      const title = post?.title;
 
-      const description = post?.excerpt || '';
+      const titleBlock = post?.title
+        ? `<h2 style="font-weight: bold; text-align: left;">${title}</h2>`
+        : '';
+
+      const tagLineBlock = post?.excerpt
+        ? `<p style="color: #000000; text-align: left;">${post.excerpt}</p>`
+        : '';
 
       const image = post?.image?.asset
         ? `<img width="400" style="width: 400px;" src="${imageBuilder
             .image(post.image)
             .width(400)
+            .height(300)
             .auto('format')
             .url()}" />`
         : '';
 
-      const url = process.env.SITE_URL;
+      const url = post?.slug
+        ? `${process.env.SITE_URL}/creations/${post.slug}`
+        : process.env.SITE_URL;
+
+      const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;
 
       const date = new Date(post?.publishedAt).toUTCString();
 
@@ -34,29 +45,21 @@ const sitemapXml = (posts) => {
             <table cellspacing="0" cellpadding="0" border="0" width="100%">
               <tr>
                 <td width="400" valign="top">
-                  ${description}
-                </td>
-              </tr>
-              <tr>
-                <td><br /></td>
-              </tr>
-              <tr>
-                <td width="400" valign="top">
-                  <p>
-                    <em style="font-style: italic;">
-                      Please <a style="text-decoration: underline;" href="${process.env.SITE_URL}/login">log in</a>
-                      to read the full exclusive post.
-                    </em>
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td><br /></td>
-              </tr>
-              <tr>
-                <td width="400" valign="top">
                   ${image}
                 </td>
+              </tr>
+              <tr>
+                <td><br /></td>
+              </tr>
+              <tr>
+                <td width="400" valign="top">
+                ${titleBlock}
+                ${tagLineBlock}
+                ${readMoreLink}
+                </td>
+              </tr>
+              <tr>
+                <td><br /></td>
               </tr>
             </table>
             `;
