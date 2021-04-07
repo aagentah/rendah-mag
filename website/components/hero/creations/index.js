@@ -25,7 +25,7 @@ export default function HeroCreations({ post }) {
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
 
-  const heroImage = (
+  const heroImage = post && (
     <Image
       /* Options */
       src={imageBuilder

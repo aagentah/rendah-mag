@@ -22,7 +22,7 @@ export default function CardCypher({ post, columnCount }) {
   const handleIntersect = (event) => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
-  const cardImage = (
+  const cardImage = post && (
     <LazyLoad once offset={150} height={imageHeight}>
       <Image
         /* Options */
