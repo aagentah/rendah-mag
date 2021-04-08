@@ -139,9 +139,16 @@ export default function Dominion({ siteConfig }) {
             />
           </div>
 
-          <div className="flex  flex-wrap  pb5">
-            <div className="col-24  flex  justify-center">
-              <div className="measure-wide  mb3  ph4  ph0-md">
+          <div className="flex  flex-wrap-reverse  flex-wrap-md  pb4-md">
+            <div className="col-24  col-11-md  flex  justify-center  align-center">
+              <img
+                className="mb3  mb0-md"
+                src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1617893807/dominion/welcome-pack.png"
+                alt="Welcome Pack"
+              />
+            </div>
+            <div className="col-24  col-13-md  flex  justify-center  align-center">
+              <div className="measure-wide  ph4  ph0-md">
                 <p className="f-secondary  taj  f5  pb4  lh-copy">
                   This year, the Rendah Mag team embarks upon a new journey.
                   With so much happening right now, we want to push our platform
@@ -152,7 +159,7 @@ export default function Dominion({ siteConfig }) {
                 <p className="f-secondary  taj  f5  pb3  lh-copy">
                   <strong>We offer the following to you:</strong>
                 </p>
-                <ul className="pl4  pb3">
+                <ul className="pl4">
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
                     A Welcome package (+ membership card & stickers).
                   </li>
@@ -170,7 +177,13 @@ export default function Dominion({ siteConfig }) {
                     Discounts from all coming Rendah Mag products.
                   </li>
                 </ul>
+              </div>
+            </div>
+          </div>
 
+          <div className="flex  flex-wrap  pb5">
+            <div className="col-24  flex  justify-center">
+              <div className="measure-wide  mb3  ph4  ph0-md">
                 <p className="f-secondary  taj  f5  pb3  lh-copy">
                   Our mission with this project is to present something new and
                   exciting for the community in the hope that we can truly bring
