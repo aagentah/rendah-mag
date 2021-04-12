@@ -1,19 +1,19 @@
-.row {
-  display: flex;
-  flex-wrap: wrap;
+.table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.column {
-  flex: 0 0 calc(33.333% - 20px);
-  max-width: calc(33.333% - 20px);
-  padding: 10px;
+.table td,
+.table th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
 
-.label {
-  padding: 10px 20px;
-  font-size: 12px;
-  line-height: 12px;
-  border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  min-height: 110px;
+.table tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.table * {
+  font-size: 10px;
 }

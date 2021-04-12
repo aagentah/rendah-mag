@@ -58,8 +58,6 @@ export default async (order) => {
         }
       );
 
-      console.log('yo 2:', response.status);
-
       // Error
       if (!response.ok) {
         throw new Error(await formatHttpError(response));

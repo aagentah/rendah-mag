@@ -34,58 +34,30 @@ class TwitterCard extends React.PureComponent {
 
     if (this.state.results.length) {
       return (
-        <section className={styles.row}>
-          {this.state.results.map((user) => (
-            <article className={styles.column}>
-              <div className={styles.label}>
-                <p>
-                  {user?.name && (
-                    <>
-                      {user?.name}
-                      <br />
-                    </>
-                  )}
-                  {user?.address?.line1 && (
-                    <>
-                      {user?.address?.line1}
-                      <br />
-                    </>
-                  )}
-                  {user?.address?.line2 && (
-                    <>
-                      {user?.address?.line2}
-                      <br />
-                    </>
-                  )}
-                  {user?.address?.city && (
-                    <>
-                      {user?.address?.city}
-                      <br />
-                    </>
-                  )}
-                  {user?.address?.state && (
-                    <>
-                      {user?.address?.state}
-                      <br />
-                    </>
-                  )}
-                  {user?.address?.postal_code && (
-                    <>
-                      {user?.address?.postal_code}
-                      <br />
-                    </>
-                  )}
-                  {user?.address?.country && (
-                    <>
-                      {user?.address?.country}
-                      <br />
-                    </>
-                  )}
-                </p>
-              </div>
-            </article>
-          ))}
-        </section>
+        <>
+          <table className={styles.table}>
+            <tr>
+              <th>Name</th>
+              <th>Line1</th>
+              <th>Line2</th>
+              <th>City</th>
+              <th>State</th>
+              <th>PostCode</th>
+              <th>Country</th>
+            </tr>
+            {this.state.results.map((user) => (
+              <tr>
+                <td>{user?.name}</td>
+                <td>{user?.address?.line1}</td>
+                <td>{user?.address?.line2}</td>
+                <td>{user?.address?.city}</td>
+                <td>{user?.address?.state}</td>
+                <td>{user?.address?.postal_code}</td>
+                <td>{user?.address?.country}</td>
+              </tr>
+            ))}
+          </table>
+        </>
       );
     }
 
