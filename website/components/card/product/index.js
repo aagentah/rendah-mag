@@ -7,7 +7,6 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 export default function CardDefault({ product }) {
-  console.log('product', product);
   const app = useApp();
 
   if (!app.deviceSize) return null;
@@ -15,31 +14,13 @@ export default function CardDefault({ product }) {
   const imageUrlWidth = app.deviceSize === 'md' ? 200 : 230;
   const imageHeight = app.deviceSize === 'md' ? 200 : 230;
   const headingSize = 'medium';
+  const isSoldOut = product?.tag === 'Sold-out';
 
   const cardImage = (
     <Image
       /* Options */
-      src={
-        product &&
-        imageBuilder
-          .image(product.image1)
-          .width(imageUrlWidth * scale)
-          .height(imageHeight * scale)
-          .auto('format')
-          .fit('clip')
-          .url()
-      }
-      placeholder={
-        product &&
-        imageBuilder
-          .image(product.image1)
-          .height(imageHeight / 10)
-          .width(imageUrlWidth / 10)
-          .auto('format')
-          .fit('clip')
-          .blur('20')
-          .url()
-      }
+      src={product?.image1}
+      placeholder={null}
       alt={product?.title}
       figcaption={null}
       height={imageHeight}
@@ -61,7 +42,9 @@ export default function CardDefault({ product }) {
     />
   );
 
-  const cardLabel = (
+  const cardLabel = [];
+
+  cardLabel.push(
     <Label
       /* Options */
       customClass="ph2"
@@ -74,6 +57,21 @@ export default function CardDefault({ product }) {
     />
   );
 
+  if (product?.tag && product?.tag !== 'None') {
+    cardLabel.push(
+      <Label
+        /* Options */
+        customClass="ph2"
+        text={product?.tag}
+        color="black"
+        backgroundColor="almost-white"
+        onClick={null}
+        /* Children */
+        withLinkProps={null}
+      />
+    );
+  }
+
   const cardHeading = (
     <Heading
       /* Options */
@@ -83,7 +81,16 @@ export default function CardDefault({ product }) {
       size={headingSize}
       truncate={1}
       /* Children */
-      withLinkProps={null}
+      withLinkProps={{
+        type: 'next',
+        href: '/product/[slug]',
+        target: null,
+        routerLink: Link,
+        routerLinkProps: {
+          as: `/product/${product?.slug}`,
+          scroll: false,
+        },
+      }}
     />
   );
 
@@ -104,8 +111,8 @@ export default function CardDefault({ product }) {
         type="block"
         onClick={null}
         /* Children */
-        image={product?.image1?.asset && cardImage}
-        labelBlock={[cardLabel]}
+        image={product?.image1 && cardImage}
+        labelBlock={cardLabel}
         title={cardHeading}
         description={cardCopy}
         button={null}

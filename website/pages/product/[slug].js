@@ -24,6 +24,7 @@ import {
 
 export default function Product({ siteConfig, product }) {
   const router = useRouter();
+  const isSoldOut = product?.tag === 'Sold-out';
 
   if (!router.isFallback && !product?.slug) {
     Router.push('/404');
@@ -52,8 +53,8 @@ export default function Product({ siteConfig, product }) {
       <>
         <div className="pa4  br4  ba  bw1  bc-black">
           <p className="f-secondary  taj  f5  pb3  lh-copy">
-            For the same price, join the Dominion and recieve this item plus a
-            bunch of additional monthly features. Fine out more.{' '}
+            For the same price, join the Dominion and recieve this item plus
+            additional monthly features.{' '}
             <strong>We offer the following to you:</strong>
           </p>
 
@@ -132,7 +133,7 @@ export default function Product({ siteConfig, product }) {
                     withLinkProps={null}
                   />
                 </div>
-                <div className="col-24  col-12-md  ph3-md">
+                <div className="col-24  col-12-md  pl4-md">
                   <div className="db  ph2  pt2">
                     <Heading
                       /* Options */
@@ -145,20 +146,37 @@ export default function Product({ siteConfig, product }) {
                       withLinkProps={null}
                     />
                   </div>
-                  <div className="db  ph2  pb4">
-                    <Label
-                      /* Options */
-                      customClass="ph2"
-                      text={`£${product?.price}`}
-                      color="white"
-                      backgroundColor="black"
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={null}
-                    />
+                  <div className="flex  flex-wrap  ph2  pb3">
+                    <div className="dib  pr2">
+                      <Label
+                        /* Options */
+                        customClass="ph2"
+                        text={`£${product?.price}`}
+                        color="white"
+                        backgroundColor="black"
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+
+                    {product?.tag && product?.tag !== 'None' && (
+                      <div className="dib  pr2">
+                        <Label
+                          /* Options */
+                          customClass="ph2"
+                          text={product?.tag}
+                          color="black"
+                          backgroundColor="white"
+                          onClick={null}
+                          /* Children */
+                          withLinkProps={null}
+                        />
+                      </div>
+                    )}
                   </div>
 
-                  <div className="bb  bc-black  pb3  mb4">
+                  <div className="product__tabs  bb  bc-black  pb3  mb4">
                     <Tabs
                       /* Options */
                       content={[
@@ -184,36 +202,40 @@ export default function Product({ siteConfig, product }) {
                     />
                   </div>
 
-                  <div className="db">
-                    <div className="dib  ph2  pb3">
-                      <div
-                        className="snipcart-add-item"
-                        data-item-id={product?.slug}
-                        data-item-price={product?.price}
-                        data-item-url={`/product/${product?.slug}`}
-                        data-item-description=""
-                        data-item-image={product?.image1}
-                        data-item-name={product?.title}
-                      >
-                        <Button
-                          /* Options */
-                          type="primary"
-                          size="medium"
-                          text="Add to cart"
-                          color="black"
-                          fluid={false}
-                          icon={buttonIconPlus}
-                          iconFloat="left"
-                          inverted={false}
-                          loading={false}
-                          disabled={false}
-                          skeleton={false}
-                          onClick={null}
-                          /* Children */
-                          withLinkProps={null}
-                        />
+                  <div className="flex  flex-wrap  align-center">
+                    {!isSoldOut && (
+                      <div className="dib  ph2  pb3">
+                        <div
+                          className="snipcart-add-item"
+                          data-item-id={product?.slug}
+                          data-item-price={product?.price}
+                          data-item-url={`/product/${product?.slug}`}
+                          data-item-description=""
+                          data-item-image={product?.image1}
+                          data-item-name={product?.title}
+                          data-item-weight={product?.weight}
+                        >
+                          <Button
+                            /* Options */
+                            type="primary"
+                            size="medium"
+                            text="Add to cart"
+                            color="black"
+                            fluid={false}
+                            icon={buttonIconPlus}
+                            iconFloat="left"
+                            inverted={false}
+                            loading={false}
+                            disabled={false}
+                            skeleton={false}
+                            onClick={null}
+                            /* Children */
+                            withLinkProps={null}
+                          />
+                        </div>
                       </div>
-                    </div>
+                    )}
+
                     <div className="dib  ph2  pb3">
                       <div className="snipcart-checkout">
                         <Button

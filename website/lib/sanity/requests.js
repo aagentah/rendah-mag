@@ -204,7 +204,7 @@ export async function getTeamMemberAndPosts(slug, preview) {
 
 export async function getAllProducts(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "storeItem"] | order(publishedAt desc) {
+    .fetch(`*[_type == "storeItem"] | order(publishedAt asc) {
       ${productFields}
     }`);
   return results;
