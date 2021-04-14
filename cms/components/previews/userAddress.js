@@ -19,7 +19,7 @@ class TwitterCard extends React.PureComponent {
   render() {
     const getDominionUsers = async (preview) => {
       const results = await sanityClient.fetch(
-        `*[_type == "user" && isDominion] [0..13] {
+        `*[_type == "user" && isDominion] {
           name,
           handle,
           avatar,
