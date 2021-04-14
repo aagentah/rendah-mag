@@ -1,10 +1,16 @@
 import fetch from 'isomorphic-unfetch';
+import find from 'lodash/find';
 
 import formatHttpError from '~/functions/formatHttpError';
 
 export default async (order) => {
   try {
-    const addUpdateMailchimpUser = async (email, firstName, lastName) => {
+    const addUpdateMailchimpUser = async (
+      email,
+      firstName,
+      lastName,
+      isDominion
+    ) => {
       const data = {
         email_address: email,
         status_if_new: 'subscribed',
@@ -34,6 +40,10 @@ export default async (order) => {
       const addMembertags = async () => {
         const tags = [{ name: 'Customer', status: 'active' }];
 
+        if (isDominion) {
+          tags.push({ name: 'Dominion Subscription', status: 'active' });
+        }
+
         const response = await fetch(
           `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
           {
@@ -61,9 +71,10 @@ export default async (order) => {
     const fullName = billingAddress?.fullName || shippingAddress?.fullName;
     const firstName = fullName.split(' ')[0];
     const lastName = fullName.split(' ')[1];
+    const isDominion = find(items, { id: 'dominion-subscription' });
 
     // Add or update mailchimp user
-    await addUpdateMailchimpUser(email, firstName, lastName);
+    await addUpdateMailchimpUser(email, firstName, lastName, isDominion);
 
     return { error: '' };
   } catch (error) {

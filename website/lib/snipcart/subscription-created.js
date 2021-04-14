@@ -41,28 +41,28 @@ export default async (order) => {
       },
     };
 
-    const tags = [];
-
-    tags.push({
-      name: 'Dominion Subscription',
-      status: 'active',
-    });
-
-    const addMembertags = async () => {
-      const response = await fetch(
-        `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
-        {
-          body: JSON.stringify({ email, tags }),
-          headers: { 'Content-Type': 'application/json' },
-          method: 'POST',
-        }
-      );
-
-      // Error
-      if (!response.ok) {
-        throw new Error(await formatHttpError(response));
-      }
-    };
+    // const addMembertags = async () => {
+    //   const tags = [];
+    //
+    //   tags.push({
+    //     name: 'Dominion Subscription',
+    //     status: 'active',
+    //   });
+    //
+    //   const response = await fetch(
+    //     `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
+    //     {
+    //       body: JSON.stringify({ email, tags }),
+    //       headers: { 'Content-Type': 'application/json' },
+    //       method: 'POST',
+    //     }
+    //   );
+    //
+    //   // Error
+    //   if (!response.ok) {
+    //     throw new Error(await formatHttpError(response));
+    //   }
+    // };
 
     // Here you check if the username has already been used
     const userExisted = await findUserByUsername(email);
@@ -76,7 +76,7 @@ export default async (order) => {
 
     await createUser(userData);
     await welcomeDominionEmail(email, temporaryPassword);
-    await addMembertags();
+    // await addMembertags();
 
     return { error: '' };
   } catch (error) {
