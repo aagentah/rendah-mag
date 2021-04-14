@@ -11,6 +11,7 @@ const postFields = `
   description,
   'slug': slug.current,
   'coverImage': image.asset->url,
+  'category': category->title,
   'author': author->{
     ...,
   },
@@ -83,6 +84,35 @@ export async function getAllPostsTotal(preview) {
     .fetch(`*[_type == "post"] | order(publishedAt desc) {
       ${postFields}
     }`);
+
+  return results;
+}
+
+export async function getAllCreationsTotal(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "creations"] | order(publishedAt desc) {
+      ${postFields}
+    }`);
+  return results;
+}
+
+export async function getLatestDominionCreations(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "creations"] | order(publishedAt desc) [0..23] {
+      ${postFields}
+    }`
+  );
+
+  return results;
+}
+
+export async function getCreation(slug, preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "creations" && slug.current == $slug] | [0] {
+      ${postFields}
+    }`,
+    { slug }
+  );
 
   return results;
 }
@@ -164,8 +194,8 @@ export async function getTeamMemberAndPosts(slug, preview) {
     `*[_type == "author" && active && slug.current == $slug] [0] {
       ${teamFields}
       "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc) [0..23] {
-      ${postFields}
-    }
+        ${postFields}
+      }
     }`,
     { slug }
   );
@@ -276,11 +306,12 @@ export async function getLatestDominionItem(preview) {
   const today = dateTodayYyyyMmDd();
 
   const results = await getClient(preview).fetch(
-    `*[_type == "dominionItem" && activeFrom <= $today] | order(activeFrom desc) [0] {
+    `*[_type == "dominionItem"] | order(activeFrom desc) [0] {
       ...,
     }`,
     { today }
   );
+
   return results;
 }
 
@@ -291,7 +322,7 @@ export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
   const [results, welcome] = await Promise.all([
     curClient
       .fetch(
-        `*[_type == "dominionItem" && slug.current != "welcome-to-the-dominion" && activeFrom >= $sinceStartOfMonth && activeFrom <= $today] | order(activeFrom asc) {
+        `*[_type == "dominionItem" && slug.current != "welcome-to-the-dominion" && activeFrom >= $sinceStartOfMonth && activeFrom <= $today && showInProfile] | order(activeFrom asc) {
         ...,
         "slug": slug.current,
       }`,
@@ -299,7 +330,7 @@ export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
       )
       .then((res) => res),
     curClient.fetch(
-      `*[_type == "dominionItem" && slug.current == "welcome-to-the-dominion"] [0] {
+      `*[_type == "dominionItem" && slug.current == "welcome-to-the-dominion" && showInProfile] [0] {
         ...,
         "slug": slug.current,
       }`
@@ -332,7 +363,17 @@ export async function getSmartLinksTotal(preview) {
 export async function getLinkInBio(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "linkInBio"] [0] {
-      ...,
+      'items': items[] {
+        'field': field {
+          'documentInternal': documentInternal {
+            'document': *[_id == ^._ref] [0] {
+              ...,
+            },
+          },
+          ...,
+        },
+        ...,
+      }
     }`
   );
   return results;

@@ -7,6 +7,7 @@ import { Tabs } from 'next-pattern-library';
 import ProfileEdit from '~/components/profile/edit';
 import ProfileDominion from '~/components/profile/dominion';
 import ProfilePipeline from '~/components/profile/pipeline';
+import ProfileCreations from '~/components/profile/creations';
 import ProfileBilling from '~/components/profile/billing';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -90,11 +91,16 @@ export default function Profile({ siteConfig }) {
                         },
                         {
                           id: '3',
+                          tabTitle: 'Creations',
+                          tabContent: <ProfileCreations />,
+                        },
+                        {
+                          id: '4',
                           tabTitle: 'Pipeline',
                           tabContent: <ProfilePipeline />,
                         },
                         {
-                          id: '4',
+                          id: '5',
                           tabTitle: 'Billing',
                           tabContent: <ProfileBilling />,
                         },

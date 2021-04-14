@@ -8,7 +8,7 @@ export default function Author({ siteConfig, author }) {
   const { posts } = author;
 
   return (
-    <div className="flex  flex-wrap  br4  shadow2  relative  pa4">
+    <div className="article__author  flex  flex-wrap  br4  shadow2  relative  pa4">
       <div className="absolute  top  right  nt2  mr4">
         <Label
           /* Options */

@@ -20,8 +20,8 @@ export default function CarouselItemSection({ item }) {
 
   return (
     <div className="flex  flex-wrap  pb2">
-      <div className={`col-24  ${item.image && ''}`}>
-        <div className="relative  ph4  pt4  pb2">
+      <div className="col-24">
+        <div className="relative  ph2  ph4-md  pt4  pb2">
           <p className="t-secondary  f7  grey  pb2">
             {new Date(item.activeFrom).toDateString()}
           </p>

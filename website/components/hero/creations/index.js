@@ -7,7 +7,7 @@ import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
-export default function HeroPost({ post }) {
+export default function HeroCreations({ post }) {
   const app = useApp();
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
@@ -15,7 +15,7 @@ export default function HeroPost({ post }) {
   if (!app.deviceSize) return null;
   const scale = app.isRetina ? 2 : 1;
   let imageUrlWidth;
-  let imageHeight = 700;
+  let imageHeight = 600;
 
   if (app.deviceSize === 'md') {
     imageUrlWidth = 700;
@@ -46,19 +46,10 @@ export default function HeroPost({ post }) {
       height={imageHeight}
       width={null}
       skeleton={!post}
-      customClass={null}
+      customClass=""
       onClick={null}
       /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/article/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/article/${post.slug}`,
-          scroll: false,
-        },
-      }}
+      withLinkProps={null}
     />
   );
 
@@ -67,7 +58,7 @@ export default function HeroPost({ post }) {
       {
         // <Parallax className="z1  nt3" y={['-50px', '50px']} tagOuter="figure">
       }
-      <div className="hero--darken-top">
+      <div className="hero  br4  shadow2">
         <Hero
           /* Options */
           height={imageHeight}

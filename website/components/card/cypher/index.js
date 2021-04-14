@@ -22,19 +22,19 @@ export default function CardCypher({ post, columnCount }) {
   const handleIntersect = (event) => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
-  const cardImage = (
+  const cardImage = post && (
     <LazyLoad once offset={150} height={imageHeight}>
       <Image
         /* Options */
         src={imageBuilder
-          .image(post?.imageSquare)
+          .image(post.imageSquare)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
           .fit('clip')
           .url()}
         placeholder={imageBuilder
-          .image(post?.imageSquare)
+          .image(post.imageSquare)
           .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
@@ -82,7 +82,7 @@ export default function CardCypher({ post, columnCount }) {
           type="block"
           onClick={null}
           /* Children */
-          image={cardImage}
+          image={post?.imageSquare?.asset && cardImage}
           labelBlock={null}
           title={cardHeading}
           description={null}

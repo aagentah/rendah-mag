@@ -66,27 +66,27 @@ export default () =>
           S.list()
             .title("Dominion")
             .items([
-              // S.documentTypeListItem("user").icon(MDPerson),
-              S.listItem()
-                .title("User")
-                .schemaType("user")
-                .child(
-                  S.documentTypeList("user")
-                    .title("Projects")
-                    .child((documentId) =>
-                      S.document()
-                        .documentId(documentId)
-                        .schemaType("user")
-                        .views([
-                          S.view.form().icon(MdSettings),
-                          S.view
-                            .component(SeoPreview)
-                            .icon(MDViewList)
-                            .title("Address Label"),
-                        ])
-                    )
-                ),
+              S.documentTypeListItem("user").icon(MDPerson),
+              // S.listItem()
+              //   .title("User")
+              //   .schemaType("user")
+              //   .child(
+              //     S.documentTypeList("user")
+              //       .title("Projects")
+              //       .child((documentId) =>
+              //         S.document()
+              //           .documentId(documentId)
+              //           .schemaType("user")
+              //           .views([
+              //             S.view
+              //               .component(SeoPreview)
+              //               .icon(MDViewList)
+              //               .title("Address Label"),
+              //           ])
+              //       )
+              //   ),
               S.documentTypeListItem("dominionItem"),
+              S.documentTypeListItem("creations"),
               S.listItem()
                 .icon(MDViewList)
                 .title("Dominion Pipeline")
@@ -94,6 +94,22 @@ export default () =>
                   S.editor()
                     .schemaType("dominionPipeline")
                     .documentId("dominionPipeline")
+                ),
+              S.divider(),
+              S.listItem()
+                .icon(MDViewList)
+                .title("Dominion User Address Labels")
+                .child(
+                  S.editor()
+                    .schemaType("user")
+                    .title("User Address Labels")
+                    .views([
+                      S.view
+                        .component(SeoPreview)
+
+                        .icon(MDViewList)
+                        .title("Address Labels"),
+                    ])
                 ),
             ])
         ),

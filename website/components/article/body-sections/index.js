@@ -1,8 +1,7 @@
 import includes from 'lodash/includes';
+import BlockContent from '@sanity/block-content-to-react';
 
 import Heading from './heading';
-import Paragraph from './paragraph';
-import ListItem from './list-item';
 import Quote from './quote';
 import Image from './image';
 import IframeBlock from './iframe';
@@ -15,30 +14,29 @@ import ArticleLink from './article-link';
 
 export default function Sections({ body, ...props }) {
   const renderSections = (section, i) => {
+    const serializers = {
+      marks: {
+        inlineLink: (props) => {
+          return (
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              className="di  underline"
+              href={props.mark.url}
+            >
+              {props.children[0]}
+            </a>
+          );
+        },
+      },
+    };
+
     // para
-    if (section._type === 'block' && !section.listItem) {
+    if (section._type === 'block') {
       return (
         <div key={i}>
-          <Paragraph text={section.children} markDefs={section.markDefs} />
+          <BlockContent blocks={section} serializers={serializers} />
         </div>
-      );
-    }
-
-    // bullet list
-    if (section._type === 'block' && section.listItem === 'bullet') {
-      return (
-        <ul key={i} className="pb3">
-          <ListItem text={section.children} />
-        </ul>
-      );
-    }
-
-    // number list
-    if (section._type === 'block' && section.listItem === 'number') {
-      return (
-        <ul key={i} className="pb3">
-          <ListItem text={section.children} />
-        </ul>
       );
     }
 

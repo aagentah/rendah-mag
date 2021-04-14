@@ -72,6 +72,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 
       return true;
     };
+
     return (
       <Layout
         navOffset={null}
@@ -153,7 +154,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                   text={post.title}
                   color="black"
                   size={app.deviceSize === 'md' ? 'large' : 'x-large'}
-                  truncate={0}
+                  truncate={null}
                   onClick={null}
                   /* Children */
                   withLinkProps={null}

@@ -139,20 +139,34 @@ export default function Dominion({ siteConfig }) {
             />
           </div>
 
-          <div className="flex  flex-wrap  pb5">
+          <div className="flex  flex-wrap  pv3">
             <div className="col-24  flex  justify-center">
               <div className="measure-wide  mb3  ph4  ph0-md">
-                <p className="f-secondary  taj  f5  pb4  lh-copy">
+                <p className="f-secondary  taj  f5  lh-copy">
                   This year, the Rendah Mag team embarks upon a new journey.
                   With so much happening right now, we want to push our platform
                   into new territory, offering a new way for you to explore the
                   landscape of underground music culture. With an absolute
                   pleasure, we bring you the DOMINION.
                 </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex  flex-wrap-reverse  flex-wrap-md  pb4-md  ph5-md">
+            <div className="col-24  col-11-md  flex  justify-center  align-center">
+              <img
+                className="mb3  mb0-md"
+                src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1617893807/dominion/welcome-pack.png"
+                alt="Welcome Pack"
+              />
+            </div>
+            <div className="col-24  col-13-md  flex  justify-center  align-center  ph0  ph4-md">
+              <div className="measure-wide  ph4  ph0-md">
                 <p className="f-secondary  taj  f5  pb3  lh-copy">
                   <strong>We offer the following to you:</strong>
                 </p>
-                <ul className="pl4  pb3">
+                <ul className="pl3">
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
                     A Welcome package (+ membership card & stickers).
                   </li>
@@ -170,7 +184,13 @@ export default function Dominion({ siteConfig }) {
                     Discounts from all coming Rendah Mag products.
                   </li>
                 </ul>
+              </div>
+            </div>
+          </div>
 
+          <div className="flex  flex-wrap  pb5">
+            <div className="col-24  flex  justify-center">
+              <div className="measure-wide  mb3  ph4  ph0-md">
                 <p className="f-secondary  taj  f5  pb3  lh-copy">
                   Our mission with this project is to present something new and
                   exciting for the community in the hope that we can truly bring

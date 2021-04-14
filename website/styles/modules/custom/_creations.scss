@@ -1,0 +1,68 @@
+.creations {
+  background-color: #262626;
+
+  .rich-text {
+    strong {
+      background-color: var(--almost-black);
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+
+    * {
+      color: var(--almost-white) !important;
+    }
+  }
+
+  .audio__wrapper {
+    border-color: var(--almost-white);
+  }
+
+  .audio__icon * {
+    fill: var(--almost-black) !important;
+  }
+
+  .rhap_progress-indicator,
+  .rhap_volume-indicator,
+  .rhap_progress-filled {
+    background-color: var(--almost-white) !important;
+  }
+
+  .rhap_container {
+    background-color: var(--almost-black);
+  }
+
+  .article__social-links {
+    background-color: var(--almost-black);
+
+    * {
+      color: var(--almost-white);
+    }
+  }
+
+  .article__author {
+    @extend .ba;
+    @extend .bw1;
+    @extend .bc-almost-white;
+
+    *:not(.label) {
+      color: var(--almost-white);
+    }
+  }
+}
+
+.creations__label-wrapper {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@include breakpoint-up(md) {
+  .creations__label-wrapper {
+    left: 100px;
+    margin: auto;
+    text-align: left;
+  }
+}

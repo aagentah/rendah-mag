@@ -20,12 +20,12 @@ import cypher from "./documents/cypher";
 // Guest Mix
 import mix from "./documents/mix";
 
-// User
 // Dominion
 import dominionItem from "./documents/dominionItem";
 import user from "./documents/user";
 import dominionPipelineItem from "./objects/dominionPipelineItem";
 import dominionPipeline from "./objects/dominionPipeline";
+import creations from "./documents/creations";
 
 // Smart Link
 import smartLinkItem from "./documents/smartLinkItem";
@@ -59,6 +59,7 @@ export default createSchema({
     linkInBio,
     dominionPipelineItem,
     dominionPipeline,
+    creations,
     //
     siteSettings,
   ]),

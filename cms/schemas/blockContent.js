@@ -75,25 +75,6 @@ export default {
       ],
       validation: (Rule) => Rule.required(),
     },
-    // {
-    //   name: 'categories',
-    //   title: 'Categories',
-    //   type: 'reference',
-    //   to: {type: 'category'}
-    // },
-    // {
-    //   name: "subtitleBlock",
-    //   title: "Subtitle",
-    //   type: "object",
-    //   fields: [
-    //     {
-    //       name: "subtitle",
-    //       title: "Subtitle",
-    //       type: "string",
-    //       validation: Rule => Rule.required()
-    //     }
-    //   ]
-    // },
     {
       name: "quoteBlock",
       title: "Quote",
