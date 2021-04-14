@@ -25,7 +25,7 @@ const sitemapXml = (posts) => {
         : '';
 
       const image = post?.image?.asset
-        ? `<img width="400" style="width: 400px;" src="${imageBuilder
+        ? `<img width="400" style="width: 400px; border-radius: 1rem;" src="${imageBuilder
             .image(post.image)
             .width(400)
             .height(300)
