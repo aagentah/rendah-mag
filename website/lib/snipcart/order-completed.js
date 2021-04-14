@@ -5,12 +5,7 @@ import formatHttpError from '~/functions/formatHttpError';
 
 export default async (order) => {
   try {
-    const addUpdateMailchimpUser = async (
-      email,
-      firstName,
-      lastName,
-      isDominion
-    ) => {
+    const addUpdateMailchimpUser = async (email, firstName, lastName) => {
       const data = {
         email_address: email,
         status_if_new: 'subscribed',
@@ -20,6 +15,15 @@ export default async (order) => {
           LNAME: lastName,
         },
       };
+
+      const { content } = order;
+      const { user } = content;
+      const { items } = content;
+      const { billingAddress, shippingAddress } = user;
+      const { email } = user;
+      const fullName = billingAddress?.fullName || shippingAddress?.fullName;
+      const firstName = fullName.split(' ')[0];
+      const lastName = fullName.split(' ')[1];
 
       const addOrUpdateMember = async () => {
         const response = await fetch(
@@ -40,7 +44,8 @@ export default async (order) => {
       const addMembertags = async () => {
         const tags = [{ name: 'Customer', status: 'active' }];
 
-        if (isDominion) {
+        // If user has bought subscription
+        if (find(items, { id: 'dominion-subscription' })) {
           tags.push({ name: 'Dominion Subscription', status: 'active' });
         }
 
@@ -63,18 +68,8 @@ export default async (order) => {
       await addMembertags();
     };
 
-    const { content } = order;
-    const { user } = content;
-    const { items } = content;
-    const { billingAddress, shippingAddress } = user;
-    const { email } = user;
-    const fullName = billingAddress?.fullName || shippingAddress?.fullName;
-    const firstName = fullName.split(' ')[0];
-    const lastName = fullName.split(' ')[1];
-    const isDominion = find(items, { id: 'dominion-subscription' });
-
     // Add or update mailchimp user
-    await addUpdateMailchimpUser(email, firstName, lastName, isDominion);
+    await addUpdateMailchimpUser(email, firstName, lastName);
 
     return { error: '' };
   } catch (error) {
