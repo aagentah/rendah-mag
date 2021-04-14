@@ -5,7 +5,16 @@ import formatHttpError from '~/functions/formatHttpError';
 
 export default async (order) => {
   try {
-    const addUpdateMailchimpUser = async (email, firstName, lastName) => {
+    const { content } = order;
+    const { user } = content;
+    const { items } = content;
+    const { billingAddress, shippingAddress } = user;
+    const { email } = user;
+    const fullName = billingAddress?.fullName || shippingAddress?.fullName;
+    const firstName = fullName.split(' ')[0];
+    const lastName = fullName.split(' ')[1];
+
+    const addUpdateMailchimpUser = async () => {
       const data = {
         email_address: email,
         status_if_new: 'subscribed',
@@ -15,15 +24,6 @@ export default async (order) => {
           LNAME: lastName,
         },
       };
-
-      const { content } = order;
-      const { user } = content;
-      const { items } = content;
-      const { billingAddress, shippingAddress } = user;
-      const { email } = user;
-      const fullName = billingAddress?.fullName || shippingAddress?.fullName;
-      const firstName = fullName.split(' ')[0];
-      const lastName = fullName.split(' ')[1];
 
       const addOrUpdateMember = async () => {
         const response = await fetch(
@@ -69,7 +69,7 @@ export default async (order) => {
     };
 
     // Add or update mailchimp user
-    await addUpdateMailchimpUser(email, firstName, lastName);
+    await addUpdateMailchimpUser();
 
     return { error: '' };
   } catch (error) {
