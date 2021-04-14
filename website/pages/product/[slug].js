@@ -35,46 +35,38 @@ export default function Product({ siteConfig, product }) {
     const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
 
     const descriptionTab = (
-      <div className="db  pb3">
+      <div className="rich-text  db  pb3">
         <BlockContent blocks={product?.description} />
       </div>
     );
 
     const deliveryTab = (
-      <>
-        <p className="f-secondary  taj  f5  lh-copy">
+      <div className="rich-text">
+        <p>
           All physical products are shipped within 2 working days and are
           available to be shipped globally.
         </p>
-      </>
+      </div>
     );
 
     const dominionTab = (
       <>
-        <div className="pa4  br4  ba  bw1  bc-black">
-          <p className="f-secondary  taj  f5  pb3  lh-copy">
+        <div className="rich-text  pa4  br4  ba  bw1  bc-black">
+          <p>
             For the same price, join the Dominion and recieve this item plus
             additional monthly features.{' '}
             <strong>We offer the following to you:</strong>
           </p>
 
-          <ul className="pl4  pb3">
-            <li className="f-secondary  tal  f5  pb2  lh-copy">
-              A Welcome package (+ membership card & stickers).
-            </li>
-            <li className="f-secondary  tal  f5  pb2  lh-copy">
-              A quarter-yearly printed issue of Rendah Mag.
-            </li>
-            <li className="f-secondary  tal  f5  pb2  lh-copy">
+          <ul>
+            <li>A Welcome package (+ membership card & stickers).</li>
+            <li>A quarter-yearly printed issue of Rendah Mag.</li>
+            <li>
               Frequent exclusive music, samples, tutorials, and more from
               featured artists & collectives.
             </li>
-            <li className="f-secondary  tal  f5  pb2  lh-copy">
-              Your own Dominion Profile login.
-            </li>
-            <li className="f-secondary  tal  f5  pb2  lh-copy">
-              Discounts from all coming Rendah Mag products.
-            </li>
+            <li>Your own Dominion Profile login.</li>
+            <li>Discounts from all coming Rendah Mag products.</li>
           </ul>
 
           <a
