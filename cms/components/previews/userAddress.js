@@ -5,6 +5,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "part:@sanity/base/client";
 // import { assemblePageUrl, websiteUrl, toPlainText } from "./frontendUtils";
 import styles from "./userAddress.css";
+import { countries } from "./country-alpha-codes.js";
 
 const builder = imageUrlBuilder(sanityClient);
 
@@ -19,7 +20,7 @@ class TwitterCard extends React.PureComponent {
   render() {
     const getDominionUsers = async (preview) => {
       const results = await sanityClient.fetch(
-        `*[_type == "user" && isDominion] {
+        `*[_type == "user" && isDominion] | order(dominionSince asc) {
           name,
           handle,
           avatar,
@@ -30,11 +31,28 @@ class TwitterCard extends React.PureComponent {
       return results;
     };
 
+    const parseCountryCode = (country) => {
+      for (let i = 0; i < countries.length; i++) {
+        if (country === countries[i].code) return countries[i].name;
+      }
+
+      return country;
+    };
+
     getDominionUsers();
 
     if (this.state.results.length) {
       return (
         <>
+          <table className={styles.table}>
+            <tr>
+              <th>Dominion Members</th>
+            </tr>
+            <tr>
+              <td>{this.state.results.length}</td>
+            </tr>
+          </table>
+
           <table className={styles.table}>
             <tr>
               <th>Name</th>
@@ -53,7 +71,7 @@ class TwitterCard extends React.PureComponent {
                 <td>{user?.address?.city}</td>
                 <td>{user?.address?.state}</td>
                 <td>{user?.address?.postal_code}</td>
-                <td>{user?.address?.country}</td>
+                <td>{parseCountryCode(user?.address?.country)}</td>
               </tr>
             ))}
           </table>
