@@ -15,6 +15,10 @@
   .nt#{$i} {
     margin-top: -$value;
   }
+
+  .nb#{$i} {
+    margin-bottom: -$value;
+  }
 }
 
 @each $modifier, $breakpoint in $grid-breakpoints {

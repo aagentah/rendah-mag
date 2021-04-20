@@ -49,7 +49,7 @@ export default function ProfileCreations() {
           <Heading
             /* Options */
             htmlEntity="h1"
-            text="Creations."
+            text="Creations"
             color="black"
             size="medium"
             truncate={null}

@@ -62,7 +62,7 @@ export default function ProfileDominion({ refreshDominion }) {
           <Heading
             /* Options */
             htmlEntity="h1"
-            text="You are not currently in the Dominion."
+            text="You are not currently in the Dominion"
             color="black"
             size="medium"
             truncate={null}
@@ -105,7 +105,7 @@ export default function ProfileDominion({ refreshDominion }) {
     <Heading
       /* Options */
       htmlEntity="h1"
-      text="No results."
+      text="No results"
       color="black"
       size="medium"
       truncate={null}

@@ -150,7 +150,7 @@ export default function ProfileOrders() {
           <Heading
             /* Options */
             htmlEntity="h1"
-            text="Billing."
+            text="Billing"
             color="black"
             size="medium"
             truncate={null}

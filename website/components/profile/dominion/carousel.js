@@ -100,7 +100,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
             <Heading
               /* Options */
               htmlEntity="h1"
-              text="Dominion."
+              text="Dominion"
               color="black"
               size="medium"
               truncate={null}

@@ -32,11 +32,9 @@ export default function Store({ siteConfig }) {
 
   useEffect(() => {
     if (products) {
-      console.log('products', products);
       const categoryNames = map(products, 'category');
       const uniqueCategoryNames = uniqBy(categoryNames, 'category');
       const categoryGroups = [];
-      console.log('uniqueCategoryNames', uniqueCategoryNames);
 
       for (let i = 0; i < uniqueCategoryNames.length; i += 1) {
         const categoryProducts = filter(products, {
@@ -76,36 +74,28 @@ export default function Store({ siteConfig }) {
 
       <div className="">
         <Container>
-          <div className="pb2">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text="Store"
-              color="black"
-              size="large"
-              truncate={0}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
+          <Heading
+            /* Options */
+            htmlEntity="h1"
+            text="Store"
+            color="black"
+            size="large"
+            truncate={0}
+            onClick={null}
+            /* Children */
+            withLinkProps={null}
+          />
 
           <section className="pb3  pt4">
             <div className="flex  flex-wrap">
               {[...Array(categorysLength)].map((categoryIteration, i) => (
                 <div className="col-24" key={categoryIteration}>
-                  <div className="flex  flex-wrap  pb3  bb  bc-black  mb3">
-                    <Heading
-                      /* Options */
-                      htmlEntity="h1"
-                      text={categorys && products && categorys[i]?.name}
-                      color="black"
-                      size="medium"
-                      truncate={0}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={null}
-                    />
+                  <div className="flex  flex-wrap  relative  bb  bc-black  mb4">
+                    <div className="absolute  left  bottom  pa2  bg-black  nb3">
+                      <h2 className="t-primary  f5  white">
+                        {categorys && products && categorys[i]?.name}
+                      </h2>
+                    </div>
                   </div>
                   <div className="flex  flex-wrap  pb3">
                     {[...Array(productsLength)].map((productIteration, ii) => (

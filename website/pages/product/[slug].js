@@ -44,14 +44,14 @@ export default function Product({ siteConfig, product }) {
       <div className="rich-text">
         <p>
           All physical products are shipped within 2 working days and are
-          available to be shipped globally.
+          available globally.
         </p>
       </div>
     );
 
     const dominionTab = (
       <>
-        <div className="rich-text  pa4  br4  ba  bw1  bc-black">
+        <div className="rich-text">
           <p>
             For the same price, join the Dominion and recieve this item plus
             additional monthly features.{' '}
@@ -69,12 +69,7 @@ export default function Product({ siteConfig, product }) {
             <li>Discounts from all coming Rendah Mag products.</li>
           </ul>
 
-          <a
-            className="f-secondary  taj  f5  pb3  lh-copy  underline  black"
-            href="/dominion"
-          >
-            Find out more
-          </a>
+          <a href="/dominion">Find out more</a>
         </div>
       </>
     );

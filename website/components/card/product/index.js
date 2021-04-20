@@ -13,7 +13,7 @@ export default function CardDefault({ product }) {
   const scale = app.isRetina ? 2 : 1;
   const imageUrlWidth = app.deviceSize === 'md' ? 200 : 230;
   const imageHeight = app.deviceSize === 'md' ? 200 : 230;
-  const headingSize = 'medium';
+  const headingSize = 'small';
   const isSoldOut = product?.tag === 'Sold-out';
 
   const cardImage = (

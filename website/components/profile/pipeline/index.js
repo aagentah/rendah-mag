@@ -30,7 +30,7 @@ export default function ProfileOrders() {
           <Heading
             /* Options */
             htmlEntity="h1"
-            text="Pipeline."
+            text="Pipeline"
             color="black"
             size="medium"
             truncate={null}

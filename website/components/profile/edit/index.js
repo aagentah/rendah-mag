@@ -411,7 +411,7 @@ export default function ProfileEdit() {
           <Heading
             /* Options */
             htmlEntity="h1"
-            text="Edit Profile."
+            text="Edit Profile"
             color="black"
             size="medium"
             truncate={null}
