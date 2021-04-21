@@ -21,8 +21,6 @@ export default async (req, res) => {
       }
     );
 
-    console.log('yo 1:', response.status);
-
     // Error
     if (!response.ok) {
       throw new Error(await formatHttpError(response));
