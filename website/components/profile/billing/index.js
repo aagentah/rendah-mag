@@ -143,7 +143,7 @@ export default function ProfileOrders() {
     return true;
   }
 
-  if (user) {
+  if (user && user?.isDominion) {
     return (
       <section>
         <div className="pb4">
@@ -361,7 +361,7 @@ export default function ProfileOrders() {
     <Heading
       /* Options */
       htmlEntity="h1"
-      text="No results."
+      text="No results"
       color="black"
       size="medium"
       truncate={null}
