@@ -159,7 +159,7 @@ export default function Footer() {
                     /* Children */
                     withLinkProps={{
                       type: 'external',
-                      href: 'https://forms.gle/SzNLmrd5TfPkpSxF9',
+                      href: 'https://forms.gle/xpPtVhUiuzZzehdy8',
                       target: '_blank',
                       routerLink: null,
                       routerLinkProps: null,

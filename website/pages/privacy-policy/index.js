@@ -63,7 +63,7 @@ export default function Error404({ siteConfig }) {
                   privacy. If you have any questions or concerns about our
                   policy, or our practices with regards to your personal
                   information, please{' '}
-                  <a href="https://forms.gle/SzNLmrd5TfPkpSxF9">
+                  <a href="https://forms.gle/xpPtVhUiuzZzehdy8">
                     contact us
                   </a>.{' '}
                 </span>
@@ -390,7 +390,7 @@ export default function Error404({ siteConfig }) {
                     personal information. Prior to posting a testimonial, we
                     will obtain your consent to use your name and testimonial.
                     If you wish to update, or delete your testimonial, please
-                    <a href="https://forms.gle/SzNLmrd5TfPkpSxF9">
+                    <a href="https://forms.gle/xpPtVhUiuzZzehdy8">
                       contact us
                     </a>{' '}
                     and be sure to include your name, testimonial location, and
@@ -962,7 +962,7 @@ export default function Error404({ siteConfig }) {
                                             our records. If you become aware of
                                             any data we have collected from
                                             children under age 18, please
-                                            <a href="https://forms.gle/SzNLmrd5TfPkpSxF9">
+                                            <a href="https://forms.gle/xpPtVhUiuzZzehdy8">
                                               contact us
                                             </a>
                                             .{' '}
@@ -1396,7 +1396,7 @@ export default function Error404({ siteConfig }) {
                                             {' '}
                                             If you have questions or comments
                                             about this policy, you may{' '}
-                                            <a href="https://forms.gle/SzNLmrd5TfPkpSxF9">
+                                            <a href="https://forms.gle/xpPtVhUiuzZzehdy8">
                                               contact us
                                             </a>
                                             :{' '}
