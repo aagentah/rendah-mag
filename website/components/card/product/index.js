@@ -44,18 +44,20 @@ export default function CardDefault({ product }) {
 
   const cardLabel = [];
 
-  cardLabel.push(
-    <Label
-      /* Options */
-      customClass="ph2"
-      text={`£${product?.price}`}
-      color="white"
-      backgroundColor="black"
-      onClick={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
+  if (product?.price) {
+    cardLabel.push(
+      <Label
+        /* Options */
+        customClass="ph2"
+        text={`£${product?.price}`}
+        color="white"
+        backgroundColor="black"
+        onClick={null}
+        /* Children */
+        withLinkProps={null}
+      />
+    );
+  }
 
   if (product?.tag && product?.tag !== 'None') {
     cardLabel.push(
@@ -112,7 +114,7 @@ export default function CardDefault({ product }) {
         onClick={null}
         /* Children */
         image={product?.image1 && cardImage}
-        labelBlock={cardLabel}
+        labelBlock={cardLabel?.length ? cardLabel : null}
         title={cardHeading}
         description={cardCopy}
         button={null}

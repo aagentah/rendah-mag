@@ -13,6 +13,13 @@
   background: var(--black) !important;
 }
 
+.snip-layout div#snipcart-stripe-card,
+.snip-layout input[type='password'],
+.snip-layout input[type='text'],
+.snip-layout select {
+  border-color: var(--black) !important;
+}
+
 .snip-btn {
   box-shadow: none !important;
   outline: 0 !important;

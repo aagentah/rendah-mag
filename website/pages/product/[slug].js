@@ -11,6 +11,8 @@ import {
 } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';
 
+import { useApp } from '~/context-provider/app';
+
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
@@ -23,8 +25,11 @@ import {
 } from '~/lib/sanity/requests';
 
 export default function Product({ siteConfig, product }) {
+  const app = useApp();
   const router = useRouter();
+
   const isSoldOut = product?.tag === 'Sold-out';
+  const imageHeight = app.deviceSize === 'md' ? null : 500;
 
   if (!router.isFallback && !product?.slug) {
     Router.push('/404');
@@ -43,8 +48,8 @@ export default function Product({ siteConfig, product }) {
     const deliveryTab = (
       <div className="rich-text">
         <p>
-          All physical products are shipped within 2 working days and are
-          available globally.
+          All physical products are shipped from the UK within 2 working days
+          and are available to purchase globally.
         </p>
       </div>
     );
@@ -96,7 +101,6 @@ export default function Product({ siteConfig, product }) {
                     /* Options */
                     src={imageBuilder
                       .image(product?.image1)
-                      .height(1000)
                       .width(1000)
                       .auto('format')
                       .fit('clip')
@@ -111,7 +115,7 @@ export default function Product({ siteConfig, product }) {
                       .url()}
                     alt={product?.title}
                     figcaption={null}
-                    height={500}
+                    height={imageHeight}
                     width={null}
                     customClass="shadow2"
                     skeleton={false}

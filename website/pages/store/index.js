@@ -88,30 +88,38 @@ export default function Store({ siteConfig }) {
 
           <section className="pb3  pt4">
             <div className="flex  flex-wrap">
-              {[...Array(categorysLength)].map((categoryIteration, i) => (
-                <div className="col-24" key={categoryIteration}>
-                  <div className="flex  flex-wrap  relative  bb  bc-black  mb4">
-                    <div className="absolute  left  bottom  pa2  bg-black  nb3">
-                      <h2 className="t-primary  f5  white">
-                        {categorys && products && categorys[i]?.name}
-                      </h2>
-                    </div>
-                  </div>
-                  <div className="flex  flex-wrap  pb3">
-                    {[...Array(productsLength)].map((productIteration, ii) => (
-                      <div
-                        key={productIteration}
-                        className="col-24  col-6-md  pa3"
-                      >
-                        <CardProduct
-                          i={ii}
-                          product={categorys && categorys[i]?.products[ii]}
-                        />
+              {[...Array(categorysLength)].map((categoryIteration, i) => {
+                if (categorys && products && categorys[i]?.name) {
+                  return (
+                    <div className="col-24" key={categoryIteration}>
+                      <div className="flex  flex-wrap  relative  bb  bc-black  mb4">
+                        <div className="absolute  left  bottom  pa2  bg-black  nb3">
+                          <h2 className="t-primary  f5  white">
+                            {categorys && products && categorys[i]?.name}
+                          </h2>
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+                      <div className="flex  flex-wrap  pb3">
+                        {[...Array(productsLength)].map(
+                          (productIteration, ii) => (
+                            <div
+                              key={productIteration}
+                              className="col-24  col-6-md  pa3"
+                            >
+                              <CardProduct
+                                i={ii}
+                                product={
+                                  categorys && categorys[i]?.products[ii]
+                                }
+                              />
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  );
+                }
+              })}
             </div>
           </section>
         </Container>
