@@ -1,0 +1,44 @@
+.modal {
+  transition: opacity 0.2s ease-in;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  z-index: 1080;
+  height: auto;
+  pointer-events: none;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal--small .modal__dialog {
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal--medium .modal__dialog {
+  max-width: 600px;
+  width: 90%;
+}
+
+.modal--large .modal__dialog {
+  max-width: 800px;
+  width: 90%;
+}
+
+.modal__dialog {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--white);
+  margin: 0 auto;
+  padding: 40px;
+}

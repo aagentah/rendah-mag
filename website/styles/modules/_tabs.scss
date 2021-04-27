@@ -1,0 +1,121 @@
+// Tabs
+
+.tabs {
+  width: 100%;
+}
+
+// Desktop Nav
+
+.tabs__desktop-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+}
+
+@include breakpoint-up(md) {
+  .tabs__desktop-nav {
+    display: block;
+  }
+}
+
+// Desktop Nav Item
+
+.tabs__desktop-nav__item {
+  transition: background-color 0.3s ease-in-out;
+  display: inline-block;
+  background-color: var(--white);
+  color: var(--black);
+  padding: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.tabs__desktop-nav__item:hover {
+  background-color: var(--almost-white);
+}
+
+.tabs__desktop-nav__item.active {
+  background-color: var(--almost-white);
+  color: var(--black);
+}
+
+// Body
+
+.tabs__body {
+  background-color: var(--white);
+  padding: 30px;
+}
+
+@include breakpoint-up(md) {
+  .tabs__body {
+    background-color: var(--almost-white);
+    padding: 30px;
+  }
+}
+
+// Body Item
+
+.tabs__body__item {
+  position: relative;
+  // @extend .pb3;
+  // @extend .pb0-md;
+}
+
+.tabs__body__item .tabs__mobile-nav__item {
+  // @extend .fw7;
+
+  &::after {
+    transition: transform 0.3s ease-in-out;
+    content: '';
+    position: absolute;
+    top: 23px;
+    right: 15px;
+    width: 15px;
+    height: 15px;
+    transform: rotate(0deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24'%3E%3Cpath d='M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z'/%3E%3C/svg%3E");
+  }
+}
+
+.tabs__body__item.active .tabs__mobile-nav__item {
+  &::after {
+    transform: rotate(90deg);
+  }
+}
+
+.tabs__body__item:not(.active) {
+  display: block;
+
+  .tabs__content {
+    display: none;
+  }
+}
+
+@include breakpoint-up(md) {
+  .tabs__body__item:not(.active) {
+    display: none;
+
+    .tabs__content {
+      display: block;
+    }
+  }
+}
+
+// Mobile Nav Item
+
+.tabs__mobile-nav__item {
+  transition: background-color 0.3s ease-in-out;
+  display: block;
+  background: var(--almost-white);
+  color: var(--black);
+  padding: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+@include breakpoint-up(md) {
+  .tabs__mobile-nav__item {
+    display: none;
+  }
+}

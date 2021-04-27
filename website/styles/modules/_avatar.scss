@@ -1,0 +1,35 @@
+.avatar {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.avatar__image {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.avatar__dialog {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 10px;
+}
+
+.avatar__title {
+  margin-bottom: 10px;
+}
+
+.avatar__description {
+  //
+}
+
+@include breakpoint-up(md) {
+  .avatar__image {
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+
+  .avatar__dialog {
+    flex: 0 0 70%;
+    max-width: 70%;
+  }
+}
