@@ -133,7 +133,7 @@ import {
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
-export default function CardBlog({ post }) {
+export default function CardBlog({ member }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
@@ -144,9 +144,9 @@ export default function CardBlog({ post }) {
     <Image
       /* Options */
       src={
-        post &&
+        member &&
         imageBuilder
-          .image(post?.coverImage)
+          .image(member?.image)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
@@ -154,21 +154,21 @@ export default function CardBlog({ post }) {
           .url()
       }
       placeholder={null}
-      alt={post?.title}
+      alt={member?.name}
       figcaption={null}
       height={imageHeight}
       width={null}
       customClass={null}
-      skeleton={!post}
+      skeleton={!member}
       onClick={null}
       /* Children */
       withLinkProps={{
         type: 'next',
-        href: '/article/[slug]',
+        href: '/team/[slug]',
         target: null,
         routerLink: Link,
         routerLinkProps: {
-          as: `/article/${post?.slug}`,
+          as: `/team/${member?.slug}`,
           scroll: false,
         },
       }}
@@ -182,7 +182,7 @@ export default function CardBlog({ post }) {
       text="Blog"
       color="white"
       backgroundColor="black"
-      skeleton={!post}
+      skeleton={!member}
       onClick={null}
       /* Children */
       withLinkProps={null}
@@ -193,19 +193,19 @@ export default function CardBlog({ post }) {
     <Heading
       /* Options */
       htmlEntity="h2"
-      text={post?.title}
+      text={member?.name}
       color="black"
       size="small"
       truncate={2}
-      skeleton={!post}
+      skeleton={!member}
       /* Children */
       withLinkProps={{
         type: 'next',
-        href: '/article/[slug]',
+        href: '/team/[slug]',
         target: null,
         routerLink: Link,
         routerLinkProps: {
-          as: `/article/${post?.slug}`,
+          as: `/team/${member?.slug}`,
           scroll: false,
         },
       }}
@@ -215,11 +215,11 @@ export default function CardBlog({ post }) {
   // const copy = (
   //   <Copy
   //     /* Options */
-  //     text={post?.excerpt}
+  //     text={member?.excerpt}
   //     color="black"
   //     size="medium"
   //     truncate={2}
-  //     skeleton={!post}
+  //     skeleton={!member}
   //   />
   // );
 
@@ -228,7 +228,7 @@ export default function CardBlog({ post }) {
   //     /* Options */
   //     type="secondary"
   //     size="small"
-  //     text="View post"
+  //     text="View member"
   //     color="black"
   //     fluid={false}
   //     icon={buttonIcon}
@@ -241,11 +241,11 @@ export default function CardBlog({ post }) {
   //     /* Children */
   //     withLinkProps={{
   //       type: 'next',
-  //       href: '/article/[slug]',
+  //       href: '/team/[slug]',
   //       target: null,
   //       routerLink: Link,
   //       routerLinkProps: {
-  //         as: `/article/${post?.slug}`,
+  //         as: `/team/${member?.slug}`,
   //         scroll: false,
   //       },
   //     }}
@@ -254,7 +254,7 @@ export default function CardBlog({ post }) {
 
   return (
     <LazyLoad once offset={150} height={imageHeight}>
-      <article className="card  card--post">
+      <team className="card  card--member">
         {image && <div className="card__image">{image}</div>}
 
         <div className="card__dialog">
@@ -267,7 +267,7 @@ export default function CardBlog({ post }) {
             // button && <div className="card__button">{button}</div>
           }
         </div>
-      </article>
+      </team>
     </LazyLoad>
   );
 }

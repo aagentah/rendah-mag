@@ -13,7 +13,7 @@ import {
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import Hero from '~/components/hero/cyphers';
+import Hero from '~/components/hero/cypher';
 import CardCypher from '~/components/card/cypher';
 
 import {
@@ -54,7 +54,7 @@ export default function Cyphers({ siteConfig }) {
       >
         <>
           <Hero
-            image={cyphers?.current?.coverImage}
+            image={'/images/cypher-youtube.jpg'}
             title={cyphers?.current?.title}
             description={null}
             heroButtonText={null}

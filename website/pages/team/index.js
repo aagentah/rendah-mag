@@ -55,11 +55,7 @@ export default function Post({ siteConfig }) {
             {[...Array(teamLength)].map((iteration, i) => (
               <div key={iteration} className="col-24  col-6-md">
                 <div className="pa3">
-                  <CardTeam
-                    i={i}
-                    teamMember={team && team[i]}
-                    columnCount="4"
-                  />
+                  <CardTeam i={i} member={team && team[i]} columnCount="4" />
                 </div>
               </div>
             ))}

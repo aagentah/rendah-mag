@@ -118,9 +118,9 @@ export default function CardBlog({ post }) {
     <Image
       /* Options */
       src={
-        post &&
+        post?.imageSquare?.asset &&
         imageBuilder
-          .image(post?.coverImage)
+          .image(post.imageSquare.asset)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
@@ -137,14 +137,11 @@ export default function CardBlog({ post }) {
       onClick={null}
       /* Children */
       withLinkProps={{
-        type: 'next',
-        href: '/article/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/article/${post?.slug}`,
-          scroll: false,
-        },
+        type: 'external',
+        href: post?.publishedFields?.publishedUrl,
+        target: '_blank',
+        routerLink: null,
+        routerLinkProps: null,
       }}
     />
   );
@@ -174,14 +171,11 @@ export default function CardBlog({ post }) {
       skeleton={!post}
       /* Children */
       withLinkProps={{
-        type: 'next',
-        href: '/article/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/article/${post?.slug}`,
-          scroll: false,
-        },
+        type: 'external',
+        href: post?.publishedFields?.publishedUrl,
+        target: '_blank',
+        routerLink: null,
+        routerLinkProps: null,
       }}
     />
   );

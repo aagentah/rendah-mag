@@ -264,27 +264,8 @@ export default function HeroDefault({
   const heroImage = (
     <Image
       /* Options */
-      src={
-        image &&
-        imageBuilder
-          .image(image)
-          .width(imageUrlWidth * scale)
-          .height(imageHeight * scale)
-          .auto('format')
-          .fit('clip')
-          .url()
-      }
-      placeholder={
-        image &&
-        imageBuilder
-          .image(image)
-          .height(imageHeight / 10)
-          .width(imageUrlWidth / 10)
-          .auto('format')
-          .fit('clip')
-          .blur('20')
-          .url()
-      }
+      src={image && image}
+      placeholder={null}
       alt={title}
       figcaption={null}
       height={imageHeight}
