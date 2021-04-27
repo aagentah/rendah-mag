@@ -6,16 +6,9 @@ import Observer from '@researchgate/react-intersection-observer';
 import map from 'lodash/map';
 import Cookies from 'js-cookie';
 
-import {
-  Modal,
-  Hero,
-  Heading,
-  Copy,
-  Image,
-  Button,
-  Icon,
-} from 'next-pattern-library';
-import HeroPost from '~/components/hero/post';
+import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
+
+import Modal from '~/components/modal';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';

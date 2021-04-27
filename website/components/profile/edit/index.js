@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 
 import {
-  Modal,
   Image,
   Heading,
   Button,
@@ -15,6 +14,7 @@ import {
   Label,
 } from 'next-pattern-library';
 
+import Modal from '~/components/modal';
 import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import passwordStrength from '~/lib/password-strength';

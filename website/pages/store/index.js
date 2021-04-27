@@ -9,7 +9,6 @@ import { Heading } from 'next-pattern-library';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardProduct from '~/components/card/product';
-import HeroStore from '~/components/hero/store';
 
 import { getSiteConfig, getAllProducts } from '~/lib/sanity/requests';
 
@@ -68,10 +67,6 @@ export default function Store({ siteConfig }) {
       }}
       preview={null}
     >
-      {
-        // <HeroStore />
-      }
-
       <div className="">
         <Container>
           <Heading

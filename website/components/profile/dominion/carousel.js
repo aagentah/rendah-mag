@@ -12,9 +12,9 @@ import {
   Button,
   Icon,
   Label,
-  Modal,
 } from 'next-pattern-library';
 
+import Modal from '~/components/modal';
 import { imageBuilder } from '~/lib/sanity/requests';
 
 const CarouselItemSection = dynamic(() => import('./carousel-item-section'));

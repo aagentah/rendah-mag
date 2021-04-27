@@ -7,17 +7,9 @@ import map from 'lodash/map';
 import reverse from 'lodash/reverse';
 import Cookies from 'js-cookie';
 
-import {
-  Modal,
-  Hero,
-  Heading,
-  Copy,
-  Image,
-  Button,
-  Icon,
-} from 'next-pattern-library';
-import HeroPost from '~/components/hero/post';
+import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
+import Modal from '~/components/modal';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';

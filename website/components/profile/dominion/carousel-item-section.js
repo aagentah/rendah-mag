@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import {
-  Modal,
   Hero,
   Heading,
   Copy,
@@ -10,6 +9,7 @@ import {
   Label,
 } from 'next-pattern-library';
 
+import Modal from '~/components/modal';
 import Sections from '~/components/article/body-sections';
 
 import { imageBuilder } from '~/lib/sanity/requests';

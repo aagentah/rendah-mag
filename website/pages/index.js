@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
+import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import HeroHome from '~/components/hero/home';
+import Hero from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
-import CardProduct from '~/components/card/product';
 
 import {
   getSiteConfig,
@@ -57,7 +56,17 @@ export default function Home({ siteConfig }) {
         }}
         preview={null}
       >
-        <HeroHome post={featuredPost} />
+        <Hero
+          image={featuredPost?.coverImage}
+          title={featuredPost?.title}
+          description={null}
+          heroButtonText={null}
+          link={`/article/${featuredPost?.slug}`}
+          marginTop={0}
+          marginBottom={0}
+          modifier={null}
+          skeleton={false}
+        />
 
         <div className="pt5  pt6-md">
           <Container>

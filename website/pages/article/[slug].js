@@ -6,16 +6,10 @@ import Observer from '@researchgate/react-intersection-observer';
 import map from 'lodash/map';
 import Cookies from 'js-cookie';
 
-import {
-  Modal,
-  Hero,
-  Heading,
-  Copy,
-  Image,
-  Button,
-  Icon,
-} from 'next-pattern-library';
-import HeroPost from '~/components/hero/post';
+import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
+
+import Hero from '~/components/hero/post';
+import Modal from '~/components/modal';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -142,7 +136,17 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           </div>
         </Modal>
 
-        <HeroPost post={post} />
+        <Hero
+          image={post?.current?.coverImage}
+          title={post?.current?.title}
+          description={null}
+          heroButtonText={null}
+          link={null}
+          marginTop={0}
+          marginBottom={0}
+          modifier={null}
+          skeleton={false}
+        />
 
         <Container>
           <article className="pt5  pb4  ph3  ph4-md">

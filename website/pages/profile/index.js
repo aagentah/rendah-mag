@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import zenscroll from 'zenscroll';
 
-import { Tabs } from 'next-pattern-library';
-
+import Tabs from '~/components/tabs';
 import ProfileEdit from '~/components/profile/edit';
 import ProfileDominion from '~/components/profile/dominion';
 import ProfilePipeline from '~/components/profile/pipeline';

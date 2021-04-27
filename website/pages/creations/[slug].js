@@ -14,7 +14,7 @@ import {
   Label,
 } from 'next-pattern-library';
 
-import HeroCreations from '~/components/hero/creations';
+import Hero from '~/components/hero/creations';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';
@@ -160,7 +160,17 @@ export default function Creations({ siteConfig, post, preview }) {
             <div className="pt5  pt6-md  ph3  ph0-md">
               <div className="pt4  pt0-md">
                 <div className="relative">
-                  <HeroCreations post={post} />
+                  <Hero
+                    image={post?.current?.coverImage}
+                    title={post?.current?.title}
+                    description={null}
+                    heroButtonText={null}
+                    link={null}
+                    marginTop={0}
+                    marginBottom={0}
+                    modifier={null}
+                    skeleton={false}
+                  />
 
                   <div className="creations__label-wrapper">
                     <span className="t-title  f7  bold  pa2  black  bg-light-grey">

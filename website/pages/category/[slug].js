@@ -1,10 +1,9 @@
 import Link from 'next/link';
 
-import { Hero, Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
+import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import HeroHome from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
 import CardProduct from '~/components/card/product';
 

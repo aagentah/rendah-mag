@@ -5,7 +5,6 @@ import BlockContent from '@sanity/block-content-to-react';
 import { useKeenSlider } from 'keen-slider/react';
 
 import {
-  Modal,
   Hero,
   Heading,
   Copy,
@@ -17,6 +16,7 @@ import {
 
 import Carousel from './carousel';
 
+import Modal from '~/components/modal';
 import { useUser } from '~/lib/hooks';
 import setCharAt from '~/functions/setCharAt';
 
