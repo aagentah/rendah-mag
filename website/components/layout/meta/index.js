@@ -37,53 +37,53 @@ const Meta = (props) => {
   };
 
   const makeSchema = () => {
-    return `{
+    return {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'Organization',
-          '@id': ${process.env.SITE_URL}/#organization,
-          'name': siteTitle,
-          'url': process.env.SITE_URL,
-          'sameAs': makeSchemaSocials(),
-          'logo': {
+          '@id': `${process.env.SITE_URL}/#organization`,
+          name: siteTitle,
+          url: process.env.SITE_URL,
+          sameAs: makeSchemaSocials(),
+          logo: {
             '@type': 'ImageObject',
-            '@id': ${process.env.SITE_URL}/#logo,
-            'inLanguage': 'en-US',
-            'url': siteImage,
-            'width': 1500,
-            'height': 1500,
-            'caption': siteTitle,
+            '@id': `${process.env.SITE_URL}/#logo`,
+            inLanguage: 'en-US',
+            url: siteImage,
+            width: 1500,
+            height: 1500,
+            caption: siteTitle,
           },
         },
         {
           '@type': 'WebSite',
-          '@id': ${process.env.SITE_URL}/#website,
-          'url': process.env.SITE_URL,
-          'name': siteTitle,
-          'description': siteDesc,
-          'publisher': { '@id': ${process.env.SITE_URL}/#organization },
-          'potentialAction': [
+          '@id': `${process.env.SITE_URL}/#website`,
+          url: process.env.SITE_URL,
+          name: siteTitle,
+          description: siteDesc,
+          publisher: { '@id': `${process.env.SITE_URL}/#organization ` },
+          potentialAction: [
             {
               '@type': 'SearchAction',
-              'target': ${process.env.SITE_URL}/search/{search_term_string},
+              target: `${process.env.SITE_URL}/search/{search_term_string}`,
               'query-input': 'required name=search_term_string',
             },
           ],
-          'inLanguage': 'en-US',
+          inLanguage: 'en-US',
         },
         {
           '@type': 'CollectionPage',
-          '@id': ${process.env.SITE_URL}/#webpage,
-          'url': process.env.SITE_URL,
-          'name': siteTitle,
-          'isPartOf': { '@id': ${process.env.SITE_URL}#website },
-          'about': { '@id': ${process.env.SITE_URL}/#organization },
-          'description': siteDesc,
-          'inLanguage': 'en-US',
+          '@id': `${process.env.SITE_URL}/#webpage`,
+          url: process.env.SITE_URL,
+          name: siteTitle,
+          isPartOf: { '@id': `${process.env.SITE_URL}#website ` },
+          about: { '@id': `${process.env.SITE_URL}/#organization ` },
+          description: siteDesc,
+          inLanguage: 'en-US',
         },
       ],
-    }`;
+    };
   };
 
   const handleSnipcart = () => {
@@ -167,7 +167,10 @@ const Meta = (props) => {
         <meta name="twitter:description" content={descVal || siteDesc} />
         <meta name="twitter:image" content={imageVal || siteImage} />
 
-        <script type="application/ld+json">{makeSchema()}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(makeSchema()) }}
+        />
 
         {handleSnipcart()}
       </Head>
