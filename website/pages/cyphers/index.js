@@ -61,8 +61,8 @@ export default function Cyphers({ siteConfig }) {
             link={null}
             marginTop={0}
             marginBottom={0}
-            modifier={null}
-            skeleton={false}
+            modifier={'cypher'}
+            skeleton={!cyphers?.current}
           />
 
           <div className="pt5  pt4-md  ph3  ph4-md">

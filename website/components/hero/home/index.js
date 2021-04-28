@@ -170,6 +170,7 @@ export default function HeroDefault({
   const imageUrlWidth = app?.deviceSize === 'md' ? 720 : 1080;
   const imageHeight = app?.deviceSize === 'md' ? 400 : 800;
   const heroButtonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
+  let heroTitle;
   let heroCopy;
   let linkProps;
   let heroButton;
@@ -192,8 +193,8 @@ export default function HeroDefault({
         image &&
         imageBuilder
           .image(image)
-          .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
+          .width(imageUrlWidth * scale)
           .auto('format')
           .fit('clip')
           .url()
@@ -221,19 +222,21 @@ export default function HeroDefault({
     />
   );
 
-  const heroTitle = (
-    <Heading
-      /* Options */
-      htmlEntity="h2"
-      text={title}
-      color="black"
-      size="large"
-      truncate={null}
-      skeleton={skeleton}
-      /* Children */
-      withLinkProps={linkProps}
-    />
-  );
+  if (title) {
+    heroTitle = (
+      <Heading
+        /* Options */
+        htmlEntity="h2"
+        text={title}
+        color="white"
+        size="x-large"
+        truncate={null}
+        skeleton={skeleton}
+        /* Children */
+        withLinkProps={linkProps}
+      />
+    );
+  }
 
   if (description) {
     heroCopy = isObject(description) ? (
@@ -255,9 +258,9 @@ export default function HeroDefault({
       <Button
         /* Options */
         type="secondary"
-        size="small"
+        size="medium"
         text={heroButtonText}
-        color="black"
+        color="white"
         fluid={false}
         icon={heroButtonIcon}
         iconFloat={null}

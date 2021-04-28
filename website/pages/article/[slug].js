@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 
 import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
-import Hero from '~/components/hero/post';
+import Hero from '~/components/hero/article';
 import Modal from '~/components/modal';
 
 import Layout from '~/components/layout';
@@ -137,15 +137,15 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
         </Modal>
 
         <Hero
-          image={post?.current?.coverImage}
-          title={post?.current?.title}
+          image={post?.coverImage}
+          title={null}
           description={null}
           heroButtonText={null}
           link={null}
           marginTop={0}
           marginBottom={0}
-          modifier={null}
-          skeleton={false}
+          modifier={'article'}
+          skeleton={!post}
         />
 
         <Container>

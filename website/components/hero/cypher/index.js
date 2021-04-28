@@ -244,8 +244,9 @@ export default function HeroDefault({
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   const imageUrlWidth = app?.deviceSize === 'md' ? 720 : 1080;
-  const imageHeight = app?.deviceSize === 'md' ? 400 : 800;
+  const imageHeight = app?.deviceSize === 'md' ? 400 : 400;
   const heroButtonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
+  let heroTitle;
   let heroCopy;
   let linkProps;
   let heroButton;
@@ -278,19 +279,21 @@ export default function HeroDefault({
     />
   );
 
-  const heroTitle = (
-    <Heading
-      /* Options */
-      htmlEntity="h2"
-      text={title}
-      color="black"
-      size="large"
-      truncate={null}
-      skeleton={skeleton}
-      /* Children */
-      withLinkProps={linkProps}
-    />
-  );
+  if (title) {
+    heroTitle = (
+      <Heading
+        /* Options */
+        htmlEntity="h2"
+        text={title}
+        color="white"
+        size="x-large"
+        truncate={null}
+        skeleton={skeleton}
+        /* Children */
+        withLinkProps={linkProps}
+      />
+    );
+  }
 
   if (description) {
     heroCopy = isObject(description) ? (

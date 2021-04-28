@@ -4,15 +4,7 @@ import Router, { useRouter } from 'next/router';
 import map from 'lodash/map';
 import Cookies from 'js-cookie';
 import { parseISO, format } from 'date-fns';
-import {
-  Hero,
-  Heading,
-  Copy,
-  Image,
-  Button,
-  Icon,
-  Label,
-} from 'next-pattern-library';
+import { Heading, Copy, Image, Label } from 'next-pattern-library';
 
 import Hero from '~/components/hero/creations';
 import Layout from '~/components/layout';
@@ -161,15 +153,15 @@ export default function Creations({ siteConfig, post, preview }) {
               <div className="pt4  pt0-md">
                 <div className="relative">
                   <Hero
-                    image={post?.current?.coverImage}
-                    title={post?.current?.title}
+                    image={post?.coverImage}
+                    title={null}
                     description={null}
                     heroButtonText={null}
                     link={null}
                     marginTop={0}
                     marginBottom={0}
-                    modifier={null}
-                    skeleton={false}
+                    modifier={'creations'}
+                    skeleton={!post}
                   />
 
                   <div className="creations__label-wrapper">

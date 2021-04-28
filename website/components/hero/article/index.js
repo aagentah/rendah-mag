@@ -1,5 +1,6 @@
 // import Link from 'next/link';
 // import { useState } from 'react';
+// // import { Parallax } from 'react-scroll-parallax';
 //
 // import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 //
@@ -7,64 +8,69 @@
 // import { imageBuilder } from '~/lib/sanity/requests';
 // import { useApp } from '~/context-provider/app';
 //
-// export default function HeroDominion() {
+// export default function HeroPost({ post }) {
 //   const app = useApp();
+//
 //   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 //
 //   if (!app.deviceSize) return null;
 //   const scale = app.isRetina ? 2 : 1;
-//   let imageHeight;
 //   let imageUrlWidth;
+//   let imageHeight = 700;
 //
 //   if (app.deviceSize === 'md') {
-//     imageHeight = 200;
 //     imageUrlWidth = 700;
-//   }
-//   if (app.deviceSize === 'lg') {
 //     imageHeight = 400;
-//     imageUrlWidth = 1600;
-//   }
-//   if (app.deviceSize === 'xl') {
-//     imageHeight = 400;
-//     imageUrlWidth = 1800;
 //   }
 //
-//   const heroImage = (
+//   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
+//   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
+//
+//   const heroImage = post && (
 //     <Image
 //       /* Options */
-//       src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1607719750/dominion/dominion-hero.png"
-//       // src={imageBuilder
-//       //   .image(post?.coverImage)
-//       //   .width(imageUrlWidth * scale)
-//       //   .height(imageHeight * scale)
-//       //   .auto('format')
-//       //   .fit('clip')
-//       //   .url()}
-//       // placeholder={imageBuilder
-//       //   .image(post?.coverImage)
-//       //   .height(imageHeight / 10)
-//       //   .width(imageUrlWidth / 10)
-//       //   .auto('format')
-//       //   .fit('clip')
-//       //   .blur('50')
-//       //   .url()}
-//       alt="Dominion"
+//       src={imageBuilder
+//         .image(post.coverImage)
+//         .width(imageUrlWidth * scale)
+//         .auto('format')
+//         .fit('clip')
+//         .url()}
+//       placeholder={imageBuilder
+//         .image(post.coverImage)
+//         .width(imageUrlWidth / 10)
+//         .auto('format')
+//         .fit('clip')
+//         .blur('100')
+//         .url()}
+//       alt={post.title}
 //       figcaption={null}
 //       height={imageHeight}
 //       width={null}
+//       skeleton={!post}
 //       customClass={null}
-//       skeleton={false}
 //       onClick={null}
 //       /* Children */
-//       withLinkProps={null}
+//       withLinkProps={{
+//         type: 'next',
+//         href: '/article/[slug]',
+//         target: null,
+//         routerLink: Link,
+//         routerLinkProps: {
+//           as: `/article/${post.slug}`,
+//           scroll: false,
+//         },
+//       }}
 //     />
 //   );
 //
 //   return (
 //     <>
+//       {
+//         // <Parallax className="z1  nt3" y={['-50px', '50px']} tagOuter="figure">
+//       }
 //       <div className="hero--darken-top">
 //         {
-//           // <Hero
+//           //  <Hero
 //           //   /* Options */
 //           //   height={imageHeight}
 //           //   /* Children */
@@ -87,6 +93,9 @@
 //           skeleton={false}
 //         />
 //       </div>
+//       {
+//         //   </Parallax>
+//       }
 //     </>
 //   );
 // }
@@ -126,15 +135,22 @@ export default function HeroDefault({
 }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  const imageUrlWidth = app?.deviceSize === 'md' ? 720 : 1080;
-  const imageHeight = app?.deviceSize === 'md' ? 400 : 800;
+  let imageUrlWidth;
+
+  if (app.deviceSize === 'md') {
+    imageUrlWidth = 700;
+  }
+
+  if (app.deviceSize === 'lg') imageUrlWidth = 1600;
+  if (app.deviceSize === 'xl') imageUrlWidth = 1800;
   const heroButtonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
+  let heroTitle;
   let heroCopy;
   let linkProps;
   let heroButton;
 
   const styles = {
-    height: `${imageHeight}px`,
+    maxHeight: 'calc(120vh + 100px)',
   };
 
   if (link) {
@@ -152,7 +168,6 @@ export default function HeroDefault({
         imageBuilder
           .image(image)
           .width(imageUrlWidth * scale)
-          .height(imageHeight * scale)
           .auto('format')
           .fit('clip')
           .url()
@@ -161,7 +176,6 @@ export default function HeroDefault({
         image &&
         imageBuilder
           .image(image)
-          .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
           .fit('clip')
@@ -170,7 +184,7 @@ export default function HeroDefault({
       }
       alt={title}
       figcaption={null}
-      height={imageHeight}
+      height={null}
       width={null}
       customClass={null}
       skeleton={skeleton}
@@ -180,19 +194,21 @@ export default function HeroDefault({
     />
   );
 
-  const heroTitle = (
-    <Heading
-      /* Options */
-      htmlEntity="h2"
-      text={title}
-      color="black"
-      size="large"
-      truncate={null}
-      skeleton={skeleton}
-      /* Children */
-      withLinkProps={linkProps}
-    />
-  );
+  if (title) {
+    heroTitle = (
+      <Heading
+        /* Options */
+        htmlEntity="h2"
+        text={title}
+        color="black"
+        size="large"
+        truncate={null}
+        skeleton={skeleton}
+        /* Children */
+        withLinkProps={linkProps}
+      />
+    );
+  }
 
   if (description) {
     heroCopy = isObject(description) ? (

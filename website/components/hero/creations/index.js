@@ -126,9 +126,18 @@ export default function HeroDefault({
 }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  const imageUrlWidth = app?.deviceSize === 'md' ? 720 : 1080;
-  const imageHeight = app?.deviceSize === 'md' ? 400 : 800;
+  let imageUrlWidth;
+  let imageHeight = 600;
+
+  if (app.deviceSize === 'md') {
+    imageUrlWidth = 700;
+    imageHeight = 400;
+  }
+
+  if (app.deviceSize === 'lg') imageUrlWidth = 1600;
+  if (app.deviceSize === 'xl') imageUrlWidth = 1800;
   const heroButtonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
+  let heroTitle;
   let heroCopy;
   let linkProps;
   let heroButton;
@@ -151,8 +160,8 @@ export default function HeroDefault({
         image &&
         imageBuilder
           .image(image)
-          .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
+          .width(imageUrlWidth * scale)
           .auto('format')
           .fit('clip')
           .url()
@@ -180,19 +189,21 @@ export default function HeroDefault({
     />
   );
 
-  const heroTitle = (
-    <Heading
-      /* Options */
-      htmlEntity="h2"
-      text={title}
-      color="black"
-      size="large"
-      truncate={null}
-      skeleton={skeleton}
-      /* Children */
-      withLinkProps={linkProps}
-    />
-  );
+  if (title) {
+    heroTitle = (
+      <Heading
+        /* Options */
+        htmlEntity="h2"
+        text={title}
+        color="black"
+        size="large"
+        truncate={null}
+        skeleton={skeleton}
+        /* Children */
+        withLinkProps={linkProps}
+      />
+    );
+  }
 
   if (description) {
     heroCopy = isObject(description) ? (

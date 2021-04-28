@@ -60,12 +60,12 @@ export default function Home({ siteConfig }) {
           image={featuredPost?.coverImage}
           title={featuredPost?.title}
           description={null}
-          heroButtonText={null}
+          heroButtonText={'Read more'}
           link={`/article/${featuredPost?.slug}`}
           marginTop={0}
           marginBottom={0}
-          modifier={null}
-          skeleton={false}
+          modifier={'home'}
+          skeleton={!featuredPost}
         />
 
         <div className="pt5  pt6-md">
