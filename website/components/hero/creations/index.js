@@ -160,7 +160,6 @@ export default function HeroDefault({
         image &&
         imageBuilder
           .image(image)
-          .height(imageHeight * scale)
           .width(imageUrlWidth * scale)
           .auto('format')
           .fit('clip')
@@ -170,7 +169,6 @@ export default function HeroDefault({
         image &&
         imageBuilder
           .image(image)
-          .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
           .fit('clip')

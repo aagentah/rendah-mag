@@ -123,7 +123,6 @@
 // }
 
 import Link from 'next/link';
-import LazyLoad from 'react-lazyload';
 import {
   Image,
   Label,
@@ -142,6 +141,8 @@ export default function CardBlog({ post }) {
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
   const imageHeight = app?.deviceSize === 'md' ? 260 : 180;
   const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
+
+  console.log('post', post);
 
   const image = (
     <Image
@@ -167,11 +168,11 @@ export default function CardBlog({ post }) {
       /* Children */
       withLinkProps={{
         type: 'next',
-        href: '/article/[slug]',
+        href: '/creations/[slug]',
         target: null,
         routerLink: Link,
         routerLinkProps: {
-          as: `/article/${post?.slug}`,
+          as: `/creations/${post?.slug}`,
           scroll: false,
         },
       }}
@@ -256,21 +257,19 @@ export default function CardBlog({ post }) {
   // );
 
   return (
-    <LazyLoad once offset={150} height={imageHeight}>
-      <article className="card  card--post">
-        {image && <div className="card__image">{image}</div>}
+    <article className="card  card--post">
+      {image && <div className="card__image">{image}</div>}
 
-        <div className="card__dialog">
-          {labels?.length && <div className="card__labels">{[...labels]}</div>}
-          {heading && <div className="card__title">{heading}</div>}
-          {
-            // copy && <div className="card__description">{copy}</div>
-          }
-          {
-            // button && <div className="card__button">{button}</div>
-          }
-        </div>
-      </article>
-    </LazyLoad>
+      <div className="card__dialog">
+        {labels?.length && <div className="card__labels">{[...labels]}</div>}
+        {heading && <div className="card__title">{heading}</div>}
+        {
+          // copy && <div className="card__description">{copy}</div>
+        }
+        {
+          // button && <div className="card__button">{button}</div>
+        }
+      </div>
+    </article>
   );
 }
