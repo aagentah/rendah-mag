@@ -167,8 +167,12 @@ export default function HeroDefault({
 }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  const imageUrlWidth = app?.deviceSize === 'md' ? 720 : 1080;
-  const imageHeight = app?.deviceSize === 'md' ? 400 : 800;
+  let imageUrlWidth;
+  let imageHeight = null;
+  if (app.deviceSize === 'md') imageHeight = 700;
+  if (app.deviceSize === 'md') imageUrlWidth = 700;
+  if (app.deviceSize === 'lg') imageUrlWidth = 1600;
+  if (app.deviceSize === 'xl') imageUrlWidth = 1800;
   const heroButtonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
   let heroTitle;
   let heroCopy;
@@ -193,7 +197,6 @@ export default function HeroDefault({
         image &&
         imageBuilder
           .image(image)
-          .height(imageHeight * scale)
           .width(imageUrlWidth * scale)
           .auto('format')
           .fit('clip')
@@ -203,7 +206,6 @@ export default function HeroDefault({
         image &&
         imageBuilder
           .image(image)
-          .height(imageHeight / 10)
           .width(imageUrlWidth / 10)
           .auto('format')
           .fit('clip')
