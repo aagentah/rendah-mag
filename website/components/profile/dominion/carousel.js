@@ -86,6 +86,63 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     );
   };
 
+  const renderGhostCards = () => {
+    let loop;
+    const arr = [];
+
+    if (dominionItems.length === 1) loop = 2;
+    if (dominionItems.length === 2) loop = 1;
+    if (!loop || app.deviceSize === 'md') return false;
+
+    for (let i = 0; i < loop; i++) {
+      arr.push(
+        <article
+          className="www  keen-slider__slide  relative  pt3  ph3  pb4"
+          key={i}
+        >
+          <div className="relative  profile__dominion__carousel-item__wrapper">
+            <div
+              className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  bg-light-grey`}
+            >
+              <div className="flex  flex-wrap">
+                <p className="col-24  t-primary  grey  f5  f6-md  tac  lh-copy  pb2">
+                  ???
+                </p>
+                <p className="col-24  t-secondary  grey  f7  tac  lh-copy">
+                  ???
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute  flex  justify-center  bottom  left  right">
+            <Button
+              /* Options */
+              type="secondary"
+              size="medium"
+              text="Access"
+              color="grey"
+              fluid={false}
+              icon={buttonIconArrowRight}
+              iconFloat={null}
+              inverted
+              loading={false}
+              disabled={true}
+              skeleton={false}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+        </article>
+      );
+    }
+
+    console.log('arr', arr);
+
+    return arr;
+  };
+
   if (refreshDominion && dominionItems.length) {
     return (
       <div className="min">
@@ -128,72 +185,70 @@ export default function Carousel({ dominionItems, refreshDominion }) {
               className="keen-slider  flex  align-center  pb4"
             >
               {dominionItems.map((item, i) => (
-                <>
-                  <article
-                    className="www  keen-slider__slide  relative  pt3  ph3  pb4"
-                    key={item._id}
-                  >
-                    <div className="relative  profile__dominion__carousel-item__wrapper">
-                      <div
-                        style={{
-                          backgroundImage: item?.image?.asset
-                            ? `url(${imageBuilder
-                                .image(item.image)
-                                .auto('format')
-                                .height(75)
-                                .width(75)
-                                .fit('clip')
-                                .blur('20')
-                                .url()})`
-                            : 'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)',
-                        }}
-                        className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow2`}
-                      >
-                        <div className="flex  flex-wrap">
-                          <p className="col-24  t-primary  white  f5  f6-md  tac  lh-copy  pb2  text-shadow">
-                            {item.title}
-                          </p>
-                          <p className="col-24  t-secondary  white  f7  tac  lh-copy  text-shadow">
-                            {i === 0
-                              ? '<3'
-                              : new Date(item.activeFrom)
-                                  .toDateString()
-                                  .slice(4)}
-                          </p>
-                        </div>
+                <article
+                  className="www  keen-slider__slide  relative  pt3  ph3  pb4"
+                  key={item._id}
+                >
+                  <div className="relative  profile__dominion__carousel-item__wrapper">
+                    <div
+                      style={{
+                        backgroundImage: item?.image?.asset
+                          ? `url(${imageBuilder
+                              .image(item.image)
+                              .auto('format')
+                              .height(75)
+                              .width(75)
+                              .fit('clip')
+                              .blur('20')
+                              .url()})`
+                          : 'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)',
+                      }}
+                      className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow2`}
+                    >
+                      <div className="flex  flex-wrap">
+                        <p className="col-24  t-primary  white  f5  f6-md  tac  lh-copy  pb2  text-shadow">
+                          {item.title}
+                        </p>
+                        <p className="col-24  t-secondary  white  f7  tac  lh-copy  text-shadow">
+                          {i === 0
+                            ? '<3'
+                            : new Date(item.activeFrom).toDateString().slice(4)}
+                        </p>
                       </div>
                     </div>
+                  </div>
 
-                    <div className="absolute  flex  justify-center  bottom  left  right">
-                      <Button
-                        /* Options */
-                        type="secondary"
-                        size="medium"
-                        text="Access"
-                        color="black"
-                        fluid={false}
-                        icon={buttonIconArrowRight}
-                        iconFloat={null}
-                        inverted
-                        loading={false}
-                        disabled={false}
-                        skeleton={false}
-                        onClick={() => {
-                          setModalActive(i);
-                          setCanCarouselHide(true);
+                  <div className="absolute  flex  justify-center  bottom  left  right">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Access"
+                      color="black"
+                      fluid={false}
+                      icon={buttonIconArrowRight}
+                      iconFloat={null}
+                      inverted
+                      loading={false}
+                      disabled={false}
+                      skeleton={false}
+                      onClick={() => {
+                        setModalActive(i);
+                        setCanCarouselHide(true);
 
-                          setTimeout(() => {
-                            setCanSectionShow(true);
-                            setCanSectionHide(false);
-                          }, 300);
-                        }}
-                        /* Children */
-                        withLinkProps={null}
-                      />
-                    </div>
-                  </article>
-                </>
+                        setTimeout(() => {
+                          setCanSectionShow(true);
+                          setCanSectionHide(false);
+                        }, 300);
+                      }}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+                </article>
               ))}
+
+              {renderGhostCards()}
             </div>
 
             {sliderNav && app.deviceSize !== 'md' ? (
