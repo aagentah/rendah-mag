@@ -100,7 +100,7 @@ export default function Audio({
               /* Children */
               withLinkProps={{
                 type: 'external',
-                href: url,
+                href: `${url}?dl=`,
                 target: '_self',
                 routerLink: null,
               }}

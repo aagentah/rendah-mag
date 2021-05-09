@@ -35,6 +35,9 @@ import smartLink from "./documents/smartLink";
 import linkInBioItem from "./objects/linkInBioItem";
 import linkInBio from "./objects/linkInBio";
 
+// Audio
+import track from "./documents/audio/track";
+
 import siteSettings from "./objects/siteSettings";
 
 export default createSchema({
@@ -60,6 +63,7 @@ export default createSchema({
     dominionPipelineItem,
     dominionPipeline,
     creations,
+    track,
     //
     siteSettings,
   ]),

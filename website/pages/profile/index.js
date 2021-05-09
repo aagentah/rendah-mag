@@ -8,6 +8,7 @@ import ProfileEdit from '~/components/profile/edit';
 import ProfileDominion from '~/components/profile/dominion';
 import ProfilePipeline from '~/components/profile/pipeline';
 import ProfileCreations from '~/components/profile/creations';
+import ProfileOfferings from '~/components/profile/offerings';
 import ProfileBilling from '~/components/profile/billing';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -91,16 +92,21 @@ export default function Profile({ siteConfig }) {
                         },
                         {
                           id: '3',
+                          tabTitle: 'Offerings',
+                          tabContent: <ProfileOfferings />,
+                        },
+                        {
+                          id: '4',
                           tabTitle: 'Creations',
                           tabContent: <ProfileCreations />,
                         },
                         {
-                          id: '4',
+                          id: '5',
                           tabTitle: 'Pipeline',
                           tabContent: <ProfilePipeline />,
                         },
                         {
-                          id: '5',
+                          id: '6',
                           tabTitle: 'Billing',
                           tabContent: <ProfileBilling />,
                         },

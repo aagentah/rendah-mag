@@ -398,3 +398,13 @@ export async function getDominionUsers(preview) {
   );
   return results;
 }
+
+export async function getAllOfferings(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "track" && isOffering] {
+      ...,
+      "url": file.asset->url,
+    }`
+  );
+  return results;
+}
