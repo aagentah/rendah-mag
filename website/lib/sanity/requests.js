@@ -401,9 +401,14 @@ export async function getDominionUsers(preview) {
 
 export async function getAllOfferings(preview) {
   const results = await getClient(preview).fetch(
-    `*[_type == "track" && isOffering] {
+    `*[_type == "offering"] | order(publishedAtDesc desc) {
       ...,
-      "url": file.asset->url,
+      'tracks': tracks[] {
+        'track': *[_id == ^._ref] [0] {
+          'file': file.asset->url,
+          ...,
+        },
+      }
     }`
   );
   return results;

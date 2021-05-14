@@ -87,6 +87,7 @@ export default () =>
               //   ),
               S.documentTypeListItem("dominionItem"),
               S.documentTypeListItem("creations"),
+              S.documentTypeListItem("offering"),
               S.listItem()
                 .icon(MDViewList)
                 .title("Dominion Pipeline")

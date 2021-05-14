@@ -18,7 +18,6 @@ export default function Audio({
   const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
   const { currentAudioSelected, handleAudioPlay } = { ...props };
-  console.log('props', props);
 
   useEffect(() => {
     if (currentAudioSelected !== PlayerRef) {
@@ -54,9 +53,13 @@ export default function Audio({
         </p>
       ) : null}
 
-      {description ? <BlockContent blocks={description} /> : null}
+      {description ? (
+        <div className="pb2">
+          <BlockContent blocks={description} />
+        </div>
+      ) : null}
 
-      <div className="flex  flex-wrap">
+      <div className="flex  flex-wrap  pt2">
         <div
           className={
             allowDownload ? 'col-24  col-20-md  pr0  pr2-md' : 'col-24'

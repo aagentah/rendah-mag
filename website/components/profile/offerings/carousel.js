@@ -25,7 +25,7 @@ import { useUser } from '~/lib/hooks';
 const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
 const buttonIconArrowLeft = <Icon icon={['fas', 'arrow-left']} />;
 
-export default function Carousel({ dominionItems, refreshDominion }) {
+export default function Carousel({ offeringItems, refreshDominion }) {
   const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -90,8 +90,8 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     let loop;
     const arr = [];
 
-    if (dominionItems.length === 1) loop = 2;
-    if (dominionItems.length === 2) loop = 1;
+    if (offeringItems.length === 1) loop = 2;
+    if (offeringItems.length === 2) loop = 1;
     if (!loop || app.deviceSize === 'md') return false;
 
     for (let i = 0; i < loop; i++) {
@@ -138,12 +138,10 @@ export default function Carousel({ dominionItems, refreshDominion }) {
       );
     }
 
-    console.log('arr', arr);
-
     return arr;
   };
 
-  if (refreshDominion && dominionItems.length) {
+  if (refreshDominion && offeringItems.length) {
     return (
       <div className="min">
         <section
@@ -157,7 +155,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
             <Heading
               /* Options */
               htmlEntity="h1"
-              text="Dominion"
+              text="Offerings"
               color="black"
               size="medium"
               truncate={null}
@@ -184,7 +182,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
               ref={sliderNavRef}
               className="keen-slider  flex  align-center  pb4"
             >
-              {dominionItems.map((item, i) => (
+              {offeringItems.map((item, i) => (
                 <article
                   className="www  keen-slider__slide  relative  pt3  ph3  pb4"
                   key={item._id}
@@ -289,7 +287,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
 
           {app.deviceSize === 'md' ? (
             <div className="dots">
-              {dominionItems.map((item, i) => {
+              {offeringItems.map((item, i) => {
                 return (
                   <button
                     key={i}
@@ -301,7 +299,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
           ) : null}
         </section>
 
-        {dominionItems.map((item, i) => (
+        {offeringItems.map((item, i) => (
           <>
             <section
               className={`
@@ -337,7 +335,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                 withLinkProps={null}
               />
 
-              {modalActive === i && <CarouselItemSection item={item} />}
+              {modalActive === i && <CarouselItemSection offering={item} />}
             </section>
           </>
         ))}

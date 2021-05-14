@@ -35,14 +35,18 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "isOffering",
-      title: "Offering",
-      type: "boolean",
-    },
-    {
       name: "allowDownload",
       title: "Allow Download",
       type: "boolean",
+    },
+    {
+      title: "Tags",
+      name: "tags",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        layout: "tags",
+      },
     },
   ],
   preview: {

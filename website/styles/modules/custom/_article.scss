@@ -1,24 +1,23 @@
-.audio__wrapper {
-  @extend .w-100;
-  @extend .mla;
-  @extend .mra;
-  @extend .ba;
-  @extend .bw1;
-  @extend .bc-black;
-  @extend .pa4;
-  @extend .br4;
-  @extend .relative;
-}
+.article {
+  .audio__wrapper {
+    @extend .ba;
+    @extend .bw1;
+    @extend .bc-black;
+    @extend .pa4;
+    @extend .br4;
+  }
 
-.audio__icon {
-  top: 20px;
-  right: -20px;
+  .audio__icon {
+    top: 20px;
+    right: -20px;
+    display: block;
 
-  @extend .absolute;
-  @extend .ba;
-  @extend .bw1;
-  @extend .bc-black;
-  @extend .bg-white;
-  @extend .pa2;
-  @extend .br-100;
+    @extend .absolute;
+    @extend .ba;
+    @extend .bw1;
+    @extend .bc-black;
+    @extend .bg-white;
+    @extend .pa2;
+    @extend .br-100;
+  }
 }

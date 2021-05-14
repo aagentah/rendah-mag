@@ -26,6 +26,7 @@ import user from "./documents/user";
 import dominionPipelineItem from "./objects/dominionPipelineItem";
 import dominionPipeline from "./objects/dominionPipeline";
 import creations from "./documents/creations";
+import offering from "./documents/offering";
 
 // Smart Link
 import smartLinkItem from "./documents/smartLinkItem";
@@ -55,6 +56,7 @@ export default createSchema({
     cypher,
     mix,
     user,
+    track,
     dominionItem,
     smartLinkItem,
     smartLink,
@@ -63,7 +65,7 @@ export default createSchema({
     dominionPipelineItem,
     dominionPipeline,
     creations,
-    track,
+    offering,
     //
     siteSettings,
   ]),

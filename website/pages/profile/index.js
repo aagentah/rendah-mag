@@ -5,7 +5,7 @@ import zenscroll from 'zenscroll';
 import { Tabs } from 'next-pattern-library';
 
 import ProfileEdit from '~/components/profile/edit';
-import ProfileDominion from '~/components/profile/dominion';
+import ProfileMessages from '~/components/profile/messages';
 import ProfilePipeline from '~/components/profile/pipeline';
 import ProfileCreations from '~/components/profile/creations';
 import ProfileOfferings from '~/components/profile/offerings';
@@ -47,7 +47,7 @@ export default function Profile({ siteConfig }) {
     }
 
     // Handles dominion carousel refresh
-    if (visibleTab === '2') {
+    if (visibleTab === '2' || visibleTab === '3') {
       setRefreshDominion(true);
     }
   };
@@ -83,9 +83,9 @@ export default function Profile({ siteConfig }) {
                         },
                         {
                           id: '2',
-                          tabTitle: 'Dominion',
+                          tabTitle: 'Messages',
                           tabContent: (
-                            <ProfileDominion
+                            <ProfileMessages
                               refreshDominion={refreshDominion}
                             />
                           ),
@@ -93,7 +93,11 @@ export default function Profile({ siteConfig }) {
                         {
                           id: '3',
                           tabTitle: 'Offerings',
-                          tabContent: <ProfileOfferings />,
+                          tabContent: (
+                            <ProfileOfferings
+                              refreshDominion={refreshDominion}
+                            />
+                          ),
                         },
                         {
                           id: '4',
