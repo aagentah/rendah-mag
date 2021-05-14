@@ -164,16 +164,10 @@ export default function Carousel({ offeringItems, refreshDominion }) {
             />
           </div>
           <div className="pb4  mb2">
-            {user?.dominionSince && (
-              <p className="t-secondary  f7  grey  pb2">
-                <span className="bold  pr1">Member since:</span>
-                {new Date(user.dominionSince).toDateString()}
-              </p>
-            )}
-
             <p className="black  f6  lh-copy">
-              Here you can access your monthly Dominion content. We&apos;ll
-              usually email you when new items pop up here.
+              As part of our service, we'll occasionally roll out Offering packs
+              with exclusive music from the labels & artists that we work with.
+              Any Offerings since you joined the Dominion can be accesesd here.
             </p>
           </div>
 
@@ -190,27 +184,14 @@ export default function Carousel({ offeringItems, refreshDominion }) {
                   <div className="relative  profile__dominion__carousel-item__wrapper">
                     <div
                       style={{
-                        backgroundImage: item?.image?.asset
-                          ? `url(${imageBuilder
-                              .image(item.image)
-                              .auto('format')
-                              .height(75)
-                              .width(75)
-                              .fit('clip')
-                              .blur('20')
-                              .url()})`
-                          : 'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)',
+                        backgroundImage:
+                          'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)',
                       }}
                       className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow2`}
                     >
                       <div className="flex  flex-wrap">
-                        <p className="col-24  t-primary  white  f5  f6-md  tac  lh-copy  pb2  text-shadow">
+                        <p className="col-24  t-primary  white  f5  f6-md  tac  lh-copy  text-shadow">
                           {item.title}
-                        </p>
-                        <p className="col-24  t-secondary  white  f7  tac  lh-copy  text-shadow">
-                          {i === 0
-                            ? '<3'
-                            : new Date(item.activeFrom).toDateString().slice(4)}
                         </p>
                       </div>
                     </div>

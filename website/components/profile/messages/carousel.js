@@ -166,13 +166,6 @@ export default function Carousel({ dominionItems, refreshDominion }) {
             />
           </div>
           <div className="pb4  mb2">
-            {user?.dominionSince && (
-              <p className="t-secondary  f7  grey  pb2">
-                <span className="bold  pr1">Member since:</span>
-                {new Date(user.dominionSince).toDateString()}
-              </p>
-            )}
-
             <p className="black  f6  lh-copy">
               Here you can access your monthly Dominion content. We&apos;ll
               usually email you when new items pop up here.

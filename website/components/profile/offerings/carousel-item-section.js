@@ -10,6 +10,7 @@ import {
   Label,
 } from 'next-pattern-library';
 import AudioEmbed from '~/components/article/body-sections/audio';
+import BlockContent from '@sanity/block-content-to-react';
 
 import Sections from '~/components/article/body-sections';
 
@@ -25,7 +26,7 @@ export default function CarouselItemSection({ offering }) {
         <Heading
           /* Options */
           htmlEntity="h1"
-          text="Offerings"
+          text={offering.title}
           color="black"
           size="medium"
           truncate={null}
@@ -34,36 +35,17 @@ export default function CarouselItemSection({ offering }) {
         />
       </div>
       <div className="pb4  mb2">
-        <p className="black  f6  lh-copy">
-          Creations serves as our internal offering for additional exclusive
-          content on the Dominion. The idea behind this is to share insights not
-          only on music, but as a wider-appeal to the industry as a whole,
-          including tutorials, technical interviews, branding tips, creative
-          features, and much more!
-        </p>
+        <BlockContent blocks={offering.description} />
       </div>
 
-      <div className="flex  flex-wrap">
+      <div className="flex  flex-wrap  ph4">
         <section key={offering.slug} className="col-24  pb3">
-          <div className="pb3">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text={offering.title}
-              color="black"
-              size="small"
-              truncate={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-
           {offering.tracks.map((item, i) => (
-            <div key={item.track.slug} className="col-24  ph4  pb3">
+            <div key={item.track.slug} className="col-24  pb4">
               <AudioEmbed
                 i={i}
                 title={item.track?.title}
-                description={null}
+                description={item.track?.description}
                 url={item.track?.file}
                 allowDownload={item.track?.allowDownload}
                 handleAudioPlay={handleAudioPlay}
