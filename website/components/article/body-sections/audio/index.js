@@ -54,7 +54,7 @@ export default function Audio({
       ) : null}
 
       {description ? (
-        <div className="pb2">
+        <div className="pb2  rich-text">
           <BlockContent blocks={description} />
         </div>
       ) : null}
