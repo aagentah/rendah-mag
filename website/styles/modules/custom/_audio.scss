@@ -1,0 +1,10 @@
+.audio__wrapper {
+  @extend .w-100;
+  @extend .mla;
+  @extend .mra;
+  @extend .relative;
+}
+
+.audio__icon {
+  display: none;
+}

@@ -398,3 +398,18 @@ export async function getDominionUsers(preview) {
   );
   return results;
 }
+
+export async function getAllOfferings(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "offering"] | order(publishedAtDesc desc) {
+      ...,
+      'tracks': tracks[] {
+        'track': *[_id == ^._ref] [0] {
+          'file': file.asset->url,
+          ...,
+        },
+      }
+    }`
+  );
+  return results;
+}

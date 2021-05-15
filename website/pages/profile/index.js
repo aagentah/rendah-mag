@@ -4,9 +4,10 @@ import zenscroll from 'zenscroll';
 
 import Tabs from '~/components/tabs';
 import ProfileEdit from '~/components/profile/edit';
-import ProfileDominion from '~/components/profile/dominion';
+import ProfileMessages from '~/components/profile/messages';
 import ProfilePipeline from '~/components/profile/pipeline';
 import ProfileCreations from '~/components/profile/creations';
+import ProfileOfferings from '~/components/profile/offerings';
 import ProfileBilling from '~/components/profile/billing';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -27,6 +28,7 @@ export default function Profile({ siteConfig }) {
   const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
   const [refreshDominion, setRefreshDominion] = useState(false);
+  const [refreshOffering, setRefreshOffering] = useState(false);
 
   useEffect(() => {
     // redirect user to login if not authenticated
@@ -47,6 +49,10 @@ export default function Profile({ siteConfig }) {
     // Handles dominion carousel refresh
     if (visibleTab === '2') {
       setRefreshDominion(true);
+    }
+
+    if (visibleTab === '3') {
+      setRefreshOffering(true);
     }
   };
 
@@ -81,25 +87,34 @@ export default function Profile({ siteConfig }) {
                         },
                         {
                           id: '2',
-                          tabTitle: 'Dominion',
+                          tabTitle: 'Messages',
                           tabContent: (
-                            <ProfileDominion
+                            <ProfileMessages
                               refreshDominion={refreshDominion}
                             />
                           ),
                         },
                         {
                           id: '3',
+                          tabTitle: 'Offerings',
+                          tabContent: (
+                            <ProfileOfferings
+                              refreshDominion={refreshOffering}
+                            />
+                          ),
+                        },
+                        {
+                          id: '4',
                           tabTitle: 'Creations',
                           tabContent: <ProfileCreations />,
                         },
                         {
-                          id: '4',
+                          id: '5',
                           tabTitle: 'Pipeline',
                           tabContent: <ProfilePipeline />,
                         },
                         {
-                          id: '5',
+                          id: '6',
                           tabTitle: 'Billing',
                           tabContent: <ProfileBilling />,
                         },

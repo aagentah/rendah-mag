@@ -12,9 +12,9 @@ import {
   Button,
   Icon,
   Label,
+  Modal,
 } from 'next-pattern-library';
 
-import Modal from '~/components/modal';
 import { imageBuilder } from '~/lib/sanity/requests';
 
 const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
@@ -25,7 +25,7 @@ import { useUser } from '~/lib/hooks';
 const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
 const buttonIconArrowLeft = <Icon icon={['fas', 'arrow-left']} />;
 
-export default function Carousel({ dominionItems, refreshDominion }) {
+export default function Carousel({ offeringItems, refreshDominion }) {
   const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -33,6 +33,8 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   const [canCarouselHide, setCanCarouselHide] = useState(false);
   const [canSectionShow, setCanSectionShow] = useState(false);
   const [canSectionHide, setCanSectionHide] = useState(false);
+  const disableArrows =
+    offeringItems.length <= (app.deviceSize === 'md' ? 1 : 3);
 
   const sliderNavOptions = {
     slidesPerView: app.deviceSize === 'md' ? 1 : 3,
@@ -86,7 +88,62 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     );
   };
 
-  if (refreshDominion && dominionItems.length) {
+  const renderGhostCards = () => {
+    let loop;
+    const arr = [];
+
+    if (offeringItems.length === 1) loop = 2;
+    if (offeringItems.length === 2) loop = 1;
+    if (!loop || app.deviceSize === 'md') return false;
+
+    for (let i = 0; i < loop; i++) {
+      arr.push(
+        <article
+          className="www  keen-slider__slide  relative  pt3  ph3  pb4"
+          key={i}
+        >
+          <div className="relative  profile__dominion__carousel-item__wrapper">
+            <div
+              className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  bg-light-grey`}
+            >
+              <div className="flex  flex-wrap">
+                <p className="col-24  t-primary  grey  f5  f6-md  tac  lh-copy  pb2">
+                  ???
+                </p>
+                <p className="col-24  t-secondary  grey  f7  tac  lh-copy">
+                  ???
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute  flex  justify-center  bottom  left  right">
+            <Button
+              /* Options */
+              type="secondary"
+              size="medium"
+              text="Access"
+              color="grey"
+              fluid={false}
+              icon={buttonIconArrowRight}
+              iconFloat={null}
+              inverted
+              loading={false}
+              disabled={true}
+              skeleton={false}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+        </article>
+      );
+    }
+
+    return arr;
+  };
+
+  if (refreshDominion && offeringItems.length) {
     return (
       <div className="min">
         <section
@@ -100,7 +157,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
             <Heading
               /* Options */
               htmlEntity="h1"
-              text="Dominion"
+              text="Offerings"
               color="black"
               size="medium"
               truncate={null}
@@ -109,16 +166,10 @@ export default function Carousel({ dominionItems, refreshDominion }) {
             />
           </div>
           <div className="pb4  mb2">
-            {user?.dominionSince && (
-              <p className="t-secondary  f7  grey  pb2">
-                <span className="bold  pr1">Member since:</span>
-                {new Date(user.dominionSince).toDateString()}
-              </p>
-            )}
-
             <p className="black  f6  lh-copy">
-              Here you can access your monthly Dominion content. We&apos;ll
-              usually email you when new items pop up here.
+              As part of our service, we'll occasionally roll out Offering packs
+              with exclusive music from the labels & artists that we work with.
+              Any Offerings since you joined the Dominion can be accesesd here.
             </p>
           </div>
 
@@ -127,73 +178,58 @@ export default function Carousel({ dominionItems, refreshDominion }) {
               ref={sliderNavRef}
               className="keen-slider  flex  align-center  pb4"
             >
-              {dominionItems.map((item, i) => (
-                <>
-                  <article
-                    className="www  keen-slider__slide  relative  pt3  ph3  pb4"
-                    key={item._id}
-                  >
-                    <div className="relative  profile__dominion__carousel-item__wrapper">
-                      <div
-                        style={{
-                          backgroundImage: item?.image?.asset
-                            ? `url(${imageBuilder
-                                .image(item.image)
-                                .auto('format')
-                                .height(75)
-                                .width(75)
-                                .fit('clip')
-                                .blur('20')
-                                .url()})`
-                            : 'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)',
-                        }}
-                        className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow2`}
-                      >
-                        <div className="flex  flex-wrap">
-                          <p className="col-24  t-primary  white  f5  f6-md  tac  lh-copy  pb2  text-shadow">
-                            {item.title}
-                          </p>
-                          <p className="col-24  t-secondary  white  f7  tac  lh-copy  text-shadow">
-                            {i === 0
-                              ? '<3'
-                              : new Date(item.activeFrom)
-                                  .toDateString()
-                                  .slice(4)}
-                          </p>
-                        </div>
+              {offeringItems.map((item, i) => (
+                <article
+                  className="www  keen-slider__slide  relative  pt3  ph3  pb4"
+                  key={item._id}
+                >
+                  <div className="relative  profile__dominion__carousel-item__wrapper">
+                    <div
+                      style={{
+                        backgroundImage:
+                          'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)',
+                      }}
+                      className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow2`}
+                    >
+                      <div className="flex  flex-wrap">
+                        <p className="col-24  t-primary  white  f5  f6-md  tac  lh-copy  text-shadow">
+                          {item.title}
+                        </p>
                       </div>
                     </div>
+                  </div>
 
-                    <div className="absolute  flex  justify-center  bottom  left  right">
-                      <Button
-                        /* Options */
-                        type="secondary"
-                        size="medium"
-                        text="Access"
-                        color="black"
-                        fluid={false}
-                        icon={buttonIconArrowRight}
-                        iconFloat={null}
-                        inverted
-                        loading={false}
-                        disabled={false}
-                        skeleton={false}
-                        onClick={() => {
-                          setModalActive(i);
-                          setCanCarouselHide(true);
+                  <div className="absolute  flex  justify-center  bottom  left  right">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Access"
+                      color="black"
+                      fluid={false}
+                      icon={buttonIconArrowRight}
+                      iconFloat={null}
+                      inverted
+                      loading={false}
+                      disabled={false}
+                      skeleton={false}
+                      onClick={() => {
+                        setModalActive(i);
+                        setCanCarouselHide(true);
 
-                          setTimeout(() => {
-                            setCanSectionShow(true);
-                            setCanSectionHide(false);
-                          }, 300);
-                        }}
-                        /* Children */
-                        withLinkProps={null}
-                      />
-                    </div>
-                  </article>
-                </>
+                        setTimeout(() => {
+                          setCanSectionShow(true);
+                          setCanSectionHide(false);
+                        }, 300);
+                      }}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+                </article>
               ))}
+
+              {renderGhostCards()}
             </div>
 
             {sliderNav && app.deviceSize !== 'md' ? (
@@ -209,7 +245,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
 
                     sliderNav.prev();
                   }}
-                  disabled={currentSlide === 0}
+                  disabled={currentSlide === 0 || disableArrows}
                 />
 
                 <ArrowRight
@@ -225,7 +261,8 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                   }}
                   disabled={
                     currentSlide >=
-                    sliderNav.details().size - sliderNavOptions.slidesPerView
+                      sliderNav.details().size -
+                        sliderNavOptions.slidesPerView || disableArrows
                   }
                 />
               </>
@@ -234,7 +271,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
 
           {app.deviceSize === 'md' ? (
             <div className="dots">
-              {dominionItems.map((item, i) => {
+              {offeringItems.map((item, i) => {
                 return (
                   <button
                     key={i}
@@ -246,7 +283,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
           ) : null}
         </section>
 
-        {dominionItems.map((item, i) => (
+        {offeringItems.map((item, i) => (
           <>
             <section
               className={`
@@ -282,7 +319,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                 withLinkProps={null}
               />
 
-              {modalActive === i && <CarouselItemSection item={item} />}
+              {modalActive === i && <CarouselItemSection offering={item} />}
             </section>
           </>
         ))}

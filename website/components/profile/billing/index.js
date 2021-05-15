@@ -157,7 +157,14 @@ export default function ProfileOrders() {
             /* Children */
             withLinkProps={null}
           />
+          {user?.dominionSince && (
+            <p className="t-secondary  f7  grey  pb2">
+              <span className="bold  pr1">Member since:</span>
+              {new Date(user.dominionSince).toDateString()}
+            </p>
+          )}
         </div>
+
         <form noValidate className="w-100  mb4" onSubmit={handleStripeCheck}>
           <div className="pb3">
             <Heading
