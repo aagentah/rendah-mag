@@ -29,6 +29,7 @@ export default function Profile({ siteConfig }) {
   const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
   const [refreshDominion, setRefreshDominion] = useState(false);
+  const [refreshOffering, setRefreshOffering] = useState(false);
 
   useEffect(() => {
     // redirect user to login if not authenticated
@@ -47,8 +48,12 @@ export default function Profile({ siteConfig }) {
     }
 
     // Handles dominion carousel refresh
-    if (visibleTab === '2' || visibleTab === '3') {
+    if (visibleTab === '2') {
       setRefreshDominion(true);
+    }
+
+    if (visibleTab === '3') {
+      setRefreshOffering(true);
     }
   };
 
@@ -95,7 +100,7 @@ export default function Profile({ siteConfig }) {
                           tabTitle: 'Offerings',
                           tabContent: (
                             <ProfileOfferings
-                              refreshDominion={refreshDominion}
+                              refreshDominion={refreshOffering}
                             />
                           ),
                         },

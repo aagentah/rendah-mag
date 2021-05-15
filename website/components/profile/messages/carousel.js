@@ -33,6 +33,8 @@ export default function Carousel({ dominionItems, refreshDominion }) {
   const [canCarouselHide, setCanCarouselHide] = useState(false);
   const [canSectionShow, setCanSectionShow] = useState(false);
   const [canSectionHide, setCanSectionHide] = useState(false);
+  const disableArrows =
+    dominionItems.length <= (app.deviceSize === 'md' ? 1 : 3);
 
   const sliderNavOptions = {
     slidesPerView: app.deviceSize === 'md' ? 1 : 3,
@@ -255,7 +257,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
 
                     sliderNav.prev();
                   }}
-                  disabled={currentSlide === 0}
+                  disabled={currentSlide === 0 || disableArrows}
                 />
 
                 <ArrowRight
@@ -271,7 +273,8 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                   }}
                   disabled={
                     currentSlide >=
-                    sliderNav.details().size - sliderNavOptions.slidesPerView
+                      sliderNav.details().size -
+                        sliderNavOptions.slidesPerView || disableArrows
                   }
                 />
               </>
