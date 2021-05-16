@@ -32,7 +32,11 @@ export default function ProfileDominion({ refreshDominion }) {
   // Fetch offerings
   useEffect(() => {
     const action = async () => {
-      const data = await getAllOfferings();
+      let sinceStartOfMonth = user?.dominionSince.split('T')[0];
+      sinceStartOfMonth = setCharAt(sinceStartOfMonth, 8, '0');
+      sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
+
+      const data = await getAllOfferings(sinceStartOfMonth);
       if (data) setOfferings(data);
     };
 

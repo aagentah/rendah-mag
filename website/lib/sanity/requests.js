@@ -399,17 +399,20 @@ export async function getDominionUsers(preview) {
   return results;
 }
 
-export async function getAllOfferings(preview) {
+export async function getAllOfferings(sinceStartOfMonth, preview) {
+  const today = dateTodayYyyyMmDd();
+
   const results = await getClient(preview).fetch(
     `*[_type == "offering"] | order(publishedAtDesc desc) {
       ...,
-      'tracks': tracks[] {
+      'tracks': tracks[publishedAt >= $sinceStartOfMonth && publishedAt <= $today] {
         'track': *[_id == ^._ref] [0] {
           'file': file.asset->url,
           ...,
         },
       }
-    }`
+    }`,
+    { sinceStartOfMonth }
   );
   return results;
 }
