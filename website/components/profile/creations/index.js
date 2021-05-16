@@ -73,7 +73,7 @@ export default function ProfileCreations() {
               <Heading
                 /* Options */
                 htmlEntity="h2"
-                text="Recomended for you"
+                text="Recomended for you:"
                 color="black"
                 size="small"
                 truncate={null}
@@ -82,7 +82,7 @@ export default function ProfileCreations() {
               />
             </div>
 
-            <div className="flex  flex-wrap">
+            <div className="flex  flex-wrap  pb3">
               {recomendedPosts.map((post, i) => (
                 <div key={post.slug} className="col-24  col-8-md">
                   <div className="ph3  pv2">
@@ -101,7 +101,7 @@ export default function ProfileCreations() {
                 <Heading
                   /* Options */
                   htmlEntity="h2"
-                  text="More"
+                  text="More:"
                   color="black"
                   size="small"
                   truncate={null}

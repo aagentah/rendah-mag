@@ -80,7 +80,16 @@ export default function CardCreations({ post, columnCount }) {
       truncate={columnCount === 3 ? 2 : 3}
       skeleton={!post}
       /* Children */
-      withLinkProps={null}
+      withLinkProps={{
+        type: 'next',
+        href: '/creations/[slug]',
+        target: null,
+        routerLink: Link,
+        routerLinkProps: {
+          as: `/creations/${post?.slug}`,
+          scroll: false,
+        },
+      }}
     />
   );
 

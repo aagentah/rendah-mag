@@ -43,7 +43,7 @@ export default function ProfileDominion({ refreshDominion }) {
     action();
   }, [offerings?.length]);
 
-  if (user?.isDominion && offerings?.length) {
+  if (user?.isDominion) {
     return (
       <>
         <section>
@@ -103,17 +103,4 @@ export default function ProfileDominion({ refreshDominion }) {
       </>
     );
   }
-
-  return (
-    <Heading
-      /* Options */
-      htmlEntity="h1"
-      text="No results"
-      color="black"
-      size="medium"
-      truncate={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
 }

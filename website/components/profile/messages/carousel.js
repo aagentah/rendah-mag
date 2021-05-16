@@ -143,7 +143,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     return arr;
   };
 
-  if (refreshDominion && dominionItems.length) {
+  if (refreshDominion) {
     return (
       <div className="min">
         <section
@@ -338,17 +338,4 @@ export default function Carousel({ dominionItems, refreshDominion }) {
       </div>
     );
   }
-
-  return (
-    <Heading
-      /* Options */
-      htmlEntity="h1"
-      text="N/A"
-      color="black"
-      size="medium"
-      truncate={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
 }
