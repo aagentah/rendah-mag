@@ -26,15 +26,13 @@ const updateCustomer = async (req, res) => {
     // Get customer
     const customer = await stripe.customers.retrieve(stripeCustomerId);
 
-    const customerId = customer.id;
-
     // Attach payment method to customer
     const attach = await stripe.paymentMethods.attach(paymentMethod.id, {
-      customer: customerId,
+      customer: stripeCustomerId,
     });
 
     // Set default payment method
-    const customerUpdate = await stripe.customers.update(customerId, {
+    const customerUpdate = await stripe.customers.update(stripeCustomerId, {
       invoice_settings: { default_payment_method: paymentMethod.id },
     });
 
