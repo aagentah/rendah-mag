@@ -38,7 +38,7 @@ const updateCustomer = async (req, res) => {
       customerDetails.subscriptions.data[0].id,
       {
         default_payment_method:
-          customerDetails.invoice_settings.default_payment_method,
+          customerUpdate.invoice_settings.default_payment_method,
       }
     );
 
