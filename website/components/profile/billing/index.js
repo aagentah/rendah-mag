@@ -26,7 +26,7 @@ export default function ProfileOrders() {
       `${process.env.SITE_URL}/api/stripe/update-customer`,
       {
         body: JSON.stringify({
-          email_address: user.username,
+          stripeCustomerId: user.stripeCustomerId,
           paymentMethod: paymentMethod,
         }),
         headers: { 'Content-Type': 'application/json' },
