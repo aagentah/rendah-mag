@@ -13,6 +13,8 @@ const updateCustomer = async (req, res) => {
       email: email_address,
     });
 
+    console.log('customer', customer);
+
     // Error
     if (!customer?.data?.length) {
       throw new Error('Error fetching Stripe customer');
@@ -20,7 +22,11 @@ const updateCustomer = async (req, res) => {
 
     const customerId = customer.data[0].id;
 
-    //Attach payment method to customer
+    const customerDetails = await stripe.customers.retrieve(customerId);
+
+    console.log('customerDetails', customerDetails);
+
+    // Attach payment method to customer
     const attach = await stripe.paymentMethods.attach(paymentMethod.id, {
       customer: customerId,
     });
@@ -29,6 +35,14 @@ const updateCustomer = async (req, res) => {
     const customerUpdate = await stripe.customers.update(customerId, {
       invoice_settings: { default_payment_method: paymentMethod.id },
     });
+
+    const subscription = await stripe.subscriptions.update(
+      'sub_JVreTuFFUnjUbZ',
+      {
+        default_payment_method:
+          customerDetails.invoice_settings.default_payment_method,
+      }
+    );
 
     // Handle response
     return res.status(200).json({});
