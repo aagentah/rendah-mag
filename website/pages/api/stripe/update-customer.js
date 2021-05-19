@@ -26,6 +26,8 @@ const updateCustomer = async (req, res) => {
     // Get customer
     const customer = await stripe.customers.retrieve(stripeCustomerId);
 
+    const customerId = customer.id;
+
     // Attach payment method to customer
     const attach = await stripe.paymentMethods.attach(paymentMethod.id, {
       customer: customerId,
@@ -38,7 +40,7 @@ const updateCustomer = async (req, res) => {
 
     // Asign default payment method to subscription
     const subscription = await stripe.subscriptions.update(
-      customerDetails.subscriptions.data[0].id,
+      customer.subscriptions.data[0].id,
       {
         default_payment_method:
           customerUpdate.invoice_settings.default_payment_method,
