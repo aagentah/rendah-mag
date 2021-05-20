@@ -51,6 +51,8 @@ const handleDominionRoles = () => {
 };
 
 client.on("ready", async () => {
+  console.log("Discord bot Active!");
+
   client.user.setActivity("Rendah Cyphers", { type: "LISTENING" });
 
   handleDominionRoles();
