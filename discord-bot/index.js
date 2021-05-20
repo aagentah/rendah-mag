@@ -22,8 +22,8 @@ const handleDominionRoles = () => {
   const action = async () => {
     // Fetch Sanity users
     const sanityUsers = await fetch(
-      // `https://rendahmag.com/api/discord/get-dominion-members`
-      "https://26a938295485.ngrok.io/api/discord/get-dominion-members"
+      `https://rendahmag.com/api/discord/get-dominion-members`
+      // "https://26a938295485.ngrok.io/api/discord/get-dominion-members"
     ).then((res) => res.json());
 
     // Loop guild members
