@@ -1,3 +1,5 @@
+import Cors from 'cors';
+
 import initMiddleware from '~/lib/init-middleware';
 import fetchUsers from '~/lib/sanity/user/fetchUsers';
 
@@ -15,16 +17,17 @@ const handler = async (req, res) => {
     await cors(req, res);
 
     const users = await fetchUsers();
-    return res.json({ users });
+
+    return res.send(users);
   } catch (error) {
     // Handle catch
     console.error(
-      `Error in api/sanity/compress-image: ${error.message || error.toString()}`
+      `Error in api/discord/get-dominion-members: ${
+        error.message || error.toString()
+      }`
     );
 
-    return res
-      .status(500)
-      .json({ error: `Error compressing image: ${error.message}` });
+    return res.status(500).json({ error: `Error: ${error.message}` });
   }
 };
 

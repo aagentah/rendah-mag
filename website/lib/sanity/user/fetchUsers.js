@@ -3,7 +3,7 @@ import client from '../config-write';
 const fetchUsers = async (username) => {
   try {
     // Here you find the user based on id/username in the database
-    const query = '*[_type == "user"] { name, isDominion }';
+    const query = '*[_type == "user"] { name, discordId, isDominion }';
 
     const data = await client.fetch(query).then((res) => {
       return res;
