@@ -47,7 +47,7 @@ const handleDominionRoles = () => {
 
   setInterval(() => {
     action();
-  }, 3600000);
+  }, 300000);
 };
 
 client.on("ready", async () => {
