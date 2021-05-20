@@ -56,4 +56,4 @@ client.on("ready", async () => {
   handleDominionRoles();
 });
 
-client.login("NzcxNDExMjQ0Nzg3MzAyNDEw.X5rutA.kEEnd2pvKraoudCeiDGXt7aBiIA");
+client.login(process.env.TOKEN);
