@@ -17,6 +17,7 @@ const createUser = async (user) => {
       isDominion: user.isDominion,
       dominionSince: user.dominionSince,
       address: { ...user.address },
+      stripeCustomerId: user.stripeCustomerId,
       salt,
       hash,
     };
