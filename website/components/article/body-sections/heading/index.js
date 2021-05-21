@@ -1,7 +1,7 @@
 export default function Heading({ text }) {
   return (
     <>
-      <h2 className="t-title  f4  dark-grey">{text}</h2>
+      <h2 className="t-title  f6  dark-grey">{text}</h2>
     </>
   );
 }
