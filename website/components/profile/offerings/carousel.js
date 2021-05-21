@@ -92,6 +92,7 @@ export default function Carousel({ offeringItems, refreshDominion }) {
     let loop;
     const arr = [];
 
+    if (offeringItems.length === 0) loop = 3;
     if (offeringItems.length === 1) loop = 2;
     if (offeringItems.length === 2) loop = 1;
     if (!loop || app.deviceSize === 'md') return false;
@@ -143,7 +144,7 @@ export default function Carousel({ offeringItems, refreshDominion }) {
     return arr;
   };
 
-  if (refreshDominion && offeringItems.length) {
+  if (refreshDominion) {
     return (
       <div className="min">
         <section
@@ -326,17 +327,4 @@ export default function Carousel({ offeringItems, refreshDominion }) {
       </div>
     );
   }
-
-  return (
-    <Heading
-      /* Options */
-      htmlEntity="h1"
-      text="N/A"
-      color="black"
-      size="medium"
-      truncate={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
 }

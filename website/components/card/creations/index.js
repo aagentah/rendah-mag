@@ -205,11 +205,11 @@ export default function CardBlog({ post }) {
       /* Children */
       withLinkProps={{
         type: 'next',
-        href: '/article/[slug]',
+        href: '/creations/[slug]',
         target: null,
         routerLink: Link,
         routerLinkProps: {
-          as: `/article/${post?.slug}`,
+          as: `/creations/${post?.slug}`,
           scroll: false,
         },
       }}

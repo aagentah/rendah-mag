@@ -32,14 +32,18 @@ export default function ProfileDominion({ refreshDominion }) {
   // Fetch offerings
   useEffect(() => {
     const action = async () => {
-      const data = await getAllOfferings();
+      let sinceStartOfMonth = user?.dominionSince.split('T')[0];
+      sinceStartOfMonth = setCharAt(sinceStartOfMonth, 8, '0');
+      sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
+
+      const data = await getAllOfferings(sinceStartOfMonth);
       if (data) setOfferings(data);
     };
 
     action();
   }, [offerings?.length]);
 
-  if (user?.isDominion && offerings?.length) {
+  if (user?.isDominion) {
     return (
       <>
         <section>
@@ -99,17 +103,4 @@ export default function ProfileDominion({ refreshDominion }) {
       </>
     );
   }
-
-  return (
-    <Heading
-      /* Options */
-      htmlEntity="h1"
-      text="No results"
-      color="black"
-      size="medium"
-      truncate={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
 }

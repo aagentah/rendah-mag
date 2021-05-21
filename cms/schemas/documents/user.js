@@ -91,6 +91,18 @@ export default {
       ],
     },
     {
+      name: "discordId",
+      title: "Discord ID",
+      type: "string",
+      required: true,
+    },
+    {
+      name: "stripeCustomerId",
+      title: "Stripe Customer ID",
+      type: "string",
+      required: true,
+    },
+    {
       name: "salt",
       title: "Salt",
       type: "string",

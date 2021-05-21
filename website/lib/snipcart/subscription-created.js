@@ -31,6 +31,7 @@ export default async (order) => {
       name: fullName,
       isDominion: true,
       dominionSince: schedule.startsOn.split('T')[0],
+      stripeCustomerId: user.gatewayId,
       address: {
         line1: address1,
         line2: address2,

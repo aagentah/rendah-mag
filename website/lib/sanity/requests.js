@@ -399,9 +399,11 @@ export async function getDominionUsers(preview) {
   return results;
 }
 
-export async function getAllOfferings(preview) {
+export async function getAllOfferings(sinceStartOfMonth, preview) {
+  const today = dateTodayYyyyMmDd();
+
   const results = await getClient(preview).fetch(
-    `*[_type == "offering"] | order(publishedAtDesc desc) {
+    `*[_type == "offering" && publishedAt >= $sinceStartOfMonth && publishedAt <= $today] | order(publishedAtDesc desc) {
       ...,
       'tracks': tracks[] {
         'track': *[_id == ^._ref] [0] {
@@ -409,7 +411,8 @@ export async function getAllOfferings(preview) {
           ...,
         },
       }
-    }`
+    }`,
+    { sinceStartOfMonth, today }
   );
   return results;
 }

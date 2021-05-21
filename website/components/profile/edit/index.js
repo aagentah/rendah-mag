@@ -163,6 +163,7 @@ export default function ProfileEdit() {
       username: e.currentTarget.username.value,
       name: e.currentTarget.name.value,
       handle: e.currentTarget.handle.value,
+      discordId: e.currentTarget.discordId.value,
       publicProfile: e.currentTarget.publicProfile.checked,
     };
 
@@ -174,6 +175,10 @@ export default function ProfileEdit() {
       return toast.error('Please add a Dominion handle');
     }
 
+    if (!Number(body.discordId)) {
+      return toast.error('Discord ID must contain numbers only');
+    }
+
     if (!/^[a-zA-Z0-9]*$/.test(body.handle)) {
       return toast.error(
         'The Dominion handle should only contain alphanumeric characters'
@@ -182,8 +187,6 @@ export default function ProfileEdit() {
 
     if (body.handle && body.handle !== user.handle) {
       const userByHandle = await findUserByHandle(body.handle);
-
-      console.log('userByHandle', userByHandle);
 
       if (userByHandle?.username) {
         return toast.error('This Dominion handle is already in use');
@@ -227,6 +230,8 @@ export default function ProfileEdit() {
   const inputIconLock = <Icon icon={['fas', 'lock']} />;
   const inputIconReceipt = <Icon icon={['fas', 'receipt']} />;
   const inputIconAt = <Icon icon={['fas', 'at']} />;
+  const inputIconHash = <Icon icon={['fas', 'hashtag']} />;
+  const iconDiscord = <Icon icon={['fab', 'discord']} />;
 
   if (user) {
     return (
@@ -506,6 +511,26 @@ export default function ProfileEdit() {
                   disabled={false}
                   readOnly={false}
                 />
+              </div>
+              <div className="pv2  relative">
+                <Input
+                  /* Options */
+                  type="text"
+                  label="Discord ID"
+                  name="discordId"
+                  value={user?.discordId || ''}
+                  icon={inputIconHash}
+                  required
+                  disabled={false}
+                  readOnly={false}
+                />
+                <a
+                  href="https://discord.com/invite/ev2Q22C"
+                  target="_blank"
+                  className="absolute  top  right  f5  pt4  pr2  grey  underline"
+                >
+                  {iconDiscord}
+                </a>
               </div>
               <div className="pv3">
                 <Checkbox
