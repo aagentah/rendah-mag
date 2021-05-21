@@ -1,70 +1,65 @@
-// Tabs
+.tabs-wrapper--side-bar {
+  .tabs {
+    @extend .flex-md;
+    @extend .flex-wrap-md;
+  }
 
-.tabs {
-  width: 100%;
-}
-
-// Desktop Nav
-
-.tabs__desktop-nav {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: none;
-}
-
-@include breakpoint-up(md) {
   .tabs__desktop-nav {
-    display: block;
+    @extend .col-4-md;
+  }
+
+  .tabs__desktop-nav__item {
+    width: calc(100% - 15px);
+    display: inline-block;
+    border-bottom: 2px solid var(--almost-white);
+  }
+
+  .tabs__body {
+    border-radius: 0;
+    background-color: var(--white);
+    @extend .col-20-md;
+  }
+
+  @include breakpoint-up(md) {
+    .tabs__body {
+      border-radius: 1rem;
+      padding: 50px;
+    }
   }
 }
 
-// Desktop Nav Item
-
 .tabs__desktop-nav__item {
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
   display: inline-block;
-  background-color: var(--white);
+  background-color: var(--almost-white);
   color: var(--black);
+  border-bottom: 2px solid var(--light-grey);
   padding: 20px;
   margin-right: 10px;
-  cursor: pointer;
 }
 
 .tabs__desktop-nav__item:hover {
-  background-color: var(--almost-white);
+  border-color: var(--grey);
 }
 
 .tabs__desktop-nav__item.active {
-  background-color: var(--almost-white);
+  background-color: var(--white);
   color: var(--black);
+  border-color: var(--black);
 }
 
-// Body
-
 .tabs__body {
-  background-color: var(--white);
-  padding: 30px;
+  padding: 0;
 }
 
 @include breakpoint-up(md) {
   .tabs__body {
-    background-color: var(--almost-white);
-    padding: 30px;
+    padding: 0;
+    padding-top: 30px;
   }
 }
 
-// Body Item
-
-.tabs__body__item {
-  position: relative;
-  // @extend .pb3;
-  // @extend .pb0-md;
-}
-
 .tabs__body__item .tabs__mobile-nav__item {
-  // @extend .fw7;
-
   &::after {
     transition: transform 0.3s ease-in-out;
     content: '';
@@ -84,38 +79,20 @@
   }
 }
 
-.tabs__body__item:not(.active) {
-  display: block;
-
-  .tabs__content {
-    display: none;
-  }
+.tabs__content {
+  position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 30px;
 }
-
-@include breakpoint-up(md) {
-  .tabs__body__item:not(.active) {
-    display: none;
-
-    .tabs__content {
-      display: block;
-    }
-  }
-}
-
-// Mobile Nav Item
 
 .tabs__mobile-nav__item {
   transition: background-color 0.3s ease-in-out;
-  display: block;
-  background: var(--almost-white);
+  background: var(--white);
   color: var(--black);
   padding: 20px;
   margin-bottom: 20px;
-  cursor: pointer;
-}
-
-@include breakpoint-up(md) {
-  .tabs__mobile-nav__item {
-    display: none;
-  }
+  @extend .shadow2;
+  @extend .br4;
 }
