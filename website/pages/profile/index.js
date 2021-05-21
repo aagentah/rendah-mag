@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import zenscroll from 'zenscroll';
+import { Icon } from 'next-pattern-library';
 
 import Tabs from '~/components/tabs';
 import ProfileEdit from '~/components/profile/edit';
@@ -30,6 +31,13 @@ export default function Profile({ siteConfig }) {
   const [refreshDominion, setRefreshDominion] = useState(false);
   const [refreshOffering, setRefreshOffering] = useState(false);
 
+  const iconUser = <Icon className="grey" icon={['fas', 'user']} />;
+  const iconEnvelope = <Icon className="grey" icon={['fas', 'envelope']} />;
+  const iconMusic = <Icon className="grey" icon={['fas', 'music']} />;
+  const iconNewspaper = <Icon className="grey" icon={['fas', 'newspaper']} />;
+  const iconList = <Icon className="grey" icon={['fas', 'list']} />;
+  const iconMoney = <Icon className="grey" icon={['fas', 'money-check']} />;
+
   useEffect(() => {
     // redirect user to login if not authenticated
     if ((!loading && !user) || error) Router.replace('/login');
@@ -47,11 +55,11 @@ export default function Profile({ siteConfig }) {
     }
 
     // Handles dominion carousel refresh
-    if (visibleTab === '2') {
+    if (visibleTab === 'messages') {
       setRefreshDominion(true);
     }
 
-    if (visibleTab === '3') {
+    if (visibleTab === 'offerings') {
       setRefreshOffering(true);
     }
   };
@@ -81,13 +89,15 @@ export default function Profile({ siteConfig }) {
                       /* Options */
                       content={[
                         {
-                          id: '1',
+                          id: 'profile',
                           tabTitle: 'Profile',
+                          tabIcon: iconUser,
                           tabContent: <ProfileEdit />,
                         },
                         {
-                          id: '2',
+                          id: 'messages',
                           tabTitle: 'Messages',
+                          tabIcon: iconEnvelope,
                           tabContent: (
                             <ProfileMessages
                               refreshDominion={refreshDominion}
@@ -95,8 +105,9 @@ export default function Profile({ siteConfig }) {
                           ),
                         },
                         {
-                          id: '3',
+                          id: 'offerings',
                           tabTitle: 'Offerings',
+                          tabIcon: iconMusic,
                           tabContent: (
                             <ProfileOfferings
                               refreshDominion={refreshOffering}
@@ -104,22 +115,27 @@ export default function Profile({ siteConfig }) {
                           ),
                         },
                         {
-                          id: '4',
+                          id: 'creations',
                           tabTitle: 'Creations',
+                          tabIcon: iconNewspaper,
                           tabContent: <ProfileCreations />,
                         },
                         {
-                          id: '5',
+                          id: 'pipeline',
                           tabTitle: 'Pipeline',
+                          tabIcon: iconList,
                           tabContent: <ProfilePipeline />,
                         },
                         {
-                          id: '6',
+                          id: 'billing',
                           tabTitle: 'Billing',
+                          tabIcon: iconMoney,
                           tabContent: <ProfileBilling />,
                         },
                       ]}
-                      defaultSelected={app.deviceSize === 'md' ? null : '1'}
+                      defaultSelected={
+                        app.deviceSize === 'md' ? null : 'profile'
+                      }
                       onToggle={handleToggle}
                     />
                   </div>

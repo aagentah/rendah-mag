@@ -9,7 +9,7 @@ export default function Tabs(props) {
     /* Options */
     content,
     defaultSelected,
-    onToggle
+    onToggle,
   } = props;
 
   const itemsRef = useRef([]);
@@ -34,26 +34,41 @@ export default function Tabs(props) {
     <li
       role="button"
       key={item.id}
+      data-tab-nav-item={item.id}
       onClick={() => handleToggle(item.id, i)}
-      className={`tabs__desktop-nav__item ${visibleTab === item.id &&
-        'active'}`}
+      className={`tabs__desktop-nav__item ${
+        visibleTab === item.id && 'active'
+      }`}
     >
-      {item.tabTitle}
+      {item.tabTitle && (
+        <div className="tabs__desktop-nav__item__title">{item.tabTitle}</div>
+      )}
+
+      {item.tabIcon && (
+        <div className="tabs__desktop-nav__item__icon">{item.tabIcon}</div>
+      )}
     </li>
   ));
 
   const listContent = content.map((item, i) => (
     <div
       key={item.id}
-      ref={el => (itemsRef.current[i] = el)}
+      ref={(el) => (itemsRef.current[i] = el)}
       className={`tabs__body__item ${visibleTab === item.id && 'active'}`}
     >
       <div
         role="button"
+        data-tab-nav-item={item.id}
         className="tabs__mobile-nav__item"
         onClick={() => handleToggle(item.id === visibleTab ? null : item.id, i)}
       >
-        {item.tabTitle}
+        {item.tabIcon && (
+          <div className="tabs__mobile-nav__item__icon">{item.tabIcon}</div>
+        )}
+
+        {item.tabTitle && (
+          <div className="tabs__mobile-nav__item__title">{item.tabTitle}</div>
+        )}
       </div>
       <div className="tabs__content">{item.tabContent}</div>
     </div>
