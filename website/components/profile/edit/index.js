@@ -231,6 +231,7 @@ export default function ProfileEdit() {
   const inputIconReceipt = <Icon icon={['fas', 'receipt']} />;
   const inputIconAt = <Icon icon={['fas', 'at']} />;
   const inputIconHash = <Icon icon={['fas', 'hashtag']} />;
+  const iconDiscord = <Icon icon={['fab', 'discord']} />;
 
   if (user) {
     return (
@@ -511,7 +512,7 @@ export default function ProfileEdit() {
                   readOnly={false}
                 />
               </div>
-              <div className="pv2">
+              <div className="pv2  relative">
                 <Input
                   /* Options */
                   type="text"
@@ -523,6 +524,13 @@ export default function ProfileEdit() {
                   disabled={false}
                   readOnly={false}
                 />
+                <a
+                  href="https://discord.com/invite/ev2Q22C"
+                  target="_blank"
+                  className="absolute  top  right  f5  pt4  pr2  grey  underline"
+                >
+                  {iconDiscord}
+                </a>
               </div>
               <div className="pv3">
                 <Checkbox
