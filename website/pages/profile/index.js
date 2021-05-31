@@ -57,6 +57,8 @@ export default function Profile({ siteConfig }) {
     }
   };
 
+  console.log('app.deviceSize', app.deviceSize);
+
   if (user) {
     return (
       <Elements stripe={stripePromise}>
@@ -76,7 +78,7 @@ export default function Profile({ siteConfig }) {
           >
             <div className="pt4  pt0-md  pb4">
               <Container>
-                {user && (
+                {user && app.deviceSize && (
                   <div className="tabs-wrapper--side-bar">
                     <Tabs
                       /* Options */

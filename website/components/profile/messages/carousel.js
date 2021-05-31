@@ -92,9 +92,11 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     let loop;
     const arr = [];
 
+    if (dominionItems.length === 0) loop = app.deviceSize === 'md' ? 1 : 3;
     if (dominionItems.length === 1) loop = 2;
     if (dominionItems.length === 2) loop = 1;
-    if (!loop || app.deviceSize === 'md') return false;
+    if (!loop) return false;
+    if (dominionItems.length > 0 && app.deviceSize === 'md') return false;
 
     for (let i = 0; i < loop; i++) {
       arr.push(
