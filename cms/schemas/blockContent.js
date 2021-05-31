@@ -46,6 +46,20 @@ export default {
       },
     },
     {
+      name: "subtitleBlock",
+      title: "Sub Title",
+      type: "object",
+      icon: iconFacebook,
+      fields: [
+        {
+          name: "subtitle",
+          title: "Sub Title",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+    },
+    {
       type: "image",
       icon: iconImage,
       fields: [

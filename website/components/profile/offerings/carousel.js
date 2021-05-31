@@ -92,10 +92,11 @@ export default function Carousel({ offeringItems, refreshDominion }) {
     let loop;
     const arr = [];
 
-    if (offeringItems.length === 0) loop = 3;
+    if (offeringItems.length === 0) loop = app.deviceSize === 'md' ? 1 : 3;
     if (offeringItems.length === 1) loop = 2;
     if (offeringItems.length === 2) loop = 1;
-    if (!loop || app.deviceSize === 'md') return false;
+    if (!loop) return false;
+    if (offeringItems.length > 0 && app.deviceSize === 'md') return false;
 
     for (let i = 0; i < loop; i++) {
       arr.push(

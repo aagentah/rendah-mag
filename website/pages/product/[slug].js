@@ -16,6 +16,7 @@ import { useApp } from '~/context-provider/app';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
+import Sections from '~/components/article/body-sections';
 
 import {
   getSiteConfig,
@@ -41,7 +42,9 @@ export default function Product({ siteConfig, product }) {
 
     const descriptionTab = (
       <div className="rich-text  db  pb3">
-        <BlockContent blocks={product?.description} />
+        <div className="rich-text">
+          <Sections body={product?.description} />
+        </div>
       </div>
     );
 

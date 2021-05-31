@@ -175,7 +175,7 @@ export default function ProfileEdit() {
       return toast.error('Please add a Dominion handle');
     }
 
-    if (!Number(body.discordId)) {
+    if (body.discordId && !Number(body.discordId)) {
       return toast.error('Discord ID must contain numbers only');
     }
 

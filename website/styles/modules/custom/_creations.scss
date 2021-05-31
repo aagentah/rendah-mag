@@ -1,20 +1,21 @@
 .creations {
-  background-color: #262626;
+  background-color: #1c1c1c;
 
   .rich-text {
-    strong {
-      background-color: var(--almost-black);
-      padding-left: 3px;
-      padding-right: 3px;
+    * {
+      color: #cccccc !important;
     }
 
-    * {
-      color: var(--almost-white) !important;
+    strong,
+    h2 {
+      // background-color: #cccccc !important;
+      color: #eeeeee !important;
+      // box-shadow: 2px 0 0 #cccccc, -2px 0 0 #cccccc;
     }
   }
 
   .audio__wrapper {
-    border-color: var(--almost-white);
+    border-color: #cccccc;
   }
 
   .audio__icon * {
@@ -24,7 +25,7 @@
   .rhap_progress-indicator,
   .rhap_volume-indicator,
   .rhap_progress-filled {
-    background-color: var(--almost-white) !important;
+    background-color: #cccccc !important;
   }
 
   .rhap_container {
@@ -35,7 +36,7 @@
     background-color: var(--almost-black);
 
     * {
-      color: var(--almost-white);
+      color: #cccccc;
     }
   }
 
@@ -45,7 +46,7 @@
     @extend .bc-almost-white;
 
     *:not(.label) {
-      color: var(--almost-white);
+      color: #cccccc;
     }
   }
 }
