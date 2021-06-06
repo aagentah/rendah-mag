@@ -1,5 +1,4 @@
 import { nanoid } from 'nanoid';
-import cloneDeep from 'lodash/cloneDeep';
 import find from 'lodash/find';
 
 import client from '~/lib/sanity/config-write';
@@ -9,12 +8,13 @@ import monthDiff from '~/functions/monthDiff';
 
 const cardExpiry = async (user) => {
   try {
-    // If exists an promoted in the last 2 months, return
     const exists = find(user.notifications, {
       notificationType: 'card-expiring',
     });
+
+    // If exists an promoted in the last 2 months, return
     if (exists && monthDiff(new Date(), new Date(exists.created)) < 2) {
-      return;
+      return false;
     }
 
     const getStripeCustomer = await fetch(
@@ -34,11 +34,11 @@ const cardExpiry = async (user) => {
 
     // If expiry not due in the next 2 months, return
     if (monthDiff(new Date(), new Date(expYear, expMonth, null)) > 2) {
-      return;
+      return false;
     }
 
     const blocks = htmlToBlocks(
-      `<p>Your card is due to expire on ${expMonth}/${expYear}. Please update your card in the Billing tab.</p>`
+      `<p>Your card is due to expire on ${expMonth}/${expYear}. Please update your payment method in the Billing tab.</p>`
     );
 
     return {

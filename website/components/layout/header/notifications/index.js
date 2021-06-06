@@ -20,7 +20,6 @@ export default function Notifications({ navOnWhite, meta }) {
 
   const dialogClass = cx({
     active: dialogActive,
-    empty: !user?.notifications?.length,
   });
   const notifcationIconClass = cx({
     'has-unread': find(user.notifications, { hasOpened: false }) && !hasOpened,
@@ -58,10 +57,10 @@ export default function Notifications({ navOnWhite, meta }) {
                 }`}
                 key={item._key}
               >
-                <div className="col-5  flex  align-center  justify-center">
+                <div className="col-4  flex  align-center  justify-center">
                   {iconWarning}
                 </div>
-                <div className="col-19  flex  flex-wrap  align-center  pl2  pr3">
+                <div className="col-20  flex  flex-wrap  align-center  pl2  pr3">
                   <div className="col-24">
                     <p className="f7  t-primary  pb2">{item.title}</p>
                   </div>
@@ -83,10 +82,10 @@ export default function Notifications({ navOnWhite, meta }) {
 
         {!user?.notifications?.length ? (
           <article className="notifications__dialog__row  silver">
-            <div className="col-5  flex  align-center  justify-center">
+            <div className="col-4  flex  align-center  justify-center">
               {iconTick}
             </div>
-            <div className="col-19  flex  flex-wrap  align-center  pl2  pr3">
+            <div className="col-20  flex  flex-wrap  align-center  pl2  pr3">
               <div className="col-24">
                 <p className="f7  t-primary  pb2">No notifications</p>
               </div>
