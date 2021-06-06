@@ -5,6 +5,7 @@ import { Image, Button, Icon } from 'next-pattern-library';
 
 import Container from '../../container';
 import SearchBar from '../../../search-bar';
+import Notifications from '../notifications';
 
 import { useUser } from '~/lib/hooks';
 
@@ -68,6 +69,10 @@ export default function HeaderMobile({
           </div>
         </>
       ) : null}
+
+      <div className="absolute  top  right  mr3  mt3">
+        <Notifications />
+      </div>
 
       <nav className="nav  w-100">
         <div className="flex  flex-wrap">

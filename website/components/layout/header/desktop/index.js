@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
 import { Image, Button, Icon } from 'next-pattern-library';
 
 import Container from '../../container';
 import SearchBar from '../../../search-bar';
+const Notifications = dynamic(() => import('../notifications'));
 
 import { useUser } from '~/lib/hooks';
 
@@ -175,6 +177,9 @@ export default function HeaderDestop({
               ) : null}
               {user ? (
                 <>
+                  <li className="nav__item  dib  pr3">
+                    <Notifications />
+                  </li>
                   <li className="nav__item  dib  pr3">
                     <Button
                       /* Options */

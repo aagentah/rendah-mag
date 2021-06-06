@@ -5,6 +5,7 @@ import auth from '../../middleware/auth';
 import deleteUser from '~/lib/sanity/user/deleteUser';
 import updateUserByUsername from '~/lib/sanity/user/updateUserByUsername';
 import findUserByUsername from '~/lib/sanity/user/findUserByUsername';
+import notificationHandler from '~/lib/sanity/user/notificationHandler';
 
 const handler = nextConnect();
 
@@ -16,9 +17,12 @@ handler
     if (isEmpty(requestUser)) {
       return res.json({ user: null });
     }
+
     // You do not generally want to return the whole user object
     // because it may contain sensitive field such as !!password!! Only return what needed
     const user = await findUserByUsername(requestUser.username);
+    const userNotifications = await notificationHandler(user);
+
     return res.json({ user });
   })
   .use(async (req, res, next) => {

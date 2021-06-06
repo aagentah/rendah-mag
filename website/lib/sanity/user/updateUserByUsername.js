@@ -7,6 +7,7 @@ import cloneDeep from 'lodash/cloneDeep';
 
 import formatHttpError from '~/functions/formatHttpError';
 import client from '../config-write';
+import notificationsUpdate from '~/lib/sanity/user/notificationsUpdate';
 
 const handlePassword = (cloneFields) => {
   const f = cloneFields;
@@ -131,6 +132,12 @@ const updateUserByUsername = async (req, user, fields) => {
   try {
     // Clone the fields object
     let cloneFields = cloneDeep(fields);
+
+    // Handle notifications update
+    if (cloneFields?.notificationsUpdate) {
+      const data = await notificationsUpdate(user);
+      return data;
+    }
 
     // Handle password change
     if (cloneFields?.password) {
