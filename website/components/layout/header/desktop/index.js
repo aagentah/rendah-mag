@@ -17,6 +17,7 @@ export default function HeaderDestop({
   navOnWhite,
   handleLogout,
   showBasket,
+  showNotifications,
   buttonIcons,
 }) {
   const [user] = useUser();
@@ -175,11 +176,13 @@ export default function HeaderDestop({
                   </li>
                 </>
               ) : null}
+              {showNotifications ? (
+                <li className="nav__item  dib  pr3">
+                  <Notifications />
+                </li>
+              ) : null}
               {user ? (
                 <>
-                  <li className="nav__item  dib  pr3">
-                    <Notifications />
-                  </li>
                   <li className="nav__item  dib  pr3">
                     <Button
                       /* Options */

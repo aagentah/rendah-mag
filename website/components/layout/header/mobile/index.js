@@ -16,6 +16,7 @@ export default function HeaderMobile({
   navOnWhite,
   handleLogout,
   showBasket,
+  showNotifications,
   buttonIcons,
 }) {
   const [user] = useUser();
@@ -70,9 +71,11 @@ export default function HeaderMobile({
         </>
       ) : null}
 
-      <div className="absolute  top  right  mr3  mt3">
-        <Notifications />
-      </div>
+      {showNotifications ? (
+        <div className="absolute  top  right  mr3  mt3">
+          <Notifications />
+        </div>
+      ) : null}
 
       <nav className="nav  w-100">
         <div className="flex  flex-wrap">
