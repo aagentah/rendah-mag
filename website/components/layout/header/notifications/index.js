@@ -58,7 +58,7 @@ export default function Notifications({ navOnWhite, meta }) {
           ? user.notifications.map((item, i) => (
               <article
                 className={`notifications__dialog__row  ${
-                  item?.hasOpened && 'silver'
+                  item?.hasOpened && 'o-30'
                 }`}
                 key={item._key}
               >
@@ -86,7 +86,7 @@ export default function Notifications({ navOnWhite, meta }) {
           : null}
 
         {!user?.notifications?.length ? (
-          <article className="notifications__dialog__row  silver">
+          <article className="notifications__dialog__row  o-50">
             <div className="col-4  flex  align-center  justify-center">
               {iconTick}
             </div>
