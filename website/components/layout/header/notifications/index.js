@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import cx from 'classnames';
 import BlockContent from '@sanity/block-content-to-react';
 import find from 'lodash/find';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
+import { useOutsideAlerter } from '~/lib/outside-alerter';
 
 import { Icon } from 'next-pattern-library';
 
@@ -13,6 +14,9 @@ export default function Notifications({ navOnWhite, meta }) {
   const [user, { mutate }] = useUser();
   const [dialogActive, setDialogActive] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
+  const wrapperRef = useRef(null);
+
+  useOutsideAlerter(wrapperRef, () => setDialogActive(false));
 
   const iconBell = <Icon icon={['fas', 'bell']} />;
   const iconWarning = <Icon icon={['fas', 'exclamation-triangle']} />;
@@ -21,12 +25,13 @@ export default function Notifications({ navOnWhite, meta }) {
   const dialogClass = cx({
     active: dialogActive,
   });
+
   const notifcationIconClass = cx({
     'has-unread': find(user.notifications, { hasOpened: false }) && !hasOpened,
   });
 
   return (
-    <div className="relative">
+    <div className="relative" ref={wrapperRef}>
       <div
         className={`notifcations__icon  ${notifcationIconClass}`}
         onClick={() => {
