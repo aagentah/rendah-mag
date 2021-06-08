@@ -1,7 +1,6 @@
 import Router, { useRouter } from 'next/router';
 
 import {
-  Tabs,
   Heading,
   Copy,
   Label,
@@ -17,6 +16,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 import Sections from '~/components/article/body-sections';
+import Tabs from '~/components/tabs';
 
 import {
   getSiteConfig,

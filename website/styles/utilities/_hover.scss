@@ -18,11 +18,11 @@
 // }
 
 @each $color, $hex in $colors {
-  .#{$color}-hover:hover {
+  .#{'' + $color}-hover:hover {
     color: var($hex);
   }
 
-  .bg-#{$color}-hover:hover {
+  .bg-#{'' + $color}-hover:hover {
     background-color: var($hex);
   }
 }

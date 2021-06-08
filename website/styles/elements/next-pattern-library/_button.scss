@@ -174,7 +174,7 @@
 }
 
 @each $color, $hex in $npl-colors {
-  .button.primary.button--#{$color} {
+  .button.primary.button--#{'' + $color} {
     background-color: $hex;
     color: $npl-base-white;
     fill: $npl-base-white;
@@ -187,7 +187,7 @@
     }
   }
 
-  .button.primary.button--#{$color}.inverted {
+  .button.primary.button--#{'' + $color}.inverted {
     color: $hex;
     fill: $hex;
     border-color: $hex;
@@ -199,7 +199,7 @@
     }
   }
 
-  .button.secondary.button--#{$color} {
+  .button.secondary.button--#{'' + $color} {
     color: $hex;
     fill: $hex;
     border-color: $hex;
