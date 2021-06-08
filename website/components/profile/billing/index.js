@@ -20,6 +20,28 @@ export default function ProfileOrders() {
   const elements = useElements();
   const [updateCardButtonLoading, setUpdateCardButtonLoading] = useState(false);
   const [updateButtonLoading, setUpdateButtonLoading] = useState(false);
+  const [customer, setCustomer] = useState(null);
+
+  const getCustomer = async () => {
+    const response = await fetch(
+      `${process.env.SITE_URL}/api/stripe/get-customer`,
+      {
+        body: JSON.stringify({
+          stripeCustomerId: user.stripeCustomerId,
+        }),
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+      }
+    );
+
+    if (response.ok) {
+      // Success
+      setCustomer(await response.json());
+    } else {
+      // Error
+      toast.error('Error fetching customer.');
+    }
+  };
 
   const updatePaymentMethod = async (paymentMethod) => {
     const response = await fetch(
@@ -37,9 +59,6 @@ export default function ProfileOrders() {
     if (response.ok) {
       // Success
       toast.success('Payment method updated');
-    } else {
-      // Error
-      toast.error('There was an issue updating your Payment method.');
     }
   };
 
@@ -143,7 +162,13 @@ export default function ProfileOrders() {
     return true;
   }
 
-  if (user && user?.isDominion) {
+  useEffect(() => {
+    if (!customer) {
+      getCustomer();
+    }
+  }, [customer]);
+
+  if (user) {
     return (
       <section>
         <div className="pb4">
@@ -164,6 +189,43 @@ export default function ProfileOrders() {
             </p>
           )}
         </div>
+
+        {customer && (
+          <div className="w-100  mb4">
+            <div className="pb3">
+              <Heading
+                /* Options */
+                htmlEntity="h2"
+                text="Current Card"
+                color="black"
+                size="small"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+
+            <div className="pa3  pa4-md  mb4  shadow2  br4  flex  flex-wrap">
+              <div className="col-12  flex  justify-start">
+                <p class="t-secondary  lh-copy  f6">
+                  Ending in:{' '}
+                  <span class="t-primary">
+                    {customer.defaultPaymentMethod.card.last4}
+                  </span>
+                </p>
+              </div>
+              <div className="col-12  flex  justify-end">
+                <p class="t-secondary  lh-copy  f6">
+                  Expires on:{' '}
+                  <span class="t-primary">
+                    {customer.defaultPaymentMethod.card.exp_year}/
+                    {customer.defaultPaymentMethod.card.exp_month}
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         <form noValidate className="w-100  mb4" onSubmit={handleStripeCheck}>
           <div className="pb3">
