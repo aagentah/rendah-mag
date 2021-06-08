@@ -58,7 +58,7 @@ export default function Home({ siteConfig }) {
       >
         <Hero
           image={featuredPost?.coverImage}
-          title={featuredPost?.title}
+          title={featuredPost?.title || 'Loading...'}
           description={null}
           heroButtonText={'Read more'}
           link={`/article/${featuredPost?.slug}`}

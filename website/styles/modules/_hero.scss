@@ -32,7 +32,7 @@
 }
 
 .hero__button {
-  //
+  @extend .pt3;
 }
 
 .hero__image {

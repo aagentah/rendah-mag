@@ -55,14 +55,14 @@ export default function Cyphers({ siteConfig }) {
         <>
           <Hero
             image={'/images/cypher-youtube.jpg'}
-            title={cyphers?.current?.title}
+            title={'Rendah Mag Cyphers'}
             description={null}
             heroButtonText={null}
             link={null}
             marginTop={0}
             marginBottom={0}
             modifier={'cypher'}
-            skeleton={!cyphers?.current}
+            skeleton={false}
           />
 
           <div className="pt5  pt4-md  ph3  ph4-md">

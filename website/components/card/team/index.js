@@ -196,7 +196,7 @@ export default function CardBlog({ member }) {
       text={member?.name}
       color="black"
       size="small"
-      truncate={2}
+      truncate={1}
       skeleton={!member}
       /* Children */
       withLinkProps={{

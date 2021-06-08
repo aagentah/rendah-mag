@@ -253,7 +253,7 @@ export default function HeroDefault({
       <div className="hero__dialog">
         {heroTitle && <div className="hero__title">{heroTitle}</div>}
         {heroCopy && <p className="hero__description">{heroCopy}</p>}
-        {heroButton && <div className="hero__heroButton">{heroButton}</div>}
+        {heroButton && <div className="hero__button">{heroButton}</div>}
       </div>
 
       {heroImage && <div className="hero__image">{heroImage}</div>}
