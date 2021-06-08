@@ -403,7 +403,7 @@ export async function getAllOfferings(sinceStartOfMonth, preview) {
   const today = dateTodayYyyyMmDd();
 
   const results = await getClient(preview).fetch(
-    `*[_type == "offering" && publishedAt >= $sinceStartOfMonth && publishedAt <= $today] | order(publishedAtDesc desc) {
+    `*[_type == "offering" && publishedAt >= $sinceStartOfMonth && publishedAt <= $today] | order(publishedAt asc) {
       ...,
       'tracks': tracks[] {
         'track': *[_id == ^._ref] [0] {
