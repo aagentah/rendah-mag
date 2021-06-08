@@ -59,9 +59,6 @@ export default function ProfileOrders() {
     if (response.ok) {
       // Success
       toast.success('Payment method updated');
-    } else {
-      // Error
-      toast.error('There was an issue updating your Payment method.');
     }
   };
 
@@ -165,7 +162,11 @@ export default function ProfileOrders() {
     return true;
   }
 
-  getCustomer();
+  useEffect(() => {
+    if (!customer) {
+      getCustomer();
+    }
+  }, [customer]);
 
   if (user) {
     return (
