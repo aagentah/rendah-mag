@@ -182,15 +182,16 @@ export default function ProfileOrders() {
             /* Children */
             withLinkProps={null}
           />
-          {user?.dominionSince && (
+
+          {user?.dominionSince ? (
             <p className="t-secondary  f7  grey  pb2">
               <span className="bold  pr1">Member since:</span>
               {new Date(user.dominionSince).toDateString()}
             </p>
-          )}
+          ) : null}
         </div>
 
-        {customer && (
+        {customer ? (
           <div className="w-100  mb4">
             <div className="pb3">
               <Heading
@@ -225,48 +226,50 @@ export default function ProfileOrders() {
               </div>
             </div>
           </div>
-        )}
+        ) : null}
 
-        <form noValidate className="w-100  mb4" onSubmit={handleStripeCheck}>
-          <div className="pb3">
-            <Heading
-              /* Options */
-              htmlEntity="h2"
-              text="Payment Method"
-              color="black"
-              size="small"
-              truncate={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
+        {stripe && elements ? (
+          <form noValidate className="w-100  mb4" onSubmit={handleStripeCheck}>
+            <div className="pb3">
+              <Heading
+                /* Options */
+                htmlEntity="h2"
+                text="Payment Method"
+                color="black"
+                size="small"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
 
-          <div className="pa3  pa4-md  mb4  shadow2  br4">
-            <CardElement />
-          </div>
+            <div className="pa3  pa4-md  mb4  shadow2  br4">
+              <CardElement />
+            </div>
 
-          <div className="flex  justify-end-md">
-            <Button
-              /* Options */
-              type="primary"
-              size="small"
-              text="Update Card"
-              color="black"
-              fluid={false}
-              icon={null}
-              iconFloat={null}
-              inverted={false}
-              loading={updateCardButtonLoading}
-              disabled={!stripe}
-              skeleton={false}
-              onClick={null}
-              /* Children */
-              withLinkProps={{
-                type: 'form',
-              }}
-            />
-          </div>
-        </form>
+            <div className="flex  justify-end-md">
+              <Button
+                /* Options */
+                type="primary"
+                size="small"
+                text="Update Card"
+                color="black"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted={false}
+                loading={updateCardButtonLoading}
+                disabled={!stripe}
+                skeleton={false}
+                onClick={null}
+                /* Children */
+                withLinkProps={{
+                  type: 'form',
+                }}
+              />
+            </div>
+          </form>
+        ) : null}
 
         <form className="w-100  mb4" onSubmit={handleEditProfile}>
           <div className="pb3">
