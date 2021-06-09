@@ -53,7 +53,7 @@ export default function CardCreations({ post, columnCount }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass={'shadow2  br4'}
+      customClass="shadow2  br4"
       skeleton={!post}
       onClick={null}
       /* Children */
@@ -93,7 +93,7 @@ export default function CardCreations({ post, columnCount }) {
     />
   );
 
-  let labelBlock = [];
+  const labelBlock = [];
 
   if (post?.tags?.length) {
     post.tags.map((label) => {

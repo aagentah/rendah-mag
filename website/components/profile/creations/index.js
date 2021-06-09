@@ -29,8 +29,8 @@ export default function ProfileCreations() {
     action();
 
     if (user?.isDominion && posts?.length) {
-      let rP = [];
-      let oP = [];
+      const rP = [];
+      const oP = [];
 
       posts.map((post) => {
         const tagMatchUser = post?.tags?.some((r) => user?.tags?.includes(r));

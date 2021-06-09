@@ -9,8 +9,8 @@ import {
   Icon,
   Label,
 } from 'next-pattern-library';
-import AudioEmbed from '~/components/article/body-sections/audio';
 import BlockContent from '@sanity/block-content-to-react';
+import AudioEmbed from '~/components/article/body-sections/audio';
 
 import Sections from '~/components/article/body-sections';
 

@@ -4,6 +4,8 @@ import zenscroll from 'zenscroll';
 
 import { Tabs } from 'next-pattern-library';
 
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import ProfileEdit from '~/components/profile/edit';
 import ProfileMessages from '~/components/profile/messages';
 import ProfilePipeline from '~/components/profile/pipeline';
@@ -13,8 +15,6 @@ import ProfileBilling from '~/components/profile/billing';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
