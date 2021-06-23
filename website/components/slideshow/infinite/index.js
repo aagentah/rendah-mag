@@ -39,7 +39,7 @@ export default function SlideshowInfinite({ postsLength, posts }) {
       if (!pause && slider) {
         slider.next();
       }
-    }, 2500);
+    }, 2000);
     return () => {
       clearInterval(timer.current);
     };
