@@ -125,60 +125,62 @@ export default function Home({ siteConfig }) {
             </section>
           </Container>
 
-          <section className="mb6  pv5  bg-creations-black  shadow2">
-            <Container>
-              <div className="pb4">
-                <Heading
-                  /* Options */
-                  htmlEntity="h2"
-                  text="Premieres."
-                  color="white"
-                  size="medium"
-                  truncate={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
-            </Container>
-
-            <div className="flex  flex-wrap">
-              <SlideshowInfinite
-                postsLength={premieresLength}
-                posts={premieres}
-              />
-            </div>
-
-            <Container>
-              <div className="flex  justify-end  pr2">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="All Premieres"
-                  color="white"
-                  fluid={false}
-                  icon={buttonIcon}
-                  iconFloat={null}
-                  inverted={false}
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/category/[slug]',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      as: `/category/interviews`,
-                      scroll: false,
-                    },
-                  }}
-                />
-              </div>
-            </Container>
-          </section>
+          {
+            // <section className="mb6  pv5  bg-creations-black  shadow2">
+            //   <Container>
+            //     <div className="pb4">
+            //       <Heading
+            //         /* Options */
+            //         htmlEntity="h2"
+            //         text="Premieres."
+            //         color="white"
+            //         size="medium"
+            //         truncate={null}
+            //         /* Children */
+            //         withLinkProps={null}
+            //       />
+            //     </div>
+            //   </Container>
+            //
+            //   <div className="flex  flex-wrap">
+            //     <SlideshowInfinite
+            //       postsLength={premieresLength}
+            //       posts={premieres}
+            //     />
+            //   </div>
+            //
+            //   <Container>
+            //     <div className="flex  justify-end  pr2">
+            //       <Button
+            //         /* Options */
+            //         type="secondary"
+            //         size="medium"
+            //         text="All Premieres"
+            //         color="white"
+            //         fluid={false}
+            //         icon={buttonIcon}
+            //         iconFloat={null}
+            //         inverted={false}
+            //         loading={false}
+            //         disabled={false}
+            //         skeleton={false}
+            //         onClick={null}
+            //         /* Children */
+            //         withLinkProps={{
+            //           type: 'next',
+            //           href: '/category/[slug]',
+            //           target: null,
+            //           routerLink: Link,
+            //           routerLinkProps: {
+            //             as: `/category/interviews`,
+            //             scroll: false,
+            //           },
+            //         }}
+            //       />
+            //     </div>
+            //   </Container>
+            // </section>
+          }
 
           <Container>
             <div className="flex  flex-wrap">
