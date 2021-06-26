@@ -44,13 +44,13 @@ export default async (order) => {
     };
 
     // Here you check if the username has already been used
-    const user = await findUserByUsername(email);
+    const userExist = await findUserByUsername(email);
     const isUserEmpty =
-      Object.keys(user).length === 0 && user.constructor === Object;
+      Object.keys(userExist).length === 0 && userExist.constructor === Object;
 
     if (!isUserEmpty) {
       // already has account
-      await updateUserByUsername(null, user, userData);
+      await updateUserByUsername(null, userExist, userData);
     } else {
       // does not have account
       await createUser(userData);
