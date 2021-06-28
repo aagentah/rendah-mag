@@ -163,7 +163,7 @@ export default function ProfileOrders() {
   }
 
   useEffect(() => {
-    if (!customer) {
+    if (user && !customer) {
       getCustomer();
     }
   }, [customer]);
