@@ -37,9 +37,6 @@ export default function ProfileOrders() {
     if (response.ok) {
       // Success
       setCustomer(await response.json());
-    } else {
-      // Error
-      toast.error('Error fetching customer.');
     }
   };
 
