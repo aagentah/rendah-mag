@@ -3,6 +3,8 @@ import Router from 'next/router';
 import zenscroll from 'zenscroll';
 import { Icon } from 'next-pattern-library';
 
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import Tabs from '~/components/tabs';
 import ProfileEdit from '~/components/profile/edit';
 import ProfileMessages from '~/components/profile/messages';
@@ -13,8 +15,6 @@ import ProfileBilling from '~/components/profile/billing';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';

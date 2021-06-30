@@ -17,10 +17,10 @@ import {
 import Modal from '~/components/modal';
 import { imageBuilder } from '~/lib/sanity/requests';
 
-const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
-
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
+
+const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
 const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
 const buttonIconArrowLeft = <Icon icon={['fas', 'arrow-left']} />;
@@ -41,7 +41,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     mode: 'snap',
     centered: app.deviceSize === 'md',
     spacing: 0,
-    controls: app.deviceSize === 'md' ? true : false,
+    controls: app.deviceSize === 'md',
     initial: 0,
     slideChanged(s) {
       setCurrentSlide(s.details().relativeSlide);
@@ -106,7 +106,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
         >
           <div className="relative  profile__dominion__carousel-item__wrapper">
             <div
-              className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  bg-light-grey`}
+              className="profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  bg-light-grey"
             >
               <div className="flex  flex-wrap">
                 <p className="col-24  t-primary  grey  f5  f6-md  tac  lh-copy  pb2">
@@ -131,7 +131,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
               iconFloat={null}
               inverted
               loading={false}
-              disabled={true}
+              disabled
               skeleton={false}
               onClick={null}
               /* Children */
@@ -198,7 +198,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                               .url()})`
                           : 'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)',
                       }}
-                      className={`profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow2`}
+                      className="profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow2"
                     >
                       <div className="flex  flex-wrap">
                         <p className="col-24  t-primary  white  f5  f6-md  tac  lh-copy  pb2  text-shadow">
@@ -289,7 +289,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                 return (
                   <button
                     key={i}
-                    className={'dot' + (currentSlide === i ? ' active' : '')}
+                    className={`dot${  currentSlide === i ? ' active' : ''}`}
                   />
                 );
               })}
@@ -315,7 +315,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                 color="black"
                 fluid={false}
                 icon={buttonIconArrowLeft}
-                iconFloat={'left'}
+                iconFloat="left"
                 inverted={false}
                 loading={false}
                 disabled={false}

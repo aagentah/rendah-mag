@@ -110,7 +110,7 @@ import { useApp } from '~/context-provider/app';
  * @param {string} marginBottom [required]
  * @param {string} modifier
  * @param {string} skeleton [required]
- **/
+ * */
 
 export default function HeroDefault({
   image,

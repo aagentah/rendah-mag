@@ -16,7 +16,7 @@ import componentTextAlign from '~/functions/componentTextAlign';
  * @param {string} marginTop [required]
  * @param {string} marginBottom [required]
  * @param {string} modifier
- **/
+ * */
 
 export default function TextBlock({
   title,

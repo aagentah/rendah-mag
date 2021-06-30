@@ -96,7 +96,7 @@ export default function CarouselItemSection({ item }) {
             figcaption={null}
             height={null}
             width={null}
-            customClass={'br4'}
+            customClass="br4"
             skeleton={false}
             onClick={null}
             /* Children */

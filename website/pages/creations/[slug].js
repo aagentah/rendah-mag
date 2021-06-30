@@ -160,7 +160,7 @@ export default function Creations({ siteConfig, post, preview }) {
                     link={null}
                     marginTop={0}
                     marginBottom={0}
-                    modifier={'creations'}
+                    modifier="creations"
                     skeleton={!post}
                   />
 

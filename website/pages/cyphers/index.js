@@ -54,14 +54,14 @@ export default function Cyphers({ siteConfig }) {
       >
         <>
           <Hero
-            image={'/images/cypher-youtube.jpg'}
-            title={'Rendah Mag Cyphers'}
+            image="/images/cypher-youtube.jpg"
+            title="Rendah Mag Cyphers"
             description={null}
             heroButtonText={null}
             link={null}
             marginTop={0}
             marginBottom={0}
-            modifier={'cypher'}
+            modifier="cypher"
             skeleton={false}
           />
 

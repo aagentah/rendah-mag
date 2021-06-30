@@ -35,10 +35,10 @@ export default async (order) => {
       address: {
         line1: address1,
         line2: address2,
-        city: city,
+        city,
         postal_code: postalCode,
         state: province,
-        country: country,
+        country,
       },
     };
 

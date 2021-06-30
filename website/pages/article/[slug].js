@@ -144,7 +144,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           link={null}
           marginTop={0}
           marginBottom={0}
-          modifier={'article'}
+          modifier="article"
           skeleton={!post}
         />
 

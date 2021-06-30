@@ -16,7 +16,7 @@ import { useApp } from '~/context-provider/app';
  * @param {string} marginTop [required]
  * @param {string} marginBottom [required]
  * @param {string} modifier
- **/
+ * */
 
 export default function TextImageBlock({
   title,

@@ -60,11 +60,11 @@ export default function Home({ siteConfig }) {
           image={featuredPost?.coverImage}
           title={featuredPost?.title || 'Loading...'}
           description={null}
-          heroButtonText={'Read more'}
+          heroButtonText="Read more"
           link={`/article/${featuredPost?.slug}`}
           marginTop={0}
           marginBottom={0}
-          modifier={'home'}
+          modifier="home"
           skeleton={!featuredPost}
         />
 
