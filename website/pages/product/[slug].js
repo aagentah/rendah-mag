@@ -1,4 +1,6 @@
 import Router, { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useState } from 'react';
 
 import {
   Heading,
@@ -17,6 +19,7 @@ import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 import Sections from '~/components/article/body-sections';
 import Tabs from '~/components/tabs';
+import Modal from '~/components/modal';
 
 import {
   getSiteConfig,
@@ -28,6 +31,7 @@ import {
 export default function Product({ siteConfig, product }) {
   const app = useApp();
   const router = useRouter();
+  const [modalActive, setModalActive] = useState(false);
 
   const isSoldOut = product?.tag === 'Sold-out';
   const imageHeight = app.deviceSize === 'md' ? null : 500;
@@ -39,6 +43,198 @@ export default function Product({ siteConfig, product }) {
   if (!router.isFallback && product?.slug) {
     const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
     const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
+    const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
+
+    const renderPurchaseButton = () => {
+      if (product.category === 'Printed Issues') {
+        return (
+          <>
+            <div className="dib  ph2  pb3">
+              <Button
+                /* Options */
+                type="primary"
+                size="medium"
+                text="Add to Cart"
+                color="black"
+                fluid={false}
+                icon={buttonIconPlus}
+                iconFloat="left"
+                inverted={false}
+                loading={false}
+                disabled={false}
+                skeleton={false}
+                onClick={() => {
+                  setModalActive(true);
+                }}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+
+            <Modal
+              /* Options */
+              size="medium"
+              active={modalActive}
+            >
+              <div className="pb2  mb2">
+                <Heading
+                  /* Options */
+                  htmlEntity="h3"
+                  text="Subscribe instead?"
+                  color="black"
+                  size="medium"
+                  truncate={0}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
+
+              <div className="pb4  pb3-md">
+                <div className="pb3">
+                  <Copy
+                    /* Options */
+                    text={`
+                    In addition to selling our print magazines, we also
+                    offer an immersive Subscription service called the Dominion,
+                    Joining the Dominion is cheaper than individual prints,
+                    and will give access to a great deal of additional features.
+                  `}
+                    color="black"
+                    size="medium"
+                    truncate={null}
+                  />
+                </div>
+
+                <div className="measure-wide  ph4  ph0-md">
+                  <p className="f-secondary  taj  f6  pb3  lh-copy">
+                    <strong>We offer the following to you:</strong>
+                  </p>
+                  <ul className="pl3">
+                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                      A Welcome package (+ membership card & stickers).
+                    </li>
+                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                      A quarter-yearly printed issue of Rendah Mag.
+                    </li>
+                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                      Frequent exclusive music, samples, tutorials, and more
+                      from featured artists & collectives.
+                    </li>
+                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                      Your own Dominion Profile login.
+                    </li>
+                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                      Discounts from all coming Rendah Mag products.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="flex  flex-wrap  pb2">
+                <div className="col-24  flex  flex-wrap  justify-center  justify-between-md  align-center">
+                  <div className="db  dib-md  ph0">
+                    <Button
+                      /* Options */
+                      type="primary"
+                      size="medium"
+                      text="Subscribe"
+                      color="black"
+                      fluid={false}
+                      icon={buttonIconPlus}
+                      iconFloat="left"
+                      inverted={false}
+                      loading={false}
+                      disabled={false}
+                      skeleton={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'next',
+                        href: '/dominion',
+                        target: null,
+                        routerLink: Link,
+                        routerLinkProps: {
+                          as: `/dominion`,
+                          scroll: false,
+                        },
+                      }}
+                    />
+                  </div>
+                  <div className="db  dib-md  ph0  pb3  pb0-md">
+                    <div
+                      className="snipcart-add-item"
+                      data-item-id={product?.slug}
+                      data-item-price={product?.price}
+                      data-item-url={`/product/${product?.slug}`}
+                      data-item-description=""
+                      data-item-image={product?.image1}
+                      data-item-name={product?.title}
+                      data-item-weight={product?.weight}
+                    >
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="medium"
+                        text="Contunue single purchase"
+                        color="black"
+                        fluid={false}
+                        icon={buttonIconArrowRight}
+                        iconFloat="right"
+                        inverted={false}
+                        loading={false}
+                        disabled={false}
+                        skeleton={false}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Modal>
+          </>
+        );
+      }
+
+      if (isSoldOut) {
+        return null;
+      }
+
+      return (
+        <div className="dib  ph2  pb3">
+          <div
+            className="snipcart-add-item"
+            data-item-id={product?.slug}
+            data-item-price={product?.price}
+            data-item-url={`/product/${product?.slug}`}
+            data-item-description=""
+            data-item-image={product?.image1}
+            data-item-name={product?.title}
+            data-item-weight={product?.weight}
+          >
+            <Button
+              /* Options */
+              type="primary"
+              size="medium"
+              text="Add to Cart"
+              color="black"
+              fluid={false}
+              icon={buttonIconPlus}
+              iconFloat="left"
+              inverted={false}
+              loading={false}
+              disabled={false}
+              skeleton={false}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+        </div>
+      );
+    };
 
     const descriptionTab = (
       <div className="rich-text  db  pb3">
@@ -197,38 +393,7 @@ export default function Product({ siteConfig, product }) {
                   </div>
 
                   <div className="flex  flex-wrap  align-center">
-                    {!isSoldOut && (
-                      <div className="dib  ph2  pb3">
-                        <div
-                          className="snipcart-add-item"
-                          data-item-id={product?.slug}
-                          data-item-price={product?.price}
-                          data-item-url={`/product/${product?.slug}`}
-                          data-item-description=""
-                          data-item-image={product?.image1}
-                          data-item-name={product?.title}
-                          data-item-weight={product?.weight}
-                        >
-                          <Button
-                            /* Options */
-                            type="primary"
-                            size="medium"
-                            text="Add to cart"
-                            color="black"
-                            fluid={false}
-                            icon={buttonIconPlus}
-                            iconFloat="left"
-                            inverted={false}
-                            loading={false}
-                            disabled={false}
-                            skeleton={false}
-                            onClick={null}
-                            /* Children */
-                            withLinkProps={null}
-                          />
-                        </div>
-                      </div>
-                    )}
+                    {renderPurchaseButton()}
 
                     <div className="dib  ph2  pb3">
                       <div className="snipcart-checkout">

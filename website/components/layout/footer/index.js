@@ -174,6 +174,7 @@ export default function Footer() {
                   <a
                     href="https://www.instagram.com/rendahmag/"
                     target="_blank"
+                    rel="noreferrer"
                     className="white"
                   >
                     <Icon icon={['fab', 'instagram']} size="2x" />
@@ -183,6 +184,7 @@ export default function Footer() {
                   <a
                     href="https://www.facebook.com/rendahmag/"
                     target="_blank"
+                    rel="noreferrer"
                     className="white"
                   >
                     <Icon icon={['fab', 'facebook']} size="2x" />
@@ -192,6 +194,7 @@ export default function Footer() {
                   <a
                     href="https://twitter.com/RendahMag"
                     target="_blank"
+                    rel="noreferrer"
                     className="white"
                   >
                     <Icon icon={['fab', 'twitter']} size="2x" />
@@ -202,6 +205,7 @@ export default function Footer() {
                   <a
                     href="https://soundcloud.com/rendahmag"
                     target="_blank"
+                    rel="noreferrer"
                     className="white"
                   >
                     <Icon icon={['fab', 'soundcloud']} size="2x" />
@@ -211,6 +215,7 @@ export default function Footer() {
                   <a
                     href="https://www.youtube.com/channel/UC4dYeD1ceX8sSY3J3UuMn8w"
                     target="_blank"
+                    rel="noreferrer"
                     className="white"
                   >
                     <Icon icon={['fab', 'youtube']} size="2x" />
@@ -220,6 +225,7 @@ export default function Footer() {
                   <a
                     href="https://discord.com/invite/ev2Q22C"
                     target="_blank"
+                    rel="noreferrer"
                     className="white"
                   >
                     <Icon icon={['fab', 'discord']} size="2x" />

@@ -5,7 +5,6 @@ import { Icon } from 'next-pattern-library';
 
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import Tabs from '~/components/tabs';
 import ProfileEdit from '~/components/profile/edit';
 import ProfileMessages from '~/components/profile/messages';
 import ProfilePipeline from '~/components/profile/pipeline';
@@ -14,7 +13,7 @@ import ProfileOfferings from '~/components/profile/offerings';
 import ProfileBilling from '~/components/profile/billing';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-
+import Tabs from '~/components/tabs';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
