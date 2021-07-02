@@ -54,6 +54,7 @@ $type-scale: (
   --primary-color: #00c4b4;
   --secondary-color: #ff00cd;
   --info-color: #6697f4;
+  --creations-black: #1c1c1c;
 }
 
 // [data-theme='dark'] {
@@ -82,6 +83,7 @@ $colors: (
   primary-color: --primary-color,
   secondary-color: --secondary-color,
   info-color: --info-color,
+  creations-black: --creations-black,
 ) !default;
 
 $body-color: var(--almost-black) !default;

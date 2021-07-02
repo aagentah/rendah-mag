@@ -16,15 +16,15 @@ export default function Sections({ body, ...props }) {
   const renderSections = (section, i) => {
     const serializers = {
       marks: {
-        inlineLink: (props) => {
+        inlineLink: (linkProps) => {
           return (
             <a
               rel="noopener noreferrer"
               target="_blank"
               className="di  underline"
-              href={props.mark.url}
+              href={linkProps.mark.url}
             >
-              {props.children[0]}
+              {linkProps.children[0]}
             </a>
           );
         },

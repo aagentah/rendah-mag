@@ -38,40 +38,6 @@ export default function CarouselItemSection({ item }) {
               />
             </div>
           )}
-
-          {item?.buttons && (
-            <div className="flex  flex-wrap">
-              {item.buttons.map((button) => (
-                <div key={button.title} className="mr2  mb3">
-                  <Button
-                    /* Options */
-                    type="primary"
-                    size="small"
-                    text={button.title}
-                    color="black"
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted={false}
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'external',
-                      href: button.link,
-                      target: '_blank',
-                      routerLink: Link,
-                      routerLinkProps: {
-                        scroll: false,
-                      },
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </div>
 
@@ -96,7 +62,7 @@ export default function CarouselItemSection({ item }) {
             figcaption={null}
             height={null}
             width={null}
-            customClass={'br4'}
+            customClass="br4"
             skeleton={false}
             onClick={null}
             /* Children */

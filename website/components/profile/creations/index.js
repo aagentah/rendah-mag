@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
+import Link from 'next/link';
 import { toast } from 'react-toastify';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import includes from 'lodash/includes';
 import some from 'lodash/some';
 import BlockContent from '@sanity/block-content-to-react';
-import { Heading, Copy } from 'next-pattern-library';
+import { Heading, Copy, Button } from 'next-pattern-library';
 
 import CardCreations from '~/components/card/creations';
 
@@ -29,8 +30,8 @@ export default function ProfileCreations() {
     action();
 
     if (user?.isDominion && posts?.length) {
-      let rP = [];
-      let oP = [];
+      const rP = [];
+      const oP = [];
 
       posts.map((post) => {
         const tagMatchUser = post?.tags?.some((r) => user?.tags?.includes(r));
@@ -123,6 +124,52 @@ export default function ProfileCreations() {
           </>
         ) : null}
       </section>
+    );
+  }
+
+  if (!user?.isDominion) {
+    return (
+      <>
+        <div className="pb3">
+          <Heading
+            /* Options */
+            htmlEntity="h1"
+            text="You are not currently in the Dominion"
+            color="black"
+            size="medium"
+            truncate={null}
+            /* Children */
+            withLinkProps={null}
+          />
+        </div>
+        <div className="pb3">
+          <Button
+            /* Options */
+            type="primary"
+            size="medium"
+            text="Click here to join"
+            color="black"
+            fluid={false}
+            icon={null}
+            iconFloat={null}
+            invert={false}
+            loading={false}
+            disabled={false}
+            skeleton={false}
+            onClick={null}
+            /* Children */
+            withLinkProps={{
+              type: 'next',
+              href: '/dominion',
+              target: null,
+              routerLink: Link,
+              routerLinkProps: {
+                scroll: false,
+              },
+            }}
+          />
+        </div>
+      </>
     );
   }
 

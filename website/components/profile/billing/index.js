@@ -37,9 +37,6 @@ export default function ProfileOrders() {
     if (response.ok) {
       // Success
       setCustomer(await response.json());
-    } else {
-      // Error
-      toast.error('Error fetching customer.');
     }
   };
 
@@ -49,7 +46,7 @@ export default function ProfileOrders() {
       {
         body: JSON.stringify({
           stripeCustomerId: user.stripeCustomerId,
-          paymentMethod: paymentMethod,
+          paymentMethod,
         }),
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
@@ -59,9 +56,6 @@ export default function ProfileOrders() {
     if (response.ok) {
       // Success
       toast.success('Payment method updated');
-    } else {
-      // Error
-      toast.error('There was an issue updating your Payment method.');
     }
   };
 
@@ -165,7 +159,11 @@ export default function ProfileOrders() {
     return true;
   }
 
-  getCustomer();
+  useEffect(() => {
+    if (user && !customer) {
+      getCustomer();
+    }
+  }, [customer]);
 
   if (user) {
     return (
@@ -181,15 +179,16 @@ export default function ProfileOrders() {
             /* Children */
             withLinkProps={null}
           />
-          {user?.dominionSince && (
+
+          {user?.dominionSince ? (
             <p className="t-secondary  f7  grey  pb2">
               <span className="bold  pr1">Member since:</span>
               {new Date(user.dominionSince).toDateString()}
             </p>
-          )}
+          ) : null}
         </div>
 
-        {customer && (
+        {customer ? (
           <div className="w-100  mb4">
             <div className="pb3">
               <Heading
@@ -206,17 +205,17 @@ export default function ProfileOrders() {
 
             <div className="pa3  pa4-md  mb4  shadow2  br4  flex  flex-wrap">
               <div className="col-12  flex  justify-start">
-                <p class="t-secondary  lh-copy  f6">
+                <p className="t-secondary  lh-copy  f6">
                   Ending in:{' '}
-                  <span class="t-primary">
+                  <span className="t-primary">
                     {customer.defaultPaymentMethod.card.last4}
                   </span>
                 </p>
               </div>
               <div className="col-12  flex  justify-end">
-                <p class="t-secondary  lh-copy  f6">
+                <p className="t-secondary  lh-copy  f6">
                   Expires on:{' '}
-                  <span class="t-primary">
+                  <span className="t-primary">
                     {customer.defaultPaymentMethod.card.exp_year}/
                     {customer.defaultPaymentMethod.card.exp_month}
                   </span>
@@ -224,48 +223,50 @@ export default function ProfileOrders() {
               </div>
             </div>
           </div>
-        )}
+        ) : null}
 
-        <form noValidate className="w-100  mb4" onSubmit={handleStripeCheck}>
-          <div className="pb3">
-            <Heading
-              /* Options */
-              htmlEntity="h2"
-              text="Payment Method"
-              color="black"
-              size="small"
-              truncate={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
+        {stripe && elements ? (
+          <form noValidate className="w-100  mb4" onSubmit={handleStripeCheck}>
+            <div className="pb3">
+              <Heading
+                /* Options */
+                htmlEntity="h2"
+                text="Payment Method"
+                color="black"
+                size="small"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
 
-          <div className="pa3  pa4-md  mb4  shadow2  br4">
-            <CardElement />
-          </div>
+            <div className="pa3  pa4-md  mb4  shadow2  br4">
+              <CardElement />
+            </div>
 
-          <div className="flex  justify-end-md">
-            <Button
-              /* Options */
-              type="primary"
-              size="small"
-              text="Update Card"
-              color="black"
-              fluid={false}
-              icon={null}
-              iconFloat={null}
-              inverted={false}
-              loading={updateCardButtonLoading}
-              disabled={!stripe}
-              skeleton={false}
-              onClick={null}
-              /* Children */
-              withLinkProps={{
-                type: 'form',
-              }}
-            />
-          </div>
-        </form>
+            <div className="flex  justify-end-md">
+              <Button
+                /* Options */
+                type="primary"
+                size="small"
+                text="Update Card"
+                color="black"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted={false}
+                loading={updateCardButtonLoading}
+                disabled={!stripe}
+                skeleton={false}
+                onClick={null}
+                /* Children */
+                withLinkProps={{
+                  type: 'form',
+                }}
+              />
+            </div>
+          </form>
+        ) : null}
 
         <form className="w-100  mb4" onSubmit={handleEditProfile}>
           <div className="pb3">
@@ -414,7 +415,7 @@ export default function ProfileOrders() {
           </div>
 
           <div className="pa3  pa4-md  mb4  shadow2  br4">
-            <p class="t-body  f6  lh-copy  black">
+            <p className="t-body  f6  lh-copy  black">
               If you'd like to pause or cancel your Dominion Subscription,
               please email us at{' '}
               <a href="mailto:info@rendahmag.com">info@rendahmag.com</a>.

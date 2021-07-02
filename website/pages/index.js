@@ -7,6 +7,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import HeroHome from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
+import SlideshowInfinite from '~/components/slideshow/infinite';
 import CardProduct from '~/components/card/product';
 
 import {
@@ -20,9 +21,11 @@ export default function Home({ siteConfig }) {
   const [interviews, setInterviews] = useState(null);
   const [news, setNews] = useState(null);
   const [insights, setInsights] = useState(null);
+  const [premieres, setPremieres] = useState(null);
   const [interviewsLength, setInterviewsLength] = useState(4);
   const [newsLength, setNewsLength] = useState(6);
   const [insightsLength, setInsightsLength] = useState(6);
+  const [premieresLength, setPremieresLength] = useState(6);
 
   useEffect(() => {
     const action = async () => {
@@ -30,15 +33,17 @@ export default function Home({ siteConfig }) {
       const interviewsRes = await getCategory('interviews', [1, 4]);
       const newsRes = await getCategory('news', [1, 6]);
       const insightsRes = await getCategory('insights', [1, 6]);
+      const premieresRes = await getCategory('premieres', [1, 20]);
 
       setFeaturedPost(featuredPostRes);
       setInterviews(interviewsRes);
       setNews(newsRes);
       setInsights(insightsRes);
+      setPremieres(premieresRes);
     };
 
     action();
-  }, [newsLength, newsLength, insightsLength]);
+  }, [newsLength, newsLength, insightsLength, premieresLength]);
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
@@ -61,7 +66,7 @@ export default function Home({ siteConfig }) {
 
         <div className="pt5  pt6-md">
           <Container>
-            <section className="pb5">
+            <section className="pb6">
               <div className="pb4">
                 <Heading
                   /* Options */
@@ -118,7 +123,66 @@ export default function Home({ siteConfig }) {
                 />
               </div>
             </section>
+          </Container>
 
+          {
+            // <section className="mb6  pv5  bg-creations-black  shadow2">
+            //   <Container>
+            //     <div className="pb4">
+            //       <Heading
+            //         /* Options */
+            //         htmlEntity="h2"
+            //         text="Premieres."
+            //         color="white"
+            //         size="medium"
+            //         truncate={null}
+            //         /* Children */
+            //         withLinkProps={null}
+            //       />
+            //     </div>
+            //   </Container>
+            //
+            //   <div className="flex  flex-wrap">
+            //     <SlideshowInfinite
+            //       postsLength={premieresLength}
+            //       posts={premieres}
+            //     />
+            //   </div>
+            //
+            //   <Container>
+            //     <div className="flex  justify-end  pr2">
+            //       <Button
+            //         /* Options */
+            //         type="secondary"
+            //         size="medium"
+            //         text="All Premieres"
+            //         color="white"
+            //         fluid={false}
+            //         icon={buttonIcon}
+            //         iconFloat={null}
+            //         inverted={false}
+            //         loading={false}
+            //         disabled={false}
+            //         skeleton={false}
+            //         onClick={null}
+            //         /* Children */
+            //         withLinkProps={{
+            //           type: 'next',
+            //           href: '/category/[slug]',
+            //           target: null,
+            //           routerLink: Link,
+            //           routerLinkProps: {
+            //             as: `/category/interviews`,
+            //             scroll: false,
+            //           },
+            //         }}
+            //       />
+            //     </div>
+            //   </Container>
+            // </section>
+          }
+
+          <Container>
             <div className="flex  flex-wrap">
               <div className="col-24  col-12-md  pr0  pr3-md">
                 <section className="pb5  pb6-md">

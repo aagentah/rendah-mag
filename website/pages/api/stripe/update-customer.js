@@ -1,7 +1,8 @@
 import fetch from 'isomorphic-unfetch';
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 import formatHttpError from '~/functions/formatHttpError';
+
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const updateCustomer = async (req, res) => {
   try {

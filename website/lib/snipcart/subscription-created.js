@@ -4,6 +4,7 @@ import generatePassword from 'password-generator';
 import formatHttpError from '~/functions/formatHttpError';
 import findUserByUsername from '~/lib/sanity/user/findUserByUsername';
 import createUser from '~/lib/sanity/user/createUser';
+import updateUserByUsername from '~/lib/sanity/user/updateUserByUsername';
 import welcomeDominionEmail from '~/lib/emails/welcome-dominion-subscription';
 
 export default async (order) => {
@@ -35,49 +36,27 @@ export default async (order) => {
       address: {
         line1: address1,
         line2: address2,
-        city: city,
+        city,
         postal_code: postalCode,
         state: province,
-        country: country,
+        country,
       },
     };
 
-    // const addMembertags = async () => {
-    //   const tags = [];
-    //
-    //   tags.push({
-    //     name: 'Dominion Subscription',
-    //     status: 'active',
-    //   });
-    //
-    //   const response = await fetch(
-    //     `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
-    //     {
-    //       body: JSON.stringify({ email, tags }),
-    //       headers: { 'Content-Type': 'application/json' },
-    //       method: 'POST',
-    //     }
-    //   );
-    //
-    //   // Error
-    //   if (!response.ok) {
-    //     throw new Error(await formatHttpError(response));
-    //   }
-    // };
-
     // Here you check if the username has already been used
-    const userExisted = await findUserByUsername(email);
+    const userExist = await findUserByUsername(email);
     const isUserEmpty =
-      Object.keys(userExisted).length === 0 &&
-      userExisted.constructor === Object;
+      Object.keys(userExist).length === 0 && userExist.constructor === Object;
 
     if (!isUserEmpty) {
-      throw new Error('The username has already been used.');
+      // already has account
+      await updateUserByUsername(null, userExist, userData);
+    } else {
+      // does not have account
+      await createUser(userData);
     }
 
-    await createUser(userData);
     await welcomeDominionEmail(email, temporaryPassword);
-    // await addMembertags();
 
     return { error: '' };
   } catch (error) {

@@ -84,38 +84,6 @@ export default {
       type: "boolean",
     },
     {
-      title: "Buttons",
-      name: "buttons",
-      type: "array",
-      of: [
-        {
-          title: "Button",
-          type: "object",
-          fields: [
-            {
-              title: "Title",
-              name: "title",
-              type: "string",
-            },
-            {
-              title: "Link",
-              name: "link",
-              type: "string",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      title: "Tags",
-      name: "tags",
-      type: "array",
-      of: [{ type: "string" }],
-      options: {
-        layout: "tags",
-      },
-    },
-    {
       name: "activeFrom",
       title: "Active From",
       type: "date",

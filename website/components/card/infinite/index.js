@@ -2,13 +2,14 @@ import { useState } from 'react';
 import Link from 'next/link';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
+import LazyLoad from 'react-lazyload';
 
 import { Card, Image, Label, Heading, Copy } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
-export default function CardCreations({ post, columnCount }) {
+export default function CardBlog({ post, columnCount }) {
   const app = useApp();
   const [inView, setInView] = useState(false);
 
@@ -16,10 +17,12 @@ export default function CardCreations({ post, columnCount }) {
   const scale = app.isRetina ? 2 : 1;
   let imageUrlWidth = app.deviceSize === 'md' ? 260 : 230;
   let imageHeight = app.deviceSize === 'md' ? 260 : 180;
+  const headingSize =
+    app.deviceSize === 'md' || columnCount === 2 ? 'medium' : 'small';
 
-  if (columnCount === 3) {
+  if (columnCount === 2) {
     imageUrlWidth = app.deviceSize === 'md' ? 260 : 500;
-    imageHeight = app.deviceSize === 'md' ? 200 : 200;
+    imageHeight = app.deviceSize === 'md' ? 260 : 300;
   }
 
   const handleIntersect = (event) => setInView(event.isIntersecting);
@@ -53,17 +56,17 @@ export default function CardCreations({ post, columnCount }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass="shadow2  br4"
+      customClass={null}
       skeleton={!post}
       onClick={null}
       /* Children */
       withLinkProps={{
         type: 'next',
-        href: '/creations/[slug]',
+        href: '/article/[slug]',
         target: null,
         routerLink: Link,
         routerLinkProps: {
-          as: `/creations/${post?.slug}`,
+          as: `/article/${post?.slug}`,
           scroll: false,
         },
       }}
@@ -76,45 +79,17 @@ export default function CardCreations({ post, columnCount }) {
       htmlEntity="h2"
       text={post?.title}
       color="black"
-      size="small"
-      truncate={columnCount === 3 ? 2 : 3}
+      size={headingSize}
+      truncate={4}
       skeleton={!post}
       /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/creations/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/creations/${post?.slug}`,
-          scroll: false,
-        },
-      }}
+      withLinkProps={null}
     />
   );
 
-  const labelBlock = [];
-
-  if (post?.tags?.length) {
-    post.tags.map((label) => {
-      labelBlock.push(
-        <Label
-          /* Options */
-          customClass="category"
-          text={label}
-          color="white"
-          backgroundColor="black"
-          onClick={null}
-          /* Children */
-          withLinkProps={null}
-        />
-      );
-    });
-  }
-
   return (
     <Observer {...observer}>
-      <div className={`card ${inView && 'in-view'}`}>
+      <div className={`card--scroll ${inView && 'in-view'}`}>
         <Card
           /* Options */
           type="block"
