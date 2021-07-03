@@ -46,6 +46,30 @@ export default function Product({ siteConfig, product }) {
     const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
 
     const renderPurchaseButton = () => {
+      if (isSoldOut) {
+        return (
+          <div className="dib  ph2  pb3">
+            <Button
+              /* Options */
+              type="primary"
+              size="medium"
+              text="Sold Out"
+              color="grey"
+              fluid={false}
+              icon={buttonIconPlus}
+              iconFloat="left"
+              inverted={false}
+              loading={false}
+              disabled={true}
+              skeleton={false}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+        );
+      }
+
       if (product.category === 'Printed Issues') {
         return (
           <>
@@ -196,10 +220,6 @@ export default function Product({ siteConfig, product }) {
             </Modal>
           </>
         );
-      }
-
-      if (isSoldOut) {
-        return null;
       }
 
       return (
