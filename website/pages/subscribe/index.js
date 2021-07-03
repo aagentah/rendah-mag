@@ -46,7 +46,7 @@ export default function Subscribe({ siteConfig, preview }) {
         hasFooter={true}
         meta={{
           siteConfig,
-          title: 'Link In Bio',
+          title: 'Subscribe',
           description: null,
           image: null,
         }}
