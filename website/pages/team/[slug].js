@@ -156,7 +156,9 @@ export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const member = await getTeamMemberAndPosts(params.slug);
 
-  if (!member) {
+  console.log('member', member);
+
+  if (!member?.slug) {
     return {
       notFound: true,
     };

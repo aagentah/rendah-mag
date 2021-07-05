@@ -233,7 +233,7 @@ export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const data = await getPostAndMore(params.slug, preview);
 
-  if (!data.post) {
+  if (!data?.post?.slug) {
     return {
       notFound: true,
     };

@@ -453,7 +453,7 @@ export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const product = await getProduct(params.slug);
 
-  if (!product) {
+  if (!product.slug) {
     return {
       notFound: true,
     };

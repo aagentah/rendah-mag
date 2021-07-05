@@ -45,7 +45,7 @@ export default function Creations({ siteConfig, post, preview }) {
   //   Router.push('/404');
   // }
 
-  if (!router.isFallback && post.slug) {
+  if (!router.isFallback && post?.slug) {
     const renderTags = () => {
       if (!post?.tags?.length) return;
       const labelBlock = [];
@@ -231,7 +231,7 @@ export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const data = await getCreation(params.slug, preview);
 
-  if (!data) {
+  if (!data?.slug) {
     return {
       notFound: true,
     };
