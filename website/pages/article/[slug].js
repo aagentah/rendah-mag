@@ -60,10 +60,10 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
-  if (!router.isFallback && !post?.slug) {
-    console.log('post', post);
-    Router.push('/404');
-  }
+  // if (!router.isFallback && !post?.slug) {
+  //   console.log('post', post);
+  //   Router.push('/404');
+  // }
 
   if (!router.isFallback && post?.slug) {
     const shouldShowAuthor = () => {
@@ -233,6 +233,12 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const data = await getPostAndMore(params.slug, preview);
+
+  if (!data.post) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
