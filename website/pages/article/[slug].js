@@ -61,7 +61,6 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   // if (!router.isFallback && !post?.slug) {
-  //   console.log('post', post);
   //   Router.push('/404');
   // }
 

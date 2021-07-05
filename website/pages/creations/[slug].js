@@ -41,9 +41,9 @@ export default function Creations({ siteConfig, post, preview }) {
   const [user] = useUser();
   const { height, width } = useWindowDimensions();
 
-  if (!router.isFallback && !post?.slug) {
-    Router.push('/404');
-  }
+  // if (!router.isFallback && !post?.slug) {
+  //   Router.push('/404');
+  // }
 
   if (!router.isFallback && post.slug) {
     const renderTags = () => {
@@ -230,6 +230,12 @@ export default function Creations({ siteConfig, post, preview }) {
 export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const data = await getCreation(params.slug, preview);
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
