@@ -16,9 +16,9 @@ import {
 export default function Post({ siteConfig, member }) {
   const router = useRouter();
 
-  if (!router.isFallback && !member?.slug) {
-    Router.push('/404');
-  }
+  // if (!router.isFallback && !member?.slug) {
+  //   Router.push('/404');
+  // }
 
   if (!router.isFallback && member?.slug) {
     return (
@@ -155,6 +155,14 @@ export default function Post({ siteConfig, member }) {
 export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const member = await getTeamMemberAndPosts(params.slug);
+
+  console.log('member', member);
+
+  if (!member?.slug) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
