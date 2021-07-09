@@ -456,6 +456,7 @@ export async function getStaticProps({ req, params, preview = false }) {
   if (!product.slug) {
     return {
       notFound: true,
+      revalidate: 1,
     };
   }
 
