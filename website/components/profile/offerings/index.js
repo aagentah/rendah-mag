@@ -43,7 +43,7 @@ export default function ProfileDominion({ refreshDominion }) {
     action();
   }, [offerings?.length]);
 
-  if (user?.isDominion) {
+  if (user?.isDominion && offerings?.length) {
     return (
       <>
         <section>
@@ -103,4 +103,6 @@ export default function ProfileDominion({ refreshDominion }) {
       </>
     );
   }
+
+  return false;
 }

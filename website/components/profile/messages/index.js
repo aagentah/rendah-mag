@@ -101,16 +101,5 @@ export default function ProfileDominion({ refreshDominion }) {
     );
   }
 
-  return (
-    <Heading
-      /* Options */
-      htmlEntity="h1"
-      text="No results"
-      color="black"
-      size="medium"
-      truncate={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
+  return false;
 }
