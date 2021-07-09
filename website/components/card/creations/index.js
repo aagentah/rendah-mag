@@ -142,8 +142,6 @@ export default function CardBlog({ post }) {
   const imageHeight = app?.deviceSize === 'md' ? 260 : 180;
   const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
 
-  console.log('post', post);
-
   const image = (
     <Image
       /* Options */

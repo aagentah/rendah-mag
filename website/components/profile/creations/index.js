@@ -21,13 +21,13 @@ export default function ProfileCreations() {
   const [otherPosts, setOtherPosts] = useState([]);
 
   // Fetch orders
-  useEffect(() => {
+  useEffect(async () => {
     const action = async () => {
       const data = await getAllCreationsTotal();
       if (data) setPosts(data);
     };
 
-    action();
+    await action();
 
     if (user?.isDominion && posts?.length) {
       const rP = [];
@@ -43,7 +43,7 @@ export default function ProfileCreations() {
     }
   }, [posts?.length]);
 
-  if (user?.isDominion && posts?.length) {
+  if (user?.isDominion) {
     return (
       <section>
         <div className="pb2">

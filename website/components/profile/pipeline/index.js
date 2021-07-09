@@ -24,7 +24,7 @@ export default function ProfileOrders() {
     action();
   }, []);
 
-  if (user?.isDominion && pipelineItems?.items?.length) {
+  if (user?.isDominion) {
     return (
       <section>
         <div className="pb2">
@@ -50,43 +50,44 @@ export default function ProfileOrders() {
         </div>
 
         <div className="timeline">
-          {pipelineItems.items.map((item, i) => (
-            <div key={i._key} className="timeline-block timeline-block-right">
-              {item?.completed && (
-                <div className="marker active">
-                  <i className="fa fa-check active" aria-hidden="true" />
-                </div>
-              )}
-
-              {!item?.completed && (
-                <div className="marker">
-                  <i className="fa fa-check" aria-hidden="true" />
-                </div>
-              )}
-
-              <div className="timeline-content">
-                {item?.title && (
-                  <div className="pb2">
-                    <Heading
-                      /* Options */
-                      htmlEntity="h2"
-                      text={item.title}
-                      color="black"
-                      size="small"
-                      truncate={null}
-                      /* Children */
-                      withLinkProps={null}
-                    />
+          {pipelineItems?.items?.length &&
+            pipelineItems.items.map((item, i) => (
+              <div key={i._key} className="timeline-block timeline-block-right">
+                {item?.completed && (
+                  <div className="marker active">
+                    <i className="fa fa-check active" aria-hidden="true" />
                   </div>
                 )}
-                {item?.description?.length && (
-                  <div className="rich-text">
-                    <BlockContent blocks={item.description} />
+
+                {!item?.completed && (
+                  <div className="marker">
+                    <i className="fa fa-check" aria-hidden="true" />
                   </div>
                 )}
+
+                <div className="timeline-content">
+                  {item?.title && (
+                    <div className="pb2">
+                      <Heading
+                        /* Options */
+                        htmlEntity="h2"
+                        text={item.title}
+                        color="black"
+                        size="small"
+                        truncate={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+                  )}
+                  {item?.description?.length && (
+                    <div className="rich-text">
+                      <BlockContent blocks={item.description} />
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </section>
     );

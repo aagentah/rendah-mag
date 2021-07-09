@@ -14,8 +14,13 @@ export default function Tabs(props) {
 
   const itemsRef = useRef([]);
   const [visibleTab, setVisibleTab] = useState(defaultSelected);
+  const [theArray, setTheArray] = useState([]);
 
   useEffect(() => {
+    if (defaultSelected && !theArray.includes(defaultSelected)) {
+      setTheArray([...theArray, defaultSelected]);
+    }
+
     if (content && content.length) {
       itemsRef.current = itemsRef.current.slice(0, content.length);
     }
@@ -23,6 +28,10 @@ export default function Tabs(props) {
 
   const handleToggle = (id, i) => {
     setVisibleTab(id);
+
+    if (!theArray.includes(id)) {
+      setTheArray([...theArray, id]);
+    }
 
     if (onToggle) {
       const current = itemsRef.current[i];
@@ -70,7 +79,11 @@ export default function Tabs(props) {
           <div className="tabs__mobile-nav__item__title">{item.tabTitle}</div>
         )}
       </div>
-      <div className="tabs__content">{item.tabContent}</div>
+      <div className="tabs__content">
+        {(visibleTab === item.id || theArray.includes(item.id)) && (
+          <>{item.tabContent}</>
+        )}
+      </div>
     </div>
   ));
 

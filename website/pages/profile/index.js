@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
+import dynamic from 'next/dynamic';
 import zenscroll from 'zenscroll';
 import { Icon } from 'next-pattern-library';
 
@@ -8,7 +9,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import ProfileEdit from '~/components/profile/edit';
 import ProfileMessages from '~/components/profile/messages';
 import ProfilePipeline from '~/components/profile/pipeline';
-import ProfileCreations from '~/components/profile/creations';
+// import ProfileCreations from '~/components/profile/creations';
 import ProfileOfferings from '~/components/profile/offerings';
 import ProfileBilling from '~/components/profile/billing';
 import Layout from '~/components/layout';
@@ -23,6 +24,10 @@ import { getSiteConfig } from '~/lib/sanity/requests';
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe('pk_live_2hnHQMXZhwDZQTESKurI7Sle');
+
+const ProfileCreations = dynamic(() =>
+  import('~/components/profile/creations')
+);
 
 export default function Profile({ siteConfig }) {
   const app = useApp();
