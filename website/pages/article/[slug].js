@@ -240,6 +240,7 @@ export async function getStaticProps({ req, params, preview = false }) {
   if (!data?.post?.slug) {
     return {
       notFound: true,
+      revalidate: 1,
     };
   }
 
