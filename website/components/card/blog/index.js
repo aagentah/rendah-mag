@@ -123,11 +123,18 @@ import {
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
-export default function CardBlog({ post }) {
+export default function CardBlog({ post, columnCount }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  const imageHeight = app?.deviceSize === 'md' ? 260 : 180;
+  let imageHeight;
+
+  if (columnCount == 2) {
+    imageHeight = app?.deviceSize === 'md' ? 260 : 360;
+  } else {
+    imageHeight = app?.deviceSize === 'md' ? 260 : 180;
+  }
+
   const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
 
   const image = (
