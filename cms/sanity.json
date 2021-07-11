@@ -14,8 +14,7 @@
     "@sanity/default-login",
     "@sanity/desk-tool",
     "@sanity/production-preview",
-    "@sanity/dashboard",
-    "graph-view"
+    "@sanity/dashboard"
   ],
   "env": {
     "development": {

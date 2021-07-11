@@ -11,7 +11,8 @@ export default {
     },
     {
       name: "slug",
-      title: "URL",
+      title: "Slug",
+      description: "The URL of the article (Try to keep short as possible).",
       type: "slug",
       options: {
         source: "title",
@@ -19,11 +20,11 @@ export default {
       },
       validation: (Rule) => Rule.required(),
     },
-    {
-      name: "showAuthor",
-      title: "Show Author",
-      type: "boolean",
-    },
+    // {
+    //   name: "showAuthor",
+    //   title: "Show Author",
+    //   type: "boolean",
+    // },
     {
       name: "author",
       title: "Author",
@@ -34,6 +35,7 @@ export default {
     {
       name: "featured",
       title: "Featured Article",
+      description: "Feature on the big Homepage Hero banner.",
       type: "boolean",
     },
     {
@@ -79,18 +81,21 @@ export default {
     {
       name: "socialTagline",
       title: "Social Tagline",
-      type: "text",
+      description: "Short description for social media SEO.",
+      type: "string",
       validation: (Rule) => Rule.required().max(70),
     },
     {
       name: "description",
       title: "Article Description",
+      description: "Shown as first paragraph in the article.",
       type: "text",
       validation: (Rule) => Rule.required().max(300),
     },
     {
       name: "body",
       title: "Article Body",
+      description: "Everything after the description.",
       type: "blockContent",
     },
     {
@@ -100,31 +105,34 @@ export default {
       fieldsets: [
         {
           name: "social",
-          description: 'Do not include "@" symbol',
         },
       ],
       fields: [
         {
           name: "twitter",
           title: "Twitter Handle",
+          description: 'Do not include "@" symbol.',
           type: "string",
           fieldset: "social",
         },
         {
           name: "instagram",
           title: "Instagram Handle",
+          description: 'Do not include "@" symbol.',
           type: "string",
           fieldset: "social",
         },
         {
           name: "facebook",
           title: "Facebook Handle",
+          description: 'Do not include "@" symbol.',
           type: "string",
           fieldset: "social",
         },
         {
           name: "soundcloud",
           title: "SoundCloud Handle",
+          description: 'Do not include "@" symbol.',
           type: "string",
           fieldset: "social",
         },
