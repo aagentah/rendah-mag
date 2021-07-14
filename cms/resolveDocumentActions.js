@@ -10,21 +10,28 @@ import defaultResolve, {
 import { CustomPublish } from "./actions/CustomPublish";
 import { CustomDelete } from "./actions/CustomDelete";
 import { CustomUnpublish } from "./actions/CustomUnpublish";
+import { PreviewLink } from "./actions/PreviewLink";
 
 export default function resolveDocumentActions(props) {
-  return defaultResolve(props).map((Action) => {
+  const actions = [];
+
+  defaultResolve(props).map((Action) => {
     switch (Action) {
       case PublishAction:
-        return CustomPublish;
+        return actions.push(CustomPublish);
         break;
       case DeleteAction:
-        return CustomDelete;
+        return actions.push(CustomDelete);
         break;
       case UnpublishAction:
-        return CustomUnpublish;
+        return actions.push(CustomUnpublish);
         break;
       default:
-        return Action;
+        return actions.push(Action);
     }
   });
+
+  actions.push(PreviewLink);
+
+  return actions;
 }
