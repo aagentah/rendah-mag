@@ -60,9 +60,9 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
-  // if (!router.isFallback && !post?.slug) {
-  //   Router.push('/404');
-  // }
+  if (!router.isFallback && !post?.slug) {
+    Router.push('/404');
+  }
 
   if (!router.isFallback && post?.slug) {
     const shouldShowAuthor = () => {
@@ -233,12 +233,12 @@ export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const data = await getPostAndMore(params.slug, preview);
 
-  if (!data?.post?.slug) {
-    return {
-      notFound: true,
-      revalidate: 1,
-    };
-  }
+  // if (!data?.post?.slug) {
+  //   return {
+  //     notFound: true,
+  //     revalidate: 1,
+  //   };
+  // }
 
   return {
     props: {
@@ -261,6 +261,6 @@ export async function getStaticPaths() {
           slug: article.slug,
         },
       })) || [],
-    fallback: true,
+    fallback: 'blocking',
   };
 }
