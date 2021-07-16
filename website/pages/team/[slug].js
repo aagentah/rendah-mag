@@ -16,9 +16,9 @@ import {
 export default function Post({ siteConfig, member }) {
   const router = useRouter();
 
-  // if (!router.isFallback && !member?.slug) {
-  //   Router.push('/404');
-  // }
+  if (!router.isFallback && !member?.slug) {
+    Router.push('/404');
+  }
 
   if (!router.isFallback && member?.slug) {
     return (
@@ -156,12 +156,12 @@ export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const member = await getTeamMemberAndPosts(params.slug);
 
-  if (!member?.slug) {
-    return {
-      notFound: true,
-      revalidate: 1,
-    };
-  }
+  // if (!member?.slug) {
+  //   return {
+  //     notFound: true,
+  //     revalidate: 1,
+  //   };
+  // }
 
   return {
     props: {
@@ -182,6 +182,6 @@ export async function getStaticPaths() {
           slug: member.slug,
         },
       })) || [],
-    fallback: true,
+    fallback: 'blocking',
   };
 }

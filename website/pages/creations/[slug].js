@@ -41,9 +41,9 @@ export default function Creations({ siteConfig, post, preview }) {
   const [user] = useUser();
   const { height, width } = useWindowDimensions();
 
-  // if (!router.isFallback && !post?.slug) {
-  //   Router.push('/404');
-  // }
+  if (!router.isFallback && !post?.slug) {
+    Router.push('/404');
+  }
 
   if (!router.isFallback && post?.slug) {
     const renderTags = () => {
@@ -231,12 +231,12 @@ export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const data = await getCreation(params.slug, preview);
 
-  if (!data?.slug) {
-    return {
-      notFound: true,
-      revalidate: 1,
-    };
-  }
+  // if (!data?.slug) {
+  //   return {
+  //     notFound: true,
+  //     revalidate: 1,
+  //   };
+  // }
 
   return {
     props: {
@@ -258,6 +258,6 @@ export async function getStaticPaths() {
           slug: creations.slug,
         },
       })) || [],
-    fallback: true,
+    fallback: 'blocking',
   };
 }
