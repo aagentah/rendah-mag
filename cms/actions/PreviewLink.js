@@ -14,7 +14,13 @@ function copyToClipboard(text) {
 
 export function PreviewLink(props) {
   const [dialogOpen, setDialogOpen] = useState(false);
-  const previewLink = resolveProductionUrl(props.draft);
+  let previewLink;
+
+  if (props?.draft) {
+    previewLink = resolveProductionUrl(props.draft);
+  } else if (props?.published) {
+    previewLink = resolveProductionUrl(props.published);
+  }
 
   return {
     label: "Preview link",
