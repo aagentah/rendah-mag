@@ -16,11 +16,9 @@ export function PreviewLink(props) {
   const [dialogOpen, setDialogOpen] = useState(false);
   let previewLink;
 
-  if (props?.type !== "user" || !props?.type !== "creations") {
+  if (props?.type !== "post" || !props?.type !== "creations") {
     return;
   }
-
-  console.log("props", props);
 
   if (props?.draft) {
     previewLink = resolveProductionUrl(props.draft);
