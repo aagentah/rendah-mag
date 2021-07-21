@@ -4,7 +4,7 @@ import { Button } from 'next-pattern-library';
 
 export default function ArticleLink({ text, url }) {
   return (
-    <div className="pv3  tal">
+    <div className="flex  justify-center  pv3  tac">
       <Button
         /* Options */
         type="primary"
