@@ -45,7 +45,7 @@ export default function Creations({ siteConfig, post, preview }) {
     Router.push('/404');
   }
 
-  if (!router.isFallback && post.slug) {
+  if (!router.isFallback && post?.slug) {
     const renderTags = () => {
       if (!post?.tags?.length) return;
       const labelBlock = [];
@@ -231,6 +231,13 @@ export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const data = await getCreation(params.slug, preview);
 
+  // if (!data?.slug) {
+  //   return {
+  //     notFound: true,
+  //     revalidate: 1,
+  //   };
+  // }
+
   return {
     props: {
       siteConfig,
@@ -251,6 +258,6 @@ export async function getStaticPaths() {
           slug: creations.slug,
         },
       })) || [],
-    fallback: true,
+    fallback: 'blocking',
   };
 }

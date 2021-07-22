@@ -233,6 +233,13 @@ export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const data = await getPostAndMore(params.slug, preview);
 
+  // if (!data?.post?.slug) {
+  //   return {
+  //     notFound: true,
+  //     revalidate: 1,
+  //   };
+  // }
+
   return {
     props: {
       siteConfig,
@@ -254,6 +261,6 @@ export async function getStaticPaths() {
           slug: article.slug,
         },
       })) || [],
-    fallback: true,
+    fallback: 'blocking',
   };
 }

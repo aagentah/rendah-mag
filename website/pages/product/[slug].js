@@ -452,6 +452,14 @@ export default function Product({ siteConfig, product }) {
 export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const product = await getProduct(params.slug);
+
+  // if (!product.slug) {
+  //   return {
+  //     notFound: true,
+  //     revalidate: 1,
+  //   };
+  // }
+
   return {
     props: {
       siteConfig,
@@ -471,6 +479,6 @@ export async function getStaticPaths() {
           slug: product.slug,
         },
       })) || [],
-    fallback: true,
+    fallback: 'blocking',
   };
 }

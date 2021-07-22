@@ -156,6 +156,13 @@ export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const member = await getTeamMemberAndPosts(params.slug);
 
+  // if (!member?.slug) {
+  //   return {
+  //     notFound: true,
+  //     revalidate: 1,
+  //   };
+  // }
+
   return {
     props: {
       siteConfig,
@@ -175,6 +182,6 @@ export async function getStaticPaths() {
           slug: member.slug,
         },
       })) || [],
-    fallback: true,
+    fallback: 'blocking',
   };
 }

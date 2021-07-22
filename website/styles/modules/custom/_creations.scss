@@ -1,21 +1,35 @@
+$creations-white: #cccccc;
+
 .creations {
   background-color: #1c1c1c;
 
   .rich-text {
-    * {
-      color: #cccccc !important;
+    *:not(.button):not(.button span) {
+      color: $creations-white !important;
     }
 
     strong,
     h2 {
-      // background-color: #cccccc !important;
+      // background-color: $creations-white !important;
       color: #eeeeee !important;
-      // box-shadow: 2px 0 0 #cccccc, -2px 0 0 #cccccc;
+      // box-shadow: 2px 0 0 $creations-white, -2px 0 0 $creations-white;
+    }
+  }
+
+  .button {
+    color: $creations-white !important;
+    border-color: $creations-white !important;
+    background: transparent !important;
+
+    &:hover {
+      color: var(--almost-black) !important;
+      border-color: $creations-white !important;
+      background: $creations-white !important;
     }
   }
 
   .audio__wrapper {
-    border-color: #cccccc;
+    border-color: $creations-white;
   }
 
   .audio__icon * {
@@ -25,7 +39,7 @@
   .rhap_progress-indicator,
   .rhap_volume-indicator,
   .rhap_progress-filled {
-    background-color: #cccccc !important;
+    background-color: $creations-white !important;
   }
 
   .rhap_container {
@@ -36,7 +50,7 @@
     background-color: var(--almost-black);
 
     * {
-      color: #cccccc;
+      color: $creations-white;
     }
   }
 
@@ -46,7 +60,7 @@
     @extend .bc-almost-white;
 
     *:not(.label) {
-      color: #cccccc;
+      color: $creations-white;
     }
   }
 }
