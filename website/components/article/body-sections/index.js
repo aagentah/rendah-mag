@@ -57,7 +57,15 @@ export default function Sections({ body, ...props }) {
     if (section._type === 'iframeEmbedBlock') {
       return (
         <div key={i} className="pv4">
-          <IframeBlock url={section.iframeUrl} height={section.iframeHeight} />
+          <IframeBlock
+            url={section.iframeUrl}
+            heightDesktop={
+              section.iframeHeightDesktop
+                ? section.iframeHeightDesktop
+                : section.iframeHeight
+            }
+            heightMobile={section.iframeHeightMobile}
+          />
         </div>
       );
     }

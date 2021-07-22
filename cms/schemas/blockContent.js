@@ -144,8 +144,15 @@ export default {
           validation: (Rule) => Rule.required(),
         },
         {
-          name: "iframeHeight",
-          title: "Iframe Height (px)",
+          name: "iframeHeightDesktop",
+          title: "Iframe Height (Desktop) [px]",
+          type: "string",
+          description: "",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "iframeHeightMobile",
+          title: "Iframe Height (Mobile) [px]",
           type: "string",
           description: "",
           validation: (Rule) => Rule.required(),
