@@ -36,9 +36,9 @@ export default function Product({ siteConfig, product }) {
   const isSoldOut = product?.tag === 'Sold-out';
   const imageHeight = app.deviceSize === 'md' ? null : 500;
 
-  // if (!router.isFallback && !product?.slug) {
-  //   Router.push('/404');
-  // }
+  if (!router.isFallback && !product?.slug) {
+    Router.push('/404');
+  }
 
   if (!router.isFallback && product?.slug) {
     const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
@@ -453,12 +453,12 @@ export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const product = await getProduct(params.slug);
 
-  if (!product.slug) {
-    return {
-      notFound: true,
-      revalidate: 1,
-    };
-  }
+  // if (!product.slug) {
+  //   return {
+  //     notFound: true,
+  //     revalidate: 1,
+  //   };
+  // }
 
   return {
     props: {
@@ -479,6 +479,6 @@ export async function getStaticPaths() {
           slug: product.slug,
         },
       })) || [],
-    fallback: true,
+    fallback: 'blocking',
   };
 }
