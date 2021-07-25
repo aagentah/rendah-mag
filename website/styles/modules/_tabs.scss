@@ -212,6 +212,13 @@
   padding-right: 15px;
   padding-top: 15px;
   padding-bottom: 30px;
+  min-height: 50vh;
+}
+
+@include breakpoint-up(md) {
+  .tabs__content {
+    min-height: 100vh;
+  }
 }
 
 .tabs__mobile-nav__item {

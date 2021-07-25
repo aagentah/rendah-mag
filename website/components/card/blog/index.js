@@ -126,12 +126,13 @@ import { useApp } from '~/context-provider/app';
 export default function CardBlog({ post, columnCount }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  let imageHeight;
+  let imageHeight, imageUrlWidth;
 
   if (columnCount == 2) {
-    imageHeight = app?.deviceSize === 'md' ? 260 : 360;
+    imageUrlWidth = app?.deviceSize === 'md' ? 260 : 500;
+    imageHeight = app?.deviceSize === 'md' ? 260 : 300;
   } else {
+    imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
     imageHeight = app?.deviceSize === 'md' ? 260 : 180;
   }
 

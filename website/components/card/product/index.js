@@ -141,8 +141,10 @@ export default function CardProduct({ product }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  const imageHeight = app?.deviceSize === 'md' ? 260 : 180;
+  const imageHeight = app?.deviceSize === 'md' ? 260 : 230;
   const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
+
+  console.log('product', product);
 
   const image = (
     <Image
@@ -150,7 +152,7 @@ export default function CardProduct({ product }) {
       src={
         product &&
         imageBuilder
-          .image(product?.coverImage)
+          .image(product?.image1)
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
