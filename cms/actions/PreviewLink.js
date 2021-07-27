@@ -16,32 +16,32 @@ export function PreviewLink(props) {
   const [dialogOpen, setDialogOpen] = useState(false);
   let previewLink;
 
-  if (props?.type !== "post" || !props?.type !== "creations") {
-    return;
+  if (props?.type === "post" || props?.type === "creations") {
+    if (props?.draft) {
+      previewLink = resolveProductionUrl(props.draft);
+    } else if (props?.published) {
+      previewLink = resolveProductionUrl(props.published);
+    }
+
+    return {
+      label: "Preview link",
+      icon: MDWeb,
+      onHandle: () => {
+        // Here you can perform your actions
+        setDialogOpen(true);
+        copyToClipboard(previewLink);
+
+        setTimeout(() => {
+          setDialogOpen(false);
+        }, 3500);
+      },
+      dialog: dialogOpen && {
+        type: "popover",
+        onClose: props.onComplete,
+        content: `✅ Copied to clipboard: ${previewLink}`,
+      },
+    };
   }
 
-  if (props?.draft) {
-    previewLink = resolveProductionUrl(props.draft);
-  } else if (props?.published) {
-    previewLink = resolveProductionUrl(props.published);
-  }
-
-  return {
-    label: "Preview link",
-    icon: MDWeb,
-    onHandle: () => {
-      // Here you can perform your actions
-      setDialogOpen(true);
-      copyToClipboard(previewLink);
-
-      setTimeout(() => {
-        setDialogOpen(false);
-      }, 3500);
-    },
-    dialog: dialogOpen && {
-      type: "popover",
-      onClose: props.onComplete,
-      content: `✅ Copied to clipboard: ${previewLink}`,
-    },
-  };
+  return false;
 }
