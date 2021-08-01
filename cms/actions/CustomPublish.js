@@ -112,40 +112,41 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
   };
 
   const handleButtonClick = async (e) => {
-    e.preventDefault();
-    setDialogOpen(false);
+    // e.preventDefault();
+    // setDialogOpen(false);
 
-    if (inputVal === adminPublishPassword && draft) {
-      setIsActioning(true);
-      publish.execute();
-      compressImage();
-      onComplete();
-    }
+    // if (inputVal === adminPublishPassword && draft) {
+    setIsActioning(true);
+    publish.execute();
+    compressImage();
+    onComplete();
+    // }
   };
 
   return {
     label: isActioning ? "Publishing…" : "Publish",
     onHandle: () => {
-      setDialogOpen(true);
+      handleButtonClick();
+      // setDialogOpen(true);
     },
-    dialog: isDialogOpen && {
-      type: "modal",
-      onClose: () => {
-        setDialogOpen(false);
-      },
-      content: (
-        <>
-          <h2>Enter admin password</h2>
-          <form onSubmit={handleButtonClick}>
-            <input
-              type="text"
-              value={inputVal}
-              onChange={(e) => setInputVal(e.target.value)}
-            />
-            <button type="submit">Done</button>
-          </form>
-        </>
-      ),
-    },
+    // dialog: isDialogOpen && {
+    //   type: "modal",
+    //   onClose: () => {
+    //     setDialogOpen(false);
+    //   },
+    //   content: (
+    //     <>
+    //       <h2>Enter admin password</h2>
+    //       <form onSubmit={handleButtonClick}>
+    //         <input
+    //           type="text"
+    //           value={inputVal}
+    //           onChange={(e) => setInputVal(e.target.value)}
+    //         />
+    //         <button type="submit">Done</button>
+    //       </form>
+    //     </>
+    //   ),
+    // },
   };
 }

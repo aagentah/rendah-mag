@@ -9,39 +9,40 @@ export function CustomUnpublish({ id, type, published, draft, onComplete }) {
   const adminPublishPassword = "password";
 
   const handleButtonClick = (e) => {
-    e.preventDefault();
-    setDialogOpen(false);
+    // e.preventDefault();
+    // setDialogOpen(false);
 
-    if (inputVal === adminPublishPassword) {
-      setIsActioning(true);
-      unpublish.execute();
-      onComplete();
-    }
+    // if (inputVal === adminPublishPassword) {
+    setIsActioning(true);
+    unpublish.execute();
+    onComplete();
+    // }
   };
 
   return {
     label: isActioning ? "Unpublishing…" : "Unpublish",
     onHandle: () => {
-      setDialogOpen(true);
+      handleButtonClick();
+      // setDialogOpen(true);
     },
-    dialog: isDialogOpen && {
-      type: "modal",
-      onClose: () => {
-        setDialogOpen(false);
-      },
-      content: (
-        <>
-          <h2>Enter admin password</h2>
-          <form onSubmit={handleButtonClick}>
-            <input
-              type="text"
-              value={inputVal}
-              onChange={(e) => setInputVal(e.target.value)}
-            />
-            <button type="submit">Done</button>
-          </form>
-        </>
-      ),
-    },
+    // dialog: isDialogOpen && {
+    //   type: "modal",
+    //   onClose: () => {
+    //     setDialogOpen(false);
+    //   },
+    //   content: (
+    //     <>
+    //       <h2>Enter admin password</h2>
+    //       <form onSubmit={handleButtonClick}>
+    //         <input
+    //           type="text"
+    //           value={inputVal}
+    //           onChange={(e) => setInputVal(e.target.value)}
+    //         />
+    //         <button type="submit">Done</button>
+    //       </form>
+    //     </>
+    //   ),
+    // },
   };
 }
