@@ -194,7 +194,7 @@ export default function CardBlog({ post, columnCount }) {
       text={post?.title}
       color="black"
       size="small"
-      truncate={2}
+      truncate={null}
       skeleton={!post}
       /* Children */
       withLinkProps={{
@@ -252,7 +252,7 @@ export default function CardBlog({ post, columnCount }) {
 
   return (
     <LazyLoad once offset={150} height={imageHeight}>
-      <article className="card  card--post">
+      <article className="card  card--post  card--scroll">
         {image && <div className="card__image">{image}</div>}
 
         <div className="card__dialog">
