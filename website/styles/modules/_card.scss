@@ -19,7 +19,7 @@
 }
 
 .card__title {
-  //
+  @extend .mb2;
 }
 
 .card__description {

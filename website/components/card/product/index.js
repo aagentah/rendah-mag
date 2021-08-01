@@ -218,16 +218,16 @@ export default function CardProduct({ product }) {
     />
   );
 
-  const copy = (
-    <Copy
-      /* Options */
-      text={product?.excerpt}
-      color="black"
-      size="medium"
-      truncate={2}
-      skeleton={!product}
-    />
-  );
+  // const copy = (
+  //   <Copy
+  //     /* Options */
+  //     text={product?.excerpt}
+  //     color="black"
+  //     size="medium"
+  //     truncate={2}
+  //     skeleton={!product}
+  //   />
+  // );
 
   const button = (
     <Button
@@ -266,7 +266,6 @@ export default function CardProduct({ product }) {
         <div className="card__dialog">
           {labels?.length && <div className="card__labels">{[...labels]}</div>}
           {heading && <div className="card__title">{heading}</div>}
-          {copy && <div className="card__description">{copy}</div>}
           {button && <div className="card__button">{button}</div>}
         </div>
       </article>
