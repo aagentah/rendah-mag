@@ -2,6 +2,7 @@ const previewSecret = "q2r5hm7ds9"; // Copy the string you used for SANITY_PREVI
 
 export default function resolveProductionUrl(document) {
   let page = document._type;
+  let slug = document?.slug?.current || "null";
 
   switch (document._type) {
     case "post":
@@ -13,5 +14,5 @@ export default function resolveProductionUrl(document) {
     default:
   }
 
-  return `https://rendahmag.com/api/sanity/preview?secret=${previewSecret}&page=${page}&slug=${document.slug.current}`;
+  return `https://rendahmag.com/api/sanity/preview?secret=${previewSecret}&page=${page}&slug=${slug}`;
 }
