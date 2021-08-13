@@ -35,7 +35,7 @@ export default function Error404({ siteConfig }) {
               withLinkProps={null}
             />
           </div>
-          <div className="measure-wide  mla  mra  pb3  taj">
+          <div className="rich-text  measure-wide  mla  mra  pb5">
             Return policy go here.
           </div>
         </Container>

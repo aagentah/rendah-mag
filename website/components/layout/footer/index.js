@@ -112,35 +112,33 @@ export default function Footer() {
                   //   />
                   // </li>
                 }
-                {
-                  // <li className="db  pb3">
-                  //   <Button
-                  //     /* Options */
-                  //     type="secondary"
-                  //     size="small"
-                  //     text="Terms & Conditions"
-                  //     color="white"
-                  //     fluid={false}
-                  //     icon={null}
-                  //     iconFloat={null}
-                  //     inverted
-                  //     loading={false}
-                  //     disabled={false}
-                  //     skeleton={false}
-                  //     onClick={null}
-                  //     /* Children */
-                  //     withLinkProps={{
-                  //       type: 'next',
-                  //       href: '/terms-conditions',
-                  //       target: null,
-                  //       routerLink: Link,
-                  //       routerLinkProps: {
-                  //         scroll: false,
-                  //       },
-                  //     }}
-                  //   />
-                  // </li>
-                }
+                <li className="db  pb3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="small"
+                    text="Terms & Conditions"
+                    color="white"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/terms-conditions',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        scroll: false,
+                      },
+                    }}
+                  />
+                </li>
                 <li className="db  pb3  tac  tal-md">
                   <Button
                     /* Options */
