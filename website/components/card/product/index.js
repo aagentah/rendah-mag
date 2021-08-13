@@ -181,19 +181,35 @@ export default function CardProduct({ product }) {
     />
   );
 
-  const labels = (
+  const labels = [
     <Label
       /* Options */
       customClass=""
-      text="Blog"
+      text={`£${product?.price}`}
       color="white"
       backgroundColor="black"
       skeleton={!product}
       onClick={null}
       /* Children */
       withLinkProps={null}
-    />
-  );
+    />,
+  ];
+
+  if (product?.tag === 'Sold-out') {
+    labels.push(
+      <Label
+        /* Options */
+        customClass="fw7"
+        text="Sold-out"
+        color="black"
+        backgroundColor=""
+        skeleton={!product}
+        onClick={null}
+        /* Children */
+        withLinkProps={null}
+      />
+    );
+  }
 
   const heading = (
     <Heading

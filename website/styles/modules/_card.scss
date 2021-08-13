@@ -15,7 +15,11 @@
 }
 
 .card__labels {
-  //
+  @extend .mb2;
+
+  .label__wrapper {
+    @extend .mr2;
+  }
 }
 
 .card__title {

@@ -277,8 +277,8 @@ export default function Product({ siteConfig, product }) {
       <>
         <div className="rich-text">
           <p>
-            For the same price, join the Dominion and recieve this item plus
-            additional monthly features.{' '}
+            If you prefer, join our Dominion Subscription and recieve this
+            product plus additional monthly features.{' '}
             <strong>We offer the following to you:</strong>
           </p>
 
@@ -293,7 +293,9 @@ export default function Product({ siteConfig, product }) {
             <li>Discounts from all coming Rendah Mag products.</li>
           </ul>
 
-          <a href="/dominion">Find out more</a>
+          <a className="f6  underline" href="/dominion">
+            Find out more
+          </a>
         </div>
       </>
     );
