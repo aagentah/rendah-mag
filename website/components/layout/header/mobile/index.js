@@ -5,6 +5,7 @@ import { Image, Button, Icon } from 'next-pattern-library';
 
 import Container from '../../container';
 import SearchBar from '../../../search-bar';
+import Notifications from '../notifications';
 
 import { useUser } from '~/lib/hooks';
 
@@ -15,6 +16,7 @@ export default function HeaderMobile({
   navOnWhite,
   handleLogout,
   showBasket,
+  showNotifications,
   buttonIcons,
 }) {
   const [user] = useUser();
@@ -67,6 +69,12 @@ export default function HeaderMobile({
             <span className="snipcart-items-count" />
           </div>
         </>
+      ) : null}
+
+      {showNotifications ? (
+        <div className="absolute  top  right  mr3  mt3">
+          <Notifications />
+        </div>
       ) : null}
 
       <nav className="nav  w-100">

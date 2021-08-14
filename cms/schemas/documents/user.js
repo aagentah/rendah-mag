@@ -91,6 +91,46 @@ export default {
       ],
     },
     {
+      title: "Notifications",
+      name: "notifications",
+      type: "array",
+      of: [
+        {
+          title: "Notification",
+          type: "object",
+          fields: [
+            {
+              title: "Title",
+              name: "title",
+              type: "string",
+            },
+            {
+              title: "Body",
+              name: "body",
+              type: "blockContent",
+            },
+            {
+              title: "Has Opened",
+              name: "hasOpened",
+              type: "boolean",
+            },
+            {
+              title: "Notification Type",
+              name: "notificationType",
+              type: "string",
+              readOnly: true,
+            },
+            {
+              title: "Created",
+              name: "created",
+              type: "datetime",
+              readOnly: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "discordId",
       title: "Discord ID",
       type: "string",
