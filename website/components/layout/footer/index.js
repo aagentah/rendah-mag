@@ -84,7 +84,7 @@ export default function Footer() {
                   />
                 </li>
                 {
-                  // <li className="db  pb3">
+                  // <li className="db  pb3  tac  tal-md">
                   //   <Button
                   //     /* Options */
                   //     type="secondary"
@@ -112,7 +112,7 @@ export default function Footer() {
                   //   />
                   // </li>
                 }
-                <li className="db  pb3">
+                <li className="db  pb3  tac  tal-md">
                   <Button
                     /* Options */
                     type="secondary"

@@ -36,10 +36,10 @@ export default function Error404({ siteConfig }) {
             />
           </div>
           <div className="rich-text  measure-wide  mla  mra  pb5">
-            <div>
+            <p>
               <strong>Last updated October 07, 2020</strong>
-            </div>
-            <div>
+            </p>
+            <p>
               This Cookie Policy explains how Rendah Mag (&quot;
               <strong>Company</strong>&quot;, &quot;<strong>we</strong>&quot;,
               &quot;
@@ -57,22 +57,22 @@ export default function Error404({ siteConfig }) {
               , (&quot;<strong>Websites</strong>&quot;). It explains what these
               technologies are and why we use them, as well as your rights to
               control our use of them.
-            </div>
-            <div>
+            </p>
+            <p>
               In some cases we may use cookies to collect personal information,
               or that becomes personal information if we combine it with other
               information.{' '}
-            </div>
-            <div>
+            </p>
+            <p>
               <strong>What are cookies?</strong>
-            </div>
-            <div>
+            </p>
+            <p>
               Cookies are small data files that are placed on your computer or
               mobile device when you visit a website. Cookies are widely used by
               website owners in order to make their websites work, or to work
               more efficiently, as well as to provide reporting information.
-            </div>
-            <div>
+            </p>
+            <p>
               Cookies set by the website owner (in this case, Rendah Mag) are
               called &quot;first party cookies&quot;. Cookies set by parties
               other than the website owner are called &quot;third party
@@ -82,11 +82,11 @@ export default function Error404({ siteConfig }) {
               set these third party cookies can recognize your computer both
               when it visits the website in question and also when it visits
               certain other websites.
-            </div>
-            <div>
+            </p>
+            <p>
               <strong>Why do we use cookies?</strong>
-            </div>
-            <div>
+            </p>
+            <p>
               We use first and third party cookies for several reasons. Some
               cookies are required for technical reasons in order for our
               Websites to operate, and we refer to these as
@@ -96,25 +96,25 @@ export default function Error404({ siteConfig }) {
               Third parties serve cookies through our Websites for advertising,
               analytics and other purposes. This is described in more detail
               below.
-            </div>
-            <div>
+            </p>
+            <p>
               The specific types of first and third party cookies served through
               our Websites and the purposes they perform are described below
               (please note that the specific cookies served may vary depending
               on the specific Online Properties you visit):
-            </div>
-            <div>
+            </p>
+            <p>
               <strong>How can I control cookies?</strong>
-            </div>
-            <div>
+            </p>
+            <p>
               You have the right to decide whether to accept or reject cookies.
               You can exercise your cookie rights by setting your preferences in
               the Cookie Consent Manager. The Cookie Consent Manager allows you
               to select which categories of cookies you accept or reject.
               Essential cookies cannot be rejected as they are strictly
               necessary to provide you with services.
-            </div>
-            <div>
+            </p>
+            <p>
               The Cookie Consent Manager can be found in the notification banner
               and on our website. If you choose to reject cookies, you may still
               use our website though your access to some functionality and areas
@@ -123,8 +123,8 @@ export default function Error404({ siteConfig }) {
               which you can refuse cookies through your web browser controls
               vary from browser-to-browser, you should visit your browser&apos;s
               help menu for more information.
-            </div>
-            <div>
+            </p>
+            <p>
               In addition, most advertising networks offer you a way to opt out
               of targeted advertising. If you would like to find out more
               information, please visit&nbsp;
@@ -147,8 +147,8 @@ export default function Error404({ siteConfig }) {
                 http://www.youronlinechoices.com
               </a>
               .
-            </div>
-            <div>
+            </p>
+            <p>
               The specific types of first and third party cookies served through
               our Websites and the purposes they perform are described in the
               table below (please note that the specific&nbsp;cookies served may
@@ -160,8 +160,8 @@ export default function Error404({ siteConfig }) {
                   Essential website cookies:
                 </u>
               </strong>
-            </div>
-            <div>
+            </p>
+            <p>
               <div>
                 These cookies are strictly necessary to provide you with
                 services available through our Websites and to use some of its
@@ -215,8 +215,8 @@ export default function Error404({ siteConfig }) {
                   </table>
                 </div>
               </section>
-            </div>
-            <div>
+            </p>
+            <p>
               <div>
                 <strong>
                   <u>
@@ -430,16 +430,16 @@ export default function Error404({ siteConfig }) {
                   </div>
                 </section>
               </div>
-            </div>
-            <div>
+            </p>
+            <p>
               <strong>
                 <u>
                   <br />
                   Advertising cookies:
                 </u>
               </strong>
-            </div>
-            <div>
+            </p>
+            <p>
               <p>
                 These cookies are used to make advertising messages more
                 relevant to you. They perform functions like preventing the same
@@ -547,16 +547,16 @@ export default function Error404({ siteConfig }) {
                   </div>
                 </section>
               </div>
-            </div>
-            <div>
+            </p>
+            <p>
               <strong>
                 <u>
                   <br />
                   Social networking cookies:
                 </u>
               </strong>
-            </div>
-            <div>
+            </p>
+            <p>
               <p>
                 These cookies are used to enable you to share pages and content
                 that you find interesting on our Websites through third party
@@ -614,16 +614,16 @@ export default function Error404({ siteConfig }) {
                   </div>
                 </section>
               </div>
-            </div>
-            <div>
+            </p>
+            <p>
               <strong>
                 <u>
                   <br />
                   Unclassified cookies:
                 </u>
               </strong>
-            </div>
-            <div>
+            </p>
+            <p>
               <p>
                 These are cookies that have not yet been categorized. We are in
                 the process of classifying these cookies with the help of their
@@ -955,13 +955,13 @@ export default function Error404({ siteConfig }) {
                   </div>
                 </section>
               </div>
-            </div>
-            <div>
+            </p>
+            <p>
               <strong>
                 What about other tracking technologies, like web beacons?
               </strong>
-            </div>
-            <div>
+            </p>
+            <p>
               Cookies are not the only way&nbsp;to recognize or track visitors
               to a website. We may use other, similar technologies from time to
               time, like web beacons (sometimes called &apos;tracking
@@ -976,17 +976,17 @@ export default function Error404({ siteConfig }) {
               and to measure the success of e-mail marketing campaigns. In many
               instances, these technologies are reliant on cookies to function
               properly, and so declining cookies will impair their functioning.
-            </div>
-            <div>
+            </p>
+            <p>
               <strong>Do you use Flash cookies or Local Shared Objects?</strong>
-            </div>
-            <div>
+            </p>
+            <p>
               Websites may also use so-called &apos;Flash Cookies&apos; (also
               known as Local Shared Objects or &apos;LSOs&apos;) to, among other
               things, collect and store information about your use of our
               services, fraud prevention and for other site operations.
-            </div>
-            <div>
+            </p>
+            <p>
               If you do not want Flash Cookies stored on your computer, you can
               adjust the settings of your Flash player to block Flash Cookies
               storage using the tools contained in the&nbsp;
@@ -1014,18 +1014,18 @@ export default function Error404({ siteConfig }) {
               your computer without your being asked, and (for Flash Player 8
               and later) how to block Flash Cookies that are not being delivered
               by the operator of the page you are on at the time).
-            </div>
-            <div>
+            </p>
+            <p>
               Please note that setting the Flash Player to restrict or limit
               acceptance of Flash Cookies may reduce or impede the functionality
               of some Flash applications, including, potentially, Flash
               applications used in connection with our services or online
               content.
-            </div>
-            <div>
+            </p>
+            <p>
               <strong>Do you serve targeted advertising?</strong>
-            </div>
-            <div>
+            </p>
+            <p>
               Third parties may serve cookies on your computer or mobile device
               to serve advertising through our Websites. These companies may use
               information about your visits to this and other websites in order
@@ -1039,33 +1039,35 @@ export default function Error404({ siteConfig }) {
               process does not enable us or them to identify your name, contact
               details or other details that directly identify you unless you
               choose to provide these.
-            </div>
-            <div>
+            </p>
+            <p>
               <strong>How often will you update this Cookie Policy?</strong>
-            </div>
-            <div>
+            </p>
+            <p>
               We may update&nbsp;this Cookie Policy from time to time in order
               to reflect, for example, changes to the cookies we use or for
               other operational, legal or regulatory reasons. Please therefore
               re-visit this Cookie Policy regularly to stay informed about our
               use of cookies and related technologies.
-            </div>
-            <div>
+            </p>
+            <p>
               The date at the top of this Cookie Policy indicates when it was
               last updated.
-            </div>
-            <div>
+            </p>
+            <p>
               <strong>Where can I get further information?</strong>
-            </div>
-            <div>
+            </p>
+            <p>
               If you have any questions about our use of cookies or other
-              technologies, please email us at info@rendahmag.com or by post to:
-            </div>
-            <div>Rendah Mag</div>
-            <div>__________</div>
-            <div>__________</div>
-            <div>United Kingdom</div>
-            <div>Phone: __________</div>
+              technologies, please{' '}
+              <a
+                target="_blank"
+                className="underline"
+                href="https://forms.gle/xpPtVhUiuzZzehdy8"
+              >
+                contact us.
+              </a>
+            </p>
           </div>
         </Container>
       </Layout>
