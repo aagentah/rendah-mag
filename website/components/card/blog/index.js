@@ -130,7 +130,7 @@ export default function CardBlog({ post, columnCount }) {
   const app = useApp();
   const [inView, setInView] = useState(false);
   const scale = app?.isRetina ? 2 : 1;
-  let imageHeight, imageUrlWidth;
+  let imageHeight; let imageUrlWidth;
   const handleIntersect = (event) => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 

@@ -6,9 +6,10 @@ import { Image, Button, Icon } from 'next-pattern-library';
 
 import Container from '../../container';
 import SearchBar from '../../../search-bar';
-const Notifications = dynamic(() => import('../notifications'));
 
 import { useUser } from '~/lib/hooks';
+
+const Notifications = dynamic(() => import('../notifications'));
 
 export default function HeaderDestop({
   meta,

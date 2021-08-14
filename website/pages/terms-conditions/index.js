@@ -45,7 +45,7 @@ export default function Error404({ siteConfig }) {
                 </div>
                 <div>
                   <p data-custom-class="heading_1">
-                    <a name="_6aa3gkhykvst"></a>
+                    <a name="_6aa3gkhykvst" />
                     <strong>AGREEMENT TO TERMS</strong>
                   </p>
                 </div>
@@ -100,7 +100,7 @@ export default function Error404({ siteConfig }) {
                   to the extent local laws are applicable.
                 </p>
                 <p data-custom-class="heading_1">
-                  <a name="_b6y29mp52qvx"></a>
+                  <a name="_b6y29mp52qvx" />
                   <strong>INTELLECTUAL PROPERTY RIGHTS</strong>
                 </p>
                 <p data-custom-class="body_text">
@@ -134,7 +134,7 @@ export default function Error404({ siteConfig }) {
                   the Marks.
                 </p>
                 <p data-custom-class="heading_1">
-                  <a name="_5hg7kgyv9l8z"></a>
+                  <a name="_5hg7kgyv9l8z" />
                   <strong>USER REPRESENTATIONS</strong>
                 </p>
                 <p data-custom-class="body_text">
@@ -155,7 +155,7 @@ export default function Error404({ siteConfig }) {
                     future use of the Site (or any portion thereof).
                   </p>
                   <p data-custom-class="heading_1">
-                    <a name="_nds4qylockxx"></a>
+                    <a name="_nds4qylockxx" />
                     <strong>PRODUCTS</strong>
                   </p>
                 </div>
@@ -176,7 +176,7 @@ export default function Error404({ siteConfig }) {
                 </div>
                 <div>
                   <p data-custom-class="heading_1">
-                    <a name="_ynub0jdx8pob"></a>
+                    <a name="_ynub0jdx8pob" />
                     <strong>PURCHASES AND PAYMENT</strong>
                   </p>
                 </div>
@@ -184,7 +184,7 @@ export default function Error404({ siteConfig }) {
                   <p data-custom-class="body_text">
                     We accept the following forms of payment:
                   </p>
-                  <div></div>
+                  <div />
                   <p data-custom-class="body_text">
                     You agree to provide current, complete, and accurate
                     purchase and account information for all purchases made via
@@ -221,7 +221,7 @@ export default function Error404({ siteConfig }) {
                   </p>
                 </div>
                 <p>
-                  <a name="_h284p8mrs3r7"></a>
+                  <a name="_h284p8mrs3r7" />
                   <div data-custom-class="heading_1">
                     <strong>PROHIBITED ACTIVITIES</strong>
                   </div>

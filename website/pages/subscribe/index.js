@@ -33,8 +33,8 @@ export default function Subscribe({ siteConfig, preview }) {
       <Layout
         navOffset="center"
         navOnWhite
-        hasNav={true}
-        hasFooter={true}
+        hasNav
+        hasFooter
         meta={{
           siteConfig,
           title: 'Subscribe',

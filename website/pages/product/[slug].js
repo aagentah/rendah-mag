@@ -60,7 +60,7 @@ export default function Product({ siteConfig, product }) {
               iconFloat="left"
               inverted={false}
               loading={false}
-              disabled={true}
+              disabled
               skeleton={false}
               onClick={null}
               /* Children */

@@ -3,11 +3,11 @@ import cx from 'classnames';
 import BlockContent from '@sanity/block-content-to-react';
 import find from 'lodash/find';
 
+import { Icon } from 'next-pattern-library';
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import { useOutsideAlerter } from '~/lib/outside-alerter';
 
-import { Icon } from 'next-pattern-library';
 
 export default function Notifications({ navOnWhite, meta }) {
   const app = useApp();
@@ -56,32 +56,32 @@ export default function Notifications({ navOnWhite, meta }) {
       <div className={`notifications__dialog  ${dialogClass}`}>
         {user?.notifications?.length
           ? user.notifications.map((item, i) => (
-              <article
-                className={`notifications__dialog__row  ${
+            <article
+              className={`notifications__dialog__row  ${
                   item?.hasOpened && 'o-30'
                 }`}
-                key={item._key}
-              >
-                <div className="col-4  flex  align-center  justify-center">
-                  {iconWarning}
+              key={item._key}
+            >
+              <div className="col-4  flex  align-center  justify-center">
+                {iconWarning}
+              </div>
+              <div className="col-20  flex  flex-wrap  align-center  pl2  pr3">
+                <div className="col-24">
+                  <p className="f7  t-primary  pb2">{item.title}</p>
                 </div>
-                <div className="col-20  flex  flex-wrap  align-center  pl2  pr3">
-                  <div className="col-24">
-                    <p className="f7  t-primary  pb2">{item.title}</p>
-                  </div>
 
-                  <div className="col-24">
-                    <div className="f7  lh-copy  pb2">
-                      <BlockContent blocks={item.body} />
-                    </div>
-                  </div>
-                  <div className="col-24">
-                    <p className="f8  t-secondary">
-                      {new Date(item.created).toDateString()}
-                    </p>
+                <div className="col-24">
+                  <div className="f7  lh-copy  pb2">
+                    <BlockContent blocks={item.body} />
                   </div>
                 </div>
-              </article>
+                <div className="col-24">
+                  <p className="f8  t-secondary">
+                    {new Date(item.created).toDateString()}
+                  </p>
+                </div>
+              </div>
+            </article>
             ))
           : null}
 
