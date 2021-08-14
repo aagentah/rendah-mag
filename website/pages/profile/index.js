@@ -90,7 +90,7 @@ export default function Profile({ siteConfig }) {
             <div className="pt4  pt0-md  pb4">
               <Container>
                 {user && app.deviceSize && (
-                  <div className="tabs-wrapper--side-bar">
+                  <div className="tabs-wrapper--profile  tabs-wrapper--side-bar">
                     <Tabs
                       /* Options */
                       content={[

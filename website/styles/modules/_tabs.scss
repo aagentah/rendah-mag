@@ -212,13 +212,6 @@
   padding-right: 15px;
   padding-top: 15px;
   padding-bottom: 30px;
-  min-height: 50vh;
-}
-
-@include breakpoint-up(md) {
-  .tabs__content {
-    min-height: 100vh;
-  }
 }
 
 .tabs__mobile-nav__item {
@@ -235,4 +228,23 @@
 .tabs__mobile-nav__item__icon {
   @extend .mr2;
   @extend .pr1;
+}
+
+// Profile
+
+.tabs-wrapper--profile {
+  .tabs__content {
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    min-height: 50vh;
+  }
+
+  @include breakpoint-up(md) {
+    .tabs__content {
+      min-height: 100vh;
+    }
+  }
 }
