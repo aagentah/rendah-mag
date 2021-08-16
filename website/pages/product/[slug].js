@@ -104,7 +104,7 @@ export default function Product({ siteConfig, product }) {
                 <Heading
                   /* Options */
                   htmlEntity="h3"
-                  text="Subscribe instead?"
+                  text="Subscribe instead for more?"
                   color="black"
                   size="medium"
                   truncate={0}
@@ -200,7 +200,7 @@ export default function Product({ siteConfig, product }) {
                         /* Options */
                         type="secondary"
                         size="medium"
-                        text="Contunue single purchase"
+                        text="Single purchase"
                         color="black"
                         fluid={false}
                         icon={buttonIconArrowRight}
