@@ -10,7 +10,6 @@ export default function CookieBanner() {
   const app = useApp();
   const [active, setActive] = useState(false);
   const [accepted, setAccepted] = useState(false);
-  const buttonSize = app.deviceSize === 'md' ? 'small' : 'medium';
 
   const handleOnClick = () => {
     Cookies.set('rndh-cookie-set', true, { expires: 365 });
@@ -46,7 +45,7 @@ export default function CookieBanner() {
           <Button
             /* Options */
             type="primary"
-            size={buttonSize}
+            size="small"
             text="Accept"
             color="black"
             fluid={false}
