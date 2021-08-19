@@ -192,11 +192,9 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 <Sections body={post.body} />
               </div>
 
-              <Observer {...observer}>
-                <div className="pb4  mb2">
-                  <SocialLinks article={post} />
-                </div>
-              </Observer>
+              <div className="pb4  mb2">
+                <SocialLinks article={post} />
+              </div>
             </section>
 
             {shouldShowAuthor() && (
@@ -216,11 +214,13 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 
               <div className="flex  flex-wrap">
                 {morePosts.map((p, i) => (
-                  <div key={p.slug} className="col-24  col-6-md">
-                    <div className="pa3">
-                      <CardBlog i={i} post={p} />
+                  <Observer {...observer}>
+                    <div key={p.slug} className="col-24  col-6-md">
+                      <div className="pa3">
+                        <CardBlog i={i} post={p} />
+                      </div>
                     </div>
-                  </div>
+                  </Observer>
                 ))}
               </div>
             </section>

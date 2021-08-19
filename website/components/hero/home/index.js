@@ -185,8 +185,14 @@ export default function HeroDefault({
 
   if (link) {
     linkProps = {
-      type: 'external',
-      href: link,
+      type: 'next',
+      href: '/article/[slug]',
+      target: null,
+      routerLink: Link,
+      routerLinkProps: {
+        as: link,
+        scroll: false,
+      },
     };
   }
 

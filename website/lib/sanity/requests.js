@@ -5,6 +5,7 @@ import dateTodayISO from '~/functions/dateTodayISO';
 import dateTodayYyyyMmDd from '~/functions/dateTodayYyyyMmDd';
 
 const postFields = `
+  ...,
   name,
   title,
   publishedAt,
@@ -15,7 +16,6 @@ const postFields = `
   'author': author->{
     ...,
   },
-  ...,
 `;
 
 const productFields = `
@@ -108,7 +108,7 @@ export async function getLatestDominionCreations(preview) {
 
 export async function getCreation(slug, preview) {
   const results = await getClient(preview).fetch(
-    `*[_type == "creations" && slug.current == $slug] | [0] {
+    `*[_type == "creations" && slug.current == $slug] | order(publishedAt desc) [0] {
       ${postFields}
     }`,
     { slug }
