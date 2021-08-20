@@ -1,85 +1,84 @@
+import { Icon } from 'next-pattern-library';
+
 export default function SocialLinks({ article }) {
   if (article.socialHandles) {
-    let soundcloud = null;
-    let facebook = null;
-    let twitter = null;
-    let instagram = null;
+    let links = [];
 
     if (article.socialHandles.soundcloud) {
-      soundcloud = [];
       article.socialHandles.soundcloud.split(/\s*,\s*/).forEach((e) => {
-        soundcloud.push(
+        links.push(
           <a
             key={e}
-            className="db  pv2  link  f6  black  t-body"
+            className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
             title="soundcloud"
             href={`https://soundcloud.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
-            - soundcloud/{e}
+            <Icon icon={['fab', 'soundcloud']} size="1x" />
+            <span className="pl2">/ {e}</span>
           </a>
         );
       });
     }
+
     if (article.socialHandles.facebook) {
-      facebook = [];
       article.socialHandles.facebook.split(/\s*,\s*/).forEach((e) => {
-        facebook.push(
+        links.push(
           <a
             key={e}
-            className="db  pv2  link  f6  black  t-body"
+            className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
             title="facebook"
             href={`https://facebook.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
-            - facebook/{e}
+            <Icon icon={['fab', 'facebook']} size="1x" />
+            <span className="pl2">/ {e}</span>
           </a>
         );
       });
     }
+
     if (article.socialHandles.twitter) {
-      twitter = [];
       article.socialHandles.twitter.split(/\s*,\s*/).forEach((e) => {
-        twitter.push(
+        links.push(
           <a
             key={e}
-            className="db  pv2  link  f6  black  t-body"
+            className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
             title="twitter"
             href={`https://twitter.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
-            - twitter/{e}
+            <Icon icon={['fab', 'twitter']} size="1x" />
+            <span className="pl2">/ {e}</span>
           </a>
         );
       });
     }
+
     if (article.socialHandles.instagram) {
-      instagram = [];
       article.socialHandles.instagram.split(/\s*,\s*/).forEach((e) => {
-        instagram.push(
+        links.push(
           <a
             key={e}
-            className="db  pv2  link  f6  black  t-body"
+            className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
             title="instagram"
             href={`https://instagram.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
-            - instagram/{e}
+            <Icon icon={['fab', 'instagram']} size="1x" />
+            <span className="pl2">/ {e}</span>
           </a>
         );
       });
     }
 
     return (
-      <div className="article__social-links  mt4  pa4  br4  bg-almost-white">
-        {soundcloud}
-        {facebook}
-        {twitter}
-        {instagram}
+      <div className="article__social-links  pa4  br4  bg-almost-white">
+        {links}
       </div>
     );
   }
