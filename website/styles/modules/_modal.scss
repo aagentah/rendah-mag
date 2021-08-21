@@ -42,3 +42,10 @@
   margin: 0 auto;
   padding: 40px;
 }
+
+.modal__close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  cursor: pointer;
+}

@@ -47,6 +47,12 @@
   padding: 30px;
 }
 
+.product {
+  .tabs__body {
+    background-color: $npl-base-almost-white;
+  }
+}
+
 @include breakpoint-up(md) {
   .tabs__body {
     background-color: $npl-base-almost-white;

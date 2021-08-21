@@ -10,7 +10,7 @@ export default function Modal(props) {
     size,
     active,
     /* Children */
-    children
+    children,
   } = props;
 
   return (

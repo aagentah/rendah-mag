@@ -43,7 +43,6 @@ export default function Product({ siteConfig, product }) {
   if (!router.isFallback && product?.slug) {
     const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
     const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
-    const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
 
     const renderPurchaseButton = () => {
       if (isSoldOut) {
@@ -119,11 +118,9 @@ export default function Product({ siteConfig, product }) {
                   <Copy
                     /* Options */
                     text={`
-                    In addition to selling our print magazines, we also
-                    offer an immersive Subscription service called the Dominion,
-                    Joining the Dominion is cheaper than individual prints,
-                    and will give access to a great deal of additional features.
-                  `}
+                      Joining our Dominion Subscription is cheaper than individual prints,
+                      and will give access to a great deal of additional features.
+                    `}
                     color="black"
                     size="medium"
                     truncate={null}
@@ -132,7 +129,7 @@ export default function Product({ siteConfig, product }) {
 
                 <div className="measure-wide  ph4  ph0-md">
                   <p className="f-secondary  taj  f6  pb3  lh-copy">
-                    <strong>We offer the following to you:</strong>
+                    <strong>We offer the following:</strong>
                   </p>
                   <ul className="pl3">
                     <li className="f-secondary  tal  f6  pb2  lh-copy">
@@ -156,64 +153,62 @@ export default function Product({ siteConfig, product }) {
               </div>
 
               <div className="flex  flex-wrap  pb2">
-                <div className="col-24  flex  flex-wrap  justify-center  justify-between-md  align-center">
-                  <div className="db  dib-md  ph0">
+                <div className="col-24  col-12-md  flex  justify-center  justify-start-md  align-center  pb3  pb0-md  ph0  ph3-md">
+                  <Button
+                    /* Options */
+                    type="primary"
+                    size="medium"
+                    text="Subscribe"
+                    color="black"
+                    fluid={true}
+                    icon={buttonIconPlus}
+                    iconFloat="left"
+                    inverted={false}
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/dominion',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        as: `/dominion`,
+                        scroll: false,
+                      },
+                    }}
+                  />
+                </div>
+                <div className="col-24  col-12-md  flex  justify-center  justify-end-md  align-center  ph0  ph3-md">
+                  <div
+                    className="w-100  snipcart-add-item"
+                    data-item-id={product?.slug}
+                    data-item-price={product?.price}
+                    data-item-url={`/product/${product?.slug}`}
+                    data-item-description=""
+                    data-item-image={product?.image1}
+                    data-item-name={product?.title}
+                    data-item-weight={product?.weight}
+                  >
                     <Button
                       /* Options */
                       type="primary"
                       size="medium"
-                      text="Subscribe"
+                      text="Single purchase"
                       color="black"
-                      fluid={false}
+                      fluid={true}
                       icon={buttonIconPlus}
                       iconFloat="left"
-                      inverted={false}
+                      inverted={true}
                       loading={false}
                       disabled={false}
                       skeleton={false}
                       onClick={null}
                       /* Children */
-                      withLinkProps={{
-                        type: 'next',
-                        href: '/dominion',
-                        target: null,
-                        routerLink: Link,
-                        routerLinkProps: {
-                          as: `/dominion`,
-                          scroll: false,
-                        },
-                      }}
+                      withLinkProps={null}
                     />
-                  </div>
-                  <div className="db  dib-md  ph0  pb3  pb0-md">
-                    <div
-                      className="snipcart-add-item"
-                      data-item-id={product?.slug}
-                      data-item-price={product?.price}
-                      data-item-url={`/product/${product?.slug}`}
-                      data-item-description=""
-                      data-item-image={product?.image1}
-                      data-item-name={product?.title}
-                      data-item-weight={product?.weight}
-                    >
-                      <Button
-                        /* Options */
-                        type="secondary"
-                        size="medium"
-                        text="Single purchase"
-                        color="black"
-                        fluid={false}
-                        icon={buttonIconArrowRight}
-                        iconFloat="right"
-                        inverted={false}
-                        loading={false}
-                        disabled={false}
-                        skeleton={false}
-                        onClick={null}
-                        /* Children */
-                        withLinkProps={null}
-                      />
-                    </div>
                   </div>
                 </div>
               </div>
@@ -300,7 +295,7 @@ export default function Product({ siteConfig, product }) {
       </>
     );
     return (
-      <div className="bg-almost-white">
+      <div className="product  bg-almost-white">
         <Layout
           navOffset="top"
           navOnWhite
