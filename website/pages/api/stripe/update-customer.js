@@ -8,22 +8,6 @@ const updateCustomer = async (req, res) => {
   try {
     const { stripeCustomerId, paymentMethod } = req.body;
 
-    // // Get customer
-    // const customer = await stripe.customers.list({
-    //   limit: 1,
-    //   email: email_address,
-    // });
-    //
-    // // Error
-    // if (!customer?.data?.length) {
-    //   throw new Error('Error fetching Stripe customer');
-    // }
-    //
-    // const customerId = customer.data[0].id;
-    //
-    // // Get customer details based on ID
-    // const customerDetails = await stripe.customers.retrieve(customerId);
-
     // Get customer
     const customer = await stripe.customers.retrieve(stripeCustomerId);
 

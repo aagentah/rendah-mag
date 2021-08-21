@@ -24,8 +24,7 @@
 @import 'elements/checkbox';
 @import 'elements/radio';
 @import 'elements/icon';
-
-@import 'elements/custom/search-bar';
+// @import 'elements/search-bar';
 
 // Modules
 @import 'modules/avatar';
@@ -33,20 +32,19 @@
 @import 'modules/hero';
 @import 'modules/modal';
 @import 'modules/tabs';
-
-@import 'modules/custom/audio';
-@import 'modules/custom/article';
-@import 'modules/custom/cookie-banner';
-@import 'modules/custom/rich-text';
-@import 'modules/custom/theme';
-@import 'modules/custom/subscribe-banner';
-@import 'modules/custom/header';
-@import 'modules/custom/footer';
-@import 'modules/custom/layout';
-@import 'modules/custom/form';
-@import 'modules/custom/profile';
-@import 'modules/custom/product';
-@import 'modules/custom/dominion';
-@import 'modules/custom/timeline';
-@import 'modules/custom/creations';
-@import 'modules/custom/notifications';
+@import 'modules/audio';
+@import 'modules/article';
+@import 'modules/cookie-banner';
+@import 'modules/rich-text';
+@import 'modules/theme';
+@import 'modules/subscribe-banner';
+@import 'modules/header';
+@import 'modules/footer';
+@import 'modules/layout';
+@import 'modules/form';
+@import 'modules/profile';
+@import 'modules/product';
+@import 'modules/dominion';
+@import 'modules/timeline';
+@import 'modules/creations';
+@import 'modules/notifications';

@@ -9,8 +9,6 @@ import encodeSpecialChar from '~/functions/encodeSpecialChar';
 const sitemapXml = (item) => {
   let postXML;
 
-  console.log('item', item);
-
   if (item?.slug?.current) {
     const title = item?.title || '';
     let hasLoginPrompt;

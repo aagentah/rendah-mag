@@ -14,7 +14,19 @@ import ArticleLink from './article-link';
 
 export default function Sections({ body, ...props }) {
   const renderSections = (section, i) => {
+    // Remove stray breaks
+    if (section?.children?.length) {
+      if (
+        section?.children[0]?.text === '\n' ||
+        section?.children[0]?.text === ''
+      ) {
+        return false;
+      }
+    }
+
     const serializers = {
+      list: (props) => <>{props.children}</>,
+      listItem: (props) => <li>{props.children}</li>,
       marks: {
         inlineLink: (linkProps) => {
           return (
@@ -34,9 +46,9 @@ export default function Sections({ body, ...props }) {
     // para
     if (section._type === 'block') {
       return (
-        <div key={i}>
+        <>
           <BlockContent blocks={section} serializers={serializers} />
-        </div>
+        </>
       );
     }
 
@@ -108,7 +120,6 @@ export default function Sections({ body, ...props }) {
 
     // audio embed
     if (section._type === 'audioEmbedBlock') {
-      console.log('section', section);
       return (
         <div key={i} className="pv3">
           <AudioEmbed

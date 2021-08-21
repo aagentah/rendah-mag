@@ -17,6 +17,13 @@
   @extend .ml3;
 }
 
+.rich-text li {
+  @extend .t-secondary;
+  @extend .lh-copy;
+  @extend .f6;
+  @extend .pb3;
+}
+
 .rich-text h2,
 .rich-text h3,
 .rich-text h4,

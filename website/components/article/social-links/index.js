@@ -77,7 +77,7 @@ export default function SocialLinks({ article }) {
     }
 
     return (
-      <div className="article__social-links  pa4  br4  bg-almost-white">
+      <div className="article__social-links  mt3  pa4  br4  bg-almost-white">
         {links}
       </div>
     );

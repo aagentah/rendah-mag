@@ -89,7 +89,6 @@ export default function Creations({ siteConfig, post, preview }) {
     };
 
     const renderSections = () => {
-      console.log('preview', preview);
       if (!post?.body) return;
 
       if (!user?.isDominion && !preview) {

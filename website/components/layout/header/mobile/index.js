@@ -3,8 +3,6 @@ import Link from 'next/link';
 
 import { Image, Button, Icon } from 'next-pattern-library';
 
-import Container from '../../container';
-import SearchBar from '../../../search-bar';
 import Notifications from '../notifications';
 
 import { useUser } from '~/lib/hooks';

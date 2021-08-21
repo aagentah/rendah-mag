@@ -68,8 +68,6 @@ export default function Profile({ siteConfig }) {
     }
   };
 
-  console.log('app.deviceSize', app.deviceSize);
-
   if (user) {
     return (
       <Elements stripe={stripePromise}>

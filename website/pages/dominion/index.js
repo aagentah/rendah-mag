@@ -36,7 +36,6 @@ export default function Dominion({ siteConfig }) {
   useEffect(() => {
     const action = async () => {
       const dominionUsersRes = await getDominionUsers();
-      console.log('dominionUsersRes', dominionUsersRes);
       setDominionUsers(shuffle(dominionUsersRes));
     };
 

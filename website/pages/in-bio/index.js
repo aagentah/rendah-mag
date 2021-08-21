@@ -32,7 +32,6 @@ export default function LinkInBio({ siteConfig, items, preview }) {
   const [modalActive, setModalActive] = useState(false);
 
   const renderItemType = (item) => {
-    console.log('item', item);
     let url;
 
     if (item?.field?.condition === 'documentInternal') {
