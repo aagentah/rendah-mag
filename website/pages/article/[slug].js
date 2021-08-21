@@ -208,9 +208,20 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 
           {morePosts.length > 0 && (
             <section className="pb3">
-              <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-                - More Posts
-              </h2>
+              <div className="pb3  ph3">
+                <div className="bg-black  pa2  dib">
+                  <Heading
+                    /* Options */
+                    htmlEntity="h3"
+                    text="More Posts"
+                    color="white"
+                    size="small"
+                    truncate={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
+              </div>
 
               <div className="flex  flex-wrap">
                 {morePosts.map((p, i) => (
