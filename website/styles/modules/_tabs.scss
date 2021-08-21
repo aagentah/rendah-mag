@@ -47,12 +47,6 @@
   padding: 30px;
 }
 
-.product {
-  .tabs__body {
-    background-color: $npl-base-almost-white;
-  }
-}
-
 @include breakpoint-up(md) {
   .tabs__body {
     background-color: $npl-base-almost-white;
@@ -188,7 +182,7 @@
 @include breakpoint-up(md) {
   .tabs__body {
     padding: 0;
-    padding-top: 30px;
+    padding-top: 15px;
   }
 }
 
@@ -217,7 +211,7 @@
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 15px;
-  padding-bottom: 30px;
+  padding-bottom: 15px;
 }
 
 .tabs__mobile-nav__item {

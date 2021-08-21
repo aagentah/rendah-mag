@@ -252,10 +252,8 @@ export default function Product({ siteConfig, product }) {
     };
 
     const descriptionTab = (
-      <div className="rich-text  db  pb3">
-        <div className="rich-text">
-          <Sections body={product?.description} />
-        </div>
+      <div className="rich-text">
+        <Sections body={product?.description} />
       </div>
     );
 
@@ -268,32 +266,6 @@ export default function Product({ siteConfig, product }) {
       </div>
     );
 
-    const dominionTab = (
-      <>
-        <div className="rich-text">
-          <p>
-            If you prefer, join our Dominion Subscription and recieve this
-            product plus additional monthly features.{' '}
-            <strong>We offer the following to you:</strong>
-          </p>
-
-          <ul>
-            <li>A Welcome package (+ membership card & stickers).</li>
-            <li>A quarter-yearly printed issue of Rendah Mag.</li>
-            <li>
-              Frequent exclusive music, samples, tutorials, and more from
-              featured artists & collectives.
-            </li>
-            <li>Your own Dominion Profile login.</li>
-            <li>Discounts from all coming Rendah Mag products.</li>
-          </ul>
-
-          <a className="f6  underline" href="/dominion">
-            Find out more
-          </a>
-        </div>
-      </>
-    );
     return (
       <div className="product  bg-almost-white">
         <Layout
@@ -394,16 +366,9 @@ export default function Product({ siteConfig, product }) {
                         },
                         {
                           id: '2',
-                          tabTitle: 'Shipping & Returns',
+                          tabTitle: 'Shipping Info',
                           tabContent: deliveryTab,
                         },
-                        product.category === 'Printed Issues'
-                          ? {
-                              id: '3',
-                              tabTitle: 'DOMINION',
-                              tabContent: dominionTab,
-                            }
-                          : null,
                       ]}
                       defaultSelected="1"
                     />

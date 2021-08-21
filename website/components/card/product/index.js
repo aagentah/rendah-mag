@@ -144,8 +144,6 @@ export default function CardProduct({ product }) {
   const imageHeight = app?.deviceSize === 'md' ? 260 : 230;
   const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
 
-  console.log('product', product);
-
   const image = (
     <Image
       /* Options */
@@ -162,7 +160,7 @@ export default function CardProduct({ product }) {
       placeholder={null}
       alt={product?.title}
       figcaption={null}
-      height={imageHeight}
+      height={null}
       width={null}
       customClass={null}
       skeleton={!product}
