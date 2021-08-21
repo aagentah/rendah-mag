@@ -407,8 +407,8 @@ export async function getAllOfferings(sinceStartOfMonth, preview) {
       ...,
       'tracks': tracks[] {
         'track': *[_id == ^._ref] [0] {
-          'file': file.asset->url,
           ...,
+          'file': file.asset->url,
         },
       }
     }`,

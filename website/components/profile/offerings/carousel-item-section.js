@@ -20,6 +20,8 @@ export default function CarouselItemSection({ offering }) {
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
   const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
 
+  console.log('offering', offering);
+
   return (
     <section>
       <div className="pb2">
