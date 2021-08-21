@@ -20,7 +20,8 @@ export default function deviceSize() {
   };
 
   const deviceSize = getDeviceSize();
-  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
+  // const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
+  const isRetina = true;
 
   if (!deviceSize) return;
   if (app.deviceSize !== deviceSize) {
