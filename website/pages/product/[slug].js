@@ -313,7 +313,7 @@ export default function Product({ siteConfig, product }) {
                   />
                 </div>
                 <div className="col-24  col-12-md  pl4-md">
-                  <div className="db  ph2  pt2">
+                  <div className="db  ph2">
                     <Heading
                       /* Options */
                       htmlEntity="h1"
