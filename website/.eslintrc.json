@@ -27,6 +27,7 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    "react/destructuring-assignment": 0,
     "react/jsx-boolean-value": 0,
     "import/extensions": 0,
     "import/prefer-default-export": 0,
