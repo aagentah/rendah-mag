@@ -27,6 +27,7 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    "react/jsx-boolean-value": 0,
     "import/extensions": 0,
     "import/prefer-default-export": 0,
     "array-callback-return": 0,
