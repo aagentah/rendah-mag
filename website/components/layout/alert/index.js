@@ -6,7 +6,7 @@ export default function Alert() {
       <Container>
         <div className="pa3  tac  t-primary">
           This page is a preview.{' '}
-          <a href="/api/sanity/exit-preview" className="white">
+          <a href="/api/sanity/exit-preview" className="white  underline">
             Click here
           </a>{' '}
           to exit preview mode.
