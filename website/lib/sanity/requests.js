@@ -363,7 +363,7 @@ export async function getSmartLinksTotal(preview) {
 export async function getLinkInBio(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "linkInBio"] [0] {
-      'items': items[] [0..11] {
+      'items': items[] {
         'field': field {
           'documentInternal': documentInternal {
             'document': *[_id == ^._ref] [0] {
