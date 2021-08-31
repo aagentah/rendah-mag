@@ -173,7 +173,7 @@ export default function Home({ siteConfig }) {
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="All Insights"
+                      text="All Premieres"
                       color="black"
                       fluid={false}
                       icon={buttonIcon}
