@@ -190,7 +190,7 @@ export default function Home({ siteConfig }) {
                         target: null,
                         routerLink: Link,
                         routerLinkProps: {
-                          as: `/category/insights`,
+                          as: `/category/premieres`,
                           scroll: false,
                         },
                       }}
