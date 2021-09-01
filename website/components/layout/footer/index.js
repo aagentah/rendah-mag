@@ -14,7 +14,7 @@ export default function Footer() {
       <footer className="footer  pv5">
         <Container>
           <div className="flex  flex-wrap">
-            <div className="col-24  col-16-md">
+            <div className="col-24  col-14-md">
               <div className="pb3  tac  tal-md">
                 <Heading
                   /* Options */
@@ -166,9 +166,9 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="col-24  col-8-md  flex  justify-end-md  align-end-md  pb3">
-              <div className="flex  flex-wrap  col-24">
-                <div className="col-8  col-4-md  flex  justify-end  justify-end-md  pt4  pt0-md">
+            <div className="col-24  col-10-md  flex  justify-end-md  align-end-md  pb3">
+              <div className="flex  flex-wrap  space-around  col-24">
+                <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://www.instagram.com/rendahmag/"
                     target="_blank"
@@ -178,7 +178,7 @@ export default function Footer() {
                     <Icon icon={['fab', 'instagram']} size="2x" />
                   </a>
                 </div>
-                <div className="col-8  col-4-md  flex  justify-center  justify-end-md  pt4  pt0-md">
+                <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://www.facebook.com/rendahmag/"
                     target="_blank"
@@ -188,7 +188,7 @@ export default function Footer() {
                     <Icon icon={['fab', 'facebook']} size="2x" />
                   </a>
                 </div>
-                <div className="col-8  col-4-md  flex  justify-start  justify-end-md  pt4  pt0-md">
+                <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://twitter.com/RendahMag"
                     target="_blank"
@@ -199,7 +199,7 @@ export default function Footer() {
                   </a>
                 </div>
 
-                <div className="col-8  col-4-md  flex  justify-end  justify-end-md  pt4  pt0-md">
+                <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://soundcloud.com/rendahmag"
                     target="_blank"
@@ -209,7 +209,7 @@ export default function Footer() {
                     <Icon icon={['fab', 'soundcloud']} size="2x" />
                   </a>
                 </div>
-                <div className="col-8  col-4-md  flex  justify-center  justify-end-md  pt4  pt0-md">
+                <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://www.youtube.com/channel/UC4dYeD1ceX8sSY3J3UuMn8w"
                     target="_blank"
@@ -219,7 +219,7 @@ export default function Footer() {
                     <Icon icon={['fab', 'youtube']} size="2x" />
                   </a>
                 </div>
-                <div className="col-8  col-4-md  flex  justify-start  justify-end-md  pt4  pt0-md">
+                <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://discord.com/invite/ev2Q22C"
                     target="_blank"
@@ -227,6 +227,16 @@ export default function Footer() {
                     className="white"
                   >
                     <Icon icon={['fab', 'discord']} size="2x" />
+                  </a>
+                </div>
+                <div className="col-24  col-3-md  dn  df-md  justify-center  justify-end-md  pt4  pt0-md">
+                  <a
+                    href="https://open.spotify.com/user/z7wa87uoc308b4dmp8qpoukdf?si=28825cb6910f4e39"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="white"
+                  >
+                    <Icon icon={['fab', 'spotify']} size="2x" />
                   </a>
                 </div>
               </div>
