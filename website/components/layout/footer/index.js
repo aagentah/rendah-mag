@@ -167,8 +167,8 @@ export default function Footer() {
               </ul>
             </div>
             <div className="col-24  col-10-md  flex  justify-end-md  align-end-md  pb3">
-              <div className="flex  flex-wrap  space-around  col-24">
-                <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
+              <div className="flex  flex-wrap  col-24">
+                <div className="col-8  col-3-md  flex  justify-end  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://www.instagram.com/rendahmag/"
                     target="_blank"
@@ -188,7 +188,7 @@ export default function Footer() {
                     <Icon icon={['fab', 'facebook']} size="2x" />
                   </a>
                 </div>
-                <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
+                <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://twitter.com/RendahMag"
                     target="_blank"
@@ -199,7 +199,7 @@ export default function Footer() {
                   </a>
                 </div>
 
-                <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
+                <div className="col-8  col-3-md  flex  justify-end  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://soundcloud.com/rendahmag"
                     target="_blank"
@@ -219,7 +219,7 @@ export default function Footer() {
                     <Icon icon={['fab', 'youtube']} size="2x" />
                   </a>
                 </div>
-                <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
+                <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
                   <a
                     href="https://discord.com/invite/ev2Q22C"
                     target="_blank"
