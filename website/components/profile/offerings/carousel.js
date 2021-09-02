@@ -105,9 +105,7 @@ export default function Carousel({ offeringItems, refreshDominion }) {
           key={i}
         >
           <div className="relative  profile__dominion__carousel-item__wrapper">
-            <div
-              className="profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  bg-light-grey"
-            >
+            <div className="profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  bg-light-grey">
               <div className="flex  flex-wrap">
                 <p className="col-24  t-primary  grey  f5  f6-md  tac  lh-copy  pb2">
                   ???
@@ -125,13 +123,13 @@ export default function Carousel({ offeringItems, refreshDominion }) {
               type="secondary"
               size="medium"
               text="Access"
-              color="grey"
+              color="moon-grey"
               fluid={false}
               icon={buttonIconArrowRight}
               iconFloat={null}
               inverted
               loading={false}
-              disabled
+              disabled={false}
               skeleton={false}
               onClick={null}
               /* Children */
@@ -277,7 +275,7 @@ export default function Carousel({ offeringItems, refreshDominion }) {
                 return (
                   <button
                     key={i}
-                    className={`dot${  currentSlide === i ? ' active' : ''}`}
+                    className={`dot${currentSlide === i ? ' active' : ''}`}
                   />
                 );
               })}

@@ -123,13 +123,13 @@ export default function Carousel({ dominionItems, refreshDominion }) {
               type="secondary"
               size="medium"
               text="Access"
-              color="grey"
+              color="moon-grey"
               fluid={false}
               icon={buttonIconArrowRight}
               iconFloat={null}
               inverted
               loading={false}
-              disabled
+              disabled={false}
               skeleton={false}
               onClick={null}
               /* Children */

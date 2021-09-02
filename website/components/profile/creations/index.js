@@ -114,7 +114,7 @@ export default function ProfileCreations() {
 
             <div className="flex  flex-wrap">
               {otherPosts.map((post, i) => (
-                <div key={post.slug} className="col-24  col-6-md">
+                <div key={post.slug} className="col-24  col-8-md">
                   <div className="ph3  pv2">
                     <CardCreations i={i} post={post} columnCount={4} />
                   </div>
