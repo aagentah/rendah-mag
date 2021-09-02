@@ -7,7 +7,7 @@ const findUserByHandle = async (handle) => {
     const params = { handle };
 
     const data = await client.fetch(query, params).then((res) => {
-      console.log(`User was fetched, document ID is ${res._id}`);
+      console.log(`User was fetched, document ID is ${res?._id}`);
       return res;
     });
 

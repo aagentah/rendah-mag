@@ -8,7 +8,6 @@ const findUserByUsername = async (username) => {
     const params = { username: username.toLowerCase() };
 
     const data = await client.fetch(query, params).then((res) => {
-      console.log('res', res);
       console.log(`User was fetched, document ID is ${res?._id}`);
       return res;
     });

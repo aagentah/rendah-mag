@@ -1,4 +1,5 @@
 import nextConnect from 'next-connect';
+import isEmpty from 'lodash/isEmpty';
 
 import auth from '../../middleware/auth';
 import createUser from '~/lib/sanity/user/createUser';
@@ -12,9 +13,12 @@ handler
   .post(async (req, res) => {
     // Here you check if the username has already been used
     const userExisted = await findUserByUsername(req.body.username);
-    const isUserEmpty =
-      Object.keys(userExisted).length === 0 &&
-      userExisted.constructor === Object;
+
+    // const isUserEmpty =
+    //   Object.keys(userExisted).length === 0 &&
+    //   userExisted.constructor === Object;
+
+    const isUserEmpty = isEmpty(userExisted);
 
     if (!isUserEmpty) {
       return res.status(409).send('The username has already been used.');

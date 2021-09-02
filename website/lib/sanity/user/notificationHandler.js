@@ -20,7 +20,7 @@ const notificationHandler = async (user) => {
         .insert('before', 'notifications[-1]', notifications)
         .commit()
         .then((res) => {
-          console.log(`Notifications added successfully ${res._id}`);
+          console.log(`Notifications added successfully ${res?._id}`);
           return res;
         })
         .catch((err) => {

@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
+import isEmpty from 'lodash/isEmpty';
 
 import findUserByUsername from './sanity/user/findUserByUsername';
 
@@ -23,7 +24,11 @@ passport.use(
       const user = await findUserByUsername(username);
 
       // User doesn't exist
-      if (Object.keys(user).length === 0 && user.constructor === Object) {
+      // if (Object.keys(user).length === 0 && user.constructor === Object) {
+      //   done(null, null);
+      // }
+
+      if (isEmpty(user)) {
         done(null, null);
       }
 

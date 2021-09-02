@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 import generatePassword from 'password-generator';
+import isEmpty from 'lodash/isEmpty';
 
 import formatHttpError from '~/functions/formatHttpError';
 import findUserByUsername from '~/lib/sanity/user/findUserByUsername';
@@ -45,8 +46,11 @@ export default async (order) => {
 
     // Here you check if the username has already been used
     const userExist = await findUserByUsername(email);
-    const isUserEmpty =
-      Object.keys(userExist).length === 0 && userExist.constructor === Object;
+
+    // const isUserEmpty =
+    //   Object.keys(userExist).length === 0 && userExist.constructor === Object;
+
+    const isUserEmpty = isEmpty(userExist);
 
     if (!isUserEmpty) {
       // already has account

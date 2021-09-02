@@ -58,7 +58,7 @@ const handleAvatar = async (cloneFields, user) => {
       .set(avatarProps)
       .commit()
       .then((res) => {
-        console.log(`Image was updated, ${res._id}`);
+        console.log(`Image was updated, ${res?._id}`);
         return res;
       })
       .catch((err) => {
@@ -160,7 +160,7 @@ const updateUserByUsername = async (req, user, fields) => {
       .set(cloneFields)
       .commit()
       .then((res) => {
-        console.log(`User was updated, document ID is ${res._id}`);
+        console.log(`User was updated, document ID is ${res?._id}`);
         return res;
       })
       .catch((err) => {

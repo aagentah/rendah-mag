@@ -28,7 +28,7 @@ const notificationsUpdate = async (user) => {
       .set({ notifications: [] })
       .commit()
       .then((res) => {
-        console.log(`Notifications removed successfully ${res._id}`);
+        console.log(`Notifications removed successfully ${res?._id}`);
         return res;
       })
       .catch((err) => {
@@ -43,7 +43,7 @@ const notificationsUpdate = async (user) => {
       .insert('after', 'notifications[-1]', notifications)
       .commit()
       .then((res) => {
-        console.log(`Notifications updated successfully ${res._id}`);
+        console.log(`Notifications updated successfully ${res?._id}`);
         return res;
       })
       .catch((err) => {

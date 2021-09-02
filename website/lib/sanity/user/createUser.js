@@ -23,7 +23,7 @@ const createUser = async (user) => {
     };
 
     const data = await client.create(doc).then((res) => {
-      console.log(`User was created, document ID is ${res._id}`);
+      console.log(`User was created, document ID is ${res?._id}`);
       return { username: res.username, name: res.name };
     });
 
