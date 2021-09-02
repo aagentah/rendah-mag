@@ -38,6 +38,7 @@ import linkInBio from "./objects/linkInBio";
 
 // Audio
 import track from "./documents/audio/track";
+import pack from "./documents/audio/pack";
 
 import siteSettings from "./objects/siteSettings";
 
@@ -57,6 +58,7 @@ export default createSchema({
     mix,
     user,
     track,
+    pack,
     dominionItem,
     smartLinkItem,
     smartLink,

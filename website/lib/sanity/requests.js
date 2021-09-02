@@ -416,3 +416,13 @@ export async function getAllOfferings(sinceStartOfMonth, preview) {
   );
   return results;
 }
+
+export async function getAllPacks(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "pack"] | order(publishedAtDesc desc) {
+      ...,
+      'folder': folder.asset->url,
+    }`
+  );
+  return results;
+}

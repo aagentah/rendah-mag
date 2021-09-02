@@ -11,6 +11,7 @@ import ProfileMessages from '~/components/profile/messages';
 import ProfilePipeline from '~/components/profile/pipeline';
 // import ProfileCreations from '~/components/profile/creations';
 import ProfileOfferings from '~/components/profile/offerings';
+import ProfilePacks from '~/components/profile/packs';
 import ProfileBilling from '~/components/profile/billing';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -34,10 +35,12 @@ export default function Profile({ siteConfig }) {
   const [user, { loading, mutate, error }] = useUser();
   const [refreshDominion, setRefreshDominion] = useState(false);
   const [refreshOffering, setRefreshOffering] = useState(false);
+  const [refreshPack, setRefreshPack] = useState(false);
 
   const iconUser = <Icon className="grey" icon={['fas', 'user']} />;
   const iconEnvelope = <Icon className="grey" icon={['fas', 'envelope']} />;
   const iconMusic = <Icon className="grey" icon={['fas', 'music']} />;
+  const iconPack = <Icon className="grey" icon={['fas', 'file-audio']} />;
   const iconNewspaper = <Icon className="grey" icon={['fas', 'newspaper']} />;
   const iconList = <Icon className="grey" icon={['fas', 'list']} />;
   const iconMoney = <Icon className="grey" icon={['fas', 'money-check']} />;
@@ -65,6 +68,10 @@ export default function Profile({ siteConfig }) {
 
     if (visibleTab === 'offerings') {
       setRefreshOffering(true);
+    }
+
+    if (visibleTab === 'packs') {
+      setRefreshPack(true);
     }
   };
 
@@ -118,6 +125,15 @@ export default function Profile({ siteConfig }) {
                             />
                           ),
                         },
+                        {
+                          id: 'packs',
+                          tabTitle: 'Samples',
+                          tabIcon: iconPack,
+                          tabContent: (
+                            <ProfilePacks refreshDominion={refreshPack} />
+                          ),
+                        },
+
                         {
                           id: 'creations',
                           tabTitle: 'Creations',
