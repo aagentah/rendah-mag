@@ -88,6 +88,7 @@ export default () =>
               S.documentTypeListItem("dominionItem"),
               S.documentTypeListItem("creations"),
               S.documentTypeListItem("offering"),
+              S.documentTypeListItem("pack"),
               S.listItem()
                 .icon(MDViewList)
                 .title("Dominion Pipeline")
@@ -120,8 +121,6 @@ export default () =>
       S.documentTypeListItem("mix").icon(MDMusicVideo),
       // Track
       S.documentTypeListItem("track").icon(MDMusicVideo),
-      // Pack
-      S.documentTypeListItem("pack").icon(MDMusicVideo),
       // Smart Link
       S.documentTypeListItem("smartLink").icon(MDViewList),
     ]);

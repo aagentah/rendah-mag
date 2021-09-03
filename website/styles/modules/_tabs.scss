@@ -150,6 +150,8 @@
   @include breakpoint-up(md) {
     .tabs__body {
       border-radius: 1rem;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
       padding: 50px;
     }
   }

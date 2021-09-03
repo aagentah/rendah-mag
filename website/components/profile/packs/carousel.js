@@ -166,9 +166,7 @@ export default function Carousel({ packItems, refreshDominion }) {
           </div>
           <div className="pb4  mb2">
             <p className="black  f6  lh-copy">
-              As part of our service, we'll occasionally roll out Offering packs
-              with exclusive music from the labels & artists that we work with.
-              Any Packs since you joined the Dominion can be accesesd here.
+              Sample packs available to download, exclusively on the Dominion.
             </p>
           </div>
 

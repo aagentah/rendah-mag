@@ -34,6 +34,7 @@ export default function CarouselItemSection({ offering }) {
           withLinkProps={null}
         />
       </div>
+
       <div className="pb4  mb2  rich-text">
         <BlockContent blocks={offering.description} />
       </div>

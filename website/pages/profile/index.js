@@ -92,7 +92,7 @@ export default function Profile({ siteConfig }) {
             }}
             preview={null}
           >
-            <div className="pt4  pt0-md  pb4">
+            <div className="pt4  pt0-md  pb4  pb0-md">
               <Container>
                 {user && app.deviceSize && (
                   <div className="tabs-wrapper--profile  tabs-wrapper--side-bar">
