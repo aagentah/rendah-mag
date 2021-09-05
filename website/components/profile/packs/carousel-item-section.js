@@ -17,7 +17,7 @@ export default function CarouselItemSection({ pack }) {
   return (
     <section>
       <div className="flex  flex-wrap">
-        <div className="col-24  col-14-md  ph3  pr3-md  ph0-md">
+        <div className="col-24  col-12-md  ph3  pr4-md  ph0-md">
           <div className="col-24">
             <Heading
               /* Options */
@@ -61,7 +61,7 @@ export default function CarouselItemSection({ pack }) {
             />
           </div>
         </div>
-        <div className="col-24  col-10-md  ph3">
+        <div className="col-24  col-12-md  ph3">
           <Image
             /* Options */
             src={
