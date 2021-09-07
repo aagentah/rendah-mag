@@ -57,8 +57,6 @@ export default function ImageSection({ section }) {
 
       return <span className="caption  pv2">{caption}</span>;
     }
-
-    return;
   };
 
   return (
