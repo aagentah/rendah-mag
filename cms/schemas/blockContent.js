@@ -12,7 +12,7 @@ export default {
   title: "Block Content",
   name: "blockContent",
   type: "array",
-  validation: (Rule) => Rule.required(),
+  // validation: (Rule) => Rule.required(),
   of: [
     {
       title: "Block",
@@ -78,13 +78,8 @@ export default {
         },
         {
           name: "caption",
-          title: "Caption",
-          type: "string",
-        },
-        {
-          name: "source",
-          title: "Source (URL)",
-          type: "string",
+          title: "Source / Caption",
+          type: "blockContent",
         },
       ],
       validation: (Rule) => Rule.required(),

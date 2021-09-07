@@ -4,7 +4,9 @@ import Router, { useRouter } from 'next/router';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
 import map from 'lodash/map';
+import isArray from 'lodash/isArray';
 import Cookies from 'js-cookie';
+import BlockContent from '@sanity/block-content-to-react';
 
 import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
@@ -38,6 +40,35 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   const { height, width } = useWindowDimensions();
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
+
+  const renderCaption = () => {
+    if (isArray(post?.image?.caption)) {
+      const serializers = {
+        list: (props) => <>{props.children}</>,
+        listItem: (props) => <li>{props.children}</li>,
+        marks: {
+          inlineLink: (linkProps) => {
+            return (
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                className="di  underline"
+                href={linkProps.mark.url}
+              >
+                {linkProps.children[0]}
+              </a>
+            );
+          },
+        },
+      };
+
+      return (
+        <figcaption className="absolute  bottom  right  caption  caption--hero  bg-black  ph2  ph3-md  pv2  mr3  nb2">
+          <BlockContent blocks={post.image.caption} serializers={serializers} />
+        </figcaption>
+      );
+    }
+  };
 
   const handleIntersect = (event) => {
     if (
@@ -136,20 +167,24 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           </div>
         </Modal>
 
-        <Hero
-          image={post?.coverImage}
-          title={null}
-          description={null}
-          heroButtonText={null}
-          link={null}
-          marginTop={0}
-          marginBottom={0}
-          modifier="article"
-          skeleton={!post}
-        />
+        <div className="relative">
+          <Hero
+            image={post?.coverImage}
+            title={null}
+            description={null}
+            heroButtonText={null}
+            link={null}
+            marginTop={0}
+            marginBottom={0}
+            modifier="article"
+            skeleton={!post}
+          />
+
+          {renderCaption()}
+        </div>
 
         <Container>
-          <article className="pt5  pb4  ph3  ph4-md">
+          <article className="pt4  pt5-md  pb4  ph3  ph4-md">
             <section className="measure-wide  mla  mra">
               <div className="pb3">
                 <Heading
