@@ -9,9 +9,6 @@ export default function ImageSection({ section }) {
   const handleCaption = () => {
     let { caption, source } = section;
 
-    console.log('caption', caption);
-    console.log('source', source);
-
     // If blockContent
     if (isArray(caption)) {
       const serializers = {
