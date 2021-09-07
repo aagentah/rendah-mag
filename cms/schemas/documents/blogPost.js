@@ -69,6 +69,12 @@ export default {
             layout: "radio",
           },
         },
+        {
+          name: "caption",
+          title: "Source / Caption",
+          type: "blockContent",
+          required: "false",
+        },
       ],
       validation: (Rule) => Rule.required(),
     },

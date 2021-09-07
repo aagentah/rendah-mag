@@ -21,3 +21,16 @@
     @extend .br-100;
   }
 }
+
+.caption * {
+  color: var(--grey) !important;
+  font-size: 0.75rem !important;
+  width: 100%;
+  text-align: center;
+}
+
+.caption--hero * {
+  color: var(--white) !important;
+  font-size: 0.65rem !important;
+  text-align: right;
+}
