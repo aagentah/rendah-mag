@@ -24,7 +24,7 @@ const client = sanityClient.withConfig({ apiVersion: "2021-08-21" });
 // as complete
 const fetchDocuments = () =>
   client.fetch(
-    `*[_type == 'post' && defined(author)] [101...200] {_id, _rev, author}`
+    `*[_type == 'creations' && defined(author)] [0...100] {_id, _rev, author}`
   );
 
 const buildPatches = (docs) =>

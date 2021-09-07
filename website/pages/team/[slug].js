@@ -59,7 +59,7 @@ export default function Post({ siteConfig, member }) {
                 figcaption={null}
                 height={250}
                 width={null}
-                customClass="shadow2"
+                customClass="br4  shadow2"
                 skeleton={false}
                 onClick={null}
                 /* Children */
@@ -67,7 +67,7 @@ export default function Post({ siteConfig, member }) {
               />
             </div>
             <div className="measure-wide  ph3-md">
-              <div className="dib  ph2  pb2">
+              <div className="dib  ph2">
                 <Heading
                   /* Options */
                   htmlEntity="h1"
@@ -80,7 +80,7 @@ export default function Post({ siteConfig, member }) {
                 />
               </div>
               {member?.alias && (
-                <div className="dib  pb3">
+                <div className="dib">
                   <Label
                     /* Options */
                     customClass={null}
@@ -106,7 +106,7 @@ export default function Post({ siteConfig, member }) {
                   withLinkProps={null}
                 />
               </div>
-              <div className="db  ph2  pb3  taj">
+              <div className="db  ph2  pb3">
                 <Copy
                   /* Options */
                   text={member.description}

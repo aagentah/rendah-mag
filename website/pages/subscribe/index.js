@@ -13,7 +13,6 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';
 import SocialLinks from '~/components/article/social-links';
-import Author from '~/components/article/author';
 import SubscribeForm from '~/components/subscribe-form';
 
 import Date from '~/components/date';
