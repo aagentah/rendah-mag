@@ -9,7 +9,7 @@ import { countries } from "./country-alpha-codes.js";
 
 const builder = imageUrlBuilder(sanityClient);
 
-class TwitterCard extends React.PureComponent {
+class UsersAddress extends React.PureComponent {
   constructor() {
     super();
     this.state = {
@@ -46,15 +46,6 @@ class TwitterCard extends React.PureComponent {
         <>
           <table className={styles.table}>
             <tr>
-              <th>Dominion Members</th>
-            </tr>
-            <tr>
-              <td>{this.state.results.length}</td>
-            </tr>
-          </table>
-
-          <table className={styles.table}>
-            <tr>
               <th>Name</th>
               <th>Line1</th>
               <th>Line2</th>
@@ -83,4 +74,4 @@ class TwitterCard extends React.PureComponent {
   }
 }
 
-export default TwitterCard;
+export default UsersAddress;
