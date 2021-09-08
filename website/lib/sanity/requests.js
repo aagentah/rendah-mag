@@ -16,6 +16,11 @@ const postFields = `
   'author': author->{
     ...,
   },
+  'authors': authors[] {
+    'author': *[_id == ^._ref] [0] {
+      ...,
+    },
+  },
 `;
 
 const productFields = `

@@ -12,7 +12,7 @@ export default function Author({ siteConfig, author }) {
       <div className="absolute  top  right  nt2  mr4">
         <Label
           /* Options */
-          customClass="ph2"
+          customClass=""
           text="Author"
           color="black"
           backgroundColor="light-grey"
@@ -45,7 +45,7 @@ export default function Author({ siteConfig, author }) {
             figcaption={null}
             height={150}
             width={null}
-            customClass="shadow2"
+            customClass="br4"
             skeleton={false}
             onClick={null}
             /* Children */
@@ -65,7 +65,7 @@ export default function Author({ siteConfig, author }) {
 
       <div className="col-24  col-15-md  pl0  pl4-md  pr0  pr2-md">
         {author.name && (
-          <div className="db  pb2">
+          <div className="db">
             <Heading
               /* Options */
               htmlEntity="h1"
@@ -92,7 +92,7 @@ export default function Author({ siteConfig, author }) {
           <div className="db  pb3">
             <Label
               /* Options */
-              customClass="ph2"
+              customClass=""
               text={author.alias}
               color="white"
               backgroundColor="black"
@@ -104,12 +104,12 @@ export default function Author({ siteConfig, author }) {
         )}
 
         {author.description && (
-          <div className="db  pb3  taj">
+          <div className="db  pb2">
             <Copy
               /* Options */
               text={author.description}
               color="black"
-              size="medium"
+              size="small"
               truncate={null}
             />
           </div>

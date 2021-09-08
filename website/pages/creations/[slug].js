@@ -70,13 +70,6 @@ export default function Creations({ siteConfig, post, preview }) {
         </section>
       );
     };
-    const shouldShowAuthor = () => {
-      if (typeof post?.showAuthor === 'boolean' && post?.showAuthor === false) {
-        return false;
-      }
-
-      return true;
-    };
 
     const renderPublicSections = () => {
       if (!post?.publicBody) return;
@@ -187,18 +180,16 @@ export default function Creations({ siteConfig, post, preview }) {
                 />
 
                 <p className="t-secondary  f6  white  lh-copy  pb4">
-                  {shouldShowAuthor() && (
+                  {post.authors.map((i) => (
                     <>
-                      <Link href={`/team/${post.author.slug.current}`}>
-                        <span className="cp  fw7">{post.author.name}</span>
-                      </Link>{' '}
-                      |{' '}
+                      <Link href={`/team/${i.author.slug.current}`}>
+                        <span className="cp  white  fw7">{i.author.name}</span>
+                      </Link>
+                      {' | '}
                     </>
-                  )}
+                  ))}
 
-                  <time className="white" dateTime={post.publishedAt}>
-                    {format(parseISO(post.publishedAt), 'LLLL	d, yyyy')}
-                  </time>
+                  {post?.publishedAt && <Date dateString={post.publishedAt} />}
                 </p>
 
                 {renderPublicSections()}
@@ -209,16 +200,16 @@ export default function Creations({ siteConfig, post, preview }) {
                 </div>
               </section>
 
-              {shouldShowAuthor() && (
-                <section className="measure-wide  mla  mra">
-                  <div className="pb4">
-                    <Author author={post.author} />
-                  </div>
-                </section>
-              )}
-
               {renderTags()}
             </article>
+
+            <section className="flex  flex-wrap  justify-center  align-center  pb3  pb4-md">
+              {post.authors.map((i) => (
+                <div className="col-24  col-12-md  pb4  pb3-md  ph3">
+                  <Author author={i.author} />
+                </div>
+              ))}
+            </section>
           </Container>
         </div>
       </Layout>

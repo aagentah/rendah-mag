@@ -50,7 +50,7 @@
   @extend .f4;
 }
 
-.rich-text a {
+.rich-text a:not(.button) {
   color: var(--black);
   text-decoration: underline;
 }

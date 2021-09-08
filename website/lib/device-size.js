@@ -24,7 +24,7 @@ export default function deviceSize() {
   const isRetina = true;
 
   if (!deviceSize) return;
-  if (app.deviceSize !== deviceSize) {
+  if (app?.deviceSize !== deviceSize) {
     dispatch({ type: 'SET_DEVICE', deviceSize, isRetina });
   }
 }

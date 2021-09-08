@@ -90,14 +90,6 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   }
 
   if (!router.isFallback && post?.slug) {
-    const shouldShowAuthor = () => {
-      if (typeof post?.showAuthor === 'boolean' && post?.showAuthor === false) {
-        return false;
-      }
-
-      return true;
-    };
-
     return (
       <Layout
         navOffset={null}
@@ -201,14 +193,14 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
               </div>
 
               <p className="t-secondary  f6  almost-black  lh-copy  pb4">
-                {shouldShowAuthor() && (
+                {post.authors.map((i) => (
                   <>
-                    <Link href={`/team/${post.author.slug.current}`}>
-                      <span className="cp  black  fw7">{post.author.name}</span>
-                    </Link>{' '}
-                    |{' '}
+                    <Link href={`/team/${i.author.slug.current}`}>
+                      <span className="cp  black  fw7">{i.author.name}</span>
+                    </Link>
+                    {' | '}
                   </>
-                )}
+                ))}
 
                 {post?.publishedAt && <Date dateString={post.publishedAt} />}
               </p>
@@ -227,19 +219,19 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 <Sections body={post.body} />
               </div>
 
-              <div className="pb4  mb2">
+              <div className="pb2  pb3-md  mb2">
                 <SocialLinks article={post} />
               </div>
             </section>
-
-            {shouldShowAuthor() && (
-              <section className="measure-wide  mla  mra">
-                <div className="pb4">
-                  <Author author={post.author} />
-                </div>
-              </section>
-            )}
           </article>
+
+          <section className="flex  flex-wrap  justify-center  align-center  pb3  pb4-md">
+            {post.authors.map((i) => (
+              <div className="col-24  col-12-md  pb4  pb3-md  ph3">
+                <Author author={i.author} />
+              </div>
+            ))}
+          </section>
 
           {morePosts.length > 0 && (
             <section className="pb3">
