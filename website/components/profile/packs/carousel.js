@@ -188,6 +188,7 @@ export default function Carousel({ packItems, refreshDominion }) {
                           .image(item.image)
                           .width(250 * scale)
                           .height(250 * scale)
+                          .blur(100)
                           .auto('format')
                           .fit('scale')
                           .url()})`,
