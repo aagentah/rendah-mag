@@ -13,6 +13,7 @@ export default function CarouselItemSection({ pack }) {
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
   const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 400;
+  const imageUrlHeight = app?.deviceSize === 'md' ? 260 : 400;
 
   return (
     <section>
@@ -39,7 +40,7 @@ export default function CarouselItemSection({ pack }) {
             <Button
               /* Options */
               type="primary"
-              size="medium"
+              size={app?.deviceSize === 'md' ? 'small' : 'medium'}
               text="Download"
               color="black"
               fluid={false}
@@ -69,6 +70,7 @@ export default function CarouselItemSection({ pack }) {
               imageBuilder
                 .image(pack.image)
                 .width(imageUrlWidth * scale)
+                .height(imageUrlHeight * scale)
                 .auto('format')
                 .fit('scale')
                 .url()
@@ -76,8 +78,8 @@ export default function CarouselItemSection({ pack }) {
             placeholder={null}
             alt={pack?.title}
             figcaption={null}
-            height={null}
-            width={null}
+            height={imageUrlHeight}
+            width={imageUrlWidth}
             customClass="br4  shadow2"
             skeleton={false}
             onClick={null}

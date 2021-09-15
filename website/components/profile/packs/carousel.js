@@ -27,6 +27,7 @@ const buttonIconArrowLeft = <Icon icon={['fas', 'arrow-left']} />;
 
 export default function Carousel({ packItems, refreshDominion }) {
   const app = useApp();
+  const scale = app?.isRetina ? 2 : 1;
   const [user, { loading, mutate, error }] = useUser();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [modalActive, setModalActive] = useState(false);
@@ -183,8 +184,13 @@ export default function Carousel({ packItems, refreshDominion }) {
                   <div className="relative  profile__dominion__carousel-item__wrapper">
                     <div
                       style={{
-                        backgroundImage:
-                          'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)',
+                        backgroundImage: `url(${imageBuilder
+                          .image(item.image)
+                          .width(250 * scale)
+                          .height(250 * scale)
+                          .auto('format')
+                          .fit('scale')
+                          .url()})`,
                       }}
                       className="profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow2"
                     >
