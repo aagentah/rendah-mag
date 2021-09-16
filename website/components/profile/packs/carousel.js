@@ -273,7 +273,7 @@ export default function Carousel({ packItems, refreshDominion }) {
             ) : null}
           </div>
 
-          {app.deviceSize === 'md' ? (
+          {app.deviceSize === 'md' && packItems.length > 1 ? (
             <div className="dots">
               {packItems.map((item, i) => {
                 return (

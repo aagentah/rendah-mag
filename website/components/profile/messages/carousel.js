@@ -281,7 +281,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
             ) : null}
           </div>
 
-          {app.deviceSize === 'md' ? (
+          {app.deviceSize === 'md' && dominionItems.length > 1 ? (
             <div className="dots">
               {dominionItems.map((item, i) => {
                 return (
