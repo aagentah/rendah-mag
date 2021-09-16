@@ -4,6 +4,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import isArray from 'lodash/isArray';
 
 import { imageBuilder } from '~/lib/sanity/requests';
+import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
 export default function ImageSection({ section }) {
   const handleCaption = () => {
@@ -11,28 +12,12 @@ export default function ImageSection({ section }) {
 
     // If blockContent
     if (isArray(caption)) {
-      const serializers = {
-        list: (props) => <>{props.children}</>,
-        listItem: (props) => <li>{props.children}</li>,
-        marks: {
-          inlineLink: (linkProps) => {
-            return (
-              <a
-                rel="noopener noreferrer"
-                target="_blank"
-                className="di  underline"
-                href={linkProps.mark.url}
-              >
-                {linkProps.children[0]}
-              </a>
-            );
-          },
-        },
-      };
-
       return (
         <figcaption className="caption  pv2">
-          <BlockContent blocks={caption} serializers={serializers} />
+          <BlockContent
+            blocks={caption}
+            serializers={SANITY_BLOCK_SERIALIZERS}
+          />
         </figcaption>
       );
     }

@@ -112,6 +112,8 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
   };
 
   const handleButtonClick = async (e) => {
+    if (!draft) return;
+
     // e.preventDefault();
     // setDialogOpen(false);
 

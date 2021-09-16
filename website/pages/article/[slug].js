@@ -25,6 +25,7 @@ import CardBlog from '~/components/card/blog';
 import useWindowDimensions from '~/functions/useWindowDimensions';
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
+import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
 import {
   getSiteConfig,
@@ -43,28 +44,12 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 
   const renderCaption = () => {
     if (isArray(post?.image?.caption)) {
-      const serializers = {
-        list: (props) => <>{props.children}</>,
-        listItem: (props) => <li>{props.children}</li>,
-        marks: {
-          inlineLink: (linkProps) => {
-            return (
-              <a
-                rel="noopener noreferrer"
-                target="_blank"
-                className="di  underline"
-                href={linkProps.mark.url}
-              >
-                {linkProps.children[0]}
-              </a>
-            );
-          },
-        },
-      };
-
       return (
         <figcaption className="absolute  bottom  right  caption  caption--hero  bg-black  ph2  ph3-md  pv2  mr3  nb2">
-          <BlockContent blocks={post.image.caption} serializers={serializers} />
+          <BlockContent
+            blocks={post.image.caption}
+            serializers={SANITY_BLOCK_SERIALIZERS}
+          />
         </figcaption>
       );
     }

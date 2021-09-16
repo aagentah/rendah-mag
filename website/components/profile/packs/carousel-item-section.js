@@ -3,6 +3,7 @@ import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';
 
 import { useApp } from '~/context-provider/app';
+import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 
@@ -33,7 +34,10 @@ export default function CarouselItemSection({ pack }) {
           </div>
 
           <div className="col-24  pb3  rich-text">
-            <BlockContent blocks={pack.description} />
+            <BlockContent
+              blocks={pack.description}
+              serializers={SANITY_BLOCK_SERIALIZERS}
+            />
           </div>
 
           <div className="col-24  pb4  pb0-md">

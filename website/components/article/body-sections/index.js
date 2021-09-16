@@ -1,6 +1,8 @@
 import includes from 'lodash/includes';
 import BlockContent from '@sanity/block-content-to-react';
 
+import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
+
 import Heading from './heading';
 import Quote from './quote';
 import Image from './image';
@@ -22,82 +24,6 @@ export default function Sections({ body, ...props }) {
       ) {
         return false;
       }
-    }
-
-    const serializers = {
-      list: (props) => <>{props.children}</>,
-      listItem: (props) => <li>{props.children}</li>,
-      marks: {
-        inlineLink: (linkProps) => {
-          return (
-            <a
-              rel="noopener noreferrer"
-              target="_blank"
-              className="di  underline"
-              href={linkProps.mark.url}
-            >
-              {linkProps.children[0]}
-            </a>
-          );
-        },
-      },
-    };
-
-    // para
-    if (section._type === 'block') {
-      return (
-        <>
-          <BlockContent blocks={section} serializers={serializers} />
-        </>
-      );
-    }
-
-    // image
-    if (
-      section._type === 'image' &&
-      (includes(section.asset._ref, '-jpg') ||
-        includes(section.asset._ref, '-png'))
-    ) {
-      return (
-        <div key={i} className="pv4">
-          <Image section={section} />
-        </div>
-      );
-    }
-
-    // soundcloud embed
-    if (section._type === 'iframeEmbedBlock') {
-      return (
-        <div key={i} className="pv4">
-          <IframeBlock
-            url={section.iframeUrl}
-            heightDesktop={
-              section.iframeHeightDesktop
-                ? section.iframeHeightDesktop
-                : section.iframeHeight
-            }
-            heightMobile={section.iframeHeightMobile}
-          />
-        </div>
-      );
-    }
-
-    // soundcloud embed
-    if (section._type === 'soundCloudEmbedBlock') {
-      return (
-        <div key={i} className="pv4">
-          <Soundcloud url={section.soundCloudEmbed} />
-        </div>
-      );
-    }
-
-    // spotify embed
-    if (section._type === 'spotifyEmbedBlock') {
-      return (
-        <div key={i} className="pv4">
-          <Spotify uri={section.spotifyEmbed} />
-        </div>
-      );
     }
 
     // soundcloud embed
