@@ -16,6 +16,8 @@ import ArticleLink from './article-link';
 
 export default function Sections({ body, ...props }) {
   const renderSections = (section, i) => {
+    console.log('section', section);
+
     // Remove stray breaks
     if (section?.children?.length) {
       if (
@@ -24,6 +26,66 @@ export default function Sections({ body, ...props }) {
       ) {
         return false;
       }
+    }
+
+    // para
+    if (section._type === 'block') {
+      return (
+        <>
+          <BlockContent
+            blocks={section}
+            serializers={SANITY_BLOCK_SERIALIZERS}
+          />
+        </>
+      );
+    }
+
+    // image
+    if (
+      section._type === 'image' &&
+      (includes(section.asset._ref, '-jpg') ||
+        includes(section.asset._ref, '-png'))
+    ) {
+      return (
+        <div key={i} className="pv4">
+          <Image section={section} />
+        </div>
+      );
+    }
+
+    // soundcloud embed
+    if (section._type === 'iframeEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <IframeBlock
+            url={section.iframeUrl}
+            heightDesktop={
+              section.iframeHeightDesktop
+                ? section.iframeHeightDesktop
+                : section.iframeHeight
+            }
+            heightMobile={section.iframeHeightMobile}
+          />
+        </div>
+      );
+    }
+
+    // soundcloud embed
+    if (section._type === 'soundCloudEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <Soundcloud url={section.soundCloudEmbed} />
+        </div>
+      );
+    }
+
+    // spotify embed
+    if (section._type === 'spotifyEmbedBlock') {
+      return (
+        <div key={i} className="pv4">
+          <Spotify uri={section.spotifyEmbed} />
+        </div>
+      );
     }
 
     // soundcloud embed
