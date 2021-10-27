@@ -349,7 +349,16 @@ export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
 export async function getSmartLink(slug, preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "smartLink" && slug.current == $slug] | order(activeFrom desc) [0] {
-      ...,
+      title,
+      slug,
+      'items': items[] {
+        ...,
+        'documentInternal': documentInternal {
+          'document': *[_id == ^._ref] [0] {
+            ...,
+          },
+        },
+      },
     }`,
     { slug }
   );
@@ -369,15 +378,13 @@ export async function getLinkInBio(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "linkInBio"] [0] {
       'items': items[] {
-        'field': field {
-          'documentInternal': documentInternal {
-            'document': *[_id == ^._ref] [0] {
-              ...,
-            },
-          },
-          ...,
-        },
         ...,
+        'documentInternal': documentInternal {
+          ...,
+          'document': *[_id == ^._ref] [0] {
+            ...,
+          },
+        },
       }
     }`
   );

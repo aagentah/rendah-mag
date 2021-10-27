@@ -32,9 +32,11 @@ export default function LinkInBio({ siteConfig, items, preview }) {
 
   const renderItemType = (item) => {
     let url;
+    let target = '_blank';
 
-    if (item?.field?.condition === 'documentInternal') {
-      const doc = item.field.documentInternal.document;
+    if (item?.condition === 'documentInternal') {
+      const doc = item.documentInternal.document;
+      target = '_self';
 
       switch (doc?._type) {
         case 'post':
@@ -48,8 +50,8 @@ export default function LinkInBio({ siteConfig, items, preview }) {
       }
     }
 
-    if (item?.field?.condition === 'linkExternal') {
-      url = item.field.linkExternal;
+    if (item?.condition === 'linkExternal') {
+      url = item.linkExternal;
     }
 
     return (
@@ -57,7 +59,7 @@ export default function LinkInBio({ siteConfig, items, preview }) {
         <a
           href={url}
           rel="noopener noreferrer"
-          target="_blank"
+          target={target}
           className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
         >
           <p className="t-secondary  f5  tac  lh-copy">{item.title}</p>

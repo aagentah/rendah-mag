@@ -37,6 +37,21 @@ export default function SmartLink({ siteConfig, post, preview }) {
   const renderItemType = (item) => {
     let service;
     let icon;
+    let url = item.url;
+    let target = '_blank';
+
+    if (item?.documentInternal) {
+      const doc = item.documentInternal.document;
+      target = '_self';
+
+      switch (doc._type) {
+        case 'post':
+          url = `/article/${doc.slug.current}`;
+          break;
+        default:
+          url = null;
+      }
+    }
 
     switch (item.type) {
       case 'facebook':
@@ -83,9 +98,9 @@ export default function SmartLink({ siteConfig, post, preview }) {
     return (
       <div className="flex  flex-wrap  mb3  cp">
         <a
-          href={item.url}
+          href={url}
           rel="noopener noreferrer"
-          target="_blank"
+          target={target}
           className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  shadow2  link"
         >
           <div className="pr3">{icon}</div>

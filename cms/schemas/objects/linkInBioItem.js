@@ -1,4 +1,4 @@
-import conditionalFields from "../../components/helpers/conDitionalFields";
+// import conditionalFields from "../../components/helpers/conDitionalFields";
 
 export default {
   name: "linkInBioItem",
@@ -12,64 +12,42 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      title: "Conditional Field",
-      name: "field",
-      type: "object",
-      inputComponent: conditionalFields,
-      fields: [
-        {
-          type: "object",
-          name: "input",
-          fields: [
-            {
-              name: "condition",
-              title: "Link Type",
-              type: "string",
-              options: {
-                list: [
-                  {
-                    title: "Document (Internal)",
-                    value: "documentInternal",
-                  },
-                  {
-                    title: "URL (External)",
-                    value: "linkExternal",
-                  },
-                ],
-                layout: "radio",
-              },
-            },
-          ],
-        },
-        {
-          type: "object",
-          name: "options",
-          fields: [
-            {
-              title: "Document Reference",
-              name: "documentInternal",
-              type: "reference",
-              to: [
-                { type: "smartLink" },
-                { type: "post" },
-                // { type: "author" },
-                // { type: "storeItem" },
-              ],
-            },
-            {
-              name: "linkExternal",
-              title: "URL",
-              type: "url",
-            },
-          ],
-        },
-      ],
+      name: "condition",
+      title: "Link Type",
+      type: "string",
+      options: {
+        list: [
+          {
+            title: "URL (External)",
+            value: "linkExternal",
+          },
+          {
+            title: "Document (Internal)",
+            value: "documentInternal",
+          },
+        ],
+        layout: "radio",
+      },
+    },
+    {
+      name: "linkExternal",
+      title: "URL",
+      type: "url",
+      hidden: ({ document, parent, value }) =>
+        parent?.condition === "documentInternal",
+    },
+    {
+      title: "Document Reference",
+      name: "documentInternal",
+      type: "reference",
+      to: [{ type: "smartLink" }, { type: "post" }],
+      hidden: ({ document, parent, value }) =>
+        parent?.condition !== "documentInternal",
     },
   ],
   preview: {
     select: {
       title: "title",
-      media: "image",
     },
   },
 };
