@@ -73,6 +73,7 @@
     "new-cap": "off",
     "react/jsx-one-expression-per-line": "off",
     "no-restricted-syntax": "off",
+    "prefer-destructuring": "off",
     "import/no-unresolved": [
       "error",
       {
