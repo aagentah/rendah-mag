@@ -5,12 +5,13 @@ import dynamic from 'next/dynamic';
 import { Heading, Button, Icon } from 'next-pattern-library';
 
 import CardOffering from '~/components/card/offering';
-const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
 import { useUser } from '~/lib/hooks';
 import setCharAt from '~/functions/setCharAt';
 
 import { getAllOfferings } from '~/lib/sanity/requests';
+
+const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
 export default function ProfileDominion() {
   const [user, { loading, mutate, error }] = useUser();

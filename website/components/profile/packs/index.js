@@ -5,12 +5,13 @@ import dynamic from 'next/dynamic';
 import { Heading, Button, Icon } from 'next-pattern-library';
 
 import CardPack from '~/components/card/pack';
-const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
 import { useUser } from '~/lib/hooks';
 import setCharAt from '~/functions/setCharAt';
 
 import { getAllPacks } from '~/lib/sanity/requests';
+
+const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
 export default function ProfilePacks() {
   const [user, { loading, mutate, error }] = useUser();

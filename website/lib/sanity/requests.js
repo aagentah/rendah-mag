@@ -330,13 +330,10 @@ export async function getMixes(preview) {
 }
 
 export async function getLatestDominionItem(preview) {
-  const today = dateTodayYyyyMmDd();
-
   const results = await getClient(preview).fetch(
     `*[_type == "dominionItem"] | order(activeFrom desc) [0] {
       ...,
-    }`,
-    { today, today }
+    }`
   );
 
   return results;
