@@ -135,3 +135,10 @@
     text-align: center;
   }
 }
+
+.card--pack {
+  .card__image,
+  .card__dialog {
+    cursor: pointer;
+  }
+}
