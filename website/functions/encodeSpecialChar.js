@@ -1,3 +1,4 @@
 export default (text) => {
-  return text.replace(/&/g, '&amp;');
+  const t = text.replace(/&/g, '&amp;');
+  return t.replace('&amp;amp;', '&amp;');
 };
