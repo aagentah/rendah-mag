@@ -48,3 +48,29 @@
 @import 'modules/timeline';
 @import 'modules/creations';
 @import 'modules/notifications';
+
+.dominion-cards {
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: none;
+  opacity: 0;
+}
+
+.dominion-cards--active {
+  display: block;
+  opacity: 1;
+}
+
+.dominion-modal-wrapper {
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: none;
+  opacity: 0;
+}
+
+.dominion-modal-wrapper--active {
+  display: block;
+  opacity: 1;
+}

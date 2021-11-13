@@ -7,7 +7,7 @@ import { Icon } from 'next-pattern-library';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import ProfileEdit from '~/components/profile/edit';
-import ProfileMessages from '~/components/profile/messages';
+// import ProfileMessages from '~/components/profile/messages';
 import ProfilePipeline from '~/components/profile/pipeline';
 // import ProfileCreations from '~/components/profile/creations';
 import ProfileOfferings from '~/components/profile/offerings';
@@ -66,10 +66,6 @@ export default function Profile({ siteConfig }) {
       setRefreshDominion(true);
     }
 
-    if (visibleTab === 'offerings') {
-      setRefreshOffering(true);
-    }
-
     if (visibleTab === 'packs') {
       setRefreshPack(true);
     }
@@ -105,25 +101,21 @@ export default function Profile({ siteConfig }) {
                           tabIcon: iconUser,
                           tabContent: <ProfileEdit />,
                         },
-                        {
-                          id: 'messages',
-                          tabTitle: 'Messages',
-                          tabIcon: iconEnvelope,
-                          tabContent: (
-                            <ProfileMessages
-                              refreshDominion={refreshDominion}
-                            />
-                          ),
-                        },
+                        // {
+                        //   id: 'messages',
+                        //   tabTitle: 'Messages',
+                        //   tabIcon: iconEnvelope,
+                        //   tabContent: (
+                        //     <ProfileMessages
+                        //       refreshDominion={refreshDominion}
+                        //     />
+                        //   ),
+                        // },
                         {
                           id: 'offerings',
                           tabTitle: 'Offerings',
                           tabIcon: iconMusic,
-                          tabContent: (
-                            <ProfileOfferings
-                              refreshDominion={refreshOffering}
-                            />
-                          ),
+                          tabContent: <ProfileOfferings />,
                         },
                         {
                           id: 'packs',

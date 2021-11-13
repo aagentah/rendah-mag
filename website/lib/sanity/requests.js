@@ -411,11 +411,12 @@ export async function getDominionUsers(preview) {
   return results;
 }
 
-export async function getAllOfferings(sinceStartOfMonth, preview) {
+export async function getAllOfferings(sinceStartOfMonth, showAll, preview) {
   const today = dateTodayYyyyMmDd();
+  const show = showAll ? 250 : 8;
 
   const results = await getClient(preview).fetch(
-    `*[_type == "offering" && publishedAt >= $sinceStartOfMonth && publishedAt <= $today] | order(publishedAt asc) {
+    `*[_type == "offering" && publishedAt >= $sinceStartOfMonth && publishedAt <= $today] | order(publishedAt desc) [0..$show] {
       ...,
       'tracks': tracks[] {
         'track': *[_id == ^._ref] [0] {
@@ -424,7 +425,7 @@ export async function getAllOfferings(sinceStartOfMonth, preview) {
         },
       }
     }`,
-    { sinceStartOfMonth, today }
+    { sinceStartOfMonth, today, show }
   );
   return results;
 }
