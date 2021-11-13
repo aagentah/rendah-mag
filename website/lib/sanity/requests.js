@@ -48,47 +48,63 @@ export async function getSiteConfig() {
 
 // Posts
 export async function getPreviewPostBySlug(slug) {
+  const today = dateTodayISO();
+
   const data = await getClient(true).fetch(
-    `*[_type == "post" && slug.current == $slug]{
+    `*[_type == "post" && slug.current == $slug && publishedAt < $today]{
       ${postFields}
       content
     }`,
-    { slug }
+    { slug, today }
   );
   return data[0];
 }
 
 export async function getPostWithSearch(slug) {
+  const today = dateTodayISO();
+
   const data = await client.fetch(
-    `*[_type == "post" && title match $slug || _type == "post" && excerpt match $slug] | order(publishedAt desc) {
+    `*[_type == "post" && title match $slug || _type == "post" && excerpt match $slug && publishedAt < $today] | order(publishedAt desc) {
       ${postFields}
      }`,
-    { slug }
+    { slug, today }
   );
   return data;
 }
 
 export async function getFeaturedPost(preview) {
-  const results = await getClient(preview)
-    .fetch(`*[_type == "post" && featured] | order(publishedAt desc) [0] {
+  const today = dateTodayISO();
+
+  const results = await getClient(preview).fetch(
+    `*[_type == "post" && featured && publishedAt < $today] | order(publishedAt desc) [0] {
       ${postFields}
-    }`);
+    }`,
+    { today }
+  );
   return results;
 }
 
 export async function getAllPosts(preview) {
-  const results = await getClient(preview)
-    .fetch(`*[_type == "post"] | order(publishedAt desc) [0..31] {
+  const today = dateTodayISO();
+
+  const results = await getClient(preview).fetch(
+    `*[_type == "post" && publishedAt < $today] | order(publishedAt desc) [0..31] {
       ${postFields}
-    }`);
+    }`,
+    { today }
+  );
   return results;
 }
 
 export async function getAllPostsTotal(preview) {
-  const results = await getClient(preview)
-    .fetch(`*[_type == "post"] | order(publishedAt desc) {
+  const today = dateTodayISO();
+
+  const results = await getClient(preview).fetch(
+    `*[_type == "post" && publishedAt < $today] | order(publishedAt desc) {
       ${postFields}
-    }`);
+    }`,
+    { today }
+  );
 
   return results;
 }
@@ -123,17 +139,19 @@ export async function getCreation(slug, preview) {
 }
 
 export async function getCategory(category, range) {
+  const today = dateTodayISO();
+
   const rangeFrom = range[0] - 1;
   const rangeTo = range[1] - 1;
 
   const results = await getClient(null).fetch(
     `*[_type == "category" && slug.current == $category] [0] {
       ...,
-          "articles": *[_type == "post" && references(^._id)] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
+          "articles": *[_type == "post" && references(^._id) && publishedAt < $today] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
             ${postFields}
             }
           }`,
-    { category, rangeFrom, rangeTo }
+    { category, rangeFrom, rangeTo, today }
   );
 
   return results;
@@ -195,14 +213,16 @@ export async function getTeamMembers(preview) {
 }
 
 export async function getTeamMemberAndPosts(slug, preview) {
+  const today = dateTodayISO();
+
   const results = await getClient(preview).fetch(
     `*[_type == "author" && active && slug.current == $slug] [0] {
       ${teamFields}
-      "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc) [0..23] {
+      "posts": *[_type == "post" && references(^._id) && publishedAt < $today] | order(publishedAt desc) [0..23] {
         ${postFields}
       }
     }`,
-    { slug }
+    { slug, today }
   );
   return results;
 }
@@ -235,22 +255,24 @@ export async function getProduct(slug, preview) {
 
 export async function getPostAndMore(slug, preview) {
   const curClient = getClient(preview);
+  const today = dateTodayISO();
+
   const [post, morePosts] = await Promise.all([
     curClient
       .fetch(
-        `*[_type == "post" && slug.current == $slug] | order(publishedAt desc) {
+        `*[_type == "post" && slug.current == $slug && publishedAt < $today] | order(publishedAt desc) {
         ${postFields}
         content,
       }`,
-        { slug }
+        { slug, today }
       )
       .then((res) => res?.[0]),
     curClient.fetch(
-      `*[_type == "post" && slug.current != $slug] | order(publishedAt desc){
+      `*[_type == "post" && slug.current != $slug && publishedAt < $today] | order(publishedAt desc){
         ${postFields}
         content,
       }[0...4]`,
-      { slug }
+      { slug, today }
     ),
   ]);
   return { post, morePosts };
@@ -314,7 +336,7 @@ export async function getLatestDominionItem(preview) {
     `*[_type == "dominionItem"] | order(activeFrom desc) [0] {
       ...,
     }`,
-    { today }
+    { today, today }
   );
 
   return results;
