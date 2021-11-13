@@ -1,56 +1,171 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Router from 'next/router';
-import BlockContent from '@sanity/block-content-to-react';
-import { useKeenSlider } from 'keen-slider/react';
+import dynamic from 'next/dynamic';
 
-import {
-  Modal,
-  Hero,
-  Heading,
-  Copy,
-  Image,
-  Button,
-  Icon,
-  Label,
-} from 'next-pattern-library';
+import { Heading, Button, Icon } from 'next-pattern-library';
 
-import Carousel from './carousel';
+import CardPack from '~/components/card/pack';
+const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
 import { useUser } from '~/lib/hooks';
 import setCharAt from '~/functions/setCharAt';
 
-import { imageBuilder, getAllPacks } from '~/lib/sanity/requests';
+import { getAllPacks } from '~/lib/sanity/requests';
 
-export default function ProfileDominion({ refreshDominion }) {
+export default function ProfilePacks() {
   const [user, { loading, mutate, error }] = useUser();
-  const [packs, setPacks] = useState([]);
-  const [otherPosts, setOtherPosts] = useState([]);
+  const [offerings, setOfferings] = useState([]);
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
   const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
+  const [modalActive, setModalActive] = useState(false);
+  const [cardsShow, setCardsShow] = useState(true);
+  const [showAll, setShowAll] = useState(false);
 
-  // Fetch packs
+  const buttonIconArrowLeft = <Icon icon={['fas', 'arrow-left']} />;
+
+  const apply = (i) => {
+    setModalActive(i);
+    setCardsShow(false);
+  };
+
+  // Fetch offerings
   useEffect(() => {
     const action = async () => {
       let sinceStartOfMonth = user?.dominionSince.split('T')[0];
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 8, '0');
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
 
-      const data = await getAllPacks(sinceStartOfMonth);
-      if (data) setPacks(data);
+      const data = await getAllPacks(sinceStartOfMonth, showAll);
+      if (data) setOfferings(data);
     };
 
     action();
-  }, [packs?.length]);
+  }, [showAll]);
 
-  if (user?.isDominion && packs?.length) {
+  const renderGhostCards = () => {
+    const count = 9 - offerings?.length;
+    const ghostCards = [];
+    const ghostItem = { title: '???' };
+
+    if (count > 0) {
+      for (let i = 0; i < count; i++) {
+        ghostCards.push(
+          <div className="col-24  col-8-md  ph3  pv2  o-30">
+            <CardPack i={i} post={ghostItem} handleClick={null} />
+          </div>
+        );
+      }
+
+      return ghostCards;
+    }
+
+    return false;
+  };
+
+  if (user?.isDominion) {
     return (
       <>
-        <section>
-          {refreshDominion && (
-            <Carousel packItems={packs} refreshDominion={refreshDominion} />
-          )}
-        </section>
+        {offerings?.length ? (
+          <section>
+            <div className="relative  ">
+              <div
+                className={`
+              dominion-cards
+              ${cardsShow && 'dominion-cards--active'}
+          `}
+              >
+                <div className="pb2">
+                  <Heading
+                    /* Options */
+                    htmlEntity="h1"
+                    text="Offerings"
+                    color="black"
+                    size="medium"
+                    truncate={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
+
+                <div className="flex  flex-wrap  pb3">
+                  {offerings.map((item, i) => (
+                    <div className="col-24  col-8-md  ph3  pv2" key={item.slug}>
+                      <CardPack i={i} post={item} handleClick={apply} />
+                    </div>
+                  ))}
+
+                  {renderGhostCards()}
+                </div>
+
+                <div
+                  className="flex  justify-center"
+                  onClick={() => {
+                    if (showAll || offerings?.length <= 12) return;
+                    setShowAll(true);
+                  }}
+                >
+                  <Button
+                    /* Options */
+                    type="primary"
+                    size="small"
+                    text="Load more"
+                    color="black"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted={false}
+                    loading={null}
+                    disabled={showAll || offerings?.length <= 12}
+                    skeleton={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'form',
+                      url: null,
+                      target: null,
+                      routerLink: null,
+                    }}
+                  />
+                </div>
+              </div>
+
+              <section>
+                {offerings.map((item, i) => (
+                  <div
+                    key={i}
+                    className={`
+                    dominion-modal-wrapper
+                    ${modalActive === i ? 'dominion-modal-wrapper--active' : ''}
+                  `}
+                  >
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="small"
+                      text="Back"
+                      color="black"
+                      fluid={false}
+                      icon={buttonIconArrowLeft}
+                      iconFloat="left"
+                      inverted={false}
+                      loading={false}
+                      disabled={false}
+                      skeleton={false}
+                      onClick={() => {
+                        setModalActive(null);
+                        setCardsShow(true);
+                      }}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+
+                    {modalActive === i && <CarouselItemSection pack={item} />}
+                  </div>
+                ))}
+              </section>
+            </div>
+          </section>
+        ) : null}
       </>
     );
   }

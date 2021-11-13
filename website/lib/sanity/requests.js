@@ -430,12 +430,15 @@ export async function getAllOfferings(sinceStartOfMonth, showAll, preview) {
   return results;
 }
 
-export async function getAllPacks(preview) {
+export async function getAllPacks(showAll, preview) {
+  const show = showAll ? 250 : 8;
+
   const results = await getClient(preview).fetch(
-    `*[_type == "pack"] | order(publishedAtDesc desc) {
+    `*[_type == "pack"] | order(publishedAt desc) [0..$show] {
       ...,
       'folder': folder.asset->url,
-    }`
+    }`,
+    { show }
   );
   return results;
 }

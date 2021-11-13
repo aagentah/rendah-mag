@@ -62,13 +62,9 @@ export default function Profile({ siteConfig }) {
     }
 
     // Handles dominion carousel refresh
-    if (visibleTab === 'messages') {
-      setRefreshDominion(true);
-    }
-
-    if (visibleTab === 'packs') {
-      setRefreshPack(true);
-    }
+    // if (visibleTab === 'messages') {
+    //   setRefreshDominion(true);
+    // }
   };
 
   if (user) {
@@ -121,9 +117,7 @@ export default function Profile({ siteConfig }) {
                           id: 'packs',
                           tabTitle: 'Samples',
                           tabIcon: iconPack,
-                          tabContent: (
-                            <ProfilePacks refreshDominion={refreshPack} />
-                          ),
+                          tabContent: <ProfilePacks />,
                         },
 
                         {
