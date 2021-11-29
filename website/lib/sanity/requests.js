@@ -256,7 +256,8 @@ export async function getProduct(slug, preview) {
 export async function getPostAndMore(slug, preview) {
   const curClient = getClient(preview);
   const today = dateTodayISO();
-  let post, morePosts;
+  let post;
+  let morePosts;
 
   if (preview) {
     [post, morePosts] = await Promise.all([
