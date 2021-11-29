@@ -256,25 +256,48 @@ export async function getProduct(slug, preview) {
 export async function getPostAndMore(slug, preview) {
   const curClient = getClient(preview);
   const today = dateTodayISO();
+  let post, morePosts;
 
-  const [post, morePosts] = await Promise.all([
-    curClient
-      .fetch(
-        `*[_type == "post" && slug.current == $slug && publishedAt < $today] | order(publishedAt desc) {
-        ${postFields}
-        content,
-      }`,
+  if (preview) {
+    [post, morePosts] = await Promise.all([
+      curClient
+        .fetch(
+          `*[_type == "post" && slug.current == $slug] | order(publishedAt desc) {
+          ${postFields}
+          content,
+        }`,
+          { slug }
+        )
+        .then((res) => res?.[0]),
+      curClient.fetch(
+        `*[_type == "post" && slug.current != $slug] | order(publishedAt desc){
+          ${postFields}
+          content,
+        }[0...4]`,
+        { slug }
+      ),
+    ]);
+  } else {
+    [post, morePosts] = await Promise.all([
+      curClient
+        .fetch(
+          `*[_type == "post" && slug.current == $slug && publishedAt < $today] | order(publishedAt desc) {
+          ${postFields}
+          content,
+        }`,
+          { slug, today }
+        )
+        .then((res) => res?.[0]),
+      curClient.fetch(
+        `*[_type == "post" && slug.current != $slug && publishedAt < $today] | order(publishedAt desc){
+          ${postFields}
+          content,
+        }[0...4]`,
         { slug, today }
-      )
-      .then((res) => res?.[0]),
-    curClient.fetch(
-      `*[_type == "post" && slug.current != $slug && publishedAt < $today] | order(publishedAt desc){
-        ${postFields}
-        content,
-      }[0...4]`,
-      { slug, today }
-    ),
-  ]);
+      ),
+    ]);
+  }
+
   return { post, morePosts };
 }
 
