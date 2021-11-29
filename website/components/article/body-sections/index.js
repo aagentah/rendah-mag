@@ -44,7 +44,8 @@ export default function Sections({ body, ...props }) {
     if (
       section._type === 'image' &&
       (includes(section.asset._ref, '-jpg') ||
-        includes(section.asset._ref, '-png'))
+        includes(section.asset._ref, '-png') ||
+        includes(section.asset._ref, '-gif'))
     ) {
       return (
         <div key={i} className="pv4">
