@@ -85,6 +85,20 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "carousel",
+      title: "Image Carousel",
+      type: "object",
+      icon: iconImage,
+      fields: [
+        {
+          name: "description",
+          title: "Description",
+          type: "array",
+          of: [{ type: "blockContentCarousel" }],
+        },
+      ],
+    },
+    {
       name: "quoteBlock",
       title: "Quote",
       type: "object",
