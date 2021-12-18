@@ -14,11 +14,14 @@
     "@sanity/default-login",
     "@sanity/desk-tool",
     "@sanity/production-preview",
-    "@sanity/dashboard"
+    "@sanity/dashboard",
+    "autocomplete-tags"
   ],
   "env": {
     "development": {
-      "plugins": ["@sanity/vision"]
+      "plugins": [
+        "@sanity/vision"
+      ]
     }
   },
   "parts": [

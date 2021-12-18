@@ -44,6 +44,17 @@ export default {
       ],
     },
     {
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "blogTag" },
+        },
+      ],
+    },
+    {
       name: "featured",
       title: "Featured Article",
       description: "Feature on the big Homepage Hero banner.",
