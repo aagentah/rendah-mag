@@ -16,8 +16,6 @@ import ArticleLink from './article-link';
 
 export default function Sections({ body, ...props }) {
   const renderSections = (section, i) => {
-    console.log('section', section);
-
     // Remove stray breaks
     if (section?.children?.length) {
       if (

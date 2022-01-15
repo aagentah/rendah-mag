@@ -98,8 +98,8 @@ export default function SocialLinks({ article }) {
 
     return (
       <div className="article__social-links  mt3  pa4  br4  bg-almost-white">
-        {tags}
-        {links?.length && <div className="pt4">{links}</div>}
+        {tags?.length ? <div className="pb4">{tags}</div> : ''}
+        {links?.length ? links : ''}
       </div>
     );
   }

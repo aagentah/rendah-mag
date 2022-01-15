@@ -239,7 +239,6 @@ export async function getTags(preview) {
     .fetch(`*[_type == "blogTag"] | order(order asc){
       ${tagFields}
     }`);
-  console.log('results a', results);
   return results;
 }
 
@@ -255,7 +254,6 @@ export async function getTagAndPosts(slug, preview) {
     }`,
     { slug, today }
   );
-  console.log('results b', results);
   return results;
 }
 
