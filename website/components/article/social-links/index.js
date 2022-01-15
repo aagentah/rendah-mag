@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Icon } from 'next-pattern-library';
 
-export default function SocialLinks({ article }) {
+export default function SocialLinks({ article, isCreations }) {
   if (article.socialHandles) {
     let links = [];
     let tags = [];
@@ -78,7 +78,7 @@ export default function SocialLinks({ article }) {
       });
     }
 
-    if (article?.tags?.length) {
+    if (!isCreations && article?.tags?.length) {
       tags.push(
         <p className="t-primary  f6  fw7  almost-black  lh-copy  pb2">Tags:</p>
       );

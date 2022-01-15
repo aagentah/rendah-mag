@@ -196,7 +196,7 @@ export default function Creations({ siteConfig, post, preview }) {
                 {renderSections()}
 
                 <div className="pb4  mb2">
-                  <SocialLinks article={post} />
+                  <SocialLinks isCreations article={post} />
                 </div>
               </section>
 
