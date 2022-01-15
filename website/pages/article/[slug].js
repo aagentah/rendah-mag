@@ -42,8 +42,6 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  console.log('post', post);
-
   const renderCaption = () => {
     if (isArray(post?.image?.caption)) {
       return (

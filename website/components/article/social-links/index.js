@@ -1,8 +1,10 @@
+import Link from 'next/link';
 import { Icon } from 'next-pattern-library';
 
 export default function SocialLinks({ article }) {
   if (article.socialHandles) {
     let links = [];
+    let tags = [];
 
     if (article.socialHandles.soundcloud) {
       article.socialHandles.soundcloud.split(/\s*,\s*/).forEach((e) => {
@@ -76,9 +78,28 @@ export default function SocialLinks({ article }) {
       });
     }
 
+    if (article?.tags?.length) {
+      tags.push(
+        <p className="t-primary  f6  fw7  almost-black  lh-copy  pb2">Tags:</p>
+      );
+
+      tags.push(
+        article.tags.map((e) => (
+          <>
+            <Link href={`/tag/${e.tag.slug}`}>
+              <span className="t-secondary  f7  cp  grey  fw7  pr3">
+                #{e.tag.name}
+              </span>
+            </Link>
+          </>
+        ))
+      );
+    }
+
     return (
       <div className="article__social-links  mt3  pa4  br4  bg-almost-white">
-        {links}
+        {tags}
+        {links?.length && <div className="pt4">{links}</div>}
       </div>
     );
   }
