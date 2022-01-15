@@ -43,6 +43,17 @@ export default {
       ],
     },
     {
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "blogTag" },
+        },
+      ],
+    },
+    {
       name: "publishedAt",
       title: "Publish Date",
       type: "datetime",
