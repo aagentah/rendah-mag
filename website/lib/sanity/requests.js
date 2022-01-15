@@ -16,6 +16,7 @@ const postFields = `
   'tags': tags[] {
     'tag': *[_id == ^._ref] [0] {
       ...,
+      'slug': slug.current,
     },
   },
   'authors': authors[] {
