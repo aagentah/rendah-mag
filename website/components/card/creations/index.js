@@ -38,7 +38,7 @@ export default function CardCreations({ post, columnCount }) {
     <Image
       /* Options */
       src={
-        post &&
+        post?.coverImage &&
         imageBuilder
           .image(post?.coverImage)
           .width(imageUrlWidth * scale)

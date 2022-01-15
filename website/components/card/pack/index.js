@@ -15,7 +15,7 @@ export default function CardPack({ post, handleClick, i }) {
     <Image
       /* Options */
       src={
-        post &&
+        post?.image &&
         imageBuilder
           .image(post.image)
           .width(imageUrlWidth * scale)

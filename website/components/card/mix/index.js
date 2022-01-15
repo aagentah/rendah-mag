@@ -23,7 +23,7 @@ export default function CardBlog({ post }) {
     <Image
       /* Options */
       src={
-        post &&
+        post?.coverImage &&
         imageBuilder
           .image(post?.coverImage)
           .width(imageUrlWidth * scale)
