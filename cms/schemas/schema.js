@@ -7,6 +7,7 @@ import blockContent from "./blockContent";
 import blogPost from "./documents/blogPost";
 import blogAuthor from "./documents/blogAuthor";
 import blogCategory from "./documents/blogCategory";
+import blogTag from "./documents/blogTag";
 
 // Store
 import storeCategory from "./documents/storeCategory";
@@ -50,6 +51,7 @@ export default createSchema({
     blogPost,
     blogAuthor,
     blogCategory,
+    blogTag,
     storeCategory,
     storeCollection,
     storeItem,

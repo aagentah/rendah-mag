@@ -13,8 +13,10 @@ const postFields = `
   'slug': slug.current,
   'coverImage': image.asset->url,
   'category': category->title,
-  'author': author->{
-    ...,
+  'tags': tags[] {
+    'tag': *[_id == ^._ref] [0] {
+      ...,
+    },
   },
   'authors': authors[] {
     'author': *[_id == ^._ref] [0] {
@@ -33,6 +35,11 @@ const productFields = `
 `;
 
 const teamFields = `
+  ...,
+  'slug': slug.current,
+`;
+
+const tagFields = `
   ...,
   'slug': slug.current,
 `;
@@ -224,6 +231,31 @@ export async function getTeamMemberAndPosts(slug, preview) {
     }`,
     { slug, today }
   );
+  return results;
+}
+
+export async function getTags(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "blogTag"] | order(order asc){
+      ${tagFields}
+    }`);
+  console.log('results a', results);
+  return results;
+}
+
+export async function getTagAndPosts(slug, preview) {
+  const today = dateTodayISO();
+
+  const results = await getClient(preview).fetch(
+    `*[_type == "blogTag" && slug.current == $slug] [0] {
+      ${tagFields}
+      "posts": *[_type == "post" && references(^._id) && publishedAt < $today] | order(publishedAt desc) [0..23] {
+        ${postFields}
+      }
+    }`,
+    { slug, today }
+  );
+  console.log('results b', results);
   return results;
 }
 
