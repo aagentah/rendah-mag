@@ -80,35 +80,6 @@ export default {
       ],
       validation: (Rule) => Rule.required(),
     },
-    // {
-    //   name: 'categories',
-    //   title: 'Categories',
-    //   type: 'array',
-    //   of: [{type: 'reference', to: {type: 'category'}}]
-    // },
-    {
-      title: "Tags",
-      name: "tags",
-      description: "Tags used to serve recomendations",
-      type: "array",
-      of: [
-        {
-          type: "string",
-          options: {
-            list: [
-              { title: "Producer", value: "Producer" },
-              { title: "DJ", value: "DJ" },
-              { title: "Visual Artist", value: "Visual Artist" },
-              { title: "Label", value: "Label" },
-              { title: "Listener", value: "Listener" },
-              { title: "Developer", value: "Developer" },
-              { title: "Engineer", value: "Engineer" },
-            ],
-            layout: "dropdown",
-          },
-        },
-      ],
-    },
     {
       name: "socialTagline",
       title: "Social Tagline",

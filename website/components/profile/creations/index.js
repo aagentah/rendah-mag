@@ -17,10 +17,8 @@ import { getAllCreationsTotal } from '~/lib/sanity/requests';
 export default function ProfileCreations() {
   const [user, { loading, mutate, error }] = useUser();
   const [posts, setPosts] = useState([]);
-  const [recomendedPosts, setRecomendedPosts] = useState([]);
-  const [otherPosts, setOtherPosts] = useState([]);
 
-  // Fetch orders
+  // Fetch posts
   useEffect(async () => {
     const action = async () => {
       const data = await getAllCreationsTotal();
@@ -28,19 +26,6 @@ export default function ProfileCreations() {
     };
 
     await action();
-
-    if (user?.isDominion && posts?.length) {
-      const rP = [];
-      const oP = [];
-
-      posts.map((post) => {
-        const tagMatchUser = post?.tags?.some((r) => user?.tags?.includes(r));
-        return tagMatchUser ? rP.push(post) : oP.push(post);
-      });
-
-      setRecomendedPosts(rP);
-      setOtherPosts(oP);
-    }
   }, [posts?.length]);
 
   if (user?.isDominion) {
@@ -68,60 +53,16 @@ export default function ProfileCreations() {
           </p>
         </div>
 
-        {recomendedPosts?.length ? (
-          <>
-            <div className="pb3">
-              <Heading
-                /* Options */
-                htmlEntity="h2"
-                text="Recomended for you:"
-                color="black"
-                size="small"
-                truncate={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-
-            <div className="flex  flex-wrap  pb3">
-              {recomendedPosts.map((post, i) => (
-                <div key={post.slug} className="col-24  col-8-md">
-                  <div className="ph3  pv2">
-                    <CardCreations i={i} post={post} columnCount={3} />
-                  </div>
+        {posts?.length ? (
+          <div className="flex  flex-wrap  pb3">
+            {posts.map((post, i) => (
+              <div key={post.slug} className="col-24  col-8-md">
+                <div className="ph3  pv2">
+                  <CardCreations i={i} post={post} columnCount={3} />
                 </div>
-              ))}
-            </div>
-          </>
-        ) : null}
-
-        {otherPosts?.length ? (
-          <>
-            {recomendedPosts?.length ? (
-              <div className="pb3">
-                <Heading
-                  /* Options */
-                  htmlEntity="h2"
-                  text="More:"
-                  color="black"
-                  size="small"
-                  truncate={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
               </div>
-            ) : null}
-
-            <div className="flex  flex-wrap">
-              {otherPosts.map((post, i) => (
-                <div key={post.slug} className="col-24  col-8-md">
-                  <div className="ph3  pv2">
-                    <CardCreations i={i} post={post} columnCount={4} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
+            ))}
+          </div>
         ) : null}
       </section>
     );

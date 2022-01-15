@@ -38,39 +38,6 @@ export default function Creations({ siteConfig, post, preview }) {
   }
 
   if (!router.isFallback && post?.slug) {
-    const renderTags = () => {
-      if (!post?.tags?.length) return;
-      const labelBlock = [];
-
-      post.tags.map((label) => {
-        labelBlock.push(
-          <div className="pr2">
-            <Label
-              /* Options */
-              customClass="category"
-              text={label}
-              color="white"
-              backgroundColor="black"
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-        );
-      });
-
-      return (
-        <section className="measure-wide  mla  mra  flex  align-center">
-          <div className="flex  flex-wrap  align-center">
-            <div className="pr2">
-              <span className="t-primary  lh-title  white">Tags:</span>
-            </div>
-            {labelBlock}
-          </div>
-        </section>
-      );
-    };
-
     const renderPublicSections = () => {
       if (!post?.publicBody) return;
 
@@ -196,11 +163,9 @@ export default function Creations({ siteConfig, post, preview }) {
                 {renderSections()}
 
                 <div className="pb4  mb2">
-                  <SocialLinks isCreations article={post} />
+                  <SocialLinks article={post} />
                 </div>
               </section>
-
-              {renderTags()}
             </article>
 
             <section className="flex  flex-wrap  justify-center  align-center  pb3  pb4-md">

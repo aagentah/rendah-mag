@@ -1,4 +1,8 @@
+import { useState } from 'react';
 import Link from 'next/link';
+import LazyLoad from 'react-lazyload';
+import 'intersection-observer';
+import Observer from '@researchgate/react-intersection-observer';
 import {
   Image,
   Label,
@@ -11,11 +15,23 @@ import {
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
-export default function CardBlog({ post }) {
+export default function CardCreations({ post, columnCount }) {
   const app = useApp();
+  const [inView, setInView] = useState(false);
   const scale = app?.isRetina ? 2 : 1;
-  const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  const imageHeight = app?.deviceSize === 'md' ? 260 : 180;
+  let imageHeight;
+  let imageUrlWidth;
+  const handleIntersect = (event) => setInView(event.isIntersecting);
+  const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
+
+  if (columnCount == 2) {
+    imageUrlWidth = app?.deviceSize === 'md' ? 260 : 500;
+    imageHeight = app?.deviceSize === 'md' ? 260 : 300;
+  } else {
+    imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
+    imageHeight = app?.deviceSize === 'md' ? 260 : 180;
+  }
+
   const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
 
   const image = (
@@ -36,7 +52,7 @@ export default function CardBlog({ post }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass="shadow2  br4"
+      customClass={'shadow2  br4'}
       skeleton={!post}
       onClick={null}
       /* Children */
@@ -74,7 +90,7 @@ export default function CardBlog({ post }) {
       text={post?.title}
       color="black"
       size="small"
-      truncate={2}
+      truncate={null}
       skeleton={!post}
       /* Children */
       withLinkProps={{
@@ -119,11 +135,11 @@ export default function CardBlog({ post }) {
   //     /* Children */
   //     withLinkProps={{
   //       type: 'next',
-  //       href: '/article/[slug]',
+  //       href: '/creations/[slug]',
   //       target: null,
   //       routerLink: Link,
   //       routerLinkProps: {
-  //         as: `/article/${post?.slug}`,
+  //         as: `/creations/${post?.slug}`,
   //         scroll: false,
   //       },
   //     }}
@@ -131,19 +147,29 @@ export default function CardBlog({ post }) {
   // );
 
   return (
-    <article className="card  card--post">
-      {image && <div className="card__image">{image}</div>}
+    <Observer {...observer}>
+      <LazyLoad once offset={150} height={imageHeight}>
+        <article
+          className={`card  card--post  card--creations  card--scroll  ${
+            inView && 'in-view'
+          }`}
+        >
+          {image && <div className="card__image">{image}</div>}
 
-      <div className="card__dialog">
-        {labels?.length && <div className="card__labels">{[...labels]}</div>}
-        {heading && <div className="card__title">{heading}</div>}
-        {
-          // copy && <div className="card__description">{copy}</div>
-        }
-        {
-          // button && <div className="card__button">{button}</div>
-        }
-      </div>
-    </article>
+          <div className="card__dialog">
+            {labels?.length && (
+              <div className="card__labels">{[...labels]}</div>
+            )}
+            {heading && <div className="card__title">{heading}</div>}
+            {
+              // copy && <div className="card__description">{copy}</div>
+            }
+            {
+              // button && <div className="card__button">{button}</div>
+            }
+          </div>
+        </article>
+      </LazyLoad>
+    </Observer>
   );
 }
