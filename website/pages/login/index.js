@@ -115,6 +115,7 @@ export default function Login({ siteConfig }) {
   return (
     <>
       <Layout
+        title="login"
         navOffset="center"
         navOnWhite
         hasNav

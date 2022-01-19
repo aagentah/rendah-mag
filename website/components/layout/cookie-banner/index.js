@@ -32,11 +32,11 @@ export default function CookieBanner() {
       <div className="col-16  ph4  flex  align-center  justify-start">
         <div>
           <div className="cookie-banner__body">
-            We may use{' '}
+            We use{' '}
             <a className="underline" href="/cookie-policy" target="_blank">
               cookies
             </a>{' '}
-            to offer a better browsing experience.
+            to keep you logged in to the Dominion.
           </div>
         </div>
       </div>

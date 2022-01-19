@@ -8,6 +8,7 @@ import Header from './header';
 import CookieBanner from './cookie-banner';
 
 export default function Layout({
+  title,
   navOffset,
   navOnWhite,
   hasNav,
@@ -43,7 +44,7 @@ export default function Layout({
       {preview && <Alert preview={preview} />}
       {!preview && !hideNav && <Header navOnWhite={navOnWhite} meta={meta} />}
       <main className={`page ${navOffsetType}`}>{children}</main>
-      {!preview && <CookieBanner />}
+      {!preview && title === 'login' && <CookieBanner />}
       {!hideFooter && <Footer />}
     </>
   );

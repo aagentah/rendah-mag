@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import { Button, Icon } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';
+import { usePlausible } from 'next-plausible';
 
 import { useUser } from '~/lib/hooks';
 import { useApp } from '~/context-provider/app';
@@ -13,6 +14,7 @@ export default function Audio({
   allowDownload,
   ...props
 }) {
+  const plausible = usePlausible();
   const PlayerRef = useRef(null);
   const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
@@ -25,18 +27,20 @@ export default function Audio({
   }, [currentAudioSelected]);
 
   const triggerOnPlayEvt = () => {
-    gtag.event({
-      category: 'Audio',
-      action: 'play',
-      label: title,
+    plausible('Audio', {
+      props: {
+        action: 'play',
+        label: title,
+      },
     });
   };
 
   const triggerOnDownloadEvt = () => {
-    gtag.event({
-      category: 'Audio',
-      action: 'download',
-      label: title,
+    plausible('Audio', {
+      props: {
+        action: 'download',
+        label: title,
+      },
     });
   };
 
