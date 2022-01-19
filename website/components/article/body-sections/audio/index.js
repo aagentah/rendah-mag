@@ -27,23 +27,19 @@ export default function Audio({
   }, [currentAudioSelected]);
 
   const triggerOnPlayEvt = () => {
-    plausible('Audio', {
+    plausible('Audio Play', {
       props: {
-        track: {
-          action: 'play',
-          label: title,
-        },
+        action: 'play',
+        label: title,
       },
     });
   };
 
   const triggerOnDownloadEvt = () => {
-    plausible('Audio', {
+    plausible('Audio Download', {
       props: {
-        track: {
-          action: 'download',
-          label: title,
-        },
+        action: 'download',
+        label: title,
       },
     });
   };
