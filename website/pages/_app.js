@@ -3,9 +3,9 @@ import Router from 'next/router';
 import { PageTransition } from 'next-page-transitions';
 import NProgress from 'nprogress';
 import { ParallaxProvider } from 'react-scroll-parallax';
+import PlausibleProvider from 'next-plausible';
 
 import { AppProvider } from '~/context-provider/app';
-import * as gtag from '~/lib/gtag';
 
 import '~/styles/index.scss';
 import 'keen-slider/keen-slider.min.css';
@@ -14,9 +14,6 @@ import 'react-toastify/dist/ReactToastify.css';
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
-
-// Track pageview when route is changed
-Router.events.on('routeChangeComplete', (url) => gtag.pageview(url));
 
 // Performance metrics
 // export function reportWebVitals(metric) {
@@ -28,23 +25,25 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <AppProvider>
-        <ParallaxProvider>
-          <PageTransition
-            timeout={transitionTimeout}
-            classNames="page-transition"
-            loadingComponent={null}
-            loadingDelay={transitionTimeout}
-            loadingTimeout={{
-              enter: transitionTimeout,
-              exit: transitionTimeout,
-            }}
-            loadingClassNames="loading-indicator"
-          >
-            <Component {...pageProps} />
-          </PageTransition>
-        </ParallaxProvider>
-      </AppProvider>
+      <PlausibleProvider domain="rendahmag.com">
+        <AppProvider>
+          <ParallaxProvider>
+            <PageTransition
+              timeout={transitionTimeout}
+              classNames="page-transition"
+              loadingComponent={null}
+              loadingDelay={transitionTimeout}
+              loadingTimeout={{
+                enter: transitionTimeout,
+                exit: transitionTimeout,
+              }}
+              loadingClassNames="loading-indicator"
+            >
+              <Component {...pageProps} />
+            </PageTransition>
+          </ParallaxProvider>
+        </AppProvider>
+      </PlausibleProvider>
     </>
   );
 }
