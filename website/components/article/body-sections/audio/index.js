@@ -5,7 +5,6 @@ import BlockContent from '@sanity/block-content-to-react';
 
 import { useUser } from '~/lib/hooks';
 import { useApp } from '~/context-provider/app';
-import * as gtag from '~/lib/gtag';
 
 export default function Audio({
   url,
