@@ -29,8 +29,10 @@ export default function Audio({
   const triggerOnPlayEvt = () => {
     plausible('Audio', {
       props: {
-        action: 'play',
-        label: title,
+        track: {
+          action: 'play',
+          label: title,
+        },
       },
     });
   };
@@ -38,8 +40,10 @@ export default function Audio({
   const triggerOnDownloadEvt = () => {
     plausible('Audio', {
       props: {
-        action: 'download',
-        label: title,
+        track: {
+          action: 'download',
+          label: title,
+        },
       },
     });
   };
