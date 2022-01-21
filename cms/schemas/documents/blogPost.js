@@ -127,6 +127,12 @@ export default {
       type: "blockContent",
     },
     {
+      name: "hasPostedDiscord",
+      title: "Has Posted in Discord",
+      type: "boolean",
+      readOnly: true,
+    },
+    {
       type: "object",
       name: "socialHandles",
       title: "Social Media Handles",

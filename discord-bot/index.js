@@ -3,6 +3,7 @@
 const _ = require("lodash");
 const fetch = require("node-fetch");
 const { Client } = require("discord.js");
+const Parser = require("rss-parser");
 
 const client = new Client({
   partials: ["USER", "GUILD_MEMBER", "MESSAGE", "CHANNEL", "REACTION"],
@@ -50,12 +51,37 @@ const handleDominionRoles = () => {
   }, 3600000);
 };
 
+const handleDiscordBlog = () => {
+  const action = async () => {
+    const feed = await fetch(
+      `https://rendahmag.com/api/discord/get-latest-articles`
+      // "https://001f-2a01-4c8-1400-44c3-351a-d0f3-2d05-86d1.ngrok.io/api/discord/get-latest-articles"
+    ).then((res) => res.json());
+
+    for (let i = 0; i < feed.length; i++) {
+      const post = feed[i];
+
+      if (!post.hasPostedDiscord) {
+        client.channels
+          .get("934109364879507537")
+          .send(`https://rendahmag.com/article/${post.slug}`);
+      }
+    }
+  };
+
+  setInterval(() => {
+    action();
+  }, 3600000);
+};
+
 client.on("ready", async () => {
   console.log("Discord bot Active!");
 
   client.user.setActivity("Rendah Cyphers", { type: "LISTENING" });
 
   handleDominionRoles();
+  handleDiscordBlog();
 });
 
-client.login(process.env.TOKEN);
+client.login("NzcxNDExMjQ0Nzg3MzAyNDEw.X5rutA.BRdEN3QWgKX-sJBjyzgBRXA_Vew");
+// client.login(process.env.TOKEN);
