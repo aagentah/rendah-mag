@@ -3,7 +3,6 @@
 const _ = require("lodash");
 const fetch = require("node-fetch");
 const { Client } = require("discord.js");
-const Parser = require("rss-parser");
 
 const client = new Client({
   partials: ["USER", "GUILD_MEMBER", "MESSAGE", "CHANNEL", "REACTION"],
