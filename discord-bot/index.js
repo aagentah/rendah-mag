@@ -55,19 +55,30 @@ const handleDiscordBlog = () => {
   const action = async () => {
     const feed = await fetch(
       `https://rendahmag.com/api/discord/get-latest-articles`
-      // "https://001f-2a01-4c8-1400-44c3-351a-d0f3-2d05-86d1.ngrok.io/api/discord/get-latest-articles"
+      // "http://ea90-185-206-227-134.ngrok.io/api/discord/get-latest-articles"
     ).then((res) => res.json());
 
     for (let i = 0; i < feed.length; i++) {
       const post = feed[i];
+      let authors = "";
 
-      if (!post.hasPostedDiscord) {
-        client.channels
-          .get("934109364879507537")
-          .send(`https://rendahmag.com/article/${post.slug}`);
+      for (let i = 0; i < post.authors.length; i++) {
+        authors += post.authors[i].author.name;
+
+        if (i + 1 !== post.authors.length) {
+          authors += "& ";
+        }
       }
+
+      client.channels
+        .get("934109364879507537")
+        .send(
+          `New post up from ${authors}!\n\nhttps://rendahmag.com/article/${post.slug}`
+        );
     }
   };
+
+  action();
 
   setInterval(() => {
     action();
