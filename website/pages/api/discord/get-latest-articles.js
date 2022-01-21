@@ -32,10 +32,10 @@ const handler = async (req, res) => {
           .set({ hasPostedDiscord: true }) // Shallow merge
           .commit() // Perform the patch and return a promise
           .then((e) => {
-            console.log('Updated!:');
+            console.log('Updated!');
           })
           .catch((err) => {
-            //
+            console.log('Error', err.message);
           });
       }
     }

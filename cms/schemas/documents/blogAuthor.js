@@ -36,6 +36,11 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "discordId",
+      title: "Discord ID",
+      type: "string",
+    },
+    {
       name: "order",
       title: "Order",
       description: "Between 1-3",

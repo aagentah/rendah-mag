@@ -1,5 +1,6 @@
 // Discord.js client
 
+require("dotenv").config();
 const _ = require("lodash");
 const fetch = require("node-fetch");
 const { Client } = require("discord.js");
@@ -51,29 +52,47 @@ const handleDominionRoles = () => {
 };
 
 const handleDiscordBlog = () => {
+  const getAuthorNames = (authors) => {
+    let string = "";
+    let authorDiscord;
+    let author;
+
+    for (let i = 0; i < authors.length; i++) {
+      author = authors[i].author;
+      authorDiscord = client.users.get(author.discordId);
+
+      if (authorDiscord) {
+        string += authorDiscord.toString();
+      } else {
+        string += author.name;
+      }
+
+      if (i + 1 !== authors.length) {
+        string += " & ";
+      }
+    }
+
+    return string;
+  };
+
   const action = async () => {
     const feed = await fetch(
       `https://rendahmag.com/api/discord/get-latest-articles`
-      // "http://ea90-185-206-227-134.ngrok.io/api/discord/get-latest-articles"
+      // "https://c59b-194-37-96-102.ngrok.io/api/discord/get-latest-articles"
     ).then((res) => res.json());
 
     for (let i = 0; i < feed.length; i++) {
       const post = feed[i];
-      let authors = "";
 
-      for (let i = 0; i < post.authors.length; i++) {
-        authors += post.authors[i].author.name;
-
-        if (i + 1 !== post.authors.length) {
-          authors += "& ";
-        }
+      if (post.slug === "dwelling-music-video") {
+        client.channels
+          .get("934109364879507537")
+          .send(
+            `New post up from ${getAuthorNames(
+              post.authors
+            )}!\n\nhttps://rendahmag.com/article/${post.slug}`
+          );
       }
-
-      client.channels
-        .get("934109364879507537")
-        .send(
-          `New post up from ${authors}!\n\nhttps://rendahmag.com/article/${post.slug}`
-        );
     }
   };
 
