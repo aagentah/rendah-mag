@@ -83,5 +83,4 @@ client.on("ready", async () => {
   handleDiscordBlog();
 });
 
-client.login("NzcxNDExMjQ0Nzg3MzAyNDEw.X5rutA.BRdEN3QWgKX-sJBjyzgBRXA_Vew");
-// client.login(process.env.TOKEN);
+client.login(process.env.TOKEN);
