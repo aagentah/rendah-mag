@@ -84,15 +84,13 @@ const handleDiscordBlog = () => {
     for (let i = 0; i < feed.length; i++) {
       const post = feed[i];
 
-      if (post.slug === "dwelling-music-video") {
-        client.channels
-          .get("934109364879507537")
-          .send(
-            `New post up from ${getAuthorNames(
-              post.authors
-            )}!\n\nhttps://rendahmag.com/article/${post.slug}`
-          );
-      }
+      client.channels
+        .get("934109364879507537")
+        .send(
+          `New post up from ${getAuthorNames(
+            post.authors
+          )}!\n\nhttps://rendahmag.com/article/${post.slug}`
+        );
     }
   };
 
