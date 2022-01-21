@@ -4,8 +4,8 @@
   "description": "An in-depth guide on deploying your Discord.js bot on Heroku",
   "main": "index.js",
   "engines": {
-    "node": "10.x",
-    "npm": "*"
+    "node": "15.x",
+    "npm": "7.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
