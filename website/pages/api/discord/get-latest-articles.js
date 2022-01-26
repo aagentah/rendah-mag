@@ -27,7 +27,7 @@ const handler = async (req, res) => {
         notPostedInDiscord.push(post);
 
         // Update post
-        client
+        await client
           .patch(post._id) // Document ID to patch
           .set({ hasPostedDiscord: true }) // Shallow merge
           .commit() // Perform the patch and return a promise
