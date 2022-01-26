@@ -74,6 +74,7 @@
     "react/jsx-one-expression-per-line": "off",
     "no-restricted-syntax": "off",
     "prefer-destructuring": "off",
+    "no-await-in-loop": "off",
     "import/no-unresolved": [
       "error",
       {
