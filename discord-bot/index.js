@@ -110,4 +110,24 @@ client.on("ready", async () => {
   handleDiscordBlog();
 });
 
+client.on("message", (m) => {
+  const names = [
+    "boi",
+    "g",
+    "gangsta",
+    "rudeboi",
+    "pls",
+    "bruuh",
+    "lmao",
+    "pls",
+  ];
+
+  m.mentions.users.forEach((item, i) => {
+    // Is nbot
+    if (i === client.user.id) {
+      m.channel.send(`Catch me ${_.sample(names)}`);
+    }
+  });
+});
+
 client.login(process.env.TOKEN);
