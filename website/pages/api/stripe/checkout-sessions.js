@@ -8,6 +8,7 @@ export default async function handler(req, res) {
       // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create({
         shipping_address_collection: {
+          // TODO: list all countries
           allowed_countries: ['US', 'CA'],
         },
         line_items: [
@@ -18,8 +19,8 @@ export default async function handler(req, res) {
           },
         ],
         mode: 'subscription',
-        success_url: `${req.headers.origin}/dominion?success=true`,
-        cancel_url: `${req.headers.origin}/dominion?canceled=true`,
+        success_url: `${req.headers.origin}/dominion-thank-you`,
+        cancel_url: `${req.headers.origin}/404`,
       });
       res.redirect(303, session.url);
     } catch (err) {

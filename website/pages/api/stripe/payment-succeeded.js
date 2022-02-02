@@ -27,10 +27,12 @@ export default async (req, res) => {
     try {
       event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
     } catch (err) {
-      return res.status(400).send(`Webhook Error: ${err.message}`);
+      throw new Error(await formatHttpError(err.message));
     }
 
     session = event?.data?.object;
+
+    console.log('session', session);
 
     switch (event.type) {
       case 'checkout.session.completed':
