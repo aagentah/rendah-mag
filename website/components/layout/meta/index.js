@@ -3,7 +3,6 @@ import { withRouter } from 'next/router';
 
 import { useApp, useDispatchApp } from '~/context-provider/app';
 import { imageBuilder } from '~/lib/sanity/requests';
-import { IS_ECCOMERCE } from '~/constants';
 
 const Meta = (props) => {
   const app = useApp();

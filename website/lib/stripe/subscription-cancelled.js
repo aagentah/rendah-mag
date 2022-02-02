@@ -61,13 +61,13 @@ export default async ({ session }) => {
   } catch (error) {
     // Handle catch
     console.error(
-      `Error in snipcart/subscription-cancelled: ${
+      `Error in stripe/subscription-cancelled: ${
         error.message || error.toString()
       }`
     );
 
     return {
-      error: `Error in snipcart/subscription-cancelled: ${
+      error: `Error in stripe/subscription-cancelled: ${
         error.message || error.toString()
       }`,
     };

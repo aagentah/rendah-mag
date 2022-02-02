@@ -400,14 +400,14 @@ export default function Product({ siteConfig, product }) {
                             onClick={() =>
                               quantity > 1 && setQuantity(quantity - 1)
                             }
-                            class="ph2  cp"
+                            className="ph2  cp"
                           >
                             {buttonIconMinus}
                           </span>
-                          <span class="w2  tac">{quantity}</span>
+                          <span className="w2  tac">{quantity}</span>
                           <span
                             onClick={() => setQuantity(quantity + 1)}
-                            class="ph2  cp"
+                            className="ph2  cp"
                           >
                             {buttonIconPlus}
                           </span>

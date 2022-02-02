@@ -75,11 +75,11 @@ export default async ({ session }) => {
   } catch (error) {
     // Handle catch
     console.error(
-      `Error in snipcart/order-completed: ${error.message || error.toString()}`
+      `Error in stripe/order-completed: ${error.message || error.toString()}`
     );
 
     return {
-      error: `Error in snipcart/order-completed: ${
+      error: `Error in stripe/order-completed: ${
         error.message || error.toString()
       }`,
     };

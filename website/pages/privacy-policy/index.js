@@ -714,7 +714,7 @@ export default function Error404({ siteConfig }) {
                                   {' '}
                                   <strong>Invoice and Billing</strong>{' '}
                                 </span>{' '}
-                                <br /> <span> Snipcart </span>
+                                <br /> <span> Stripe </span>
                               </li>
                             </ul>
                             <ul>

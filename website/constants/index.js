@@ -1,6 +1,3 @@
-// Snipcart
-export const IS_ECCOMERCE = true;
-
 // Serializers
 export const SANITY_BLOCK_SERIALIZERS = {
   list: (props) => <>{props.children}</>,

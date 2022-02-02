@@ -5,7 +5,8 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
       const { data } = req.body;
       const { shipping } = data;
-      let shippingOptions, discountOptions;
+      let shippingOptions;
+      let discountOptions;
 
       if (data.discount) {
         const coupon = await stripe.promotionCodes.list({
@@ -14,8 +15,6 @@ export default async function handler(req, res) {
         });
 
         discountOptions = [{ coupon: coupon.data[0].coupon.id }];
-
-        console.log('discountOptions', discountOptions);
       }
 
       if (data.mode === 'payment') {

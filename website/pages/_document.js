@@ -1,7 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-import { IS_ECCOMERCE } from '~/constants';
-
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -53,13 +51,6 @@ export default class MyDocument extends Document {
 
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         </Head>
-
-        <div
-          hidden
-          id="snipcart"
-          data-api-key={process.env.SNIPCART_API_KEY}
-          data-config-add-product-behavior="none"
-        />
 
         <body>
           <Main />

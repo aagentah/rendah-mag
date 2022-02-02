@@ -774,42 +774,7 @@ export default function Error404({ siteConfig }) {
                     </table>
                   </div>
                 </section>
-                <section data-custom-class="body_text">
-                  <div>
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td>Name:</td>
-                          <td>snipcart_summary</td>
-                        </tr>
-                        <tr>
-                          <td>Purpose:</td>
-                          <td>__________</td>
-                        </tr>
-                        <tr>
-                          <td>Provider:</td>
-                          <td>www.rendahmag.com</td>
-                        </tr>
-                        <tr>
-                          <td>Service:</td>
-                          <td>__________ </td>
-                        </tr>
-                        <tr>
-                          <td>Country:</td>
-                          <td>United States</td>
-                        </tr>
-                        <tr>
-                          <td>Type:</td>
-                          <td>html_local_storage</td>
-                        </tr>
-                        <tr>
-                          <td>Expires in:</td>
-                          <td>persistent</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </section>
+
                 <section data-custom-class="body_text">
                   <div>
                     <table>
