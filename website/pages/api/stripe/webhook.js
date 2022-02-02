@@ -8,7 +8,9 @@ import orderCompleted from '~/lib/stripe/order-completed';
 import subscriptionCreated from '~/lib/stripe/subscription-created';
 import subscriptionCancelled from '~/lib/stripe/subscription-cancelled';
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: '2020-08-27',
+});
 
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 
