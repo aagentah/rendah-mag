@@ -16,6 +16,7 @@ export default async ({ session }) => {
     const { address } = shipping;
     const { name } = shipping;
     const { line1, line2, city, postal_code, state, country } = address;
+    const temporaryPassword = generatePassword(12, false);
 
     const userData = {
       username: email,

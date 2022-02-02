@@ -30,6 +30,14 @@ export default async ({ session }) => {
       return true;
     };
 
+    await getEmail();
+
+    const userData = await findUserByUsername(email);
+    const updatefields = { isDominion: false };
+    const tags = [];
+
+    tags.push({ name: 'Dominion Subscription', status: 'inactive' });
+
     const addMembertags = async () => {
       const response = await fetch(
         `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
@@ -45,14 +53,6 @@ export default async ({ session }) => {
         throw new Error(await formatHttpError(response));
       }
     };
-
-    await getEmail();
-
-    const userData = await findUserByUsername(email);
-    const updatefields = { isDominion: false };
-    const tags = [];
-
-    tags.push({ name: 'Dominion Subscription', status: 'inactive' });
 
     await updateUserByUsername(null, userData, updatefields);
     await addMembertags();
