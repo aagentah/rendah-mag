@@ -1,3 +1,5 @@
+import { countries } from '~/lib/stripe/country-alpha-codes';
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
@@ -56,8 +58,7 @@ export default async function handler(req, res) {
       }
 
       const session = await stripe.checkout.sessions.create({
-        // TODO: list all countries
-        shipping_address_collection: { allowed_countries: ['US', 'CA'] },
+        shipping_address_collection: { allowed_countries: countries },
         shipping_options: shippingOptions,
         line_items: [{ price: data.priceId, quantity: data.quantity }],
         mode: data.mode,

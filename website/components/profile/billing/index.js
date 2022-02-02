@@ -165,6 +165,8 @@ export default function ProfileOrders() {
     }
   }, [customer]);
 
+  console.log('customer', customer);
+
   if (user) {
     return (
       <section>
@@ -208,7 +210,7 @@ export default function ProfileOrders() {
                 <p className="t-secondary  lh-copy  f6">
                   Ending in:{' '}
                   <span className="t-primary">
-                    {customer.defaultPaymentMethod.card.last4}
+                    {customer?.defaultPaymentMethod?.card?.last4 ?? 'NA'}
                   </span>
                 </p>
               </div>
@@ -216,8 +218,8 @@ export default function ProfileOrders() {
                 <p className="t-secondary  lh-copy  f6">
                   Expires on:{' '}
                   <span className="t-primary">
-                    {customer.defaultPaymentMethod.card.exp_year}/
-                    {customer.defaultPaymentMethod.card.exp_month}
+                    {customer?.defaultPaymentMethod?.card?.exp_year ?? 'NA'}/
+                    {customer?.defaultPaymentMethod?.card?.exp_month ?? 'NA'}
                   </span>
                 </p>
               </div>

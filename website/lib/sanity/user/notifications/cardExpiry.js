@@ -26,11 +26,15 @@ const cardExpiry = async (user) => {
       }
     );
 
-    const stripeCustomer = await getStripeCustomer.json();
+    const customer = await getStripeCustomer.json();
     const currYear = new Date().getFullYear();
     const currMonth = new Date().getMonth() + 1;
-    const expMonth = stripeCustomer.defaultPaymentMethod.card.exp_month;
-    const expYear = stripeCustomer.defaultPaymentMethod.card.exp_year;
+    const expMonth = customer?.defaultPaymentMethod?.card?.exp_month;
+    const expYear = customer?.defaultPaymentMethod?.card?.exp_year;
+
+    if (!expMonth || !expYear) {
+      return false;
+    }
 
     // If expiry not due in the next 2 months, return
     if (monthDiff(new Date(), new Date(expYear, expMonth, null)) > 2) {
