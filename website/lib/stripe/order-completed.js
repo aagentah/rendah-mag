@@ -2,6 +2,7 @@ import fetch from 'isomorphic-unfetch';
 import find from 'lodash/find';
 
 import formatHttpError from '~/functions/formatHttpError';
+import orderEmail from '~/lib/emails/order-notification';
 
 export default async ({ session }) => {
   try {
@@ -68,8 +69,7 @@ export default async ({ session }) => {
 
     // Add or update mailchimp user
     await addUpdateMailchimpUser();
-
-    // TODO: send myself email with order info
+    await orderEmail({ email, name });
 
     return { error: '' };
   } catch (error) {

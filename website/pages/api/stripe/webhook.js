@@ -52,7 +52,7 @@ export default async (req, res) => {
 
         break;
       case 'customer.subscription.deleted':
-        console.log('subscription_schedule.canceled', session);
+        // console.log('subscription_schedule.canceled', session);
 
         await subscriptionCancelled({ session });
 

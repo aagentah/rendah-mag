@@ -3,6 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import formatHttpError from '~/functions/formatHttpError';
 import findUserByUsername from '~/lib/sanity/user/findUserByUsername';
 import updateUserByUsername from '~/lib/sanity/user/updateUserByUsername';
+import cancelledEmail from '~/lib/emails/cancel-dominion-subscription';
 
 export default async ({ session }) => {
   try {
@@ -56,6 +57,7 @@ export default async ({ session }) => {
 
     await updateUserByUsername(null, userData, updatefields);
     await addMembertags();
+    await welcomeDominionEmail({ email });
 
     return { error: '' };
   } catch (error) {
