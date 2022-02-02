@@ -57,7 +57,7 @@ export default async ({ session }) => {
 
     await updateUserByUsername(null, userData, updatefields);
     await addMembertags();
-    await welcomeDominionEmail({ email });
+    await cancelledEmail({ email });
 
     return { error: '' };
   } catch (error) {
