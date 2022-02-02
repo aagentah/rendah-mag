@@ -24,7 +24,9 @@ import { getSiteConfig } from '~/lib/sanity/requests';
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-const stripePromise = loadStripe('pk_live_2hnHQMXZhwDZQTESKurI7Sle');
+const stripePromise = loadStripe(
+  'pk_live_51DvkhrKb3SeE1fXfAwS5aNbDhvI4t4cCbHvsVjk5bfmBvSF5tc2mEYHAVIMQCgcXBsKjo5AvaT48k39sbx3UKUu400TFSGqiL4'
+);
 
 const ProfileCreations = dynamic(() =>
   import('~/components/profile/creations')
