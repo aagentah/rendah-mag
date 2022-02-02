@@ -9,12 +9,13 @@ import subscriptionCreated from '~/lib/stripe/subscription-created';
 import subscriptionCancelled from '~/lib/stripe/subscription-cancelled';
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 
 export default async (req, res) => {
   try {
     if (req.method !== 'POST') {
-      throw new Error(await formatHttpError(response));
+      throw new Error();
     }
 
     const payload = await buffer(req);
