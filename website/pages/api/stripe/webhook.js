@@ -24,6 +24,8 @@ export default async (req, res) => {
     let customerRes;
     let session;
 
+    console.log('xxx', payload, sig, endpointSecret);
+
     try {
       event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
     } catch (err) {
@@ -32,13 +34,19 @@ export default async (req, res) => {
 
     session = event?.data?.object;
 
+    console.log('session', session);
+
     // console.log('session', session);
 
     switch (event.type) {
       case 'checkout.session.completed':
         // console.log('checkout.session.completed', session);
 
+        console.log('1');
+
         await orderCompleted({ session });
+
+        console.log('2');
 
         if (session.mode === 'subscription') {
           await subscriptionCreated({ session });
