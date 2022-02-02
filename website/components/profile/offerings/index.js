@@ -37,6 +37,7 @@ export default function ProfileDominion() {
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
 
       const data = await getAllOfferings(sinceStartOfMonth, showAll);
+      console.log('data', data);
       if (data) setOfferings(data);
     };
 
@@ -66,109 +67,114 @@ export default function ProfileDominion() {
   if (user?.isDominion) {
     return (
       <>
-        {offerings?.length ? (
-          <section>
-            <div className="relative  ">
-              <div
-                className={`
+        <section>
+          <div className="relative  ">
+            <div
+              className={`
               dominion-cards
               ${cardsShow && 'dominion-cards--active'}
           `}
-              >
-                <div className="pb2">
-                  <Heading
-                    /* Options */
-                    htmlEntity="h1"
-                    text="Offerings"
-                    color="black"
-                    size="medium"
-                    truncate={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
-
-                <div className="flex  flex-wrap  pb3">
-                  {offerings.map((item, i) => (
-                    <div className="col-24  col-8-md  ph3  pv2" key={item.slug}>
-                      <CardOffering i={i} post={item} handleClick={apply} />
-                    </div>
-                  ))}
-
-                  {renderGhostCards()}
-                </div>
-
-                <div
-                  className="flex  justify-center"
-                  onClick={() => {
-                    if (showAll || offerings?.length <= 12) return;
-                    setShowAll(true);
-                  }}
-                >
-                  <Button
-                    /* Options */
-                    type="primary"
-                    size="small"
-                    text="Load more"
-                    color="black"
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted={false}
-                    loading={null}
-                    disabled={showAll || offerings?.length <= 12}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'form',
-                      url: null,
-                      target: null,
-                      routerLink: null,
-                    }}
-                  />
-                </div>
+            >
+              <div className="pb2">
+                <Heading
+                  /* Options */
+                  htmlEntity="h1"
+                  text="Offerings"
+                  color="black"
+                  size="medium"
+                  truncate={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
               </div>
 
-              <section>
-                {offerings.map((item, i) => (
-                  <div
-                    key={i}
-                    className={`
+              <div className="flex  flex-wrap  pb3">
+                {offerings.length
+                  ? offerings.map((item, i) => (
+                      <div
+                        className="col-24  col-8-md  ph3  pv2"
+                        key={item.slug}
+                      >
+                        <CardOffering i={i} post={item} handleClick={apply} />
+                      </div>
+                    ))
+                  : ''}
+
+                {renderGhostCards()}
+              </div>
+
+              <div
+                className="flex  justify-center"
+                onClick={() => {
+                  if (showAll || offerings?.length <= 12) return;
+                  setShowAll(true);
+                }}
+              >
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="small"
+                  text="Load more"
+                  color="black"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={null}
+                  disabled={showAll || offerings?.length <= 12}
+                  skeleton={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'form',
+                    url: null,
+                    target: null,
+                    routerLink: null,
+                  }}
+                />
+              </div>
+            </div>
+
+            <section>
+              {offerings.length
+                ? offerings.map((item, i) => (
+                    <div
+                      key={i}
+                      className={`
                     dominion-modal-wrapper
                     ${modalActive === i ? 'dominion-modal-wrapper--active' : ''}
                   `}
-                  >
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="small"
-                      text="Back"
-                      color="black"
-                      fluid={false}
-                      icon={buttonIconArrowLeft}
-                      iconFloat="left"
-                      inverted={false}
-                      loading={false}
-                      disabled={false}
-                      skeleton={false}
-                      onClick={() => {
-                        setModalActive(null);
-                        setCardsShow(true);
-                      }}
-                      /* Children */
-                      withLinkProps={null}
-                    />
+                    >
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="small"
+                        text="Back"
+                        color="black"
+                        fluid={false}
+                        icon={buttonIconArrowLeft}
+                        iconFloat="left"
+                        inverted={false}
+                        loading={false}
+                        disabled={false}
+                        skeleton={false}
+                        onClick={() => {
+                          setModalActive(null);
+                          setCardsShow(true);
+                        }}
+                        /* Children */
+                        withLinkProps={null}
+                      />
 
-                    {modalActive === i && (
-                      <CarouselItemSection offering={item} />
-                    )}
-                  </div>
-                ))}
-              </section>
-            </div>
-          </section>
-        ) : null}
+                      {modalActive === i && (
+                        <CarouselItemSection offering={item} />
+                      )}
+                    </div>
+                  ))
+                : ''}
+            </section>
+          </div>
+        </section>
       </>
     );
   }

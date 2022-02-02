@@ -15,7 +15,7 @@ const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
 export default function ProfilePacks() {
   const [user, { loading, mutate, error }] = useUser();
-  const [offerings, setOfferings] = useState([]);
+  const [samples, setSamples] = useState([]);
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
   const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
   const [modalActive, setModalActive] = useState(false);
@@ -29,7 +29,7 @@ export default function ProfilePacks() {
     setCardsShow(false);
   };
 
-  // Fetch offerings
+  // Fetch samples
   useEffect(() => {
     const action = async () => {
       let sinceStartOfMonth = user?.dominionSince.split('T')[0];
@@ -37,14 +37,14 @@ export default function ProfilePacks() {
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
 
       const data = await getAllPacks(sinceStartOfMonth, showAll);
-      if (data) setOfferings(data);
+      if (data) setSamples(data);
     };
 
     action();
   }, [showAll]);
 
   const renderGhostCards = () => {
-    const count = 9 - offerings?.length;
+    const count = 9 - samples?.length;
     const ghostCards = [];
     const ghostItem = { title: '???' };
 
@@ -66,107 +66,112 @@ export default function ProfilePacks() {
   if (user?.isDominion) {
     return (
       <>
-        {offerings?.length ? (
-          <section>
-            <div className="relative  ">
-              <div
-                className={`
+        <section>
+          <div className="relative  ">
+            <div
+              className={`
               dominion-cards
               ${cardsShow && 'dominion-cards--active'}
           `}
-              >
-                <div className="pb2">
-                  <Heading
-                    /* Options */
-                    htmlEntity="h1"
-                    text="Offerings"
-                    color="black"
-                    size="medium"
-                    truncate={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
-
-                <div className="flex  flex-wrap  pb3">
-                  {offerings.map((item, i) => (
-                    <div className="col-24  col-8-md  ph3  pv2" key={item.slug}>
-                      <CardPack i={i} post={item} handleClick={apply} />
-                    </div>
-                  ))}
-
-                  {renderGhostCards()}
-                </div>
-
-                <div
-                  className="flex  justify-center"
-                  onClick={() => {
-                    if (showAll || offerings?.length <= 12) return;
-                    setShowAll(true);
-                  }}
-                >
-                  <Button
-                    /* Options */
-                    type="primary"
-                    size="small"
-                    text="Load more"
-                    color="black"
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted={false}
-                    loading={null}
-                    disabled={showAll || offerings?.length <= 12}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'form',
-                      url: null,
-                      target: null,
-                      routerLink: null,
-                    }}
-                  />
-                </div>
+            >
+              <div className="pb2">
+                <Heading
+                  /* Options */
+                  htmlEntity="h1"
+                  text="Samples"
+                  color="black"
+                  size="medium"
+                  truncate={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
               </div>
 
-              <section>
-                {offerings.map((item, i) => (
-                  <div
-                    key={i}
-                    className={`
+              <div className="flex  flex-wrap  pb3">
+                {samples.length
+                  ? samples.map((item, i) => (
+                      <div
+                        className="col-24  col-8-md  ph3  pv2"
+                        key={item.slug}
+                      >
+                        <CardPack i={i} post={item} handleClick={apply} />
+                      </div>
+                    ))
+                  : ''}
+
+                {renderGhostCards()}
+              </div>
+
+              <div
+                className="flex  justify-center"
+                onClick={() => {
+                  if (showAll || samples?.length <= 12) return;
+                  setShowAll(true);
+                }}
+              >
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="small"
+                  text="Load more"
+                  color="black"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={null}
+                  disabled={showAll || samples?.length <= 12}
+                  skeleton={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'form',
+                    url: null,
+                    target: null,
+                    routerLink: null,
+                  }}
+                />
+              </div>
+            </div>
+
+            <section>
+              {samples.length
+                ? samples.map((item, i) => (
+                    <div
+                      key={i}
+                      className={`
                     dominion-modal-wrapper
                     ${modalActive === i ? 'dominion-modal-wrapper--active' : ''}
                   `}
-                  >
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="small"
-                      text="Back"
-                      color="black"
-                      fluid={false}
-                      icon={buttonIconArrowLeft}
-                      iconFloat="left"
-                      inverted={false}
-                      loading={false}
-                      disabled={false}
-                      skeleton={false}
-                      onClick={() => {
-                        setModalActive(null);
-                        setCardsShow(true);
-                      }}
-                      /* Children */
-                      withLinkProps={null}
-                    />
+                    >
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="small"
+                        text="Back"
+                        color="black"
+                        fluid={false}
+                        icon={buttonIconArrowLeft}
+                        iconFloat="left"
+                        inverted={false}
+                        loading={false}
+                        disabled={false}
+                        skeleton={false}
+                        onClick={() => {
+                          setModalActive(null);
+                          setCardsShow(true);
+                        }}
+                        /* Children */
+                        withLinkProps={null}
+                      />
 
-                    {modalActive === i && <CarouselItemSection pack={item} />}
-                  </div>
-                ))}
-              </section>
-            </div>
-          </section>
-        ) : null}
+                      {modalActive === i && <CarouselItemSection pack={item} />}
+                    </div>
+                  ))
+                : ''}
+            </section>
+          </div>
+        </section>
       </>
     );
   }

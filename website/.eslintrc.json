@@ -76,7 +76,7 @@
     "prefer-destructuring": "off",
     "no-await-in-loop": "off",
     "camelcase": "off",
-
+    "react/jsx-indent": "off",
     "import/no-unresolved": [
       "error",
       {
