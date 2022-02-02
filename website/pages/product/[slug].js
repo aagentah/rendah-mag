@@ -52,7 +52,7 @@ export default function Product({ siteConfig, product }) {
         body: JSON.stringify({
           data: {
             priceId,
-            quantity: quantity,
+            quantity,
             mode: 'payment',
             successUrl: `/product/${product.slug}`,
             cancelUrl: `/product/${product.slug}`,
