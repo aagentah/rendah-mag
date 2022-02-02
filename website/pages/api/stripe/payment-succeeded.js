@@ -21,8 +21,8 @@ export default async (req, res) => {
     const payload = await buffer(req);
     const sig = req.headers['stripe-signature'];
     let event;
-    let session;
     let customerRes;
+    let session;
 
     try {
       event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
@@ -30,20 +30,21 @@ export default async (req, res) => {
       return res.status(400).send(`Webhook Error: ${err.message}`);
     }
 
+    session = event?.data?.object;
+
     switch (event.type) {
       case 'checkout.session.completed':
-        session = event.data.object;
-        console.log('checkout.session.completed', session);
+        // console.log('checkout.session.completed', session);
 
         await orderCompleted({ session });
+
         if (session.mode === 'subscription') {
           await subscriptionCreated({ session });
         }
 
         break;
       case 'subscription_schedule.canceled':
-        session = event.data.object;
-        console.log('subscription_schedule.canceled', session);
+        // console.log('subscription_schedule.canceled', session);
 
         await subscriptionCancelled({ session });
 

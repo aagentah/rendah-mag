@@ -26,12 +26,12 @@ export default async ({ session }) => {
       dominionSince: new Date().toISOString().split('T')[0],
       stripeCustomerId: customer,
       address: {
-        line1,
-        line2,
-        city,
-        postal_code,
-        state,
-        country,
+        line1: address?.line1 ? line1 : '',
+        line2: address?.line2 ? line2 : '',
+        city: address?.city ? city : '',
+        postal_code: address?.postal_code ? postal_code : '',
+        state: address?.state ? state : '',
+        country: address?.country ? country : '',
       },
     };
 
@@ -51,7 +51,7 @@ export default async ({ session }) => {
       await createUser(userData);
     }
 
-    await welcomeDominionEmail(email, temporaryPassword);
+    await welcomeDominionEmail({ email, temporaryPassword });
 
     return { error: '' };
   } catch (error) {

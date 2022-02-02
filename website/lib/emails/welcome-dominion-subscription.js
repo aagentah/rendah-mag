@@ -1,7 +1,7 @@
 import sendinblue from './sendinblue';
 import emailCommon from '~/emails/component/common';
 
-export default async (email, temporaryPassword) => {
+export default async ({ email, temporaryPassword }) => {
   try {
     const title = 'Welcome to the Dominion!';
 
