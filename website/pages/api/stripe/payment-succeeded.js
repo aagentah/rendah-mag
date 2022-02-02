@@ -32,17 +32,23 @@ export default async (req, res) => {
     switch (event.type) {
       case 'checkout.session.completed':
         session = event.data.object;
+        console.log('checkout.session.completed', session);
 
         await orderCompleted({ session });
-        if (session.subscription) await subscriptionCreated({ session });
+        if (session.mode === 'subscription') {
+          await subscriptionCreated({ session });
+        }
+
         break;
       case 'subscription_schedule.canceled':
         session = event.data.object;
+        console.log('subscription_schedule.canceled', session);
 
         await subscriptionCancelled({ session });
+
         break;
       default:
-        console.log(`Unhandled event type ${event.type}`);
+      // console.log(`Unhandled event type ${event.type}`);
     }
 
     // Success

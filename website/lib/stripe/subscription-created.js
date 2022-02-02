@@ -10,22 +10,20 @@ import welcomeDominionEmail from '~/lib/emails/welcome-dominion-subscription';
 
 export default async ({ session }) => {
   try {
-    const { customer_details } = session;
+    const { customer_details, customer } = session;
     const { email } = customer_details;
     const { shipping } = session;
     const { address } = shipping;
     const { name } = shipping;
     const { line1, line2, city, postal_code, state, country } = address;
 
-    const temporaryPassword = generatePassword(12, false);
-
     const userData = {
       username: email,
       password: temporaryPassword,
       name,
       isDominion: true,
-      dominionSince: schedule.startsOn.split('T')[0],
-      stripeCustomerId: user.gatewayId,
+      dominionSince: new Date().toISOString().split('T')[0],
+      stripeCustomerId: customer,
       address: {
         line1,
         line2,
