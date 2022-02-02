@@ -1,6 +1,7 @@
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useState } from 'react';
+import fetch from 'isomorphic-unfetch';
 
 import {
   Heading,
@@ -32,6 +33,7 @@ export default function Product({ siteConfig, product }) {
   const app = useApp();
   const router = useRouter();
   const [modalActive, setModalActive] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   const isSoldOut = product?.tag === 'Sold-out';
   const imageHeight = app.deviceSize === 'md' ? null : 500;
@@ -40,9 +42,42 @@ export default function Product({ siteConfig, product }) {
     Router.push('/404');
   }
 
+  const submit = async (priceId) => {
+    const calcShipping = (type) => type + type * 1.5;
+
+    const response = await fetch(
+      `${process.env.SITE_URL}/api/stripe/checkout-sessions`,
+      {
+        body: JSON.stringify({
+          data: {
+            priceId,
+            quantity: quantity,
+            mode: 'payment',
+            successUrl: `/product/${product.slug}`,
+            cancelUrl: `/product/${product.slug}`,
+            shipping: {
+              uk: calcShipping(product.shippingUK),
+              europe: calcShipping(product.shippingEurope),
+              worldwide: calcShipping(product.shippingWorldwide),
+            },
+          },
+        }),
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+      }
+    );
+
+    if (response.ok) {
+      // Success
+      const data = await response.json();
+      window.location.href = data.url;
+    }
+  };
+
   if (!router.isFallback && product?.slug) {
     const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
     const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
+    const buttonIconMinus = <Icon icon={['fas', 'minus']} />;
 
     const renderPurchaseButton = () => {
       if (isSoldOut) {
@@ -77,7 +112,7 @@ export default function Product({ siteConfig, product }) {
                 /* Options */
                 type="primary"
                 size="medium"
-                text="Add to Cart"
+                text="Purchase"
                 color="black"
                 fluid={false}
                 icon={buttonIconPlus}
@@ -182,34 +217,23 @@ export default function Product({ siteConfig, product }) {
                   />
                 </div>
                 <div className="col-24  col-12-md  flex  justify-center  justify-end-md  align-center  ph0  ph3-md">
-                  <div
-                    className="w-100  snipcart-add-item"
-                    data-item-id={product?.slug}
-                    data-item-price={product?.price}
-                    data-item-url={`/product/${product?.slug}`}
-                    data-item-description=""
-                    data-item-image={product?.image1}
-                    data-item-name={product?.title}
-                    data-item-weight={product?.weight}
-                  >
-                    <Button
-                      /* Options */
-                      type="primary"
-                      size="medium"
-                      text="Single purchase"
-                      color="black"
-                      fluid={true}
-                      icon={buttonIconPlus}
-                      iconFloat="left"
-                      inverted={true}
-                      loading={false}
-                      disabled={false}
-                      skeleton={false}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={null}
-                    />
-                  </div>
+                  <Button
+                    /* Options */
+                    type="primary"
+                    size="medium"
+                    text="Single purchase"
+                    color="black"
+                    fluid={true}
+                    icon={buttonIconPlus}
+                    iconFloat="left"
+                    inverted={true}
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={() => submit(product?.priceId)}
+                    /* Children */
+                    withLinkProps={null}
+                  />
                 </div>
               </div>
             </Modal>
@@ -219,34 +243,23 @@ export default function Product({ siteConfig, product }) {
 
       return (
         <div className="dib  ph2  pb3">
-          <div
-            className="snipcart-add-item"
-            data-item-id={product?.slug}
-            data-item-price={product?.price}
-            data-item-url={`/product/${product?.slug}`}
-            data-item-description=""
-            data-item-image={product?.image1}
-            data-item-name={product?.title}
-            data-item-weight={product?.weight}
-          >
-            <Button
-              /* Options */
-              type="primary"
-              size="medium"
-              text="Add to Cart"
-              color="black"
-              fluid={false}
-              icon={buttonIconPlus}
-              iconFloat="left"
-              inverted={false}
-              loading={false}
-              disabled={false}
-              skeleton={false}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
+          <Button
+            /* Options */
+            type="primary"
+            size="medium"
+            text="Add to Cart"
+            color="black"
+            fluid={false}
+            icon={buttonIconPlus}
+            iconFloat="left"
+            inverted={false}
+            loading={false}
+            disabled={false}
+            skeleton={false}
+            onClick={() => submit(product?.priceId)}
+            /* Children */
+            withLinkProps={null}
+          />
         </div>
       );
     };
@@ -374,30 +387,33 @@ export default function Product({ siteConfig, product }) {
                     />
                   </div>
 
-                  <div className="flex  flex-wrap  align-center">
-                    {renderPurchaseButton()}
-
-                    <div className="dib  ph2  pb3">
-                      <div className="snipcart-checkout">
-                        <Button
-                          /* Options */
-                          type="primary"
-                          size="medium"
-                          text="View Basket"
-                          color="black"
-                          fluid={false}
-                          icon={buttonIconCart}
-                          iconFloat={null}
-                          inverted="transparent"
-                          loading={false}
-                          disabled={false}
-                          skeleton={false}
-                          onClick={null}
-                          /* Children */
-                          withLinkProps={null}
-                        />
+                  {!isSoldOut && (
+                    <div className="flex  flex-wrap  align-center  justify-center  justify-start-md  ph2  pb4  pb3-md">
+                      <div className="db  pr3">
+                        <span>Quantity:</span>
+                      </div>
+                      <div className="flex  flex-wrap  bg-white  pa2  br2">
+                        <span
+                          onClick={() =>
+                            quantity > 1 && setQuantity(quantity - 1)
+                          }
+                          class="ph2  cp"
+                        >
+                          {buttonIconMinus}
+                        </span>
+                        <span class="w2  tac">{quantity}</span>
+                        <span
+                          onClick={() => setQuantity(quantity + 1)}
+                          class="ph2  cp"
+                        >
+                          {buttonIconPlus}
+                        </span>
                       </div>
                     </div>
+                  )}
+
+                  <div className="flex  flex-wrap  align-center  justify-center  justify-start-md">
+                    {renderPurchaseButton()}
                   </div>
                 </div>
               </div>

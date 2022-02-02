@@ -69,6 +69,8 @@ export default async ({ session }) => {
     // Add or update mailchimp user
     await addUpdateMailchimpUser();
 
+    // TODO: send myself email with order info
+
     return { error: '' };
   } catch (error) {
     // Handle catch

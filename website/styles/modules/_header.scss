@@ -68,18 +68,6 @@
     margin: 0 auto;
     @extend .absolute;
   }
-
-  .snipcart-checkout {
-    top: 20px;
-    right: 20px;
-    @extend .absolute;
-  }
-
-  .snipcart-checkout {
-    svg {
-      font-size: 1.6em;
-    }
-  }
 }
 
 .header--mobile > .nav {
@@ -135,28 +123,4 @@
       transition-duration: 0s;
     }
   }
-}
-
-// Snipcart
-
-.snipcart-checkout {
-  cursor: pointer;
-  position: relative;
-}
-
-.snipcart-items-count {
-  position: absolute;
-  top: -8px;
-  right: -10px;
-  width: 16px;
-  height: 16px;
-  font-size: 11px;
-  line-height: 11px;
-  background-color: var(--red);
-  color: var(--white);
-  border-radius: 100%;
-  @extend .flex;
-  @extend .justify-center;
-  @extend .align-center;
-  @extend .t-secondary;
 }

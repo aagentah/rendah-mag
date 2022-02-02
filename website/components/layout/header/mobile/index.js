@@ -60,15 +60,6 @@ export default function HeaderMobile({
         </Link>
       </div>
 
-      {showBasket ? (
-        <>
-          <div className="snipcart-checkout">
-            {buttonIcons.shoppingCart}
-            <span className="snipcart-items-count" />
-          </div>
-        </>
-      ) : null}
-
       {showNotifications ? (
         <div className="absolute  top  right  mr3  mt3">
           <Notifications />

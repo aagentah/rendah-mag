@@ -22,14 +22,6 @@ const reducer = (state, action) => {
 
       return newState;
     }
-    case 'SET_SNIPCART_LOADED': {
-      const newState = {
-        ...state,
-        hasSnipcartLoaded: action.hasSnipcartLoaded,
-      };
-
-      return newState;
-    }
 
     default:
       throw new Error(`Unknown action: ${action.type}`);
@@ -41,7 +33,6 @@ export const AppProvider = ({ children }) => {
     isLoading: false,
     deviceSize: null,
     isRetina: false,
-    hasSnipcartLoaded: false,
   });
 
   return (

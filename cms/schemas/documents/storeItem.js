@@ -127,6 +127,31 @@ export default {
       },
       validation: (Rule) => Rule.required(),
     },
+    {
+      name: "priceId",
+      title: "Price ID",
+      description: "Fetched from Stripe",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "shippingUK",
+      title: "Shipping UK",
+      type: "number",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "shippingEurope",
+      title: "Shipping Europe",
+      type: "number",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "shippingWorldwide",
+      title: "Shipping Worldwide",
+      type: "number",
+      validation: (Rule) => Rule.required(),
+    },
   ],
 
   orderings: [

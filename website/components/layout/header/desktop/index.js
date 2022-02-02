@@ -159,21 +159,6 @@ export default function HeaderDestop({
         <div className="col-12  ph4">
           <nav className="nav  w-100  flex  justify-end">
             <ul className="flex  flex-wrap">
-              {showBasket ? (
-                <>
-                  <li className="nav__item  dib  pr3  mr1">
-                    <div className="flex  snipcart-checkout">
-                      <span
-                        className={`button  secondary  inverted  medium  mr2  ${navColour}`}
-                      >
-                        Checkout
-                      </span>
-                      {buttonIcons.shoppingCart}
-                      <span className={`snipcart-items-count `} />
-                    </div>
-                  </li>
-                </>
-              ) : null}
               {showNotifications ? (
                 <li className="nav__item  dib  pr3">
                   <Notifications />

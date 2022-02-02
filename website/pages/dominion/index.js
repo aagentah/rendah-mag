@@ -1,21 +1,8 @@
-/* global Snipcart */
-
-import { loadStripe } from '@stripe/stripe-js';
 import React, { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
-import BlockContent from '@sanity/block-content-to-react';
-import isEmpty from 'lodash/isEmpty';
-import shuffle from 'lodash/shuffle';
+import fetch from 'isomorphic-unfetch';
 
-import {
-  Tabs,
-  Heading,
-  Copy,
-  Label,
-  Image,
-  Button,
-  Icon,
-} from 'next-pattern-library';
+import { Copy, Label, Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -27,103 +14,34 @@ import {
   imageBuilder,
 } from '~/lib/sanity/requests';
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
-
 export default function Dominion({ siteConfig }) {
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
   const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
-  const [currentTab, setCurrentTab] = useState();
-  const [snipcartData, setSnipcartData] = useState();
-  const [dominionUsers, setDominionUsers] = useState([]);
 
-  useEffect(() => {
-    const action = async () => {
-      const dominionUsersRes = await getDominionUsers();
-      setDominionUsers(shuffle(dominionUsersRes));
-    };
-
-    action();
-  }, []);
-
-  useEffect(() => {
-    if (process.browser) {
-      if (window.Snipcart) {
-        Snipcart.subscribe('order.completed', function (data) {
-          if (data.items.length) {
-            for (let i = 0; i < data.items.length; i += 1) {
-              const item = data.items[i];
-
-              if (item.id === 'dominion-subscription') {
-                setTimeout(() => {
-                  Snipcart.api.modal.close();
-                  Router.push('/dominion-thank-you');
-                }, 3000);
-              }
-            }
-          }
-        });
-
-        Snipcart.subscribe('page.changed', (page) => {
-          setCurrentTab(page);
-        });
-
-        Snipcart.subscribe('billingaddress.changed', (address) => {
-          setSnipcartData(address);
-        });
+  const submit = async () => {
+    const response = await fetch(
+      `${process.env.SITE_URL}/api/stripe/checkout-sessions`,
+      {
+        body: JSON.stringify({
+          data: {
+            priceId: 'price_1KOTLxKb3SeE1fXfnkcObl4Q',
+            quantity: 1,
+            mode: 'subscription',
+            successUrl: '/dominion-thank-you',
+            cancelUrl: '/dominion',
+          },
+        }),
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
       }
+    );
+
+    if (response.ok) {
+      // Success
+      const data = await response.json();
+      window.location.href = data.url;
     }
-  });
-
-  // Check if email already has a subscription
-  useEffect(() => {
-    const fetchCustomerLatestSubscription = async () => {
-      const response = await fetch(
-        `${process.env.SITE_URL}/api/snipcart/get-customer-latest-subscription`,
-        {
-          body: JSON.stringify({ email: snipcartData.email }),
-          headers: { 'Content-Type': 'application/json' },
-          method: 'POST',
-        }
-      );
-
-      const json = await response.json();
-
-      if (response.ok) {
-        // Success
-        if (!isEmpty(json)) {
-          const emailQuery = snipcartData?.email
-            ? `?prefillEmail=${snipcartData.email}`
-            : '';
-          Snipcart.api.modal.close();
-          Router.push(`/dominion-already-member${emailQuery}`);
-        }
-      }
-    };
-
-    if (
-      currentTab === 'shipping-method' ||
-      currentTab === 'payment-method' ||
-      currentTab === 'order-confirm'
-    ) {
-      if (snipcartData) fetchCustomerLatestSubscription();
-    }
-  }, [currentTab, snipcartData]);
-
-  React.useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
-    if (query.get('success')) {
-      console.log('Order placed! You will receive an email confirmation.');
-    }
-
-    if (query.get('canceled')) {
-      console.log(
-        'Order canceled -- continue to shop around and checkout when you’re ready.'
-      );
-    }
-  }, []);
+  };
 
   return (
     <Layout
@@ -222,96 +140,25 @@ export default function Dominion({ siteConfig }) {
 
             <div className="col-24  flex  justify-center">
               <div className="db  ph2  pb3">
-                <div
-                  className="snipcart-add-item"
-                  data-item-id="dominion-subscription"
-                  data-item-price="7.99"
-                  data-item-url="/dominion"
-                  data-item-description=""
-                  data-item-image=""
-                  data-item-name="Dominion Subscription"
-                  data-item-max-quantity="1"
-                  data-item-weight="0"
-                  data-item-payment-interval="Month"
-                  data-item-payment-interval-count="1"
-                  data-item-recurring-shipping="false"
-                >
-                  <Button
-                    /* Options */
-                    type="primary"
-                    size="medium"
-                    text="Click here to join"
-                    color="black"
-                    fluid={false}
-                    icon={buttonIconPlus}
-                    iconFloat="left"
-                    inverted={false}
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="medium"
+                  text="Click here to join"
+                  color="black"
+                  fluid={false}
+                  icon={buttonIconPlus}
+                  iconFloat="left"
+                  inverted={false}
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={submit}
+                  /* Children */
+                  withLinkProps={null}
+                />
               </div>
-              {
-                // <div className="db  ph2  pb3">
-                //   <div className="snipcart-checkout">
-                //     <Button
-                //       /* Options */
-                //       type="primary"
-                //       size="medium"
-                //       text="View Basket"
-                //       color="black"
-                //       fluid={false}
-                //       icon={buttonIconCart}
-                //       iconFloat={null}
-                //       inverted
-                //       loading={false}
-                //       disabled={false}
-                //       skeleton={false}
-                //       onClick={null}
-                //       /* Children */
-                //       withLinkProps={null}
-                //     />
-                //   </div>
-                // </div>
-              }
             </div>
-
-            {
-              // {dominionUsers.length && (
-              //   <div class="fff">
-              //     <div class="fff-track">
-              //       {dominionUsers.map((iteration, i) => (
-              //         <div class="fff2">
-              //           <img
-              //             src={imageBuilder
-              //               .image(iteration?.avatar)
-              //               .width(250)
-              //               .height(100)
-              //               .auto('format')
-              //               .fit('clip')
-              //               .url()}
-              //             height="100"
-              //             width="250"
-              //             alt=""
-              //           />
-              //         </div>
-              //       ))}
-              //     </div>
-              //   </div>
-              // )}
-            }
-
-            <form action="/api/stripe/checkout-sessions" method="POST">
-              <section>
-                <button type="submit" role="link">
-                  Checkout
-                </button>
-              </section>
-            </form>
           </div>
         </Container>
       </div>

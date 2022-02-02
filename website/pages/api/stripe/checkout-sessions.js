@@ -1,33 +1,67 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
-  const priceId = 'price_1KOTLxKb3SeE1fXfnkcObl4Q';
+  try {
+    if (req.method === 'POST') {
+      const { data } = req.body;
+      const { shipping } = data;
+      let shippingOptions;
 
-  if (req.method === 'POST') {
-    try {
-      // Create Checkout Sessions from body params.
-      const session = await stripe.checkout.sessions.create({
-        shipping_address_collection: {
-          // TODO: list all countries
-          allowed_countries: ['US', 'CA'],
-        },
-        line_items: [
+      if (data.mode === 'payment') {
+        shippingOptions = [
           {
-            // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-            price: priceId,
-            quantity: 1,
+            shipping_rate_data: {
+              type: 'fixed_amount',
+              fixed_amount: { amount: shipping.uk, currency: 'gbp' },
+              display_name: 'UK Shipping',
+              delivery_estimate: {
+                minimum: { unit: 'business_day', value: 1 },
+                maximum: { unit: 'business_day', value: 4 },
+              },
+            },
           },
-        ],
-        mode: 'subscription',
-        success_url: `${req.headers.origin}/dominion-thank-you`,
-        cancel_url: `${req.headers.origin}/404`,
+          {
+            shipping_rate_data: {
+              type: 'fixed_amount',
+              fixed_amount: { amount: shipping.europe, currency: 'gbp' },
+              display_name: 'Europe Shipping',
+              delivery_estimate: {
+                minimum: { unit: 'business_day', value: 5 },
+                maximum: { unit: 'business_day', value: 10 },
+              },
+            },
+          },
+          {
+            shipping_rate_data: {
+              type: 'fixed_amount',
+              fixed_amount: { amount: shipping.worldwide, currency: 'gbp' },
+              display_name: 'Worldwide Shipping',
+              delivery_estimate: {
+                minimum: { unit: 'business_day', value: 7 },
+                maximum: { unit: 'business_day', value: 14 },
+              },
+            },
+          },
+        ];
+      }
+
+      const session = await stripe.checkout.sessions.create({
+        // TODO: list all countries
+        shipping_address_collection: { allowed_countries: ['US', 'CA'] },
+        shipping_options: shippingOptions,
+        line_items: [{ price: data.priceId, quantity: data.quantity }],
+        mode: data.mode,
+        success_url: `${req.headers.origin}${data.successUrl}`,
+        cancel_url: `${req.headers.origin}${data.cancelUrl}`,
       });
-      res.redirect(303, session.url);
-    } catch (err) {
-      res.status(err.statusCode || 500).json(err.message);
+
+      return res.status(200).json({ url: session.url });
     }
-  } else {
-    res.setHeader('Allow', 'POST');
-    res.status(405).end('Method Not Allowed');
+
+    return res.status(200).json({ error: '' });
+  } catch (error) {
+    // Handle catch
+    console.error('Error in /api/stripe/checkout-sessions', error);
+    return res.status(500).json({ error });
   }
 }
