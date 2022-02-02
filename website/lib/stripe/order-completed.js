@@ -3,14 +3,16 @@ import find from 'lodash/find';
 
 import formatHttpError from '~/functions/formatHttpError';
 
-export default async ({ session }) => {
+export default async (order) => {
   try {
-    const { customer_details } = session;
-    const { email } = customer_details;
-    const { shipping } = session;
-    const { name } = shipping;
-    const firstName = name.split(' ')[0];
-    const lastName = name.split(' ')[1];
+    const { content } = order;
+    const { user } = content;
+    const { items } = content;
+    const { billingAddress, shippingAddress } = user;
+    const { email } = user;
+    const fullName = billingAddress?.fullName || shippingAddress?.fullName;
+    const firstName = fullName.split(' ')[0];
+    const lastName = fullName.split(' ')[1];
 
     const addUpdateMailchimpUser = async () => {
       const data = {
