@@ -15,6 +15,7 @@ import {
 } from '~/lib/sanity/requests';
 
 export default function Dominion({ siteConfig }) {
+  const [discount, setDiscount] = useState('');
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
   const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
 
@@ -29,6 +30,7 @@ export default function Dominion({ siteConfig }) {
             mode: 'subscription',
             successUrl: '/dominion-thank-you',
             cancelUrl: '/dominion',
+            discount,
           },
         }),
         headers: { 'Content-Type': 'application/json' },
@@ -139,7 +141,7 @@ export default function Dominion({ siteConfig }) {
             </div>
 
             <div className="col-24  flex  justify-center">
-              <div className="db  ph2  pb3">
+              <div className="db  ph2  pb3  mb2">
                 <Button
                   /* Options */
                   type="primary"
@@ -156,6 +158,18 @@ export default function Dominion({ siteConfig }) {
                   onClick={submit}
                   /* Children */
                   withLinkProps={null}
+                />
+              </div>
+            </div>
+
+            <div className="col-24  flex  flex-wrap  align-center  justify-center  ph2">
+              <div className="mw4  shadow1">
+                <input
+                  className="input"
+                  placeholder="PROMO CODE"
+                  type="text"
+                  value={discount}
+                  onChange={(e) => setDiscount(e.target.value)}
                 />
               </div>
             </div>

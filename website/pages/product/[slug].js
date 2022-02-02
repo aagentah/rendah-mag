@@ -34,6 +34,7 @@ export default function Product({ siteConfig, product }) {
   const router = useRouter();
   const [modalActive, setModalActive] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [discount, setDiscount] = useState('');
 
   const isSoldOut = product?.tag === 'Sold-out';
   const imageHeight = app.deviceSize === 'md' ? null : 500;
@@ -60,6 +61,7 @@ export default function Product({ siteConfig, product }) {
               europe: calcShipping(product.shippingEurope),
               worldwide: calcShipping(product.shippingWorldwide),
             },
+            discount,
           },
         }),
         headers: { 'Content-Type': 'application/json' },
@@ -388,26 +390,44 @@ export default function Product({ siteConfig, product }) {
                   </div>
 
                   {!isSoldOut && (
-                    <div className="flex  flex-wrap  align-center  justify-center  justify-start-md  ph2  pb4  pb3-md">
-                      <div className="db  pr3">
-                        <span>Quantity:</span>
+                    <div className="flex  flex-wrap  align-center  justify-center  justify-start-md  ph2  pb4">
+                      <div className="col-24  col-11-md  flex  flex-wrap  align-center">
+                        <div className="db  pr3">
+                          <span>Quantity:</span>
+                        </div>
+                        <div className="flex  flex-wrap  bg-white  justify-center  pa2  br2">
+                          <span
+                            onClick={() =>
+                              quantity > 1 && setQuantity(quantity - 1)
+                            }
+                            class="ph2  cp"
+                          >
+                            {buttonIconMinus}
+                          </span>
+                          <span class="w2  tac">{quantity}</span>
+                          <span
+                            onClick={() => setQuantity(quantity + 1)}
+                            class="ph2  cp"
+                          >
+                            {buttonIconPlus}
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex  flex-wrap  bg-white  pa2  br2">
-                        <span
-                          onClick={() =>
-                            quantity > 1 && setQuantity(quantity - 1)
-                          }
-                          class="ph2  cp"
-                        >
-                          {buttonIconMinus}
-                        </span>
-                        <span class="w2  tac">{quantity}</span>
-                        <span
-                          onClick={() => setQuantity(quantity + 1)}
-                          class="ph2  cp"
-                        >
-                          {buttonIconPlus}
-                        </span>
+                      <div className="col-24  col-13-md  flex  flex-wrap  align-center">
+                        <div className="flex  flex-wrap  align-center  justify-center  justify-start-md  ph2">
+                          <div className="db  pr3">
+                            <span>Code:</span>
+                          </div>
+                          <div className="mw4">
+                            <input
+                              className="input"
+                              placeholder="PROMO CODE"
+                              type="text"
+                              value={discount}
+                              onChange={(e) => setDiscount(e.target.value)}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   )}

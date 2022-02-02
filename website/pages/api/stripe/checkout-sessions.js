@@ -5,7 +5,18 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
       const { data } = req.body;
       const { shipping } = data;
-      let shippingOptions;
+      let shippingOptions, discountOptions;
+
+      if (data.discount) {
+        const coupon = await stripe.promotionCodes.list({
+          limit: 1,
+          code: data.discount,
+        });
+
+        discountOptions = [{ coupon: coupon.data[0].coupon.id }];
+
+        console.log('discountOptions', discountOptions);
+      }
 
       if (data.mode === 'payment') {
         shippingOptions = [
@@ -51,6 +62,7 @@ export default async function handler(req, res) {
         shipping_options: shippingOptions,
         line_items: [{ price: data.priceId, quantity: data.quantity }],
         mode: data.mode,
+        discounts: discountOptions,
         success_url: `${req.headers.origin}${data.successUrl}`,
         cancel_url: `${req.headers.origin}${data.cancelUrl}`,
       });
