@@ -14,7 +14,7 @@ module.exports = withPreact({
     MAILCHIMP_API_KEY: process.env.MAILCHIMP_API_KEY,
     IRON_PASSWORD: process.env.IRON_PASSWORD,
     SITE_URL: process.env.SITE_URL,
-    DOMAIN_TYPE: process.env.DOMAIN_TYPE,
+    ENV_TYPE: process.env.ENV_TYPE,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     STRIPE_SIGNING_SECRET: process.env.STRIPE_SIGNING_SECRET,
   },

@@ -20,12 +20,17 @@ export default function Dominion({ siteConfig }) {
   const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
 
   const submit = async () => {
+    const priceId =
+      process.env.ENV_TYPE === 'development'
+        ? 'price_1KOTLxKb3SeE1fXfnkcObl4Q'
+        : 'dominion-subscription_2ff0f5';
+
     const response = await fetch(
       `${process.env.SITE_URL}/api/stripe/checkout-sessions`,
       {
         body: JSON.stringify({
           data: {
-            priceId: 'price_1KOTLxKb3SeE1fXfnkcObl4Q',
+            priceId,
             quantity: 1,
             mode: 'subscription',
             successUrl: '/dominion-thank-you',
