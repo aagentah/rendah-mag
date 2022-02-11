@@ -5,7 +5,7 @@ import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import BlockContent from '@sanity/block-content-to-react';
 import fetch from 'isomorphic-unfetch';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { useStripe, useElements } from '@stripe/react-stripe-js';
 import { Heading, Button, Copy, Input } from 'next-pattern-library';
 
 import { useApp, useDispatchApp } from '~/context-provider/app';
@@ -38,64 +38,6 @@ export default function ProfileOrders() {
       // Success
       setCustomer(await response.json());
     }
-  };
-
-  const updatePaymentMethod = async (paymentMethod) => {
-    const response = await fetch(
-      `${process.env.SITE_URL}/api/stripe/update-customer`,
-      {
-        body: JSON.stringify({
-          stripeCustomerId: user.stripeCustomerId,
-          paymentMethod,
-        }),
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
-      }
-    );
-
-    if (response.ok) {
-      // Success
-      toast.success('Payment method updated');
-    }
-  };
-
-  const handleStripeCheck = async (event) => {
-    // Block native form submission.
-    event.preventDefault();
-
-    // Prevent double submit
-    if (updateCardButtonLoading) return false;
-
-    dispatch({ type: 'TOGGLE_LOADING' });
-    setUpdateCardButtonLoading(true);
-
-    if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
-      return;
-    }
-
-    // Get a reference to a mounted CardElement. Elements knows how
-    // to find your CardElement because there can only ever be one of
-    // each type of element.
-    const cardElement = elements.getElement(CardElement);
-
-    // Use your card Element with other Stripe.js APIs
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-    });
-
-    if (error) {
-      console.log('[error]', error);
-    } else {
-      console.log('[PaymentMethod]', paymentMethod);
-      updatePaymentMethod(paymentMethod);
-    }
-
-    dispatch({ type: 'TOGGLE_LOADING' });
-    setUpdateCardButtonLoading(false);
-    return true;
   };
 
   async function handleEditProfile(e) {
@@ -196,7 +138,7 @@ export default function ProfileOrders() {
               <Heading
                 /* Options */
                 htmlEntity="h2"
-                text="Current Card"
+                text="Payment Method & Invoices"
                 color="black"
                 size="small"
                 truncate={null}
@@ -206,68 +148,15 @@ export default function ProfileOrders() {
             </div>
 
             <div className="pa3  pa4-md  mb4  shadow2  br4  flex  flex-wrap">
-              <div className="col-12  flex  justify-start">
-                <p className="t-secondary  lh-copy  f6">
-                  Ending in:{' '}
-                  <span className="t-primary">
-                    {customer?.defaultPaymentMethod?.card?.last4 ?? 'NA'}
-                  </span>
-                </p>
-              </div>
-              <div className="col-12  flex  justify-end">
-                <p className="t-secondary  lh-copy  f6">
-                  Expires on:{' '}
-                  <span className="t-primary">
-                    {customer?.defaultPaymentMethod?.card?.exp_year ?? 'NA'}/
-                    {customer?.defaultPaymentMethod?.card?.exp_month ?? 'NA'}
-                  </span>
-                </p>
-              </div>
+              <a
+                className="underline  f6"
+                target="_blank"
+                href={customer?.billingPortal?.url}
+              >
+                Update Payment Method & View Invoices
+              </a>
             </div>
           </div>
-        ) : null}
-
-        {stripe && elements ? (
-          <form noValidate className="w-100  mb4" onSubmit={handleStripeCheck}>
-            <div className="pb3">
-              <Heading
-                /* Options */
-                htmlEntity="h2"
-                text="Payment Method"
-                color="black"
-                size="small"
-                truncate={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-
-            <div className="pa3  pa4-md  mb4  shadow2  br4">
-              <CardElement />
-            </div>
-
-            <div className="flex  justify-end-md">
-              <Button
-                /* Options */
-                type="primary"
-                size="small"
-                text="Update Card"
-                color="black"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted={false}
-                loading={updateCardButtonLoading}
-                disabled={!stripe}
-                skeleton={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={{
-                  type: 'form',
-                }}
-              />
-            </div>
-          </form>
         ) : null}
 
         <form className="w-100  mb4" onSubmit={handleEditProfile}>

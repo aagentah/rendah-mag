@@ -15,8 +15,15 @@ const getCustomer = async (req, res) => {
       );
     }
 
+    const billingPortal = await stripe.billingPortal.sessions.create({
+      customer: stripeCustomerId,
+      return_url: `${process.env.SITE_URL}/profile`,
+    });
+
     // Handle response
-    return res.status(200).json({ customer, defaultPaymentMethod });
+    return res
+      .status(200)
+      .json({ customer, defaultPaymentMethod, billingPortal });
   } catch (error) {
     // Handle catch
     console.error('Error in api/stripe/get-customer:', error);
