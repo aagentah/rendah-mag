@@ -25,6 +25,11 @@ export default {
       type: "boolean",
     },
     {
+      name: "coreTeam",
+      title: "Core Team Member",
+      type: "boolean",
+    },
+    {
       name: "alias",
       title: "Alias",
       type: "string",

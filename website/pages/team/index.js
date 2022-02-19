@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Heading } from 'next-pattern-library';
+import filter from 'lodash/filter';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -8,14 +9,21 @@ import CardTeam from '~/components/card/team';
 import { getSiteConfig, getTeamMembers } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig }) {
-  const [team, setTeam] = useState(null);
-  const [teamLength, setTeamLength] = useState(24);
+  const [core, setCore] = useState(null);
+  const [coreLength, setCoreLength] = useState(24);
+  const [featured, setFeatured] = useState(null);
+  const [featuredLength, setFeaturedLength] = useState(24);
 
   useEffect(() => {
     const action = async () => {
       const teamRes = await getTeamMembers();
-      setTeamLength(teamRes.length);
-      setTeam(teamRes);
+      const core = filter(teamRes, { coreTeam: true });
+      const featured = filter(teamRes, (t) => !t.coreTeam);
+
+      setCore(core);
+      setCoreLength(core.length);
+      setFeatured(featured);
+      setFeaturedLength(featured.length);
     };
 
     action();
@@ -52,10 +60,38 @@ export default function Post({ siteConfig }) {
           </div>
 
           <div className="flex  flex-wrap">
-            {[...Array(teamLength)].map((iteration, i) => (
+            {[...Array(coreLength)].map((iteration, i) => (
               <div key={iteration} className="col-24  col-6-md">
                 <div className="pa3">
-                  <CardTeam i={i} member={team && team[i]} columnCount="4" />
+                  <CardTeam i={i} member={core && core[i]} columnCount="4" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="pt4  pb2">
+            <Heading
+              /* Options */
+              htmlEntity="h1"
+              text="Featured Writers"
+              color="black"
+              size="small"
+              truncate={0}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+
+          <div className="flex  flex-wrap">
+            {[...Array(featuredLength)].map((iteration, i) => (
+              <div key={iteration} className="col-24  col-6-md">
+                <div className="pa3">
+                  <CardTeam
+                    i={i}
+                    member={featured && featured[i]}
+                    columnCount="4"
+                  />
                 </div>
               </div>
             ))}
