@@ -27,10 +27,6 @@ export default () =>
         .child(
           S.editor().schemaType("siteSettings").documentId("siteSettings")
         ),
-      S.listItem()
-        .icon(MDViewList)
-        .title("Link In Bio")
-        .child(S.editor().schemaType("linkInBio").documentId("linkInBio")),
       // Divider
       S.divider(),
       // Blog

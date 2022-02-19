@@ -22,47 +22,24 @@ import useWindowDimensions from '~/functions/useWindowDimensions';
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 
-import { getSiteConfig, getLinkInBio } from '~/lib/sanity/requests';
+import { getSiteConfig, getAllPosts } from '~/lib/sanity/requests';
 
-export default function LinkInBio({ siteConfig, items, preview }) {
+export default function LinkInBio({ siteConfig, posts, preview }) {
   const app = useApp();
   const router = useRouter();
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  const renderItemType = (item) => {
-    let url;
-    let target = '_blank';
-
-    if (item?.condition === 'documentInternal') {
-      const doc = item.documentInternal.document;
-      target = '_self';
-
-      switch (doc?._type) {
-        case 'post':
-          url = `/article/${doc.slug.current}`;
-          break;
-        case 'smartLink':
-          url = `/l/${doc.slug.current}`;
-          break;
-        default:
-          url = null;
-      }
-    }
-
-    if (item?.condition === 'linkExternal') {
-      url = item.linkExternal;
-    }
-
+  const renderItemType = (post) => {
     return (
       <div className="flex  flex-wrap  mb3  cp">
         <a
-          href={url}
+          href={`/article/${post?.slug}`}
           rel="noopener noreferrer"
-          target={target}
+          target="_blank"
           className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
         >
-          <p className="t-secondary  f5  tac  lh-copy">{item.title}</p>
+          <p className="t-secondary  f5  tac  lh-copy">{post?.title}</p>
         </a>
       </div>
     );
@@ -161,13 +138,13 @@ export default function LinkInBio({ siteConfig, items, preview }) {
               </Link>
             </div>
 
-            <div className="flex  justify-center  pb4">
+            <div className="flex  justify-center  pb3">
               <Heading
                 /* Options */
-                htmlEntity="h2"
-                text="Link In Bio"
+                htmlEntity="h3"
+                text="Featured"
                 color="black"
-                size="large"
+                size="small"
                 truncate={null}
                 /* Children */
                 withLinkProps={null}
@@ -183,15 +160,57 @@ export default function LinkInBio({ siteConfig, items, preview }) {
                     target="_blank"
                     className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
                   >
-                    <img src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610317978/dominion/dominion-logo.png" />
+                    <img
+                      className="linkInBio__dominion-logo"
+                      src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610317978/dominion/dominion-logo.png"
+                    />
                   </a>
                 </div>
               </div>
 
-              {items?.length &&
-                items.map((item, i) => (
+              <div className="col-24">
+                <div className="flex  flex-wrap  mb3  cp">
+                  <a
+                    href="/store"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
+                  >
+                    <p className="t-secondary  f5  tac  lh-copy">Store</p>
+                  </a>
+                </div>
+              </div>
+
+              <div className="col-24  pb3">
+                <div className="flex  flex-wrap  mb3  cp">
+                  <a
+                    href="/cyphers"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
+                  >
+                    <p className="t-secondary  f5  tac  lh-copy">Cyphers</p>
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex  justify-center  pb3">
+                <Heading
+                  /* Options */
+                  htmlEntity="h3"
+                  text="Latest Posts"
+                  color="black"
+                  size="small"
+                  truncate={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
+
+              {posts?.length &&
+                posts.map((post, i) => (
                   <div key={i._key} className="col-24">
-                    {renderItemType(item)}
+                    {renderItemType(post)}
                   </div>
                 ))}
             </div>
@@ -220,12 +239,13 @@ export default function LinkInBio({ siteConfig, items, preview }) {
 
 export async function getServerSideProps({ req, preview = false }) {
   const siteConfig = await getSiteConfig();
-  const data = await getLinkInBio(preview);
+
+  const posts = await getAllPosts(preview);
 
   return {
     props: {
       siteConfig,
-      items: reverse(data?.items) || null,
+      posts,
       preview,
     },
   };

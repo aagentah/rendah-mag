@@ -448,23 +448,6 @@ export async function getSmartLinksTotal(preview) {
   return results;
 }
 
-export async function getLinkInBio(preview) {
-  const results = await getClient(preview).fetch(
-    `*[_type == "linkInBio"] [0] {
-      'items': items[] {
-        ...,
-        'documentInternal': documentInternal {
-          ...,
-          'document': *[_id == ^._ref] [0] {
-            ...,
-          },
-        },
-      }
-    }`
-  );
-  return results;
-}
-
 export async function getDominionPipeline(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "dominionPipeline"] [0] {

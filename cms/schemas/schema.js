@@ -33,10 +33,6 @@ import offering from "./documents/offering";
 import smartLinkItem from "./documents/smartLinkItem";
 import smartLink from "./documents/smartLink";
 
-// Link In Bio
-import linkInBioItem from "./objects/linkInBioItem";
-import linkInBio from "./objects/linkInBio";
-
 // Audio
 import track from "./documents/audio/track";
 import pack from "./documents/audio/pack";
@@ -64,8 +60,6 @@ export default createSchema({
     dominionItem,
     smartLinkItem,
     smartLink,
-    linkInBioItem,
-    linkInBio,
     dominionPipelineItem,
     dominionPipeline,
     creations,
