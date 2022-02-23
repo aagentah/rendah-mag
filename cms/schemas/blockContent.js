@@ -85,6 +85,52 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "carousel",
+      title: "Carousel",
+      type: "object",
+      icon: iconImage,
+      fields: [
+        {
+          title: "Images",
+          name: "images",
+          type: "array",
+          of: [
+            {
+              type: "image",
+              icon: iconImage,
+              fields: [
+                {
+                  name: "resize",
+                  title: "Resize",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "None", value: "none" },
+                      { title: "1080px", value: "1080" },
+                      { title: "1920px", value: "1920" },
+                    ],
+                    layout: "radio",
+                  },
+                },
+                {
+                  name: "caption",
+                  title: "Source / Caption",
+                  type: "blockContent",
+                },
+              ],
+              validation: (Rule) => Rule.required(),
+            },
+          ],
+        },
+        {
+          name: "carouselHeight",
+          title: "Carousel Height (px)",
+          type: "number",
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+    },
+    {
       name: "quoteBlock",
       title: "Quote",
       type: "object",

@@ -6,6 +6,7 @@ import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 import Heading from './heading';
 import Quote from './quote';
 import Image from './image';
+import Carousel from './carousel';
 import IframeBlock from './iframe';
 import Soundcloud from './soundcloud';
 import Spotify from './spotify';
@@ -48,6 +49,15 @@ export default function Sections({ body, ...props }) {
       return (
         <div key={i} className="pv4">
           <Image section={section} />
+        </div>
+      );
+    }
+
+    // carousel
+    if (section._type === 'carousel') {
+      return (
+        <div key={i} className="pv4">
+          <Carousel section={section} />
         </div>
       );
     }
