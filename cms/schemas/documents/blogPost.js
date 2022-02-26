@@ -113,12 +113,18 @@ export default {
       type: "string",
       validation: (Rule) => Rule.required().max(70),
     },
+    // {
+    //   name: "description",
+    //   title: "Article Description",
+    //   description: "Shown as first paragraph in the article.",
+    //   type: "text",
+    //   validation: (Rule) => Rule.required().max(300),
+    // },
     {
-      name: "description",
-      title: "Article Description",
+      name: "introduction",
+      title: "Introduction",
       description: "Shown as first paragraph in the article.",
-      type: "text",
-      validation: (Rule) => Rule.required().max(300),
+      type: "blockContent",
     },
     {
       name: "body",

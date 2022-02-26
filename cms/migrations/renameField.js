@@ -23,27 +23,32 @@ const client = sanityClient.withConfig({ apiVersion: "2021-08-21" });
 // NOTE: This query should eventually return an empty set of documents to mark the migration
 // as complete
 const fetchDocuments = () =>
-  client.fetch(
-    `*[_type == 'creations' && defined(author)] [0...100] {_id, _rev, author}`
-  );
+  client.fetch(`*[_type == 'post' && defined(description)][300...400] {...}`);
 
 const buildPatches = (docs) =>
   docs.map((doc) => ({
     id: doc._id,
     patch: {
-      // set: { fullname: doc.name },
-      setIfMissing: { authors: [] },
-      insert: {
-        before: "authors[0]",
-        items: [
+      set: {
+        introduction: [
           {
-            _key: nanoid(),
-            ...doc.author,
+            _key: "4df056fa863f",
+            _type: "block",
+            children: [
+              {
+                _key: "beec7d659a3e",
+                _type: "span",
+                marks: [],
+                text: doc.description,
+              },
+            ],
+            markDefs: [],
+            style: "normal",
           },
         ],
       },
-      // unset: ["author"],
-      // this will cause the transaction to fail if the documents has been
+      // unset: ["name"],
+      // this will cause the migration to fail if any of the documents has been
       // modified since it was fetched.
       ifRevisionID: doc._rev,
     },
@@ -59,11 +64,8 @@ const commitTransaction = (tx) => tx.commit();
 
 const migrateNextBatch = async () => {
   const documents = await fetchDocuments();
-
-  console.log("documents", documents.length);
-
+  // console.log("documents", documents);
   // return;
-
   const patches = buildPatches(documents);
   if (patches.length === 0) {
     console.log("No more documents to migrate!");
@@ -77,7 +79,7 @@ const migrateNextBatch = async () => {
   );
   const transaction = createTransaction(patches);
   await commitTransaction(transaction);
-  // return migrateNextBatch();
+  return migrateNextBatch();
 };
 
 migrateNextBatch().catch((err) => {

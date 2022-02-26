@@ -7,6 +7,7 @@ import map from 'lodash/map';
 import isArray from 'lodash/isArray';
 import Cookies from 'js-cookie';
 import BlockContent from '@sanity/block-content-to-react';
+import toMarkdown from '@sanity/block-content-to-markdown';
 
 import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
@@ -84,7 +85,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
         meta={{
           siteConfig,
           title: post.title,
-          description: post.description,
+          description: toMarkdown(post.introduction),
           image: post.coverImage,
         }}
         preview={preview}
@@ -190,13 +191,10 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 {post?.publishedAt && <Date dateString={post.publishedAt} />}
               </p>
 
-              <div className="pb4  mb3  bb  bc-silver">
-                <Copy
-                  /* Options */
-                  text={post.description}
-                  color="black"
-                  size="medium"
-                  truncate={null}
+              <div className="rich-text  pb3  mb3  bb  bc-silver">
+                <BlockContent
+                  blocks={post.introduction}
+                  serializers={SANITY_BLOCK_SERIALIZERS}
                 />
               </div>
 
