@@ -6,12 +6,19 @@ import { Heading, Image, Button, Icon } from 'next-pattern-library';
 
 import ImageModal from '~/components/gallery/image-modal';
 
+import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
-export default function GalleryBanner({}) {
+export default function GalleryBanner({ component }) {
   const app = useApp();
   const [modalActive, setModalActive] = useState(false);
   const closeModal = () => setModalActive(false);
+
+  const scale = app?.isRetina ? 2 : 1;
+  let imageUrlWidth;
+  if (app.deviceSize === 'md') imageUrlWidth = 700;
+  if (app.deviceSize === 'lg') imageUrlWidth = 1600;
+  if (app.deviceSize === 'xl') imageUrlWidth = 1800;
 
   return (
     <LazyLoad once offset={100} height={360}>
@@ -21,11 +28,21 @@ export default function GalleryBanner({}) {
             <Image
               /* Options */
               src={
-                'https://live.staticflickr.com/65535/49648737658_83f24c0399_k.jpg'
+                component?.image?.asset &&
+                imageBuilder
+                  .image(component.image.asset)
+                  .width(imageUrlWidth * scale)
+                  .auto('format')
+                  .fit('clip')
+                  .url()
               }
-              placeholder={
-                'https://live.staticflickr.com/65535/49648737658_83f24c0399_k.jpg'
-              }
+              placeholder={imageBuilder
+                .image(component.image.asset)
+                .width(imageUrlWidth / 10)
+                .auto('format')
+                .fit('clip')
+                .blur('20')
+                .url()}
               alt="This is the alt text."
               figcaption={null}
               height={null}

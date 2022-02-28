@@ -29,6 +29,8 @@ import dominionPipeline from "./objects/dominionPipeline";
 import creations from "./documents/creations";
 import offering from "./documents/offering";
 
+import galleryPost from "./documents/galleryPost";
+
 // Smart Link
 import smartLinkItem from "./documents/smartLinkItem";
 import smartLink from "./documents/smartLink";
@@ -64,6 +66,7 @@ export default createSchema({
     dominionPipeline,
     creations,
     offering,
+    galleryPost,
     //
     siteSettings,
   ]),

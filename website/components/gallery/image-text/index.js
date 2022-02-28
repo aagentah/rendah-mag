@@ -1,25 +1,38 @@
 import { Parallax } from 'react-scroll-parallax';
 import LazyLoad from 'react-lazyload';
 import { useState } from 'react';
+import BlockContent from '@sanity/block-content-to-react';
 
 import { Heading, Image, Button, Icon } from 'next-pattern-library';
 
 import ImageModal from '~/components/gallery/image-modal';
 
+import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
+import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
-export default function GalleryImageText({ align }) {
+export default function GalleryImageText({ component }) {
   const app = useApp();
   const [modalActive, setModalActive] = useState(false);
   const closeModal = () => setModalActive(false);
 
+  const scale = app?.isRetina ? 2 : 1;
+  const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 500;
+
   const setWrap = () => {
-    console.log('app.deviceSize', app.deviceSize);
-    if (align === 'left' || app.deviceSize === 'md') {
+    if (component.align === 'left' || app.deviceSize === 'md') {
       return '';
     }
 
     return 'flex-row-reverse';
+  };
+
+  const setTextAlign = () => {
+    if (component.align === 'left' || app.deviceSize === 'md') {
+      return 'tal';
+    }
+
+    return 'tar';
   };
 
   return (
@@ -30,11 +43,21 @@ export default function GalleryImageText({ align }) {
             <Image
               /* Options */
               src={
-                'https://live.staticflickr.com/65535/50299213677_e0ff28d626_k.jpg'
+                component?.image?.asset &&
+                imageBuilder
+                  .image(component.image.asset)
+                  .width(imageUrlWidth * scale)
+                  .auto('format')
+                  .fit('clip')
+                  .url()
               }
-              placeholder={
-                'https://live.staticflickr.com/65535/50299213677_e0ff28d626_k.jpg'
-              }
+              placeholder={imageBuilder
+                .image(component.image.asset)
+                .width(imageUrlWidth / 10)
+                .auto('format')
+                .fit('clip')
+                .blur('20')
+                .url()}
               alt="This is the alt text."
               figcaption={null}
               height={null}
@@ -50,23 +73,12 @@ export default function GalleryImageText({ align }) {
 
         <div className="col-24  col-12-md  ph5  pt6">
           <Parallax speed={-10} disabled={app.deviceSize === 'md'}>
-            <h2 className="t-primary  mb4  tal">Lorem ipsum dolor sit amet</h2>
-            <p className="tal">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <div className={`measure-wide  mla  mra  ${setTextAlign()}`}>
+              <BlockContent
+                blocks={component.text}
+                serializers={SANITY_BLOCK_SERIALIZERS}
+              />
+            </div>
           </Parallax>
         </div>
       </div>

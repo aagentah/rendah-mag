@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import { Parallax } from 'react-scroll-parallax';
 
+import { Heading, Copy, Image, Label } from 'next-pattern-library';
+
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Hero from '~/components/hero/cypher';
-import CardCypher from '~/components/card/cypher';
+import CardGallery from '~/components/card/gallery';
 import GalleryInfo from '~/components/gallery/info';
 import GalleryBanner from '~/components/gallery/banner';
 import GalleryImageText from '~/components/gallery/image-text';
@@ -15,24 +17,24 @@ import { useApp } from '~/context-provider/app';
 import {
   getSiteConfig,
   imageBuilder,
-  getCurrentAndPreviousCyphers,
+  getAllGalleryTotal,
 } from '~/lib/sanity/requests';
 
-export default function Cyphers({ siteConfig }) {
+export default function Gallery({ siteConfig }) {
   const app = useApp();
-  // const [cyphers, setCyphers] = useState(null);
-  // const [cyphersLength, setCyphersLength] = useState(24);
-  //
-  // useEffect(() => {
-  //   const action = async () => {
-  //     const cyphersData = await getCurrentAndPreviousCyphers();
-  //
-  //     setCyphersLength(cyphersData.previous.length);
-  //     setCyphers(cyphersData);
-  //   };
-  //
-  //   action();
-  // }, []);
+  const [gallery, setGallery] = useState(null);
+  const [galleryLength, setGalleryLength] = useState(24);
+
+  useEffect(() => {
+    const action = async () => {
+      const galleryData = await getAllGalleryTotal();
+
+      setGalleryLength(galleryData.length);
+      setGallery(galleryData);
+    };
+
+    action();
+  }, []);
 
   return (
     <>
@@ -50,12 +52,34 @@ export default function Cyphers({ siteConfig }) {
         preview={null}
       >
         <div className="creations">
-          <div className="rich-text">
-            <GalleryInfo />
-            <GalleryBanner />
-            <GalleryImageText align="left" />
-            <GalleryImageText align="right" />
-          </div>
+          <section className="pb5  pb6-md">
+            <div className="pb4">
+              <Heading
+                /* Options */
+                htmlEntity="h1"
+                text="Previous Cyphers."
+                color="black"
+                size="medium"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+
+            <div className="flex  flex-wrap">
+              {[...Array(galleryLength)].map((iteration, i) => (
+                <div key={iteration} className="col-24  col-6-md">
+                  <div className="ph3  pv2">
+                    <CardGallery
+                      i={i}
+                      post={gallery && gallery[i]}
+                      columnCount={4}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
       </Layout>
     </>

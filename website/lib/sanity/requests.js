@@ -146,6 +146,25 @@ export async function getCreation(slug, preview) {
   return results;
 }
 
+export async function getAllGalleryTotal(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "gallery"] | order(publishedAt desc) {
+      ${postFields}
+    }`);
+  return results;
+}
+
+export async function getGallery(slug, preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "gallery" && slug.current == $slug] | order(publishedAt desc) [0] {
+      ${postFields}
+    }`,
+    { slug }
+  );
+
+  return results;
+}
+
 export async function getCategory(category, range) {
   const today = dateTodayISO();
 

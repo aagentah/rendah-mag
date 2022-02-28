@@ -125,6 +125,8 @@ export default () =>
                 ),
             ])
         ),
+      // Gallery
+      S.documentTypeListItem("gallery").icon(MDMusic),
       // Cypher
       S.documentTypeListItem("cypher").icon(MDMusic),
       // Mix

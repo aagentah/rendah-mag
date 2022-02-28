@@ -11,8 +11,6 @@ import { useApp } from '~/context-provider/app';
 export default function ImageModal({ modalActive, closeModal }) {
   const app = useApp();
 
-  console.log('modalActive', modalActive);
-
   return (
     <>
       <Modal

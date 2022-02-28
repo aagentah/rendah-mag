@@ -1,12 +1,14 @@
 import { Parallax } from 'react-scroll-parallax';
+import BlockContent from '@sanity/block-content-to-react';
 
 import { Heading, Image, Button, Icon } from 'next-pattern-library';
 
 import Container from '~/components/layout/container';
 
 import { useApp } from '~/context-provider/app';
+import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
-export default function Intro({}) {
+export default function Intro({ post }) {
   const app = useApp();
 
   return (
@@ -14,17 +16,16 @@ export default function Intro({}) {
       <Container>
         <div className="flex  flex-wrap  mb6">
           <div className="col-24  flex  flex-wrap  justify-center">
-            <h1 className="t-primary  mb4  tac">Lorem ipsum dolor sit amet</h1>
+            <h1 className="t-primary  mb4  tac">{post?.title}</h1>
           </div>
 
           <div className="col-24  flex  flex-wrap  justify-center  pb4">
-            <p className="measure-wide  tac">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation. eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation.
-            </p>
+            <div className="measure-wide  mla  mra  tac">
+              <BlockContent
+                blocks={post.introduction}
+                serializers={SANITY_BLOCK_SERIALIZERS}
+              />
+            </div>
           </div>
 
           <div className="col-24  flex  flex-wrap  justify-center">
