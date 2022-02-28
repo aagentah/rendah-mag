@@ -20,7 +20,9 @@ $creations-white: #cccccc;
     color: $creations-white !important;
     border-color: $creations-white !important;
     background: transparent !important;
+  }
 
+  .button.primary {
     &:hover {
       color: var(--almost-black) !important;
       border-color: $creations-white !important;
@@ -62,6 +64,10 @@ $creations-white: #cccccc;
     *:not(.label) {
       color: $creations-white;
     }
+  }
+
+  .modal__dialog {
+    background-color: #1c1c1c;
   }
 }
 
