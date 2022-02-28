@@ -37,7 +37,7 @@ export default function GalleryImageText({ component }) {
 
   return (
     <LazyLoad once offset={100} height={360}>
-      <div className={`flex  flex-wrap  ${setWrap()}  pb7`}>
+      <div className={`flex  flex-wrap  ${setWrap()}  pb5  pb7-md`}>
         <div className="col-24  col-12-md  ph4">
           <Parallax speed={0} disabled={app.deviceSize === 'md'}>
             <Image
@@ -71,7 +71,7 @@ export default function GalleryImageText({ component }) {
           </Parallax>
         </div>
 
-        <div className="col-24  col-12-md  ph5  pt6">
+        <div className="col-24  col-12-md  ph5  pt5  pt6-md">
           <Parallax speed={-10} disabled={app.deviceSize === 'md'}>
             <div className={`measure-wide  mla  mra  ${setTextAlign()}`}>
               <BlockContent

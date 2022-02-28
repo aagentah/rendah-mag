@@ -9,6 +9,7 @@ import MDMusicVideo from "react-icons/lib/md/music-video";
 import MDLoyalty from "react-icons/lib/md/loyalty";
 import MDViewList from "react-icons/lib/md/view-list";
 import MDGridOn from "react-icons/lib/md/grid-on";
+import MDImage from "react-icons/lib/md/image";
 
 import UsersAddress from "./components/previews/usersAddress";
 import UsersOverview from "./components/previews/usersOverview";
@@ -42,6 +43,8 @@ export default () =>
               S.documentTypeListItem("category"),
             ])
         ),
+      // Gallery
+      S.documentTypeListItem("gallery").icon(MDImage),
       // Store
       S.listItem()
         .icon(MDShop)
@@ -125,8 +128,7 @@ export default () =>
                 ),
             ])
         ),
-      // Gallery
-      S.documentTypeListItem("gallery").icon(MDMusic),
+
       // Cypher
       S.documentTypeListItem("cypher").icon(MDMusic),
       // Mix

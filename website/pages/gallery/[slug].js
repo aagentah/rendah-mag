@@ -55,13 +55,13 @@ export default function Gallery({ siteConfig, post, preview }) {
   }
 
   if (!router.isFallback && post?.slug) {
-    console.log('post', post);
     return (
       <Layout
         navOffset={null}
         navOnWhite={false}
         hasNav
         hasFooter
+        darkMode
         meta={{
           siteConfig,
           title: post.title,
@@ -77,6 +77,20 @@ export default function Gallery({ siteConfig, post, preview }) {
             {post?.components?.length &&
               post.components.map((iteration, i) => renderComponent(iteration))}
           </div>
+
+          <Container>
+            <div className="measure-wide  mla  mra  pb2  pb3-md  mb2">
+              <SocialLinks article={post} />
+            </div>
+
+            <section className="flex  flex-wrap  justify-center  align-center  pb3  pb4-md">
+              {post.authors.map((i) => (
+                <div className="col-24  col-12-md  pb4  pb3-md  ph3">
+                  <Author author={i.author} />
+                </div>
+              ))}
+            </section>
+          </Container>
         </div>
       </Layout>
     );

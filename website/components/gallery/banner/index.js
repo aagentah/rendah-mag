@@ -22,7 +22,7 @@ export default function GalleryBanner({ component }) {
 
   return (
     <LazyLoad once offset={100} height={360}>
-      <div className="flex  flex-wrap  mb6  pb6  pt6">
+      <div className="flex  flex-wrap  mb0  mb6-md  pb6  pt0  pt6-md">
         <div className="col-24">
           <Parallax speed={-10} disabled={app.deviceSize === 'md'}>
             <Image

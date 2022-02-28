@@ -16,7 +16,7 @@ export default function CardGallery({ post }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  const imageHeight = app?.deviceSize === 'md' ? 260 : 180;
+  const imageHeight = app?.deviceSize === 'md' ? 260 : 230;
   const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
 
   const image = (
@@ -73,7 +73,7 @@ export default function CardGallery({ post }) {
       /* Options */
       htmlEntity="h2"
       text={post?.title}
-      color="black"
+      color="white"
       size="small"
       truncate={2}
       skeleton={!post}

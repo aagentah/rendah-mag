@@ -3,6 +3,12 @@ $creations-white: #cccccc;
 .creations {
   background-color: #1c1c1c;
 
+  .white,
+  .rpl-white {
+    color: $creations-white;
+    fill: $creations-white;
+  }
+
   .rich-text {
     *:not(.button):not(.button span) {
       color: $creations-white !important;

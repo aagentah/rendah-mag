@@ -39,47 +39,50 @@ export default function Gallery({ siteConfig }) {
   return (
     <>
       <Layout
-        navOffset={null}
+        navOffset="top"
         navOnWhite={false}
         hasNav
         hasFooter
+        darkMode
         meta={{
           siteConfig,
-          title: 'Cyphers',
+          title: 'Gallery',
           description: null,
           image: null,
         }}
         preview={null}
       >
         <div className="creations">
-          <section className="pb5  pb6-md">
-            <div className="pb4">
-              <Heading
-                /* Options */
-                htmlEntity="h1"
-                text="Previous Cyphers."
-                color="black"
-                size="medium"
-                truncate={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
+          <Container>
+            <section className="pb5  pb6-md">
+              <div className="pb4">
+                <Heading
+                  /* Options */
+                  htmlEntity="h1"
+                  text="Gallery"
+                  color="white"
+                  size="white"
+                  truncate={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
 
-            <div className="flex  flex-wrap">
-              {[...Array(galleryLength)].map((iteration, i) => (
-                <div key={iteration} className="col-24  col-6-md">
-                  <div className="ph3  pv2">
-                    <CardGallery
-                      i={i}
-                      post={gallery && gallery[i]}
-                      columnCount={4}
-                    />
+              <div className="flex  flex-wrap">
+                {[...Array(galleryLength)].map((iteration, i) => (
+                  <div key={iteration} className="col-24  col-6-md">
+                    <div className="ph3  pv2">
+                      <CardGallery
+                        i={i}
+                        post={gallery && gallery[i]}
+                        columnCount={4}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          </Container>
         </div>
       </Layout>
     </>
