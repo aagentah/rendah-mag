@@ -11,7 +11,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
-export default function GalleryImageText({ component }) {
+export default function GalleryImageText({ post, component }) {
   const app = useApp();
   const [modalActive, setModalActive] = useState(false);
   const closeModal = () => setModalActive(false);
@@ -36,7 +36,7 @@ export default function GalleryImageText({ component }) {
   };
 
   return (
-    <LazyLoad once offset={100} height={360}>
+    <>
       <div className={`flex  flex-wrap  ${setWrap()}  pb5  pb7-md`}>
         <div className="col-24  col-12-md  ph4">
           <Parallax speed={0} disabled={app.deviceSize === 'md'}>
@@ -83,7 +83,12 @@ export default function GalleryImageText({ component }) {
         </div>
       </div>
 
-      <ImageModal modalActive={modalActive} closeModal={closeModal} />
-    </LazyLoad>
+      <ImageModal
+        modalActive={modalActive}
+        closeModal={closeModal}
+        post={post}
+        component={component}
+      />
+    </>
   );
 }

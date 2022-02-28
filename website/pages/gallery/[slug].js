@@ -40,11 +40,11 @@ export default function Gallery({ siteConfig, post, preview }) {
 
   const renderComponent = (component) => {
     if (component._type === 'galleryBanner') {
-      return <GalleryBanner component={component} />;
+      return <GalleryBanner post={post} component={component} />;
     }
 
     if (component._type === 'galleryTextImage') {
-      return <GalleryImageText component={component} />;
+      return <GalleryImageText post={post} component={component} />;
     }
 
     return false;

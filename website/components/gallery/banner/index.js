@@ -9,7 +9,7 @@ import ImageModal from '~/components/gallery/image-modal';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
-export default function GalleryBanner({ component }) {
+export default function GalleryBanner({ post, component }) {
   const app = useApp();
   const [modalActive, setModalActive] = useState(false);
   const closeModal = () => setModalActive(false);
@@ -21,7 +21,7 @@ export default function GalleryBanner({ component }) {
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
 
   return (
-    <LazyLoad once offset={100} height={360}>
+    <>
       <div className="flex  flex-wrap  mb0  mb6-md  pb6  pt0  pt6-md">
         <div className="col-24">
           <Parallax speed={-10} disabled={app.deviceSize === 'md'}>
@@ -57,7 +57,12 @@ export default function GalleryBanner({ component }) {
         </div>
       </div>
 
-      <ImageModal modalActive={modalActive} closeModal={closeModal} />
-    </LazyLoad>
+      <ImageModal
+        modalActive={modalActive}
+        closeModal={closeModal}
+        post={post}
+        component={component}
+      />
+    </>
   );
 }

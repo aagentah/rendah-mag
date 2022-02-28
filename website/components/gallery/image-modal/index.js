@@ -7,9 +7,36 @@ import { Copy, Heading, Image, Button, Icon } from 'next-pattern-library';
 import Modal from '~/components/modal';
 
 import { useApp } from '~/context-provider/app';
+import { imageBuilder } from '~/lib/sanity/requests';
+import { useUser } from '~/lib/hooks';
 
-export default function ImageModal({ modalActive, closeModal }) {
+export default function ImageModal({
+  modalActive,
+  closeModal,
+  post,
+  component,
+}) {
   const app = useApp();
+  const [user] = useUser();
+
+  const toDataURL = (url) => {
+    return fetch(url)
+      .then((response) => {
+        return response.blob();
+      })
+      .then((blob) => {
+        return URL.createObjectURL(blob);
+      });
+  };
+
+  const download = async (url) => {
+    const a = document.createElement('a');
+    a.href = await toDataURL(url);
+    a.download = post.title;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
 
   return (
     <>
@@ -33,29 +60,75 @@ export default function ImageModal({ modalActive, closeModal }) {
         </div>
         <div className="pb3">
           <div className="flex  align-end  t-secondary  tal  f6  pb2">
-            <a className="flex  align-center  db  underline  pr2" href="">
+            <span
+              className="flex  align-center  db  underline  pr2  cp"
+              onClick={() => {
+                download(
+                  component?.image?.asset &&
+                    imageBuilder
+                      .image(component.image.asset)
+                      .width(1080)
+                      .auto('format')
+                      .fit('clip')
+                      .url()
+                );
+              }}
+            >
               <Icon
                 className="light-grey  pr2"
                 icon={['fa', 'download']}
                 size="1x"
               />{' '}
               Default Size
-            </a>
-          </div>
-
-          <div className="flex  align-end  t-secondary  tal  f6  pb2">
-            <a className="flex  align-center  db  underline  pr2" href="">
-              <Icon
-                className="light-grey  pr2"
-                icon={['fa', 'download']}
-                size="1x"
-              />{' '}
-              Original Size
-            </a>
-            <span className="f7  fs-italic">
-              (Exclusive to Dominion Members)
             </span>
           </div>
+
+          {user?.isDominion ? (
+            <div className="flex  align-end  t-secondary  tal  f6  pb2">
+              <span
+                className="flex  align-center  db  underline  pr2  cp"
+                onClick={() => {
+                  download(
+                    component?.image?.asset &&
+                      imageBuilder
+                        .image(component.image.asset)
+                        .width(1080)
+                        .auto('format')
+                        .fit('clip')
+                        .url()
+                  );
+                }}
+              >
+                <Icon
+                  className="light-grey  pr2"
+                  icon={['fa', 'download']}
+                  size="1x"
+                />{' '}
+                Original Size
+              </span>
+              <span className="f7  fs-italic">
+                (Exclusive to Dominion Members)
+              </span>
+            </div>
+          ) : (
+            <div className="flex  align-end  t-secondary  tal  f6  pb2">
+              <a
+                className="flex  align-center  db  underline  pr2  cp"
+                href="/login"
+                target="_blank"
+              >
+                <Icon
+                  className="light-grey  pr2"
+                  icon={['fa', 'download']}
+                  size="1x"
+                />{' '}
+                Original Size
+              </a>
+              <span className="f7  fs-italic">
+                (Exclusive to Dominion Members)
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="flex  flex-wrap  pb2">
