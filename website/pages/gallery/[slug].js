@@ -125,9 +125,9 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      data.map((creations) => ({
+      data.map((gallery) => ({
         params: {
-          slug: creations.slug,
+          slug: gallery.slug,
         },
       })) || [],
     fallback: 'blocking',
