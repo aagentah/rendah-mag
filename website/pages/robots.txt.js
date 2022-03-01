@@ -16,7 +16,6 @@ const renderRobots = (domainType) => {
     Disallow: /login/
     Disallow: /signup/
     Disallow: /dominion-thank-you/
-    Disallow: /dominion-already-member/
     Disallow: /i/
     Disallow: /link-in-bio/
     Disallow: /return-policy/
