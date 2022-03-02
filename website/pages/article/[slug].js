@@ -8,6 +8,7 @@ import isArray from 'lodash/isArray';
 import Cookies from 'js-cookie';
 import BlockContent from '@sanity/block-content-to-react';
 import toMarkdown from '@sanity/block-content-to-markdown';
+import markdownToTxt from 'markdown-to-txt';
 
 import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
 
@@ -85,7 +86,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
         meta={{
           siteConfig,
           title: post.title,
-          description: toMarkdown(post.introduction),
+          description: markdownToTxt(toMarkdown(post.introduction)),
           image: post.coverImage,
         }}
         preview={preview}
