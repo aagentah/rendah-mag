@@ -18,7 +18,6 @@ export default function Home({ siteConfig }) {
   const [premieresLength, setPremieresLength] = useState(4);
   const [guestMixesLength, setGuestMixesLength] = useState(4);
 
-  // Render remaining content
   useEffect(() => {
     const action = async () => {
       const newsRes = await getCategory('news', [1, 6]);

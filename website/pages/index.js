@@ -23,7 +23,6 @@ export default function Home({ siteConfig }) {
 
   const [interviewsLength, setInterviewsLength] = useState(4);
 
-  // Render featured post first
   useEffect(() => {
     const action = async () => {
       const featuredPostRes = await getFeaturedPost();
