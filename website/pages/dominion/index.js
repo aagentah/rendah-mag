@@ -86,7 +86,7 @@ export default function Dominion({ siteConfig }) {
             <div className="col-24  flex  justify-center">
               <div className="measure-wide  mb3  ph4  ph0-md">
                 <p className="f-secondary  taj  f5  lh-copy">
-                  This year, the Rendah Mag team embarks upon a new journey.
+                  Right now, the Rendah Mag team embarks upon a new journey.
                   With so much happening right now, we want to push our platform
                   into new territory, offering a new way for you to explore the
                   landscape of underground music culture. With an absolute
@@ -107,7 +107,7 @@ export default function Dominion({ siteConfig }) {
             <div className="col-24  col-13-md  flex  justify-center  align-center  ph0  ph4-md">
               <div className="measure-wide  ph4  ph0-md">
                 <p className="f-secondary  taj  f5  pb3  lh-copy">
-                  <strong>We offer the following to you:</strong>
+                  <strong>We offer the following:</strong>
                 </p>
                 <ul className="pl3">
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
@@ -117,15 +117,17 @@ export default function Dominion({ siteConfig }) {
                     A quarter-yearly printed issue of Rendah Mag.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Frequent exclusive music, samples, tutorials, and more from
-                    featured artists & collectives.
+                    Monthly exclusive music, samples, tutorials, and 'behind the
+                    scenes' insights of underground music.
                   </li>
                   <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Your own Dominion Profile login.
+                    Your own Dominion Profile & login.
                   </li>
-                  <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    Discounts from all coming Rendah Mag products.
-                  </li>
+                  {
+                    // <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    //   Discounts from all coming Rendah Mag products.
+                    // </li>
+                  }
                 </ul>
               </div>
             </div>

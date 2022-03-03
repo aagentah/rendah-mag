@@ -17,12 +17,16 @@ import { getAllCreationsTotal } from '~/lib/sanity/requests';
 export default function ProfileCreations() {
   const [user, { loading, mutate, error }] = useUser();
   const [posts, setPosts] = useState([]);
+  const [postsLength, setPostsLength] = useState(9);
 
   // Fetch posts
   useEffect(async () => {
     const action = async () => {
       const data = await getAllCreationsTotal();
-      if (data) setPosts(data);
+      if (data) {
+        setPosts(data);
+        setPostsLength(data?.length);
+      }
     };
 
     await action();
@@ -53,17 +57,19 @@ export default function ProfileCreations() {
           </p>
         </div>
 
-        {posts?.length ? (
-          <div className="flex  flex-wrap  pb3">
-            {posts.map((post, i) => (
-              <div key={post.slug} className="col-24  col-8-md">
-                <div className="ph3  pv2">
-                  <CardCreations i={i} post={post} columnCount={3} />
-                </div>
+        <div className="flex  flex-wrap  pb3">
+          {[...Array(postsLength)].map((iteration, i) => (
+            <div key={iteration} className="col-24  col-8-md">
+              <div className="ph3  pv2">
+                <CardCreations
+                  i={i}
+                  post={posts?.length && posts[i]}
+                  columnCount={3}
+                />
               </div>
-            ))}
-          </div>
-        ) : null}
+            </div>
+          ))}
+        </div>
       </section>
     );
   }

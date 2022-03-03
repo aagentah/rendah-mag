@@ -165,26 +165,28 @@ export default function Product({ siteConfig, product }) {
                 </div>
 
                 <div className="measure-wide  ph4  ph0-md">
-                  <p className="f-secondary  taj  f6  pb3  lh-copy">
+                  <p className="f-secondary  taj  f5  pb3  lh-copy">
                     <strong>We offer the following:</strong>
                   </p>
                   <ul className="pl3">
-                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                    <li className="f-secondary  tal  f5  pb2  lh-copy">
                       A Welcome package (+ membership card & stickers).
                     </li>
-                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                    <li className="f-secondary  tal  f5  pb2  lh-copy">
                       A quarter-yearly printed issue of Rendah Mag.
                     </li>
-                    <li className="f-secondary  tal  f6  pb2  lh-copy">
-                      Frequent exclusive music, samples, tutorials, and more
-                      from featured artists & collectives.
+                    <li className="f-secondary  tal  f5  pb2  lh-copy">
+                      Monthly exclusive music, samples, tutorials, and 'behind
+                      the scenes' insights of underground music
                     </li>
-                    <li className="f-secondary  tal  f6  pb2  lh-copy">
-                      Your own Dominion Profile login.
+                    <li className="f-secondary  tal  f5  pb2  lh-copy">
+                      Your own Dominion Profile & login.
                     </li>
-                    <li className="f-secondary  tal  f6  pb2  lh-copy">
-                      Discounts from all coming Rendah Mag products.
-                    </li>
+                    {
+                      // <li className="f-secondary  tal  f5  pb2  lh-copy">
+                      //   Discounts from all coming Rendah Mag products.
+                      // </li>
+                    }
                   </ul>
                 </div>
               </div>
