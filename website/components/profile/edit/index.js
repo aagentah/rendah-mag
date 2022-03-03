@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
-import { useDropzone } from 'react-dropzone';
+// import { useDropzone } from 'react-dropzone';
 
 import {
   Image,
@@ -30,56 +30,56 @@ export default function ProfileEdit() {
     updatePasswordButtonLoading,
     setUpdatePasswordButtonLoading,
   ] = useState(false);
-  const [avatarModalActive, setAvatarModalActive] = useState(false);
+  // const [avatarModalActive, setAvatarModalActive] = useState(false);
   const [user, { mutate }] = useUser();
-  const [avatarBlob, setAvatarBlob] = useState(null);
-  const [avatarImage, setAvatarImage] = useState(null);
+  // const [avatarBlob, setAvatarBlob] = useState(null);
+  // const [avatarImage, setAvatarImage] = useState(null);
 
-  const userTags = [
-    'Producer',
-    'DJ',
-    'Visual Artist',
-    'Label',
-    'Listener',
-    'Developer',
-    'Engineer',
-  ];
+  // const userTags = [
+  //   'Producer',
+  //   'DJ',
+  //   'Visual Artist',
+  //   'Label',
+  //   'Listener',
+  //   'Developer',
+  //   'Engineer',
+  // ];
 
-  const onDrop = useCallback(
-    (acceptedFiles) => {
-      setAvatarModalActive(false);
+  // const onDrop = useCallback(
+  //   (acceptedFiles) => {
+  //     setAvatarModalActive(false);
+  //
+  //     toast.info(`To save your image, make sure to hit Update.`);
+  //
+  //     if (acceptedFiles.length > 0) {
+  //       const file = acceptedFiles[0];
+  //       const reader = new FileReader();
+  //
+  //       setAvatarImage(URL.createObjectURL(file));
+  //       reader.readAsDataURL(file);
+  //       reader.onload = () => setAvatarBlob(reader.result);
+  //     }
+  //   },
+  //   [setAvatarModalActive]
+  // );
 
-      toast.info(`To save your image, make sure to hit Update.`);
+  // const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  //   multiple: false,
+  //   onDrop,
+  // });
 
-      if (acceptedFiles.length > 0) {
-        const file = acceptedFiles[0];
-        const reader = new FileReader();
-
-        setAvatarImage(URL.createObjectURL(file));
-        reader.readAsDataURL(file);
-        reader.onload = () => setAvatarBlob(reader.result);
-      }
-    },
-    [setAvatarModalActive]
-  );
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    multiple: false,
-    onDrop,
-  });
-
-  useEffect(() => {
-    if (user?.avatar) {
-      setAvatarImage(
-        imageBuilder
-          .image(user.avatar)
-          .height(500)
-          .width(500)
-          .auto('format')
-          .url()
-      );
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user?.avatar) {
+  //     setAvatarImage(
+  //       imageBuilder
+  //         .image(user.avatar)
+  //         .height(500)
+  //         .width(500)
+  //         .auto('format')
+  //         .url()
+  //     );
+  //   }
+  // }, [user]);
 
   async function handleUpdatePassword(e) {
     e.preventDefault();
@@ -148,23 +148,22 @@ export default function ProfileEdit() {
     // Prevent double submit
     if (updateButtonLoading) return false;
 
-    const tags = [];
-
-    for (let i = 0; i < userTags.length; i += 1) {
-      const checkbox = e.currentTarget[userTags[i]];
-
-      tags.push({
-        name: checkbox.name,
-        status: checkbox.checked ? 'active' : 'inactive',
-      });
-    }
+    // const tags = [];
+    //
+    // for (let i = 0; i < userTags.length; i += 1) {
+    //   const checkbox = e.currentTarget[userTags[i]];
+    //
+    //   tags.push({
+    //     name: checkbox.name,
+    //     status: checkbox.checked ? 'active' : 'inactive',
+    //   });
+    // }
 
     const body = {
       username: e.currentTarget.username.value,
       name: e.currentTarget.name.value,
       handle: e.currentTarget.handle.value,
       discordId: e.currentTarget.discordId.value,
-      publicProfile: e.currentTarget.publicProfile.checked,
     };
 
     if (!body.name) {
@@ -193,8 +192,8 @@ export default function ProfileEdit() {
       }
     }
 
-    if (tags.length > 0) body.tags = tags;
-    if (avatarBlob) body.avatar = avatarBlob;
+    // if (tags.length > 0) body.tags = tags;
+    // if (avatarBlob) body.avatar = avatarBlob;
 
     dispatch({ type: 'TOGGLE_LOADING' });
     setUpdateButtonLoading(true);
@@ -350,67 +349,69 @@ export default function ProfileEdit() {
           </form>
         </Modal>
 
-        <Modal
-          /* Options */
-          size="medium"
-          active={avatarModalActive}
-        >
-          <div className="pb3">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text="Change Avatar"
-              color="black"
-              size="large"
-              truncate={0}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-          <div className="pb4">
-            <Copy
-              /* Options */
-              text="Recomended square & at least 720px & under 1 MB."
-              color="black"
-              size="medium"
-              truncate={null}
-            />
-          </div>
-          <div className="pb4">
-            <div className="react-dropzone__wrapper" {...getRootProps()}>
-              <input {...getInputProps()} />
-              {isDragActive ? (
-                <p>Drop the file here...</p>
-              ) : (
-                <p>Drag & drop your image here, or click to select file</p>
-              )}
-            </div>
-          </div>
-          <div className="flex  flex-wrap  pb2">
-            <div className="col-24  col-12-md  flex  justify-center  justify-start-md  align-center">
-              <Button
-                /* Options */
-                type="secondary"
-                size="medium"
-                text="Cancel"
-                color="black"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted={false}
-                loading={false}
-                disabled={false}
-                skeleton={false}
-                onClick={() => {
-                  setAvatarModalActive(!avatarModalActive);
-                }}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-          </div>
-        </Modal>
+        {
+          // <Modal
+          //   /* Options */
+          //   size="medium"
+          //   active={avatarModalActive}
+          // >
+          //   <div className="pb3">
+          //     <Heading
+          //       /* Options */
+          //       htmlEntity="h1"
+          //       text="Change Avatar"
+          //       color="black"
+          //       size="large"
+          //       truncate={0}
+          //       onClick={null}
+          //       /* Children */
+          //       withLinkProps={null}
+          //     />
+          //   </div>
+          //   <div className="pb4">
+          //     <Copy
+          //       /* Options */
+          //       text="Recomended square & at least 720px & under 1 MB."
+          //       color="black"
+          //       size="medium"
+          //       truncate={null}
+          //     />
+          //   </div>
+          //   <div className="pb4">
+          //     <div className="react-dropzone__wrapper" {...getRootProps()}>
+          //       <input {...getInputProps()} />
+          //       {isDragActive ? (
+          //         <p>Drop the file here...</p>
+          //       ) : (
+          //         <p>Drag & drop your image here, or click to select file</p>
+          //       )}
+          //     </div>
+          //   </div>
+          //   <div className="flex  flex-wrap  pb2">
+          //     <div className="col-24  col-12-md  flex  justify-center  justify-start-md  align-center">
+          //       <Button
+          //         /* Options */
+          //         type="secondary"
+          //         size="medium"
+          //         text="Cancel"
+          //         color="black"
+          //         fluid={false}
+          //         icon={null}
+          //         iconFloat={null}
+          //         inverted={false}
+          //         loading={false}
+          //         disabled={false}
+          //         skeleton={false}
+          //         onClick={() => {
+          //           setAvatarModalActive(!avatarModalActive);
+          //         }}
+          //         /* Children */
+          //         withLinkProps={null}
+          //       />
+          //     </div>
+          //   </div>
+          // </Modal>
+        }
 
         <div className="pb3">
           <Heading
@@ -426,186 +427,132 @@ export default function ProfileEdit() {
         </div>
 
         <div className="flex  flex-wrap">
-          <div className="col-24  pb4">
-            <div className="w4">
-              <Image
-                /* Options */
-                src={avatarImage || '/images/avatar-placeholder.png'}
-                placeholder={null}
-                alt={user?.username || ''}
-                figcaption={null}
-                height={null}
-                width={null}
-                customClass="shadow2"
-                skeleton={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-          </div>
-
-          <div className="col-24  pb4">
-            <div className="dib">
-              <Button
-                /* Options */
-                type="primary"
-                size="small"
-                text="Change Avatar"
-                color="black"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted
-                loading={false}
-                disabled={app.isLoading}
-                skeleton={false}
-                onClick={() => {
-                  setAvatarModalActive(!avatarModalActive);
-                }}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-          </div>
-        </div>
-
-        <form noValidate className="w-100" onSubmit={handleEditProfile}>
-          <div className="flex  flex-wrap">
-            <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-              <div className="pv2">
-                <Input
-                  /* Options */
-                  type="email"
-                  label="Email"
-                  name="username"
-                  value={user?.username || ''}
-                  icon={inputIconEnvelope}
-                  required
-                  disabled={false}
-                  readOnly
-                />
-              </div>
-              <div className="pv2">
-                <Input
-                  /* Options */
-                  type="text"
-                  label="Name"
-                  name="name"
-                  value={user?.name || ''}
-                  icon={inputIconUser}
-                  required
-                  disabled={false}
-                  readOnly={false}
-                />
-              </div>
-              <div className="pv2">
-                <Input
-                  /* Options */
-                  type="text"
-                  label="Dominion Handle"
-                  name="handle"
-                  value={user?.handle || ''}
-                  icon={inputIconAt}
-                  required
-                  disabled={false}
-                  readOnly={false}
-                />
-              </div>
-              <div className="pv2  relative">
-                <Input
-                  /* Options */
-                  type="text"
-                  label="Discord ID"
-                  name="discordId"
-                  value={user?.discordId || ''}
-                  icon={inputIconHash}
-                  required
-                  disabled={false}
-                  readOnly={false}
-                />
-                <a
-                  href="https://discord.com/invite/ev2Q22C"
-                  target="_blank"
-                  className="absolute  top  right  f5  pt4  pr2  grey  underline"
-                >
-                  {iconDiscord}
-                </a>
-              </div>
-              <div className="pv3">
-                <Checkbox
-                  /* Options */
-                  label="Public Profile (Coming Soon)"
-                  name="publicProfile"
-                  checked={user.publicProfile}
-                  required={false}
-                  disabled={false}
-                  onClick={null}
-                />
-              </div>
-            </div>
-            <div className="col-24  col-12-md  pb3  pb0-md">
-              <div className="bg-almost-white  pa3  pa4-md">
-                <div className="pb2">
-                  <Heading
+          <form noValidate className="col-24" onSubmit={handleEditProfile}>
+            <div className="flex  flex-wrap  pb4">
+              <div className="col-24  col-12-md">
+                <div className="pv2">
+                  <Input
                     /* Options */
-                    htmlEntity="h1"
-                    text="I am..."
-                    color="black"
-                    size="small"
-                    truncate={0}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={null}
+                    type="email"
+                    label="Email"
+                    name="username"
+                    value={user?.username || ''}
+                    icon={inputIconEnvelope}
+                    required
+                    disabled={false}
+                    readOnly
                   />
                 </div>
-                <div className="flex  flex-wrap">
-                  {userTags.map((tag) => (
-                    <div key={tag} className="col-24  col-12-md">
-                      <div className="pv2">
-                        <Checkbox
-                          /* Options */
-                          label={tag}
-                          name={tag}
-                          checked={user.tags?.length && user.tags.includes(tag)}
-                          required={false}
-                          disabled={false}
-                          onClick={null}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="Name"
+                    name="name"
+                    value={user?.name || ''}
+                    icon={inputIconUser}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
+                </div>
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="Dominion Handle"
+                    name="handle"
+                    value={user?.handle || ''}
+                    icon={inputIconAt}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
+                </div>
+                <div className="pv2  relative">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="Discord ID"
+                    name="discordId"
+                    value={user?.discordId || ''}
+                    icon={inputIconHash}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
+                  <a
+                    href="https://discord.com/invite/ev2Q22C"
+                    target="_blank"
+                    className="absolute  top  right  f5  pt4  pr2  grey  underline"
+                  >
+                    {iconDiscord}
+                  </a>
                 </div>
               </div>
+              {
+                // <div className="col-24  col-12-md  pb3  pb0-md">
+                //   <div className="bg-almost-white  pa3  pa4-md">
+                //     <div className="pb2">
+                //       <Heading
+                //         /* Options */
+                //         htmlEntity="h1"
+                //         text="I am..."
+                //         color="black"
+                //         size="small"
+                //         truncate={0}
+                //         onClick={null}
+                //         /* Children */
+                //         withLinkProps={null}
+                //       />
+                //     </div>
+                //     <div className="flex  flex-wrap">
+                //       {userTags.map((tag) => (
+                //         <div key={tag} className="col-24  col-12-md">
+                //           <div className="pv2">
+                //             <Checkbox
+                //               /* Options */
+                //               label={tag}
+                //               name={tag}
+                //               checked={user.tags?.length && user.tags.includes(tag)}
+                //               required={false}
+                //               disabled={false}
+                //               onClick={null}
+                //             />
+                //           </div>
+                //         </div>
+                //       ))}
+                //     </div>
+                //   </div>
+                // </div>
+              }
             </div>
-          </div>
-          <div className="flex-md  flex-wrap  align-end-md  justify-between-md  pt4">
-            <div className="col-24  col-12-md  pr3  pb4  pb0-md">
-              <Button
-                /* Options */
-                type="primary"
-                size="medium"
-                text="Update"
-                color="black"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted={false}
-                loading={updateButtonLoading}
-                disabled={app.isLoading}
-                skeleton={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={{
-                  type: 'form',
-                  url: null,
-                  target: null,
-                  routerLink: null,
-                }}
-              />
-            </div>
-            <div className="col-24  col-12-md  flex  flex-wrap  justify-end-md">
-              <div className="col-24  col-10-md  flex  justify-end-md  pr0  pr3-md  pb3  pb1-md">
+            <div className="flex  flex-wrap  col-12-md">
+              <div className="col-24  col-12-md  flex  align-center">
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="medium"
+                  text="Update"
+                  color="black"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={updateButtonLoading}
+                  disabled={app.isLoading}
+                  skeleton={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'form',
+                    url: null,
+                    target: null,
+                    routerLink: null,
+                  }}
+                />
+              </div>
+              <div className="col-24  col-12-md  flex  align-center  justify-end-md">
                 <Button
                   /* Options */
                   type="secondary"
@@ -627,8 +574,55 @@ export default function ProfileEdit() {
                 />
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+
+          {
+            // <div className="col-24  col-8-md">
+            //   <div className="col-24  pb4">
+            //     <div className="w4">
+            //       <Image
+            //         /* Options */
+            //         src={avatarImage || '/images/avatar-placeholder.png'}
+            //         placeholder={null}
+            //         alt={user?.username || ''}
+            //         figcaption={null}
+            //         height={null}
+            //         width={null}
+            //         customClass="shadow2"
+            //         skeleton={false}
+            //         onClick={null}
+            //         /* Children */
+            //         withLinkProps={null}
+            //       />
+            //     </div>
+            //   </div>
+            //
+            //   <div className="col-24  pb4">
+            //     <div className="dib">
+            //       <Button
+            //         /* Options */
+            //         type="primary"
+            //         size="small"
+            //         text="Change Avatar"
+            //         color="black"
+            //         fluid={false}
+            //         icon={null}
+            //         iconFloat={null}
+            //         inverted
+            //         loading={false}
+            //         disabled={app.isLoading}
+            //         skeleton={false}
+            //         onClick={() => {
+            //           setAvatarModalActive(!avatarModalActive);
+            //         }}
+            //         /* Children */
+            //         withLinkProps={null}
+            //       />
+            //     </div>
+            //   </div>
+            // </div>
+          }
+        </div>
       </>
     );
   }

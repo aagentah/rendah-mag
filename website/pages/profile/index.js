@@ -128,12 +128,12 @@ export default function Profile({ siteConfig }) {
                           tabIcon: iconNewspaper,
                           tabContent: <ProfileCreations />,
                         },
-                        {
-                          id: 'pipeline',
-                          tabTitle: 'Pipeline',
-                          tabIcon: iconList,
-                          tabContent: <ProfilePipeline />,
-                        },
+                        // {
+                        //   id: 'pipeline',
+                        //   tabTitle: 'Pipeline',
+                        //   tabIcon: iconList,
+                        //   tabContent: <ProfilePipeline />,
+                        // },
                         {
                           id: 'billing',
                           tabTitle: 'Billing',

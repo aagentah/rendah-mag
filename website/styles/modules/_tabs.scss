@@ -243,10 +243,4 @@
     padding-bottom: 30px;
     min-height: 50vh;
   }
-
-  @include breakpoint-up(md) {
-    .tabs__content {
-      min-height: 100vh;
-    }
-  }
 }

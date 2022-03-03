@@ -107,8 +107,6 @@ export default function ProfileOrders() {
     }
   }, [customer]);
 
-  console.log('customer', customer);
-
   if (user) {
     return (
       <section>

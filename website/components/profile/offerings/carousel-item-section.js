@@ -20,6 +20,12 @@ export default function CarouselItemSection({ offering }) {
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
   const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
 
+  const downloadAll = () => {
+    for (let i = 0; i < offering.tracks.length; i++) {
+      window.open(offering?.tracks[i]?.track?.file);
+    }
+  };
+
   return (
     <section>
       <div className="pb2">
@@ -54,6 +60,8 @@ export default function CarouselItemSection({ offering }) {
               />
             </div>
           ))}
+
+          <span onClick={downloadAll}>a</span>
         </section>
       </div>
     </section>

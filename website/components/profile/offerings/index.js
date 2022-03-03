@@ -37,7 +37,6 @@ export default function ProfileDominion() {
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
 
       const data = await getAllOfferings(sinceStartOfMonth, showAll);
-      console.log('data', data);
       if (data) setOfferings(data);
     };
 
