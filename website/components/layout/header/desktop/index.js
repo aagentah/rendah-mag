@@ -6,8 +6,6 @@ import { Image, Button, Icon } from 'next-pattern-library';
 
 import { useUser } from '~/lib/hooks';
 
-const Notifications = dynamic(() => import('../notifications'));
-
 export default function HeaderDestop({
   meta,
   navColour,
@@ -15,7 +13,6 @@ export default function HeaderDestop({
   navOnWhite,
   handleLogout,
   showBasket,
-  showNotifications,
   buttonIcons,
 }) {
   const [user] = useUser();
@@ -159,11 +156,6 @@ export default function HeaderDestop({
         <div className="col-12  ph4">
           <nav className="nav  w-100  flex  justify-end">
             <ul className="flex  flex-wrap">
-              {showNotifications ? (
-                <li className="nav__item  dib  pr3">
-                  <Notifications />
-                </li>
-              ) : null}
               {user ? (
                 <>
                   <li className="nav__item  dib  pr3">

@@ -42,8 +42,6 @@ export default function Header({ navOnWhite, meta }) {
     meta.title === 'Dominion'
   );
 
-  const showNotifications = meta.title === 'Profile';
-
   useEffect(() => {
     if (app.isLoading) {
       NProgress.start();
@@ -73,7 +71,6 @@ export default function Header({ navOnWhite, meta }) {
             navOnWhite={navOnWhite}
             handleLogout={handleLogout}
             showBasket={showBasket}
-            showNotifications={showNotifications}
             buttonIcons={buttonIcons}
           />
         )}
@@ -85,7 +82,6 @@ export default function Header({ navOnWhite, meta }) {
             navOnWhite={navOnWhite}
             handleLogout={handleLogout}
             showBasket={showBasket}
-            showNotifications={showNotifications}
             buttonIcons={buttonIcons}
           />
         )}

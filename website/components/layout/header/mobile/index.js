@@ -3,8 +3,6 @@ import Link from 'next/link';
 
 import { Image, Button, Icon } from 'next-pattern-library';
 
-import Notifications from '../notifications';
-
 import { useUser } from '~/lib/hooks';
 
 export default function HeaderMobile({
@@ -14,7 +12,6 @@ export default function HeaderMobile({
   navOnWhite,
   handleLogout,
   showBasket,
-  showNotifications,
   buttonIcons,
 }) {
   const [user] = useUser();
@@ -59,12 +56,6 @@ export default function HeaderMobile({
           </svg>
         </Link>
       </div>
-
-      {showNotifications ? (
-        <div className="absolute  top  right  mr3  mt3">
-          <Notifications />
-        </div>
-      ) : null}
 
       <nav className="nav  w-100">
         <div className="flex  flex-wrap">
