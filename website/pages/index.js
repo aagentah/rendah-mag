@@ -57,7 +57,7 @@ export default function Home({ siteConfig }) {
           title={featuredPost?.title || 'Loading...'}
           description={null}
           heroButtonText="Read more"
-          link={`/article/${featuredPost?.slug}`}
+          link={featuredPost?.slug}
           marginTop={0}
           marginBottom={0}
           modifier="home"
