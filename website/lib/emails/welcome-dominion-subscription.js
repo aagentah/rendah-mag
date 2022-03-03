@@ -40,15 +40,8 @@ export default async ({ email, temporaryPassword }) => {
     const buttonLink = `${process.env.SITE_URL}/login?prefillEmail=${email}`;
 
     const sendSmtpEmail = {
-      sender: {
-        name: 'Dan at Rendah Mag',
-        email: 'dan@rendahmag.com',
-      },
-      to: [
-        {
-          email,
-        },
-      ],
+      sender: { name: 'Dan at Rendah Mag', email: 'dan@rendahmag.com' },
+      to: [{ email }],
       subject: 'Welcome to the Dominion',
       htmlContent: emailCommon(title, body, image, buttonText, buttonLink),
     };
