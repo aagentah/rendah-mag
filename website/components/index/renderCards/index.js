@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { Heading, Button, Icon } from 'next-pattern-library';
 
-import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
-
-import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import Hero from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
 
-import { getSiteConfig, getCategory } from '~/lib/sanity/requests';
+import { getCategory } from '~/lib/sanity/requests';
 
 export default function Home({ siteConfig }) {
   const [news, setNews] = useState(null);
@@ -23,8 +20,6 @@ export default function Home({ siteConfig }) {
 
   // Render remaining content
   useEffect(() => {
-    console.log('rrr');
-
     const action = async () => {
       const newsRes = await getCategory('news', [1, 6]);
       const insightsRes = await getCategory('insights', [1, 6]);
