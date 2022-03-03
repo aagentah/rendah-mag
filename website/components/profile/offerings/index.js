@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import NProgress from 'nprogress';
 
 import { Heading, Button, Icon } from 'next-pattern-library';
 
@@ -21,6 +22,11 @@ export default function ProfileDominion() {
   const [modalActive, setModalActive] = useState(false);
   const [cardsShow, setCardsShow] = useState(true);
   const [showAll, setShowAll] = useState(false);
+
+  const startProgress = () => {
+    NProgress.start();
+    setTimeout(() => NProgress.done(), 750);
+  };
 
   const buttonIconArrowLeft = <Icon icon={['fas', 'arrow-left']} />;
 
@@ -166,7 +172,10 @@ export default function ProfileDominion() {
                       />
 
                       {modalActive === i && (
-                        <CarouselItemSection offering={item} />
+                        <>
+                          {startProgress()}
+                          <CarouselItemSection offering={item} />
+                        </>
                       )}
                     </div>
                   ))

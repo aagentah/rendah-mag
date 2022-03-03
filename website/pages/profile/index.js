@@ -6,13 +6,6 @@ import { Icon } from 'next-pattern-library';
 
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import ProfileEdit from '~/components/profile/edit';
-// import ProfileMessages from '~/components/profile/messages';
-import ProfilePipeline from '~/components/profile/pipeline';
-// import ProfileCreations from '~/components/profile/creations';
-import ProfileOfferings from '~/components/profile/offerings';
-import ProfilePacks from '~/components/profile/packs';
-import ProfileBilling from '~/components/profile/billing';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Tabs from '~/components/tabs';
@@ -28,9 +21,19 @@ const stripePromise = loadStripe(
   'pk_live_51DvkhrKb3SeE1fXfAwS5aNbDhvI4t4cCbHvsVjk5bfmBvSF5tc2mEYHAVIMQCgcXBsKjo5AvaT48k39sbx3UKUu400TFSGqiL4'
 );
 
+const ProfileEdit = dynamic(() => import('~/components/profile/edit'));
+
+const ProfileOfferings = dynamic(() =>
+  import('~/components/profile/offerings')
+);
+
 const ProfileCreations = dynamic(() =>
   import('~/components/profile/creations')
 );
+
+const ProfilePacks = dynamic(() => import('~/components/profile/packs'));
+
+const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
 
 export default function Profile({ siteConfig }) {
   const app = useApp();

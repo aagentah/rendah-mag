@@ -60,8 +60,6 @@ export default function CarouselItemSection({ offering }) {
               />
             </div>
           ))}
-
-          <span onClick={downloadAll}>a</span>
         </section>
       </div>
     </section>
