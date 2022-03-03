@@ -190,7 +190,7 @@ export default function HeroDefault({
       target: null,
       routerLink: Link,
       routerLinkProps: {
-        as: link,
+        as: `/article/${link}`,
         scroll: false,
       },
     };
