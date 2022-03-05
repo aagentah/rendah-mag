@@ -93,7 +93,7 @@ export default function ImageSection({ section }) {
                 className="w-100  shadow2"
                 style={{
                   height: section?.carouselHeight,
-                  objectFit: 'contain',
+                  objectFit: 'cover',
                 }}
                 src={imageBuilder
                   .image(p)
