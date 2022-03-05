@@ -124,19 +124,14 @@ export default {
       name: "introduction",
       title: "Introduction",
       description: "Shown as first paragraph in the article.",
-      type: "blockContent",
+      type: "array",
+      of: [{ type: "block" }],
     },
     {
       name: "body",
       title: "Article Body",
       description: "Everything after the description.",
       type: "blockContent",
-    },
-    {
-      name: "hasPostedDiscord",
-      title: "Has Posted in Discord",
-      type: "boolean",
-      readOnly: true,
     },
     {
       type: "object",
@@ -177,6 +172,11 @@ export default {
           fieldset: "social",
         },
       ],
+    },
+    {
+      name: "hasPostedDiscord",
+      title: "Has Posted in Discord",
+      type: "boolean",
     },
   ],
   orderings: [
