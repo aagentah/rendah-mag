@@ -4,6 +4,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import isArray from 'lodash/isArray';
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react'; // import from 'keen-slider/react.es' for to get an ES module
+import LazyLoad from 'react-lazyload';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
@@ -84,7 +85,7 @@ export default function ImageSection({ section }) {
   };
 
   return (
-    <>
+    <LazyLoad once offset={200} height={section?.carouselHeight}>
       <div ref={sliderRef} className="keen-slider">
         {section?.images?.length &&
           section.images.map((p, i) => (
@@ -147,6 +148,6 @@ export default function ImageSection({ section }) {
           })}
         </div>
       )}
-    </>
+    </LazyLoad>
   );
 }
