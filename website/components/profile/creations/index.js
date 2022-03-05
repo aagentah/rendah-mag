@@ -40,7 +40,7 @@ export default function ProfileCreations() {
             /* Options */
             htmlEntity="h1"
             text="Creations"
-            color="black"
+            color="white"
             size="medium"
             truncate={null}
             /* Children */
@@ -48,7 +48,7 @@ export default function ProfileCreations() {
           />
         </div>
         <div className="pb4  mb2">
-          <p className="black  f6  lh-copy">
+          <p className="white  f6  lh-copy">
             Creations serves as our internal offering for additional exclusive
             content on the Dominion. The idea behind this is to share insights
             not only on music, but as a wider-appeal to the industry as a whole,
@@ -82,7 +82,7 @@ export default function ProfileCreations() {
             /* Options */
             htmlEntity="h1"
             text="You are not currently in the Dominion"
-            color="black"
+            color="white"
             size="medium"
             truncate={null}
             /* Children */
@@ -95,11 +95,11 @@ export default function ProfileCreations() {
             type="primary"
             size="medium"
             text="Click here to join"
-            color="black"
+            color="white"
             fluid={false}
             icon={null}
             iconFloat={null}
-            invert={false}
+            inverted={true}
             loading={false}
             disabled={false}
             skeleton={false}
@@ -125,7 +125,7 @@ export default function ProfileCreations() {
       /* Options */
       htmlEntity="h1"
       text="No results."
-      color="black"
+      color="white"
       size="medium"
       truncate={null}
       /* Children */

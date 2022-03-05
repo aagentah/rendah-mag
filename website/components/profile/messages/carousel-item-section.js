@@ -26,7 +26,7 @@ export default function CarouselItemSection({ item }) {
             {new Date(item.activeFrom).toDateString()}
           </p>
 
-          <p className="t-primary  f5  f4-md  black  pb3  mb2">{item.title}</p>
+          <p className="t-primary  f5  f4-md  white  pb3  mb2">{item.title}</p>
 
           {item?.body && (
             <div className="rich-text  pb2">

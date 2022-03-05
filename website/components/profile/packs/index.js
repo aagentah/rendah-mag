@@ -85,7 +85,7 @@ export default function ProfilePacks() {
                   /* Options */
                   htmlEntity="h1"
                   text="Samples"
-                  color="black"
+                  color="white"
                   size="medium"
                   truncate={null}
                   /* Children */
@@ -120,11 +120,11 @@ export default function ProfilePacks() {
                   type="primary"
                   size="small"
                   text="Load more"
-                  color="black"
+                  color="white"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
-                  inverted={false}
+                  inverted={true}
                   loading={null}
                   disabled={showAll || samples?.length <= 12}
                   skeleton={false}
@@ -155,11 +155,11 @@ export default function ProfilePacks() {
                         type="secondary"
                         size="small"
                         text="Back"
-                        color="black"
+                        color="white"
                         fluid={false}
                         icon={buttonIconArrowLeft}
                         iconFloat="left"
-                        inverted={false}
+                        inverted={true}
                         loading={false}
                         disabled={false}
                         skeleton={false}
@@ -194,7 +194,7 @@ export default function ProfilePacks() {
             /* Options */
             htmlEntity="h1"
             text="You are not currently in the Dominion"
-            color="black"
+            color="white"
             size="medium"
             truncate={null}
             /* Children */
@@ -207,7 +207,7 @@ export default function ProfilePacks() {
             type="primary"
             size="medium"
             text="Click here to join"
-            color="black"
+            color="white"
             fluid={false}
             icon={null}
             iconFloat={null}

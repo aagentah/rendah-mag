@@ -63,7 +63,7 @@ export default function ProfileDominion({ refreshDominion }) {
             /* Options */
             htmlEntity="h1"
             text="You are not currently in the Dominion"
-            color="black"
+            color="white"
             size="medium"
             truncate={null}
             /* Children */
@@ -76,7 +76,7 @@ export default function ProfileDominion({ refreshDominion }) {
             type="primary"
             size="medium"
             text="Click here to join"
-            color="black"
+            color="white"
             fluid={false}
             icon={null}
             iconFloat={null}

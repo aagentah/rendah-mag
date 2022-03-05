@@ -75,10 +75,10 @@ export default function Profile({ siteConfig }) {
   if (user) {
     return (
       <Elements stripe={stripePromise}>
-        <div className="bg-white  bg-almost-white-md">
+        <div className="creations">
           <Layout
             navOffset="top"
-            navOnWhite
+            navOnWhite={false}
             hasNav
             hasFooter
             meta={{

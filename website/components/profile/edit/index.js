@@ -245,7 +245,7 @@ export default function ProfileEdit() {
               /* Options */
               htmlEntity="h1"
               text="Change your password"
-              color="black"
+              color="white"
               size="large"
               truncate={0}
               onClick={null}
@@ -257,7 +257,7 @@ export default function ProfileEdit() {
             <Copy
               /* Options */
               text="Enter your new password."
-              color="black"
+              color="white"
               size="medium"
               truncate={null}
             />
@@ -306,11 +306,11 @@ export default function ProfileEdit() {
                   type="primary"
                   size="medium"
                   text="Update"
-                  color="black"
+                  color="white"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
-                  inverted={false}
+                  inverted={true}
                   loading={updatePasswordButtonLoading}
                   disabled={false}
                   skeleton={false}
@@ -330,11 +330,11 @@ export default function ProfileEdit() {
                   type="secondary"
                   size="medium"
                   text="Cancel"
-                  color="black"
+                  color="white"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
-                  inverted={false}
+                  inverted={true}
                   loading={false}
                   disabled={false}
                   skeleton={false}
@@ -360,7 +360,7 @@ export default function ProfileEdit() {
           //       /* Options */
           //       htmlEntity="h1"
           //       text="Change Avatar"
-          //       color="black"
+          //       color="white"
           //       size="large"
           //       truncate={0}
           //       onClick={null}
@@ -372,7 +372,7 @@ export default function ProfileEdit() {
           //     <Copy
           //       /* Options */
           //       text="Recomended square & at least 720px & under 1 MB."
-          //       color="black"
+          //       color="white"
           //       size="medium"
           //       truncate={null}
           //     />
@@ -394,11 +394,11 @@ export default function ProfileEdit() {
           //         type="secondary"
           //         size="medium"
           //         text="Cancel"
-          //         color="black"
+          //         color="white"
           //         fluid={false}
           //         icon={null}
           //         iconFloat={null}
-          //         inverted={false}
+          //         inverted={true}
           //         loading={false}
           //         disabled={false}
           //         skeleton={false}
@@ -418,7 +418,7 @@ export default function ProfileEdit() {
             /* Options */
             htmlEntity="h1"
             text="Edit Profile"
-            color="black"
+            color="white"
             size="medium"
             truncate={null}
             /* Children */
@@ -498,7 +498,7 @@ export default function ProfileEdit() {
                 //         /* Options */
                 //         htmlEntity="h1"
                 //         text="I am..."
-                //         color="black"
+                //         color="white"
                 //         size="small"
                 //         truncate={0}
                 //         onClick={null}
@@ -534,11 +534,11 @@ export default function ProfileEdit() {
                   type="primary"
                   size="medium"
                   text="Update"
-                  color="black"
+                  color="white"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
-                  inverted={false}
+                  inverted={true}
                   loading={updateButtonLoading}
                   disabled={app.isLoading}
                   skeleton={false}
@@ -558,11 +558,11 @@ export default function ProfileEdit() {
                   type="secondary"
                   size="small"
                   text="Change Password"
-                  color="black"
+                  color="white"
                   fluid={false}
                   icon={inputIconLock}
                   iconFloat="left"
-                  inverted
+                  inverted={true}
                   loading={false}
                   disabled={app.isLoading}
                   skeleton={false}
@@ -604,7 +604,7 @@ export default function ProfileEdit() {
             //         type="primary"
             //         size="small"
             //         text="Change Avatar"
-            //         color="black"
+            //         color="white"
             //         fluid={false}
             //         icon={null}
             //         iconFloat={null}

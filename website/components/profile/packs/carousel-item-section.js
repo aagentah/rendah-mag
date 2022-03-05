@@ -25,7 +25,7 @@ export default function CarouselItemSection({ pack }) {
               /* Options */
               htmlEntity="h1"
               text={pack.title}
-              color="black"
+              color="white"
               size="medium"
               truncate={null}
               /* Children */
@@ -46,11 +46,11 @@ export default function CarouselItemSection({ pack }) {
               type="primary"
               size={app?.deviceSize === 'md' ? 'small' : 'medium'}
               text="Download"
-              color="black"
+              color="white"
               fluid={false}
               icon={null}
               iconFloat={null}
-              inverted={false}
+              inverted={true}
               loading={false}
               disabled={false}
               skeleton={false}

@@ -32,7 +32,7 @@ export default function ProfileOrders() {
             /* Options */
             htmlEntity="h1"
             text="Pipeline"
-            color="black"
+            color="white"
             size="medium"
             truncate={null}
             /* Children */
@@ -40,7 +40,7 @@ export default function ProfileOrders() {
           />
         </div>
         <div className="pb4  mb2">
-          <p className="black  f6  lh-copy">
+          <p className="white  f6  lh-copy">
             Here we document progress in upcoming features and services. If
             you&apos;d like something as part of your Dominion subscription,{' '}
             <a className="underline" href="mailto:info@rendahmag.com">
@@ -72,7 +72,7 @@ export default function ProfileOrders() {
                         /* Options */
                         htmlEntity="h2"
                         text={item.title}
-                        color="black"
+                        color="white"
                         size="small"
                         truncate={null}
                         /* Children */
@@ -101,7 +101,7 @@ export default function ProfileOrders() {
             /* Options */
             htmlEntity="h1"
             text="You are not currently in the Dominion"
-            color="black"
+            color="white"
             size="medium"
             truncate={null}
             /* Children */
@@ -114,7 +114,7 @@ export default function ProfileOrders() {
             type="primary"
             size="medium"
             text="Click here to join"
-            color="black"
+            color="white"
             fluid={false}
             icon={null}
             iconFloat={null}
@@ -144,7 +144,7 @@ export default function ProfileOrders() {
       /* Options */
       htmlEntity="h1"
       text="No results."
-      color="black"
+      color="white"
       size="medium"
       truncate={null}
       /* Children */

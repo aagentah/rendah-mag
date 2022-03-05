@@ -42,7 +42,7 @@ export default function CardPack({ post, handleClick, i }) {
       /* Options */
       htmlEntity="h2"
       text={post?.title}
-      color="black"
+      color="white"
       size="small"
       truncate={2}
       skeleton={!post}

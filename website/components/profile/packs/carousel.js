@@ -58,7 +58,7 @@ export default function Carousel({ packItems, refreshDominion }) {
         onClick={onClick}
         type="button"
         className={`carousel-arrow--left  pa2 ${
-          disabled ? 'light-grey' : 'black  cp'
+          disabled ? 'light-grey' : 'white  cp'
         }`}
       >
         <Icon
@@ -77,7 +77,7 @@ export default function Carousel({ packItems, refreshDominion }) {
         onClick={onClick}
         type="button"
         className={`carousel-arrow--right  pa2 ${
-          disabled ? 'light-grey' : 'black  cp'
+          disabled ? 'light-grey' : 'white  cp'
         }`}
       >
         <Icon
@@ -158,7 +158,7 @@ export default function Carousel({ packItems, refreshDominion }) {
               /* Options */
               htmlEntity="h1"
               text="Packs"
-              color="black"
+              color="white"
               size="medium"
               truncate={null}
               /* Children */
@@ -166,7 +166,7 @@ export default function Carousel({ packItems, refreshDominion }) {
             />
           </div>
           <div className="pb4  mb2">
-            <p className="black  f6  lh-copy">
+            <p className="white  f6  lh-copy">
               Sample packs available to download, exclusively on the Dominion.
             </p>
           </div>
@@ -209,7 +209,7 @@ export default function Carousel({ packItems, refreshDominion }) {
                       type="secondary"
                       size="medium"
                       text="Access"
-                      color="black"
+                      color="white"
                       fluid={false}
                       icon={buttonIconArrowRight}
                       iconFloat={null}
@@ -302,11 +302,11 @@ export default function Carousel({ packItems, refreshDominion }) {
                 type="secondary"
                 size="small"
                 text="Back"
-                color="black"
+                color="white"
                 fluid={false}
                 icon={buttonIconArrowLeft}
                 iconFloat="left"
-                inverted={false}
+                inverted={true}
                 loading={false}
                 disabled={false}
                 skeleton={false}

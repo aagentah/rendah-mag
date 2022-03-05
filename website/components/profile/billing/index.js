@@ -115,19 +115,12 @@ export default function ProfileOrders() {
             /* Options */
             htmlEntity="h1"
             text="Billing"
-            color="black"
+            color="white"
             size="medium"
             truncate={null}
             /* Children */
             withLinkProps={null}
           />
-
-          {user?.dominionSince ? (
-            <p className="t-secondary  f7  grey  pb2">
-              <span className="bold  pr1">Member since:</span>
-              {new Date(user.dominionSince).toDateString()}
-            </p>
-          ) : null}
         </div>
 
         {customer ? (
@@ -137,7 +130,7 @@ export default function ProfileOrders() {
                 /* Options */
                 htmlEntity="h2"
                 text="Payment Method & Invoices"
-                color="black"
+                color="white"
                 size="small"
                 truncate={null}
                 /* Children */
@@ -145,7 +138,7 @@ export default function ProfileOrders() {
               />
             </div>
 
-            <div className="pa3  pa4-md  mb4  shadow2  br4  flex  flex-wrap">
+            <div className="pa3  pa4-md  mb4  ba  bc-white  br4  flex  flex-wrap">
               <a
                 className="underline  f6"
                 target="_blank"
@@ -163,7 +156,7 @@ export default function ProfileOrders() {
               /* Options */
               htmlEntity="h2"
               text="Shipping & Billing Address"
-              color="black"
+              color="white"
               size="small"
               truncate={null}
               /* Children */
@@ -171,7 +164,7 @@ export default function ProfileOrders() {
             />
           </div>
 
-          <div className="pa3  pa4-md  mb4  shadow2  br4">
+          <div className="pa3  pa4-md  mb4  ba  bc-white  br4">
             <div className="flex  flex-wrap">
               <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
                 <div className="pv2">
@@ -272,10 +265,11 @@ export default function ProfileOrders() {
               type="primary"
               size="small"
               text="Update Address"
-              color="black"
+              color="white"
               fluid={false}
               icon={null}
               iconFloat={null}
+              inverted={true}
               loading={updateButtonLoading}
               disabled={null}
               disabled={!stripe}
@@ -295,7 +289,7 @@ export default function ProfileOrders() {
               /* Options */
               htmlEntity="h2"
               text="Pause/Cancel Subscription"
-              color="black"
+              color="white"
               size="small"
               truncate={null}
               /* Children */
@@ -303,11 +297,14 @@ export default function ProfileOrders() {
             />
           </div>
 
-          <div className="pa3  pa4-md  mb4  shadow2  br4">
-            <p className="t-body  f6  lh-copy  black">
+          <div className="pa3  pa4-md  mb4  ba  bc-white  br4">
+            <p className="t-body  f6  lh-copy  white">
               If you'd like to pause or cancel your Dominion Subscription,
               please email us at{' '}
-              <a href="mailto:info@rendahmag.com">info@rendahmag.com</a>.
+              <a className="white  underline" href="mailto:info@rendahmag.com">
+                info@rendahmag.com
+              </a>
+              .
             </p>
           </div>
         </section>
@@ -320,7 +317,7 @@ export default function ProfileOrders() {
       /* Options */
       htmlEntity="h1"
       text="No results"
-      color="black"
+      color="white"
       size="medium"
       truncate={null}
       /* Children */

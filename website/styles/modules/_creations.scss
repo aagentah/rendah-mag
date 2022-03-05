@@ -1,7 +1,9 @@
 $creations-white: #cccccc;
+$creations-black: #1c1c1c;
 
 .creations {
-  background-color: #1c1c1c;
+  background-color: $creations-black;
+  --white: #cccccc;
 
   .rich-text {
     *:not(.button):not(.button span) {
@@ -16,42 +18,30 @@ $creations-white: #cccccc;
     }
   }
 
-  .button {
-    color: $creations-white !important;
-    border-color: $creations-white !important;
-    background: transparent !important;
-
-    &:hover {
-      color: var(--almost-black) !important;
-      border-color: $creations-white !important;
-      background: $creations-white !important;
-    }
-  }
-
   .audio__wrapper {
     border-color: $creations-white;
   }
 
   .audio__icon * {
-    fill: var(--almost-black) !important;
+    fill: $creations-black !important;
   }
 
   .rhap_progress-indicator,
   .rhap_volume-indicator,
   .rhap_progress-filled {
-    background-color: $creations-white !important;
+    background-color: var(--white) !important;
   }
 
   .rhap_container {
-    background-color: var(--almost-black);
+    background-color: $creations-black;
   }
 
   .article__social-links {
-    background-color: var(--almost-black);
-
-    * {
-      color: $creations-white;
-    }
+    background-color: $creations-black;
+    //
+    // * {
+    //   color: $creations-white;
+    // }
   }
 
   .article__author {
@@ -60,8 +50,40 @@ $creations-white: #cccccc;
     @extend .bc-almost-white;
 
     *:not(.label) {
-      color: $creations-white;
+      color: var(--white);
     }
+  }
+
+  .tabs__body {
+    background: $creations-black;
+    border-top: 1px solid var(--white);
+    border-left: 1px solid var(--white);
+    border-right: 1px solid var(--white);
+  }
+
+  .tabs__desktop-nav__item {
+    background-color: transparent;
+    border-color: var(--white);
+
+    * {
+      color: var(--white);
+      fill: var(--white);
+    }
+  }
+
+  .tabs__desktop-nav__item.active {
+    border-color: var(--rendah-red);
+  }
+
+  .input__wrapper {
+    * {
+      color: var(--white);
+      fill: var(--white);
+    }
+  }
+
+  .image__wrapper {
+    background: var(--black);
   }
 }
 

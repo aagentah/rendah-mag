@@ -33,7 +33,7 @@ export default function CarouselItemSection({ offering }) {
           /* Options */
           htmlEntity="h1"
           text={offering.title}
-          color="black"
+          color="white"
           size="medium"
           truncate={null}
           /* Children */
