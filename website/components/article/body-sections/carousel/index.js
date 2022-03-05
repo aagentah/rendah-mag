@@ -91,7 +91,10 @@ export default function ImageSection({ section }) {
             <div className="keen-slider__slide">
               <img
                 className="w-100  shadow2"
-                style={{ height: section?.carouselHeight }}
+                style={{
+                  height: section?.carouselHeight,
+                  objectFit: 'contain',
+                }}
                 src={imageBuilder
                   .image(p)
                   .width(imageUrlWidth * scale)
