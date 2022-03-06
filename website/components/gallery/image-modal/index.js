@@ -86,29 +86,6 @@ export default function ImageModal({
           />
         </div>
 
-        <div className="pb3">
-          <Image
-            /* Options */
-            src={src}
-            placeholder={imageBuilder
-              .image(component.image.asset)
-              .width(300 / 10)
-              .auto('format')
-              .fit('clip')
-              .blur('20')
-              .url()}
-            alt="This is the alt text."
-            figcaption={null}
-            height={200}
-            width={null}
-            customClass="cp"
-            skeleton={false}
-            onClick={null}
-            /* Children */
-            withLinkProps={null}
-          />
-        </div>
-
         {component.image?.caption?.length && (
           <div className="rich-text  measure-wide">
             <BlockContent
