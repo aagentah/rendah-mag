@@ -9,6 +9,11 @@ $creations-white: #cccccc;
     fill: $creations-white;
   }
 
+  .rpl-bg-white,
+  .bg-white {
+    background-color: $creations-white;
+  }
+
   .rich-text {
     *:not(.button):not(.button span) {
       color: $creations-white !important;

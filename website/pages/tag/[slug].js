@@ -104,101 +104,110 @@ export default function Post({ siteConfig, tag }) {
     return (
       <Layout
         navOffset="top"
-        navOnWhite
+        navOnWhite={tag?.type !== 'visual-artist'}
         hasNav
         hasFooter
+        darkMode
         meta={{
           siteConfig,
           title: tag.name,
         }}
         preview={null}
       >
-        <Container>
-          {tag?.posts.length > 0 && (
-            <section className="pb5  pb6-md">
-              <div className="pb4">
-                <Heading
-                  /* Options */
-                  htmlEntity="h1"
-                  text={tag.name}
-                  color="black"
-                  size="medium"
-                  truncate={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-
-                {tag?.type && (
-                  <Label
+        <div className={tag?.type === 'visual-artist' ? 'creations' : ''}>
+          <Container>
+            {tag?.posts.length > 0 && (
+              <section className="pb5  pb6-md">
+                <div className="pb4">
+                  <Heading
                     /* Options */
-                    customClass={null}
-                    text={tag.type}
-                    color="white"
-                    backgroundColor="black"
-                    onClick={null}
+                    htmlEntity="h1"
+                    text={tag.name}
+                    color={tag?.type === 'visual-artist' ? 'white' : 'black'}
+                    size="medium"
+                    truncate={null}
                     /* Children */
                     withLinkProps={null}
                   />
-                )}
 
-                {tag?.description?.length && (
-                  <div className="rich-text  pb3  mb3  bb  bc-silver  pt4">
-                    <BlockContent
-                      blocks={tag.description}
-                      serializers={SANITY_BLOCK_SERIALIZERS}
-                    />
-                  </div>
-                )}
-              </div>
-
-              {grid?.length && (
-                <>
-                  <div className="pb4">
-                    <Heading
+                  {tag?.type && (
+                    <Label
                       /* Options */
-                      htmlEntity="h2"
-                      text="Individual Art"
-                      color="black"
-                      size="medium"
-                      truncate={null}
+                      customClass={null}
+                      text={tag.type}
+                      color={tag?.type === 'visual-artist' ? 'black' : 'white'}
+                      backgroundColor={
+                        tag?.type === 'visual-artist' ? 'white' : 'black'
+                      }
+                      onClick={null}
                       /* Children */
                       withLinkProps={null}
                     />
-                  </div>
+                  )}
 
-                  <div className="flex  flex-wrap  pb5">
-                    {grid?.map((item, i) => renderImage(item))}
-                  </div>
-                </>
-              )}
-
-              <div className="pb4">
-                <Heading
-                  /* Options */
-                  htmlEntity="h2"
-                  text={
-                    tag?.type === 'visual-artist' ? 'Gallery Projects' : 'Posts'
-                  }
-                  color="black"
-                  size="medium"
-                  truncate={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
-
-              <div className="flex  flex-wrap">
-                {tag?.posts.map((post, i) => (
-                  <div key={post.slug} className="col-24  col-6-md">
-                    <div className="ph3  pv2">
-                      <CardBlog i={i} post={post} columnCount={4} />
+                  {tag?.description?.length && (
+                    <div className="rich-text  pb3  mb3  bb  bc-silver  pt4">
+                      <BlockContent
+                        blocks={tag.description}
+                        serializers={SANITY_BLOCK_SERIALIZERS}
+                      />
                     </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-        </Container>
+                  )}
+                </div>
+
+                {grid?.length && (
+                  <>
+                    <div className="pb4">
+                      <Heading
+                        /* Options */
+                        htmlEntity="h2"
+                        text="Individual Art"
+                        color={
+                          tag?.type === 'visual-artist' ? 'white' : 'black'
+                        }
+                        size="medium"
+                        truncate={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+
+                    <div className="flex  flex-wrap  pb5">
+                      {grid?.map((item, i) => renderImage(item))}
+                    </div>
+                  </>
+                )}
+
+                <div className="pb4">
+                  <Heading
+                    /* Options */
+                    htmlEntity="h2"
+                    text={
+                      tag?.type === 'visual-artist'
+                        ? 'Gallery Projects'
+                        : 'Posts'
+                    }
+                    color={tag?.type === 'visual-artist' ? 'white' : 'black'}
+                    size="medium"
+                    truncate={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
+
+                <div className="flex  flex-wrap">
+                  {tag?.posts.map((post, i) => (
+                    <div key={post.slug} className="col-24  col-6-md">
+                      <div className="ph3  pv2">
+                        <CardBlog i={i} post={post} columnCount={4} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+          </Container>
+        </div>
       </Layout>
     );
   }
