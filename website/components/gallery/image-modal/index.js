@@ -101,7 +101,7 @@ export default function ImageModal({
             width={null}
             customClass="cp"
             skeleton={false}
-            onClick={() => setModalActive(true)}
+            onClick={null}
             /* Children */
             withLinkProps={null}
           />
