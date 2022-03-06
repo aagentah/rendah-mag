@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Parallax } from 'react-scroll-parallax';
 import LazyLoad from 'react-lazyload';
 import NProgress from 'nprogress';
+import BlockContent from '@sanity/block-content-to-react';
 
 import { Copy, Heading, Image, Button, Icon } from 'next-pattern-library';
 
@@ -10,6 +11,7 @@ import Modal from '~/components/modal';
 import { useApp } from '~/context-provider/app';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useUser } from '~/lib/hooks';
+import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
 export default function ImageModal({
   modalActive,
@@ -75,7 +77,7 @@ export default function ImageModal({
             /* Options */
             htmlEntity="h3"
             text="Download image"
-            color="black"
+            color="white"
             size="medium"
             truncate={0}
             onClick={null}
@@ -107,11 +109,20 @@ export default function ImageModal({
           />
         </div>
 
+        {component.image?.caption?.length && (
+          <div className="rich-text  measure-wide">
+            <BlockContent
+              blocks={component.image.caption}
+              serializers={SANITY_BLOCK_SERIALIZERS}
+            />
+          </div>
+        )}
+
         <div className="pb3">
           {!component.image?.dominionExclusive && (
             <div className="flex  align-end  t-secondary  tal  f6  pb2">
               <span
-                className="flex  align-center  db  underline  pr2  cp"
+                className="flex  align-center  db  underline  white  pr2  cp"
                 onClick={() => {
                   download(
                     component?.image?.asset &&
@@ -125,7 +136,7 @@ export default function ImageModal({
                 }}
               >
                 <Icon
-                  className="light-grey  pr2"
+                  className="white  pr2"
                   icon={['fa', 'download']}
                   size="1x"
                 />{' '}
@@ -137,7 +148,7 @@ export default function ImageModal({
           {user?.isDominion ? (
             <div className="flex  align-end  t-secondary  tal  f6  pb2">
               <span
-                className="flex  align-center  db  underline  pr2  cp"
+                className="flex  align-center  db  underline  white  pr2  cp"
                 onClick={() => {
                   download(
                     component?.image?.asset &&
@@ -151,31 +162,31 @@ export default function ImageModal({
                 }}
               >
                 <Icon
-                  className="light-grey  pr2"
+                  className="white  pr2"
                   icon={['fa', 'download']}
                   size="1x"
                 />{' '}
                 Original Size
               </span>
-              <span className="f7  fs-italic">
+              <span className="f7  fs-italic  white">
                 (Exclusive to Dominion Members)
               </span>
             </div>
           ) : (
             <div className="flex  align-end  t-secondary  tal  f6  pb2">
               <a
-                className="flex  align-center  db  underline  pr2  cp"
+                className="flex  align-center  db  underline  white  pr2  cp"
                 href="/login"
                 target="_blank"
               >
                 <Icon
-                  className="light-grey  pr2"
+                  className="white  pr2"
                   icon={['fa', 'download']}
                   size="1x"
                 />{' '}
                 Original Size
               </a>
-              <span className="f7  fs-italic">
+              <span className="f7  fs-italic  white">
                 (Exclusive to Dominion Members)
               </span>
             </div>

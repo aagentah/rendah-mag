@@ -73,20 +73,22 @@ export default function Post({ siteConfig, tag }) {
 
     return (
       <div key={item._key} className="col-24  col-6-md  pa2">
-        <Image
-          /* Options */
-          src={src}
-          placeholder={null}
-          alt={null}
-          figcaption={null}
-          height={300}
-          width={null}
-          customClass="cp"
-          skeleton={null}
-          onClick={() => setModalActive(item._key)}
-          /* Children */
-          withLinkProps={null}
-        />
+        <div className="relative">
+          <Image
+            /* Options */
+            src={src}
+            placeholder={null}
+            alt={null}
+            figcaption={null}
+            height={300}
+            width={null}
+            customClass="cp"
+            skeleton={null}
+            onClick={() => setModalActive(item._key)}
+            /* Children */
+            withLinkProps={null}
+          />
+        </div>
 
         {modalActive === item._key && (
           <ImageModal
