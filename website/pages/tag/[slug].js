@@ -88,6 +88,16 @@ export default function Post({ siteConfig, tag }) {
             /* Children */
             withLinkProps={null}
           />
+
+          {item.image?.dominionExclusive && (
+            <div className="absolute  pa2  w4  bottom  left  right  mla  mra  nb3  bg-light-grey  br4  shadow2">
+              <img
+                /* Options */
+                src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1617575443/dominion/dominion-logo-transparent.png"
+                alt="Dominion"
+              />
+            </div>
+          )}
         </div>
 
         {modalActive === item._key && (
