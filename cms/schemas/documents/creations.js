@@ -49,7 +49,7 @@ export default {
       of: [
         {
           type: "reference",
-          to: { type: "blogTag" },
+          to: { type: "refTag" },
         },
       ],
     },

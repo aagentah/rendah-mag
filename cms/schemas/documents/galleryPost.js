@@ -37,7 +37,7 @@ export default {
     //   of: [
     //     {
     //       type: "reference",
-    //       to: { type: "blogTag" },
+    //       to: { type: "refTag" },
     //     },
     //   ],
     // },
@@ -96,6 +96,19 @@ export default {
               name: "image",
               title: "Image",
               type: "image",
+              fields: [
+                {
+                  name: "caption",
+                  title: "Source / Caption",
+                  type: "blockContent",
+                  required: "false",
+                },
+                {
+                  name: "dominionExclusive",
+                  title: "Dominion Exclusive",
+                  type: "boolean",
+                },
+              ],
               validation: (Rule) => Rule.required(),
             },
           ],
@@ -122,15 +135,38 @@ export default {
               name: "image",
               title: "Image",
               type: "image",
+              fields: [
+                {
+                  name: "caption",
+                  title: "Source / Caption",
+                  type: "blockContent",
+                  required: "false",
+                },
+                {
+                  name: "dominionExclusive",
+                  title: "Dominion Exclusive",
+                  type: "boolean",
+                },
+              ],
               validation: (Rule) => Rule.required(),
             },
-
             {
               name: "text",
               title: "Text",
               type: "blockContent",
             },
           ],
+        },
+      ],
+    },
+    {
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "refTag" },
         },
       ],
     },

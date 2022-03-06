@@ -7,7 +7,7 @@ import blockContent from "./blockContent";
 import blogPost from "./documents/blogPost";
 import blogAuthor from "./documents/blogAuthor";
 import blogCategory from "./documents/blogCategory";
-import blogTag from "./documents/blogTag";
+import refTag from "./documents/refTag";
 
 // Store
 import storeCategory from "./documents/storeCategory";
@@ -46,10 +46,10 @@ export default createSchema({
   types: schemaTypes.concat([
     blockContent,
     //
+    refTag,
     blogPost,
     blogAuthor,
     blogCategory,
-    blogTag,
     storeCategory,
     storeCollection,
     storeItem,

@@ -128,7 +128,8 @@ export default () =>
                 ),
             ])
         ),
-
+      // Cypher
+      S.documentTypeListItem("refTag").icon(MDMusic),
       // Cypher
       S.documentTypeListItem("cypher").icon(MDMusic),
       // Mix
