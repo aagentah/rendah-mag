@@ -2,14 +2,15 @@ import { Parallax } from 'react-scroll-parallax';
 import LazyLoad from 'react-lazyload';
 import { useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
+import dynamic from 'next/dynamic';
 
 import { Heading, Image, Button, Icon } from 'next-pattern-library';
-
-import ImageModal from '~/components/gallery/image-modal';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
+
+const ImageModal = dynamic(() => import('~/components/gallery/image-modal'));
 
 export default function GalleryImageText({ post, component }) {
   const app = useApp();
@@ -35,6 +36,25 @@ export default function GalleryImageText({ post, component }) {
     return 'tar';
   };
 
+  let src;
+
+  if (component.image?.dominionExclusive) {
+    src = imageBuilder
+      .image(component.image.asset)
+      .width(imageUrlWidth * scale)
+      .blur(250)
+      .auto('format')
+      .fit('clip')
+      .url();
+  } else {
+    src = imageBuilder
+      .image(component.image.asset)
+      .width(imageUrlWidth * scale)
+      .auto('format')
+      .fit('clip')
+      .url();
+  }
+
   return (
     <>
       <div className={`flex  flex-wrap  ${setWrap()}  pb5  pb7-md`}>
@@ -42,15 +62,7 @@ export default function GalleryImageText({ post, component }) {
           <Parallax speed={0} disabled={app.deviceSize === 'md'}>
             <Image
               /* Options */
-              src={
-                component?.image?.asset &&
-                imageBuilder
-                  .image(component.image.asset)
-                  .width(imageUrlWidth * scale)
-                  .auto('format')
-                  .fit('clip')
-                  .url()
-              }
+              src={src}
               placeholder={imageBuilder
                 .image(component.image.asset)
                 .width(imageUrlWidth / 10)
@@ -83,12 +95,14 @@ export default function GalleryImageText({ post, component }) {
         </div>
       </div>
 
-      <ImageModal
-        modalActive={modalActive}
-        closeModal={closeModal}
-        post={post}
-        component={component}
-      />
+      {modalActive && (
+        <ImageModal
+          modalActive={modalActive}
+          closeModal={closeModal}
+          postTitle={post.title}
+          component={component}
+        />
+      )}
     </>
   );
 }

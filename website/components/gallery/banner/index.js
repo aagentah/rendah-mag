@@ -1,13 +1,14 @@
 import { Parallax } from 'react-scroll-parallax';
 import LazyLoad from 'react-lazyload';
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 
 import { Heading, Image, Button, Icon } from 'next-pattern-library';
 
-import ImageModal from '~/components/gallery/image-modal';
-
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
+
+const ImageModal = dynamic(() => import('~/components/gallery/image-modal'));
 
 export default function GalleryBanner({ post, component }) {
   const app = useApp();
@@ -20,6 +21,25 @@ export default function GalleryBanner({ post, component }) {
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
 
+  let src;
+
+  if (component.image?.dominionExclusive) {
+    src = imageBuilder
+      .image(component.image.asset)
+      .width(imageUrlWidth * scale)
+      .blur(250)
+      .auto('format')
+      .fit('clip')
+      .url();
+  } else {
+    src = imageBuilder
+      .image(component.image.asset)
+      .width(imageUrlWidth * scale)
+      .auto('format')
+      .fit('clip')
+      .url();
+  }
+
   return (
     <>
       <div className="flex  flex-wrap  mb0  mb6-md  pb6  pt0  pt6-md">
@@ -27,15 +47,7 @@ export default function GalleryBanner({ post, component }) {
           <Parallax speed={-10} disabled={app.deviceSize === 'md'}>
             <Image
               /* Options */
-              src={
-                component?.image?.asset &&
-                imageBuilder
-                  .image(component.image.asset)
-                  .width(imageUrlWidth * scale)
-                  .auto('format')
-                  .fit('clip')
-                  .url()
-              }
+              src={src}
               placeholder={imageBuilder
                 .image(component.image.asset)
                 .width(imageUrlWidth / 10)
@@ -57,12 +69,14 @@ export default function GalleryBanner({ post, component }) {
         </div>
       </div>
 
-      <ImageModal
-        modalActive={modalActive}
-        closeModal={closeModal}
-        post={post}
-        component={component}
-      />
+      {modalActive && (
+        <ImageModal
+          modalActive={modalActive}
+          closeModal={closeModal}
+          postTitle={post.title}
+          component={component}
+        />
+      )}
     </>
   );
 }
