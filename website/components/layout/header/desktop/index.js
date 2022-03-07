@@ -76,6 +76,33 @@ export default function HeaderDestop({
                   /* Options */
                   type="secondary"
                   size="medium"
+                  text="Gallery"
+                  color={navColour}
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'next',
+                    href: '/gallery',
+                    target: null,
+                    routerLink: Link,
+                    routerLinkProps: {
+                      scroll: false,
+                    },
+                  }}
+                />
+              </li>
+              <li className="nav__item  dib  pr3">
+                <Button
+                  /* Options */
+                  type="secondary"
+                  size="medium"
                   text="Cyphers"
                   color={navColour}
                   fluid={false}

@@ -7,7 +7,7 @@ import blockContent from "./blockContent";
 import blogPost from "./documents/blogPost";
 import blogAuthor from "./documents/blogAuthor";
 import blogCategory from "./documents/blogCategory";
-import blogTag from "./documents/blogTag";
+import refTag from "./documents/refTag";
 
 // Store
 import storeCategory from "./documents/storeCategory";
@@ -29,6 +29,8 @@ import dominionPipeline from "./objects/dominionPipeline";
 import creations from "./documents/creations";
 import offering from "./documents/offering";
 
+import galleryPost from "./documents/galleryPost";
+
 // Smart Link
 import smartLinkItem from "./documents/smartLinkItem";
 import smartLink from "./documents/smartLink";
@@ -44,10 +46,10 @@ export default createSchema({
   types: schemaTypes.concat([
     blockContent,
     //
+    refTag,
     blogPost,
     blogAuthor,
     blogCategory,
-    blogTag,
     storeCategory,
     storeCollection,
     storeItem,
@@ -64,6 +66,7 @@ export default createSchema({
     dominionPipeline,
     creations,
     offering,
+    galleryPost,
     //
     siteSettings,
   ]),

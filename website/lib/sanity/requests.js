@@ -146,6 +146,25 @@ export async function getCreation(slug, preview) {
   return results;
 }
 
+export async function getAllGalleryTotal(preview) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "gallery"] | order(publishedAt desc) {
+      ${postFields}
+    }`);
+  return results;
+}
+
+export async function getGallery(slug, preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "gallery" && slug.current == $slug] | order(publishedAt desc) [0] {
+      ${postFields}
+    }`,
+    { slug }
+  );
+
+  return results;
+}
+
 export async function getCategory(category, range) {
   const today = dateTodayISO();
 
@@ -237,7 +256,7 @@ export async function getTeamMemberAndPosts(slug, preview) {
 
 export async function getTags(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "blogTag"] | order(order asc){
+    .fetch(`*[_type == "refTag"] | order(order asc){
       ${tagFields}
     }`);
   return results;
@@ -247,9 +266,9 @@ export async function getTagAndPosts(slug, preview) {
   const today = dateTodayISO();
 
   const results = await getClient(preview).fetch(
-    `*[_type == "blogTag" && slug.current == $slug] [0] {
+    `*[_type == "refTag" && slug.current == $slug] [0] {
       ${tagFields}
-      "posts": *[_type == "post" && references(^._id) && publishedAt < $today] | order(publishedAt desc) [0..23] {
+      "posts": *[references(^._id) && publishedAt < $today] | order(publishedAt desc) [0..23] {
         ${postFields}
       }
     }`,

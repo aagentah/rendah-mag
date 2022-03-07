@@ -15,6 +15,7 @@ export default function Layout({
   navOnWhite,
   hasNav,
   hasFooter,
+  darkMode,
   meta,
   preview,
   children,
@@ -38,6 +39,7 @@ export default function Layout({
 
   const hideNav = typeof hasNav !== 'undefined' && !hasNav;
   const hideFooter = typeof hasFooter !== 'undefined' && !hasFooter;
+  const isDarkMode = darkMode ? 'creations' : '';
 
   return (
     <>
@@ -45,7 +47,7 @@ export default function Layout({
       <ToastContainer />
       {preview && <Alert preview={preview} />}
       {!preview && !hideNav && <Header navOnWhite={navOnWhite} meta={meta} />}
-      <main className={`page ${navOffsetType}`}>{children}</main>
+      <main className={`page ${navOffsetType} ${isDarkMode}`}>{children}</main>
       {!preview && title === 'login' && <CookieBanner />}
       {!hideFooter && (
         <LazyLoad once offset={100} height={300}>

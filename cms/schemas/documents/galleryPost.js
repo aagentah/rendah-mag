@@ -1,6 +1,6 @@
 export default {
-  name: "post",
-  title: "Post",
+  name: "gallery",
+  title: "Gallery",
   type: "document",
   fields: [
     {
@@ -11,8 +11,7 @@ export default {
     },
     {
       name: "slug",
-      title: "Slug",
-      description: "The URL of the article (Try to keep short as possible).",
+      title: "URL",
       type: "slug",
       options: {
         source: "title",
@@ -20,18 +19,6 @@ export default {
       },
       validation: (Rule) => Rule.required(),
     },
-    // {
-    //   name: "showAuthor",
-    //   title: "Show Author",
-    //   type: "boolean",
-    // },
-    // {
-    //   name: "author",
-    //   title: "Author",
-    //   type: "reference",
-    //   to: { type: "author" },
-    //   validation: (Rule) => Rule.required(),
-    // },
     {
       name: "authors",
       title: "Authors",
@@ -43,30 +30,17 @@ export default {
         },
       ],
     },
-    {
-      name: "tags",
-      title: "Tags",
-      type: "array",
-      of: [
-        {
-          type: "reference",
-          to: { type: "refTag" },
-        },
-      ],
-    },
-    {
-      name: "featured",
-      title: "Featured Article",
-      description: "Feature on the big Homepage Hero banner.",
-      type: "boolean",
-    },
-    {
-      name: "category",
-      title: "Category",
-      type: "reference",
-      to: { type: "category" },
-      validation: (Rule) => Rule.required(),
-    },
+    // {
+    //   name: "tags",
+    //   title: "Tags",
+    //   type: "array",
+    //   of: [
+    //     {
+    //       type: "reference",
+    //       to: { type: "refTag" },
+    //     },
+    //   ],
+    // },
     {
       name: "publishedAt",
       title: "Publish Date",
@@ -91,47 +65,110 @@ export default {
             layout: "radio",
           },
         },
-        {
-          name: "caption",
-          title: "Source / Caption",
-          type: "blockContent",
-          required: "false",
-        },
       ],
       validation: (Rule) => Rule.required(),
     },
-    // {
-    //   name: 'categories',
-    //   title: 'Categories',
-    //   type: 'array',
-    //   of: [{type: 'reference', to: {type: 'category'}}]
-    // },
     {
       name: "socialTagline",
       title: "Social Tagline",
-      description: "Short description for social media SEO.",
+      description:
+        "A short tagline for social media cards, typically around maximum of 70 characters",
       type: "string",
       validation: (Rule) => Rule.required().max(70),
     },
-    // {
-    //   name: "description",
-    //   title: "Article Description",
-    //   description: "Shown as first paragraph in the article.",
-    //   type: "text",
-    //   validation: (Rule) => Rule.required().max(300),
-    // },
     {
       name: "introduction",
       title: "Introduction",
       description: "Shown as first paragraph in the article.",
-      type: "array",
-      of: [{ type: "block" }],
+      type: "blockContent",
     },
     {
-      name: "body",
-      title: "Article Body",
-      description: "Everything after the description.",
-      type: "blockContent",
+      name: "components",
+      title: "Components",
+      type: "array",
+      of: [
+        {
+          name: "galleryBanner",
+          title: "Banner",
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+              fields: [
+                {
+                  name: "caption",
+                  title: "Source / Caption",
+                  type: "blockContent",
+                  required: "false",
+                },
+                {
+                  name: "dominionExclusive",
+                  title: "Dominion Exclusive",
+                  type: "boolean",
+                },
+              ],
+              validation: (Rule) => Rule.required(),
+            },
+          ],
+        },
+        {
+          name: "galleryTextImage",
+          title: "Text Image",
+          type: "object",
+          fields: [
+            {
+              name: "align",
+              title: "Align",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Left", value: "left" },
+                  { title: "Right", value: "right" },
+                ],
+                layout: "radio",
+              },
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+              fields: [
+                {
+                  name: "caption",
+                  title: "Source / Caption",
+                  type: "blockContent",
+                  required: "false",
+                },
+                {
+                  name: "dominionExclusive",
+                  title: "Dominion Exclusive",
+                  type: "boolean",
+                },
+              ],
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "text",
+              title: "Text",
+              type: "blockContent",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "refTag" },
+        },
+      ],
     },
     {
       type: "object",
@@ -140,43 +177,35 @@ export default {
       fieldsets: [
         {
           name: "social",
+          description: 'Do not include "@" symbol',
         },
       ],
       fields: [
         {
           name: "twitter",
           title: "Twitter Handle",
-          description: 'Do not include "@" symbol.',
           type: "string",
           fieldset: "social",
         },
         {
           name: "instagram",
           title: "Instagram Handle",
-          description: 'Do not include "@" symbol.',
           type: "string",
           fieldset: "social",
         },
         {
           name: "facebook",
           title: "Facebook Handle",
-          description: 'Do not include "@" symbol.',
           type: "string",
           fieldset: "social",
         },
         {
           name: "soundcloud",
           title: "SoundCloud Handle",
-          description: 'Do not include "@" symbol.',
           type: "string",
           fieldset: "social",
         },
       ],
-    },
-    {
-      name: "hasPostedDiscord",
-      title: "Has Posted in Discord",
-      type: "boolean",
     },
   ],
   orderings: [
