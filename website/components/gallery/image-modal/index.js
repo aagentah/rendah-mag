@@ -33,6 +33,10 @@ export default function ImageModal({
   };
 
   const download = async (url) => {
+    NProgress.start();
+    setTimeout(() => {
+      NProgress.done();
+    }, 500);
     const a = document.createElement('a');
     a.href = await toDataURL(url);
     a.download = postTitle;

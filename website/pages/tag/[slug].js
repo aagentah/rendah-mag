@@ -72,7 +72,7 @@ export default function Post({ siteConfig, tag }) {
     }
 
     return (
-      <div key={item._key} className="col-24  col-6-md  pa2">
+      <div key={item._key} className="col-24  col-6-md  pa2  mb3  mb0-md">
         <div className="relative">
           <Image
             /* Options */

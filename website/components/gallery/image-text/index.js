@@ -55,66 +55,66 @@ export default function GalleryImageText({ post, component }) {
       .url();
   }
 
-  return (
-    <>
-      <div className={`flex  flex-wrap  ${setWrap()}  pb5  pb7-md`}>
-        <div className="col-24  col-12-md  ph4">
-          <Parallax speed={0} disabled={app.deviceSize === 'md'}>
-            <div className="relative">
-              <Image
-                /* Options */
-                src={src}
-                placeholder={imageBuilder
-                  .image(component.image.asset)
-                  .width(imageUrlWidth / 10)
-                  .auto('format')
-                  .fit('clip')
-                  .blur('20')
-                  .url()}
-                alt="This is the alt text."
-                figcaption={null}
-                height={null}
-                width={null}
-                customClass="cp  shadow3"
-                skeleton={false}
-                onClick={() => setModalActive(true)}
-                /* Children */
-                withLinkProps={null}
-              />
+  if (app?.deviceSize) {
+    return (
+      <>
+        <div className={`flex  flex-wrap  ${setWrap()}  pb5`}>
+          <div className="col-24  col-12-md  ph4">
+            <Parallax speed={20} disabled={app.deviceSize === 'md'}>
+              <div className="relative">
+                <Image
+                  /* Options */
+                  src={src}
+                  placeholder={imageBuilder
+                    .image(component.image.asset)
+                    .width(imageUrlWidth / 10)
+                    .auto('format')
+                    .fit('clip')
+                    .blur('20')
+                    .url()}
+                  alt="This is the alt text."
+                  figcaption={null}
+                  height={null}
+                  width={null}
+                  customClass="cp  shadow3"
+                  skeleton={false}
+                  onClick={() => setModalActive(true)}
+                  /* Children */
+                  withLinkProps={null}
+                />
 
-              {component.image?.dominionExclusive && (
-                <div className="absolute  pa2  w4  bottom  left  right  mla  mra  nb3  bg-light-grey  br4  shadow2">
-                  <img
-                    /* Options */
-                    src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1617575443/dominion/dominion-logo-transparent.png"
-                    alt="Dominion"
-                  />
-                </div>
-              )}
-            </div>
-          </Parallax>
-        </div>
+                {component.image?.dominionExclusive && (
+                  <div className="absolute  pa2  w4  bottom  left  right  mla  mra  nb3  bg-light-grey  br4  shadow2">
+                    <img
+                      /* Options */
+                      src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1617575443/dominion/dominion-logo-transparent.png"
+                      alt="Dominion"
+                    />
+                  </div>
+                )}
+              </div>
+            </Parallax>
+          </div>
 
-        <div className="col-24  col-12-md  ph5  pt5  pt6-md">
-          <Parallax speed={-10} disabled={app.deviceSize === 'md'}>
+          <div className="col-24  col-12-md  ph5  pt5  pt6-md">
             <div className={`measure-wide  mla  mra  ${setTextAlign()}`}>
               <BlockContent
                 blocks={component.text}
                 serializers={SANITY_BLOCK_SERIALIZERS}
               />
             </div>
-          </Parallax>
+          </div>
         </div>
-      </div>
 
-      {modalActive && (
-        <ImageModal
-          modalActive={modalActive}
-          closeModal={closeModal}
-          postTitle={post.title}
-          component={component}
-        />
-      )}
-    </>
-  );
+        {modalActive && (
+          <ImageModal
+            modalActive={modalActive}
+            closeModal={closeModal}
+            postTitle={post.title}
+            component={component}
+          />
+        )}
+      </>
+    );
+  }
 }

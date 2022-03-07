@@ -7,10 +7,10 @@ export default function SocialLinks({ article }) {
     let tags = [];
 
     if (article.socialHandles.soundcloud) {
-      article.socialHandles.soundcloud.split(/\s*,\s*/).forEach((e) => {
+      article.socialHandles.soundcloud.split(/\s*,\s*/).forEach((e, i) => {
         links.push(
           <a
-            key={e}
+            key={`soundcloud-${e}-${i}`}
             className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
             title="soundcloud"
             href={`https://soundcloud.com/${e}`}
@@ -25,10 +25,10 @@ export default function SocialLinks({ article }) {
     }
 
     if (article.socialHandles.facebook) {
-      article.socialHandles.facebook.split(/\s*,\s*/).forEach((e) => {
+      article.socialHandles.facebook.split(/\s*,\s*/).forEach((e, i) => {
         links.push(
           <a
-            key={e}
+            key={`facebook-${e}-${i}`}
             className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
             title="facebook"
             href={`https://facebook.com/${e}`}
@@ -43,10 +43,10 @@ export default function SocialLinks({ article }) {
     }
 
     if (article.socialHandles.twitter) {
-      article.socialHandles.twitter.split(/\s*,\s*/).forEach((e) => {
+      article.socialHandles.twitter.split(/\s*,\s*/).forEach((e, i) => {
         links.push(
           <a
-            key={e}
+            key={`twitter-${e}-${i}`}
             className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
             title="twitter"
             href={`https://twitter.com/${e}`}
@@ -61,10 +61,10 @@ export default function SocialLinks({ article }) {
     }
 
     if (article.socialHandles.instagram) {
-      article.socialHandles.instagram.split(/\s*,\s*/).forEach((e) => {
+      article.socialHandles.instagram.split(/\s*,\s*/).forEach((e, i) => {
         links.push(
           <a
-            key={e}
+            key={`instagram-${e}-${i}`}
             className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
             title="instagram"
             href={`https://instagram.com/${e}`}
