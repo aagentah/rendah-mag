@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Image } from 'next-pattern-library';
-import LazyLoad from 'react-lazyload';
 import BlockContent from '@sanity/block-content-to-react';
 import isArray from 'lodash/isArray';
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react'; // import from 'keen-slider/react.es' for to get an ES module
+import LazyLoad from 'react-lazyload';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
+import { useApp } from '~/context-provider/app';
 
 function Arrow(props) {
   const disabeld = props.disabled ? ' arrow--disabled' : '';
@@ -31,7 +32,6 @@ function Arrow(props) {
 }
 
 export default function ImageSection({ section }) {
-  console.log('section', section);
   // return;
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -45,6 +45,10 @@ export default function ImageSection({ section }) {
       setLoaded(true);
     },
   });
+
+  const app = useApp();
+  const scale = app?.isRetina ? 2 : 1;
+  const imageUrlWidth = 500;
 
   const handleCaption = () => {
     let { caption, source } = section;
@@ -81,35 +85,26 @@ export default function ImageSection({ section }) {
   };
 
   return (
-    <>
+    <LazyLoad once offset={200} height={section?.carouselHeight}>
       <div ref={sliderRef} className="keen-slider">
         {section?.images?.length &&
           section.images.map((p, i) => (
             <div className="keen-slider__slide">
-              <figure>
-                <Image
-                  /* Options */
-                  src={imageBuilder.image(p).auto('format').fit('clip').url()}
-                  placeholder={imageBuilder
-                    .image(p)
-                    .height(25)
-                    .width(25)
-                    .auto('format')
-                    .fit('clip')
-                    .blur('20')
-                    .url()}
-                  alt="This is the alt text."
-                  figcaption={null}
-                  height={section?.carouselHeight}
-                  width={null}
-                  customClass="shadow2"
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-                {handleCaption()}
-              </figure>
+              <img
+                className="w-100  shadow2"
+                style={{
+                  height: section?.carouselHeight,
+                  objectFit: 'cover',
+                }}
+                src={imageBuilder
+                  .image(p)
+                  .width(imageUrlWidth * scale)
+                  .auto('format')
+                  .fit('clip')
+                  .url()}
+              />
+
+              {handleCaption()}
             </div>
           ))}
 
@@ -147,12 +142,12 @@ export default function ImageSection({ section }) {
                 onClick={() => {
                   instanceRef.current?.moveToIdx(idx);
                 }}
-                className={`dot${  currentSlide === idx ? ' active' : ''}`}
+                className={`dot${currentSlide === idx ? ' active' : ''}`}
               />
             );
           })}
         </div>
       )}
-    </>
+    </LazyLoad>
   );
 }

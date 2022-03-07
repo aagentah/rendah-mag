@@ -11,22 +11,11 @@ export default async ({ email, name }) => {
 
     const image = null;
 
-    const buttonText = 'Log in';
-
-    const buttonLink = `${process.env.SITE_URL}/login?prefillEmail=${email}`;
-
     const sendSmtpEmail = {
-      sender: {
-        name: 'Rendah Mag',
-        email: 'info@rendahmag.com',
-      },
-      to: [
-        {
-          email: 'dan@rendahmag.com',
-        },
-      ],
+      sender: { name: 'Rendah Mag', email: 'info@rendahmag.com' },
+      to: [{ email: 'dan@rendahmag.com' }],
       subject: 'New order',
-      htmlContent: emailCommon(title, body, image, buttonText, buttonLink),
+      htmlContent: emailCommon(title, body, image, null, null),
     };
 
     const { error } = await sendinblue(sendSmtpEmail);

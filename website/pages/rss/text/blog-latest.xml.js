@@ -1,5 +1,6 @@
 import React from 'react';
 import toMarkdown from '@sanity/block-content-to-markdown';
+import markdownToTxt from 'markdown-to-txt';
 
 import { getAllPosts } from '~/lib/sanity/requests';
 
@@ -11,7 +12,9 @@ const sitemapXml = (posts) => {
 
   posts.map((post) => {
     const title = post?.title || '' ? post.title : '';
-    const description = post?.description ? toMarkdown(post.introduction) : '';
+    const description = post?.description
+      ? markdownToTxt(toMarkdown(post.introduction))
+      : '';
     const url = post?.slug
       ? `${process.env.SITE_URL}/article/${post.slug}`
       : process.env.SITE_URL;

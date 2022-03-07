@@ -1,11 +1,13 @@
 import { ToastContainer } from 'react-toastify';
-import deviceSize from '~/lib/device-size';
+import LazyLoad from 'react-lazyload';
 
 import Alert from './alert';
 import Footer from './footer';
 import Meta from './meta';
 import Header from './header';
 import CookieBanner from './cookie-banner';
+
+import deviceSize from '~/lib/device-size';
 
 export default function Layout({
   title,
@@ -47,7 +49,11 @@ export default function Layout({
       {!preview && !hideNav && <Header navOnWhite={navOnWhite} meta={meta} />}
       <main className={`page ${navOffsetType} ${isDarkMode}`}>{children}</main>
       {!preview && title === 'login' && <CookieBanner />}
-      {!hideFooter && <Footer />}
+      {!hideFooter && (
+        <LazyLoad once offset={100} height={300}>
+          <Footer />
+        </LazyLoad>
+      )}
     </>
   );
 }
