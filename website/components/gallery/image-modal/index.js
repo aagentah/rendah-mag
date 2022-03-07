@@ -45,23 +45,6 @@ export default function ImageModal({
     document.body.removeChild(a);
   };
 
-  let src;
-
-  if (component.image?.dominionExclusive) {
-    src = imageBuilder
-      .image(component.image.asset)
-      .blur(250)
-      .auto('format')
-      .fit('clip')
-      .url();
-  } else {
-    src = imageBuilder
-      .image(component.image.asset)
-      .auto('format')
-      .fit('clip')
-      .url();
-  }
-
   useEffect(() => {
     NProgress.start();
     setTimeout(() => {

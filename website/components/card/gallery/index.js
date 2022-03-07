@@ -43,7 +43,7 @@ export default function CardGallery({ post }) {
       /* Children */
       withLinkProps={{
         type: 'next',
-        href: '/article/[slug]',
+        href: '/gallery/[slug]',
         target: null,
         routerLink: Link,
         routerLinkProps: {
@@ -80,7 +80,7 @@ export default function CardGallery({ post }) {
       /* Children */
       withLinkProps={{
         type: 'next',
-        href: '/article/[slug]',
+        href: '/gallery/[slug]',
         target: null,
         routerLink: Link,
         routerLinkProps: {

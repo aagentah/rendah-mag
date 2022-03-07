@@ -7,10 +7,12 @@ import { Heading, Image, Button, Icon } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
+import { useUser } from '~/lib/hooks';
 
 const ImageModal = dynamic(() => import('~/components/gallery/image-modal'));
 
 export default function GalleryBanner({ post, component }) {
+  const [user, { loading, mutate, error }] = useUser();
   const app = useApp();
   const [modalActive, setModalActive] = useState(false);
   const closeModal = () => setModalActive(false);
@@ -23,7 +25,7 @@ export default function GalleryBanner({ post, component }) {
 
   let src;
 
-  if (component.image?.dominionExclusive) {
+  if (component.image?.dominionExclusive && !user?.isDominion) {
     src = imageBuilder
       .image(component.image.asset)
       .width(imageUrlWidth * scale)

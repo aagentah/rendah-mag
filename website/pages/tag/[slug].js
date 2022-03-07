@@ -10,6 +10,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
+import { useUser } from '~/lib/hooks';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
 import {
@@ -22,6 +23,7 @@ import {
 const ImageModal = dynamic(() => import('~/components/gallery/image-modal'));
 
 export default function Post({ siteConfig, tag }) {
+  const [user, { loading, mutate, error }] = useUser();
   const router = useRouter();
   const [grid, setGrid] = useState(null);
   const [modalActive, setModalActive] = useState(null);
@@ -54,7 +56,7 @@ export default function Post({ siteConfig, tag }) {
   const renderImage = (item) => {
     let src;
 
-    if (item.image?.dominionExclusive) {
+    if (item.image?.dominionExclusive && !user?.isDominion) {
       src = imageBuilder
         .image(item.image)
         .width(300)
