@@ -29,7 +29,7 @@ $creations-black: #1c1c1c;
     }
   }
 
-  <<<<<<< HEAD ======= .button {
+  .button {
     color: $creations-white !important;
     border-color: $creations-white !important;
     background: transparent !important;
@@ -43,7 +43,7 @@ $creations-black: #1c1c1c;
     }
   }
 
-  >>>>>>>develop .audio__wrapper {
+  .audio__wrapper {
     border-color: $creations-white;
   }
 
@@ -117,6 +117,18 @@ $creations-black: #1c1c1c;
 
   .modal__dialog {
     background-color: #1c1c1c;
+  }
+
+  .rhap_button-clear path {
+    fill: var(--white);
+  }
+
+  .rhap_current-time {
+    color: var(--white);
+  }
+
+  .audio__title {
+    color: var(--white);
   }
 }
 

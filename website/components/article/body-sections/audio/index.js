@@ -51,7 +51,7 @@ export default function Audio({
       </div>
 
       {title ? (
-        <p className="db  t-body  lh-copy  f6  dark-grey  pb2  pr4  pr0-md  bold">
+        <p className="audio__title  db  t-body  lh-copy  f6  dark-grey  pb2  pr4  pr0-md  bold">
           {title}
         </p>
       ) : null}
