@@ -79,11 +79,22 @@ $creations-black: #1c1c1c;
     }
   }
 
+  .tabs__mobile-nav__item {
+    background: transparent;
+    border: 1px solid var(--white);
+  }
+
   .tabs__body {
     background: $creations-black;
-    border-top: 1px solid var(--white);
-    border-left: 1px solid var(--white);
-    border-right: 1px solid var(--white);
+    border: 0px;
+  }
+
+  @include breakpoint-up(md) {
+    .tabs__body {
+      border-top: 1px solid var(--white);
+      border-left: 1px solid var(--white);
+      border-right: 1px solid var(--white);
+    }
   }
 
   .tabs__desktop-nav__item {
@@ -94,6 +105,20 @@ $creations-black: #1c1c1c;
       color: var(--white);
       fill: var(--white);
     }
+  }
+
+  .tabs__mobile-nav__item__title {
+    color: var(--white);
+  }
+
+  .tabs__body__item .tabs__mobile-nav__item {
+    &::after {
+      background-image: url("data:image/svg+xml,%3Csvg fill='%23cccccc' xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24'%3E%3Cpath d='M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z'/%3E%3C/svg%3E");
+    }
+  }
+
+  .tabs__mobile-nav__item__icon path {
+    fill: var(--white);
   }
 
   .tabs__desktop-nav__item.active {
@@ -129,6 +154,15 @@ $creations-black: #1c1c1c;
 
   .audio__title {
     color: var(--white);
+  }
+
+  .checkbox__control .checkbox__input:checked ~ .checkbox__indicator {
+    background: transparent;
+  }
+
+  .checkbox__indicator {
+    background: transparent;
+    border: 1px solid var(--white);
   }
 }
 

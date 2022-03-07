@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import {
@@ -8,6 +9,8 @@ import {
   Button,
   Icon,
 } from 'next-pattern-library';
+import 'intersection-observer';
+import Observer from '@researchgate/react-intersection-observer';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
@@ -15,9 +18,12 @@ import { useApp } from '~/context-provider/app';
 export default function CardGallery({ post }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
+  const [inView, setInView] = useState(false);
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  const imageHeight = app?.deviceSize === 'md' ? 260 : 230;
+  const imageHeight = app?.deviceSize === 'md' ? 200 : 230;
   const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
+  const handleIntersect = (event) => setInView(event.isIntersecting);
+  const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   const image = (
     <Image
@@ -132,21 +138,27 @@ export default function CardGallery({ post }) {
   // );
 
   return (
-    <LazyLoad once offset={150} height={imageHeight}>
-      <article className="card  card--post">
-        {image && <div className="card__image">{image}</div>}
+    <Observer {...observer}>
+      <LazyLoad once offset={150} height={imageHeight}>
+        <article
+          className={`card  card--post  card--scroll  ${inView && 'in-view'}`}
+        >
+          {image && <div className="card__image">{image}</div>}
 
-        <div className="card__dialog">
-          {labels?.length && <div className="card__labels">{[...labels]}</div>}
-          {heading && <div className="card__title">{heading}</div>}
-          {
-            // copy && <div className="card__description">{copy}</div>
-          }
-          {
-            // button && <div className="card__button">{button}</div>
-          }
-        </div>
-      </article>
-    </LazyLoad>
+          <div className="card__dialog">
+            {labels?.length && (
+              <div className="card__labels">{[...labels]}</div>
+            )}
+            {heading && <div className="card__title">{heading}</div>}
+            {
+              // copy && <div className="card__description">{copy}</div>
+            }
+            {
+              // button && <div className="card__button">{button}</div>
+            }
+          </div>
+        </article>
+      </LazyLoad>
+    </Observer>
   );
 }

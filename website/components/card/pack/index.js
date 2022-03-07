@@ -8,8 +8,8 @@ export default function CardPack({ post, handleClick, i }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  const imageHeight = app?.deviceSize === 'md' ? 260 : 180;
-  const imageUrlHeight = app?.deviceSize === 'md' ? 260 : 400;
+  const imageHeight = app?.deviceSize === 'md' ? 160 : 160;
+  const imageUrlHeight = app?.deviceSize === 'md' ? 160 : 160;
 
   const image = (
     <Image

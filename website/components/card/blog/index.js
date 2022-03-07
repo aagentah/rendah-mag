@@ -26,10 +26,10 @@ export default function CardBlog({ post, columnCount }) {
 
   if (columnCount == 2) {
     imageUrlWidth = app?.deviceSize === 'md' ? 260 : 500;
-    imageHeight = app?.deviceSize === 'md' ? 260 : 300;
+    imageHeight = app?.deviceSize === 'md' ? 200 : 300;
   } else {
     imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-    imageHeight = app?.deviceSize === 'md' ? 260 : 180;
+    imageHeight = app?.deviceSize === 'md' ? 200 : 180;
   }
 
   const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
