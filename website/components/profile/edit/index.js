@@ -425,45 +425,32 @@ export default function ProfileEdit() {
 
         <div className="flex  flex-wrap">
           <div className="col-24  pb4">
-            <div className="w4">
-              <Image
-                /* Options */
-                src={avatarImage || '/images/avatar-placeholder.png'}
-                placeholder={null}
-                alt={user?.username || ''}
-                figcaption={null}
-                height={null}
-                width={null}
-                customClass="shadow2"
-                skeleton={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-          </div>
+            <div className="w4  relative">
+              <div className="o-50">
+                <Image
+                  /* Options */
+                  src={avatarImage || '/images/avatar-placeholder.png'}
+                  placeholder={null}
+                  alt={user?.username || ''}
+                  figcaption={null}
+                  height={null}
+                  width={null}
+                  customClass="shadow2"
+                  skeleton={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
 
-          <div className="col-24  pb4">
-            <div className="dib">
-              <Button
-                /* Options */
-                type="primary"
-                size="small"
-                text="Change Avatar"
-                color="white"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted
-                loading={false}
-                disabled={app.isLoading}
-                skeleton={false}
-                onClick={() => {
-                  setAvatarModalActive(!avatarModalActive);
-                }}
-                /* Children */
-                withLinkProps={null}
-              />
+              <div className="absolute  bottom  right  nb2  nr3">
+                <div
+                  className="f7  w2  h2  br-100  bg-white  shadow2  flex  align-center  justify-center  cp"
+                  onClick={() => setAvatarModalActive(!avatarModalActive)}
+                >
+                  <Icon color="black" size="1x" icon={['fa', 'pencil']} />
+                </div>
+              </div>
             </div>
           </div>
         </div>
