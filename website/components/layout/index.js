@@ -1,5 +1,4 @@
 import { ToastContainer } from 'react-toastify';
-import LazyLoad from 'react-lazyload';
 
 import Alert from './alert';
 import Footer from './footer';
@@ -49,11 +48,7 @@ export default function Layout({
       {!preview && !hideNav && <Header navOnWhite={navOnWhite} meta={meta} />}
       <main className={`page ${navOffsetType} ${isDarkMode}`}>{children}</main>
       {!preview && title === 'login' && <CookieBanner />}
-      {!hideFooter && (
-        <LazyLoad once offset={100} height={300}>
-          <Footer />
-        </LazyLoad>
-      )}
+      {!hideFooter && <Footer />}
     </>
   );
 }

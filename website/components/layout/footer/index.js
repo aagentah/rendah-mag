@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import LazyLoad from 'react-lazyload';
 
 import { Heading, Button, Icon } from 'next-pattern-library';
 
@@ -7,7 +8,7 @@ import SubscribeForm from '~/components/subscribe-form';
 
 export default function Footer() {
   return (
-    <>
+    <LazyLoad once offset={300} height={300}>
       {
         // <SubscribeForm />
       }
@@ -244,6 +245,6 @@ export default function Footer() {
           </div>
         </Container>
       </footer>
-    </>
+    </LazyLoad>
   );
 }

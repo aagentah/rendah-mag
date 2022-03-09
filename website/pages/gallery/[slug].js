@@ -6,7 +6,6 @@ import Cookies from 'js-cookie';
 import { parseISO, format } from 'date-fns';
 import { Heading, Copy, Image, Label } from 'next-pattern-library';
 import toMarkdown from '@sanity/block-content-to-markdown';
-import LazyLoad from 'react-lazyload';
 
 import Hero from '~/components/hero/creations';
 import Layout from '~/components/layout';
@@ -41,19 +40,11 @@ export default function Gallery({ siteConfig, post, preview }) {
 
   const renderComponent = (component) => {
     if (component._type === 'galleryBanner') {
-      return (
-        <LazyLoad once offset={150}>
-          <GalleryBanner post={post} component={component} />
-        </LazyLoad>
-      );
+      return <GalleryBanner post={post} component={component} />;
     }
 
     if (component._type === 'galleryTextImage') {
-      return (
-        <LazyLoad once offset={150}>
-          <GalleryImageText post={post} component={component} />
-        </LazyLoad>
-      );
+      return <GalleryImageText post={post} component={component} />;
     }
 
     return false;

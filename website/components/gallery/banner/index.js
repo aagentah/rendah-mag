@@ -44,7 +44,7 @@ export default function GalleryBanner({ post, component }) {
 
   if (app?.deviceSize) {
     return (
-      <>
+      <LazyLoad once offset={150}>
         <div className="flex  flex-wrap  mb0  mb6-md  pb6  pt0  pt6-md">
           <div className="col-24">
             <Parallax speed={-10} disabled={app.deviceSize === 'md'}>
@@ -92,7 +92,7 @@ export default function GalleryBanner({ post, component }) {
             component={component}
           />
         )}
-      </>
+      </LazyLoad>
     );
   }
 }
