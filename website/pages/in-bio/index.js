@@ -1,26 +1,16 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import Router, { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import 'intersection-observer';
-import Observer from '@researchgate/react-intersection-observer';
-import map from 'lodash/map';
-import reverse from 'lodash/reverse';
-import Cookies from 'js-cookie';
 
-import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
+import { Heading, Copy, Button, Icon } from 'next-pattern-library';
 
 import Modal from '~/components/modal';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import Sections from '~/components/article/body-sections';
-import SocialLinks from '~/components/article/social-links';
 import SubscribeForm from '~/components/subscribe-form';
 
-import Date from '~/components/date';
-import CardBlog from '~/components/card/blog';
-import useWindowDimensions from '~/functions/useWindowDimensions';
 import { useApp } from '~/context-provider/app';
-import { useUser } from '~/lib/hooks';
 
 import { getSiteConfig, getAllPosts } from '~/lib/sanity/requests';
 

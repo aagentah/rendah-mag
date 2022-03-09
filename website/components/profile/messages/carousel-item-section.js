@@ -1,15 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
-  Hero,
-  Heading,
-  Copy,
   Image,
-  Button,
-  Icon,
-  Label,
 } from 'next-pattern-library';
 
-import Modal from '~/components/modal';
 import Sections from '~/components/article/body-sections';
 
 import { imageBuilder } from '~/lib/sanity/requests';

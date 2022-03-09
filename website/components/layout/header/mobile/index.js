@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 
-import { Image, Button, Icon } from 'next-pattern-library';
 
 import { useUser } from '~/lib/hooks';
 

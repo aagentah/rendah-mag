@@ -1,4 +1,4 @@
-import { Heading, Copy } from 'next-pattern-library';
+import { Heading } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';

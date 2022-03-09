@@ -4,7 +4,6 @@ import LazyLoad from 'react-lazyload';
 import { Heading, Button, Icon } from 'next-pattern-library';
 
 import Container from '../container';
-import SubscribeForm from '~/components/subscribe-form';
 
 export default function Footer() {
   return (

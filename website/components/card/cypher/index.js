@@ -1,11 +1,8 @@
-import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import {
   Image,
   Label,
   Heading,
-  Copy,
-  Button,
   Icon,
 } from 'next-pattern-library';
 

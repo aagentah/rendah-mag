@@ -1,7 +1,5 @@
-import Link from 'next/link';
 import { Image, Heading } from 'next-pattern-library';
 
-import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 export default function CardOffering({ post, handleClick, i }) {

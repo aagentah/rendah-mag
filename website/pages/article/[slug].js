@@ -1,16 +1,15 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Router, { useRouter } from 'next/router';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
-import map from 'lodash/map';
 import isArray from 'lodash/isArray';
 import Cookies from 'js-cookie';
 import BlockContent from '@sanity/block-content-to-react';
 import toMarkdown from '@sanity/block-content-to-markdown';
 import markdownToTxt from 'markdown-to-txt';
 
-import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
+import { Heading, Copy, Button } from 'next-pattern-library';
 
 import Hero from '~/components/hero/article';
 import Modal from '~/components/modal';
@@ -31,7 +30,6 @@ import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
 import {
   getSiteConfig,
-  imageBuilder,
   getAllPostsTotal,
   getPostAndMore,
 } from '~/lib/sanity/requests';

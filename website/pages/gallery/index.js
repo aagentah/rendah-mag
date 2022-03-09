@@ -1,22 +1,15 @@
 import { useEffect, useState } from 'react';
-import BlockContent from '@sanity/block-content-to-react';
-import { Parallax } from 'react-scroll-parallax';
 
-import { Heading, Copy, Image, Label } from 'next-pattern-library';
+import { Heading } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import Hero from '~/components/hero/cypher';
 import CardGallery from '~/components/card/gallery';
-import GalleryInfo from '~/components/gallery/info';
-import GalleryBanner from '~/components/gallery/banner';
-import GalleryImageText from '~/components/gallery/image-text';
 
 import { useApp } from '~/context-provider/app';
 
 import {
   getSiteConfig,
-  imageBuilder,
   getAllGalleryTotal,
 } from '~/lib/sanity/requests';
 

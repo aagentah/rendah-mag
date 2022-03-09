@@ -11,13 +11,11 @@ import {
   Button,
   Icon,
 } from 'next-pattern-library';
-import BlockContent from '@sanity/block-content-to-react';
 
 import { useApp } from '~/context-provider/app';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import CardBlog from '~/components/card/blog';
 import Sections from '~/components/article/body-sections';
 import Tabs from '~/components/tabs';
 import Modal from '~/components/modal';

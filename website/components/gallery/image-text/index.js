@@ -4,7 +4,7 @@ import { useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import dynamic from 'next/dynamic';
 
-import { Heading, Image, Button, Icon } from 'next-pattern-library';
+import { Image } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';

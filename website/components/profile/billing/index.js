@@ -1,16 +1,11 @@
 import { useState, useEffect } from 'react';
-import Router from 'next/router';
 import { toast } from 'react-toastify';
-import filter from 'lodash/filter';
-import isEmpty from 'lodash/isEmpty';
-import BlockContent from '@sanity/block-content-to-react';
 import fetch from 'isomorphic-unfetch';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
-import { Heading, Button, Copy, Input } from 'next-pattern-library';
+import { Heading, Button, Input } from 'next-pattern-library';
 
 import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
-import { getDominionPipeline } from '~/lib/sanity/requests';
 
 export default function ProfileOrders() {
   const [user, { loading, mutate, error }] = useUser();

@@ -1,20 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
-  Modal,
-  Hero,
   Heading,
-  Copy,
-  Image,
-  Button,
-  Icon,
-  Label,
 } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';
 import AudioEmbed from '~/components/article/body-sections/audio';
 
-import Sections from '~/components/article/body-sections';
 
-import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function CarouselItemSection({ offering }) {
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
+import { useState } from 'react';
+import { Heading, Image, Button } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';
 
 import { useApp } from '~/context-provider/app';

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import filter from 'lodash/filter';
 import dynamic from 'next/dynamic';
 
-import { Heading, Copy, Label, Image } from 'next-pattern-library';
+import { Heading, Label, Image } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';

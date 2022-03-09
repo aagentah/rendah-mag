@@ -1,13 +1,6 @@
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import Router, { useRouter } from 'next/router';
 import 'intersection-observer';
-import Observer from '@researchgate/react-intersection-observer';
-import map from 'lodash/map';
-import reverse from 'lodash/reverse';
-import Cookies from 'js-cookie';
 
-import { Heading, Button, Icon } from 'next-pattern-library';
+import { Heading, Icon } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';

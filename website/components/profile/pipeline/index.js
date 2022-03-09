@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react';
-import Router from 'next/router';
 import Link from 'next/link';
-import { toast } from 'react-toastify';
-import filter from 'lodash/filter';
-import isEmpty from 'lodash/isEmpty';
 import BlockContent from '@sanity/block-content-to-react';
-import { Heading, Copy, Button } from 'next-pattern-library';
+import { Heading, Button } from 'next-pattern-library';
 
 import { useUser } from '~/lib/hooks';
 import { getDominionPipeline } from '~/lib/sanity/requests';

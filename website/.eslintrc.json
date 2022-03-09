@@ -25,8 +25,9 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier"],
+  "plugins": ["react", "prettier", "unused-imports"],
   "rules": {
+    "unused-imports/no-unused-imports": "error",
     "react/destructuring-assignment": 0,
     "react/jsx-boolean-value": 0,
     "import/extensions": 0,

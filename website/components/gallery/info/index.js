@@ -1,7 +1,6 @@
 import { Parallax } from 'react-scroll-parallax';
 import BlockContent from '@sanity/block-content-to-react';
 
-import { Heading, Image, Button, Icon } from 'next-pattern-library';
 
 import Container from '~/components/layout/container';
 

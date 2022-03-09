@@ -1,21 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import Router from 'next/router';
-import BlockContent from '@sanity/block-content-to-react';
 import { useKeenSlider } from 'keen-slider/react';
 import {
-  Hero,
   Heading,
-  Copy,
-  Image,
   Button,
   Icon,
-  Label,
-  Modal,
 } from 'next-pattern-library';
 
-import { imageBuilder } from '~/lib/sanity/requests';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';

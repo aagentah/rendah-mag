@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Parallax } from 'react-scroll-parallax';
-import LazyLoad from 'react-lazyload';
+import { useEffect } from 'react';
 import NProgress from 'nprogress';
 import BlockContent from '@sanity/block-content-to-react';
 
-import { Copy, Heading, Image, Button, Icon } from 'next-pattern-library';
+import { Heading, Button, Icon } from 'next-pattern-library';
 
 import Modal from '~/components/modal';
 

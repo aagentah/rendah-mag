@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Head from 'next/head';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import uniqBy from 'lodash/uniqBy';

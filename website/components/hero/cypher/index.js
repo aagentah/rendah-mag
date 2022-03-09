@@ -208,13 +208,10 @@
 //   );
 // }
 
-import Link from 'next/link';
 import BlockContent from '@sanity/block-content-to-react';
-import LazyLoad from 'react-lazyload';
 import isObject from 'lodash/isObject';
 import { Image, Heading, Copy, Button, Icon } from 'next-pattern-library';
 
-import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 /**

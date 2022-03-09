@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { Heading, Button, Icon, Input } from 'next-pattern-library';
@@ -7,7 +7,6 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
 import { useApp, useDispatchApp } from '~/context-provider/app';
-import { useUser } from '~/lib/hooks';
 import { getSiteConfig } from '~/lib/sanity/requests';
 import validEmail from '~/lib/valid-email';
 

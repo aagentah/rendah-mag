@@ -8,7 +8,6 @@ import {
   Button,
   Copy,
   Icon,
-  Input,
 } from 'next-pattern-library';
 
 import Layout from '~/components/layout';

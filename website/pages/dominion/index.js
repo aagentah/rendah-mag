@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import Router, { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 
-import { Copy, Label, Image, Button, Icon } from 'next-pattern-library';
+import { Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import CardBlog from '~/components/card/blog';
 
 import {
   getSiteConfig,
-  getDominionUsers,
-  imageBuilder,
 } from '~/lib/sanity/requests';
 
 export default function Dominion({ siteConfig }) {

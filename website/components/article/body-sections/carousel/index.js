@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Image } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';
 import isArray from 'lodash/isArray';
 import 'keen-slider/keen-slider.min.css';

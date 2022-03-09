@@ -1,6 +1,4 @@
-import fetch from 'isomorphic-unfetch';
 
-import formatHttpError from '~/functions/formatHttpError';
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 

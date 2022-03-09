@@ -1,33 +1,21 @@
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import Router, { useRouter } from 'next/router';
-import map from 'lodash/map';
-import Cookies from 'js-cookie';
-import { parseISO, format } from 'date-fns';
-import { Heading, Copy, Image, Label } from 'next-pattern-library';
 import toMarkdown from '@sanity/block-content-to-markdown';
 
-import Hero from '~/components/hero/creations';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import Sections from '~/components/article/body-sections';
 import SocialLinks from '~/components/article/social-links';
 import Author from '~/components/article/author';
-import SubscribeForm from '~/components/subscribe-form';
 
 import GalleryInfo from '~/components/gallery/info';
 import GalleryBanner from '~/components/gallery/banner';
 import GalleryImageText from '~/components/gallery/image-text';
 
-import Date from '~/components/date';
-import CardBlog from '~/components/card/blog';
 import useWindowDimensions from '~/functions/useWindowDimensions';
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 
 import {
   getSiteConfig,
-  imageBuilder,
   getAllGalleryTotal,
   getGallery,
 } from '~/lib/sanity/requests';

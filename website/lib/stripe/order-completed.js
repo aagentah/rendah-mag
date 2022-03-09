@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-unfetch';
-import find from 'lodash/find';
 
 import formatHttpError from '~/functions/formatHttpError';
 import orderEmail from '~/lib/emails/order-notification';

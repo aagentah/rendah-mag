@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-unfetch';
 import { buffer } from 'micro';
 import { Stripe } from 'stripe';
 

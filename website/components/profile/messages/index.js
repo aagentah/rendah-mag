@@ -1,26 +1,17 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Router from 'next/router';
-import BlockContent from '@sanity/block-content-to-react';
-import { useKeenSlider } from 'keen-slider/react';
 
 import {
-  Hero,
   Heading,
-  Copy,
-  Image,
   Button,
-  Icon,
-  Label,
 } from 'next-pattern-library';
 
 import Carousel from './carousel';
 
-import Modal from '~/components/modal';
 import { useUser } from '~/lib/hooks';
 import setCharAt from '~/functions/setCharAt';
 
-import { imageBuilder, getDominionItemsSinceDate } from '~/lib/sanity/requests';
+import { getDominionItemsSinceDate } from '~/lib/sanity/requests';
 
 export default function ProfileDominion({ refreshDominion }) {
   const [user, { loading, mutate, error }] = useUser();

@@ -3,7 +3,7 @@ import LazyLoad from 'react-lazyload';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 
-import { Heading, Image, Button, Icon } from 'next-pattern-library';
+import { Image } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';

@@ -1,8 +1,6 @@
-import fetch from 'isomorphic-unfetch';
 import generatePassword from 'password-generator';
 import isEmpty from 'lodash/isEmpty';
 
-import formatHttpError from '~/functions/formatHttpError';
 import findUserByUsername from '~/lib/sanity/user/findUserByUsername';
 import createUser from '~/lib/sanity/user/createUser';
 import updateUserByUsername from '~/lib/sanity/user/updateUserByUsername';

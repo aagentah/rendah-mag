@@ -5,8 +5,6 @@ import {
   Image,
   Label,
   Heading,
-  Copy,
-  Button,
   Icon,
 } from 'next-pattern-library';
 import 'intersection-observer';

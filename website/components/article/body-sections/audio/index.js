@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import { Button, Icon } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';

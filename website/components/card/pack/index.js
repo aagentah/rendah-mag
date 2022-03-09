@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Image, Heading } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import dynamic from 'next/dynamic';
-import { Heading, Image, Button, Icon } from 'next-pattern-library';
+import { Heading, Button, Icon } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';

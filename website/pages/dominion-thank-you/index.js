@@ -1,6 +1,5 @@
-import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
-import { Heading, Copy, Button } from 'next-pattern-library';
+import { useRouter } from 'next/router';
+import { Heading, Copy } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';

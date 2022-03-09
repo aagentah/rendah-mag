@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import cx from 'classnames';
 import NProgress from 'nprogress';
 
 import { Icon } from 'next-pattern-library';

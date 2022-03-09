@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import Router from 'next/router';
 import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 
@@ -11,7 +10,6 @@ import {
   Icon,
   Input,
   Checkbox,
-  Label,
 } from 'next-pattern-library';
 
 import Modal from '~/components/modal';

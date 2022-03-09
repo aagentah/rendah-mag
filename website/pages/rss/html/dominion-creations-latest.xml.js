@@ -1,5 +1,4 @@
 import React from 'react';
-import blocksToHtml from '@sanity/block-content-to-html';
 
 import {
   imageBuilder,
