@@ -56,8 +56,8 @@ export default function Author({ siteConfig, author }) {
               routerLink: Link,
               routerLinkProps: {
                 as: `/team/${author.slug.current}`,
-                scroll: false,
-              },
+                scroll: false
+              }
             }}
           />
         </div>
@@ -81,8 +81,8 @@ export default function Author({ siteConfig, author }) {
                 routerLink: Link,
                 routerLinkProps: {
                   as: `/team/${author.slug.current}`,
-                  scroll: false,
-                },
+                  scroll: false
+                }
               }}
             />
           </div>
