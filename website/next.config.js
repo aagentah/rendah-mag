@@ -9,14 +9,14 @@ module.exports = withPreact({
     SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
     SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
     SANITY_API_TOKEN_WRITE: process.env.SANITY_API_TOKEN_WRITE,
-    SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
+    SEND_IN_BLUE_API_KEY: process.env.SEND_IN_BLUE_API_KEY,
     MAILCHIMP_LIST_ID: process.env.MAILCHIMP_LIST_ID,
     MAILCHIMP_API_KEY: process.env.MAILCHIMP_API_KEY,
     IRON_PASSWORD: process.env.IRON_PASSWORD,
     SITE_URL: process.env.SITE_URL,
     ENV_TYPE: process.env.ENV_TYPE,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
-    STRIPE_SIGNING_SECRET: process.env.STRIPE_SIGNING_SECRET,
+    STRIPE_SIGNING_SECRET: process.env.STRIPE_SIGNING_SECRET
   },
   webpack(config, { dev, isServer }) {
     // // Move Preact into the framework chunk instead of duplicating in routes:
@@ -57,5 +57,5 @@ module.exports = withPreact({
     config.resolve.alias['~'] = path.resolve(__dirname);
 
     return config;
-  },
+  }
 });
