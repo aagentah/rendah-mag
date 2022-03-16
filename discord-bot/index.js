@@ -3,10 +3,14 @@
 require("dotenv").config();
 const _ = require("lodash");
 const fetch = require("node-fetch");
-const { Client } = require("discord.js");
+const { Client, Intents } = require("discord.js");
 
 const client = new Client({
-  partials: ["USER", "GUILD_MEMBER", "MESSAGE", "CHANNEL", "REACTION"],
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_PRESENCES,
+    Intents.FLAGS.GUILD_MEMBERS
+  ]
 });
 
 // Vars
@@ -16,7 +20,21 @@ const guildId = "590892540610347008";
 // Functions
 
 const getGuild = () => {
-  return client.guilds.get(guildId);
+  return client.guilds.cache.get(guildId);
+};
+
+const handleDeleteStickers = () => {
+  setInterval(() => {
+    const channel = client.channels.cache.get("595730178697723910");
+
+    channel.messages.fetch({ limit: 100 }).then(messages => {
+      messages.forEach(message => {
+        if (message?.stickers?.size == 1) {
+          message.delete();
+        }
+      });
+    });
+  }, 3600000);
 };
 
 const handleDominionRoles = () => {
@@ -25,21 +43,21 @@ const handleDominionRoles = () => {
     const sanityUsers = await fetch(
       `https://rendahmag.com/api/discord/get-dominion-members`
       // "https://26a938295485.ngrok.io/api/discord/get-dominion-members"
-    ).then((res) => res.json());
+    ).then(res => res.json());
 
     // Loop guild members
-    getGuild().members.forEach((member) => {
+    getGuild().members.cache.forEach(member => {
       // Match with sanity user based on Discord ID
       const matched = _.find(sanityUsers, {
-        discordId: member.user.discriminator,
+        discordId: member.user.discriminator
       });
 
       if (matched && matched.isDominion) {
         // Add 'dominion' role
-        member.addRole("797997884737323039");
+        member.roles.add("797997884737323039");
       } else {
         // Remove 'dominion' role
-        member.removeRole("797997884737323039");
+        member.roles.remove("797997884737323039");
       }
     });
   };
@@ -52,7 +70,7 @@ const handleDominionRoles = () => {
 };
 
 const handleDiscordBlog = () => {
-  const getAuthorNames = (authors) => {
+  const getAuthorNames = authors => {
     let string = "";
     let authorDiscord;
     let author;
@@ -79,12 +97,12 @@ const handleDiscordBlog = () => {
     const feed = await fetch(
       `https://rendahmag.com/api/discord/get-latest-articles`
       // "https://c59b-194-37-96-102.ngrok.io/api/discord/get-latest-articles"
-    ).then((res) => res.json());
+    ).then(res => res.json());
 
     for (let i = 0; i < feed.length; i++) {
       const post = feed[i];
 
-      client.channels
+      client.channels.cache
         .get("934109364879507537")
         .send(
           `New post up from ${getAuthorNames(
@@ -108,9 +126,10 @@ client.on("ready", async () => {
 
   handleDominionRoles();
   handleDiscordBlog();
+  handleDeleteStickers();
 });
 
-client.on("message", (m) => {
+client.on("message", m => {
   const names = [
     "boi",
     "g",
@@ -119,11 +138,11 @@ client.on("message", (m) => {
     "pls",
     "bruuh",
     "lmao",
-    "pls",
+    "pls"
   ];
 
   m.mentions.users.forEach((item, i) => {
-    // Is nbot
+    // Is bot
     if (i === client.user.id) {
       m.channel.send(`Catch me ${_.sample(names)}`);
     }
