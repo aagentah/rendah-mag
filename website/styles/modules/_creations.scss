@@ -164,6 +164,10 @@ $creations-black: #1c1c1c;
     background: transparent;
     border: 1px solid var(--white);
   }
+
+  .input__label {
+    opacity: 0.5;
+  }
 }
 
 .creations__label-wrapper {
