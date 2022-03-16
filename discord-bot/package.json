@@ -4,7 +4,7 @@
   "description": "An in-depth guide on deploying your Discord.js bot on Heroku",
   "main": "index.js",
   "engines": {
-    "node": "15.x",
+    "node": "16.x",
     "npm": "7.x"
   },
   "scripts": {
