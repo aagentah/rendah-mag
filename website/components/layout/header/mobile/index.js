@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-
 import { useUser } from '~/lib/hooks';
 
 export default function HeaderMobile({
@@ -11,7 +10,7 @@ export default function HeaderMobile({
   navOnWhite,
   handleLogout,
   showBasket,
-  buttonIcons,
+  buttonIcons
 }) {
   const [user] = useUser();
   const [navOpen, setNavOpen] = useState(false);
@@ -91,17 +90,19 @@ export default function HeaderMobile({
               </button>
             </Link>
           </li>
-          <li className="nav__item  db  pl4  pb3">
-            <Link href="/gallery">
-              <button
-                className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                onClick={toggleNav}
-                type="button"
-              >
-                Gallery
-              </button>
-            </Link>
-          </li>
+          {
+            // <li className="nav__item  db  pl4  pb3">
+            //   <Link href="/gallery">
+            //     <button
+            //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+            //       onClick={toggleNav}
+            //       type="button"
+            //     >
+            //       Gallery
+            //     </button>
+            //   </Link>
+            // </li>
+          }
           <li className="nav__item  db  pl4  pb3">
             <Link href="/cyphers">
               <button

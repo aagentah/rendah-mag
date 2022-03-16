@@ -11,7 +11,7 @@ export default function HeaderDestop({
   navOnWhite,
   handleLogout,
   showBasket,
-  buttonIcons,
+  buttonIcons
 }) {
   const [user] = useUser();
 
@@ -64,38 +64,40 @@ export default function HeaderDestop({
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
-                      scroll: false,
-                    },
+                      scroll: false
+                    }
                   }}
                 />
               </li>
-              <li className="nav__item  dib  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Gallery"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/gallery',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false,
-                    },
-                  }}
-                />
-              </li>
+              {
+                // <li className="nav__item  dib  pr3">
+                //   <Button
+                //     /* Options */
+                //     type="secondary"
+                //     size="medium"
+                //     text="Gallery"
+                //     color={navColour}
+                //     fluid={false}
+                //     icon={null}
+                //     iconFloat={null}
+                //     inverted
+                //     loading={false}
+                //     disabled={false}
+                //     skeleton={false}
+                //     onClick={null}
+                //     /* Children */
+                //     withLinkProps={{
+                //       type: 'next',
+                //       href: '/gallery',
+                //       target: null,
+                //       routerLink: Link,
+                //       routerLinkProps: {
+                //         scroll: false,
+                //       },
+                //     }}
+                //   />
+                // </li>
+              }
               <li className="nav__item  dib  pr3">
                 <Button
                   /* Options */
@@ -118,8 +120,8 @@ export default function HeaderDestop({
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
-                      scroll: false,
-                    },
+                      scroll: false
+                    }
                   }}
                 />
               </li>
@@ -144,8 +146,8 @@ export default function HeaderDestop({
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
-                      scroll: false,
-                    },
+                      scroll: false
+                    }
                   }}
                 />
               </li>
@@ -170,8 +172,8 @@ export default function HeaderDestop({
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
-                      scroll: false,
-                    },
+                      scroll: false
+                    }
                   }}
                 />
               </li>
@@ -205,8 +207,8 @@ export default function HeaderDestop({
                         target: null,
                         routerLink: Link,
                         routerLinkProps: {
-                          scroll: false,
-                        },
+                          scroll: false
+                        }
                       }}
                     />
                   </li>
@@ -254,8 +256,8 @@ export default function HeaderDestop({
                         target: null,
                         routerLink: Link,
                         routerLinkProps: {
-                          scroll: false,
-                        },
+                          scroll: false
+                        }
                       }}
                     />
                   </li>
@@ -281,8 +283,8 @@ export default function HeaderDestop({
                         target: null,
                         routerLink: Link,
                         routerLinkProps: {
-                          scroll: false,
-                        },
+                          scroll: false
+                        }
                       }}
                     />
                   </li>
