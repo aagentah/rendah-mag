@@ -45,7 +45,7 @@ const tagFields = `
   'slug': slug.current,
 `;
 
-const getClient = (preview) => (preview ? previewClient : client);
+const getClient = preview => (preview ? previewClient : client);
 
 export const imageBuilder = sanityImage(client);
 
@@ -202,12 +202,12 @@ export async function getCurrentAndPreviousCyphers(preview) {
               ...,
             } `
       )
-      .then((res) => res?.[0]),
+      .then(res => res?.[0]),
     curClient.fetch(
       `*[_type == "cypher" && publishedFields.isPublished] {
             ...,
             }  | order(publishedFields.publishedAt desc)`
-    ),
+    )
   ]);
 
   return { current: current || null, previous };
@@ -319,14 +319,14 @@ export async function getPostAndMore(slug, preview) {
         }`,
           { slug }
         )
-        .then((res) => res?.[0]),
+        .then(res => res?.[0]),
       curClient.fetch(
         `*[_type == "post" && slug.current != $slug] | order(publishedAt desc){
           ${postFields}
           content,
         }[0...4]`,
         { slug }
-      ),
+      )
     ]);
   } else {
     [post, morePosts] = await Promise.all([
@@ -338,14 +338,14 @@ export async function getPostAndMore(slug, preview) {
         }`,
           { slug, today }
         )
-        .then((res) => res?.[0]),
+        .then(res => res?.[0]),
       curClient.fetch(
         `*[_type == "post" && slug.current != $slug && publishedAt < $today] | order(publishedAt desc){
           ${postFields}
           content,
         }[0...4]`,
         { slug, today }
-      ),
+      )
     ]);
   }
 
@@ -374,14 +374,14 @@ export async function getProductAndMore(slug, preview) {
       }`,
         { slug }
       )
-      .then((res) => res?.[0]),
+      .then(res => res?.[0]),
     curClient.fetch(
       `*[_type == "product" && slug.current != $slug] | order(publishedAt desc){
         ${productFields}
         content,
       }[0...4]`,
       { slug }
-    ),
+    )
   ]);
 
   return { product, moreProducts };
@@ -426,13 +426,13 @@ export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
       }`,
         { sinceStartOfMonth, today }
       )
-      .then((res) => res),
+      .then(res => res),
     curClient.fetch(
       `*[_type == "dominionItem" && slug.current == "welcome-to-the-dominion" && showInProfile] [0] {
         ...,
         "slug": slug.current,
       }`
-    ),
+    )
   ]);
 
   results.unshift(welcome);

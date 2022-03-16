@@ -18,7 +18,7 @@ export default function ProfileDominion() {
   const [user, { loading, mutate, error }] = useUser();
   const [offerings, setOfferings] = useState([]);
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
-  const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
+  const handleAudioPlay = playerRef => setCurrentAudioSelected(playerRef);
   const [modalActive, setModalActive] = useState(false);
   const [cardsShow, setCardsShow] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -30,7 +30,7 @@ export default function ProfileDominion() {
 
   const buttonIconArrowLeft = <Icon icon={['fas', 'arrow-left']} />;
 
-  const apply = (i) => {
+  const apply = i => {
     setModalActive(i);
     setCardsShow(false);
   };
@@ -41,8 +41,13 @@ export default function ProfileDominion() {
       let sinceStartOfMonth = user?.dominionSince.split('T')[0];
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 8, '0');
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
+      const d = new Date(sinceStartOfMonth);
+      d.setMonth(d.getMonth() - 1);
 
-      const data = await getAllOfferings(sinceStartOfMonth, showAll);
+      const data = await getAllOfferings(
+        d.toISOString().split('T')[0],
+        showAll
+      );
       if (data) setOfferings(data);
     };
 
@@ -134,7 +139,7 @@ export default function ProfileDominion() {
                     type: 'form',
                     url: null,
                     target: null,
-                    routerLink: null,
+                    routerLink: null
                   }}
                 />
               </div>
@@ -224,8 +229,8 @@ export default function ProfileDominion() {
               target: null,
               routerLink: Link,
               routerLinkProps: {
-                scroll: false,
-              },
+                scroll: false
+              }
             }}
           />
         </div>
