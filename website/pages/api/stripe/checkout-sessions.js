@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       if (data.discount) {
         const coupon = await stripe.promotionCodes.list({
           limit: 1,
-          code: data.discount,
+          code: data.discount
         });
 
         discountOptions = [{ coupon: coupon.data[0].coupon.id }];
@@ -28,9 +28,9 @@ export default async function handler(req, res) {
               display_name: 'UK Shipping',
               delivery_estimate: {
                 minimum: { unit: 'business_day', value: 1 },
-                maximum: { unit: 'business_day', value: 4 },
-              },
-            },
+                maximum: { unit: 'business_day', value: 4 }
+              }
+            }
           },
           {
             shipping_rate_data: {
@@ -39,9 +39,9 @@ export default async function handler(req, res) {
               display_name: 'Europe Shipping',
               delivery_estimate: {
                 minimum: { unit: 'business_day', value: 5 },
-                maximum: { unit: 'business_day', value: 10 },
-              },
-            },
+                maximum: { unit: 'business_day', value: 10 }
+              }
+            }
           },
           {
             shipping_rate_data: {
@@ -50,10 +50,10 @@ export default async function handler(req, res) {
               display_name: 'Worldwide Shipping',
               delivery_estimate: {
                 minimum: { unit: 'business_day', value: 7 },
-                maximum: { unit: 'business_day', value: 14 },
-              },
-            },
-          },
+                maximum: { unit: 'business_day', value: 14 }
+              }
+            }
+          }
         ];
       }
 
@@ -64,8 +64,10 @@ export default async function handler(req, res) {
         mode: data.mode,
         discounts: discountOptions,
         success_url: `${req.headers.origin}${data.successUrl}`,
-        cancel_url: `${req.headers.origin}${data.cancelUrl}`,
+        cancel_url: `${req.headers.origin}${data.cancelUrl}`
       });
+
+      console.log('session', session);
 
       return res.status(200).json({ url: session.url });
     }

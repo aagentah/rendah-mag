@@ -9,7 +9,7 @@ import {
   Label,
   Image,
   Button,
-  Icon,
+  Icon
 } from 'next-pattern-library';
 
 import { useApp } from '~/context-provider/app';
@@ -24,7 +24,7 @@ import {
   getSiteConfig,
   getProduct,
   getAllProductsTotal,
-  imageBuilder,
+  imageBuilder
 } from '~/lib/sanity/requests';
 
 export default function Product({ siteConfig, product }) {
@@ -41,9 +41,7 @@ export default function Product({ siteConfig, product }) {
     Router.push('/404');
   }
 
-  const submit = async (priceId) => {
-    const calcShipping = (type) => type + type * 1.5;
-
+  const submit = async priceId => {
     const response = await fetch(
       `${process.env.SITE_URL}/api/stripe/checkout-sessions`,
       {
@@ -55,15 +53,15 @@ export default function Product({ siteConfig, product }) {
             successUrl: `/product/${product.slug}`,
             cancelUrl: `/product/${product.slug}`,
             shipping: {
-              uk: calcShipping(product.shippingUK),
-              europe: calcShipping(product.shippingEurope),
-              worldwide: calcShipping(product.shippingWorldwide),
+              uk: product.shippingUK,
+              europe: product.shippingEurope,
+              worldwide: product.shippingWorldwide
             },
-            discount,
-          },
+            discount
+          }
         }),
         headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
+        method: 'POST'
       }
     );
 
@@ -213,8 +211,8 @@ export default function Product({ siteConfig, product }) {
                       routerLink: Link,
                       routerLinkProps: {
                         as: `/dominion`,
-                        scroll: false,
-                      },
+                        scroll: false
+                      }
                     }}
                   />
                 </div>
@@ -292,7 +290,7 @@ export default function Product({ siteConfig, product }) {
             siteConfig,
             title: product?.title,
             description: null,
-            image: product?.image1,
+            image: product?.image1
           }}
           preview={null}
         >
@@ -377,13 +375,13 @@ export default function Product({ siteConfig, product }) {
                         {
                           id: '1',
                           tabTitle: 'Description',
-                          tabContent: descriptionTab,
+                          tabContent: descriptionTab
                         },
                         {
                           id: '2',
                           tabTitle: 'Shipping Info',
-                          tabContent: deliveryTab,
-                        },
+                          tabContent: deliveryTab
+                        }
                       ]}
                       defaultSelected="1"
                     />
@@ -424,7 +422,7 @@ export default function Product({ siteConfig, product }) {
                               placeholder="PROMO CODE"
                               type="text"
                               value={discount}
-                              onChange={(e) => setDiscount(e.target.value)}
+                              onChange={e => setDiscount(e.target.value)}
                             />
                           </div>
                         </div>
@@ -461,9 +459,9 @@ export async function getStaticProps({ req, params, preview = false }) {
   return {
     props: {
       siteConfig,
-      product,
+      product
     },
-    revalidate: 1,
+    revalidate: 1
   };
 }
 
@@ -472,11 +470,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      data.map((product) => ({
+      data.map(product => ({
         params: {
-          slug: product.slug,
-        },
+          slug: product.slug
+        }
       })) || [],
-    fallback: 'blocking',
+    fallback: 'blocking'
   };
 }
