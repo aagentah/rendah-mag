@@ -77,7 +77,7 @@ const handleDiscordBlog = () => {
 
     for (let i = 0; i < authors.length; i++) {
       author = authors[i].author;
-      authorDiscord = client.users.get(author.discordId);
+      authorDiscord = client.users.cache.get(author.discordId);
 
       if (authorDiscord) {
         string += authorDiscord.toString();
