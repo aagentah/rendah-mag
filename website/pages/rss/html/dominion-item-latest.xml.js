@@ -6,7 +6,7 @@ import { imageBuilder, getLatestDominionItem } from '~/lib/sanity/requests';
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
-const sitemapXml = (item) => {
+const sitemapXml = item => {
   let postXML;
 
   if (item?.slug?.current) {
@@ -80,13 +80,11 @@ const sitemapXml = (item) => {
               <td width="50" valign="top">
               </td>
             </tr>
-            ${
-              hasLoginPrompt ||
+            ${hasLoginPrompt ||
               `
               <tr>
                 <td><br /><br /><br /></td>
-              </tr>`
-            }
+              </tr>`}
             <tr>
               <td colspan="3" width="500" valign="top">
                 ${image}
@@ -97,7 +95,7 @@ const sitemapXml = (item) => {
 
     postXML = `
           <item>
-            <title>${escapeXml(encodeSpecialChar(title))}</title>
+            <title>${escapeXml(title)}</title>
             <link>${escapeXml(encodeSpecialChar(url))}</link>
             <pubDate>${date}</pubDate>
             <description>
@@ -109,7 +107,7 @@ const sitemapXml = (item) => {
     return `
       <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
         <channel>
-          <title>${escapeXml(encodeSpecialChar(title))}</title>
+          <title>${escapeXml(title)}</title>
           <link>${process.env.SITE_URL}</link>
           <description>Dominion Items Latest</description>
           ${postXML}
