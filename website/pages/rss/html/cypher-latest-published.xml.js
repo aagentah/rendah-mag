@@ -29,8 +29,7 @@ const sitemapXml = (cypher) => {
     const url = cypher?.publishedFields?.publishedUrl
       ? `
     <p style="text-align: left;">
-      Listen here:
-      <a style="text-align: left;" href="${cypher.publishedFields.publishedUrl}">${cypher.publishedFields.publishedUrl}</a>
+      <a style="text-align: left; text-decoration: underline;" href="${cypher.publishedFields.publishedUrl}">Click here to listen!</a>
     </p>
   `
       : '';
