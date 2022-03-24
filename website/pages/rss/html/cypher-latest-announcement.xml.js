@@ -6,7 +6,7 @@ import { imageBuilder, getLatestAnouncedCypher } from '~/lib/sanity/requests';
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
-const sitemapXml = (cypher) => {
+const sitemapXml = cypher => {
   if (cypher?.slug?.current) {
     let postsXML = '';
 
@@ -14,7 +14,7 @@ const sitemapXml = (cypher) => {
 
     const description = cypher?.announcementFields?.announcementDescription
       ? blocksToHtml({
-          blocks: cypher.announcementFields.announcementDescription,
+          blocks: cypher.announcementFields.announcementDescription
         })
       : '';
 
@@ -24,22 +24,6 @@ const sitemapXml = (cypher) => {
           .width(400)
           .auto('format')
           .url()}" alt="${title}" />`
-      : '';
-
-    const packLink = cypher.packLink
-      ? `
-      <p style="text-align: left; margin-bottom: 0px !important;">
-        Download the pack <a style="text-align: left; text-decoration: underline;" href="${cypher.packLink}">here</a>.
-      </p>
-    `
-      : '';
-
-    const submissionLink = cypher.submissionFormLink
-      ? `
-      <p style="text-align: left; margin-bottom: 0px !important;">
-        Submit your track <a style="text-align: left; text-decoration: underline;" href="${cypher.submissionFormLink}">here</a>.
-      </p>
-  `
       : '';
 
     const date = new Date(
@@ -54,16 +38,10 @@ const sitemapXml = (cypher) => {
           </td>
         </tr>
         <tr>
-          <td><br /></td>
-        </tr>
-        <tr>
           <td width="400" valign="top">
-            ${packLink}
-          </td>
-        </tr>
-        <tr>
-          <td width="400" valign="top">
-            ${submissionLink}
+            <p style="text-align: left; margin-bottom: 0px !important;">
+              For info on how to get involved <a style="text-align: left; text-decoration: underline;" href="${process.env.SITE_URL}/cyphers">click here</a>.
+            </p>
           </td>
         </tr>
         <tr>
