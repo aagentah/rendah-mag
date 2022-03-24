@@ -61,18 +61,18 @@ export default {
       ],
       validation: Rule => Rule.required()
     },
-    // {
-    //   name: "packLink",
-    //   title: "Pack Link",
-    //   type: "string",
-    //   validation: (Rule) => Rule.required(),
-    // },
-    // {
-    //   name: "submissionFormLink",
-    //   title: "Submission Form Link",
-    //   type: "string",
-    //   validation: (Rule) => Rule.required(),
-    // },
+    {
+      name: "packLink",
+      title: "Pack Link",
+      type: "string",
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "submissionFormLink",
+      title: "Submission Form Link",
+      type: "string",
+      validation: Rule => Rule.required()
+    },
     {
       type: "object",
       name: "announcementFields",
