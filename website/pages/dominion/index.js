@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  usePayPalScriptReducer
+} from '@paypal/react-paypal-js';
 
 import { Image, Button, Icon } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
-import {
-  getSiteConfig,
-} from '~/lib/sanity/requests';
+import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Dominion({ siteConfig }) {
   const [discount, setDiscount] = useState('');
@@ -31,11 +34,11 @@ export default function Dominion({ siteConfig }) {
             mode: 'subscription',
             successUrl: '/dominion-thank-you',
             cancelUrl: '/dominion',
-            discount,
-          },
+            discount
+          }
         }),
         headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
+        method: 'POST'
       }
     );
 
@@ -44,6 +47,39 @@ export default function Dominion({ siteConfig }) {
       const data = await response.json();
       window.location.href = data.url;
     }
+  };
+
+  const ButtonWrapper = ({ type }) => {
+    const [{ options }, dispatch] = usePayPalScriptReducer();
+
+    useEffect(() => {
+      dispatch({
+        type: 'resetOptions',
+        value: {
+          ...options,
+          intent: 'subscription'
+        }
+      });
+    }, [type]);
+
+    return (
+      <PayPalButtons
+        createSubscription={(data, actions) => {
+          return actions.subscription
+            .create({
+              // plan_id: 'P-6B5761572P962811FMJCNAWY'
+              plan_id: 'P-9GU47458MW257550KMJCN3FA'
+            })
+            .then(orderId => {
+              // Your code here after create the order
+              return orderId;
+            });
+        }}
+        style={{
+          label: 'subscribe'
+        }}
+      />
+    );
   };
 
   return (
@@ -57,7 +93,7 @@ export default function Dominion({ siteConfig }) {
         title: 'Dominion',
         description: 'Something new & exciting.',
         image:
-          'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610196181/dominion/dominion-social-facebook-meta.png',
+          'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610196181/dominion/dominion-social-facebook-meta.png'
       }}
       preview={null}
     >
@@ -165,6 +201,18 @@ export default function Dominion({ siteConfig }) {
               </div>
             </div>
 
+            <PayPalScriptProvider
+              options={{
+                'client-id':
+                  'AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq',
+                components: 'buttons',
+                intent: 'subscription',
+                vault: true
+              }}
+            >
+              <ButtonWrapper type="subscription" />
+            </PayPalScriptProvider>
+
             <div className="col-24  flex  flex-wrap  align-center  justify-center  ph2">
               <div className="mw4  shadow1">
                 <input
@@ -172,7 +220,7 @@ export default function Dominion({ siteConfig }) {
                   placeholder="PROMO CODE"
                   type="text"
                   value={discount}
-                  onChange={(e) => setDiscount(e.target.value)}
+                  onChange={e => setDiscount(e.target.value)}
                 />
               </div>
             </div>
@@ -188,7 +236,7 @@ export async function getServerSideProps({ params, preview = false }) {
 
   return {
     props: {
-      siteConfig,
-    },
+      siteConfig
+    }
   };
 }

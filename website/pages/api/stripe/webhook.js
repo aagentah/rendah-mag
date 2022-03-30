@@ -8,7 +8,7 @@ import subscriptionCreated from '~/lib/stripe/subscription-created';
 import subscriptionCancelled from '~/lib/stripe/subscription-cancelled';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2020-08-27',
+  apiVersion: '2020-08-27'
 });
 
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
@@ -35,34 +35,40 @@ export default async (req, res) => {
 
     session = event?.data?.object;
 
-    console.log('session', session);
-
-    // console.log('session', session);
+    const { customer_details, customer } = session;
+    const { email } = customer_details;
+    const { shipping } = session;
+    const { address } = shipping;
+    const { name } = shipping;
+    const { line1, line2, city, postal_code, state, country } = address;
+    const temporaryPassword = generatePassword(12, false);
 
     switch (event.type) {
       case 'checkout.session.completed':
-        // console.log('checkout.session.completed', session);
-
-        console.log('1');
-
         await orderCompleted({ session });
 
-        console.log('2');
-
         if (session.mode === 'subscription') {
-          await subscriptionCreated({ session });
+          await subscriptionCreated({
+            username: email,
+            name,
+            stripeCustomerId: customer,
+            address: {
+              line1: address?.line1 ? line1 : '',
+              line2: address?.line2 ? line2 : '',
+              city: address?.city ? city : '',
+              postal_code: address?.postal_code ? postal_code : '',
+              state: address?.state ? state : '',
+              country: address?.country ? country : ''
+            }
+          });
         }
 
         break;
       case 'subscription_schedule.canceled':
-        // console.log('subscription_schedule.canceled', session);
-
         await subscriptionCancelled({ session });
 
         break;
       case 'customer.subscription.deleted':
-        // console.log('subscription_schedule.canceled', session);
-
         await subscriptionCancelled({ session });
 
         break;
@@ -82,6 +88,6 @@ export default async (req, res) => {
 
 export const config = {
   api: {
-    bodyParser: false,
-  },
+    bodyParser: false
+  }
 };

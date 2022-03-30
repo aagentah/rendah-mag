@@ -6,31 +6,13 @@ import createUser from '~/lib/sanity/user/createUser';
 import updateUserByUsername from '~/lib/sanity/user/updateUserByUsername';
 import welcomeDominionEmail from '~/lib/emails/welcome-dominion-subscription';
 
-export default async ({ session }) => {
+export default async details => {
   try {
-    const { customer_details, customer } = session;
-    const { email } = customer_details;
-    const { shipping } = session;
-    const { address } = shipping;
-    const { name } = shipping;
-    const { line1, line2, city, postal_code, state, country } = address;
-    const temporaryPassword = generatePassword(12, false);
-
     const userData = {
-      username: email,
-      password: temporaryPassword,
-      name,
+      ...details,
+      password: generatePassword(12, false),
       isDominion: true,
-      dominionSince: new Date().toISOString().split('T')[0],
-      stripeCustomerId: customer,
-      address: {
-        line1: address?.line1 ? line1 : '',
-        line2: address?.line2 ? line2 : '',
-        city: address?.city ? city : '',
-        postal_code: address?.postal_code ? postal_code : '',
-        state: address?.state ? state : '',
-        country: address?.country ? country : '',
-      },
+      dominionSince: new Date().toISOString().split('T')[0]
     };
 
     // Here you check if the username has already been used
@@ -55,15 +37,13 @@ export default async ({ session }) => {
   } catch (error) {
     // Handle catch
     console.error(
-      `Error in stripe/subscription-created: ${
-        error.message || error.toString()
-      }`
+      `Error in stripe/subscription-created: ${error.message ||
+        error.toString()}`
     );
 
     return {
-      error: `Error in stripe/subscription-created: ${
-        error.message || error.toString()
-      }`,
+      error: `Error in stripe/subscription-created: ${error.message ||
+        error.toString()}`
     };
   }
 };

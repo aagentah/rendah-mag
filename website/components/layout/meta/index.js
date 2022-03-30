@@ -4,7 +4,7 @@ import { withRouter } from 'next/router';
 import { useApp, useDispatchApp } from '~/context-provider/app';
 import { imageBuilder } from '~/lib/sanity/requests';
 
-const Meta = (props) => {
+const Meta = props => {
   const app = useApp();
   const dispatch = useDispatchApp();
   const { router, siteConfig, title, description, image } = props;
@@ -28,7 +28,7 @@ const Meta = (props) => {
   const makeSchemaSocials = () => {
     const arr = [];
 
-    Object.keys(siteConfig.socialHandles).forEach((key) => {
+    Object.keys(siteConfig.socialHandles).forEach(key => {
       arr.push(siteConfig.socialHandles[key]);
     });
 
@@ -52,8 +52,8 @@ const Meta = (props) => {
             url: siteImage,
             width: 1500,
             height: 1500,
-            caption: siteTitle,
-          },
+            caption: siteTitle
+          }
         },
         {
           '@type': 'WebSite',
@@ -66,10 +66,10 @@ const Meta = (props) => {
             {
               '@type': 'SearchAction',
               target: `${process.env.SITE_URL}/search/{search_term_string}`,
-              'query-input': 'required name=search_term_string',
-            },
+              'query-input': 'required name=search_term_string'
+            }
           ],
-          inLanguage: 'en-US',
+          inLanguage: 'en-US'
         },
         {
           '@type': 'CollectionPage',
@@ -79,9 +79,9 @@ const Meta = (props) => {
           isPartOf: { '@id': `${process.env.SITE_URL}#website ` },
           about: { '@id': `${process.env.SITE_URL}/#organization ` },
           description: siteDesc,
-          inLanguage: 'en-US',
-        },
-      ],
+          inLanguage: 'en-US'
+        }
+      ]
     };
   };
 
