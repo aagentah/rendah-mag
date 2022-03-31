@@ -36,7 +36,7 @@ export default async (req, res) => {
               case 'BILLING.SUBSCRIPTION.ACTIVATED':
                 await subscriptionCreated({
                   username: subscriber.email_address,
-                  name: subscriber.shipping_address.name.full_name,
+                  name: `${subscriber.name.given_name} ${subscriber.name.surname}`,
                   stripeCustomerId: null,
                   address: {
                     line1: subscriber.shipping_address.address_line_1,
