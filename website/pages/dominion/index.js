@@ -73,11 +73,14 @@ export default function Dominion({ siteConfig }) {
         createSubscription={(data, actions) => {
           return actions.subscription
             .create({
-              plan_id: 'P-30777548T6657750KMJCXROI'
+              plan_id:
+                discount === 'RND1MONTH'
+                  ? 'P-30777548T6657750KMJCXROI'
+                  : 'P-6B5761572P962811FMJCNAWY'
             })
             .then(orderId => {
               // Your code here after create the order
-              console.log('orderId', orderId);
+              return orderId;
             });
         }}
         onApprove={(data, actions) => {
