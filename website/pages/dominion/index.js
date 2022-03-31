@@ -73,10 +73,7 @@ export default function Dominion({ siteConfig }) {
         createSubscription={(data, actions) => {
           return actions.subscription
             .create({
-              plan_id:
-                discount === 'RND1MONTH'
-                  ? 'P-30777548T6657750KMJCXROI'
-                  : 'P-6B5761572P962811FMJCNAWY'
+              plan_id: 'P-30777548T6657750KMJCXROI'
             })
             .then(orderId => {
               // Your code here after create the order
