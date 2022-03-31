@@ -199,19 +199,21 @@ export default function Dominion({ siteConfig }) {
                   withLinkProps={null}
                 />
               </div>
-            </div>
 
-            <PayPalScriptProvider
-              options={{
-                'client-id':
-                  'AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq',
-                components: 'buttons',
-                intent: 'subscription',
-                vault: true
-              }}
-            >
-              <ButtonWrapper type="subscription" />
-            </PayPalScriptProvider>
+              <div className="db  ph2  pb3  mb2">
+                <PayPalScriptProvider
+                  options={{
+                    'client-id':
+                      'AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq',
+                    components: 'buttons',
+                    intent: 'subscription',
+                    vault: true
+                  }}
+                >
+                  <ButtonWrapper type="subscription" />
+                </PayPalScriptProvider>
+              </div>
+            </div>
 
             <div className="col-24  flex  flex-wrap  align-center  justify-center  ph2">
               <div className="mw4  shadow1">
