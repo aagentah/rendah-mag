@@ -1,5 +1,6 @@
 import { buffer } from 'micro';
 import { Stripe } from 'stripe';
+import fetch from 'isomorphic-unfetch';
 
 import formatHttpError from '~/functions/formatHttpError';
 
@@ -24,8 +25,7 @@ export default async (req, res) => {
     let event;
     let customerRes;
     let session;
-
-    console.log('xxx', payload, sig, endpointSecret);
+    let email;
 
     try {
       event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
@@ -35,22 +35,41 @@ export default async (req, res) => {
 
     session = event?.data?.object;
 
-    const { customer_details, customer } = session;
-    const { email } = customer_details;
-    const { shipping } = session;
-    const { address } = shipping;
-    const { name } = shipping;
-    const { line1, line2, city, postal_code, state, country } = address;
-    const temporaryPassword = generatePassword(12, false);
+    const getEmail = async () => {
+      const response = await fetch(
+        `${process.env.SITE_URL}/api/stripe/get-customer`,
+        {
+          body: JSON.stringify({ stripeCustomerId: session.customer }),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST'
+        }
+      );
+
+      // Error
+      if (!response.ok) {
+        throw new Error(await formatHttpError(response));
+      }
+
+      const customerRes = await response.json();
+      const { customer } = customerRes;
+
+      email = customer.email;
+      return true;
+    };
 
     switch (event.type) {
       case 'checkout.session.completed':
+        const { customer_details, customer } = session;
+        const { shipping } = session;
+        const { address } = shipping;
+        const { line1, line2, city, postal_code, state, country } = address;
+
         await orderCompleted({ session });
 
         if (session.mode === 'subscription') {
           await subscriptionCreated({
-            username: email,
-            name,
+            username: customer_details.email,
+            name: shipping.name,
             stripeCustomerId: customer,
             address: {
               line1: address?.line1 ? line1 : '',
@@ -65,11 +84,13 @@ export default async (req, res) => {
 
         break;
       case 'subscription_schedule.canceled':
-        await subscriptionCancelled({ session });
+        await getEmail();
+        await subscriptionCancelled({ email });
 
         break;
       case 'customer.subscription.deleted':
-        await subscriptionCancelled({ session });
+        await getEmail();
+        await subscriptionCancelled({ email });
 
         break;
       default:

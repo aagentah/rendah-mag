@@ -78,6 +78,7 @@
     "no-await-in-loop": "off",
     "camelcase": "off",
     "react/jsx-indent": "off",
+    "no-case-declarations": "off",
     "import/no-unresolved": [
       "error",
       {

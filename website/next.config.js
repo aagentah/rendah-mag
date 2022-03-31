@@ -16,7 +16,8 @@ module.exports = withPreact({
     SITE_URL: process.env.SITE_URL,
     ENV_TYPE: process.env.ENV_TYPE,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
-    STRIPE_SIGNING_SECRET: process.env.STRIPE_SIGNING_SECRET
+    STRIPE_SIGNING_SECRET: process.env.STRIPE_SIGNING_SECRET,
+    PAYPAL_SECRET: process.env.PAYPAL_SECRET
   },
   webpack(config, { dev, isServer }) {
     // // Move Preact into the framework chunk instead of duplicating in routes:

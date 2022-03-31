@@ -5,34 +5,8 @@ import findUserByUsername from '~/lib/sanity/user/findUserByUsername';
 import updateUserByUsername from '~/lib/sanity/user/updateUserByUsername';
 import cancelledEmail from '~/lib/emails/cancel-dominion-subscription';
 
-export default async ({ session }) => {
+export default async ({ email }) => {
   try {
-    let email;
-
-    const getEmail = async () => {
-      const response = await fetch(
-        `${process.env.SITE_URL}/api/stripe/get-customer`,
-        {
-          body: JSON.stringify({ stripeCustomerId: session.customer }),
-          headers: { 'Content-Type': 'application/json' },
-          method: 'POST',
-        }
-      );
-
-      // Error
-      if (!response.ok) {
-        throw new Error(await formatHttpError(response));
-      }
-
-      const customerRes = await response.json();
-      const { customer } = customerRes;
-
-      email = customer.email;
-      return true;
-    };
-
-    await getEmail();
-
     const userData = await findUserByUsername(email);
     const updatefields = { isDominion: false };
     const tags = [];
@@ -45,7 +19,7 @@ export default async ({ session }) => {
         {
           body: JSON.stringify({ email, tags }),
           headers: { 'Content-Type': 'application/json' },
-          method: 'POST',
+          method: 'POST'
         }
       );
 
@@ -63,15 +37,13 @@ export default async ({ session }) => {
   } catch (error) {
     // Handle catch
     console.error(
-      `Error in stripe/subscription-cancelled: ${
-        error.message || error.toString()
-      }`
+      `Error in stripe/subscription-cancelled: ${error.message ||
+        error.toString()}`
     );
 
     return {
-      error: `Error in stripe/subscription-cancelled: ${
-        error.message || error.toString()
-      }`,
+      error: `Error in stripe/subscription-cancelled: ${error.message ||
+        error.toString()}`
     };
   }
 };

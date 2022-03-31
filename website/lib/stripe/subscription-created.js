@@ -8,15 +8,17 @@ import welcomeDominionEmail from '~/lib/emails/welcome-dominion-subscription';
 
 export default async details => {
   try {
+    const temporaryPassword = generatePassword(12, false);
+
     const userData = {
       ...details,
-      password: generatePassword(12, false),
+      password: temporaryPassword,
       isDominion: true,
       dominionSince: new Date().toISOString().split('T')[0]
     };
 
     // Here you check if the username has already been used
-    const userExist = await findUserByUsername(email);
+    const userExist = await findUserByUsername(details.username);
 
     // const isUserEmpty =
     //   Object.keys(userExist).length === 0 && userExist.constructor === Object;
@@ -31,7 +33,7 @@ export default async details => {
       await createUser(userData);
     }
 
-    await welcomeDominionEmail({ email, temporaryPassword });
+    await welcomeDominionEmail({ email: details.username, temporaryPassword });
 
     return { error: '' };
   } catch (error) {
