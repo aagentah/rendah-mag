@@ -61,8 +61,6 @@ export default async (req, res) => {
             console.log('It was a failed verification');
           }
 
-          console.log('Here');
-
           // Success
           return res.status(200).json({ error: '' });
         }

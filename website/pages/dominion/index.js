@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
+import Router from 'next/router';
 import {
   PayPalScriptProvider,
   PayPalButtons,
@@ -15,8 +16,13 @@ import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function Dominion({ siteConfig }) {
   const [discount, setDiscount] = useState('');
+  const [redirect, setRedirect] = useState(false);
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
   const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
+
+  useEffect(() => {
+    if (redirect) Router.replace('/dominion-thank-you');
+  }, [redirect]);
 
   const submit = async () => {
     const priceId =
@@ -67,15 +73,24 @@ export default function Dominion({ siteConfig }) {
         createSubscription={(data, actions) => {
           return actions.subscription
             .create({
-              // plan_id: 'P-6B5761572P962811FMJCNAWY'
-              plan_id: 'P-9GU47458MW257550KMJCN3FA'
+              plan_id:
+                discount === 'RND1MONTH'
+                  ? 'P-30777548T6657750KMJCXROI'
+                  : 'P-6B5761572P962811FMJCNAWY'
             })
             .then(orderId => {
               // Your code here after create the order
-              return orderId;
+              console.log('orderId', orderId);
             });
         }}
+        onApprove={(data, actions) => {
+          return actions.order.capture().then(() => {
+            setRedirect(true);
+          });
+        }}
         style={{
+          layout: 'horizontal',
+          color: 'black',
           label: 'subscribe'
         }}
       />
@@ -199,7 +214,13 @@ export default function Dominion({ siteConfig }) {
                   withLinkProps={null}
                 />
               </div>
+            </div>
 
+            <div className="col-24  flex  justify-center">
+              <p className="f-secondary  tac  f5  lh-copy  pb3  mb2">OR</p>
+            </div>
+
+            <div className="col-24  flex  justify-center">
               <div className="db  ph2  pb3  mb2">
                 <PayPalScriptProvider
                   options={{
