@@ -37,7 +37,7 @@ export default async (req, res) => {
                 await subscriptionCreated({
                   username: subscriber.email_address,
                   name: `${subscriber.name.given_name} ${subscriber.name.surname}`,
-                  stripeCustomerId: null,
+                  stripeCustomerId: 'paypal',
                   address: {
                     line1: subscriber.shipping_address.address_line_1,
                     line2: subscriber.shipping_address.address_line_2,
@@ -60,6 +60,11 @@ export default async (req, res) => {
           } else {
             console.log('It was a failed verification');
           }
+
+          console.log('Here');
+
+          // Success
+          return res.status(200).json({ error: '' });
         }
       }
     );
