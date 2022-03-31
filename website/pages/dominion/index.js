@@ -84,9 +84,7 @@ export default function Dominion({ siteConfig }) {
             });
         }}
         onApprove={(data, actions) => {
-          return actions.order.capture().then(() => {
-            setRedirect(true);
-          });
+          setRedirect(true);
         }}
         style={{
           layout: 'horizontal',
