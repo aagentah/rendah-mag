@@ -42,7 +42,7 @@ export default function ProfileCreations() {
         </div>
         <div className="pb4  mb2">
           <p className="white  f6  lh-copy">
-            Creations serves as our internal offering for additional exclusive
+            'Creations' serves as our internal medium for additional exclusive
             content on the Dominion. The idea behind this is to share insights
             not only on music, but as a wider-appeal to the industry as a whole,
             including tutorials, technical interviews, branding tips, creative

@@ -9,13 +9,12 @@ export default async ({ email }) => {
       If you have any questions, feel free to reply to this email.
     `;
 
-    const image = null;
-
     const sendSmtpEmail = {
       sender: { name: 'Rendah Mag', email: 'info@rendahmag.com' },
       to: [{ email }],
+      bcc: { email: 'info@rendahmag.com' },
       subject: 'Subscription cancelled',
-      htmlContent: emailCommon(title, body, image, null, null),
+      htmlContent: emailCommon(title, body, null, null, null)
     };
 
     const { error } = await sendinblue(sendSmtpEmail);
@@ -28,9 +27,8 @@ export default async ({ email }) => {
   } catch (error) {
     // Handle catch
     console.error(
-      `Error in welcome-dominion-subscription: ${
-        error.message || error.toString()
-      }`
+      `Error in welcome-dominion-subscription: ${error.message ||
+        error.toString()}`
     );
 
     return false;

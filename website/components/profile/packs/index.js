@@ -18,7 +18,7 @@ export default function ProfilePacks() {
   const [user, { loading, mutate, error }] = useUser();
   const [samples, setSamples] = useState([]);
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
-  const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
+  const handleAudioPlay = playerRef => setCurrentAudioSelected(playerRef);
   const [modalActive, setModalActive] = useState(false);
   const [cardsShow, setCardsShow] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -30,7 +30,7 @@ export default function ProfilePacks() {
 
   const buttonIconArrowLeft = <Icon icon={['fas', 'arrow-left']} />;
 
-  const apply = (i) => {
+  const apply = i => {
     setModalActive(i);
     setCardsShow(false);
   };
@@ -93,6 +93,14 @@ export default function ProfilePacks() {
                 />
               </div>
 
+              <div className="pb4  mb2">
+                <p className="white  f6  lh-copy">
+                  Each month, we feature an exclusive pack from the various
+                  artists that we work with in the community, available to
+                  download on the Dominion.
+                </p>
+              </div>
+
               <div className="flex  flex-wrap  pb3">
                 {samples.length
                   ? samples.map((item, i) => (
@@ -134,7 +142,7 @@ export default function ProfilePacks() {
                     type: 'form',
                     url: null,
                     target: null,
-                    routerLink: null,
+                    routerLink: null
                   }}
                 />
               </div>
@@ -223,8 +231,8 @@ export default function ProfilePacks() {
               target: null,
               routerLink: Link,
               routerLinkProps: {
-                scroll: false,
-              },
+                scroll: false
+              }
             }}
           />
         </div>

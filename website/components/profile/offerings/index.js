@@ -98,6 +98,15 @@ export default function ProfileDominion() {
                 />
               </div>
 
+              <div className="pb4  mb2">
+                <p className="white  f6  lh-copy">
+                  An 'Offering' pack consists of exclusive music from the
+                  artists & labels that we work with, available as part of the
+                  Dominion. Each month we add an additional Offering to this tab
+                  from the month in which you joined.
+                </p>
+              </div>
+
               <div className="flex  flex-wrap  pb3">
                 {offerings.length
                   ? offerings.map((item, i) => (
