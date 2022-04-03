@@ -12,7 +12,7 @@ export default async ({ email }) => {
     const sendSmtpEmail = {
       sender: { name: 'Rendah Mag', email: 'info@rendahmag.com' },
       to: [{ email }],
-      bcc: { email: 'info@rendahmag.com' },
+      bcc: [{ email: 'info@rendahmag.com' }],
       subject: 'Subscription cancelled',
       htmlContent: emailCommon(title, body, null, null, null)
     };
