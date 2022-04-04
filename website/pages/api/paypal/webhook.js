@@ -39,12 +39,15 @@ export default async (req, res) => {
                   name: `${subscriber.name.given_name} ${subscriber.name.surname}`,
                   stripeCustomerId: 'paypal',
                   address: {
-                    line1: subscriber?.shipping_address?.address_line_1,
-                    line2: subscriber?.shipping_address?.address_line_2,
-                    city: subscriber?.shipping_address?.admin_area_2,
-                    postal_code: subscriber?.shipping_address?.postal_code,
-                    state: subscriber?.shipping_address?.admin_area_1,
-                    country: subscriber?.shipping_address?.country_code
+                    line1:
+                      subscriber?.shipping_address?.address?.address_line_1,
+                    line2:
+                      subscriber?.shipping_address?.address?.address_line_2,
+                    city: subscriber?.shipping_address?.address?.admin_area_2,
+                    postal_code:
+                      subscriber?.shipping_address?.address?.postal_code,
+                    state: subscriber?.shipping_address?.address?.admin_area_1,
+                    country: subscriber?.shipping_address?.address?.country_code
                   }
                 });
 
