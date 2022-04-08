@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDocumentOperation } from "@sanity/react-hooks";
+import { useDocumentOperation, useValidationStatus } from "@sanity/react-hooks";
 import Compressor from "compressorjs";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "part:@sanity/base/client";
@@ -13,6 +13,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const adminPublishPassword = "password";
   const { patch, publish } = useDocumentOperation(id, type);
+  const { markers } = useValidationStatus(id, type);
 
   const compressImage = () => {
     const loopPropsForImages = async (objectProps, isBody) => {
@@ -27,7 +28,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
           // Fetch imageURL
           const imageUrl = await builder.image(item).url();
 
-          const getImageWidth = (src) => {
+          const getImageWidth = src => {
             return new Promise((resolve, reject) => {
               const img = new Image();
               img.onload = () => resolve(img.width);
@@ -46,25 +47,25 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
             {
               body: JSON.stringify({
                 imageUrl: imageUrl,
-                size: parseInt(resizeVal, 10),
+                size: parseInt(resizeVal, 10)
               }),
               headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
               },
-              method: "POST",
+              method: "POST"
             }
-          ).then((response) => response.blob());
+          ).then(response => response.blob());
 
           // Upload compressed image to Sanity
           const uploadedDocument = await client.assets
             .upload("image", compressedBlob, {
               contentType: "image/png",
-              filename: `compressed-${prop}-${parseInt(resizeVal, 10)}.png`,
+              filename: `compressed-${prop}-${parseInt(resizeVal, 10)}.png`
             })
-            .then((document) => {
+            .then(document => {
               return document;
             })
-            .catch((error) => {
+            .catch(error => {
               console.error("Upload failed:", error.message);
             });
 
@@ -78,10 +79,10 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
               .setIfMissing({ body: [] })
               .insert("replace", `body[${prop}]`, [newItem])
               .commit()
-              .then((res) => {
+              .then(res => {
                 return res;
               })
-              .catch((err) => {
+              .catch(err => {
                 console.error("Oh no, the update failed: ", err.message);
                 return false;
               });
@@ -91,17 +92,17 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
               .patch(id)
               .set({ [prop]: newItem })
               .commit()
-              .then((res) => {
+              .then(res => {
                 return res;
               })
-              .catch((err) => {
+              .catch(err => {
                 console.error("Oh no, the update failed: ", err.message);
                 return false;
               });
           }
 
           // Delete previous image from Sanity
-          await client.delete(item.asset._ref).then((result) => {
+          await client.delete(item.asset._ref).then(result => {
             console.log("Deleted image", result);
           });
         }
@@ -112,7 +113,7 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
     if (draft?.body) loopPropsForImages(draft.body, true);
   };
 
-  const handleButtonClick = async (e) => {
+  const handleButtonClick = async e => {
     if (!draft) return;
 
     // e.preventDefault();
@@ -126,12 +127,15 @@ export function CustomPublish({ id, type, published, draft, onComplete }) {
     // }
   };
 
+  const publishLabel = isActioning ? "Publishing…" : "Publish";
+
   return {
-    label: isActioning ? "Publishing…" : "Publish",
+    disabled: markers.length,
+    label: markers.length ? "Resolve errors" : publishLabel,
     onHandle: () => {
       handleButtonClick();
       // setDialogOpen(true);
-    },
+    }
     // dialog: isDialogOpen && {
     //   type: "modal",
     //   onClose: () => {
