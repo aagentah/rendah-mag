@@ -85,6 +85,7 @@ class UsersOverview extends React.PureComponent {
           tags,
         }`
       );
+      console.log("results", results);
       this.setState({ results });
       return results;
     };
@@ -98,7 +99,7 @@ class UsersOverview extends React.PureComponent {
     };
 
     const countCountry = countries => {
-      const count = _.countBy(this.state.results, "address.country");
+      const count = countBy(this.state.results, "address.country");
       console.log("count", count);
       let thisCount = 0;
 
