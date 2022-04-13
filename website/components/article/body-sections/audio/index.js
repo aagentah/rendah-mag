@@ -77,8 +77,8 @@ export default function Audio({
               placeholder={null}
               alt="This is the alt text."
               figcaption={null}
-              height={45}
-              width={45}
+              height={50}
+              width={50}
               customClass="shadow2"
               skeleton={false}
               onClick={null}
@@ -92,8 +92,8 @@ export default function Audio({
               placeholder={null}
               alt="This is the alt text."
               figcaption={null}
-              height={45}
-              width={45}
+              height={50}
+              width={50}
               customClass="shadow2"
               skeleton={false}
               onClick={null}
@@ -126,14 +126,16 @@ export default function Audio({
 
         {allowDownload && (
           <div className="col-4  dn  df-md  justify-start  align-center  ph2">
-            <div
+            <a
+              href={`${url}?dl=`}
+              target="_external"
               className="cp  ph2"
               onClick={() => {
                 triggerOnDownloadEvt();
               }}
             >
               <Icon color="white" icon={['fa', 'download']} />
-            </div>
+            </a>
           </div>
         )}
       </div>
