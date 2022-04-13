@@ -65,7 +65,7 @@ export default function Audio({
       ) : null}
 
       <div className="flex  flex-wrap  pt2">
-        <div className="flex  col-4  col-2-md  align-center">
+        <div className="flex  col-5  col-2-md  justify-center  align-center">
           {image ? (
             <Image
               /* Options */
@@ -77,8 +77,8 @@ export default function Audio({
               placeholder={null}
               alt="This is the alt text."
               figcaption={null}
-              height={50}
-              width={50}
+              height={45}
+              width={45}
               customClass="shadow2"
               skeleton={false}
               onClick={null}
@@ -92,8 +92,8 @@ export default function Audio({
               placeholder={null}
               alt="This is the alt text."
               figcaption={null}
-              height={50}
-              width={50}
+              height={45}
+              width={45}
               customClass="shadow2"
               skeleton={false}
               onClick={null}
@@ -104,7 +104,7 @@ export default function Audio({
         </div>
         <div
           className={
-            allowDownload ? 'col-20  col-18-md  pr0  pr2-md' : 'col-24'
+            allowDownload ? 'col-19  col-18-md  pr0  pr2-md' : 'col-24'
           }
         >
           <AudioPlayer
