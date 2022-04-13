@@ -7,7 +7,7 @@ export default {
       name: "title",
       title: "Title",
       type: "string",
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     },
     {
       name: "slug",
@@ -15,29 +15,49 @@ export default {
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96,
+        maxLength: 96
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "image",
+      title: "Image",
+      type: "image",
+      fields: [
+        {
+          name: "resize",
+          title: "Resize",
+          type: "string",
+          options: {
+            list: [
+              { title: "None", value: "none" },
+              { title: "1080px", value: "1080" },
+              { title: "1920px", value: "1920" }
+            ],
+            layout: "radio"
+          }
+        }
+      ]
     },
     {
       name: "description",
       title: "Description",
       type: "array",
-      of: [{ type: "block" }],
+      of: [{ type: "block" }]
     },
     {
       name: "file",
       title: "File",
       type: "file",
       options: {
-        accept: "audio/*",
+        accept: "audio/*"
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     },
     {
       name: "allowDownload",
       title: "Allow Download",
-      type: "boolean",
+      type: "boolean"
     },
     {
       title: "Tags",
@@ -45,13 +65,13 @@ export default {
       type: "array",
       of: [{ type: "string" }],
       options: {
-        layout: "tags",
-      },
-    },
+        layout: "tags"
+      }
+    }
   ],
   preview: {
     select: {
-      title: "title",
-    },
-  },
+      title: "title"
+    }
+  }
 };

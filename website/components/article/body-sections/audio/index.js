@@ -1,15 +1,17 @@
 import { useEffect, useRef } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
-import { Button, Icon } from 'next-pattern-library';
+import { Icon, Image } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';
 import { usePlausible } from 'next-plausible';
 
 import { useUser } from '~/lib/hooks';
 import { useApp } from '~/context-provider/app';
+import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function Audio({
   url,
   title,
+  image,
   description,
   allowDownload,
   ...props
@@ -30,8 +32,8 @@ export default function Audio({
     plausible('Audio Play', {
       props: {
         action: 'play',
-        label: title,
-      },
+        label: title
+      }
     });
   };
 
@@ -39,8 +41,8 @@ export default function Audio({
     plausible('Audio Download', {
       props: {
         action: 'download',
-        label: title,
-      },
+        label: title
+      }
     });
   };
 
@@ -63,9 +65,46 @@ export default function Audio({
       ) : null}
 
       <div className="flex  flex-wrap  pt2">
+        <div className="flex  col-4  col-2-md  align-center">
+          {image ? (
+            <Image
+              /* Options */
+              src={imageBuilder
+                .image(image)
+                .auto('format')
+                .fit('clip')
+                .url()}
+              placeholder={null}
+              alt="This is the alt text."
+              figcaption={null}
+              height={45}
+              width={45}
+              customClass="shadow2"
+              skeleton={false}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          ) : (
+            <Image
+              /* Options */
+              src="https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format"
+              placeholder={null}
+              alt="This is the alt text."
+              figcaption={null}
+              height={45}
+              width={45}
+              customClass="shadow2"
+              skeleton={false}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          )}
+        </div>
         <div
           className={
-            allowDownload ? 'col-24  col-20-md  pr0  pr2-md' : 'col-24'
+            allowDownload ? 'col-20  col-18-md  pr0  pr2-md' : 'col-24'
           }
         >
           <AudioPlayer
@@ -75,7 +114,7 @@ export default function Audio({
             src={url}
             customProgressBarSection={[
               RHAP_UI.PROGRESS_BAR,
-              RHAP_UI.CURRENT_TIME,
+              RHAP_UI.CURRENT_TIME
             ]}
             layout="horizontal-reverse"
             onPlay={() => {
@@ -86,31 +125,15 @@ export default function Audio({
         </div>
 
         {allowDownload && (
-          <div className="col-4  dn  df-md  align-center  ph2">
-            <Button
-              /* Options */
-              type="primary"
-              size="small"
-              text="Download"
-              color="black"
-              fluid={false}
-              icon={null}
-              iconFloat={null}
-              inverted={false}
-              loading={false}
-              disabled={false}
-              skeleton={false}
+          <div className="col-4  dn  df-md  justify-start  align-center  ph2">
+            <div
+              className="cp  ph2"
               onClick={() => {
                 triggerOnDownloadEvt();
               }}
-              /* Children */
-              withLinkProps={{
-                type: 'external',
-                href: `${url}?dl=`,
-                target: '_self',
-                routerLink: null,
-              }}
-            />
+            >
+              <Icon color="white" icon={['fa', 'download']} />
+            </div>
           </div>
         )}
       </div>

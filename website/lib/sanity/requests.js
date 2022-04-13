@@ -497,6 +497,7 @@ export async function getAllOfferings(sinceStartOfMonth, showAll, preview) {
       'tracks': tracks[] {
         'track': *[_id == ^._ref] [0] {
           ...,
+          'image': image.asset->url,
           'file': file.asset->url,
         },
       }

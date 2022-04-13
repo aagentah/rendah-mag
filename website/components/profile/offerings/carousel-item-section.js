@@ -1,15 +1,11 @@
 import { useState } from 'react';
-import {
-  Heading,
-} from 'next-pattern-library';
+import { Heading } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';
 import AudioEmbed from '~/components/article/body-sections/audio';
 
-
-
 export default function CarouselItemSection({ offering }) {
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
-  const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
+  const handleAudioPlay = playerRef => setCurrentAudioSelected(playerRef);
 
   const downloadAll = () => {
     for (let i = 0; i < offering.tracks.length; i++) {
@@ -44,6 +40,7 @@ export default function CarouselItemSection({ offering }) {
                 i={i}
                 title={item.track?.title}
                 description={item.track?.description}
+                image={item.track?.image}
                 url={item.track?.file}
                 allowDownload={item.track?.allowDownload}
                 handleAudioPlay={handleAudioPlay}

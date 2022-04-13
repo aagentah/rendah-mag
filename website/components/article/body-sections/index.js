@@ -124,6 +124,7 @@ export default function Sections({ body, ...props }) {
             i={i}
             title={section?.title}
             description={section?.description}
+            image={section?.image}
             url={section?.audioEmbed}
             allowDownload={section?.allowDownload}
           />
