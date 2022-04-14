@@ -3,12 +3,7 @@ import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
-import {
-  Image,
-  Label,
-  Heading,
-  Icon,
-} from 'next-pattern-library';
+import { Image, Label, Heading, Icon } from 'next-pattern-library';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
@@ -19,7 +14,7 @@ export default function CardCreations({ post, columnCount }) {
   const scale = app?.isRetina ? 2 : 1;
   let imageHeight;
   let imageUrlWidth;
-  const handleIntersect = (event) => setInView(event.isIntersecting);
+  const handleIntersect = event => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   if (columnCount == 2) {
@@ -50,7 +45,7 @@ export default function CardCreations({ post, columnCount }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass="shadow2  br4"
+      customClass="shadow2  bb  bw1  bc-white  "
       skeleton={!post}
       onClick={null}
       /* Children */
@@ -61,8 +56,8 @@ export default function CardCreations({ post, columnCount }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/creations/${post?.slug}`,
-          scroll: false,
-        },
+          scroll: false
+        }
       }}
     />
   );
@@ -98,8 +93,8 @@ export default function CardCreations({ post, columnCount }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/creations/${post?.slug}`,
-          scroll: false,
-        },
+          scroll: false
+        }
       }}
     />
   );
@@ -148,9 +143,8 @@ export default function CardCreations({ post, columnCount }) {
     <Observer {...observer}>
       <LazyLoad once offset={150} height={imageHeight}>
         <article
-          className={`card  card--post  card--creations  card--scroll  ${
-            inView && 'in-view'
-          }`}
+          className={`card  card--post  card--creations  card--scroll  ${inView &&
+            'in-view'}`}
         >
           {image && <div className="card__image">{image}</div>}
 

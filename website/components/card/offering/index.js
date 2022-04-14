@@ -17,7 +17,7 @@ export default function CardOffering({ post, handleClick, i }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass="shadow2  br4"
+      customClass="shadow2  bb  bw1  bc-white"
       skeleton={!post}
       onClick={null}
       /* Children */
