@@ -12,6 +12,7 @@ export default async ({ email }) => {
     const tags = [];
 
     tags.push({ name: 'Dominion Subscription', status: 'inactive' });
+    tags.push({ name: 'Previously Dominion Subscription', status: 'active' });
 
     const addMembertags = async () => {
       const response = await fetch(
