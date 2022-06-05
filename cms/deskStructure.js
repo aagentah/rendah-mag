@@ -1,4 +1,6 @@
 import S from "@sanity/desk-tool/structure-builder";
+import userStore from "part:@sanity/base/user";
+
 import MdSettings from "react-icons/lib/md/settings";
 import MDWeb from "react-icons/lib/md/web";
 import MDBook from "react-icons/lib/md/book";
@@ -14,39 +16,26 @@ import MDImage from "react-icons/lib/md/image";
 import UsersAddress from "./components/previews/usersAddress";
 import UsersOverview from "./components/previews/usersOverview";
 
-const hiddenDocTypes = (listItem) =>
+const hiddenDocTypes = listItem =>
   !["siteSettings", "homePage", "textBlock"].includes(listItem.getId());
 
-export default () =>
-  S.list()
-    // Top Level
-    .title("Content")
-    .items([
-      S.listItem()
+export default async () => {
+  const { displayName } = await userStore.getUser("me");
+  const isOwner = displayName === "Dan Jones";
+
+  const siteSettings = isOwner
+    ? S.listItem()
         .icon(MdSettings)
         .title("Site Settings")
         .child(
-          S.editor().schemaType("siteSettings").documentId("siteSettings")
-        ),
-      // Divider
-      S.divider(),
-      // Blog
-      S.listItem()
-        .icon(MDBook)
-        .title("Blog")
-        .child(
-          S.list()
-            .title("Blog")
-            .items([
-              S.documentTypeListItem("post"),
-              S.documentTypeListItem("author"),
-              S.documentTypeListItem("category"),
-            ])
-        ),
-      // Gallery
-      S.documentTypeListItem("gallery").icon(MDImage),
-      // Store
-      S.listItem()
+          S.editor()
+            .schemaType("siteSettings")
+            .documentId("siteSettings")
+        )
+    : S.divider();
+
+  const store = isOwner
+    ? S.listItem()
         .icon(MDShop)
         .title("Store")
         .child(
@@ -55,11 +44,13 @@ export default () =>
             .items([
               S.documentTypeListItem("storeItem"),
               S.documentTypeListItem("storeCollection"),
-              S.documentTypeListItem("storeCategory"),
+              S.documentTypeListItem("storeCategory")
             ])
-        ),
-      // Dominion
-      S.listItem()
+        )
+    : S.divider();
+
+  const dominion = isOwner
+    ? S.listItem()
         .icon(MDLoyalty)
         .title("Dominion")
         .child(
@@ -109,7 +100,7 @@ export default () =>
                       S.view
                         .component(UsersAddress)
                         .icon(MDViewList)
-                        .title("Dominion Shipping"),
+                        .title("Dominion Shipping")
                     ])
                 ),
               S.listItem()
@@ -123,19 +114,50 @@ export default () =>
                       S.view
                         .component(UsersOverview)
                         .icon(MDViewList)
-                        .title("Dominion Overview"),
+                        .title("Dominion Overview")
                     ])
-                ),
+                )
             ])
-        ),
-      // Cypher
-      S.documentTypeListItem("refTag").icon(MDMusic),
-      // Cypher
-      S.documentTypeListItem("cypher").icon(MDMusic),
-      // Mix
-      S.documentTypeListItem("mix").icon(MDMusicVideo),
-      // Track
-      S.documentTypeListItem("track").icon(MDMusicVideo),
-      // Smart Link
-      S.documentTypeListItem("smartLink").icon(MDViewList),
-    ]);
+        )
+    : S.divider();
+
+  return (
+    S.list()
+      // Top Level
+      .title("Content")
+      .items([
+        siteSettings,
+        // Divider
+        S.divider(),
+        // Blog
+        S.listItem()
+          .icon(MDBook)
+          .title("Blog")
+          .child(
+            S.list()
+              .title("Blog")
+              .items([
+                S.documentTypeListItem("post"),
+                S.documentTypeListItem("author"),
+                S.documentTypeListItem("category")
+              ])
+          ),
+        // Gallery
+        S.documentTypeListItem("gallery").icon(MDImage),
+        // Store
+        store,
+        // Dominion
+        dominion,
+        // Cypher
+        S.documentTypeListItem("refTag").icon(MDMusic),
+        // Cypher
+        S.documentTypeListItem("cypher").icon(MDMusic),
+        // Mix
+        S.documentTypeListItem("mix").icon(MDMusicVideo),
+        // Track
+        S.documentTypeListItem("track").icon(MDMusicVideo),
+        // Smart Link
+        S.documentTypeListItem("smartLink").icon(MDViewList)
+      ])
+  );
+};
