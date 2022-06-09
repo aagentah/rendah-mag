@@ -7,7 +7,7 @@ export default {
       name: "title",
       title: "Title",
       type: "string",
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     },
     {
       name: "slug",
@@ -15,9 +15,9 @@ export default {
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96,
+        maxLength: 96
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     },
     {
       name: "image",
@@ -32,38 +32,41 @@ export default {
             list: [
               { title: "None", value: "none" },
               { title: "1080px", value: "1080" },
-              { title: "1920px", value: "1920" },
+              { title: "1920px", value: "1920" }
             ],
-            layout: "radio",
-          },
-        },
+            layout: "radio"
+          }
+        }
       ],
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     },
     {
       name: "description",
       title: "Description",
-      type: "blockContent",
+      type: "blockContent"
     },
     {
       name: "folder",
       title: "Folder",
       type: "file",
       options: {
-        accept: ".zip",
+        accept: ".zip"
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     },
     {
       name: "publishedAt",
       title: "Publish Date",
       type: "date",
-      validation: (Rule) => Rule.required(),
-    },
+      validation: Rule => Rule.required()
+    }
   ],
+  initialValue: () => ({
+    publishedAt: new Date()
+  }),
   preview: {
     select: {
-      title: "title",
-    },
-  },
+      title: "title"
+    }
+  }
 };

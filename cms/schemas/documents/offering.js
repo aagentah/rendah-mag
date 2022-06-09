@@ -7,7 +7,7 @@ export default {
       name: "title",
       title: "Title",
       type: "string",
-      validation: (Rule) => Rule.required().max(60),
+      validation: Rule => Rule.required().max(60)
     },
     {
       name: "slug",
@@ -15,14 +15,14 @@ export default {
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96,
+        maxLength: 96
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     },
     {
       name: "description",
       title: "Description",
-      type: "blockContent",
+      type: "blockContent"
     },
     {
       title: "Tracks",
@@ -34,35 +34,38 @@ export default {
           title: "Track",
           type: "reference",
           to: { type: "track" },
-          validation: (Rule) => Rule.required(),
-        },
-      ],
+          validation: Rule => Rule.required()
+        }
+      ]
     },
     {
       name: "publishedAt",
       title: "Publish Date",
       type: "date",
-      validation: (Rule) => Rule.required(),
-    },
+      validation: Rule => Rule.required()
+    }
   ],
+  initialValue: () => ({
+    publishedAt: new Date()
+  }),
   orderings: [
     {
       title: "Publish Date",
       name: "publishedAtDesc",
-      by: [{ field: "publishedAt", direction: "desc" }],
-    },
+      by: [{ field: "publishedAt", direction: "desc" }]
+    }
   ],
   preview: {
     select: {
       title: "title",
       author: "author.name",
-      media: "image",
+      media: "image"
     },
     prepare(selection) {
       const { author } = selection;
       return Object.assign({}, selection, {
-        subtitle: author && `by ${author}`,
+        subtitle: author && `by ${author}`
       });
-    },
-  },
+    }
+  }
 };

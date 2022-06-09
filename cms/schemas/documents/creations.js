@@ -7,7 +7,7 @@ export default {
       name: "title",
       title: "Article Title",
       type: "string",
-      validation: (Rule) => Rule.required().max(60),
+      validation: Rule => Rule.required().max(60)
     },
     {
       name: "slug",
@@ -15,9 +15,9 @@ export default {
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96,
+        maxLength: 96
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     },
     // {
     //   name: "showAuthor",
@@ -38,26 +38,26 @@ export default {
       of: [
         {
           type: "reference",
-          to: { type: "author" },
-        },
-      ],
+          to: { type: "author" }
+        }
+      ]
     },
-    {
-      name: "tags",
-      title: "Tags",
-      type: "array",
-      of: [
-        {
-          type: "reference",
-          to: { type: "refTag" },
-        },
-      ],
-    },
+    // {
+    //   name: "tags",
+    //   title: "Tags",
+    //   type: "array",
+    //   of: [
+    //     {
+    //       type: "reference",
+    //       to: { type: "refTag" }
+    //     }
+    //   ]
+    // },
     {
       name: "publishedAt",
       title: "Publish Date",
       type: "datetime",
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     },
     {
       name: "image",
@@ -72,13 +72,13 @@ export default {
             list: [
               { title: "None", value: "none" },
               { title: "1080px", value: "1080" },
-              { title: "1920px", value: "1920" },
+              { title: "1920px", value: "1920" }
             ],
-            layout: "radio",
-          },
-        },
+            layout: "radio"
+          }
+        }
       ],
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     },
     {
       name: "socialTagline",
@@ -86,7 +86,7 @@ export default {
       description:
         "A short tagline for social media cards, typically around maximum of 70 characters",
       type: "string",
-      validation: (Rule) => Rule.required().max(70),
+      validation: Rule => Rule.required().max(70)
     },
     {
       name: "excerpt",
@@ -94,19 +94,22 @@ export default {
       description:
         "A short description of the item, typically around 50-160 characters.",
       type: "text",
-      validation: (Rule) => Rule.required().min(50).max(160),
+      validation: Rule =>
+        Rule.required()
+          .min(50)
+          .max(160)
     },
     {
       name: "publicBody",
       title: "Public Body",
       description: "Available to public (Usually the introduction)",
-      type: "blockContent",
+      type: "blockContent"
     },
     {
       name: "body",
       title: "Article Body",
       description: "Exlusive to Dominion members, otherwise hidden by paywall",
-      type: "blockContent",
+      type: "blockContent"
     },
     {
       type: "object",
@@ -115,55 +118,58 @@ export default {
       fieldsets: [
         {
           name: "social",
-          description: 'Do not include "@" symbol',
-        },
+          description: 'Do not include "@" symbol'
+        }
       ],
       fields: [
         {
           name: "twitter",
           title: "Twitter Handle",
           type: "string",
-          fieldset: "social",
+          fieldset: "social"
         },
         {
           name: "instagram",
           title: "Instagram Handle",
           type: "string",
-          fieldset: "social",
+          fieldset: "social"
         },
         {
           name: "facebook",
           title: "Facebook Handle",
           type: "string",
-          fieldset: "social",
+          fieldset: "social"
         },
         {
           name: "soundcloud",
           title: "SoundCloud Handle",
           type: "string",
-          fieldset: "social",
-        },
-      ],
-    },
+          fieldset: "social"
+        }
+      ]
+    }
   ],
+  initialValue: () => ({
+    publishedAt: new Date().toISOString()
+  }),
   orderings: [
     {
       title: "Publish Date",
       name: "publishedAtDesc",
-      by: [{ field: "publishedAt", direction: "desc" }],
-    },
+      by: [{ field: "publishedAt", direction: "desc" }]
+    }
   ],
   preview: {
     select: {
       title: "title",
       author: "author.name",
-      media: "image",
+      media: "image"
     },
     prepare(selection) {
       const { author } = selection;
       return Object.assign({}, selection, {
-        subtitle: author && `by ${author}`,
+        subtitle: author && `by ${author}`
       });
-    },
-  },
+    }
+  }
 };
