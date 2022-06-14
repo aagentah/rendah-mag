@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDocumentOperation, useValidationStatus } from "@sanity/react-hooks";
 import Compressor from "compressorjs";
 import imageUrlBuilder from "@sanity/image-url";
-import sanityClient from "part:@sanity/base/client";
+import { useSource } from "sanity";
 
-const builder = imageUrlBuilder(sanityClient);
-const client = sanityClient.withConfig({ apiVersion: "2021-06-07" });
+const { client, schema } = useSource();
+const builder = imageUrlBuilder(client);
+const client = client.withConfig({ apiVersion: "2021-06-07" });
 
 export function CustomPublish({ id, type, published, draft, onComplete }) {
   const [isActioning, setIsActioning] = useState(false);

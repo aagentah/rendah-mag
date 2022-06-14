@@ -1,5 +1,8 @@
 import S from "@sanity/desk-tool/structure-builder";
-import userStore from "part:@sanity/base/user";
+// import userStore from "part:@sanity/base/user";
+import { useSource } from "sanity";
+
+const { client, schema } = useSource();
 
 import MdSettings from "react-icons/lib/md/settings";
 import MDWeb from "react-icons/lib/md/web";
@@ -20,7 +23,8 @@ const hiddenDocTypes = listItem =>
   !["siteSettings", "homePage", "textBlock"].includes(listItem.getId());
 
 export default async () => {
-  const { displayName } = await userStore.getUser("me");
+  // const { displayName } = await userStore.getUser("me");
+  const displayName = "null";
   const isOwner = displayName === "Dan Jones";
 
   const siteSettings = isOwner
