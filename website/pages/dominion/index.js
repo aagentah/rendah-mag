@@ -6,23 +6,47 @@ import {
   PayPalButtons,
   usePayPalScriptReducer
 } from '@paypal/react-paypal-js';
+import random from 'lodash/random';
 
-import { Image, Button, Icon } from 'next-pattern-library';
+import { Image, Button, Icon, Heading } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
-import { getSiteConfig } from '~/lib/sanity/requests';
+import {
+  getSiteConfig,
+  getDominionUsers,
+  imageBuilder
+} from '~/lib/sanity/requests';
+import { useApp } from '~/context-provider/app';
 
 export default function Dominion({ siteConfig }) {
   const [discount, setDiscount] = useState('');
   const [redirect, setRedirect] = useState(false);
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
   const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
+  const [dominion, setDominion] = useState(null);
+  const app = useApp();
 
   useEffect(() => {
     if (redirect) Router.replace('/dominion-thank-you');
   }, [redirect]);
+
+  useEffect(() => {
+    const action = async () => {
+      let dominion = await getDominionUsers();
+
+      // Roun down to nearest multiple of 12
+      const customFloor = (value, roundTo) =>
+        Math.floor(value / roundTo) * roundTo;
+      const roundDown = customFloor(dominion.length, 12);
+      dominion.length = roundDown;
+
+      setDominion(dominion);
+    };
+
+    action();
+  }, []);
 
   const submit = async () => {
     const priceId =
@@ -89,7 +113,8 @@ export default function Dominion({ siteConfig }) {
         style={{
           layout: 'horizontal',
           color: 'black',
-          label: 'subscribe'
+          label: 'subscribe',
+          height: 40
         }}
       />
     );
@@ -192,45 +217,47 @@ export default function Dominion({ siteConfig }) {
               </div>
             </div>
 
-            <div className="col-24  flex  justify-center">
-              <div className="db  ph2  pb3  mb2">
-                <Button
-                  /* Options */
-                  type="primary"
-                  size="medium"
-                  text="Click here to join"
-                  color="black"
-                  fluid={false}
-                  icon={buttonIconPlus}
-                  iconFloat="left"
-                  inverted={false}
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={submit}
-                  /* Children */
-                  withLinkProps={null}
-                />
+            <div className="mla  mra  flex  flex-wrap  w-100">
+              <div className="col-11-md  col-24  flex  justify-center  justify-end-md">
+                <div className="db  ph2  pb3  mb2">
+                  <Button
+                    /* Options */
+                    type="primary"
+                    size="small"
+                    text="Click here to join"
+                    color="black"
+                    fluid={false}
+                    icon={buttonIconPlus}
+                    iconFloat="left"
+                    inverted={false}
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={submit}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="col-24  flex  justify-center">
-              <p className="f-secondary  tac  f5  lh-copy  pb3  mb2">OR</p>
-            </div>
+              <div className="col-2-md  col-24  flex  justify-center  align-center">
+                <p className="f-secondary  tac  f5  lh-copy  pb3  mb2">OR</p>
+              </div>
 
-            <div className="col-24  flex  justify-center">
-              <div className="db  ph2  pb3  mb2">
-                <PayPalScriptProvider
-                  options={{
-                    'client-id':
-                      'AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq',
-                    components: 'buttons',
-                    intent: 'subscription',
-                    vault: true
-                  }}
-                >
-                  <ButtonWrapper type="subscription" />
-                </PayPalScriptProvider>
+              <div className="col-11-md  col-24  flex  justify-center  justify-start-md">
+                <div className="db  ph2  pb3  mb2">
+                  <PayPalScriptProvider
+                    options={{
+                      'client-id':
+                        'AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq',
+                      components: 'buttons',
+                      intent: 'subscription',
+                      vault: true
+                    }}
+                  >
+                    <ButtonWrapper type="subscription" />
+                  </PayPalScriptProvider>
+                </div>
               </div>
             </div>
 
@@ -247,6 +274,61 @@ export default function Dominion({ siteConfig }) {
             </div>
           </div>
         </Container>
+
+        <div className="bg-almost-white  pv4">
+          <Container>
+            <div className="pb4  flex  justify-center">
+              <Heading
+                /* Options */
+                htmlEntity="h3"
+                text="Members"
+                color="black"
+                size="medium"
+                truncate={null}
+                skeleton={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+
+            <div className="flex  flex-wrap  justify-center  pb5">
+              {dominion?.length &&
+                dominion.map((i, o) => {
+                  // if (i.avatar) {
+                  return (
+                    <div className="col-2  flex  justify-center  pa2">
+                      <Image
+                        /* Options */
+                        src={
+                          i?.avatar
+                            ? imageBuilder
+                                .image(i?.avatar)
+                                .width(app?.deviceSize === 'md' ? 25 : 70)
+                                .height(app?.deviceSize === 'md' ? 25 : 70)
+                                .auto('format')
+                                .fit('clip')
+                                .url()
+                            : `https://picsum.photos/20${random(
+                                0,
+                                9
+                              )}/20${random(0, 9)}`
+                        }
+                        placeholder={null}
+                        alt="User"
+                        figcaption={null}
+                        height={app?.deviceSize === 'md' ? 25 : 70}
+                        width={app?.deviceSize === 'md' ? 25 : 70}
+                        customClass="shadow2  br-100  bg-grey"
+                        skeleton={false}
+                        onClick={null}
+                      />
+                    </div>
+                  );
+                  // }
+                })}
+            </div>
+          </Container>
+        </div>
       </div>
     </Layout>
   );

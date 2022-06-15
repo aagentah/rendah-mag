@@ -480,10 +480,10 @@ export async function getDominionPipeline(preview) {
 
 export async function getDominionUsers(preview) {
   const results = await getClient(preview).fetch(
-    `*[_type == "user" && publicProfile] [0..13] {
+    `*[_type == "user" && publicProfile && isDominion] {
       name,
       handle,
-      avatar
+      'avatar': avatar.asset->url,
     }`
   );
   return results;

@@ -168,11 +168,11 @@ export default function HeaderMobile({
               <li className="nav__item  db  pl4  pb3">
                 <Link href="/dominion">
                   <button
-                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                    className="t-primary  rendah-red  f3  bb  bw1  bc-black  dib  mb2  pb2"
                     onClick={toggleNav}
                     type="button"
                   >
-                    Dominion
+                    Dominion Subscription
                   </button>
                 </Link>
               </li>

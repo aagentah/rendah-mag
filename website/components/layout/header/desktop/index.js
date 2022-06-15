@@ -239,8 +239,8 @@ export default function HeaderDestop({
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="Dominion"
-                      color={navColour}
+                      text="Dominion Subscription"
+                      color="rendah-red"
                       fluid={false}
                       icon={buttonIcons.store}
                       iconFloat={null}
