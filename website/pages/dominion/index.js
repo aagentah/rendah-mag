@@ -275,7 +275,7 @@ export default function Dominion({ siteConfig }) {
           </div>
         </Container>
 
-        <div className="bg-almost-white  pv4">
+        <div className="bg-almost-white  pt5  pb4">
           <Container>
             <div className="pb4  flex  justify-center">
               <Heading
