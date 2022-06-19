@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import zenscroll from 'zenscroll';
 import { Icon } from 'next-pattern-library';
@@ -38,9 +38,12 @@ const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
 export default function Profile({ siteConfig }) {
   const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
+  const router = useRouter();
+
   const [refreshDominion, setRefreshDominion] = useState(false);
   const [refreshOffering, setRefreshOffering] = useState(false);
   const [refreshPack, setRefreshPack] = useState(false);
+  const [tabQuery, setTabQuery] = useState(router.query?.tab);
 
   const iconUser = <Icon className="grey" icon={['fas', 'user']} />;
   const iconEnvelope = <Icon className="grey" icon={['fas', 'envelope']} />;
@@ -65,11 +68,14 @@ export default function Profile({ siteConfig }) {
         zenscroll.toY(0);
       }
     }
+  };
 
-    // Handles dominion carousel refresh
-    // if (visibleTab === 'messages') {
-    //   setRefreshDominion(true);
-    // }
+  const handleSelected = () => {
+    if (tabQuery) {
+      return tabQuery;
+    }
+
+    return app.deviceSize === 'md' ? null : 'profile';
   };
 
   if (user) {
@@ -85,7 +91,7 @@ export default function Profile({ siteConfig }) {
               siteConfig,
               title: 'Profile',
               description: null,
-              image: null,
+              image: null
             }}
             preview={null}
           >
@@ -100,36 +106,26 @@ export default function Profile({ siteConfig }) {
                           id: 'profile',
                           tabTitle: 'Profile',
                           tabIcon: iconUser,
-                          tabContent: <ProfileEdit />,
+                          tabContent: <ProfileEdit />
                         },
-                        // {
-                        //   id: 'messages',
-                        //   tabTitle: 'Messages',
-                        //   tabIcon: iconEnvelope,
-                        //   tabContent: (
-                        //     <ProfileMessages
-                        //       refreshDominion={refreshDominion}
-                        //     />
-                        //   ),
-                        // },
                         {
                           id: 'offerings',
                           tabTitle: 'Offerings',
                           tabIcon: iconMusic,
-                          tabContent: <ProfileOfferings />,
+                          tabContent: <ProfileOfferings />
                         },
                         {
                           id: 'packs',
                           tabTitle: 'Samples',
                           tabIcon: iconPack,
-                          tabContent: <ProfilePacks />,
+                          tabContent: <ProfilePacks />
                         },
 
                         {
                           id: 'creations',
                           tabTitle: 'Creations',
                           tabIcon: iconNewspaper,
-                          tabContent: <ProfileCreations />,
+                          tabContent: <ProfileCreations />
                         },
                         // {
                         //   id: 'pipeline',
@@ -141,12 +137,10 @@ export default function Profile({ siteConfig }) {
                           id: 'billing',
                           tabTitle: 'Billing',
                           tabIcon: iconMoney,
-                          tabContent: <ProfileBilling />,
-                        },
+                          tabContent: <ProfileBilling />
+                        }
                       ]}
-                      defaultSelected={
-                        app.deviceSize === 'md' ? null : 'profile'
-                      }
+                      defaultSelected={handleSelected}
                       onToggle={handleToggle}
                     />
                   </div>
@@ -164,6 +158,6 @@ export async function getServerSideProps({ req }) {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig },
+    props: { siteConfig }
   };
 }

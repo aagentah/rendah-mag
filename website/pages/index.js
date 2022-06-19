@@ -12,13 +12,15 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Hero from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
+import CardCreations from '~/components/card/creations';
 import Modal from '~/components/modal';
 import SubscribeForm from '~/components/subscribe-form';
 
 import {
   getSiteConfig,
   getFeaturedPost,
-  getCategory
+  getCategory,
+  getAllCreationsTotal
 } from '~/lib/sanity/requests';
 
 import { useApp } from '~/context-provider/app';
@@ -32,18 +34,22 @@ export default function Home({ siteConfig }) {
   const [user] = useUser();
   const [featuredPost, setFeaturedPost] = useState(null);
   const [interviews, setInterviews] = useState(null);
+  const [creations, setCreations] = useState(null);
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
   const [interviewsLength, setInterviewsLength] = useState(4);
+  const [creationsLength, setCreationsLength] = useState(4);
 
   useEffect(() => {
     const action = async () => {
       const featuredPostRes = await getFeaturedPost();
       const interviewsRes = await getCategory('interviews', [1, 4]);
+      const creationsRes = await getAllCreationsTotal();
 
       setFeaturedPost(featuredPostRes);
       setInterviews(interviewsRes);
+      setCreations(creationsRes);
     };
 
     action();
@@ -210,6 +216,141 @@ export default function Home({ siteConfig }) {
               </div>
             </section>
           </Container>
+
+          <div className="creations  bg-black  mb5">
+            <Container>
+              <section className="pv5  creations  bg-black">
+                <div className="flex  flex-wrap  pb4  ph3">
+                  <div className="col-24  col-12-md  flex  justify-start">
+                    <div className="bg-white  pa2  dib">
+                      <Heading
+                        /* Options */
+                        htmlEntity="h2"
+                        text="Creations"
+                        color="black"
+                        size="small"
+                        truncate={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-24  col-12-md  flex  justify-end">
+                    <div className="pa2  dib">
+                      <Heading
+                        /* Options */
+                        htmlEntity="h2"
+                        text="Exclusive to the Dominion Subscription"
+                        color="white"
+                        size="small"
+                        truncate={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex  flex-wrap">
+                  {[...Array(creationsLength)].map((iteration, i) => (
+                    <div key={iteration} className="col-24  col-6-md">
+                      <div className="ph3  pv2">
+                        <CardCreations
+                          i={i}
+                          post={creations && creations[i]}
+                          columnCount={2}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {user ? (
+                  <div className="flex  justify-end  pr2">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="All Creations"
+                      color="black"
+                      fluid={false}
+                      icon={buttonIcon}
+                      iconFloat={null}
+                      inverted={false}
+                      loading={false}
+                      disabled={false}
+                      skeleton={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'next',
+                        href: '/profile?tab=creations',
+                        target: null,
+                        routerLink: Link,
+                        routerLinkProps: null
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div className="flex  justify-end  pr2">
+                    <div className="underline">
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="medium"
+                        text="Log in"
+                        color="black"
+                        fluid={false}
+                        icon={null}
+                        iconFloat={null}
+                        inverted={false}
+                        loading={false}
+                        disabled={false}
+                        skeleton={false}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={{
+                          type: 'next',
+                          href: '/login',
+                          target: null,
+                          routerLink: Link,
+                          routerLinkProps: null
+                        }}
+                      />
+                    </div>
+
+                    <span className="pl1  pr2  white">or</span>
+
+                    <div className="underline">
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="medium"
+                        text="Sign up"
+                        color="black"
+                        fluid={false}
+                        icon={buttonIcon}
+                        iconFloat={null}
+                        inverted={false}
+                        loading={false}
+                        disabled={false}
+                        skeleton={false}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={{
+                          type: 'next',
+                          href: '/dominion',
+                          target: null,
+                          routerLink: Link,
+                          routerLinkProps: null
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+              </section>
+            </Container>
+          </div>
 
           <Observer {...observer}>
             <div className="" />
