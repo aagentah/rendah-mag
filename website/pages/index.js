@@ -221,7 +221,7 @@ export default function Home({ siteConfig }) {
             <Container>
               <section className="pv5  creations  bg-black">
                 <div className="flex  flex-wrap  pb4  ph3">
-                  <div className="col-24  col-12-md  flex  justify-start">
+                  <div className="col-12-md  flex  justify-start">
                     <div className="bg-white  pa2  dib">
                       <Heading
                         /* Options */
@@ -235,12 +235,24 @@ export default function Home({ siteConfig }) {
                       />
                     </div>
                   </div>
-                  <div className="col-24  col-12-md  flex  justify-end">
-                    <div className="pa2  dib">
+                  <div className="col-12-md  flex  justify-end">
+                    <div className="pa2  dn  dib-md">
                       <Heading
                         /* Options */
                         htmlEntity="h2"
                         text="Exclusive to the Dominion Subscription"
+                        color="white"
+                        size="small"
+                        truncate={null}
+                        /* Children */
+                        withLinkProps={null}
+                      />
+                    </div>
+                    <div className="pa2  dib  dn-md">
+                      <Heading
+                        /* Options */
+                        htmlEntity="h2"
+                        text="Dominion Exclusives"
                         color="white"
                         size="small"
                         truncate={null}
