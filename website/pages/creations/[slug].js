@@ -17,7 +17,7 @@ import { useUser } from '~/lib/hooks';
 import {
   getSiteConfig,
   getAllCreationsTotal,
-  getCreation,
+  getCreation
 } from '~/lib/sanity/requests';
 
 export default function Creations({ siteConfig, post, preview }) {
@@ -71,8 +71,15 @@ export default function Creations({ siteConfig, post, preview }) {
 
             <p className="t-body  f6  lh-copy  taj  black">
               This article is exclusive to the Dominion. To read the full
-              article, please <a href="/login">log in</a> or{' '}
-              <a href="/dominion">sign up</a>.
+              article, please{' '}
+              <a className="underline" href="/login">
+                log in
+              </a>{' '}
+              or{' '}
+              <a className="underline" href="/dominion">
+                sign up
+              </a>
+              .
             </p>
           </div>
         );
@@ -95,7 +102,7 @@ export default function Creations({ siteConfig, post, preview }) {
           siteConfig,
           title: post.title,
           description: post.excerpt,
-          image: post.coverImage,
+          image: post.coverImage
         }}
         preview={preview}
       >
@@ -140,7 +147,7 @@ export default function Creations({ siteConfig, post, preview }) {
                 />
 
                 <p className="t-secondary  f6  white  lh-copy  pb4">
-                  {post.authors.map((i) => (
+                  {post.authors.map(i => (
                     <>
                       <Link href={`/team/${i.author.slug.current}`}>
                         <span className="cp  white  fw7">{i.author.name}</span>
@@ -162,7 +169,7 @@ export default function Creations({ siteConfig, post, preview }) {
             </article>
 
             <section className="flex  flex-wrap  justify-center  align-center  pb3  pb4-md">
-              {post.authors.map((i) => (
+              {post.authors.map(i => (
                 <div className="col-24  col-12-md  pb4  pb3-md  ph3">
                   <Author author={i.author} />
                 </div>
@@ -192,9 +199,9 @@ export async function getStaticProps({ req, params, preview = false }) {
     props: {
       siteConfig,
       preview,
-      post: data || null,
+      post: data || null
     },
-    revalidate: 1,
+    revalidate: 1
   };
 }
 
@@ -203,11 +210,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      data.map((creations) => ({
+      data.map(creations => ({
         params: {
-          slug: creations.slug,
-        },
+          slug: creations.slug
+        }
       })) || [],
-    fallback: 'blocking',
+    fallback: 'blocking'
   };
 }
