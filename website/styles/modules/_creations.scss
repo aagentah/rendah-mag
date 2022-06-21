@@ -23,9 +23,7 @@ $creations-black: #1c1c1c;
 
     strong,
     h2 {
-      // background-color: $creations-white !important;
       color: #eeeeee !important;
-      // box-shadow: 2px 0 0 $creations-white, -2px 0 0 $creations-white;
     }
   }
 
@@ -63,10 +61,6 @@ $creations-black: #1c1c1c;
 
   .article__social-links {
     background-color: $creations-black;
-    //
-    // * {
-    //   color: $creations-white;
-    // }
   }
 
   .article__author {
@@ -130,10 +124,6 @@ $creations-black: #1c1c1c;
       color: var(--white);
       fill: var(--white);
     }
-  }
-
-  .image__wrapper {
-    background: var(--black);
   }
 
   .checkbox__label {

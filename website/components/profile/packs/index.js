@@ -17,6 +17,7 @@ const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 export default function ProfilePacks() {
   const [user, { loading, mutate, error }] = useUser();
   const [samples, setSamples] = useState([]);
+  const [samplesLength, setSamplesLength] = useState(9);
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
   const handleAudioPlay = playerRef => setCurrentAudioSelected(playerRef);
   const [modalActive, setModalActive] = useState(false);
@@ -43,7 +44,10 @@ export default function ProfilePacks() {
       sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
 
       const data = await getAllPacks(sinceStartOfMonth, showAll);
-      if (data) setSamples(data);
+      if (data) {
+        setSamples(data);
+        setSamplesLength(data?.length);
+      }
     };
 
     action();
@@ -102,16 +106,15 @@ export default function ProfilePacks() {
               </div>
 
               <div className="flex  flex-wrap  pb3">
-                {samples.length
-                  ? samples.map((item, i) => (
-                      <div
-                        className="col-24  col-8-md  ph3  pv2"
-                        key={item.slug}
-                      >
-                        <CardPack i={i} post={item} handleClick={apply} />
-                      </div>
-                    ))
-                  : ''}
+                {[...Array(samplesLength)].map((iteration, i) => (
+                  <div key={iteration} className="col-24  col-8-md  ph3  pv2">
+                    <CardPack
+                      i={i}
+                      post={samples?.length && samples[i]}
+                      handleClick={apply}
+                    />
+                  </div>
+                ))}
 
                 {renderGhostCards()}
               </div>

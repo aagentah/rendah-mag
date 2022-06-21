@@ -17,6 +17,7 @@ const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 export default function ProfileDominion() {
   const [user, { loading, mutate, error }] = useUser();
   const [offerings, setOfferings] = useState([]);
+  const [offeringsLength, setOfferingsLength] = useState(9);
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
   const handleAudioPlay = playerRef => setCurrentAudioSelected(playerRef);
   const [modalActive, setModalActive] = useState(false);
@@ -48,7 +49,10 @@ export default function ProfileDominion() {
         d.toISOString().split('T')[0],
         showAll
       );
-      if (data) setOfferings(data);
+      if (data) {
+        setOfferings(data);
+        setOfferingsLength(data?.length);
+      }
     };
 
     action();
@@ -108,16 +112,15 @@ export default function ProfileDominion() {
               </div>
 
               <div className="flex  flex-wrap  pb3">
-                {offerings.length
-                  ? offerings.map((item, i) => (
-                      <div
-                        className="col-24  col-8-md  ph3  pv2"
-                        key={item.slug}
-                      >
-                        <CardOffering i={i} post={item} handleClick={apply} />
-                      </div>
-                    ))
-                  : ''}
+                {[...Array(offeringsLength)].map((iteration, i) => (
+                  <div key={iteration} className="col-24  col-8-md  ph3  pv2">
+                    <CardOffering
+                      i={i}
+                      post={offerings?.length && offerings[i]}
+                      handleClick={apply}
+                    />
+                  </div>
+                ))}
 
                 {renderGhostCards()}
               </div>

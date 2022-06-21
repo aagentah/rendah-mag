@@ -33,7 +33,7 @@ export default function CardOffering({ post, handleClick, i }) {
       color="white"
       size="small"
       truncate={2}
-      skeleton={!post}
+      skeleton={null}
       /* Children */
       withLinkProps={null}
     />
