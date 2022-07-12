@@ -15,7 +15,7 @@ export default function CarouselItemSection({ offering }) {
 
   return (
     <section>
-      <div className="pb2">
+      <div className="pb2  pt0  pt3-md">
         <Heading
           /* Options */
           htmlEntity="h1"

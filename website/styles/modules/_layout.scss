@@ -4,6 +4,10 @@ main {
   min-height: calc(100vh - 70px);
 }
 
+main.page--profile {
+  min-height: auto;
+}
+
 // Page transition
 
 .page-transition-enter {

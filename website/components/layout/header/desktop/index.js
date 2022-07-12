@@ -183,55 +183,55 @@ export default function HeaderDestop({
         <div className="col-12  ph4">
           <nav className="nav  w-100  flex  justify-end">
             <ul className="flex  flex-wrap">
+              {user && meta.title !== 'Profile' && (
+                <li className="nav__item  dib  pr3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="medium"
+                    text="Dominion Dashboard"
+                    color={navColour}
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/profile',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        scroll: false
+                      }
+                    }}
+                  />
+                </li>
+              )}
               {user ? (
-                <>
-                  <li className="nav__item  dib  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Profile"
-                      color={navColour}
-                      fluid={false}
-                      icon={null}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      skeleton={false}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={{
-                        type: 'next',
-                        href: '/profile',
-                        target: null,
-                        routerLink: Link,
-                        routerLinkProps: {
-                          scroll: false
-                        }
-                      }}
-                    />
-                  </li>
-                  <li className="nav__item  dib  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Log Out"
-                      color={navColour}
-                      fluid={false}
-                      icon={buttonIcons.signOut}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      skeleton={false}
-                      onClick={handleLogout}
-                      /* Children */
-                      withLinkProps={null}
-                    />
-                  </li>
-                </>
+                <li className="nav__item  dib  pr3">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="medium"
+                    text="Log Out"
+                    color={navColour}
+                    fluid={false}
+                    icon={buttonIcons.signOut}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={handleLogout}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </li>
               ) : (
                 <>
                   <li className="nav__item  dib  pr3">
@@ -239,7 +239,7 @@ export default function HeaderDestop({
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="Dominion Subscription"
+                      text="Sign Up Dominion"
                       color="rendah-red"
                       fluid={false}
                       icon={buttonIcons.store}
@@ -266,7 +266,7 @@ export default function HeaderDestop({
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="Login"
+                      text="Login Dominion"
                       color={navColour}
                       fluid={false}
                       icon={buttonIcons.signIn}

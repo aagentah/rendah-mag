@@ -17,7 +17,7 @@ export default function Layout({
   darkMode,
   meta,
   preview,
-  children,
+  children
 }) {
   // set device type in context API
   deviceSize();
@@ -46,7 +46,9 @@ export default function Layout({
       <ToastContainer />
       {preview && <Alert preview={preview} />}
       {!preview && !hideNav && <Header navOnWhite={navOnWhite} meta={meta} />}
-      <main className={`page ${navOffsetType} ${isDarkMode}`}>{children}</main>
+      <main className={`page  page--${title} ${navOffsetType} ${isDarkMode}`}>
+        {children}
+      </main>
       {!preview && title === 'login' && <CookieBanner />}
       {!hideFooter && <Footer />}
     </>

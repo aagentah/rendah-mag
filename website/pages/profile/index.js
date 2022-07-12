@@ -21,6 +21,10 @@ const stripePromise = loadStripe(
   'pk_live_51DvkhrKb3SeE1fXfAwS5aNbDhvI4t4cCbHvsVjk5bfmBvSF5tc2mEYHAVIMQCgcXBsKjo5AvaT48k39sbx3UKUu400TFSGqiL4'
 );
 
+const ProfileDashboard = dynamic(() =>
+  import('~/components/profile/dashboard')
+);
+
 const ProfileEdit = dynamic(() => import('~/components/profile/edit'));
 
 const ProfileOfferings = dynamic(() =>
@@ -45,6 +49,7 @@ export default function Profile({ siteConfig }) {
   const [refreshPack, setRefreshPack] = useState(false);
   const [tabQuery, setTabQuery] = useState(router.query?.tab);
 
+  const iconHouse = <Icon className="grey" icon={['fas', 'house']} />;
   const iconUser = <Icon className="grey" icon={['fas', 'user']} />;
   const iconEnvelope = <Icon className="grey" icon={['fas', 'envelope']} />;
   const iconMusic = <Icon className="grey" icon={['fas', 'music']} />;
@@ -75,7 +80,7 @@ export default function Profile({ siteConfig }) {
       return tabQuery;
     }
 
-    return app.deviceSize === 'md' ? null : 'profile';
+    return app.deviceSize === 'md' ? null : 'dashboard';
   };
 
   if (user) {
@@ -83,6 +88,7 @@ export default function Profile({ siteConfig }) {
       <Elements stripe={stripePromise}>
         <div className="creations">
           <Layout
+            title="profile"
             navOffset="top"
             navOnWhite={false}
             hasNav
@@ -103,29 +109,29 @@ export default function Profile({ siteConfig }) {
                       /* Options */
                       content={[
                         {
-                          id: 'profile',
-                          tabTitle: 'Profile',
-                          tabIcon: iconUser,
-                          tabContent: <ProfileEdit />
+                          id: 'dashboard',
+                          tabTitle: 'Dashboard',
+                          tabIcon: iconHouse,
+                          tabContent: ProfileDashboard
                         },
                         {
                           id: 'offerings',
-                          tabTitle: 'Offerings',
+                          tabTitle: 'Dubplates',
                           tabIcon: iconMusic,
-                          tabContent: <ProfileOfferings />
+                          tabContent: ProfileOfferings
                         },
                         {
                           id: 'packs',
                           tabTitle: 'Samples',
                           tabIcon: iconPack,
-                          tabContent: <ProfilePacks />
+                          tabContent: ProfilePacks
                         },
 
                         {
                           id: 'creations',
                           tabTitle: 'Creations',
                           tabIcon: iconNewspaper,
-                          tabContent: <ProfileCreations />
+                          tabContent: ProfileCreations
                         },
                         // {
                         //   id: 'pipeline',
@@ -134,10 +140,16 @@ export default function Profile({ siteConfig }) {
                         //   tabContent: <ProfilePipeline />,
                         // },
                         {
+                          id: 'profile',
+                          tabTitle: 'Profile',
+                          tabIcon: iconUser,
+                          tabContent: ProfileEdit
+                        },
+                        {
                           id: 'billing',
                           tabTitle: 'Billing',
                           tabIcon: iconMoney,
-                          tabContent: <ProfileBilling />
+                          tabContent: ProfileBilling
                         }
                       ]}
                       defaultSelected={handleSelected}

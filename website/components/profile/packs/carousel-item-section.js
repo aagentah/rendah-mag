@@ -12,13 +12,13 @@ export default function CarouselItemSection({ pack }) {
   const scale = app?.isRetina ? 2 : 1;
 
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
-  const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
+  const handleAudioPlay = playerRef => setCurrentAudioSelected(playerRef);
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 400;
   const imageUrlHeight = app?.deviceSize === 'md' ? 260 : 400;
 
   return (
     <section>
-      <div className="flex  flex-wrap">
+      <div className="flex  flex-wrap  pt0  pt3-md">
         <div className="col-24  col-12-md  ph3  pr4-md  ph0-md">
           <div className="col-24">
             <Heading
@@ -61,7 +61,7 @@ export default function CarouselItemSection({ pack }) {
                 href: `${pack.folder}?dl=`,
                 target: null,
                 routerLink: null,
-                routerLinkProps: null,
+                routerLinkProps: null
               }}
             />
           </div>

@@ -93,7 +93,7 @@ export default function ProfileDominion() {
                 <Heading
                   /* Options */
                   htmlEntity="h1"
-                  text="Offerings"
+                  text="Dubplates"
                   color="white"
                   size="medium"
                   truncate={null}

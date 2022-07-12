@@ -9,7 +9,7 @@ import {
   Copy,
   Icon,
   Input,
-  Checkbox,
+  Checkbox
 } from 'next-pattern-library';
 
 import Modal from '~/components/modal';
@@ -26,7 +26,7 @@ export default function ProfileEdit() {
   const [passwordModalActive, setPasswordModalActive] = useState(false);
   const [
     updatePasswordButtonLoading,
-    setUpdatePasswordButtonLoading,
+    setUpdatePasswordButtonLoading
   ] = useState(false);
   const [avatarModalActive, setAvatarModalActive] = useState(false);
   const [user, { mutate }] = useUser();
@@ -40,11 +40,11 @@ export default function ProfileEdit() {
     'Label',
     'Listener',
     'Developer',
-    'Engineer',
+    'Engineer'
   ];
 
   const onDrop = useCallback(
-    (acceptedFiles) => {
+    acceptedFiles => {
       setAvatarModalActive(false);
 
       toast.info(`To save your image, make sure to hit Update.`);
@@ -63,7 +63,7 @@ export default function ProfileEdit() {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     multiple: false,
-    onDrop,
+    onDrop
   });
 
   useEffect(() => {
@@ -86,7 +86,7 @@ export default function ProfileEdit() {
     if (updatePasswordButtonLoading) return false;
 
     const body = {
-      password: e.currentTarget.password.value,
+      password: e.currentTarget.password.value
     };
 
     if (!body.password) {
@@ -122,7 +122,7 @@ export default function ProfileEdit() {
     const response = await fetch(`${process.env.SITE_URL}/api/user`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body)
     });
 
     if (response.ok) {
@@ -153,7 +153,7 @@ export default function ProfileEdit() {
 
       tags.push({
         name: checkbox.name,
-        status: checkbox.checked ? 'active' : 'inactive',
+        status: checkbox.checked ? 'active' : 'inactive'
       });
     }
 
@@ -162,7 +162,7 @@ export default function ProfileEdit() {
       name: e.currentTarget.name.value,
       handle: e.currentTarget.handle.value,
       discordId: e.currentTarget.discordId.value,
-      publicProfile: e.currentTarget.publicProfile.checked,
+      publicProfile: e.currentTarget.publicProfile.checked
     };
 
     if (!body.name) {
@@ -201,7 +201,7 @@ export default function ProfileEdit() {
     const response = await fetch(`${process.env.SITE_URL}/api/user`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body)
     });
 
     if (response.ok) {
@@ -319,7 +319,7 @@ export default function ProfileEdit() {
                     type: 'form',
                     url: null,
                     target: null,
-                    routerLink: null,
+                    routerLink: null
                   }}
                 />
               </div>
@@ -520,7 +520,7 @@ export default function ProfileEdit() {
               <div className="pv3">
                 <Checkbox
                   /* Options */
-                  label="Public Profile (Coming Soon)"
+                  label="Public Profile"
                   name="publicProfile"
                   checked={user.publicProfile}
                   required={false}
@@ -545,7 +545,7 @@ export default function ProfileEdit() {
                   />
                 </div>
                 <div className="flex  flex-wrap">
-                  {userTags.map((tag) => (
+                  {userTags.map(tag => (
                     <div key={tag} className="col-24  col-12-md">
                       <div className="pv2">
                         <Checkbox
@@ -585,7 +585,7 @@ export default function ProfileEdit() {
                   type: 'form',
                   url: null,
                   target: null,
-                  routerLink: null,
+                  routerLink: null
                 }}
               />
             </div>

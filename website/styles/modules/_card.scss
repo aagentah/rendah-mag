@@ -143,3 +143,10 @@
     cursor: pointer;
   }
 }
+
+.card--dashboard {
+  .card__button {
+    margin: 0 auto;
+    text-align: center;
+  }
+}

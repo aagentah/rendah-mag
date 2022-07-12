@@ -136,33 +136,32 @@ export default function HeaderMobile({
               </button>
             </Link>
           </li>
-
-          {user ? (
-            <>
-              <li className="nav__item  db  pl4  pb3">
-                <Link href="/profile">
-                  <button
-                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                    onClick={toggleNav}
-                    type="button"
-                  >
-                    Profile
-                  </button>
-                </Link>
-              </li>
-              <li className="nav__item  db  pl4  pb3">
+          {user && meta.title !== 'Profile' && (
+            <li className="nav__item  db  pl4  pb3">
+              <Link href="/profile">
                 <button
                   className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                  onClick={() => {
-                    toggleNav();
-                    handleLogout();
-                  }}
+                  onClick={toggleNav}
                   type="button"
                 >
-                  Log Out
+                  Dominion Dashboard
                 </button>
-              </li>
-            </>
+              </Link>
+            </li>
+          )}
+          {user ? (
+            <li className="nav__item  db  pl4  pb3">
+              <button
+                className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                onClick={() => {
+                  toggleNav();
+                  handleLogout();
+                }}
+                type="button"
+              >
+                Log Out
+              </button>
+            </li>
           ) : (
             <>
               <li className="nav__item  db  pl4  pb3">
@@ -172,7 +171,7 @@ export default function HeaderMobile({
                     onClick={toggleNav}
                     type="button"
                   >
-                    Dominion Subscription
+                    Sign Up Dominion
                   </button>
                 </Link>
               </li>
@@ -183,7 +182,7 @@ export default function HeaderMobile({
                     onClick={toggleNav}
                     type="button"
                   >
-                    Login
+                    Login Dominion
                   </button>
                 </Link>
               </li>
