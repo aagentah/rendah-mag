@@ -67,11 +67,7 @@ export default function Profile({ siteConfig }) {
     // Handles tab scroll on mobile
     if (app.deviceSize === 'md') {
       zenscroll.setup(300, 15);
-      if (visibleTab) {
-        zenscroll.to(current, 400);
-      } else {
-        zenscroll.toY(0);
-      }
+      zenscroll.toY(0);
     }
   };
 
