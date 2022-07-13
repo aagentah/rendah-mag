@@ -61,7 +61,7 @@ export default function ProfileDominion() {
   const renderGhostCards = () => {
     const count = 9 - offerings?.length;
     const ghostCards = [];
-    const ghostItem = { title: '???' };
+    const ghostItem = { title: 'TBA' };
 
     if (count > 0) {
       for (let i = 0; i < count; i++) {
@@ -104,7 +104,7 @@ export default function ProfileDominion() {
 
               <div className="pb4  mb2">
                 <p className="white  f6  lh-copy">
-                  An 'Offering' pack consists of exclusive music from the
+                  A 'Dubplates' pack consists of exclusive music from the
                   artists & labels that we work with, available as part of the
                   Dominion. Each month we add an additional Offering to this tab
                   from the month in which you joined.
@@ -125,36 +125,38 @@ export default function ProfileDominion() {
                 {renderGhostCards()}
               </div>
 
-              <div
-                className="flex  justify-center"
-                onClick={() => {
-                  if (showAll || offerings?.length <= 12) return;
-                  setShowAll(true);
-                }}
-              >
-                <Button
-                  /* Options */
-                  type="primary"
-                  size="small"
-                  text="Load more"
-                  color="white"
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted={true}
-                  loading={null}
-                  disabled={showAll || offerings?.length <= 12}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'form',
-                    url: null,
-                    target: null,
-                    routerLink: null
+              {offerings?.length > 9 && (
+                <div
+                  className="flex  justify-center"
+                  onClick={() => {
+                    if (showAll || offerings?.length <= 12) return;
+                    setShowAll(true);
                   }}
-                />
-              </div>
+                >
+                  <Button
+                    /* Options */
+                    type="primary"
+                    size="small"
+                    text="Load more"
+                    color="white"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted={true}
+                    loading={null}
+                    disabled={showAll || offerings?.length <= 12}
+                    skeleton={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'form',
+                      url: null,
+                      target: null,
+                      routerLink: null
+                    }}
+                  />
+                </div>
+              )}
             </div>
 
             <section>

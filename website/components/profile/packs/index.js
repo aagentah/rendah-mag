@@ -56,7 +56,7 @@ export default function ProfilePacks() {
   const renderGhostCards = () => {
     const count = 9 - samples?.length;
     const ghostCards = [];
-    const ghostItem = { title: '???' };
+    const ghostItem = { title: 'TBA' };
 
     if (count > 0) {
       for (let i = 0; i < count; i++) {
@@ -99,9 +99,9 @@ export default function ProfilePacks() {
 
               <div className="pb4  mb2">
                 <p className="white  f6  lh-copy">
-                  Each month, we feature an exclusive pack from the various
-                  artists that we work with in the community, available to
-                  download on the Dominion.
+                  Each month, we feature an exclusive sample pack from the
+                  various artists that we work with in the community, available
+                  to download on the Dominion.
                 </p>
               </div>
 
@@ -119,36 +119,38 @@ export default function ProfilePacks() {
                 {renderGhostCards()}
               </div>
 
-              <div
-                className="flex  justify-center"
-                onClick={() => {
-                  if (showAll || samples?.length <= 12) return;
-                  setShowAll(true);
-                }}
-              >
-                <Button
-                  /* Options */
-                  type="primary"
-                  size="small"
-                  text="Load more"
-                  color="white"
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted={true}
-                  loading={null}
-                  disabled={showAll || samples?.length <= 12}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'form',
-                    url: null,
-                    target: null,
-                    routerLink: null
+              {samples?.length > 9 && (
+                <div
+                  className="flex  justify-center"
+                  onClick={() => {
+                    if (showAll || samples?.length <= 12) return;
+                    setShowAll(true);
                   }}
-                />
-              </div>
+                >
+                  <Button
+                    /* Options */
+                    type="primary"
+                    size="small"
+                    text="Load more"
+                    color="white"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted={true}
+                    loading={null}
+                    disabled={showAll || samples?.length <= 12}
+                    skeleton={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'form',
+                      url: null,
+                      target: null,
+                      routerLink: null
+                    }}
+                  />
+                </div>
+              )}
             </div>
 
             <section>
