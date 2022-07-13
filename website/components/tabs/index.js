@@ -61,6 +61,14 @@ export default function Tabs(props) {
   const listContent = content.map((item, i) => {
     const Content = item.tabContent;
 
+    const renderContent = () => {
+      if (Content?.type) {
+        return item.tabContent;
+      }
+
+      return <Content handleToggle={handleToggle} />;
+    };
+
     return (
       <div
         key={item.id}
@@ -84,9 +92,8 @@ export default function Tabs(props) {
           )}
         </div>
         <div className="tabs__content">
-          {(visibleTab === item.id || theArray.includes(item.id)) && (
-            <Content handleToggle={handleToggle} />
-          )}
+          {(visibleTab === item.id || theArray.includes(item.id)) &&
+            renderContent()}
         </div>
       </div>
     );
