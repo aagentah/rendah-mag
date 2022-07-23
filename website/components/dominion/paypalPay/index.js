@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Router from 'next/router';
 
 import {
   PayPalScriptProvider,
@@ -7,6 +8,12 @@ import {
 } from '@paypal/react-paypal-js';
 
 function PaypalPay() {
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    if (redirect) Router.replace('/dominion-thank-you');
+  }, [redirect]);
+
   const ButtonWrapper = ({ type }) => {
     const [{ options }, dispatch] = usePayPalScriptReducer();
 

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import fetch from 'isomorphic-unfetch';
-import Router from 'next/router';
 
 import classNames from 'classnames';
 
@@ -13,7 +12,6 @@ import { useApp } from '~/context-provider/app';
 
 function Buttons() {
   const [discount, setDiscount] = useState('');
-  const [redirect, setRedirect] = useState(false);
   const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
   const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
   const app = useApp();
@@ -27,10 +25,6 @@ function Buttons() {
     db: discount === 'RND1MONTH',
     dn: discount !== 'RND1MONTH'
   });
-
-  useEffect(() => {
-    if (redirect) Router.replace('/dominion-thank-you');
-  }, [redirect]);
 
   const submit = async () => {
     const priceId =
