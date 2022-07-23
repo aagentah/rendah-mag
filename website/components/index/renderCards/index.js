@@ -49,9 +49,9 @@ export default function Home({ siteConfig }) {
           </div>
         </Parallax>
 
-        <div className="flex  flex-wrap  pt5-md">
+        <div className="flex  flex-wrap  mt4  mt0-md  pt5-md">
           <div className="col-24">
-            <section className="pb5">
+            <section className="pb6  pb5-md">
               <div className="flex  flex-wrap">
                 {[...Array(premieresLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-6-md">
@@ -155,7 +155,7 @@ export default function Home({ siteConfig }) {
           </div>
 
           <div className="col-24  col-12-md  pl0  pl3-md">
-            <section className="pb5">
+            <section className="pb6  pb5-md">
               <div className="flex  flex-wrap">
                 {[...Array(insightsLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-12-md">

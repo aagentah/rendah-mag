@@ -161,7 +161,7 @@ export default function Home({ siteConfig }) {
           skeleton={!homePage}
         />
 
-        <div className="pt5  mt5-md">
+        <div className="pt5  mt4  mt5-md">
           <Container>
             <div className="relative">
               <Parallax speed={-3} disabled={app.deviceSize === 'md'}>
@@ -217,7 +217,7 @@ export default function Home({ siteConfig }) {
             </div>
           </Container>
 
-          <div className="creations  bg-black  mb5">
+          <div className="creations  bg-black  mb6  mb5-md">
             <Container>
               <section className="pv5  creations  bg-black">
                 <div className="flex  flex-wrap  pb4  ph3">
