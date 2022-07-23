@@ -39,6 +39,7 @@ import smartLink from "./documents/smartLink";
 import track from "./documents/audio/track";
 import pack from "./documents/audio/pack";
 
+import homePage from "./objects/homePage";
 import siteSettings from "./objects/siteSettings";
 
 export default createSchema({
@@ -69,5 +70,6 @@ export default createSchema({
     galleryPost,
     //
     siteSettings,
-  ]),
+    homePage
+  ])
 });

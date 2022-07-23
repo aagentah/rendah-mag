@@ -281,7 +281,7 @@ export async function getTagAndPosts(slug, preview) {
 
 export async function getAllProducts(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "storeItem"] | order(publishedAt asc) {
+    .fetch(`*[_type == "storeItem"] | order(publishedAt desc) {
       ${productFields}
     }`);
   return results;
@@ -520,4 +520,12 @@ export async function getAllPacks(showAll, preview) {
     { show }
   );
   return results;
+}
+
+export async function getHomePage() {
+  const data = await client.fetch(`*[_type == "homePage"] [0] {
+    ...,
+    'heroImage': heroImage.asset->url,
+   }`);
+  return data;
 }

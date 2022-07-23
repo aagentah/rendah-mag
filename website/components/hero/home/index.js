@@ -162,7 +162,7 @@ export default function HeroDefault({
   marginBottom,
   modifier,
   //
-  skeleton,
+  skeleton
 }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
@@ -179,19 +179,19 @@ export default function HeroDefault({
   let heroButton;
 
   const styles = {
-    height: `${imageHeight}px`,
+    height: `${imageHeight}px`
   };
 
   if (link) {
     linkProps = {
       type: 'next',
-      href: '/article/[slug]',
+      href: `/${link}`,
       target: null,
       routerLink: Link,
       routerLinkProps: {
-        as: `/article/${link}`,
-        scroll: false,
-      },
+        as: `/${link}`,
+        scroll: false
+      }
     };
   }
 
@@ -252,7 +252,7 @@ export default function HeroDefault({
       <Copy
         /* Options */
         text={description || ''}
-        color="black"
+        color="white"
         size="medium"
         truncate={null}
         skeleton={skeleton}

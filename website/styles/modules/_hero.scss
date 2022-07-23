@@ -27,6 +27,7 @@
 }
 
 .hero__description {
+  @extend .pt3;
   @extend .f5;
   @extend .lh-copy;
 }
@@ -72,9 +73,13 @@
 }
 
 .hero--home {
-  height: 100vh;
-  max-height: 100vh;
+  height: 75vh;
+  max-height: 75vh;
   @extend .hero--darken-all;
+
+  .hero__button {
+    @extend .pt1;
+  }
 }
 
 .hero--creations {
@@ -88,4 +93,70 @@
 
 .hero--article {
   @extend .hero--darken-top;
+}
+
+
+
+.category-label {
+  position: absolute;
+  opacity: 0.5;
+  text-align: center;
+  font-family: $archive;
+  color: var(--rendah-red);
+  top: -30px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.category-label--interviews {
+  font-size: 50px;
+}
+
+.category-label--premieres {
+  font-size: 52px;
+}
+
+.category-label--news-insights {
+  top: -20px;
+  font-size: 38px;
+}
+
+.category-label--guest-mix {
+  top: -28px;
+  font-size: 48px;
+}
+
+@include breakpoint-up(md) {
+  .category-label--interviews {
+    top: 280px;
+    left: -330px;
+    right: auto;
+    transform: rotate(-90deg);
+    font-size: 90px;
+  }
+
+  .category-label--premieres {
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: rotate(0deg);
+    font-size: 100px;
+  }
+
+  .category-label--news-insights {
+    top: 330px;
+    left: -280px;
+    right: auto;
+    transform: rotate(-90deg);
+    font-size: 55px;
+  }
+
+  .category-label--guest-mix {
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: rotate(0deg);
+    font-size: 100px;
+  }
 }

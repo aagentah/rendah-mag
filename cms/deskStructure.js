@@ -34,6 +34,17 @@ export default async () => {
         )
     : S.divider();
 
+  const homePage = isOwner
+    ? S.listItem()
+        .icon(MdSettings)
+        .title("Home Page")
+        .child(
+          S.editor()
+            .schemaType("homePage")
+            .documentId("homePage")
+        )
+    : S.divider();
+
   const store = isOwner
     ? S.listItem()
         .icon(MDShop)
@@ -127,6 +138,7 @@ export default async () => {
       .title("Content")
       .items([
         siteSettings,
+        homePage,
         // Divider
         S.divider(),
         // Blog

@@ -3,14 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 
-import {
-  Heading,
-  Copy,
-  Label,
-  Image,
-  Button,
-  Icon
-} from 'next-pattern-library';
+import { Heading, Label, Image, Button, Icon } from 'next-pattern-library';
 
 import { useApp } from '~/context-provider/app';
 
@@ -80,52 +73,48 @@ export default function Product({ siteConfig, product }) {
     const renderPurchaseButton = () => {
       if (isSoldOut) {
         return (
-          <div className="dib  ph2  pb3">
-            <Button
-              /* Options */
-              type="primary"
-              size="medium"
-              text="Sold Out"
-              color="grey"
-              fluid={false}
-              icon={buttonIconPlus}
-              iconFloat="left"
-              inverted={false}
-              loading={false}
-              disabled
-              skeleton={false}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
+          <Button
+            /* Options */
+            type="primary"
+            size="medium"
+            text="Sold Out"
+            color="grey"
+            fluid={true}
+            icon={buttonIconPlus}
+            iconFloat="left"
+            inverted={false}
+            loading={false}
+            disabled
+            skeleton={false}
+            onClick={null}
+            /* Children */
+            withLinkProps={null}
+          />
         );
       }
 
       if (product.category === 'Printed Issues') {
         return (
           <>
-            <div className="dib  ph2  pb3">
-              <Button
-                /* Options */
-                type="primary"
-                size="medium"
-                text="Purchase"
-                color="black"
-                fluid={false}
-                icon={buttonIconPlus}
-                iconFloat="left"
-                inverted={false}
-                loading={false}
-                disabled={false}
-                skeleton={false}
-                onClick={() => {
-                  setModalActive(true);
-                }}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
+            <Button
+              /* Options */
+              type="primary"
+              size="medium"
+              text="Purchase"
+              color="black"
+              fluid={true}
+              icon={buttonIconPlus}
+              iconFloat="left"
+              inverted={false}
+              loading={false}
+              disabled={false}
+              skeleton={false}
+              onClick={() => {
+                setModalActive(true);
+              }}
+              /* Children */
+              withLinkProps={null}
+            />
 
             <Modal
               /* Options */
@@ -148,34 +137,29 @@ export default function Product({ siteConfig, product }) {
 
               <div className="pb4  pb3-md">
                 <div className="pb3">
-                  <Copy
-                    /* Options */
-                    text={`
-                      Joining our Dominion Subscription is cheaper than individual prints,
-                      and will give access to a great deal of additional features.
-                    `}
-                    color="black"
-                    size="medium"
-                    truncate={null}
-                  />
+                  <p className="f-secondary  taj  f6  pb3  lh-copy">
+                    Joining our Dominion Subscription is cheaper than individual
+                    prints, and will give access to a great deal of additional
+                    features.
+                  </p>
                 </div>
 
                 <div className="measure-wide  ph4  ph0-md">
-                  <p className="f-secondary  taj  f5  pb3  lh-copy">
+                  <p className="f-secondary  taj  f6  pb3  lh-copy">
                     <strong>We offer the following:</strong>
                   </p>
                   <ul className="pl3">
-                    <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    <li className="f-secondary  tal  f6  pb2  lh-copy">
                       A Welcome package (+ membership card & stickers).
                     </li>
-                    <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    <li className="f-secondary  tal  f6  pb2  lh-copy">
                       A quarter-yearly printed issue of Rendah Mag.
                     </li>
-                    <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    <li className="f-secondary  tal  f6  pb2  lh-copy">
                       Monthly exclusive music, samples, tutorials, and 'behind
                       the scenes' insights of underground music
                     </li>
-                    <li className="f-secondary  tal  f5  pb2  lh-copy">
+                    <li className="f-secondary  tal  f6  pb2  lh-copy">
                       Your own Dominion Profile & login.
                     </li>
                     {
@@ -242,25 +226,23 @@ export default function Product({ siteConfig, product }) {
       }
 
       return (
-        <div className="dib  ph2  pb3">
-          <Button
-            /* Options */
-            type="primary"
-            size="medium"
-            text="Add to Cart"
-            color="black"
-            fluid={false}
-            icon={buttonIconPlus}
-            iconFloat="left"
-            inverted={false}
-            loading={false}
-            disabled={false}
-            skeleton={false}
-            onClick={() => submit(product?.priceId)}
-            /* Children */
-            withLinkProps={null}
-          />
-        </div>
+        <Button
+          /* Options */
+          type="primary"
+          size="medium"
+          text="Add to Cart"
+          color="black"
+          fluid={true}
+          icon={buttonIconPlus}
+          iconFloat="left"
+          inverted={false}
+          loading={false}
+          disabled={false}
+          skeleton={false}
+          onClick={() => submit(product?.priceId)}
+          /* Children */
+          withLinkProps={null}
+        />
       );
     };
 
@@ -368,7 +350,7 @@ export default function Product({ siteConfig, product }) {
                     )}
                   </div>
 
-                  <div className="product__tabs  bb  bc-black  pb3  mb4">
+                  <div className="product__tabs  bb  bc-black  mb3">
                     <Tabs
                       /* Options */
                       content={[
@@ -388,12 +370,12 @@ export default function Product({ siteConfig, product }) {
                   </div>
 
                   {!isSoldOut && (
-                    <div className="flex  flex-wrap  align-center  justify-center  justify-start-md  ph2  pb4">
-                      <div className="col-24  col-11-md  flex  flex-wrap  align-center">
-                        <div className="db  pr3">
-                          <span>Quantity:</span>
-                        </div>
-                        <div className="flex  flex-wrap  bg-white  justify-center  pa2  br2">
+                    <div className="flex  flex-wrap  align-center  justify-center  justify-start-md  ph2  pt2  pb4">
+                      <div className="col-24  col-8-md  flex  flex-wrap  align-center  pb3  pb0-md">
+                        {renderPurchaseButton()}
+                      </div>
+                      <div className="col-24  col-8-md  flex  flex-wrap  justify-center  align-center  ph3-md  pb3  pb0-md">
+                        <div className="flex  flex-wrap  bg-white  justify-center  pv3  br2  w-100">
                           <span
                             onClick={() =>
                               quantity > 1 && setQuantity(quantity - 1)
@@ -411,28 +393,19 @@ export default function Product({ siteConfig, product }) {
                           </span>
                         </div>
                       </div>
-                      <div className="col-24  col-13-md  flex  flex-wrap  align-center">
-                        <div className="flex  flex-wrap  align-center  justify-center  justify-start-md  ph2">
-                          <div className="db  pr3">
-                            <span>Code:</span>
-                          </div>
-                          <div className="mw4">
-                            <input
-                              className="input"
-                              placeholder="PROMO CODE"
-                              type="text"
-                              value={discount}
-                              onChange={e => setDiscount(e.target.value)}
-                            />
-                          </div>
+                      <div className="col-24  col-8-md  flex  flex-wrap  align-center">
+                        <div className="flex  flex-wrap  bg-white  justify-center  pa2  ph3  br2  w-100">
+                          <input
+                            className="input  w-100  tac"
+                            placeholder="PROMO CODE"
+                            type="text"
+                            value={discount}
+                            onChange={e => setDiscount(e.target.value)}
+                          />
                         </div>
                       </div>
                     </div>
                   )}
-
-                  <div className="flex  flex-wrap  align-center  justify-center  justify-start-md">
-                    {renderPurchaseButton()}
-                  </div>
                 </div>
               </div>
             </Container>

@@ -1,13 +1,17 @@
+import { Parallax } from 'react-scroll-parallax';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Heading, Button, Icon } from 'next-pattern-library';
+import { Button, Icon } from 'next-pattern-library';
 
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
 import { getCategory } from '~/lib/sanity/requests';
+import { useApp } from '~/context-provider/app';
 
 export default function Home({ siteConfig }) {
+  const app = useApp();
+
   const [news, setNews] = useState(null);
   const [insights, setInsights] = useState(null);
   const [premieres, setPremieres] = useState(null);
@@ -39,24 +43,15 @@ export default function Home({ siteConfig }) {
   return (
     <>
       <Container>
-        <div className="flex  flex-wrap">
+        <Parallax speed={-3} disabled={app.deviceSize === 'md'}>
+          <div className="category-label  category-label--premieres">
+            Premieres
+          </div>
+        </Parallax>
+
+        <div className="flex  flex-wrap  pt5-md">
           <div className="col-24">
             <section className="pb5">
-              <div className="pb4  ph3">
-                <div className="bg-black  pa2  dib">
-                  <Heading
-                    /* Options */
-                    htmlEntity="h2"
-                    text="Premieres"
-                    color="white"
-                    size="small"
-                    truncate={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
-              </div>
-
               <div className="flex  flex-wrap">
                 {[...Array(premieresLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-6-md">
@@ -94,8 +89,8 @@ export default function Home({ siteConfig }) {
                     routerLink: Link,
                     routerLinkProps: {
                       as: `/category/premieres`,
-                      scroll: false,
-                    },
+                      scroll: false
+                    }
                   }}
                 />
               </div>
@@ -105,24 +100,15 @@ export default function Home({ siteConfig }) {
       </Container>
 
       <Container>
-        <div className="flex  flex-wrap">
+        <Parallax speed={-3} disabled={app.deviceSize === 'md'}>
+          <div className="category-label  category-label--news-insights">
+            News & Insights
+          </div>
+        </Parallax>
+
+        <div className="flex  flex-wrap  pt5-md">
           <div className="col-24  col-12-md  pr0  pr3-md">
             <section className="pb5">
-              <div className="pb4  ph3">
-                <div className="bg-black  pa2  dib">
-                  <Heading
-                    /* Options */
-                    htmlEntity="h2"
-                    text="News"
-                    color="white"
-                    size="small"
-                    truncate={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
-              </div>
-
               <div className="flex  flex-wrap">
                 {[...Array(newsLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-12-md">
@@ -160,8 +146,8 @@ export default function Home({ siteConfig }) {
                     routerLink: Link,
                     routerLinkProps: {
                       as: `/category/news`,
-                      scroll: false,
-                    },
+                      scroll: false
+                    }
                   }}
                 />
               </div>
@@ -170,21 +156,6 @@ export default function Home({ siteConfig }) {
 
           <div className="col-24  col-12-md  pl0  pl3-md">
             <section className="pb5">
-              <div className="pb4  ph3">
-                <div className="bg-black  pa2  dib">
-                  <Heading
-                    /* Options */
-                    htmlEntity="h2"
-                    text="Insights"
-                    color="white"
-                    size="small"
-                    truncate={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
-              </div>
-
               <div className="flex  flex-wrap">
                 {[...Array(insightsLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-12-md">
@@ -222,8 +193,8 @@ export default function Home({ siteConfig }) {
                     routerLink: Link,
                     routerLinkProps: {
                       as: `/category/insights`,
-                      scroll: false,
-                    },
+                      scroll: false
+                    }
                   }}
                 />
               </div>
@@ -233,24 +204,15 @@ export default function Home({ siteConfig }) {
       </Container>
 
       <Container>
-        <div className="flex  flex-wrap">
+        <Parallax speed={-3} disabled={app.deviceSize === 'md'}>
+          <div className="category-label  category-label--guest-mix">
+            Guest Mixes
+          </div>
+        </Parallax>
+
+        <div className="flex  flex-wrap  pt5-md">
           <div className="col-24">
             <section className="pb5  pb6-md">
-              <div className="pb4  ph3">
-                <div className="bg-black  pa2  dib">
-                  <Heading
-                    /* Options */
-                    htmlEntity="h2"
-                    text="Guest Mixes"
-                    color="white"
-                    size="small"
-                    truncate={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
-              </div>
-
               <div className="flex  flex-wrap">
                 {[...Array(guestMixesLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-6-md">
@@ -288,8 +250,8 @@ export default function Home({ siteConfig }) {
                     routerLink: Link,
                     routerLinkProps: {
                       as: `/category/guest-mix`,
-                      scroll: false,
-                    },
+                      scroll: false
+                    }
                   }}
                 />
               </div>

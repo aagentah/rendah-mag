@@ -4,12 +4,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+@font-face {
+  font-family: 'Archive';
+  src:
+    url('/fonts/archive.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 $system-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
   'Ubuntu', 'Roboto', 'Noto', 'Segoe Ui', Arial, sans-serif;
 $helvetica: 'Helvetica Neue', Helvetica, sans-serif;
 $mono: 'Consolas', 'Menlo', 'Monaco', 'Lucida Console', monospace;
 $sans: sans-serif;
 $serif: serif;
+$archive: 'Archive', serif;
 
 $t-primary: 'Play', sans-serif;
 $t-secondary: 'Roboto', sans-serif;

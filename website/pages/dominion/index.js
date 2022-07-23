@@ -1,36 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import fetch from 'isomorphic-unfetch';
-import Router from 'next/router';
-import {
-  PayPalScriptProvider,
-  PayPalButtons,
-  usePayPalScriptReducer
-} from '@paypal/react-paypal-js';
+import Script from 'next/script';
+
 import random from 'lodash/random';
 
-import { Image, Button, Icon, Heading } from 'next-pattern-library';
+import { Image, Heading } from 'next-pattern-library';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
+import Buttons from '~/components/dominion/buttons';
 
 import {
   getSiteConfig,
   getDominionUsers,
   imageBuilder
 } from '~/lib/sanity/requests';
+
 import { useApp } from '~/context-provider/app';
 
 export default function Dominion({ siteConfig }) {
-  const [discount, setDiscount] = useState('');
-  const [redirect, setRedirect] = useState(false);
-  const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
-  const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
+  const [renderButtons, setRenderButtons] = useState(false);
   const [dominion, setDominion] = useState(null);
   const app = useApp();
-
-  useEffect(() => {
-    if (redirect) Router.replace('/dominion-thank-you');
-  }, [redirect]);
 
   useEffect(() => {
     const action = async () => {
@@ -48,77 +38,15 @@ export default function Dominion({ siteConfig }) {
     action();
   }, []);
 
-  const submit = async () => {
-    const priceId =
-      process.env.ENV_TYPE === 'development'
-        ? 'price_1KOTLxKb3SeE1fXfnkcObl4Q'
-        : 'dominion-subscription_2ff0f5';
-
-    const response = await fetch(
-      `${process.env.SITE_URL}/api/stripe/checkout-sessions`,
-      {
-        body: JSON.stringify({
-          data: {
-            priceId,
-            quantity: 1,
-            mode: 'subscription',
-            successUrl: '/dominion-thank-you',
-            cancelUrl: '/dominion',
-            discount
-          }
-        }),
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST'
-      }
-    );
-
-    if (response.ok) {
-      // Success
-      const data = await response.json();
-      window.location.href = data.url;
+  useEffect(() => {
+    if (renderButtons) {
+      return;
     }
-  };
 
-  const ButtonWrapper = ({ type }) => {
-    const [{ options }, dispatch] = usePayPalScriptReducer();
-
-    useEffect(() => {
-      dispatch({
-        type: 'resetOptions',
-        value: {
-          ...options,
-          intent: 'subscription'
-        }
-      });
-    }, [type]);
-
-    return (
-      <PayPalButtons
-        createSubscription={(data, actions) => {
-          return actions.subscription
-            .create({
-              plan_id:
-                discount === 'RND1MONTH'
-                  ? 'P-30777548T6657750KMJCXROI'
-                  : 'P-6B5761572P962811FMJCNAWY'
-            })
-            .then(orderId => {
-              // Your code here after create the order
-              return orderId;
-            });
-        }}
-        onApprove={(data, actions) => {
-          setRedirect(true);
-        }}
-        style={{
-          layout: 'horizontal',
-          color: 'black',
-          label: 'subscribe',
-          height: 40
-        }}
-      />
-    );
-  };
+    setTimeout(() => {
+      setRenderButtons(true);
+    }, 100);
+  }, []);
 
   return (
     <Layout
@@ -137,7 +65,7 @@ export default function Dominion({ siteConfig }) {
     >
       <div className="pt4  pt0-md">
         <Container>
-          <div className="measure-wide  mla  mra  mb4">
+          <div className="measure-wide  mla  mra  pb4  mb2-md">
             <Image
               /* Options */
               src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610317978/dominion/dominion-logo.png"
@@ -152,61 +80,49 @@ export default function Dominion({ siteConfig }) {
             />
           </div>
 
-          <div className="flex  flex-wrap  pv3">
-            <div className="col-24  flex  justify-center">
-              <div className="measure-wide  mb3  ph4  ph0-md">
-                <p className="f-secondary  taj  f5  lh-copy">
-                  Right now, the Rendah Mag team embarks upon a new journey.
-                  With so much happening right now, we want to push our platform
-                  into new territory, offering a new way for you to explore the
-                  landscape of underground music culture. With an absolute
-                  pleasure, we bring you the DOMINION.
-                </p>
-              </div>
-            </div>
+          <div className="measure-wide  mla  mra  mb3  pb3  ph4  ph0-md">
+            <p className="f-secondary  taj  f6  lh-copy">
+              Right now, the Rendah Mag team embarks upon a new journey. With so
+              much happening right now, we want to push our platform into new
+              territory, offering a new way for you to explore the landscape of
+              underground music culture. With an absolute pleasure, we bring you
+              the DOMINION.
+            </p>
           </div>
 
-          <div className="flex  flex-wrap-reverse  flex-wrap-md  pb4-md  ph5-md">
-            <div className="col-24  col-11-md  flex  justify-center  align-center">
+          <div className="flex  flex-wrap  pb5-md  mb3  ph5-md">
+            <div className="col-24  col-11-md  flex  flex-wrap  justify-center  align-center">
               <img
                 className="mb3  mb0-md"
                 src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1617893807/dominion/welcome-pack.png"
                 alt="Welcome Pack"
               />
             </div>
-            <div className="col-24  col-13-md  flex  justify-center  align-center  ph0  ph4-md">
-              <div className="measure-wide  ph4  ph0-md">
-                <p className="f-secondary  taj  f5  pb3  lh-copy">
+            <div className="col-24  col-13-md  flex  flex-wrap  justify-center  ph0  pl4-md  pr0-md">
+              <div className="measure-wide  ph4  ph0-md  pb2">
+                <p className="f-secondary  taj  f6  pb3  lh-copy">
                   <strong>We offer the following:</strong>
                 </p>
+
                 <ul className="pl3">
-                  <li className="f-secondary  tal  f5  pb2  lh-copy">
+                  <li className="f-secondary  tal  f6  pb2  lh-copy">
                     A Welcome package (+ membership card & stickers).
                   </li>
-                  <li className="f-secondary  tal  f5  pb2  lh-copy">
+                  <li className="f-secondary  tal  f6  pb2  lh-copy">
                     A quarter-yearly printed issue of Rendah Mag.
                   </li>
-                  <li className="f-secondary  tal  f5  pb2  lh-copy">
+                  <li className="f-secondary  tal  f6  pb2  lh-copy">
                     Monthly exclusive music, samples, tutorials, and 'behind the
                     scenes' insights of underground music.
                   </li>
-                  <li className="f-secondary  tal  f5  pb2  lh-copy">
+                  <li className="f-secondary  tal  f6  pb2  lh-copy">
                     Your own Dominion Profile & login.
                   </li>
-                  {
-                    // <li className="f-secondary  tal  f5  pb2  lh-copy">
-                    //   Discounts from all coming Rendah Mag products.
-                    // </li>
-                  }
                 </ul>
               </div>
-            </div>
-          </div>
 
-          <div className="flex  flex-wrap  pb5">
-            <div className="col-24  flex  justify-center">
               <div className="measure-wide  mb3  ph4  ph0-md">
-                <p className="f-secondary  taj  f5  pb3  lh-copy">
+                <p className="f-secondary  taj  f6  lh-copy">
                   Our mission with this project is to present something new and
                   exciting for the community in the hope that we can truly bring
                   something of value to artists and listeners alike. We want to
@@ -215,61 +131,11 @@ export default function Dominion({ siteConfig }) {
                   join us.
                 </p>
               </div>
-            </div>
 
-            <div className="mla  mra  flex  flex-wrap  w-100">
-              <div className="col-11-md  col-24  flex  justify-center  justify-end-md">
-                <div className="db  ph2  pb3  mb2">
-                  <Button
-                    /* Options */
-                    type="primary"
-                    size="small"
-                    text="Click here to join"
-                    color="black"
-                    fluid={false}
-                    icon={buttonIconPlus}
-                    iconFloat="left"
-                    inverted={false}
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={submit}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
-              </div>
-
-              <div className="col-2-md  col-24  flex  justify-center  align-center">
-                <p className="f-secondary  tac  f5  lh-copy  pb3  mb2">OR</p>
-              </div>
-
-              <div className="col-11-md  col-24  flex  justify-center  justify-start-md">
-                <div className="db  ph2  pb3  mb2">
-                  <PayPalScriptProvider
-                    options={{
-                      'client-id':
-                        'AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq',
-                      components: 'buttons',
-                      intent: 'subscription',
-                      vault: true
-                    }}
-                  >
-                    <ButtonWrapper type="subscription" />
-                  </PayPalScriptProvider>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-24  flex  flex-wrap  align-center  justify-center  ph2">
-              <div className="mw4  shadow1">
-                <input
-                  className="input"
-                  placeholder="PROMO CODE"
-                  type="text"
-                  value={discount}
-                  onChange={e => setDiscount(e.target.value)}
-                />
+              <div className="flex  flex-wrap  w-100">
+                {renderButtons && <Buttons />}
+                <div id="paypal-button-container" />
+                <Script src="https://www.paypal.com/sdk/js?client-id=sb&disable-funding=card" />
               </div>
             </div>
           </div>

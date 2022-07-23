@@ -1,3 +1,4 @@
+import { Parallax } from 'react-scroll-parallax';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
@@ -19,6 +20,7 @@ import SubscribeForm from '~/components/subscribe-form';
 import {
   getSiteConfig,
   getFeaturedPost,
+  getHomePage,
   getCategory,
   getAllCreationsTotal
 } from '~/lib/sanity/requests';
@@ -33,6 +35,7 @@ export default function Home({ siteConfig }) {
   const router = useRouter();
   const [user] = useUser();
   const [featuredPost, setFeaturedPost] = useState(null);
+  const [homePage, setHomePage] = useState(null);
   const [interviews, setInterviews] = useState(null);
   const [creations, setCreations] = useState(null);
   const [hasShownModal, setHasShownModal] = useState(false);
@@ -44,10 +47,14 @@ export default function Home({ siteConfig }) {
   useEffect(() => {
     const action = async () => {
       const featuredPostRes = await getFeaturedPost();
+      const homePage = await getHomePage();
       const interviewsRes = await getCategory('interviews', [1, 4]);
       const creationsRes = await getAllCreationsTotal();
 
+      console.log('homePage', homePage);
+
       setFeaturedPost(featuredPostRes);
+      setHomePage(homePage);
       setInterviews(interviewsRes);
       setCreations(creationsRes);
     };
@@ -143,78 +150,71 @@ export default function Home({ siteConfig }) {
         </Modal>
 
         <Hero
-          image={featuredPost?.coverImage}
-          title={featuredPost?.title || 'Loading...'}
-          description={null}
-          heroButtonText="Read more"
-          link={featuredPost?.slug}
+          image={homePage?.heroImage}
+          title={homePage?.heroTitle || 'Loading...'}
+          description={homePage?.heroDescription || 'Loading...'}
+          heroButtonText={homePage?.heroLabel || 'Loading...'}
+          link={homePage?.heroLink}
           marginTop={0}
           marginBottom={0}
           modifier="home"
-          skeleton={!featuredPost}
+          skeleton={!homePage}
         />
 
-        <div className="pt5  pt6-md">
+        <div className="pt5  mt5-md">
           <Container>
-            <section className="pb5">
-              <div className="pb4  ph3">
-                <div className="bg-black  pa2  dib">
-                  <Heading
+            <div className="relative">
+              <Parallax speed={-3} disabled={app.deviceSize === 'md'}>
+                <div className="category-label  category-label--interviews">
+                  Interviews
+                </div>
+              </Parallax>
+
+              <section className="pb5">
+                <div className="flex  flex-wrap  relative">
+                  {[...Array(interviewsLength)].map((iteration, i) => (
+                    <div key={iteration} className="col-24  col-12-md">
+                      <div className="ph3  pv2">
+                        <CardBlog
+                          i={i}
+                          post={interviews?.articles && interviews?.articles[i]}
+                          columnCount={2}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex  justify-end  pr2">
+                  <Button
                     /* Options */
-                    htmlEntity="h2"
-                    text="Interviews"
-                    color="white"
-                    size="small"
-                    truncate={null}
+                    type="secondary"
+                    size="medium"
+                    text="All Interviews"
+                    color="black"
+                    fluid={false}
+                    icon={buttonIcon}
+                    iconFloat={null}
+                    inverted={false}
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
                     /* Children */
-                    withLinkProps={null}
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/category/[slug]',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        as: `/category/interviews`,
+                        scroll: false
+                      }
+                    }}
                   />
                 </div>
-              </div>
-
-              <div className="flex  flex-wrap">
-                {[...Array(interviewsLength)].map((iteration, i) => (
-                  <div key={iteration} className="col-24  col-12-md">
-                    <div className="ph3  pv2">
-                      <CardBlog
-                        i={i}
-                        post={interviews?.articles && interviews?.articles[i]}
-                        columnCount={2}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex  justify-end  pr2">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="All Interviews"
-                  color="black"
-                  fluid={false}
-                  icon={buttonIcon}
-                  iconFloat={null}
-                  inverted={false}
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/category/[slug]',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      as: `/category/interviews`,
-                      scroll: false
-                    }
-                  }}
-                />
-              </div>
-            </section>
+              </section>
+            </div>
           </Container>
 
           <div className="creations  bg-black  mb5">

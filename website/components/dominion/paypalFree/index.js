@@ -1,0 +1,65 @@
+import React, { useEffect } from 'react';
+
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  usePayPalScriptReducer
+} from '@paypal/react-paypal-js';
+
+function PaypalFree() {
+  const ButtonWrapper = ({ type }) => {
+    const [{ options }, dispatch] = usePayPalScriptReducer();
+
+    useEffect(() => {
+      dispatch({
+        type: 'resetOptions',
+        value: {
+          ...options,
+          intent: 'subscription'
+        }
+      });
+    }, [type]);
+
+    return (
+      <PayPalButtons
+        createSubscription={(data, actions) => {
+          return actions.subscription
+            .create({
+              plan_id: 'P-30777548T6657750KMJCXROI'
+            })
+            .then(orderId => {
+              // Your code here after create the order
+              return orderId;
+            });
+        }}
+        onApprove={(data, actions) => {
+          setRedirect(true);
+        }}
+        style={{
+          layout: 'horizontal',
+          color: 'black',
+          label: 'subscribe',
+          height: 39
+        }}
+      />
+    );
+  };
+
+  return (
+    <>
+      <PayPalScriptProvider
+        options={{
+          'client-id':
+            'AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq',
+          components: 'buttons',
+          intent: 'subscription',
+          vault: true
+        }}
+      >
+        <ButtonWrapper type="subscription" />
+      </PayPalScriptProvider>
+    </>
+  );
+}
+
+export default React.memo(PaypalFree);
