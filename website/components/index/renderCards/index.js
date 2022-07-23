@@ -40,14 +40,16 @@ export default function Home({ siteConfig }) {
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
+  const ParallaxDiv = app.deviceSize === 'md' ? 'div' : Parallax;
+
   return (
     <>
       <Container>
-        <Parallax speed={-3} disabled={app.deviceSize === 'md'}>
-          <div className="category-label  category-label--premieres">
+        <ParallaxDiv speed={-3}>
+          <span className="category-label  category-label--premieres">
             Premieres
-          </div>
-        </Parallax>
+          </span>
+        </ParallaxDiv>
 
         <div className="flex  flex-wrap  mt4  mt0-md  pt5-md">
           <div className="col-24">
@@ -100,11 +102,11 @@ export default function Home({ siteConfig }) {
       </Container>
 
       <Container>
-        <Parallax speed={-3} disabled={app.deviceSize === 'md'}>
-          <div className="category-label  category-label--news-insights">
+        <ParallaxDiv speed={-3}>
+          <span className="category-label  category-label--news-insights">
             News & Insights
-          </div>
-        </Parallax>
+          </span>
+        </ParallaxDiv>
 
         <div className="flex  flex-wrap  pt5-md">
           <div className="col-24  col-12-md  pr0  pr3-md">
@@ -204,11 +206,11 @@ export default function Home({ siteConfig }) {
       </Container>
 
       <Container>
-        <Parallax speed={-3} disabled={app.deviceSize === 'md'}>
-          <div className="category-label  category-label--guest-mix">
+        <ParallaxDiv speed={-3}>
+          <span className="category-label  category-label--guest-mix">
             Guest Mixes
-          </div>
-        </Parallax>
+          </span>
+        </ParallaxDiv>
 
         <div className="flex  flex-wrap  pt5-md">
           <div className="col-24">

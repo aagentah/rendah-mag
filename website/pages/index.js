@@ -79,6 +79,8 @@ export default function Home({ siteConfig }) {
 
   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
 
+  const ParallaxDiv = app.deviceSize === 'md' ? 'div' : Parallax;
+
   return (
     <>
       <Layout
@@ -164,11 +166,11 @@ export default function Home({ siteConfig }) {
         <div className="pt5  mt4  mt5-md">
           <Container>
             <div className="relative">
-              <Parallax speed={-3} disabled={app.deviceSize === 'md'}>
-                <div className="category-label  category-label--interviews">
+              <ParallaxDiv speed={-3}>
+                <span className="category-label  category-label--interviews">
                   Interviews
-                </div>
-              </Parallax>
+                </span>
+              </ParallaxDiv>
 
               <section className="pb5">
                 <div className="flex  flex-wrap  relative">
