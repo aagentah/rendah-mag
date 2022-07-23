@@ -103,28 +103,29 @@
   text-align: center;
   font-family: $archive;
   color: var(--rendah-red);
-  top: -30px;
   left: 0;
   right: 0;
   margin: 0 auto;
 }
 
 .category-label--interviews {
-  font-size: 50px;
+  top: -29px;
+  font-size: 43px;
 }
 
 .category-label--premieres {
-  font-size: 52px;
+  top: -29px;
+  font-size: 43px;
 }
 
 .category-label--news-insights {
-  top: -20px;
-  font-size: 38px;
+  top: -16px;
+  font-size: 28px;
 }
 
 .category-label--guest-mix {
-  top: -28px;
-  font-size: 48px;
+  top: -24px;
+  font-size: 38px;
 }
 
 @include breakpoint-up(md) {
