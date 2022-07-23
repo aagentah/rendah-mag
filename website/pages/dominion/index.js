@@ -132,7 +132,7 @@ export default function Dominion({ siteConfig }) {
                 </p>
               </div>
 
-              <div className="flex  flex-wrap  w-100">
+              <div className="flex  flex-wrap  w-100  pt4  pt0-md">
                 {renderButtons && <Buttons />}
                 <div id="paypal-button-container" />
                 <Script src="https://www.paypal.com/sdk/js?client-id=sb&disable-funding=card" />

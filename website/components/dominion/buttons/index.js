@@ -59,7 +59,7 @@ function Buttons() {
 
   return (
     <>
-      <div className="col-7  flex  align-center  pb1">
+      <div className="dominion__subscribe-col  col-24  col-7-md  flex  align-center  justify-center  pb3  pb1-md">
         <Button
           /* Options */
           type="primary"
@@ -79,7 +79,7 @@ function Buttons() {
         />
       </div>
 
-      <div className="col-10  flex  align-center  ph3">
+      <div className="col-24  col-10-md  flex  align-center  justify-center  pb3  pb0-md  ph3">
         <div className={payBtn}>
           <PaypalPay />
         </div>
@@ -89,7 +89,7 @@ function Buttons() {
         </div>
       </div>
 
-      <div className="col-7  flex  align-center  pb1">
+      <div className="col-24  col-7-md  flex  align-center  justify-center  pb3  pb0-md  pb1">
         <div className="mw4  shadow1">
           <input
             className="input"
