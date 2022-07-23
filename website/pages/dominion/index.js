@@ -162,15 +162,15 @@ export default function Dominion({ siteConfig }) {
                 dominion.map((i, o) => {
                   // if (i.avatar) {
                   return (
-                    <div className="col-2  flex  justify-center  pa2">
+                    <div className="col-6  col-2-md  flex  justify-center  pa2">
                       <Image
                         /* Options */
                         src={
                           i?.avatar
                             ? imageBuilder
                                 .image(i?.avatar)
-                                .width(app?.deviceSize === 'md' ? 25 : 70)
-                                .height(app?.deviceSize === 'md' ? 25 : 70)
+                                .width(70)
+                                .height(70)
                                 .auto('format')
                                 .fit('clip')
                                 .url()
@@ -182,8 +182,8 @@ export default function Dominion({ siteConfig }) {
                         placeholder={null}
                         alt="User"
                         figcaption={null}
-                        height={app?.deviceSize === 'md' ? 25 : 70}
-                        width={app?.deviceSize === 'md' ? 25 : 70}
+                        height={70}
+                        width={70}
                         customClass="shadow2  br-100  bg-grey"
                         skeleton={false}
                         onClick={null}
