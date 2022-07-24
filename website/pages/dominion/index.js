@@ -65,7 +65,7 @@ export default function Dominion({ siteConfig }) {
     >
       <div className="pt4  pt0-md">
         <Container>
-          <div className="measure-wide  mla  mra  pb4  mb2-md">
+          <div className="measure-wide  mla  mra  pb4  mb3-md">
             <Image
               /* Options */
               src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610317978/dominion/dominion-logo.png"
@@ -80,26 +80,22 @@ export default function Dominion({ siteConfig }) {
             />
           </div>
 
-          <div className="measure-wide  mla  mra  mb3  pb3  ph4  ph0-md">
-            <p className="f-secondary  taj  f6  lh-copy">
-              Right now, the Rendah Mag team embarks upon a new journey. With so
-              much happening right now, we want to push our platform into new
-              territory, offering a new way for you to explore the landscape of
-              underground music culture. With an absolute pleasure, we bring you
-              the DOMINION.
-            </p>
-          </div>
-
-          <div className="flex  flex-wrap  pb5-md  mb3  ph5-md">
-            <div className="col-24  col-11-md  flex  flex-wrap  justify-center  align-center">
+          <div className="flex  flex-wrap  pb5-md  mb3  mb4-md  ph5-md">
+            <div className="col-24  col-10-md  flex  flex-wrap  justify-center  align-center">
               <img
                 className="mb3  mb0-md"
                 src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1617893807/dominion/welcome-pack.png"
                 alt="Welcome Pack"
               />
             </div>
-            <div className="col-24  col-13-md  flex  flex-wrap  justify-center  ph0  pl4-md  pr0-md">
+            <div className="col-24  col-14-md  flex  flex-wrap  justify-center  ph0  pl4-md  pr0-md">
               <div className="measure-wide  ph4  ph0-md  pb2">
+                <p className="f-secondary  taj  f6  lh-copy  pb3">
+                  With so much happening right now, we want to push our platform
+                  into new territory, offering a new way for people to explore
+                  the landscape of underground music culture.
+                </p>
+
                 <p className="f-secondary  taj  f6  pb3  lh-copy">
                   <strong>We offer the following:</strong>
                 </p>
@@ -122,13 +118,11 @@ export default function Dominion({ siteConfig }) {
               </div>
 
               <div className="measure-wide  mb3  ph4  ph0-md">
-                <p className="f-secondary  taj  f6  lh-copy">
+                <p className="f-secondary  taj  f6  lh-copy  pb3-md">
                   Our mission with this project is to present something new and
                   exciting for the community in the hope that we can truly bring
-                  something of value to artists and listeners alike. We want to
-                  work not only with people of the industry, but also yourself
-                  on a personal level to create something unique. I hope you can
-                  join us.
+                  something of value to artists and listeners alike. I hope you
+                  can join us.
                 </p>
               </div>
 
