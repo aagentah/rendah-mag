@@ -60,8 +60,13 @@ $creations-black: #1c1c1c;
   }
 
   .article__social-links {
-    background-color: $creations-black;
+    background-color: var(--almost-black);
+
+    * {
+      color: var(--white);
+    }
   }
+
 
   .article__author {
     @extend .ba;
@@ -158,6 +163,8 @@ $creations-black: #1c1c1c;
   .input__label {
     opacity: 0.5;
   }
+
+
 }
 
 .creations__label-wrapper {
