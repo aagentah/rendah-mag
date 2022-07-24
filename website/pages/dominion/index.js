@@ -121,7 +121,7 @@ export default function Dominion({ siteConfig }) {
                 <p className="f-secondary  taj  f6  lh-copy  pb3-md">
                   Our mission with this project is to present something new and
                   exciting for the community in the hope that we can truly bring
-                  something of value to artists and listeners alike. I hope you
+                  something of value to artists and listeners alike. We hope you
                   can join us.
                 </p>
               </div>
