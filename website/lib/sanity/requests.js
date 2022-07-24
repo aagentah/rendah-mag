@@ -26,6 +26,22 @@ const postFields = `
   },
 `;
 
+const creationsFields = `
+  ...,
+  name,
+  title,
+  publishedAt,
+  description,
+  'slug': slug.current,
+  'coverImage': image.asset->url,
+  categories,
+  'authors': authors[] {
+    'author': *[_id == ^._ref] [0] {
+      ...,
+    },
+  },
+`;
+
 const productFields = `
   ...,
   'category': category->title,
@@ -120,7 +136,7 @@ export async function getAllPostsTotal(preview) {
 export async function getAllCreationsTotal(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "creations"] | order(publishedAt desc) {
-      ${postFields}
+      ${creationsFields}
     }`);
   return results;
 }
@@ -128,7 +144,7 @@ export async function getAllCreationsTotal(preview) {
 export async function getLatestDominionCreations(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "creations"] | order(publishedAt desc) [0..23] {
-      ${postFields}
+      ${creationsFields}
     }`
   );
 
@@ -138,7 +154,7 @@ export async function getLatestDominionCreations(preview) {
 export async function getCreation(slug, preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "creations" && slug.current == $slug] | order(publishedAt desc) [0] {
-      ${postFields}
+      ${creationsFields}
     }`,
     { slug }
   );

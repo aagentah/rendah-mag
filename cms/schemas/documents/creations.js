@@ -24,13 +24,19 @@ export default {
     //   title: "Show Author",
     //   type: "boolean",
     // },
-    // {
-    //   name: "author",
-    //   title: "Author",
-    //   type: "reference",
-    //   to: { type: "author" },
-    //   validation: (Rule) => Rule.required(),
-    // },
+    {
+      name: "categories",
+      title: "Categories",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        list: [
+          { title: "Tutorials", value: "tutorials" },
+          { title: "Interviews", value: "interviews" },
+          { title: "Insights", value: "insights" }
+        ]
+      }
+    },
     {
       name: "authors",
       title: "Authors",

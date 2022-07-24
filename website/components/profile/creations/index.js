@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Heading, Button } from 'next-pattern-library';
+import filter from 'lodash/filter';
+import cloneDeep from 'lodash/cloneDeep';
 
 import CardCreations from '~/components/card/creations';
 
@@ -9,7 +11,9 @@ import { getAllCreationsTotal } from '~/lib/sanity/requests';
 
 export default function ProfileCreations() {
   const [user, { loading, mutate, error }] = useUser();
+  const [originalPosts, setOriginalPosts] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [filters, setFilters] = useState([]);
   const [postsLength, setPostsLength] = useState(9);
 
   // Fetch posts
@@ -18,12 +22,47 @@ export default function ProfileCreations() {
       const data = await getAllCreationsTotal();
       if (data) {
         setPosts(data);
+        setOriginalPosts(data);
         setPostsLength(data?.length);
       }
     };
 
     await action();
-  }, [posts?.length]);
+  }, []);
+
+  // Fetch posts
+  useEffect(() => {
+    if (!filters?.length) {
+      setPosts(originalPosts);
+      setPostsLength(originalPosts?.length);
+      return;
+    }
+
+    let postsClone = filter(originalPosts, obj => {
+      for (let i = 0; i < filters.length; i++) {
+        if (obj?.categories?.length && obj.categories.includes(filters[i])) {
+          return true;
+        }
+      }
+    });
+
+    setPosts(postsClone);
+    setPostsLength(postsClone?.length);
+  }, [filters?.length]);
+
+  const toggleFilter = filterString => {
+    if (filters.includes(filterString)) {
+      const cloneFilters = cloneDeep(filters);
+      cloneFilters.splice(cloneFilters.indexOf(filterString), 1);
+      setFilters(cloneFilters);
+    } else {
+      const cloneFilters = cloneDeep(filters);
+      cloneFilters.push(filterString);
+      setFilters(cloneFilters);
+    }
+  };
+
+  console.log('posts', posts);
 
   if (user?.isDominion) {
     return (
@@ -48,6 +87,33 @@ export default function ProfileCreations() {
             including tutorials, technical interviews, branding tips, creative
             features, and much more!
           </p>
+        </div>
+
+        <div className="flex  flex-wrap  justify-center  justify-start-md  pb4  mb2">
+          <span
+            className={`filter-tag  ${
+              filters.includes('tutorials') ? 'is-active' : ''
+            }`}
+            onClick={() => toggleFilter('tutorials')}
+          >
+            Tutorials
+          </span>
+          <span
+            className={`filter-tag  ${
+              filters.includes('interviews') ? 'is-active' : ''
+            }`}
+            onClick={() => toggleFilter('interviews')}
+          >
+            Interviews
+          </span>
+          <span
+            className={`filter-tag  ${
+              filters.includes('insights') ? 'is-active' : ''
+            }`}
+            onClick={() => toggleFilter('insights')}
+          >
+            Insights
+          </span>
         </div>
 
         <div className="flex  flex-wrap  pb3">
@@ -104,8 +170,8 @@ export default function ProfileCreations() {
               target: null,
               routerLink: Link,
               routerLinkProps: {
-                scroll: false,
-              },
+                scroll: false
+              }
             }}
           />
         </div>

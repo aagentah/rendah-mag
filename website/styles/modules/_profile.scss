@@ -54,3 +54,30 @@
     }
   }
 }
+
+.filter-tag {
+  border: 1px solid var(--white);
+  color: var(--white);
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+
+  @extend .ml2;
+  @extend .ml0-md;
+  @extend .mr2;
+  @extend .mr3-md;
+  @extend .ph2;
+  @extend .ph3-md;
+  @extend .pv1;
+  @extend .f6;
+  @extend .f7-md;
+  @extend .br-pill;
+
+  &:hover {
+    background-color: var(--dark-grey)
+  }
+}
+
+.filter-tag.is-active {
+  background: var(--white);
+  color: var(--black);
+}

@@ -20,8 +20,6 @@ export default function CardCreations({ post, columnCount }) {
 
   const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
 
-  console.log('post?.coverImage', post?.coverImage);
-
   const image = (
     <Image
       /* Options */
