@@ -28,7 +28,7 @@ export default function ProfileCreations() {
   if (user?.isDominion) {
     return (
       <section>
-        <div className="pb2">
+        <div className="profile_heading">
           <Heading
             /* Options */
             htmlEntity="h1"

@@ -77,6 +77,19 @@ export default function ProfilePacks() {
     return (
       <>
         <section>
+        <div className="profile_heading">
+          <Heading
+            /* Options */
+            htmlEntity="h1"
+            text="Samples"
+            color="white"
+            size="medium"
+            truncate={null}
+            /* Children */
+            withLinkProps={null}
+          />
+        </div>
+        
           <div className="relative  ">
             <div
               className={`
@@ -84,18 +97,7 @@ export default function ProfilePacks() {
               ${cardsShow && 'dominion-cards--active'}
           `}
             >
-              <div className="pb2">
-                <Heading
-                  /* Options */
-                  htmlEntity="h1"
-                  text="Samples"
-                  color="white"
-                  size="medium"
-                  truncate={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
+
 
               <div className="pb4  mb2">
                 <p className="white  f6  lh-copy">

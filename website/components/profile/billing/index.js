@@ -105,7 +105,7 @@ export default function ProfileOrders() {
   if (user) {
     return (
       <section>
-        <div className="pb4">
+        <div className="profile_heading">
           <Heading
             /* Options */
             htmlEntity="h1"
@@ -119,7 +119,7 @@ export default function ProfileOrders() {
         </div>
 
         {customer ? (
-          <div className="w-100  mb4">
+          <div className="w-100  mb4  pt3  pt0-md">
             <div className="pb3">
               <Heading
                 /* Options */

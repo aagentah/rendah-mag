@@ -28,11 +28,11 @@ export default function CarouselItemSection({ offering }) {
         />
       </div>
 
-      <div className="pb4  mb2  rich-text">
+      <div className="pb3  mb4  rich-text  bb  bc-white">
         <BlockContent blocks={offering.description} />
       </div>
 
-      <div className="flex  flex-wrap  ph4">
+      <div className="flex  flex-wrap">
         <section key={offering.slug} className="col-24  pb3">
           {offering.tracks.map((item, i) => (
             <div key={item.track.slug} className="col-24  pb4">

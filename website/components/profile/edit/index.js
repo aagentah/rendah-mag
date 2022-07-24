@@ -410,7 +410,7 @@ export default function ProfileEdit() {
           </div>
         </Modal>
 
-        <div className="pb3">
+        <div className="profile_heading">
           <Heading
             /* Options */
             htmlEntity="h1"
@@ -423,7 +423,7 @@ export default function ProfileEdit() {
           />
         </div>
 
-        <div className="flex  flex-wrap">
+        <div className="flex  flex-wrap  pt4  pt0-md">
           <div className="col-24  pb4">
             <div className="w4  relative">
               <div className="o-50">

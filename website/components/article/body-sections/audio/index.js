@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
-import { Icon, Image } from 'next-pattern-library';
+import { Button, Icon, Image } from 'next-pattern-library';
 import BlockContent from '@sanity/block-content-to-react';
 import { usePlausible } from 'next-plausible';
 
@@ -65,7 +65,7 @@ export default function Audio({
       ) : null}
 
       <div className="flex  flex-wrap  pt2">
-        <div className="flex  col-5  col-2-md  justify-center  align-center">
+        <div className="flex  col-5  col-3-md  justify-center  align-center">
           {image ? (
             <Image
               /* Options */
@@ -77,8 +77,8 @@ export default function Audio({
               placeholder={null}
               alt="This is the alt text."
               figcaption={null}
-              height={45}
-              width={45}
+              height={80}
+              width={80}
               customClass="shadow2"
               skeleton={false}
               onClick={null}
@@ -92,8 +92,8 @@ export default function Audio({
               placeholder={null}
               alt="This is the alt text."
               figcaption={null}
-              height={45}
-              width={45}
+              height={80}
+              width={80}
               customClass="shadow2"
               skeleton={false}
               onClick={null}
@@ -104,7 +104,9 @@ export default function Audio({
         </div>
         <div
           className={
-            allowDownload ? 'col-19  col-18-md  pr0  pr2-md' : 'col-24'
+            allowDownload
+              ? 'col-19  col-17-md  pr0  pr2-md  flex  align-center  justify-center'
+              : 'col-24'
           }
         >
           <AudioPlayer
@@ -134,7 +136,23 @@ export default function Audio({
                 triggerOnDownloadEvt();
               }}
             >
-              <Icon color="white" icon={['fa', 'download']} />
+              <Button
+                /* Options */
+                type="primary"
+                size="small"
+                text="Download"
+                color="black"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted={true}
+                loading={false}
+                disabled={false}
+                skeleton={false}
+                onClick={null}
+                /* Children */
+                withLinkProps={null}
+              />
             </a>
           </div>
         )}

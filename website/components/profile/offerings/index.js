@@ -82,6 +82,19 @@ export default function ProfileDominion() {
     return (
       <>
         <section>
+        <div className="profile_heading">
+          <Heading
+            /* Options */
+            htmlEntity="h1"
+            text="Dubplates"
+            color="white"
+            size="medium"
+            truncate={null}
+            /* Children */
+            withLinkProps={null}
+          />
+        </div>
+        
           <div className="relative  ">
             <div
               className={`
@@ -89,18 +102,7 @@ export default function ProfileDominion() {
               ${cardsShow && 'dominion-cards--active'}
           `}
             >
-              <div className="pb2">
-                <Heading
-                  /* Options */
-                  htmlEntity="h1"
-                  text="Dubplates"
-                  color="white"
-                  size="medium"
-                  truncate={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
+
 
               <div className="pb4  mb2">
                 <p className="white  f6  lh-copy">

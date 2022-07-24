@@ -11,13 +11,13 @@ export default function ProfileCreations({ handleToggle }) {
   if (user?.isDominion) {
     return (
       <section>
-        <div className="pb3  mla  mra  tac">
+        <div className="profile_heading">
           <Heading
             /* Options */
             htmlEntity="h1"
             text="Dominion Dashboard"
             color="white"
-            size="large"
+            size="medium"
             truncate={null}
             /* Children */
             withLinkProps={null}
