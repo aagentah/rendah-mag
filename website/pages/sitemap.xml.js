@@ -3,7 +3,7 @@ import React from 'react';
 import {
   getAllPostsTotal,
   getAllProductsTotal,
-  getAllCategoriesTotal,
+  getAllCategoriesTotal
 } from '~/lib/sanity/requests';
 
 const sitemapXml = (allPosts, allProducts, allCategories) => {
@@ -11,13 +11,9 @@ const sitemapXml = (allPosts, allProducts, allCategories) => {
     { name: 'cyphers', priority: '0.8' },
     { name: 'dominion', priority: '0.8' },
     { name: 'login', priority: '0.8' },
-    // { name: 'mixes', priority: '0.8' },
-    { name: 'signup', priority: '0.8' },
+    { name: 'mailout', priority: '0.8' },
     { name: 'store', priority: '0.8' },
-    { name: 'team', priority: '0.8' },
-    // { name: 'category/interviews', priority: '0.9' },
-    // { name: 'category/insights', priority: '0.9' },
-    // { name: 'category/news', priority: '0.9' },
+    { name: 'team', priority: '0.8' }
   ];
 
   const staticPagesXML = '';
@@ -26,7 +22,7 @@ const sitemapXml = (allPosts, allProducts, allCategories) => {
   let categoriesXML = '';
 
   // Static
-  staticPages.map((page) => {
+  staticPages.map(page => {
     const url = `${process.env.SITE_URL}/${page.name}`;
 
     postsXML += `
@@ -39,7 +35,7 @@ const sitemapXml = (allPosts, allProducts, allCategories) => {
   });
 
   // Posts
-  allPosts.map((post) => {
+  allPosts.map(post => {
     const url = `${process.env.SITE_URL}/article/${post.slug}`;
 
     postsXML += `
@@ -52,7 +48,7 @@ const sitemapXml = (allPosts, allProducts, allCategories) => {
   });
 
   // Products
-  allProducts.map((product) => {
+  allProducts.map(product => {
     const url = `${process.env.SITE_URL}/product/${product.slug}`;
 
     productsXML += `
@@ -65,7 +61,7 @@ const sitemapXml = (allPosts, allProducts, allCategories) => {
   });
 
   // Categories
-  allCategories.map((category) => {
+  allCategories.map(category => {
     const url = `${process.env.SITE_URL}/category/${category.slug.current}`;
 
     categoriesXML += `
