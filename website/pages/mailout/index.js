@@ -11,7 +11,7 @@ import { useApp } from '~/context-provider/app';
 
 import { getSiteConfig } from '~/lib/sanity/requests';
 
-export default function Subscribe({ siteConfig, preview }) {
+export default function Mailout({ siteConfig, preview }) {
   const app = useApp();
   const router = useRouter();
 
@@ -24,9 +24,9 @@ export default function Subscribe({ siteConfig, preview }) {
         hasFooter
         meta={{
           siteConfig,
-          title: 'Subscribe',
+          title: 'Mailout',
           description: null,
-          image: null,
+          image: null
         }}
         preview={preview}
       >
@@ -72,8 +72,8 @@ export async function getServerSideProps({ req, preview = false }) {
   return {
     props: {
       siteConfig,
-      preview,
-    },
+      preview
+    }
   };
 }
 

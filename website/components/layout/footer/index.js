@@ -51,8 +51,8 @@ export default function Footer() {
                       target: null,
                       routerLink: Link,
                       routerLinkProps: {
-                        scroll: false,
-                      },
+                        scroll: false
+                      }
                     }}
                   />
                 </li>
@@ -78,8 +78,8 @@ export default function Footer() {
                       target: null,
                       routerLink: Link,
                       routerLinkProps: {
-                        scroll: false,
-                      },
+                        scroll: false
+                      }
                     }}
                   />
                 </li>
@@ -134,8 +134,8 @@ export default function Footer() {
                       target: null,
                       routerLink: Link,
                       routerLinkProps: {
-                        scroll: false,
-                      },
+                        scroll: false
+                      }
                     }}
                   />
                 </li>
@@ -160,7 +160,34 @@ export default function Footer() {
                       href: 'https://forms.gle/xpPtVhUiuzZzehdy8',
                       target: '_blank',
                       routerLink: null,
-                      routerLinkProps: null,
+                      routerLinkProps: null
+                    }}
+                  />
+                </li>
+                <li className="db  pb3  tac  tal-md">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="small"
+                    text="Join our mailout"
+                    color="white"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/mailout',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        scroll: false
+                      }
                     }}
                   />
                 </li>
