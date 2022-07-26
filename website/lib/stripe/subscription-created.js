@@ -67,7 +67,8 @@ export default async details => {
       const addMembertags = async () => {
         const tags = [
           { name: 'Customer', status: 'active' },
-          { name: 'Dominion Subscription', status: 'active' }
+          { name: 'Dominion Subscription', status: 'active' },
+          { name: 'Previously Dominion Subscription', status: 'inactive' }
         ];
 
         const response = await fetch(
