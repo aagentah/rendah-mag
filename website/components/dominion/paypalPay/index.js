@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Router from 'next/router';
 
-import {
-  PayPalScriptProvider,
-  PayPalButtons,
-  usePayPalScriptReducer
-} from '@paypal/react-paypal-js';
+import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 
-function PaypalPay() {
+function PaypalPay({ free }) {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
@@ -32,7 +28,9 @@ function PaypalPay() {
         createSubscription={(data, actions) => {
           return actions.subscription
             .create({
-              plan_id: 'P-6B5761572P962811FMJCNAWY'
+              plan_id: free
+                ? 'P-30777548T6657750KMJCXROI'
+                : 'P-6B5761572P962811FMJCNAWY'
             })
             .then(orderId => {
               // Your code here after create the order
@@ -52,21 +50,7 @@ function PaypalPay() {
     );
   };
 
-  return (
-    <>
-      <PayPalScriptProvider
-        options={{
-          'client-id':
-            'AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq',
-          components: 'buttons',
-          intent: 'subscription',
-          vault: true
-        }}
-      >
-        <ButtonWrapper type="subscription" />
-      </PayPalScriptProvider>
-    </>
-  );
+  return <ButtonWrapper type="subscription" />;
 }
 
 export default React.memo(PaypalPay);

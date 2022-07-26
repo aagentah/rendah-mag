@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
+import {
+  PayPalScriptProvider
+} from '@paypal/react-paypal-js';
 
 import classNames from 'classnames';
 
@@ -108,53 +111,63 @@ function Buttons() {
       </div>
 
       <div className="col-24  col-10-md  flex  align-center  justify-center  pb3  pb0-md  ph3">
-        <div className={`w-100-md  ${payBtn}`}>
-          {sdkReady ? (
-            <PaypalPay />
-          ) : (
-            <Button
-              /* Options */
-              type="secondary"
-              size="small"
-              text=""
-              color="black"
-              fluid={true}
-              icon={null}
-              iconFloat={null}
-              inverted={false}
-              loading={true}
-              disabled={true}
-              skeleton={false}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          )}
-        </div>
+        <PayPalScriptProvider
+          options={{
+            'client-id':
+              'AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq',
+            components: 'buttons',
+            intent: 'subscription',
+            vault: true
+          }}
+        >
+          <div className={`w-100-md  ${payBtn}`}>
+            {sdkReady ? (
+              <PaypalPay />
+            ) : (
+              <Button
+                /* Options */
+                type="secondary"
+                size="small"
+                text=""
+                color="black"
+                fluid={true}
+                icon={null}
+                iconFloat={null}
+                inverted={false}
+                loading={true}
+                disabled={true}
+                skeleton={false}
+                onClick={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            )}
+          </div>
 
-        <div className={`w-100-md  ${freeBtn}`}>
-          {sdkReady ? (
-            <PaypalFree />
-          ) : (
-            <Button
-              /* Options */
-              type="secondary"
-              size="small"
-              text="Loading"
-              color="black"
-              fluid={true}
-              icon={null}
-              iconFloat={null}
-              inverted={false}
-              loading={false}
-              disabled={true}
-              skeleton={false}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          )}
-        </div>
+          <div className={`w-100-md  ${freeBtn}`}>
+            {sdkReady ? (
+              <PaypalFree />
+            ) : (
+              <Button
+                /* Options */
+                type="secondary"
+                size="small"
+                text="Loading"
+                color="black"
+                fluid={true}
+                icon={null}
+                iconFloat={null}
+                inverted={false}
+                loading={false}
+                disabled={true}
+                skeleton={false}
+                onClick={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            )}
+          </div>
+        </PayPalScriptProvider>
       </div>
 
       <div className="col-24  col-7-md  flex  align-center  justify-center  pb3  pb0-md  pb1">

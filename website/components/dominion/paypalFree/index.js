@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Router from 'next/router';
 
-import {
-  PayPalScriptProvider,
-  PayPalButtons,
-  usePayPalScriptReducer
-} from '@paypal/react-paypal-js';
+import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 
 function PaypalFree() {
   const [redirect, setRedirect] = useState(false);
@@ -52,21 +48,7 @@ function PaypalFree() {
     );
   };
 
-  return (
-    <>
-      <PayPalScriptProvider
-        options={{
-          'client-id':
-            'AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq',
-          components: 'buttons',
-          intent: 'subscription',
-          vault: true
-        }}
-      >
-        <ButtonWrapper type="subscription" />
-      </PayPalScriptProvider>
-    </>
-  );
+  return <ButtonWrapper type="subscription" />;
 }
 
 export default React.memo(PaypalFree);
