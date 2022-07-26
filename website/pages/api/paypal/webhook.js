@@ -36,6 +36,8 @@ export default async (req, res) => {
               case 'BILLING.SUBSCRIPTION.ACTIVATED':
                 await subscriptionCreated({
                   username: subscriber.email_address,
+                  firstName: subscriber.name.given_name,
+                  lastName: subscriber.name.surname,
                   name: `${subscriber.name.given_name} ${subscriber.name.surname}`,
                   stripeCustomerId: 'paypal',
                   address: {

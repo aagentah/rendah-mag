@@ -5,7 +5,7 @@ import orderEmail from '~/lib/emails/order-notification';
 
 export default async ({ session }) => {
   try {
-    const { customer_details, mode } = session;
+    const { customer_details } = session;
     const { email } = customer_details;
     const { shipping } = session;
     const { name } = shipping;
@@ -19,8 +19,8 @@ export default async ({ session }) => {
         status: 'subscribed',
         merge_fields: {
           FNAME: firstName,
-          LNAME: lastName,
-        },
+          LNAME: lastName
+        }
       };
 
       const addOrUpdateMember = async () => {
@@ -29,7 +29,7 @@ export default async ({ session }) => {
           {
             body: JSON.stringify({ email, data }),
             headers: { 'Content-Type': 'application/json' },
-            method: 'POST',
+            method: 'POST'
           }
         );
 
@@ -42,17 +42,12 @@ export default async ({ session }) => {
       const addMembertags = async () => {
         const tags = [{ name: 'Customer', status: 'active' }];
 
-        // If user has bought subscription
-        if (mode === 'subscription') {
-          tags.push({ name: 'Dominion Subscription', status: 'active' });
-        }
-
         const response = await fetch(
           `${process.env.SITE_URL}/api/mailchimp/update-member-tags`,
           {
             body: JSON.stringify({ email, tags }),
             headers: { 'Content-Type': 'application/json' },
-            method: 'POST',
+            method: 'POST'
           }
         );
 
@@ -78,9 +73,8 @@ export default async ({ session }) => {
     );
 
     return {
-      error: `Error in stripe/order-completed: ${
-        error.message || error.toString()
-      }`,
+      error: `Error in stripe/order-completed: ${error.message ||
+        error.toString()}`
     };
   }
 };
