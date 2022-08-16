@@ -66,7 +66,7 @@
     "react-dom": "npm:@preact/compat@17.1.1",
     "react-dropzone": "11.0.3",
     "react-facebook": "8.1.4",
-    "react-h5-audio-player": "3.5.0",
+    "react-h5-audio-player": "3.8.4",
     "react-hook-inview": "4.2.1",
     "react-iframe": "1.8.0",
     "react-intersection-observer": "8.28.4",
