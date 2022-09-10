@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import 'intersection-observer';
 
-import { Heading, Copy, Button, Icon } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Copy from '~/components/elements/copy';
+import Icon from '~/components/elements/icon';
 import Modal from '~/components/modal';
 
 import Layout from '~/components/layout';
@@ -16,7 +18,7 @@ import { useApp } from '~/context-provider/app';
 import {
   getSiteConfig,
   getSmartLink,
-  getSmartLinksTotal,
+  getSmartLinksTotal
 } from '~/lib/sanity/requests';
 
 export default function SmartLink({ siteConfig, post, preview }) {
@@ -25,7 +27,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  const renderItemType = (item) => {
+  const renderItemType = item => {
     let service;
     let icon;
     let url = item.url;
@@ -116,7 +118,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
           siteConfig,
           title: post.title,
           description: null,
-          image: null,
+          image: null
         }}
         preview={preview}
       >
@@ -247,9 +249,9 @@ export async function getStaticProps({ req, params, preview = false }) {
     props: {
       siteConfig,
       post: data || null,
-      preview,
+      preview
     },
-    revalidate: 1,
+    revalidate: 1
   };
 }
 
@@ -258,11 +260,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      data.map((link) => ({
+      data.map(link => ({
         params: {
-          slug: link.slug,
-        },
+          slug: link.slug
+        }
       })) || [],
-    fallback: true,
+    fallback: true
   };
 }

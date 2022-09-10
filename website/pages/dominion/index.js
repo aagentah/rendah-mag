@@ -3,8 +3,8 @@ import Script from 'next/script';
 
 import random from 'lodash/random';
 
-import { Image, Heading } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Image from '~/components/elements/image';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Buttons from '~/components/dominion/buttons';

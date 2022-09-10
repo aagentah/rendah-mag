@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { Heading, Button, Icon, Input } from 'next-pattern-library';
 
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
+import Input from '~/components/elements/input';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
@@ -21,7 +24,7 @@ export default function Login({ siteConfig }) {
   const prefillEmail = router.query?.prefillEmail || null;
   const [submitButtonLoading, setSubmitButtonLoading] = useState(false);
 
-  const onSubmit = async (e) => {
+  const onSubmit = async e => {
     e.preventDefault();
 
     // Prevent double submit
@@ -29,7 +32,7 @@ export default function Login({ siteConfig }) {
 
     const body = {
       username: e.currentTarget.username.value,
-      password: e.currentTarget.password.value,
+      password: e.currentTarget.password.value
     };
 
     if (!body.username || !validEmail(body.username)) {
@@ -47,7 +50,7 @@ export default function Login({ siteConfig }) {
     const response = await fetch(`${process.env.SITE_URL}/api/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body)
     });
 
     if (response.ok) {
@@ -71,7 +74,7 @@ export default function Login({ siteConfig }) {
       const loginViaQuery = async () => {
         const body = {
           username: router.query.username,
-          password: `${router.query.salt}:${router.query.hash}`,
+          password: `${router.query.salt}:${router.query.hash}`
         };
 
         dispatch({ type: 'TOGGLE_LOADING' });
@@ -81,7 +84,7 @@ export default function Login({ siteConfig }) {
         const response = await fetch(`${process.env.SITE_URL}/api/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
+          body: JSON.stringify(body)
         });
 
         if (response.ok) {
@@ -124,7 +127,7 @@ export default function Login({ siteConfig }) {
           siteConfig,
           title: 'Log In',
           description: null,
-          image: null,
+          image: null
         }}
         preview={null}
       >
@@ -197,7 +200,7 @@ export default function Login({ siteConfig }) {
                     href: null,
                     target: null,
                     routerLink: null,
-                    routerLinkProps: null,
+                    routerLinkProps: null
                   }}
                 />
               </div>
@@ -223,8 +226,8 @@ export default function Login({ siteConfig }) {
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
-                      scroll: false,
-                    },
+                      scroll: false
+                    }
                   }}
                 />
               </div>
@@ -250,8 +253,8 @@ export default function Login({ siteConfig }) {
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
-                      scroll: false,
-                    },
+                      scroll: false
+                    }
                   }}
                 />
               </div>
@@ -267,6 +270,6 @@ export async function getServerSideProps({ req }) {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig },
+    props: { siteConfig }
   };
 }

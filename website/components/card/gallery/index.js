@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
-import {
-  Image,
-  Label,
-  Heading,
-  Icon,
-} from 'next-pattern-library';
-import 'intersection-observer';
+
 import Observer from '@researchgate/react-intersection-observer';
+import Heading from '~/components/elements/heading';
+import Icon from '~/components/elements/icon';
+import Image from '~/components/elements/image';
+import Label from '~/components/elements/label';
+import 'intersection-observer';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
@@ -20,7 +19,7 @@ export default function CardGallery({ post }) {
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
   const imageHeight = app?.deviceSize === 'md' ? 200 : 230;
   const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
-  const handleIntersect = (event) => setInView(event.isIntersecting);
+  const handleIntersect = event => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   const image = (
@@ -52,8 +51,8 @@ export default function CardGallery({ post }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/gallery/${post?.slug}`,
-          scroll: false,
-        },
+          scroll: false
+        }
       }}
     />
   );
@@ -89,8 +88,8 @@ export default function CardGallery({ post }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/gallery/${post?.slug}`,
-          scroll: false,
-        },
+          scroll: false
+        }
       }}
     />
   );

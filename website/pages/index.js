@@ -3,11 +3,16 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import dynamic from 'next/dynamic';
-import { Heading, Button, Copy, Icon } from 'next-pattern-library';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
-import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
+
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Copy from '~/components/elements/copy';
+import Icon from '~/components/elements/icon';
+
+import 'intersection-observer';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';

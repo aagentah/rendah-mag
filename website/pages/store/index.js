@@ -3,8 +3,7 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import uniqBy from 'lodash/uniqBy';
 
-import { Heading } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardProduct from '~/components/card/product';
@@ -36,12 +35,12 @@ export default function Store({ siteConfig }) {
 
       for (let i = 0; i < uniqueCategoryNames.length; i += 1) {
         const categoryProducts = filter(products, {
-          category: uniqueCategoryNames[i],
+          category: uniqueCategoryNames[i]
         });
 
         const categoryWithProducts = {
           name: uniqueCategoryNames[i],
-          products: categoryProducts,
+          products: categoryProducts
         };
 
         categoryGroups.push(categoryWithProducts);
@@ -62,7 +61,7 @@ export default function Store({ siteConfig }) {
         siteConfig,
         title: 'Store',
         description: null,
-        image: null,
+        image: null
       }}
       preview={null}
     >
@@ -127,7 +126,7 @@ export async function getStaticProps({ req }) {
 
   return {
     props: {
-      siteConfig,
-    },
+      siteConfig
+    }
   };
 }

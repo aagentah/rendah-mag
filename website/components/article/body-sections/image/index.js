@@ -1,8 +1,8 @@
-import { Image } from 'next-pattern-library';
 import LazyLoad from 'react-lazyload';
 import BlockContent from '@sanity/block-content-to-react';
 import isArray from 'lodash/isArray';
 import includes from 'lodash/includes';
+import Image from '~/components/elements/image';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';

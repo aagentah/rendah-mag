@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useKeenSlider } from 'keen-slider/react';
-import {
-  Heading,
-  Button,
-  Icon,
-} from 'next-pattern-library';
+
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 
@@ -37,12 +36,12 @@ export default function Carousel({ packItems, refreshDominion }) {
     initial: 0,
     slideChanged(s) {
       setCurrentSlide(s.details().relativeSlide);
-    },
+    }
   };
 
   const [sliderNavRef, sliderNav] = useKeenSlider(sliderNavOptions);
 
-  const ArrowLeft = (props) => {
+  const ArrowLeft = props => {
     const { onClick, disabled } = props;
 
     return (
@@ -61,7 +60,7 @@ export default function Carousel({ packItems, refreshDominion }) {
     );
   };
 
-  const ArrowRight = (props) => {
+  const ArrowRight = props => {
     const { onClick, disabled } = props;
 
     return (
@@ -183,7 +182,7 @@ export default function Carousel({ packItems, refreshDominion }) {
                           .blur(100)
                           .auto('format')
                           .fit('scale')
-                          .url()})`,
+                          .url()})`
                       }}
                       className="profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow2"
                     >
@@ -231,7 +230,7 @@ export default function Carousel({ packItems, refreshDominion }) {
             {sliderNav && app.deviceSize !== 'md' ? (
               <>
                 <ArrowLeft
-                  onClick={(e) => {
+                  onClick={e => {
                     // If not first slide
                     if (currentSlide !== 0) {
                       setCurrentSlide(
@@ -245,7 +244,7 @@ export default function Carousel({ packItems, refreshDominion }) {
                 />
 
                 <ArrowRight
-                  onClick={(e) => {
+                  onClick={e => {
                     // If not last slide
                     if (currentSlide !== sliderNav.details().size - 1) {
                       setCurrentSlide(

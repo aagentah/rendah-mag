@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
-import { Button } from 'next-pattern-library';
-
+import Button from '~/components/elements/button';
 import { useUser } from '~/lib/hooks';
 
 export default function HeaderDestop({

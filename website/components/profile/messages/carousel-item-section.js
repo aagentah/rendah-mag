@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import {
-  Image,
-} from 'next-pattern-library';
+
+import Image from '~/components/elements/image';
 
 import Sections from '~/components/article/body-sections';
 
@@ -9,7 +8,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function CarouselItemSection({ item }) {
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
-  const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
+  const handleAudioPlay = playerRef => setCurrentAudioSelected(playerRef);
 
   return (
     <div className="flex  flex-wrap  pb2">

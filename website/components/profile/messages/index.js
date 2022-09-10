@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import {
-  Heading,
-  Button,
-} from 'next-pattern-library';
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
 
 import Carousel from './carousel';
 
@@ -83,8 +81,8 @@ export default function ProfileDominion({ refreshDominion }) {
               target: null,
               routerLink: Link,
               routerLinkProps: {
-                scroll: false,
-              },
+                scroll: false
+              }
             }}
           />
         </div>

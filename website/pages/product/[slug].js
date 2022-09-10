@@ -3,8 +3,11 @@ import Link from 'next/link';
 import { useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 
-import { Heading, Label, Image, Button, Icon } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
+import Image from '~/components/elements/image';
+import Label from '~/components/elements/label';
 import { useApp } from '~/context-provider/app';
 
 import Layout from '~/components/layout';

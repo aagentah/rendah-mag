@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
-import { Heading, Copy } from 'next-pattern-library';
 
+import Heading from '~/components/elements/heading';
+import Copy from '~/components/elements/copy';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
@@ -21,7 +22,7 @@ export default function DominionThankYou({ siteConfig }) {
           title: 'Thank you',
           description: null,
           image:
-            'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610196181/dominion/dominion-social-facebook-meta.png',
+            'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610196181/dominion/dominion-social-facebook-meta.png'
         }}
         preview={null}
       >
@@ -133,6 +134,6 @@ export async function getStaticProps() {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig },
+    props: { siteConfig }
   };
 }

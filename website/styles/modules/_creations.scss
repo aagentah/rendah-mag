@@ -6,12 +6,12 @@ $creations-black: #1c1c1c;
   --white: #d9d9d9;
 
   .white,
-  .rpl-white {
+  .white {
     color: $creations-white;
     fill: $creations-white;
   }
 
-  .rpl-bg-white,
+  .bg-white,
   .bg-white {
     background-color: $creations-white;
   }

@@ -1,7 +1,7 @@
 import 'intersection-observer';
 
-import { Heading, Icon } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Icon from '~/components/elements/icon';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
@@ -21,7 +21,7 @@ export default function Connect({ siteConfig, preview }) {
         siteConfig,
         title: 'Connect',
         description: null,
-        image: null,
+        image: null
       }}
       preview={preview}
     >
@@ -123,8 +123,8 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      siteConfig,
-    },
+      siteConfig
+    }
   };
 }
 

@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Icon } from 'next-pattern-library';
+
+import Icon from '~/components/elements/icon';
 
 export default function SocialLinks({ article }) {
   if (article.socialHandles) {
@@ -84,7 +85,7 @@ export default function SocialLinks({ article }) {
       );
 
       tags.push(
-        article.tags.map((e) => (
+        article.tags.map(e => (
           <>
             <Link href={`/tag/${e.tag.slug}`}>
               <span className="t-secondary  f7  cp  grey  fw7  pr3">

@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Heading } from 'next-pattern-library';
+
 import BlockContent from '@sanity/block-content-to-react';
+import Heading from '~/components/elements/heading';
 import AudioEmbed from '~/components/article/body-sections/audio';
 
 export default function CarouselItemSection({ offering }) {

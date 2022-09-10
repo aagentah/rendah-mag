@@ -1,7 +1,9 @@
 import Link from 'next/link';
 
-import { Heading, Copy, Label, Image } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Copy from '~/components/elements/copy';
+import Image from '~/components/elements/image';
+import Label from '~/components/elements/label';
 import { imageBuilder } from '~/lib/sanity/requests';
 
 export default function Author({ siteConfig, author }) {

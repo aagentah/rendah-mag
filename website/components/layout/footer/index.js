@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 
-import { Heading, Button, Icon } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
 import Container from '../container';
 
 export default function Footer() {

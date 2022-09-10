@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import NProgress from 'nprogress';
 import BlockContent from '@sanity/block-content-to-react';
 
-import { Heading, Button, Icon } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
 import Modal from '~/components/modal';
 
 import { useApp } from '~/context-provider/app';
@@ -15,22 +16,22 @@ export default function ImageModal({
   modalActive,
   closeModal,
   postTitle,
-  component,
+  component
 }) {
   const app = useApp();
   const [user] = useUser();
 
-  const toDataURL = (url) => {
+  const toDataURL = url => {
     return fetch(url)
-      .then((response) => {
+      .then(response => {
         return response.blob();
       })
-      .then((blob) => {
+      .then(blob => {
         return URL.createObjectURL(blob);
       });
   };
 
-  const download = async (url) => {
+  const download = async url => {
     NProgress.start();
     setTimeout(() => {
       NProgress.done();

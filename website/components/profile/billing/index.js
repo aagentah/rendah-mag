@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import fetch from 'isomorphic-unfetch';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
-import { Heading, Button, Input } from 'next-pattern-library';
 
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Input from '~/components/elements/input';
 import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 

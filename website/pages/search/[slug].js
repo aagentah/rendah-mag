@@ -1,5 +1,4 @@
-import { Heading } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
@@ -17,7 +16,7 @@ export default function Post({ siteConfig, allPosts, params }) {
         siteConfig,
         title: 'Search',
         description: null,
-        image: null,
+        image: null
       }}
       preview={null}
     >
@@ -79,7 +78,7 @@ export async function getServerSideProps({ req, params, preview = false }) {
       siteConfig,
       preview,
       allPosts,
-      params,
-    },
+      params
+    }
   };
 }

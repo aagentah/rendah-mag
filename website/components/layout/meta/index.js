@@ -93,6 +93,14 @@ const Meta = props => {
           href={`${process.env.SITE_URL}${router.asPath}`}
         />
 
+        <link
+          rel="preload"
+          href="/fonts/archive.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin
+        />
+
         <title>
           {process.env.NODE_ENV === 'development' ? '(Local) ' : ''}
           {titleVal} | {siteTitle}

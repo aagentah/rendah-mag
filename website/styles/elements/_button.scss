@@ -1,3 +1,203 @@
+// Base
+
+.button {
+  opacity: 0;
+  animation: npl-fade-in 0.3s forwards;
+  transition: all 0.3s ease-in-out;
+  display: inline-flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background: transparent;
+  box-shadow: none;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  padding-left: 8px;
+  padding-right: 8px;
+  min-width: 50px;
+  font-family: $t-secondary;
+
+  .button__icon__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &.small {
+    @extend .f6;
+
+    .button__icon {
+      width: 14px;
+    }
+  }
+
+  &.medium {
+    @extend .f5;
+
+    .button__icon {
+      width: 16px;
+    }
+  }
+
+  &.large {
+    @extend .f4;
+
+    .button__icon {
+      width: 18px;
+    }
+  }
+
+  &.x-large {
+    @extend .f3;
+
+    .button__icon {
+      width: 20px;
+    }
+  }
+
+  .button__icon,
+  .button__icon + span {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .button__icon--left {
+    margin-right: 7px;
+  }
+
+  .button__icon--right {
+    margin-left: 7px;
+  }
+}
+
+// Primary
+
+.button.primary {
+  border: 2px solid #000000;
+  text-align: center;
+  padding: 0.7em;
+
+  .button__icon__wrapper {
+    justify-content: center;
+  }
+
+  &.small {
+    height: 40px;
+    min-width: 0px;
+  }
+
+  &.medium {
+    height: 50px;
+    min-width: 100px;
+  }
+
+  &.large {
+    height: 60px;
+    min-width: 200px;
+  }
+
+  &.x-large {
+    height: 65px;
+    min-width: 200px;
+  }
+}
+
+// Secondary
+
+.button.secondary {
+  text-align: left;
+  padding: 0;
+}
+
+// Fluid
+
+.button.fluid {
+  width: 100%;
+}
+
+// Disabled
+
+.button.disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed;
+}
+
+// Loading
+
+.button.loading {
+  display: flex;
+  cursor: default;
+
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .button__spinner {
+    animation: loading 2s linear infinite;
+  }
+
+  &.primary {
+    justify-content: center;
+  }
+
+  &.secondary {
+    justify-content: center;
+  }
+}
+
+// Colors
+
+@each $color, $hex in $colors {
+  .button.primary.button--#{'' + $color} {
+    background-color: var($hex);
+    color: #ffffff;
+    fill: #ffffff;
+    border-color: var($hex);
+
+    &:hover:not(.loading):not(.disabled) {
+      background-color: transparent;
+      color: var($hex);
+      fill: var($hex);
+    }
+  }
+
+  .button.primary.button--#{'' + $color}.inverted {
+    color: var($hex);
+    fill: var($hex);
+    border-color: var($hex);
+
+    &:hover:not(.loading):not(.disabled):not(.white) {
+      background-color: var($hex);
+      color: var(--white);
+      fill: var(--white);
+    }
+
+    &:hover:not(.loading):not(.disabled).white {
+      background-color: var($hex);
+      color: var(--black);
+      fill: var(--black);
+    }
+  }
+
+  .button.secondary.button--#{$color} {
+    color: var($hex);
+    fill: var($hex);
+    border-color: var($hex);
+  }
+}
+
+// Inverted
+
+.button.primary.inverted {
+  background-color: transparent;
+}
+
 .button {
   //
 }

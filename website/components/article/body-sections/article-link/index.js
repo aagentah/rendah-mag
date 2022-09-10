@@ -1,5 +1,4 @@
-
-import { Button } from 'next-pattern-library';
+import Button from '~/components/elements/button';
 
 export default function ArticleLink({ text, url }) {
   return (
@@ -24,7 +23,7 @@ export default function ArticleLink({ text, url }) {
           href: url,
           target: '_blank',
           routerLink: null,
-          routerLinkProps: null,
+          routerLinkProps: null
         }}
       />
     </div>

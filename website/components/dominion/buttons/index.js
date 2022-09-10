@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
-import {
-  PayPalScriptProvider
-} from '@paypal/react-paypal-js';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 import classNames from 'classnames';
 
-import { Button, Icon } from 'next-pattern-library';
-
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
 import PaypalPay from '~/components/dominion/paypalPay';
 import PaypalFree from '~/components/dominion/paypalFree';
 

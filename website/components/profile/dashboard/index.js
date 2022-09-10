@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { Heading, Button } from 'next-pattern-library';
 
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
 import CardDashboard from '~/components/card/dashboard';
 
 import { useUser } from '~/lib/hooks';

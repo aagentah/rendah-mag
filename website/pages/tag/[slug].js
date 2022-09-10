@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import filter from 'lodash/filter';
 import dynamic from 'next/dynamic';
 
-import { Heading, Label, Image } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Image from '~/components/elements/image';
+import Label from '~/components/elements/label';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
@@ -17,7 +18,7 @@ import {
   getSiteConfig,
   getTagAndPosts,
   getTags,
-  imageBuilder,
+  imageBuilder
 } from '~/lib/sanity/requests';
 
 const ImageModal = dynamic(() => import('~/components/gallery/image-modal'));
@@ -44,7 +45,7 @@ export default function Post({ siteConfig, tag }) {
           component = galleryPosts[i].components[ii];
           allGalleryImages.push({
             ...component,
-            postTitle: galleryPosts[i].title,
+            postTitle: galleryPosts[i].title
           });
         }
       }
@@ -53,7 +54,7 @@ export default function Post({ siteConfig, tag }) {
     }
   }, []);
 
-  const renderImage = (item) => {
+  const renderImage = item => {
     let src;
 
     if (item.image?.dominionExclusive && !user?.isDominion) {
@@ -124,7 +125,7 @@ export default function Post({ siteConfig, tag }) {
         darkMode
         meta={{
           siteConfig,
-          title: tag.name,
+          title: tag.name
         }}
         preview={null}
       >
@@ -243,9 +244,9 @@ export async function getStaticProps({ req, params, preview = false }) {
   return {
     props: {
       siteConfig,
-      tag,
+      tag
     },
-    revalidate: 1,
+    revalidate: 1
   };
 }
 
@@ -254,11 +255,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      tags.map((tag) => ({
+      tags.map(tag => ({
         params: {
-          slug: tag.slug,
-        },
+          slug: tag.slug
+        }
       })) || [],
-    fallback: 'blocking',
+    fallback: 'blocking'
   };
 }

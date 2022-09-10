@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import BlockContent from '@sanity/block-content-to-react';
-import { Heading, Button } from 'next-pattern-library';
 
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
 import { useUser } from '~/lib/hooks';
 import { getDominionPipeline } from '~/lib/sanity/requests';
 
@@ -126,8 +127,8 @@ export default function ProfileOrders() {
               target: null,
               routerLink: Link,
               routerLinkProps: {
-                scroll: false,
-              },
+                scroll: false
+              }
             }}
           />
         </div>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
-import { Button } from 'next-pattern-library';
-
+import Button from '~/components/elements/button';
 import { useApp } from '~/context-provider/app';
 
 export default function CookieBanner() {

@@ -1,12 +1,11 @@
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
-import {
-  Image,
-  Label,
-  Heading,
-  Button,
-  Icon,
-} from 'next-pattern-library';
+
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
+import Image from '~/components/elements/image';
+import Label from '~/components/elements/label';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
@@ -47,8 +46,8 @@ export default function CardProduct({ product }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/product/${product?.slug}`,
-          scroll: false,
-        },
+          scroll: false
+        }
       }}
     />
   );
@@ -64,7 +63,7 @@ export default function CardProduct({ product }) {
       onClick={null}
       /* Children */
       withLinkProps={null}
-    />,
+    />
   ];
 
   if (product?.tag === 'Sold-out') {
@@ -100,8 +99,8 @@ export default function CardProduct({ product }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/product/${product?.slug}`,
-          scroll: false,
-        },
+          scroll: false
+        }
       }}
     />
   );
@@ -140,8 +139,8 @@ export default function CardProduct({ product }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/product/${product?.slug}`,
-          scroll: false,
-        },
+          scroll: false
+        }
       }}
     />
   );

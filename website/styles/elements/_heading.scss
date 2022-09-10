@@ -1,3 +1,49 @@
 .heading {
+  opacity: 0;
+  animation: npl-fade-in 0.3s forwards;
+  position: relative;
+  display: block;
+  font-weight: bold;
+  font-family: $t-primary;
+  line-height: 1.5;
+
+  &.small {
+    @extend .f5;
+  }
+
+  &.medium {
+    @extend .f4;
+  }
+
+  &.large {
+    @extend .f3;
+  }
+
+  &.x-large {
+    @extend .f3;
+  }
+
+  @include breakpoint-up(md) {
+    &.small {
+      font-size: 1rem;
+    }
+
+    &.medium {
+      font-size: 1.25rem;
+    }
+
+    &.large {
+      font-size: 1.5rem;
+    }
+
+    &.x-large {
+      font-size: 2.25rem;
+    }
+  }
+}
+
+//
+
+.heading {
   //
 }

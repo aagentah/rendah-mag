@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import { Parallax } from 'react-scroll-parallax';
 
-import {
-  Heading,
-  Image,
-  Button,
-  Copy,
-  Icon,
-} from 'next-pattern-library';
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Copy from '~/components/elements/copy';
+import Icon from '~/components/elements/icon';
+import Image from '~/components/elements/image';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -18,7 +16,7 @@ import CardCypher from '~/components/card/cypher';
 import {
   getSiteConfig,
   imageBuilder,
-  getCurrentAndPreviousCyphers,
+  getCurrentAndPreviousCyphers
 } from '~/lib/sanity/requests';
 
 export default function Cyphers({ siteConfig }) {
@@ -47,7 +45,7 @@ export default function Cyphers({ siteConfig }) {
           siteConfig,
           title: 'Cyphers',
           description: null,
-          image: null,
+          image: null
         }}
         preview={null}
       >
@@ -114,7 +112,7 @@ export default function Cyphers({ siteConfig }) {
                             href: cyphers.current.packLink,
                             target: '_blank',
                             routerLink: null,
-                            routerLinkProps: null,
+                            routerLinkProps: null
                           }}
                         />
                       </div>
@@ -139,7 +137,7 @@ export default function Cyphers({ siteConfig }) {
                             href: cyphers.current.submissionFormLink,
                             target: '_blank',
                             routerLink: null,
-                            routerLinkProps: null,
+                            routerLinkProps: null
                           }}
                         />
                       </div>
@@ -298,6 +296,6 @@ export async function getServerSideProps() {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig },
+    props: { siteConfig }
   };
 }

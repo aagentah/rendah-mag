@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
-import {
-  Image,
-  Label,
-  Heading,
-  Icon,
-} from 'next-pattern-library';
 
+import Heading from '~/components/elements/heading';
+import Icon from '~/components/elements/icon';
+import Image from '~/components/elements/image';
+import Label from '~/components/elements/label';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
@@ -46,8 +44,8 @@ export default function CardBlog({ member }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/team/${member?.slug}`,
-          scroll: false,
-        },
+          scroll: false
+        }
       }}
     />
   );
@@ -83,8 +81,8 @@ export default function CardBlog({ member }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/team/${member?.slug}`,
-          scroll: false,
-        },
+          scroll: false
+        }
       }}
     />
   );

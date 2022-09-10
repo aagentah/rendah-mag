@@ -1,7 +1,9 @@
 import Router, { useRouter } from 'next/router';
 
-import { Heading, Copy, Label, Image } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Copy from '~/components/elements/copy';
+import Image from '~/components/elements/image';
+import Label from '~/components/elements/label';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
@@ -10,7 +12,7 @@ import {
   getSiteConfig,
   getTeamMemberAndPosts,
   getTeamMembers,
-  imageBuilder,
+  imageBuilder
 } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, member }) {
@@ -31,7 +33,7 @@ export default function Post({ siteConfig, member }) {
           siteConfig,
           title: member.name,
           description: member.description,
-          image: member.image,
+          image: member.image
         }}
         preview={null}
       >
@@ -166,9 +168,9 @@ export async function getStaticProps({ req, params, preview = false }) {
   return {
     props: {
       siteConfig,
-      member,
+      member
     },
-    revalidate: 1,
+    revalidate: 1
   };
 }
 
@@ -177,11 +179,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      team.map((member) => ({
+      team.map(member => ({
         params: {
-          slug: member.slug,
-        },
+          slug: member.slug
+        }
       })) || [],
-    fallback: 'blocking',
+    fallback: 'blocking'
   };
 }

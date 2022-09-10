@@ -79,6 +79,7 @@
     "camelcase": "off",
     "react/jsx-indent": "off",
     "no-case-declarations": "off",
+    "jsx-a11y/label-has-for": "off",
     "import/no-unresolved": [
       "error",
       {

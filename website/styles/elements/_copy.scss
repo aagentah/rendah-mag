@@ -1,3 +1,30 @@
 .copy {
+  opacity: 0;
+  animation: npl-fade-in 0.3s forwards;
+  position: relative;
+  display: block;
+  font-family: $t-secondary;
+  line-height: 1.5;
+
+  &.small {
+    font-size: 0.75rem;
+  }
+
+  &.medium {
+    font-size: 0.875rem;
+  }
+
+  &.large {
+    font-size: 1rem;
+  }
+
+  &.x-large {
+    font-size: 1.25rem;
+  }
+}
+
+//
+
+.copy {
   //
 }

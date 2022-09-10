@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { Heading, Button, Icon, Input } from 'next-pattern-library';
 
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
+import Input from '~/components/elements/input';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
@@ -22,7 +25,7 @@ export default function Forgot({ siteConfig }) {
     if (submitButtonLoading) return false;
 
     const body = {
-      username: e.currentTarget.username.value,
+      username: e.currentTarget.username.value
     };
 
     if (!body.username || !validEmail(body.username)) {
@@ -36,7 +39,7 @@ export default function Forgot({ siteConfig }) {
     const response = await fetch(`${process.env.SITE_URL}/api/forgot`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body)
     });
 
     if (response.ok) {
@@ -68,7 +71,7 @@ export default function Forgot({ siteConfig }) {
           siteConfig,
           title: 'Forgot Password',
           description: 'Forgot your password?.',
-          image: null,
+          image: null
         }}
         preview={null}
       >
@@ -128,7 +131,7 @@ export default function Forgot({ siteConfig }) {
                     href: null,
                     target: null,
                     routerLink: null,
-                    routerLinkProps: null,
+                    routerLinkProps: null
                   }}
                 />
               </div>
@@ -154,8 +157,8 @@ export default function Forgot({ siteConfig }) {
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
-                      scroll: false,
-                    },
+                      scroll: false
+                    }
                   }}
                 />
               </div>
@@ -171,6 +174,6 @@ export async function getServerSideProps() {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig },
+    props: { siteConfig }
   };
 }

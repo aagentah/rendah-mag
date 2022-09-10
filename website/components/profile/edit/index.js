@@ -2,15 +2,13 @@ import { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 
-import {
-  Image,
-  Heading,
-  Button,
-  Copy,
-  Icon,
-  Input,
-  Checkbox
-} from 'next-pattern-library';
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Copy from '~/components/elements/copy';
+import Icon from '~/components/elements/icon';
+import Checkbox from '~/components/elements/checkbox';
+import Input from '~/components/elements/input';
+import Image from '~/components/elements/image';
 
 import Modal from '~/components/modal';
 import { useApp, useDispatchApp } from '~/context-provider/app';

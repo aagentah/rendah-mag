@@ -3,7 +3,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  font-family: $npl-t-secondary;
+  font-family: $t-secondary;
   line-height: 1.5;
 }
 
@@ -12,7 +12,7 @@
   z-index: -1;
   opacity: 0;
   display: none;
-  font-family: $npl-t-secondary;
+  font-family: $t-secondary;
   line-height: 1.5;
   -webkit-appearance: none;
 }
@@ -28,7 +28,7 @@
   background: #ffffff;
   border: 1px solid #000000;
   border-radius: 100%;
-  font-family: $npl-t-secondary;
+  font-family: $t-secondary;
   line-height: 1.5;
 }
 
@@ -36,9 +36,97 @@
   padding-top: 0;
   padding-left: 12px;
   display: inline-block;
-  font-family: $npl-t-secondary;
+  font-family: $t-secondary;
   line-height: 1.5;
-  font-size: $npl-f6;
+  @extend .f6;
+  color: #000000;
+}
+
+.radio__indicator:after {
+  transition: all 0.3s ease-in-out;
+  content: '';
+  position: absolute;
+  display: block;
+  opacity: 0;
+  left: 8px;
+  top: 5px;
+  width: 3px;
+  height: 8px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.radio__control .radio__input:checked ~ .radio__indicator:after {
+  opacity: 1;
+}
+
+// Hover
+.radio__control:hover
+  .radio__input:not(:checked):not(:disabled)
+  ~ .radio__indicator:after {
+  opacity: 1;
+  border-color: #777777;
+}
+
+// Checked
+.radio__control .radio__input:checked ~ .radio__indicator {
+  background: #000000;
+}
+
+// Disabled
+.radio__control .radio__input:disabled ~ .radio__indicator {
+  background: #ffffff;
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.radio__control .radio__input:disabled ~ .radio__label {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.radio__control {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-family: $t-secondary;
+  line-height: 1.5;
+}
+
+.radio__input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: none;
+  font-family: $t-secondary;
+  line-height: 1.5;
+  -webkit-appearance: none;
+}
+
+.radio__indicator {
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  min-width: 20px;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 100%;
+  font-family: $t-secondary;
+  line-height: 1.5;
+}
+
+.radio__label {
+  padding-top: 0;
+  padding-left: 12px;
+  display: inline-block;
+  font-family: $t-secondary;
+  line-height: 1.5;
+  @extend .f6;
   color: #000000;
 }
 

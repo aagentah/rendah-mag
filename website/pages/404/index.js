@@ -1,5 +1,5 @@
-import { Heading, Copy } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Copy from '~/components/elements/copy';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
@@ -17,7 +17,7 @@ export default function Error404({ siteConfig }) {
           siteConfig,
           title: '404',
           description: 'Page not found.',
-          image: null,
+          image: null
         }}
         preview={null}
       >
@@ -54,6 +54,6 @@ export async function getStaticProps() {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig },
+    props: { siteConfig }
   };
 }

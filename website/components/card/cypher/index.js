@@ -1,10 +1,9 @@
 import LazyLoad from 'react-lazyload';
-import {
-  Image,
-  Label,
-  Heading,
-  Icon,
-} from 'next-pattern-library';
+
+import Heading from '~/components/elements/heading';
+import Icon from '~/components/elements/icon';
+import Image from '~/components/elements/image';
+import Label from '~/components/elements/label';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
@@ -43,7 +42,7 @@ export default function CardBlog({ post }) {
         href: post?.publishedFields?.publishedUrl,
         target: '_blank',
         routerLink: null,
-        routerLinkProps: null,
+        routerLinkProps: null
       }}
     />
   );
@@ -77,7 +76,7 @@ export default function CardBlog({ post }) {
         href: post?.publishedFields?.publishedUrl,
         target: '_blank',
         routerLink: null,
-        routerLinkProps: null,
+        routerLinkProps: null
       }}
     />
   );

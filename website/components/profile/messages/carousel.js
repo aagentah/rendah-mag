@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useKeenSlider } from 'keen-slider/react';
-import {
-  Heading,
-  Button,
-  Icon,
-} from 'next-pattern-library';
+
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 
@@ -37,12 +36,12 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     initial: 0,
     slideChanged(s) {
       setCurrentSlide(s.details().relativeSlide);
-    },
+    }
   };
 
   const [sliderNavRef, sliderNav] = useKeenSlider(sliderNavOptions);
 
-  const ArrowLeft = (props) => {
+  const ArrowLeft = props => {
     const { onClick, disabled } = props;
 
     return (
@@ -61,7 +60,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
     );
   };
 
-  const ArrowRight = (props) => {
+  const ArrowRight = props => {
     const { onClick, disabled } = props;
 
     return (
@@ -186,7 +185,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                               .fit('clip')
                               .blur('20')
                               .url()})`
-                          : 'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)',
+                          : 'url(https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format)'
                       }}
                       className="profile__dominion__carousel-item  mla  mra  flex  align-center  justify-center  pa4  br4  shadow2"
                     >
@@ -239,7 +238,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
             {sliderNav && app.deviceSize !== 'md' ? (
               <>
                 <ArrowLeft
-                  onClick={(e) => {
+                  onClick={e => {
                     // If not first slide
                     if (currentSlide !== 0) {
                       setCurrentSlide(
@@ -253,7 +252,7 @@ export default function Carousel({ dominionItems, refreshDominion }) {
                 />
 
                 <ArrowRight
-                  onClick={(e) => {
+                  onClick={e => {
                     // If not last slide
                     if (currentSlide !== sliderNav.details().size - 1) {
                       setCurrentSlide(

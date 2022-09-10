@@ -1,6 +1,5 @@
-
-import { Heading, Icon } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Icon from '~/components/elements/icon';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
@@ -21,7 +20,7 @@ export default function Category({ siteConfig, category }) {
           siteConfig,
           title: category.title,
           description: category.description,
-          image: null,
+          image: null
         }}
         preview={null}
       >
@@ -67,7 +66,7 @@ export async function getServerSideProps({ req, params, preview = false }) {
   return {
     props: {
       siteConfig,
-      category,
-    },
+      category
+    }
   };
 }

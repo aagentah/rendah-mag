@@ -6,10 +6,10 @@
 
 @font-face {
   font-family: 'Archive';
-  src:
-    url('/fonts/archive.otf') format('opentype');
+  src: url('/fonts/archive.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
 $system-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
@@ -40,7 +40,7 @@ $type-scale: (
   f5: 1rem,
   f6: 0.875rem,
   f7: 0.75rem,
-  f8: 0.6rem,
+  f8: 0.6rem
 ) !default;
 
 // colors
@@ -65,7 +65,7 @@ $type-scale: (
   --info-color: #6697f4;
   --creations-black: #1c1c1c;
   --rendah-red: #e9393f;
-  --rendah-yellow: #FAB658;
+  --rendah-yellow: #fab658;
 }
 
 // [data-theme='dark'] {
@@ -96,7 +96,7 @@ $colors: (
   info-color: --info-color,
   creations-black: --creations-black,
   rendah-red: --rendah-red,
-  rendah-yellow: --rendah-yellow,
+  rendah-yellow: --rendah-yellow
 ) !default;
 
 $body-color: var(--almost-black) !default;
@@ -112,7 +112,7 @@ $grid-breakpoints: (
   sm: 650px,
   md: 950px,
   lg: 1250px,
-  xl: 1550px,
+  xl: 1550px
 ) !default;
 
 /* iphone 6, 6s, 7, 8 */
@@ -145,5 +145,5 @@ $spacings: (
   4: 2rem,
   5: 4rem,
   6: 8rem,
-  7: 16rem,
+  7: 16rem
 ) !default;

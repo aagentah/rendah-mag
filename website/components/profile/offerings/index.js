@@ -3,8 +3,9 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import NProgress from 'nprogress';
 
-import { Heading, Button, Icon } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
 import CardOffering from '~/components/card/offering';
 
 import { useUser } from '~/lib/hooks';
@@ -82,19 +83,19 @@ export default function ProfileDominion() {
     return (
       <>
         <section>
-        <div className="profile_heading">
-          <Heading
-            /* Options */
-            htmlEntity="h1"
-            text="Dubplates"
-            color="white"
-            size="medium"
-            truncate={null}
-            /* Children */
-            withLinkProps={null}
-          />
-        </div>
-        
+          <div className="profile_heading">
+            <Heading
+              /* Options */
+              htmlEntity="h1"
+              text="Dubplates"
+              color="white"
+              size="medium"
+              truncate={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+
           <div className="relative  ">
             <div
               className={`
@@ -102,8 +103,6 @@ export default function ProfileDominion() {
               ${cardsShow && 'dominion-cards--active'}
           `}
             >
-
-
               <div className="pb4  mb2">
                 <p className="white  f6  lh-copy">
                   A 'Dubplates' pack consists of exclusive music from the

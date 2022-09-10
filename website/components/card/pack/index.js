@@ -1,5 +1,5 @@
-import { Image, Heading } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Image from '~/components/elements/image';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 

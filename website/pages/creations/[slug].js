@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
-import { Heading } from 'next-pattern-library';
 
+import Heading from '~/components/elements/heading';
 import Hero from '~/components/hero/creations';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';

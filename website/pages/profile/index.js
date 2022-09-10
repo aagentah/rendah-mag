@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import zenscroll from 'zenscroll';
-import { Icon } from 'next-pattern-library';
 
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import Icon from '~/components/elements/icon';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Tabs from '~/components/tabs';

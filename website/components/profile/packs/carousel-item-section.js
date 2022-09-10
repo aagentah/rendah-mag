@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { Heading, Image, Button } from 'next-pattern-library';
+
 import BlockContent from '@sanity/block-content-to-react';
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Image from '~/components/elements/image';
 
 import { useApp } from '~/context-provider/app';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';

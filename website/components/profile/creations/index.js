@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Heading, Button } from 'next-pattern-library';
+
 import filter from 'lodash/filter';
 import cloneDeep from 'lodash/cloneDeep';
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
 
 import CardCreations from '~/components/card/creations';
 

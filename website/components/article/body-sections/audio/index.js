@@ -1,8 +1,11 @@
 import { useEffect, useRef } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
-import { Button, Icon, Image } from 'next-pattern-library';
+
 import BlockContent from '@sanity/block-content-to-react';
 import { usePlausible } from 'next-plausible';
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
+import Image from '~/components/elements/image';
 
 import { useUser } from '~/lib/hooks';
 import { useApp } from '~/context-provider/app';

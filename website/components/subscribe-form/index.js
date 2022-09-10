@@ -3,8 +3,8 @@ import fetch from 'isomorphic-unfetch';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
-import { Button, Icon } from 'next-pattern-library';
-
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
 import { useApp, useDispatchApp } from '../../context-provider/app';
 
 export default function SubscribeForm({ onSuccess }) {
@@ -14,7 +14,7 @@ export default function SubscribeForm({ onSuccess }) {
 
   const inputEl = useRef(null);
 
-  const subscribe = async (e) => {
+  const subscribe = async e => {
     e.preventDefault();
 
     if (!inputEl.current.value) {
@@ -30,11 +30,11 @@ export default function SubscribeForm({ onSuccess }) {
         body: JSON.stringify({
           data: {
             email_address: inputEl.current.value,
-            status: 'subscribed',
-          },
+            status: 'subscribed'
+          }
         }),
         headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
+        method: 'POST'
       }
     );
 
@@ -95,7 +95,7 @@ export default function SubscribeForm({ onSuccess }) {
               type: 'form',
               url: null,
               target: null,
-              routerLink: null,
+              routerLink: null
             }}
           />
         </div>

@@ -24,32 +24,32 @@
 .tabs__desktop-nav__item {
   transition: background-color 0.3s ease-in-out;
   display: inline-block;
-  background-color: $npl-base-white;
-  color: $npl-base-black;
+  background-color: var(--white);
+  color: var(--black);
   padding: 20px;
   margin-right: 10px;
   cursor: pointer;
 }
 
 .tabs__desktop-nav__item:hover {
-  background-color: $npl-base-almost-white;
+  background-color: var(--almost-white);
 }
 
 .tabs__desktop-nav__item.active {
-  background-color: $npl-base-almost-white;
-  color: $npl-base-black;
+  background-color: var(--almost-white);
+  color: var(--black);
 }
 
 // Body
 
 .tabs__body {
-  background-color: $npl-base-white;
+  background-color: var(--white);
   padding: 30px;
 }
 
 @include breakpoint-up(md) {
   .tabs__body {
-    background-color: $npl-base-almost-white;
+    background-color: var(--almost-white);
     padding: 30px;
   }
 }
@@ -107,8 +107,8 @@
 .tabs__mobile-nav__item {
   transition: background-color 0.3s ease-in-out;
   display: flex;
-  background: $npl-base-almost-white;
-  color: $npl-base-black;
+  background: var(--almost-white);
+  color: var(--black);
   padding: 20px;
   margin-bottom: 20px;
   cursor: pointer;

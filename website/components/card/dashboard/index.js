@@ -1,6 +1,8 @@
 import LazyLoad from 'react-lazyload';
-import { Image, Icon, Button } from 'next-pattern-library';
 
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
+import Image from '~/components/elements/image';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 

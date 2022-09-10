@@ -1,8 +1,9 @@
 import { Parallax } from 'react-scroll-parallax';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Button, Icon } from 'next-pattern-library';
 
+import Button from '~/components/elements/button';
+import Icon from '~/components/elements/icon';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 

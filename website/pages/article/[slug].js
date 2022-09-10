@@ -9,8 +9,9 @@ import BlockContent from '@sanity/block-content-to-react';
 import toMarkdown from '@sanity/block-content-to-markdown';
 import markdownToTxt from 'markdown-to-txt';
 
-import { Heading, Copy, Button } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Copy from '~/components/elements/copy';
 import Hero from '~/components/hero/article';
 import Modal from '~/components/modal';
 
@@ -31,7 +32,7 @@ import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 import {
   getSiteConfig,
   getAllPostsTotal,
-  getPostAndMore,
+  getPostAndMore
 } from '~/lib/sanity/requests';
 
 export default function Post({ siteConfig, post, morePosts, preview }) {
@@ -55,7 +56,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
     }
   };
 
-  const handleIntersect = (event) => {
+  const handleIntersect = event => {
     if (
       event.isIntersecting &&
       !user &&
@@ -85,7 +86,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           siteConfig,
           title: post.title,
           description: markdownToTxt(toMarkdown(post.introduction)),
-          image: post.coverImage,
+          image: post.coverImage
         }}
         preview={preview}
       >
@@ -178,7 +179,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
               </div>
 
               <p className="t-secondary  f6  almost-black  lh-copy  pb4">
-                {post.authors.map((i) => (
+                {post.authors.map(i => (
                   <>
                     <Link href={`/team/${i.author.slug.current}`}>
                       <span className="cp  black  fw7">{i.author.name}</span>
@@ -208,7 +209,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           </article>
 
           <section className="flex  flex-wrap  justify-center  align-center  pb3  pb4-md">
-            {post.authors.map((i) => (
+            {post.authors.map(i => (
               <div className="col-24  col-12-md  pb4  pb3-md  ph3">
                 <Author author={i.author} />
               </div>
@@ -269,9 +270,9 @@ export async function getStaticProps({ req, params, preview = false }) {
       siteConfig,
       preview,
       post: data.post || null,
-      morePosts: data.morePosts || null,
+      morePosts: data.morePosts || null
     },
-    revalidate: 1,
+    revalidate: 1
   };
 }
 
@@ -280,11 +281,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      data.map((article) => ({
+      data.map(article => ({
         params: {
-          slug: article.slug,
-        },
+          slug: article.slug
+        }
       })) || [],
-    fallback: 'blocking',
+    fallback: 'blocking'
   };
 }

@@ -3,12 +3,11 @@ import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
-import {
-  Image,
-  Label,
-  Heading,
-  Icon,
-} from 'next-pattern-library';
+
+import Heading from '~/components/elements/heading';
+import Icon from '~/components/elements/icon';
+import Image from '~/components/elements/image';
+import Label from '~/components/elements/label';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
@@ -19,7 +18,7 @@ export default function CardBlog({ post, columnCount }) {
   const scale = app?.isRetina ? 2 : 1;
   let imageHeight;
   let imageUrlWidth;
-  const handleIntersect = (event) => setInView(event.isIntersecting);
+  const handleIntersect = event => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   if (columnCount == 2) {
@@ -61,8 +60,8 @@ export default function CardBlog({ post, columnCount }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/article/${post?.slug}`,
-          scroll: false,
-        },
+          scroll: false
+        }
       }}
     />
   );
@@ -98,8 +97,8 @@ export default function CardBlog({ post, columnCount }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/article/${post?.slug}`,
-          scroll: false,
-        },
+          scroll: false
+        }
       }}
     />
   );

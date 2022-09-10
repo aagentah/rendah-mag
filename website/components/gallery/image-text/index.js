@@ -4,8 +4,7 @@ import { useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import dynamic from 'next/dynamic';
 
-import { Image } from 'next-pattern-library';
-
+import Image from '~/components/elements/image';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';

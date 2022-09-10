@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import 'intersection-observer';
 
-import { Heading, Copy, Button, Icon } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Copy from '~/components/elements/copy';
+import Icon from '~/components/elements/icon';
 import Modal from '~/components/modal';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -20,7 +22,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  const renderItemType = (post) => {
+  const renderItemType = post => {
     return (
       <div className="flex  flex-wrap  mb3  cp">
         <a
@@ -50,7 +52,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
           siteConfig,
           title: 'Link In Bio',
           description: null,
-          image: null,
+          image: null
         }}
         preview={preview}
       >
@@ -236,8 +238,8 @@ export async function getServerSideProps({ req, preview = false }) {
     props: {
       siteConfig,
       posts,
-      preview,
-    },
+      preview
+    }
   };
 }
 

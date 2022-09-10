@@ -1,5 +1,4 @@
-import { Heading } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
@@ -17,7 +16,7 @@ export default function Error404({ siteConfig }) {
           siteConfig,
           title: 'Cookie Policy',
           description: null,
-          image: null,
+          image: null
         }}
         preview={null}
       >
@@ -1044,6 +1043,6 @@ export async function getStaticProps({ req }) {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig },
+    props: { siteConfig }
   };
 }

@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { Heading } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardGallery from '~/components/card/gallery';
 
 import { useApp } from '~/context-provider/app';
 
-import {
-  getSiteConfig,
-  getAllGalleryTotal,
-} from '~/lib/sanity/requests';
+import { getSiteConfig, getAllGalleryTotal } from '~/lib/sanity/requests';
 
 export default function Gallery({ siteConfig }) {
   const app = useApp();
@@ -41,7 +37,7 @@ export default function Gallery({ siteConfig }) {
           siteConfig,
           title: 'Gallery',
           description: null,
-          image: null,
+          image: null
         }}
         preview={null}
       >
@@ -86,6 +82,6 @@ export async function getServerSideProps() {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig },
+    props: { siteConfig }
   };
 }

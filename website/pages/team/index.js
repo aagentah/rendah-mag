@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Heading } from 'next-pattern-library';
+
 import filter from 'lodash/filter';
+import Heading from '~/components/elements/heading';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -18,7 +19,7 @@ export default function Post({ siteConfig }) {
     const action = async () => {
       const teamRes = await getTeamMembers();
       const core = filter(teamRes, { coreTeam: true });
-      const featured = filter(teamRes, (t) => !t.coreTeam);
+      const featured = filter(teamRes, t => !t.coreTeam);
 
       setCore(core);
       setCoreLength(core.length);
@@ -39,7 +40,7 @@ export default function Post({ siteConfig }) {
         siteConfig,
         title: 'Team',
         description: null,
-        image: null,
+        image: null
       }}
       preview={null}
     >
@@ -107,7 +108,7 @@ export async function getStaticProps({ req }) {
 
   return {
     props: {
-      siteConfig,
-    },
+      siteConfig
+    }
   };
 }

@@ -2,8 +2,7 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import NProgress from 'nprogress';
 
-import { Icon } from 'next-pattern-library';
-
+import Icon from '~/components/elements/icon';
 import { useApp } from '../../../context-provider/app';
 import { useUser } from '~/lib/hooks';
 
@@ -27,7 +26,7 @@ export default function Header({ navOnWhite, meta }) {
     signIn,
     signOut,
     store,
-    shoppingCart,
+    shoppingCart
   };
 
   const handleLogout = async () => {

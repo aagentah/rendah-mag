@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import 'intersection-observer';
 
-import { Heading, Copy } from 'next-pattern-library';
-
+import Heading from '~/components/elements/heading';
+import Copy from '~/components/elements/copy';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import SubscribeForm from '~/components/subscribe-form';

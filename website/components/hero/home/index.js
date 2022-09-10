@@ -135,8 +135,12 @@
 import Link from 'next/link';
 import BlockContent from '@sanity/block-content-to-react';
 import isObject from 'lodash/isObject';
-import { Image, Heading, Copy, Button, Icon } from 'next-pattern-library';
 
+import Heading from '~/components/elements/heading';
+import Button from '~/components/elements/button';
+import Copy from '~/components/elements/copy';
+import Icon from '~/components/elements/icon';
+import Image from '~/components/elements/image';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
