@@ -23,7 +23,6 @@ import Modal from '~/components/modal';
 import SubscribeForm from '~/components/subscribe-form';
 
 import {
-  getSiteConfig,
   getFeaturedPost,
   getHomePage,
   getCategory,
@@ -35,7 +34,7 @@ import { useUser } from '~/lib/hooks';
 
 const RenderCards = dynamic(() => import('~/components/index/renderCards'));
 
-export default function Home({ siteConfig }) {
+export default function Home({}) {
   const app = useApp();
   const router = useRouter();
   const [user] = useUser();
@@ -55,8 +54,6 @@ export default function Home({ siteConfig }) {
       const homePage = await getHomePage();
       const interviewsRes = await getCategory('interviews', [1, 4]);
       const creationsRes = await getAllCreationsTotal();
-
-      console.log('homePage', homePage);
 
       setFeaturedPost(featuredPostRes);
       setHomePage(homePage);
@@ -94,7 +91,7 @@ export default function Home({ siteConfig }) {
         hasNav
         hasFooter
         meta={{
-          siteConfig,
+          siteConfig: null,
           title: 'Home',
           description: null,
           image: null
@@ -382,14 +379,4 @@ export default function Home({ siteConfig }) {
       </Layout>
     </>
   );
-}
-
-export async function getStaticProps({ req }) {
-  const siteConfig = await getSiteConfig();
-
-  return {
-    props: {
-      siteConfig
-    }
-  };
 }

@@ -2,38 +2,22 @@ import Head from 'next/head';
 import { withRouter } from 'next/router';
 
 import { useApp, useDispatchApp } from '~/context-provider/app';
-import { imageBuilder } from '~/lib/sanity/requests';
 
 const Meta = props => {
   const app = useApp();
   const dispatch = useDispatchApp();
-  const { router, siteConfig, title, description, image } = props;
+  const { router, title, description, image } = props;
 
-  // siteConfig
-  const siteTitle = siteConfig.title || null;
-  const siteDesc = siteConfig.description || null;
+  const siteTitle = 'Rendah Mag';
+  const siteDesc =
+    'Creative UK-based outlet, primarily focused on exposing the progressive and innovative side to underground bass music.';
   const siteImage =
-    imageBuilder
-      .image(siteConfig.logo)
-      .height(1000)
-      .width(1000)
-      .auto('format')
-      .url() || '';
+    'https://cdn.sanity.io/images/q8z2vf2k/production/bc2448fff1ec53d02654f570ebcd0555e3f2cb75-2160x1890.jpg';
 
   // Page
   const titleVal = title || null;
   const descVal = description || null;
   const imageVal = image || null;
-
-  const makeSchemaSocials = () => {
-    const arr = [];
-
-    Object.keys(siteConfig.socialHandles).forEach(key => {
-      arr.push(siteConfig.socialHandles[key]);
-    });
-
-    return arr;
-  };
 
   const makeSchema = () => {
     return {
@@ -44,7 +28,7 @@ const Meta = props => {
           '@id': `${process.env.SITE_URL}/#organization`,
           name: siteTitle,
           url: process.env.SITE_URL,
-          sameAs: makeSchemaSocials(),
+          sameAs: 'rendahmag',
           logo: {
             '@type': 'ImageObject',
             '@id': `${process.env.SITE_URL}/#logo`,
