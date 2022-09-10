@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 
 /**
  * ProgressiveImage.
@@ -24,24 +25,17 @@ const ProgressiveImage = props => {
 
   return (
     <React.Fragment>
-      {placeholder && (
-        <img
-          ref={lowResRef}
-          alt="loading..."
-          src={placeholder}
-          onLoad={lowResOnLoad}
-          style={dimensions}
-          className={`image__loading ${lowResLoaded && 'image__loading--done'}`}
-        />
-      )}
-
       {src && (
-        <img
+        <Image
+          width={dimensions.width}
+          height={dimensions.height}
+          layout="fill"
+          blurDataURL={placeholder}
           ref={highResRef}
           alt={alt}
           src={src}
           onLoad={highResOnLoad}
-          style={dimensions}
+          style={{ maxWidth: '100%' }}
           className={`image ${highResLoaded && 'image--loaded'}`}
         />
       )}

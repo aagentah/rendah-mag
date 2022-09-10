@@ -24,6 +24,17 @@ module.exports = withBundleAnalyzer(
       STRIPE_SIGNING_SECRET: process.env.STRIPE_SIGNING_SECRET,
       PAYPAL_SECRET: process.env.PAYPAL_SECRET
     },
+    images: {
+      domains: ['cdn.sanity.io'],
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'cdn.sanity.io',
+          port: '',
+          pathname: '/images/q8z2vf2k/**'
+        }
+      ]
+    },
     webpack(config, { dev, isServer }) {
       // // Move Preact into the framework chunk instead of duplicating in routes:
       // const splitChunks = config.optimization && config.optimization.splitChunks;
