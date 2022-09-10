@@ -1,42 +1,31 @@
-import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
+import React from 'react';
+import Image from 'next/future/image';
 
 /**
  * ProgressiveImage.
  */
 
-const useImageLoaded = () => {
-  const [loaded, setLoaded] = useState(false);
-  const ref = useRef();
-
-  const onLoad = () => setLoaded(true);
-
-  useEffect(() => {
-    if (ref.current && ref.current.complete) onLoad();
-  });
-
-  return [ref, loaded, onLoad];
-};
-
 const ProgressiveImage = props => {
   const { src, placeholder, dimensions, alt } = props;
-  const [highResRef, highResLoaded, highResOnLoad] = useImageLoaded();
-  const [lowResRef, lowResLoaded, lowResOnLoad] = useImageLoaded();
 
   return (
     <React.Fragment>
       {src && (
         <Image
-          width={dimensions.width}
-          height={dimensions.height}
-          layout="fill"
-          blurDataURL={placeholder}
-          ref={highResRef}
+          width={parseInt(dimensions.width, 10)}
+          height={parseInt(dimensions.height, 10)}
+          placeholder={placeholder}
           alt={alt}
           src={src}
-          onLoad={highResOnLoad}
-          style={{ maxWidth: '100%' }}
-          className={`image ${highResLoaded && 'image--loaded'}`}
+          style={{
+            width: dimensions.width,
+            height: dimensions.height,
+            maxWidth: '100%'
+          }}
+          className="image image--loaded"
+          // sizes="100vw"
+          // fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       )}
     </React.Fragment>

@@ -25,13 +25,19 @@ module.exports = withBundleAnalyzer(
       PAYPAL_SECRET: process.env.PAYPAL_SECRET
     },
     images: {
-      domains: ['cdn.sanity.io'],
+      domains: ['cdn.sanity.io', 'res.cloudinary.com'],
       remotePatterns: [
         {
           protocol: 'https',
           hostname: 'cdn.sanity.io',
           port: '',
           pathname: '/images/q8z2vf2k/**'
+        },
+        {
+          protocol: 'https',
+          hostname: 'res.cloudinary.com',
+          port: '',
+          pathname: '/dzz8ji5lj/image/**'
         }
       ]
     },

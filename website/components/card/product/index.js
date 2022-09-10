@@ -33,8 +33,8 @@ export default function CardProduct({ product }) {
       placeholder={null}
       alt={product?.title}
       figcaption={null}
-      height={null}
-      width={null}
+      height={imageHeight}
+      width={imageUrlWidth}
       customClass={null}
       skeleton={!product}
       onClick={null}

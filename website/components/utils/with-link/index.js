@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 /**
  * Determines what link type children should be wrapped in.
@@ -16,11 +17,9 @@ export default function WithLink(props) {
   switch (type) {
     case 'next':
       return (
-        <React.Fragment>
-          <RouterLink href={href} {...routerLinkProps}>
-            <a {...newProps}>{children}</a>
-          </RouterLink>
-        </React.Fragment>
+        <Link href={href} {...routerLinkProps}>
+          <a {...newProps}>{children}</a>
+        </Link>
       );
     case 'external':
       return (
