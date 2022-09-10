@@ -16,6 +16,7 @@ export default function Image(props) {
     height,
     width,
     customClass,
+    priority,
     onClick,
     skeleton,
     /* Children */
@@ -38,9 +39,7 @@ export default function Image(props) {
       <div style={dimensions}>
         <WithLink
           style={dimensions}
-          className={`image__wrapper  ${skeletonClass}  ${
-            customClass || ''
-          } `}
+          className={`image__wrapper  ${skeletonClass}  ${customClass || ''} `}
           {...(withLinkProps && { withLinkProps })}
           {...(onClick && { onClick })}
         >
@@ -49,6 +48,7 @@ export default function Image(props) {
             placeholder={placeholder}
             dimensions={dimensions}
             alt={alt}
+            priority={priority}
           />
         </WithLink>
       </div>

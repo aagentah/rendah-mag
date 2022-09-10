@@ -273,6 +273,7 @@ export default function HeroDefault({
       height={imageHeight}
       width={null}
       customClass={null}
+      priority={true}
       skeleton={skeleton}
       onClick={null}
       /* Children */

@@ -189,6 +189,7 @@ export default function HeroDefault({
       height={null}
       width={null}
       customClass={null}
+      priority={true}
       skeleton={skeleton}
       onClick={null}
       /* Children */

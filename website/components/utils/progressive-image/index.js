@@ -6,7 +6,7 @@ import Image from 'next/future/image';
  */
 
 const ProgressiveImage = props => {
-  const { src, placeholder, dimensions, alt } = props;
+  const { src, placeholder, dimensions, alt, priority } = props;
 
   return (
     <React.Fragment>
@@ -26,6 +26,7 @@ const ProgressiveImage = props => {
           // sizes="100vw"
           // fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={priority}
         />
       )}
     </React.Fragment>
