@@ -34,7 +34,7 @@ import { useUser } from '~/lib/hooks';
 
 const RenderCards = dynamic(() => import('~/components/index/renderCards'));
 
-export default function Home({}) {
+export default function Home() {
   const app = useApp();
   const router = useRouter();
   const [user] = useUser();
