@@ -36,8 +36,7 @@ export default function ImageSection({ section }) {
   if (useFirstRender() || !useKeenSliderHook) {
     const action = async () => {
       const { useKeenSlider } = await import('keen-slider/react');
-      const packageHook = { hook: useKeenSlider };
-      setUseKeenSliderHook(packageHook);
+      setUseKeenSliderHook({ hook: useKeenSlider });
     };
 
     action();
