@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import isArray from 'lodash/isArray';
 import 'keen-slider/keen-slider.min.css';
-import { useKeenSlider } from 'keen-slider/react'; // import from 'keen-slider/react.es' for to get an ES module
 import LazyLoad from 'react-lazyload';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 import { useApp } from '~/context-provider/app';
+import { useFirstRender } from '~/lib/useFirstRender';
 
 function Arrow(props) {
   const disabeld = props.disabled ? ' arrow--disabled' : '';
@@ -31,18 +31,29 @@ function Arrow(props) {
 }
 
 export default function ImageSection({ section }) {
-  // return;
+  const [useKeenSliderHook, setUseKeenSliderHook] = useState(false);
+
+  if (useFirstRender() || !useKeenSliderHook) {
+    const action = async () => {
+      const { useKeenSlider } = await import('keen-slider/react');
+      const packageHook = { hook: useKeenSlider };
+      setUseKeenSliderHook(packageHook);
+    };
+
+    action();
+    return false;
+  }
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
-  const [sliderRef, instanceRef] = useKeenSlider({
+  const [sliderRef, instanceRef] = useKeenSliderHook.hook({
     initial: 0,
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel);
     },
     created() {
       setLoaded(true);
-    },
+    }
   });
 
   const app = useApp();
@@ -93,7 +104,7 @@ export default function ImageSection({ section }) {
                 className="w-100  shadow2"
                 style={{
                   height: section?.carouselHeight,
-                  objectFit: 'cover',
+                  objectFit: 'cover'
                 }}
                 src={imageBuilder
                   .image(p)
@@ -111,16 +122,12 @@ export default function ImageSection({ section }) {
           <>
             <Arrow
               left
-              onClick={(e) =>
-                e.stopPropagation() || instanceRef.current?.prev()
-              }
+              onClick={e => e.stopPropagation() || instanceRef.current?.prev()}
               disabled={currentSlide === 0}
             />
 
             <Arrow
-              onClick={(e) =>
-                e.stopPropagation() || instanceRef.current?.next()
-              }
+              onClick={e => e.stopPropagation() || instanceRef.current?.next()}
               disabled={
                 currentSlide ===
                 instanceRef.current.track.details.slides.length - 1
@@ -133,8 +140,8 @@ export default function ImageSection({ section }) {
       {loaded && instanceRef.current && (
         <div className="dots">
           {[
-            ...Array(instanceRef.current.track.details.slides.length).keys(),
-          ].map((idx) => {
+            ...Array(instanceRef.current.track.details.slides.length).keys()
+          ].map(idx => {
             return (
               <button
                 key={idx}
