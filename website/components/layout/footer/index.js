@@ -198,6 +198,7 @@ export default function Footer() {
               <div className="flex  flex-wrap  col-24">
                 <div className="col-8  col-3-md  flex  justify-end  justify-end-md  pt4  pt0-md">
                   <a
+                    aria-label="Instagram"
                     href="https://www.instagram.com/rendahmag/"
                     target="_blank"
                     rel="noreferrer"
@@ -208,6 +209,7 @@ export default function Footer() {
                 </div>
                 <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
                   <a
+                    aria-label="Facebook"
                     href="https://www.facebook.com/rendahmag/"
                     target="_blank"
                     rel="noreferrer"
@@ -218,6 +220,7 @@ export default function Footer() {
                 </div>
                 <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
                   <a
+                    aria-label="Twitter"
                     href="https://twitter.com/RendahMag"
                     target="_blank"
                     rel="noreferrer"
@@ -229,6 +232,7 @@ export default function Footer() {
 
                 <div className="col-8  col-3-md  flex  justify-end  justify-end-md  pt4  pt0-md">
                   <a
+                    aria-label="Soundcloud"
                     href="https://soundcloud.com/rendahmag"
                     target="_blank"
                     rel="noreferrer"
@@ -239,6 +243,7 @@ export default function Footer() {
                 </div>
                 <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
                   <a
+                    aria-label="Youtube"
                     href="https://www.youtube.com/channel/UC4dYeD1ceX8sSY3J3UuMn8w"
                     target="_blank"
                     rel="noreferrer"
@@ -249,6 +254,7 @@ export default function Footer() {
                 </div>
                 <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
                   <a
+                    aria-label="Discord"
                     href="https://discord.com/invite/ev2Q22C"
                     target="_blank"
                     rel="noreferrer"
@@ -259,6 +265,7 @@ export default function Footer() {
                 </div>
                 <div className="col-24  col-3-md  dn  df-md  justify-center  justify-end-md  pt4  pt0-md">
                   <a
+                    aria-label="Spotify"
                     href="https://open.spotify.com/user/z7wa87uoc308b4dmp8qpoukdf?si=28825cb6910f4e39"
                     target="_blank"
                     rel="noreferrer"

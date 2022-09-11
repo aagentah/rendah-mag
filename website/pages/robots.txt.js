@@ -1,11 +1,14 @@
 import React from 'react';
 
-const renderRobots = (domainType) => {
+const renderRobots = domainType => {
   let sitemapData;
 
   if (domainType === 'production') {
     sitemapData = `
     User-agent: *
+    Allow: /
+
+    User-agent: Googlebot
     Disallow: /404/
     Disallow: /forgot/
     Disallow: /profile/

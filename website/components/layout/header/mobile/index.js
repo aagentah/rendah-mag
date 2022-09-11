@@ -25,7 +25,12 @@ export default function HeaderMobile({
       }`}
     >
       <div className="flex  flex-wrap">
-        <button className="header__burger" onClick={toggleNav} type="button">
+        <button
+          className="header__burger"
+          onClick={toggleNav}
+          type="button"
+          aria-label="Burger Menu"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -66,6 +71,7 @@ export default function HeaderMobile({
             className="col-12  flex  align-center  justify-end  pa4"
             onClick={toggleNav}
             type="button"
+            aria-label="Toggle Menu"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
