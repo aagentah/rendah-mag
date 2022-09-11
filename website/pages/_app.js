@@ -9,9 +9,6 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import { AppProvider } from '~/context-provider/app';
 
 import '~/styles/index.scss';
-import 'keen-slider/keen-slider.min.css';
-import 'react-toastify/dist/ReactToastify.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -38,7 +35,7 @@ function MyApp({ Component, pageProps }) {
               loadingDelay={transitionTimeout}
               loadingTimeout={{
                 enter: transitionTimeout,
-                exit: transitionTimeout,
+                exit: transitionTimeout
               }}
               loadingClassNames="loading-indicator"
             >

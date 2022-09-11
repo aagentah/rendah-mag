@@ -237,7 +237,7 @@ export async function getStaticProps({ req, params, preview = false }) {
   // if (!tag?.slug) {
   //   return {
   //     notFound: true,
-  //     revalidate: 1,
+  //     revalidate: 10,
   //   };
   // }
 
@@ -246,7 +246,7 @@ export async function getStaticProps({ req, params, preview = false }) {
       siteConfig,
       tag
     },
-    revalidate: 1
+    revalidate: 10
   };
 }
 

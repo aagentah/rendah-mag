@@ -428,7 +428,7 @@ export async function getStaticProps({ req, params, preview = false }) {
   // if (!product.slug) {
   //   return {
   //     notFound: true,
-  //     revalidate: 1,
+  //     revalidate: 10,
   //   };
   // }
 
@@ -437,7 +437,7 @@ export async function getStaticProps({ req, params, preview = false }) {
       siteConfig,
       product
     },
-    revalidate: 1
+    revalidate: 10
   };
 }
 

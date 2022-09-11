@@ -261,7 +261,7 @@ export async function getStaticProps({ req, params, preview = false }) {
   // if (!data?.post?.slug) {
   //   return {
   //     notFound: true,
-  //     revalidate: 1,
+  //     revalidate: 10,
   //   };
   // }
 
@@ -272,7 +272,7 @@ export async function getStaticProps({ req, params, preview = false }) {
       post: data.post || null,
       morePosts: data.morePosts || null
     },
-    revalidate: 1
+    revalidate: 10
   };
 }
 

@@ -76,10 +76,6 @@
   height: 75vh;
   max-height: 75vh;
   @extend .hero--darken-all;
-
-  .hero__button {
-    @extend .pt1;
-  }
 }
 
 .hero--creations {
@@ -94,8 +90,6 @@
 .hero--article {
   @extend .hero--darken-top;
 }
-
-
 
 .category-label {
   position: absolute;

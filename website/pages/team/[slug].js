@@ -15,8 +15,12 @@ import {
   imageBuilder
 } from '~/lib/sanity/requests';
 
+import { useApp } from '~/context-provider/app';
+
 export default function Post({ siteConfig, member }) {
   const router = useRouter();
+  const app = useApp();
+  const scale = app?.isRetina ? 2 : 1;
 
   if (!router.isFallback && !member?.slug) {
     Router.push('/404');
@@ -44,8 +48,8 @@ export default function Post({ siteConfig, member }) {
                 /* Options */
                 src={imageBuilder
                   .image(member.image)
-                  .height(250)
-                  .width(250)
+                  .width(300 * scale)
+                  .height(300 * scale)
                   .auto('format')
                   .fit('clip')
                   .url()}
@@ -161,7 +165,7 @@ export async function getStaticProps({ req, params, preview = false }) {
   // if (!member?.slug) {
   //   return {
   //     notFound: true,
-  //     revalidate: 1,
+  //     revalidate: 10,
   //   };
   // }
 
@@ -170,7 +174,7 @@ export async function getStaticProps({ req, params, preview = false }) {
       siteConfig,
       member
     },
-    revalidate: 1
+    revalidate: 10
   };
 }
 

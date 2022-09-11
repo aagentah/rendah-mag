@@ -251,7 +251,7 @@ export async function getStaticProps({ req, params, preview = false }) {
       post: data || null,
       preview
     },
-    revalidate: 1
+    revalidate: 10
   };
 }
 

@@ -64,8 +64,6 @@ export default function ProfileCreations() {
     }
   };
 
-  console.log('posts', posts);
-
   if (user?.isDominion) {
     return (
       <section>

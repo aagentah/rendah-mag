@@ -191,7 +191,7 @@ export async function getStaticProps({ req, params, preview = false }) {
   // if (!data?.slug) {
   //   return {
   //     notFound: true,
-  //     revalidate: 1,
+  //     revalidate: 10,
   //   };
   // }
 
@@ -201,7 +201,7 @@ export async function getStaticProps({ req, params, preview = false }) {
       preview,
       post: data || null
     },
-    revalidate: 1
+    revalidate: 10
   };
 }
 

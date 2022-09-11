@@ -43,10 +43,7 @@ export default function Copy(props) {
   const skeletonClass = skeleton ? 'skeleton  skeleton-active' : 'skeleton';
 
   return (
-    <span
-      className={`copy ${size} ${color} ${skeletonClass}`}
-      style={styles}
-    >
+    <span className={`copy ${size} ${color} ${skeletonClass}`} style={styles}>
       <ElementType {...(truncate && { lines: truncate })}>
         <span>
           {text || <div dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />}
