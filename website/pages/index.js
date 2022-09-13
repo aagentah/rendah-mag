@@ -10,7 +10,6 @@ import Observer from '@researchgate/react-intersection-observer';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
-import Icon from '~/components/elements/icon';
 
 import 'intersection-observer';
 
@@ -33,6 +32,10 @@ import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 
 const RenderCards = dynamic(() => import('~/components/index/renderCards'));
+
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconArrowRight)
+);
 
 export default function Home() {
   const app = useApp();
@@ -79,7 +82,8 @@ export default function Home() {
 
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
-  const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
+  const buttonIcon = <IconArrowRight color="black" size={20} />;
+  const buttonIconWhite = <IconArrowRight color="white" size={20} />;
 
   const ParallaxDiv = app.deviceSize === 'md' ? 'div' : Parallax;
 
@@ -290,7 +294,7 @@ export default function Home() {
                       text="All Creations"
                       color="black"
                       fluid={false}
-                      icon={buttonIcon}
+                      icon={buttonIconWhite}
                       iconFloat={null}
                       inverted={false}
                       loading={false}

@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import NProgress from 'nprogress';
 
-import Icon from '~/components/elements/icon';
 import { useApp } from '../../../context-provider/app';
 import { useUser } from '~/lib/hooks';
 
@@ -15,19 +14,30 @@ export default function Header({ navOnWhite, meta }) {
   const [navColour, setNavColour] = useState('black');
   const [navHex, setNavHex] = useState(null);
 
-  const signIn = <Icon icon={['fas', 'sign-in-alt']} />;
-  const signOut = <Icon icon={['fas', 'sign-out-alt']} />;
-  const store = <Icon icon={['fas', 'store-alt']} />;
-  const shoppingCart = (
-    <Icon color={navColour} icon={['fas', 'shopping-cart']} />
+  const IconStar = dynamic(() =>
+    import('~/components/elements/icon').then(m => m.IconStar)
+  );
+
+  const IconStore = dynamic(() =>
+    import('~/components/elements/icon').then(m => m.IconStore)
+  );
+
+  const IconSignIn = dynamic(() =>
+    import('~/components/elements/icon').then(m => m.IconSignIn)
+  );
+
+  const IconSignOut = dynamic(() =>
+    import('~/components/elements/icon').then(m => m.IconSignOut)
   );
 
   const buttonIcons = {
-    signIn,
-    signOut,
-    store,
-    shoppingCart
+    signIn: <IconSignIn color={navColour} size={16} />,
+    signOut: <IconSignOut color={navColour} size={16} />,
+    store: <IconStar color="rendah-red" size={16} />,
+    shoppingCart: <IconStore color={navColour} size={16} />
   };
+
+  console.log('buttonIcons', buttonIcons);
 
   const handleLogout = async () => {
     await fetch(`${process.env.SITE_URL}/api/logout`);

@@ -5,7 +5,6 @@ import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
 
 import Heading from '~/components/elements/heading';
-import Icon from '~/components/elements/icon';
 import Image from '~/components/elements/image';
 import Label from '~/components/elements/label';
 
@@ -28,8 +27,6 @@ export default function CardBlog({ post, columnCount }) {
     imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
     imageHeight = app?.deviceSize === 'md' ? 200 : 180;
   }
-
-  const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
 
   const image = (
     <Image

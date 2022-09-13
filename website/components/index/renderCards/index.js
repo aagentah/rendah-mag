@@ -1,14 +1,18 @@
 import { Parallax } from 'react-scroll-parallax';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
 import Button from '~/components/elements/button';
-import Icon from '~/components/elements/icon';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
 import { getCategory } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
+
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconArrowRight)
+);
 
 export default function Home({ siteConfig }) {
   const app = useApp();
@@ -39,7 +43,7 @@ export default function Home({ siteConfig }) {
     action();
   }, []);
 
-  const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
+  const buttonIcon = <IconArrowRight color="black" size={20} />;
 
   const ParallaxDiv = app.deviceSize === 'md' ? 'div' : Parallax;
 

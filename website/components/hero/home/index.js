@@ -135,14 +135,18 @@
 import Link from 'next/link';
 import BlockContent from '@sanity/block-content-to-react';
 import isObject from 'lodash/isObject';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
-import Icon from '~/components/elements/icon';
 import Image from '~/components/elements/image';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
+
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconArrowRight)
+);
 
 /**
  * @param {string} image [required]
@@ -176,7 +180,7 @@ export default function HeroDefault({
   if (app.deviceSize === 'md') imageUrlWidth = 700;
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
-  const heroButtonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
+  const heroButtonIcon = <IconArrowRight color="white" size={24} />;
   let heroTitle;
   let heroCopy;
   let linkProps;

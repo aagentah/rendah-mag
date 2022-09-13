@@ -1,12 +1,40 @@
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
-
+import dynamic from 'next/dynamic';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
-import Icon from '~/components/elements/icon';
 import Container from '../container';
 
+const IconInstagram = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconInstagram)
+);
+
+const IconFacebook = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconFacebook)
+);
+
+const IconTwitter = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconTwitter)
+);
+
+const IconSoundcloud = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconSoundcloud)
+);
+
+const IconYoutube = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconYoutube)
+);
+
+const IconDiscord = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconDiscord)
+);
+
+const IconSpotify = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconSpotify)
+);
+
 export default function Footer() {
+  console.log('IconInstagram', IconInstagram);
   return (
     <LazyLoad once offset={300} height={300}>
       {
@@ -204,7 +232,7 @@ export default function Footer() {
                     rel="noreferrer"
                     className="white"
                   >
-                    <Icon icon={['fab', 'instagram']} size="2x" />
+                    <IconInstagram color="white" size={30} />
                   </a>
                 </div>
                 <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
@@ -215,7 +243,7 @@ export default function Footer() {
                     rel="noreferrer"
                     className="white"
                   >
-                    <Icon icon={['fab', 'facebook']} size="2x" />
+                    <IconFacebook color="white" size={30} />
                   </a>
                 </div>
                 <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
@@ -226,7 +254,7 @@ export default function Footer() {
                     rel="noreferrer"
                     className="white"
                   >
-                    <Icon icon={['fab', 'twitter']} size="2x" />
+                    <IconTwitter color="white" size={30} />
                   </a>
                 </div>
 
@@ -238,7 +266,7 @@ export default function Footer() {
                     rel="noreferrer"
                     className="white"
                   >
-                    <Icon icon={['fab', 'soundcloud']} size="2x" />
+                    <IconSoundcloud color="white" size={30} />
                   </a>
                 </div>
                 <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
@@ -249,7 +277,7 @@ export default function Footer() {
                     rel="noreferrer"
                     className="white"
                   >
-                    <Icon icon={['fab', 'youtube']} size="2x" />
+                    <IconYoutube color="white" size={30} />
                   </a>
                 </div>
                 <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
@@ -260,7 +288,7 @@ export default function Footer() {
                     rel="noreferrer"
                     className="white"
                   >
-                    <Icon icon={['fab', 'discord']} size="2x" />
+                    <IconDiscord color="white" size={30} />
                   </a>
                 </div>
                 <div className="col-24  col-3-md  dn  df-md  justify-center  justify-end-md  pt4  pt0-md">
@@ -271,7 +299,7 @@ export default function Footer() {
                     rel="noreferrer"
                     className="white"
                   >
-                    <Icon icon={['fab', 'spotify']} size="2x" />
+                    <IconSpotify color="white" size={30} />
                   </a>
                 </div>
               </div>
