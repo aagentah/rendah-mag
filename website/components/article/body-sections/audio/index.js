@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react';
-import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
+import { useEffect, useRef, useState } from 'react';
 
 import BlockContent from '@sanity/block-content-to-react';
 import { usePlausible } from 'next-plausible';
@@ -10,6 +9,7 @@ import Image from '~/components/elements/image';
 import { useUser } from '~/lib/hooks';
 import { useApp } from '~/context-provider/app';
 import { imageBuilder } from '~/lib/sanity/requests';
+import { useFirstRender } from '~/lib/useFirstRender';
 
 export default function Audio({
   url,
@@ -19,11 +19,29 @@ export default function Audio({
   allowDownload,
   ...props
 }) {
+  const [AudioPlayerHook, setAudioPlayerHook] = useState(false);
+  const [RHAP_UIHook, setRHAP_UIHook] = useState(false);
   const plausible = usePlausible();
   const PlayerRef = useRef(null);
   const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
   const { currentAudioSelected, handleAudioPlay } = { ...props };
+
+  if (useFirstRender() || !AudioPlayerHook || !RHAP_UIHook) {
+    const action = async () => {
+      const { default: AudioPlayer } = await import('react-h5-audio-player');
+      const { RHAP_UI } = await import('react-h5-audio-player');
+
+      console.log('AudioPlayer', { Hook: AudioPlayer });
+      console.log('RHAP_UI', { Hook: RHAP_UI });
+
+      setAudioPlayerHook({ Hook: AudioPlayer });
+      setRHAP_UIHook({ Hook: RHAP_UI });
+    };
+
+    action();
+    return false;
+  }
 
   useEffect(() => {
     if (currentAudioSelected !== PlayerRef) {
@@ -112,14 +130,14 @@ export default function Audio({
               : 'col-24'
           }
         >
-          <AudioPlayer
+          <AudioPlayerHook.Hook
             ref={PlayerRef}
             showSkipControls={false}
             showJumpControls={false}
             src={url}
             customProgressBarSection={[
-              RHAP_UI.PROGRESS_BAR,
-              RHAP_UI.CURRENT_TIME
+              RHAP_UIHook.Hook.PROGRESS_BAR,
+              RHAP_UIHook.Hook.CURRENT_TIME
             ]}
             layout="horizontal-reverse"
             onPlay={() => {
