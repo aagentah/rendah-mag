@@ -23,35 +23,25 @@ export default function Image(props) {
     withLinkProps
   } = props;
 
-  const heightVal = height ? `${height}px` : '100%';
-  const widthVal = width ? `${width}px` : '100%';
-
   const dimensions = {
-    height: heightVal,
-    width: widthVal,
+    minHeight: height ? `${height}px` : '100vh',
+    height: height ? `${height}px` : '100vh',
+    width: width ? `${width}px` : '100%',
     maxWidth: '100%'
   };
 
   const skeletonClass = skeleton ? 'skeleton  skeleton-active' : 'skeleton';
 
   return (
-    <figure className="image__figure" style={dimensions}>
-      <div style={dimensions}>
-        <WithLink
-          style={dimensions}
-          className={`image__wrapper  ${skeletonClass}  ${customClass || ''} `}
-          {...(withLinkProps && { withLinkProps })}
-          {...(onClick && { onClick })}
-        >
-          <ProgressiveImage
-            src={src}
-            placeholder={placeholder}
-            dimensions={dimensions}
-            alt={alt}
-            priority={priority}
-          />
-        </WithLink>
-      </div>
+    <figure className="image__figure">
+      <WithLink
+        style={dimensions}
+        className={`image__wrapper  ${skeletonClass}  ${customClass || ''} `}
+        {...(withLinkProps && { withLinkProps })}
+        {...(onClick && { onClick })}
+      >
+        <ProgressiveImage src={src} alt={alt} priority={priority} />
+      </WithLink>
 
       {figcaption && (
         <figcaption className={`image__figcaption ${skeletonClass}`}>

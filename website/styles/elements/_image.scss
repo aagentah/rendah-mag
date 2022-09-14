@@ -14,6 +14,10 @@
   height: 100%;
   overflow: hidden;
   background: #aaaaaa;
+
+  img {
+    position: relative !important;
+  }
 }
 
 .image__wrapper:after {
