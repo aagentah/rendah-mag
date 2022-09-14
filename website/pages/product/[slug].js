@@ -2,10 +2,10 @@ import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useState } from 'react';
 import fetch from 'isomorphic-unfetch';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
-import Icon from '~/components/elements/icon';
 import Image from '~/components/elements/image';
 import Label from '~/components/elements/label';
 import { useApp } from '~/context-provider/app';
@@ -22,6 +22,18 @@ import {
   getAllProductsTotal,
   imageBuilder
 } from '~/lib/sanity/requests';
+
+const IconShoppingCart = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconShoppingCart)
+);
+
+const IconPlus = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconPlus)
+);
+
+const IconMinus = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconMinus)
+);
 
 export default function Product({ siteConfig, product }) {
   const app = useApp();
@@ -69,9 +81,10 @@ export default function Product({ siteConfig, product }) {
   };
 
   if (!router.isFallback && product?.slug) {
-    const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
-    const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
-    const buttonIconMinus = <Icon icon={['fas', 'minus']} />;
+    const buttonIconCart = <IconShoppingCart color="white" size={30} />;
+
+    const buttonIconPlus = <IconPlus color="white" size={30} />;
+    const buttonIconMinus = <IconMinus color="white" size={30} />;
 
     const renderPurchaseButton = () => {
       if (isSoldOut) {

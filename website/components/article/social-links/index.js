@@ -1,6 +1,33 @@
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import Icon from '~/components/elements/icon';
+const IconInstagram = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconInstagram)
+);
+
+const IconFacebook = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconFacebook)
+);
+
+const IconTwitter = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconTwitter)
+);
+
+const IconSoundcloud = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconSoundcloud)
+);
+
+const IconYoutube = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconYoutube)
+);
+
+const IconDiscord = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconDiscord)
+);
+
+const IconSpotify = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconSpotify)
+);
 
 export default function SocialLinks({ article }) {
   if (article.socialHandles) {
@@ -18,7 +45,7 @@ export default function SocialLinks({ article }) {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Icon icon={['fab', 'soundcloud']} size="1x" />
+            <IconSoundcloud color="black" size={16} />
             <span className="pl2">/ {e}</span>
           </a>
         );
@@ -36,7 +63,7 @@ export default function SocialLinks({ article }) {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Icon icon={['fab', 'facebook']} size="1x" />
+            <IconFacebook color="black" size={16} />
             <span className="pl2">/ {e}</span>
           </a>
         );
@@ -54,7 +81,7 @@ export default function SocialLinks({ article }) {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Icon icon={['fab', 'twitter']} size="1x" />
+            <IconTwitter color="black" size={16} />
             <span className="pl2">/ {e}</span>
           </a>
         );
@@ -72,7 +99,7 @@ export default function SocialLinks({ article }) {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Icon icon={['fab', 'instagram']} size="1x" />
+            <IconInstagram color="black" size={16} />
             <span className="pl2">/ {e}</span>
           </a>
         );

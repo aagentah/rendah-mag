@@ -5,7 +5,6 @@ import NProgress from 'nprogress';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
-import Icon from '~/components/elements/icon';
 import CardOffering from '~/components/card/offering';
 
 import { useUser } from '~/lib/hooks';
@@ -14,6 +13,10 @@ import setCharAt from '~/functions/setCharAt';
 import { getAllOfferings } from '~/lib/sanity/requests';
 
 const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
+
+const IconArrowLeft = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconArrowLeft)
+);
 
 export default function ProfileDominion() {
   const [user, { loading, mutate, error }] = useUser();
@@ -30,7 +33,7 @@ export default function ProfileDominion() {
     setTimeout(() => NProgress.done(), 750);
   };
 
-  const buttonIconArrowLeft = <Icon icon={['fas', 'arrow-left']} />;
+  const buttonIconArrowLeft = <IconArrowLeft color="white" size={16} />;
 
   const apply = i => {
     setModalActive(i);

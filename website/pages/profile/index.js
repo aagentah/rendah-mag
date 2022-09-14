@@ -5,7 +5,6 @@ import zenscroll from 'zenscroll';
 
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import Icon from '~/components/elements/icon';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Tabs from '~/components/tabs';
@@ -39,6 +38,42 @@ const ProfilePacks = dynamic(() => import('~/components/profile/packs'));
 
 const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
 
+const IconHouse = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconHouse)
+);
+
+const IconUser = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconUser)
+);
+
+const IconEnvelope = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconEnvelope)
+);
+
+const IconHeadphones = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconHeadphones)
+);
+
+const IconAudio = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconHeadphones)
+);
+
+const IconNewspaper = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconNewspaper)
+);
+
+const IconList = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconList)
+);
+
+const IconMoney = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconMoney)
+);
+
+const IconStore = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconStore)
+);
+
 export default function Profile({ siteConfig }) {
   const app = useApp();
   const [user, { loading, mutate, error }] = useUser();
@@ -49,14 +84,14 @@ export default function Profile({ siteConfig }) {
   const [refreshPack, setRefreshPack] = useState(false);
   const [tabQuery, setTabQuery] = useState(router.query?.tab);
 
-  const iconHouse = <Icon className="grey" icon={['fas', 'house']} />;
-  const iconUser = <Icon className="grey" icon={['fas', 'user']} />;
-  const iconEnvelope = <Icon className="grey" icon={['fas', 'envelope']} />;
-  const iconMusic = <Icon className="grey" icon={['fas', 'music']} />;
-  const iconPack = <Icon className="grey" icon={['fas', 'file-audio']} />;
-  const iconNewspaper = <Icon className="grey" icon={['fas', 'newspaper']} />;
-  const iconList = <Icon className="grey" icon={['fas', 'list']} />;
-  const iconMoney = <Icon className="grey" icon={['fas', 'money-check']} />;
+  const iconHouse = <IconStore color="grey" size={16} />;
+  const iconUser = <IconUser color="grey" size={16} />;
+  const iconEnvelope = <IconEnvelope color="grey" size={16} />;
+  const iconMusic = <IconHeadphones color="grey" size={16} />;
+  const iconPack = <IconAudio color="grey" size={16} />;
+  const iconNewspaper = <IconNewspaper color="grey" size={16} />;
+  const iconList = <IconList color="grey" size={16} />;
+  const iconMoney = <IconMoney color="grey" size={16} />;
 
   useEffect(() => {
     // redirect user to login if not authenticated

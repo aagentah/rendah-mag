@@ -1,12 +1,40 @@
 import 'intersection-observer';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
-import Icon from '~/components/elements/icon';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 
 import { getSiteConfig } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
+
+const IconInstagram = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconInstagram)
+);
+
+const IconFacebook = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconFacebook)
+);
+
+const IconTwitter = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconTwitter)
+);
+
+const IconSoundcloud = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconSoundcloud)
+);
+
+const IconYoutube = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconYoutube)
+);
+
+const IconDiscord = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconDiscord)
+);
+
+const IconSpotify = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconSpotify)
+);
 
 export default function Connect({ siteConfig, preview }) {
   const app = useApp();
@@ -48,7 +76,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <Icon icon={['fab', 'instagram']} size="2x" />
+              <IconInstagram color="white" size={30} />
             </a>
           </div>
           <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
@@ -58,7 +86,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <Icon icon={['fab', 'facebook']} size="2x" />
+              <IconFacebook color="white" size={30} />
             </a>
           </div>
           <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
@@ -68,7 +96,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <Icon icon={['fab', 'twitter']} size="2x" />
+              <IconTwitter color="white" size={30} />
             </a>
           </div>
 
@@ -79,7 +107,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <Icon icon={['fab', 'soundcloud']} size="2x" />
+              <IconSoundcloud color="white" size={30} />
             </a>
           </div>
           <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
@@ -89,7 +117,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <Icon icon={['fab', 'youtube']} size="2x" />
+              <IconYoutube color="white" size={30} />
             </a>
           </div>
           <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
@@ -99,7 +127,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <Icon icon={['fab', 'discord']} size="2x" />
+              <IconDiscord color="white" size={30} />
             </a>
           </div>
           <div className="col-24  col-3-md  dn  df-md  justify-center  justify-end-md  pt4  pt0-md">
@@ -109,7 +137,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <Icon icon={['fab', 'spotify']} size="2x" />
+              <IconSpotify color="white" size={30} />
             </a>
           </div>
         </div>

@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import dynamic from 'next/dynamic';
 
 import classNames from 'classnames';
 
 import Button from '~/components/elements/button';
-import Icon from '~/components/elements/icon';
 import PaypalPay from '~/components/dominion/paypalPay';
 import PaypalFree from '~/components/dominion/paypalFree';
 
 import { useApp } from '~/context-provider/app';
 
+const IconShoppingCart = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconShoppingCart)
+);
+
+const IconPlus = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconPlus)
+);
+
 function Buttons() {
   const [sdkReady, setSdkReady] = useState(false);
   const [discount, setDiscount] = useState('');
-  const buttonIconCart = <Icon icon={['fas', 'shopping-cart']} />;
-  const buttonIconPlus = <Icon icon={['fas', 'plus']} />;
+  const buttonIconCart = <IconShoppingCart color="rendah-red" size={16} />;
+  const buttonIconPlus = <IconPlus color="rendah-red" size={16} />;
   const app = useApp();
 
   const addPayPalScript = () => {

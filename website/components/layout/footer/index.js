@@ -34,7 +34,6 @@ const IconSpotify = dynamic(() =>
 );
 
 export default function Footer() {
-  console.log('IconInstagram', IconInstagram);
   return (
     <LazyLoad once offset={300} height={300}>
       {

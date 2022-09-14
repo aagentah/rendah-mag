@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import 'intersection-observer';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
-import Icon from '~/components/elements/icon';
 import Modal from '~/components/modal';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -15,6 +15,10 @@ import SubscribeForm from '~/components/subscribe-form';
 import { useApp } from '~/context-provider/app';
 
 import { getSiteConfig, getAllPosts } from '~/lib/sanity/requests';
+
+const IconHeart = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconHeart)
+);
 
 export default function LinkInBio({ siteConfig, posts, preview }) {
   const app = useApp();
@@ -216,7 +220,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
               >
                 Join our mailout
                 <span className="dib  pl2">
-                  <Icon size="1x" icon={['fas', 'heart']} />
+                  <IconHeart color="black" size={16} />
                 </span>
               </p>
             </div>

@@ -1,19 +1,23 @@
 import LazyLoad from 'react-lazyload';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
-import Icon from '~/components/elements/icon';
 import Image from '~/components/elements/image';
 import Label from '~/components/elements/label';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconArrowRight)
+);
+
 export default function CardBlog({ post }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
   const imageHeight = app?.deviceSize === 'md' ? 200 : 180;
-  const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
+  const buttonIcon = <IconArrowRight color="black" size={16} />;
 
   const image = (
     <Image

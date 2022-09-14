@@ -1,16 +1,24 @@
 import { useEffect } from 'react';
 import NProgress from 'nprogress';
 import BlockContent from '@sanity/block-content-to-react';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
-import Icon from '~/components/elements/icon';
 import Modal from '~/components/modal';
 
 import { useApp } from '~/context-provider/app';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useUser } from '~/lib/hooks';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
+
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconArrowRight)
+);
+
+const IconDownload = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconDownload)
+);
 
 export default function ImageModal({
   modalActive,
@@ -98,12 +106,7 @@ export default function ImageModal({
                   );
                 }}
               >
-                <Icon
-                  className="white  pr2"
-                  icon={['fa', 'download']}
-                  size="1x"
-                />{' '}
-                Default Size
+                <IconArrowRight color="black" size={16} /> Default Size
               </span>
             </div>
           )}
@@ -124,12 +127,7 @@ export default function ImageModal({
                   );
                 }}
               >
-                <Icon
-                  className="white  pr2"
-                  icon={['fa', 'download']}
-                  size="1x"
-                />{' '}
-                Original Size
+                <IconArrowRight color="black" size={16} /> Original Size
               </span>
               <span className="f7  fs-italic  white">
                 (Exclusive to Dominion Members)
@@ -142,12 +140,7 @@ export default function ImageModal({
                 href="/login"
                 target="_blank"
               >
-                <Icon
-                  className="white  pr2"
-                  icon={['fa', 'download']}
-                  size="1x"
-                />{' '}
-                Original Size
+                <IconArrowRight color="black" size={16} /> Original Size
               </a>
               <span className="f7  fs-italic  white">
                 (Exclusive to Dominion Members)

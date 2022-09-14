@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
-import Icon from '~/components/elements/icon';
 import Input from '~/components/elements/input';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -12,6 +12,14 @@ import Container from '~/components/layout/container';
 import { useApp, useDispatchApp } from '~/context-provider/app';
 import { getSiteConfig } from '~/lib/sanity/requests';
 import validEmail from '~/lib/valid-email';
+
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconArrowRight)
+);
+
+const IconEnvelope = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconEnvelope)
+);
 
 export default function Forgot({ siteConfig }) {
   const app = useApp();
@@ -57,8 +65,8 @@ export default function Forgot({ siteConfig }) {
     return true;
   }
 
-  const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
-  const inputIconEnvelope = <Icon icon={['fas', 'envelope']} />;
+  const buttonIconArrowRight = <IconArrowRight color="white" size={30} />;
+  const inputIconEnvelope = <IconEnvelope color="white" size={30} />;
 
   return (
     <>

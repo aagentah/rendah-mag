@@ -1,115 +1,18 @@
-// import Link from 'next/link';
-// import { useState } from 'react';
-// // import { Parallax } from 'react-scroll-parallax';
-//
-// import { Heading, Copy, Image, Button, Icon } from 'next-pattern-library';
-//
-// import Hero from '~/base-components/hero';
-// import { imageBuilder } from '~/lib/sanity/requests';
-// import { useApp } from '~/context-provider/app';
-//
-// export default function HeroPost({ post }) {
-//   const app = useApp();
-//
-//   const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
-//
-//   if (!app.deviceSize) return null;
-//   const scale = app.isRetina ? 2 : 1;
-//   let imageUrlWidth;
-//   let imageHeight = 700;
-//
-//   if (app.deviceSize === 'md') {
-//     imageUrlWidth = 700;
-//     imageHeight = 400;
-//   }
-//
-//   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
-//   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
-//
-//   const heroImage = post && (
-//     <Image
-//       /* Options */
-//       src={imageBuilder
-//         .image(post.coverImage)
-//         .width(imageUrlWidth * scale)
-//         .auto('format')
-//         .fit('clip')
-//         .url()}
-//       placeholder={imageBuilder
-//         .image(post.coverImage)
-//         .width(imageUrlWidth / 10)
-//         .auto('format')
-//         .fit('clip')
-//         .blur('100')
-//         .url()}
-//       alt={post.title}
-//       figcaption={null}
-//       height={imageHeight}
-//       width={null}
-//       skeleton={!post}
-//       customClass={null}
-//       onClick={null}
-//       /* Children */
-//       withLinkProps={{
-//         type: 'next',
-//         href: '/article/[slug]',
-//         target: null,
-//         routerLink: Link,
-//         routerLinkProps: {
-//           as: `/article/${post.slug}`,
-//           scroll: false,
-//         },
-//       }}
-//     />
-//   );
-//
-//   return (
-//     <>
-//       {
-//         // <Parallax className="z1  nt3" y={['-50px', '50px']} tagOuter="figure">
-//       }
-//       <div className="hero--darken-top">
-//         {
-//           //  <Hero
-//           //   /* Options */
-//           //   height={imageHeight}
-//           //   /* Children */
-//           //   image={heroImage}
-//           //   title={null}
-//           //   description={null}
-//           //   button={null}
-//           // />
-//         }
-//
-//         <Hero
-//           image={post?.coverImage}
-//           title={post?.title}
-//           description={null}
-//           heroButtonText={null}
-//           link={`/article/${post?.slug}`}
-//           marginTop={0}
-//           marginBottom={0}
-//           modifier={null}
-//           skeleton={false}
-//         />
-//       </div>
-//       {
-//         //   </Parallax>
-//       }
-//     </>
-//   );
-// }
-
 import BlockContent from '@sanity/block-content-to-react';
 import isObject from 'lodash/isObject';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
-import Icon from '~/components/elements/icon';
 import Image from '~/components/elements/image';
+
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
+
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconArrowRight)
+);
 
 /**
  * @param {string} image [required]
@@ -145,7 +48,7 @@ export default function HeroDefault({
 
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
-  const heroButtonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
+  const heroButtonIcon = <IconArrowRight color="black" size={16} />;
   let heroTitle;
   let heroCopy;
   let linkProps;

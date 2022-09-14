@@ -2,10 +2,15 @@ import React, { useRef, useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
+import dynamic from 'next/dynamic';
 
 import Button from '~/components/elements/button';
-import Icon from '~/components/elements/icon';
+
 import { useApp, useDispatchApp } from '../../context-provider/app';
+
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconArrowRight)
+);
 
 export default function SubscribeForm({ onSuccess }) {
   const app = useApp();
@@ -57,7 +62,7 @@ export default function SubscribeForm({ onSuccess }) {
     return true;
   };
 
-  const buttonIconArrowRight = <Icon icon={['fas', 'arrow-right']} />;
+  const buttonIconArrowRight = <IconArrowRight color="white" size={30} />;
 
   return (
     <form

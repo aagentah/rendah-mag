@@ -1,13 +1,18 @@
+import dynamic from 'next/dynamic';
+
 import Heading from '~/components/elements/heading';
-import Icon from '~/components/elements/icon';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
 import { getSiteConfig, getCategory } from '~/lib/sanity/requests';
 
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconArrowRight)
+);
+
 export default function Category({ siteConfig, category }) {
-  const buttonIcon = <Icon icon={['fas', 'arrow-right']} />;
+  const buttonIcon = <IconArrowRight color="white" size={30} />;
 
   return (
     <>

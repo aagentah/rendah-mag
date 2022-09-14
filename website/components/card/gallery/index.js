@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
+import dynamic from 'next/dynamic';
+import 'intersection-observer';
 
 import Observer from '@researchgate/react-intersection-observer';
 import Heading from '~/components/elements/heading';
-import Icon from '~/components/elements/icon';
 import Image from '~/components/elements/image';
 import Label from '~/components/elements/label';
-import 'intersection-observer';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
+
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconArrowRight)
+);
 
 export default function CardGallery({ post }) {
   const app = useApp();
@@ -18,7 +22,7 @@ export default function CardGallery({ post }) {
   const [inView, setInView] = useState(false);
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
   const imageHeight = app?.deviceSize === 'md' ? 200 : 230;
-  const buttonIcon = <Icon icon={['fa', 'arrow-right']} size="3x" />;
+  const buttonIcon = <IconArrowRight color="black" size={16} />;
   const handleIntersect = event => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 

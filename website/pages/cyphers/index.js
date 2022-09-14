@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import { Parallax } from 'react-scroll-parallax';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
-import Icon from '~/components/elements/icon';
 import Image from '~/components/elements/image';
 
 import Layout from '~/components/layout';
@@ -18,6 +18,10 @@ import {
   imageBuilder,
   getCurrentAndPreviousCyphers
 } from '~/lib/sanity/requests';
+
+const IconInfoCircle = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconInfoCircle)
+);
 
 export default function Cyphers({ siteConfig }) {
   const [cyphers, setCyphers] = useState(null);
@@ -215,13 +219,13 @@ export default function Cyphers({ siteConfig }) {
                     y={['-30px', '30px']}
                     tagOuter="figure"
                   >
-                    <Icon icon={['fas', 'info-circle']} size="10x" />
+                    <IconInfoCircle color="rendah-red" size={160} />
                   </Parallax>
                 </div>
 
                 <div className="bg-almost-white  br3  pa4  pa5-md  mb5  relative">
                   <div className="absolute  top  right  shadow1  br-100  bg-almost-white  nt3  mr4  mr5-md  info-color">
-                    <Icon icon={['fas', 'info-circle']} size="2x" />
+                    <IconInfoCircle color="rendah-red" size={32} />
                   </div>
 
                   <div className="pb3">

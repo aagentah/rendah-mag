@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import 'intersection-observer';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
-import Icon from '~/components/elements/icon';
 import Modal from '~/components/modal';
 
 import Layout from '~/components/layout';
@@ -20,6 +20,30 @@ import {
   getSmartLink,
   getSmartLinksTotal
 } from '~/lib/sanity/requests';
+
+const IconFacebook = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconFacebook)
+);
+
+const IconInstagram = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconInstagram)
+);
+
+const IconYoutube = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconYoutube)
+);
+
+const IconSoundcloud = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconSoundcloud)
+);
+
+const IconWebLink = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconWebLink)
+);
+
+const IconHeart = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconHeart)
+);
 
 export default function SmartLink({ siteConfig, post, preview }) {
   const app = useApp();
@@ -49,15 +73,15 @@ export default function SmartLink({ siteConfig, post, preview }) {
     switch (item.type) {
       case 'facebook':
         service = 'Facebook';
-        icon = <Icon size="2x" icon={['fab', 'facebook']} />;
+        icon = <IconFacebook color="black" size={16} />;
         break;
       case 'instagram':
         service = 'Instagram';
-        icon = <Icon size="2x" icon={['fab', 'instagram']} />;
+        icon = <IconInstagram color="black" size={16} />;
         break;
       case 'youtube':
         service = 'YouTube';
-        icon = <Icon size="2x" icon={['fab', 'youtube']} />;
+        icon = <IconYoutube color="black" size={16} />;
         break;
       case 'rendah-mag':
         service = 'Rendah Mag';
@@ -78,11 +102,11 @@ export default function SmartLink({ siteConfig, post, preview }) {
         break;
       case 'soundcloud':
         service = 'SoundCloud';
-        icon = <Icon size="2x" icon={['fab', 'soundcloud']} />;
+        icon = <IconSoundcloud color="black" size={16} />;
         break;
       case 'web':
         service = 'View Web Link';
-        icon = <Icon size="2x" icon={['fas', 'window-restore']} />;
+        icon = <IconWebLink color="black" size={16} />;
         break;
       default:
         break;
@@ -228,7 +252,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
               >
                 Join our mailout
                 <span className="dib  pl2">
-                  <Icon size="1x" icon={['fas', 'heart']} />
+                  <IconHeart color="black" size={16} />
                 </span>
               </button>
             </div>

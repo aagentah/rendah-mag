@@ -1,15 +1,19 @@
+import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 
 import BlockContent from '@sanity/block-content-to-react';
 import { usePlausible } from 'next-plausible';
 import Button from '~/components/elements/button';
-import Icon from '~/components/elements/icon';
 import Image from '~/components/elements/image';
 
 import { useUser } from '~/lib/hooks';
 import { useApp } from '~/context-provider/app';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useFirstRender } from '~/lib/useFirstRender';
+
+const IconMusic = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconMusic)
+);
 
 export default function Audio({
   url,
@@ -70,7 +74,7 @@ export default function Audio({
   return (
     <div className="audio__wrapper">
       <div className="audio__icon">
-        <Icon icon={['fas', 'music']} />
+        <IconMusic color="black" size={16} />;
       </div>
 
       {title ? (

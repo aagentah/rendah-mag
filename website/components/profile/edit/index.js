@@ -1,21 +1,53 @@
 import { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
-import Icon from '~/components/elements/icon';
 import Checkbox from '~/components/elements/checkbox';
 import Input from '~/components/elements/input';
 import Image from '~/components/elements/image';
-
 import Modal from '~/components/modal';
+
 import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import passwordStrength from '~/lib/password-strength';
 import { imageBuilder } from '~/lib/sanity/requests';
 import findUserByHandle from '~/lib/sanity/user/findUserByHandle';
+
+const IconEnvelope = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconEnvelope)
+);
+
+const IconUser = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconUser)
+);
+
+const IconLock = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconLock)
+);
+
+const IconReceipt = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconReceipt)
+);
+
+const IconAt = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconAt)
+);
+
+const IconHashtag = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconHashtag)
+);
+
+const IconDiscord = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconDiscord)
+);
+
+const IconPencil = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconPencil)
+);
 
 export default function ProfileEdit() {
   const app = useApp();
@@ -221,13 +253,13 @@ export default function ProfileEdit() {
     return true;
   }
 
-  const inputIconEnvelope = <Icon icon={['fas', 'envelope']} />;
-  const inputIconUser = <Icon icon={['fas', 'user']} />;
-  const inputIconLock = <Icon icon={['fas', 'lock']} />;
-  const inputIconReceipt = <Icon icon={['fas', 'receipt']} />;
-  const inputIconAt = <Icon icon={['fas', 'at']} />;
-  const inputIconHash = <Icon icon={['fas', 'hashtag']} />;
-  const iconDiscord = <Icon icon={['fab', 'discord']} />;
+  const inputIconEnvelope = <IconEnvelope color="white" size={16} />;
+  const inputIconUser = <IconUser color="white" size={16} />;
+  const inputIconLock = <IconLock color="white" size={16} />;
+  const inputIconReceipt = <IconReceipt color="white" size={16} />;
+  const inputIconAt = <IconAt color="white" size={16} />;
+  const inputIconHash = <IconHashtag color="white" size={16} />;
+  const iconDiscord = <IconDiscord color="white" size={16} />;
 
   if (user) {
     return (
@@ -446,7 +478,7 @@ export default function ProfileEdit() {
                   className="f7  w2  h2  br-100  bg-white  shadow2  flex  align-center  justify-center  cp"
                   onClick={() => setAvatarModalActive(!avatarModalActive)}
                 >
-                  <Icon color="black" size="1x" icon={['fa', 'pencil']} />
+                  <IconPencil color="white" size={16} />
                 </div>
               </div>
             </div>
