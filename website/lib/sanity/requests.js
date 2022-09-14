@@ -239,8 +239,6 @@ export async function getCurrentAndPreviousCyphers(preview) {
     )
   ]);
 
-  console.log('current', current);
-
   return { current: current || null, previous };
 }
 

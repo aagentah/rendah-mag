@@ -4,45 +4,6 @@ import { PageTransition } from 'next-page-transitions';
 import NProgress from 'nprogress';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import PlausibleProvider from 'next-plausible';
-// import { config, library } from '@fortawesome/fontawesome-svg-core';
-
-// import {
-//   faTwitter,
-//   faSoundcloud,
-//   faFacebook,
-//   faDiscord,
-//   faSpotify,
-//   faYoutube
-// } from '@fortawesome/free-brands-svg-icons';
-
-// import {
-//   faMusic,
-//   faArrowRight,
-//   faArrowLeft,
-//   faShoppingCart,
-//   faPlus,
-//   faDownload,
-//   faSignInAlt,
-//   faSignOutAlt,
-//   faStoreAlt,
-//   faEnvelope,
-//   faUser,
-//   faReceipt,
-//   faLock,
-//   faAt,
-//   faHashtag,
-//   faPencil,
-//   faChevronLeft,
-//   faChevronRight,
-//   faInfoCircle,
-//   faHeart,
-//   faMinus,
-//   faHouse,
-//   faFileAudio,
-//   faNewspaper,
-//   faList,
-//   faMoneyCheck
-// } from '@fortawesome/free-solid-svg-icons';
 
 import { AppProvider } from '~/context-provider/app';
 
@@ -59,41 +20,6 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   const transitionTimeout = 300;
-  // config.autoAddCss = false;
-  // library.add(
-  //   faTwitter,
-  //   faSoundcloud,
-  //   faFacebook,
-  //   faDiscord,
-  //   faSpotify,
-  //   faYoutube,
-  //   faMusic,
-  //   faArrowRight,
-  //   faArrowLeft,
-  //   faShoppingCart,
-  //   faPlus,
-  //   faDownload,
-  //   faSignInAlt,
-  //   faSignOutAlt,
-  //   faStoreAlt,
-  //   faEnvelope,
-  //   faUser,
-  //   faReceipt,
-  //   faLock,
-  //   faAt,
-  //   faHashtag,
-  //   faPencil,
-  //   faChevronLeft,
-  //   faChevronRight,
-  //   faInfoCircle,
-  //   faHeart,
-  //   faMinus,
-  //   faHouse,
-  //   faFileAudio,
-  //   faNewspaper,
-  //   faList,
-  //   faMoneyCheck
-  // );
 
   return (
     <>

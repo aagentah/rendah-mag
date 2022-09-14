@@ -37,8 +37,6 @@ export default function Header({ navOnWhite, meta }) {
     shoppingCart: <IconStore color={navColour} size={16} />
   };
 
-  console.log('buttonIcons', buttonIcons);
-
   const handleLogout = async () => {
     await fetch(`${process.env.SITE_URL}/api/logout`);
     mutate({ user: null });

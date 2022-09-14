@@ -36,9 +36,6 @@ export default function Audio({
       const { default: AudioPlayer } = await import('react-h5-audio-player');
       const { RHAP_UI } = await import('react-h5-audio-player');
 
-      console.log('AudioPlayer', { Hook: AudioPlayer });
-      console.log('RHAP_UI', { Hook: RHAP_UI });
-
       setAudioPlayerHook({ Hook: AudioPlayer });
       setRHAP_UIHook({ Hook: RHAP_UI });
     };

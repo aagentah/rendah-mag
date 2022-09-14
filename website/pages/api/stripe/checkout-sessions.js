@@ -67,8 +67,6 @@ export default async function handler(req, res) {
         cancel_url: `${req.headers.origin}${data.cancelUrl}`
       });
 
-      console.log('session', session);
-
       return res.status(200).json({ url: session.url });
     }
 

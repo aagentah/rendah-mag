@@ -92,8 +92,6 @@ function Buttons() {
     }
   };
 
-  console.log('sdkReady', sdkReady);
-
   return (
     <>
       <div className="dominion__subscribe-col  col-24  col-7-md  flex  align-center  justify-center  pb3  pb1-md">
