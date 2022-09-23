@@ -332,53 +332,45 @@ export async function getProduct(slug, preview) {
   return results;
 }
 
-export async function getPostAndMore(slug, preview) {
+export async function getPost(slug, preview) {
   const curClient = getClient(preview);
   const today = dateTodayISO();
   let post;
-  let morePosts;
 
   if (preview) {
-    [post, morePosts] = await Promise.all([
-      curClient
-        .fetch(
-          `*[_type == "post" && slug.current == $slug] | order(publishedAt desc) {
-          ${postFields}
-          content,
-        }`,
-          { slug }
-        )
-        .then(res => res?.[0]),
-      curClient.fetch(
-        `*[_type == "post" && slug.current != $slug] | order(publishedAt desc){
-          ${postFieldsCard}
-          content,
-        }[0...4]`,
-        { slug }
-      )
-    ]);
+    post = await getClient(preview).fetch(
+      `*[_type == "post" && slug.current == $slug] | order(publishedAt desc) [0] {
+     ${postFields}
+     content,
+   }`,
+      { slug }
+    );
   } else {
-    [post, morePosts] = await Promise.all([
-      curClient
-        .fetch(
-          `*[_type == "post" && slug.current == $slug && publishedAt < $today] | order(publishedAt desc) {
-          ${postFields}
-          content,
-        }`,
-          { slug, today }
-        )
-        .then(res => res?.[0]),
-      curClient.fetch(
-        `*[_type == "post" && slug.current != $slug && publishedAt < $today] | order(publishedAt desc){
-          ${postFieldsCard}
-          content,
-        }[0...4]`,
-        { slug, today }
-      )
-    ]);
+    post = await getClient(preview).fetch(
+      `*[_type == "post" && slug.current == $slug && publishedAt < $today] | order(publishedAt desc) [0] {
+     ${postFields}
+     content,
+   }`,
+      { slug, today }
+    );
   }
 
-  return { post, morePosts };
+  return post;
+}
+
+export async function getMorePosts(slug, preview) {
+  const curClient = getClient(preview);
+  const today = dateTodayISO();
+
+  const morePosts = await getClient(preview).fetch(
+    `*[_type == "post" && slug.current != $slug] | order(publishedAt desc){
+      ${postFieldsCard}
+      content,
+    }[0...4]`,
+    { slug }
+  );
+
+  return morePosts;
 }
 
 export async function getPreviewProductBySlug(slug) {

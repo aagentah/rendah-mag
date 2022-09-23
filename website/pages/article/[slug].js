@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
@@ -28,7 +28,8 @@ import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 import {
   getSiteConfig,
   getAllPostsTotal,
-  getPostAndMore
+  getPost,
+  getMorePosts
 } from '~/lib/sanity/requests';
 
 const Modal = dynamic(() => import('~/components/modal'));
@@ -37,13 +38,24 @@ const Author = dynamic(() => import('~/components/article/author'));
 const SocialLinks = dynamic(() => import('~/components/article/social-links'));
 const CardBlog = dynamic(() => import('~/components/card/blog'));
 
-export default function Post({ siteConfig, post, morePosts, preview }) {
+export default function Post({ siteConfig, post, preview }) {
   const app = useApp();
   const router = useRouter();
   const [user] = useUser();
   const { height, width } = useWindowDimensions();
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
+  const [morePosts, setMorePosts] = useState([]);
+
+  useEffect(() => {
+    const action = async () => {
+      const morePostsRes = await getMorePosts(post?.slug);
+
+      setMorePosts(morePostsRes);
+    };
+
+    action();
+  }, []);
 
   const renderCaption = () => {
     if (isArray(post?.image?.caption)) {
@@ -258,7 +270,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
 
 export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
-  const data = await getPostAndMore(params.slug, preview);
+  const data = await getPost(params.slug, preview);
 
   // if (!data?.post?.slug) {
   //   return {
@@ -271,8 +283,7 @@ export async function getStaticProps({ req, params, preview = false }) {
     props: {
       siteConfig,
       preview,
-      post: data.post || null,
-      morePosts: data.morePosts || null
+      post: data || null
     },
     revalidate: 10
   };
