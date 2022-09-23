@@ -15,7 +15,7 @@ const ProgressiveImage = props => {
     return (
       <Image
         onLoad={handleLoad}
-        alt={alt}
+        // alt={alt}
         src={src}
         className={`image ${loaded ? 'image--loaded' : ''}`}
         fill

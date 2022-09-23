@@ -296,7 +296,7 @@ export default function Product({ siteConfig, product }) {
           <div className="pt4  pt0-md">
             <Container>
               <div className="flex  flex-wrap  pb5">
-                <div className="col-24  col-12-md  ph2  pb3">
+                <div className="col-24  col-12-md  ph2  pb4  pb3-md">
                   <Image
                     /* Options */
                     src={imageBuilder
@@ -325,7 +325,7 @@ export default function Product({ siteConfig, product }) {
                   />
                 </div>
                 <div className="col-24  col-12-md  pl4-md">
-                  <div className="db  ph2">
+                  <div className="db  pb4  ph2">
                     <Heading
                       /* Options */
                       htmlEntity="h1"

@@ -55,7 +55,7 @@ const IconHeadphones = dynamic(() =>
 );
 
 const IconAudio = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconHeadphones)
+  import('~/components/elements/icon').then(m => m.IconAudio)
 );
 
 const IconNewspaper = dynamic(() =>

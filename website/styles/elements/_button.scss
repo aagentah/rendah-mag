@@ -20,6 +20,10 @@
   min-width: 50px;
   font-family: $t-secondary;
 
+  svg {
+    transition: all 0.3s ease-in-out;
+  }
+
   .button__icon__wrapper {
     display: flex;
     align-items: center;
@@ -163,7 +167,6 @@
     &:hover:not(.loading):not(.disabled) {
       background-color: transparent;
       color: var($hex);
-      fill: var($hex);
 
       svg {
         fill: var($hex);
@@ -179,13 +182,19 @@
     &:hover:not(.loading):not(.disabled):not(.white) {
       background-color: var($hex);
       color: var(--white);
-      fill: var(--white);
+
+      svg {
+        fill: var(--white);
+      }
     }
 
     &:hover:not(.loading):not(.disabled).white {
       background-color: var($hex);
       color: var(--black);
-      fill: var(--black);
+
+      svg {
+        fill: var(--black);
+      }
     }
   }
 

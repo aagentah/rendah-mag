@@ -293,7 +293,7 @@ export default function Home() {
                         text="Sign up"
                         color="black"
                         fluid={false}
-                        icon={buttonIcon}
+                        icon={buttonIconWhite}
                         iconFloat={null}
                         inverted={false}
                         loading={false}

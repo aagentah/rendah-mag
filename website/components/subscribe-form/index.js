@@ -62,7 +62,7 @@ export default function SubscribeForm({ onSuccess }) {
     return true;
   };
 
-  const buttonIconArrowRight = <IconArrowRight color="white" size={30} />;
+  const buttonIconArrowRight = <IconArrowRight color="white" size={16} />;
 
   return (
     <form

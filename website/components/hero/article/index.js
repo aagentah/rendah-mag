@@ -41,9 +41,11 @@ export default function HeroDefault({
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   let imageUrlWidth;
+  let imageUrlHeight = 700;
 
   if (app.deviceSize === 'md') {
     imageUrlWidth = 700;
+    imageUrlHeight = null;
   }
 
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
@@ -89,7 +91,7 @@ export default function HeroDefault({
       }
       alt={title}
       figcaption={null}
-      height={700}
+      height={imageUrlHeight}
       width={null}
       customClass={null}
       priority={true}

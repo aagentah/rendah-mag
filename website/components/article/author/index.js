@@ -4,9 +4,12 @@ import Heading from '~/components/elements/heading';
 import Copy from '~/components/elements/copy';
 import Image from '~/components/elements/image';
 import Label from '~/components/elements/label';
+
 import { imageBuilder } from '~/lib/sanity/requests';
+import { useApp } from '~/context-provider/app';
 
 export default function Author({ siteConfig, author }) {
+  const app = useApp();
   const { posts } = author;
 
   return (
@@ -45,7 +48,7 @@ export default function Author({ siteConfig, author }) {
               .url()}
             alt={author.name}
             figcaption={null}
-            height={150}
+            height={app.deviceSize === 'md' ? null : 150}
             width={null}
             customClass="br4"
             skeleton={false}
@@ -67,7 +70,7 @@ export default function Author({ siteConfig, author }) {
 
       <div className="col-24  col-15-md  pl0  pl4-md  pr0  pr2-md">
         {author.name && (
-          <div className="db">
+          <div className="db  pb2">
             <Heading
               /* Options */
               htmlEntity="h1"

@@ -212,7 +212,7 @@ export default function Cyphers({ siteConfig }) {
               )}
 
               <div className="relative">
-                <div className="absolute  top  right  br-100  bg-almost-white  nt5  nr6  info-color  o-10  f4">
+                <div className="absolute  top  right  br-100  bg-almost-white  nt5  nr5  info-color  o-10  f4">
                   <IconInfoCircle color="#6697f4" size={200} />
                 </div>
 
