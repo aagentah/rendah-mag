@@ -11,11 +11,13 @@ const ProgressiveImage = props => {
 
   const handleLoad = () => setLoaded(true);
 
+  console.log('alt', alt);
+
   if (src) {
     return (
       <Image
         onLoad={handleLoad}
-        alt={alt}
+        alt={alt || ''}
         src={src}
         className={`image ${loaded ? 'image--loaded' : ''}`}
         fill

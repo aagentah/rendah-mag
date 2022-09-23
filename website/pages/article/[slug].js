@@ -100,7 +100,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
           <div className="pb2  mb2">
             <Heading
               /* Options */
-              htmlEntity="h3"
+              htmlEntity="p"
               text="You made it to the bottom"
               color="black"
               size="medium"
@@ -150,7 +150,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
         <div className="relative">
           <Hero
             image={post?.coverImage}
-            title={null}
+            title={post.title}
             description={null}
             heroButtonText={null}
             link={null}
@@ -224,7 +224,7 @@ export default function Post({ siteConfig, post, morePosts, preview }) {
                 <div className="bg-black  pa2  dib">
                   <Heading
                     /* Options */
-                    htmlEntity="h3"
+                    htmlEntity="p"
                     text="More Posts"
                     color="white"
                     size="small"

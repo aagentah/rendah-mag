@@ -141,7 +141,7 @@ export default function Product({ siteConfig, product }) {
               <div className="pb2  mb2">
                 <Heading
                   /* Options */
-                  htmlEntity="h3"
+                  htmlEntity="p"
                   text="Subscribe instead for £7.99?"
                   color="black"
                   size="medium"

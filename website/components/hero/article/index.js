@@ -1,10 +1,5 @@
-import BlockContent from '@sanity/block-content-to-react';
-import isObject from 'lodash/isObject';
 import dynamic from 'next/dynamic';
 
-import Heading from '~/components/elements/heading';
-import Button from '~/components/elements/button';
-import Copy from '~/components/elements/copy';
 import Image from '~/components/elements/image';
 
 import { imageBuilder } from '~/lib/sanity/requests';
@@ -55,6 +50,7 @@ export default function HeroDefault({
   let heroCopy;
   let linkProps;
   let heroButton;
+  let heroImage;
 
   const styles = {
     maxHeight: 'calc(120vh + 100px)'
@@ -67,7 +63,7 @@ export default function HeroDefault({
     };
   }
 
-  const heroImage = (
+  heroImage = (
     <Image
       /* Options */
       src={
@@ -93,59 +89,6 @@ export default function HeroDefault({
     />
   );
 
-  if (title) {
-    heroTitle = (
-      <Heading
-        /* Options */
-        htmlEntity="h2"
-        text={title}
-        color="black"
-        size="large"
-        truncate={null}
-        skeleton={skeleton}
-        /* Children */
-        withLinkProps={linkProps}
-      />
-    );
-  }
-
-  if (description) {
-    heroCopy = isObject(description) ? (
-      <BlockContent blocks={description} />
-    ) : (
-      <Copy
-        /* Options */
-        text={description || ''}
-        color="black"
-        size="medium"
-        truncate={null}
-        skeleton={skeleton}
-      />
-    );
-  }
-
-  if (heroButtonText && linkProps) {
-    heroButton = (
-      <Button
-        /* Options */
-        type="secondary"
-        size="small"
-        text={heroButtonText}
-        color="black"
-        fluid={false}
-        icon={heroButtonIcon}
-        iconFloat={null}
-        inverted={false}
-        loading={false}
-        disabled={false}
-        skeleton={skeleton}
-        onClick={null}
-        /* Children */
-        withLinkProps={linkProps}
-      />
-    );
-  }
-
   return (
     <article
       className={`
@@ -156,12 +99,6 @@ export default function HeroDefault({
       `}
       style={styles}
     >
-      <div className="hero__dialog">
-        {heroTitle && <div className="hero__title">{heroTitle}</div>}
-        {heroCopy && <p className="hero__description">{heroCopy}</p>}
-        {heroButton && <div className="hero__button">{heroButton}</div>}
-      </div>
-
       {heroImage && <div className="hero__image">{heroImage}</div>}
     </article>
   );
