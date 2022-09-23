@@ -17,9 +17,6 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Hero from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
-import CardCreations from '~/components/card/creations';
-import Modal from '~/components/modal';
-import SubscribeForm from '~/components/subscribe-form';
 
 import {
   getFeaturedPost,
@@ -31,8 +28,10 @@ import {
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 
+const CardCreations = dynamic(() => import('~/components/card/creations'));
 const RenderCards = dynamic(() => import('~/components/index/renderCards'));
-
+const Modal = dynamic(() => import('~/components/modal'));
+const SubscribeForm = dynamic(() => import('~/components/subscribe-form'));
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then(m => m.IconArrowRight)
 );
@@ -102,61 +101,6 @@ export default function Home() {
         }}
         preview={null}
       >
-        <Modal
-          /* Options */
-          size="small"
-          active={modalActive}
-        >
-          <div className="pb2  mb2">
-            <Heading
-              /* Options */
-              htmlEntity="h3"
-              text="Join our Mailing List?"
-              color="black"
-              size="medium"
-              truncate={0}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-          <div className="pb2">
-            <Copy
-              /* Options */
-              text="We usually only send a few emails each month, and keep the content relevant as ever."
-              color="black"
-              size="medium"
-              truncate={null}
-            />
-          </div>
-          <div className="pb3  mb2">
-            <SubscribeForm onSuccess={() => setModalActive(false)} />
-          </div>
-          <div className="flex  flex-wrap  pb2">
-            <div className="col-24  flex  justify-center  align-center">
-              <Button
-                /* Options */
-                type="secondary"
-                size="medium"
-                text="No thanks"
-                color="black"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted={false}
-                loading={false}
-                disabled={false}
-                skeleton={false}
-                onClick={() => {
-                  setModalActive(false);
-                }}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-          </div>
-        </Modal>
-
         <Hero
           image={homePage?.heroImage}
           title={homePage?.heroTitle || 'Loading...'}
@@ -380,6 +324,61 @@ export default function Home() {
             <RenderCards />
           </LazyLoad>
         </div>
+
+        <Modal
+          /* Options */
+          size="small"
+          active={modalActive}
+        >
+          <div className="pb2  mb2">
+            <Heading
+              /* Options */
+              htmlEntity="h3"
+              text="Join our Mailing List?"
+              color="black"
+              size="medium"
+              truncate={0}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <div className="pb2">
+            <Copy
+              /* Options */
+              text="We usually only send a few emails each month, and keep the content relevant as ever."
+              color="black"
+              size="medium"
+              truncate={null}
+            />
+          </div>
+          <div className="pb3  mb2">
+            <SubscribeForm onSuccess={() => setModalActive(false)} />
+          </div>
+          <div className="flex  flex-wrap  pb2">
+            <div className="col-24  flex  justify-center  align-center">
+              <Button
+                /* Options */
+                type="secondary"
+                size="medium"
+                text="No thanks"
+                color="black"
+                fluid={false}
+                icon={null}
+                iconFloat={null}
+                inverted={false}
+                loading={false}
+                disabled={false}
+                skeleton={false}
+                onClick={() => {
+                  setModalActive(false);
+                }}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+          </div>
+        </Modal>
       </Layout>
     </>
   );
