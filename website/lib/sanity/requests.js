@@ -262,7 +262,7 @@ export async function getLatestPublishedCypher(preview) {
 
 export async function getTeamMembers(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "author" && active] | order(order asc){
+    .fetch(`*[_type == "author"] | order(order asc){
       ${teamFields}
     }`);
   return results;
@@ -272,7 +272,7 @@ export async function getTeamMemberAndPosts(slug, preview) {
   const today = dateTodayISO();
 
   const results = await getClient(preview).fetch(
-    `*[_type == "author" && active && slug.current == $slug] [0] {
+    `*[_type == "author" && slug.current == $slug] [0] {
       ${teamFields}
       "posts": *[_type == "post" && references(^._id) && publishedAt < $today] | order(publishedAt desc) [0..23] {
         ${postFieldsCard}

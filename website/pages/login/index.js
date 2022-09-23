@@ -123,9 +123,9 @@ export default function Login({ siteConfig }) {
     if (user) Router.push(`${fwdRoute ? `/${fwdRoute}` : '/profile'}`);
   }, [user, fwdRoute]);
 
-  const buttonIconArrowRight = <IconArrowRight color="white" size={30} />;
-  const inputIconEnvelope = <IconEnvelope color="white" size={30} />;
-  const inputIconLock = <IconLock color="white" size={30} />;
+  const buttonIconArrowRight = <IconArrowRight color="white" size={16} />;
+  const inputIconEnvelope = <IconEnvelope color="black" size={16} />;
+  const inputIconLock = <IconLock color="black" size={16} />;
 
   return (
     <>

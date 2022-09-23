@@ -478,7 +478,7 @@ export default function ProfileEdit() {
                   className="f7  w2  h2  br-100  bg-white  shadow2  flex  align-center  justify-center  cp"
                   onClick={() => setAvatarModalActive(!avatarModalActive)}
                 >
-                  <IconPencil color="white" size={16} />
+                  <IconPencil color="black" size={16} />
                 </div>
               </div>
             </div>

@@ -89,7 +89,7 @@ export default function HeroDefault({
       }
       alt={title}
       figcaption={null}
-      height={null}
+      height={700}
       width={null}
       customClass={null}
       priority={true}

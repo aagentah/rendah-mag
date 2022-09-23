@@ -68,7 +68,7 @@ export default function HeroDefault({
       height={imageHeight}
       width={null}
       customClass={null}
-      priority={true}
+      priority={false}
       skeleton={skeleton}
       onClick={null}
       /* Children */

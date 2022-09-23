@@ -76,7 +76,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <IconInstagram color="white" size={30} />
+              <IconInstagram color="black" size={55} />
             </a>
           </div>
           <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
@@ -86,7 +86,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <IconFacebook color="white" size={30} />
+              <IconFacebook color="black" size={55} />
             </a>
           </div>
           <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
@@ -96,7 +96,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <IconTwitter color="white" size={30} />
+              <IconTwitter color="black" size={55} />
             </a>
           </div>
 
@@ -107,7 +107,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <IconSoundcloud color="white" size={30} />
+              <IconSoundcloud color="black" size={55} />
             </a>
           </div>
           <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
@@ -117,7 +117,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <IconYoutube color="white" size={30} />
+              <IconYoutube color="black" size={55} />
             </a>
           </div>
           <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
@@ -127,7 +127,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <IconDiscord color="white" size={30} />
+              <IconDiscord color="black" size={55} />
             </a>
           </div>
           <div className="col-24  col-3-md  dn  df-md  justify-center  justify-end-md  pt4  pt0-md">
@@ -137,7 +137,7 @@ export default function Connect({ siteConfig, preview }) {
               rel="noreferrer"
               className="black"
             >
-              <IconSpotify color="white" size={30} />
+              <IconSpotify color="black" size={55} />
             </a>
           </div>
         </div>

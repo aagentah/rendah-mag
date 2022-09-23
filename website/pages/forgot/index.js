@@ -65,8 +65,8 @@ export default function Forgot({ siteConfig }) {
     return true;
   }
 
-  const buttonIconArrowRight = <IconArrowRight color="white" size={30} />;
-  const inputIconEnvelope = <IconEnvelope color="white" size={30} />;
+  const buttonIconArrowRight = <IconArrowRight color="white" size={16} />;
+  const inputIconEnvelope = <IconEnvelope color="black" size={16} />;
 
   return (
     <>

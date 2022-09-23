@@ -24,8 +24,8 @@ export default function Image(props) {
   } = props;
 
   const dimensions = {
-    minHeight: height ? `${height}px` : '100vh',
-    height: height ? `${height}px` : '100vh',
+    minHeight: height ? `${height}px` : '100%',
+    height: height ? `${height}px` : '100%',
     width: width ? `${width}px` : '100%',
     maxWidth: '100%'
   };

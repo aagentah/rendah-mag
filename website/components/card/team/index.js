@@ -13,11 +13,17 @@ const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then(m => m.IconArrowRight)
 );
 
-export default function CardBlog({ member }) {
+export default function CardBlog({ member, featured }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  const imageHeight = app?.deviceSize === 'md' ? 260 : 180;
+  let imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
+  let imageHeight = app?.deviceSize === 'md' ? 260 : 180;
+
+  if (featured) {
+    imageUrlWidth = app?.deviceSize === 'md' ? 260 : 120;
+    imageHeight = app?.deviceSize === 'md' ? 260 : 120;
+  }
+
   const buttonIcon = <IconArrowRight color="black" size={16} />;
 
   const image = (

@@ -220,7 +220,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
               >
                 Join our mailout
                 <span className="dib  pl2">
-                  <IconHeart color="black" size={16} />
+                  <IconHeart color="black" size={12} />
                 </span>
               </p>
             </div>

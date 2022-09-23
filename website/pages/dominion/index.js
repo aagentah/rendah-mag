@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Script from 'next/script';
 
-import random from 'lodash/random';
-
 import Heading from '~/components/elements/heading';
 import Image from '~/components/elements/image';
 import Layout from '~/components/layout';
@@ -68,7 +66,7 @@ export default function Dominion({ siteConfig }) {
           <div className="measure-wide  mla  mra  pb4  mb3-md">
             <Image
               /* Options */
-              src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610317978/dominion/dominion-logo.png"
+              src="/images/dominion-logo.png"
               placeholder={null}
               alt="Dominion"
               figcaption={null}
@@ -168,10 +166,7 @@ export default function Dominion({ siteConfig }) {
                                 .auto('format')
                                 .fit('clip')
                                 .url()
-                            : `https://picsum.photos/20${random(
-                                0,
-                                9
-                              )}/20${random(0, 9)}`
+                            : '/images/avatar-placeholder.png'
                         }
                         placeholder={null}
                         alt="User"

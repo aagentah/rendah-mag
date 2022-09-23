@@ -164,6 +164,10 @@
       background-color: transparent;
       color: var($hex);
       fill: var($hex);
+
+      svg {
+        fill: var($hex);
+      }
     }
   }
 

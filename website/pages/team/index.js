@@ -86,12 +86,13 @@ export default function Post({ siteConfig }) {
 
           <div className="flex  flex-wrap">
             {[...Array(featuredLength)].map((iteration, i) => (
-              <div key={iteration} className="col-24  col-6-md">
+              <div key={iteration} className="col-24  col-4-md">
                 <div className="pa3">
                   <CardTeam
                     i={i}
                     member={featured && featured[i]}
                     columnCount="4"
+                    featured
                   />
                 </div>
               </div>

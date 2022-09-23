@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
-import { Parallax } from 'react-scroll-parallax';
 import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
@@ -213,19 +212,13 @@ export default function Cyphers({ siteConfig }) {
               )}
 
               <div className="relative">
-                <div className="absolute  top  right  br-100  bg-almost-white  nt4  nr6  info-color  o-10  f4">
-                  <Parallax
-                    className="z1  nt3"
-                    y={['-30px', '30px']}
-                    tagOuter="figure"
-                  >
-                    <IconInfoCircle color="rendah-red" size={160} />
-                  </Parallax>
+                <div className="absolute  top  right  br-100  bg-almost-white  nt5  nr6  info-color  o-10  f4">
+                  <IconInfoCircle color="#6697f4" size={200} />
                 </div>
 
                 <div className="bg-almost-white  br3  pa4  pa5-md  mb5  relative">
                   <div className="absolute  top  right  shadow1  br-100  bg-almost-white  nt3  mr4  mr5-md  info-color">
-                    <IconInfoCircle color="rendah-red" size={32} />
+                    <IconInfoCircle color="#6697f4" size={60} />
                   </div>
 
                   <div className="pb3">
