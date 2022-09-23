@@ -82,10 +82,10 @@ export default function Product({ siteConfig, product }) {
   };
 
   if (!router.isFallback && product?.slug) {
-    const buttonIconCart = <IconShoppingCart color="white" size={30} />;
-
-    const buttonIconPlus = <IconPlus color="white" size={30} />;
-    const buttonIconMinus = <IconMinus color="white" size={30} />;
+    const buttonIconCart = <IconShoppingCart color="white" size={16} />;
+    const buttonIconPlus = <IconPlus color="black" size={16} />;
+    const buttonIconPlusWhite = <IconPlus color="white" size={16} />;
+    const buttonIconMinus = <IconMinus color="black" size={16} />;
 
     const renderPurchaseButton = () => {
       if (isSoldOut) {
@@ -120,7 +120,7 @@ export default function Product({ siteConfig, product }) {
               text="Purchase"
               color="black"
               fluid={true}
-              icon={buttonIconPlus}
+              icon={buttonIconPlusWhite}
               iconFloat="left"
               inverted={false}
               loading={false}
@@ -197,7 +197,7 @@ export default function Product({ siteConfig, product }) {
                     text="Subscribe"
                     color="black"
                     fluid={true}
-                    icon={buttonIconPlus}
+                    icon={buttonIconPlusWhite}
                     iconFloat="left"
                     inverted={false}
                     loading={false}
@@ -250,7 +250,7 @@ export default function Product({ siteConfig, product }) {
           text="Add to Cart"
           color="black"
           fluid={true}
-          icon={buttonIconPlus}
+          icon={buttonIconPlusWhite}
           iconFloat="left"
           inverted={false}
           loading={false}
@@ -325,7 +325,7 @@ export default function Product({ siteConfig, product }) {
                   />
                 </div>
                 <div className="col-24  col-12-md  pl4-md">
-                  <div className="db  pb4  ph2">
+                  <div className="db  pb3  ph2">
                     <Heading
                       /* Options */
                       htmlEntity="h1"
@@ -341,10 +341,11 @@ export default function Product({ siteConfig, product }) {
                     <div className="dib  pr2">
                       <Label
                         /* Options */
-                        customClass="ph2"
+                        customClass="bold  ba  bc-rendah-red"
                         text={`£${product?.price}`}
-                        color="white"
-                        backgroundColor="black"
+                        color="rendah-red"
+                        backgroundColor={null}
+                        skeleton={!product}
                         onClick={null}
                         /* Children */
                         withLinkProps={null}

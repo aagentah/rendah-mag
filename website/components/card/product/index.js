@@ -59,10 +59,10 @@ export default function CardProduct({ product }) {
   const labels = [
     <Label
       /* Options */
-      customClass=""
+      customClass="bold  ba  bc-rendah-red"
       text={`£${product?.price}`}
-      color="white"
-      backgroundColor="black"
+      color="rendah-red"
+      backgroundColor={null}
       skeleton={!product}
       onClick={null}
       /* Children */

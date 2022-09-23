@@ -13,6 +13,11 @@
   @extend .pa2;
   @extend .ba;
   @extend .bc-black;
+
+  &::placeholder {
+    color: var(--black);
+    opacity: 1;
+  }
 }
 
 .subscribe-banner__submit .button {

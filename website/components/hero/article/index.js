@@ -79,16 +79,7 @@ export default function HeroDefault({
           .fit('clip')
           .url()
       }
-      placeholder={
-        image &&
-        imageBuilder
-          .image(image)
-          .width(imageUrlWidth / 10)
-          .auto('format')
-          .fit('clip')
-          .blur('20')
-          .url()
-      }
+      placeholder={null}
       alt={title}
       figcaption={null}
       height={imageUrlHeight}
