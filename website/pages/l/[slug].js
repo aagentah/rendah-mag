@@ -7,11 +7,8 @@ import 'intersection-observer';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
-import Modal from '~/components/modal';
-
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import SubscribeForm from '~/components/subscribe-form';
 
 import { useApp } from '~/context-provider/app';
 
@@ -20,6 +17,10 @@ import {
   getSmartLink,
   getSmartLinksTotal
 } from '~/lib/sanity/requests';
+
+const Modal = dynamic(() => import('~/components/modal'));
+
+const SubscribeForm = dynamic(() => import('~/components/subscribe-form'));
 
 const IconFacebook = dynamic(() =>
   import('~/components/elements/icon').then(m => m.IconFacebook)

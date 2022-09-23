@@ -5,12 +5,13 @@ import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
-import Modal from '~/components/modal';
 
 import { useApp } from '~/context-provider/app';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useUser } from '~/lib/hooks';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
+
+const Modal = dynamic(() => import('~/components/modal'));
 
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then(m => m.IconArrowRight)

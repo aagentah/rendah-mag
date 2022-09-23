@@ -9,13 +9,14 @@ import Copy from '~/components/elements/copy';
 import Checkbox from '~/components/elements/checkbox';
 import Input from '~/components/elements/input';
 import Image from '~/components/elements/image';
-import Modal from '~/components/modal';
 
 import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import passwordStrength from '~/lib/password-strength';
 import { imageBuilder } from '~/lib/sanity/requests';
 import findUserByHandle from '~/lib/sanity/user/findUserByHandle';
+
+const Modal = dynamic(() => import('~/components/modal'));
 
 const IconEnvelope = dynamic(() =>
   import('~/components/elements/icon').then(m => m.IconEnvelope)

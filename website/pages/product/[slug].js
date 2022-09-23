@@ -14,7 +14,6 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';
 import Tabs from '~/components/tabs';
-import Modal from '~/components/modal';
 
 import {
   getSiteConfig,
@@ -22,6 +21,8 @@ import {
   getAllProductsTotal,
   imageBuilder
 } from '~/lib/sanity/requests';
+
+const Modal = dynamic(() => import('~/components/modal'));
 
 const IconShoppingCart = dynamic(() =>
   import('~/components/elements/icon').then(m => m.IconShoppingCart)

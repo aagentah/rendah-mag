@@ -8,22 +8,18 @@ import Cookies from 'js-cookie';
 import BlockContent from '@sanity/block-content-to-react';
 import toMarkdown from '@sanity/block-content-to-markdown';
 import markdownToTxt from 'markdown-to-txt';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
 import Hero from '~/components/hero/article';
-import Modal from '~/components/modal';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';
-import SocialLinks from '~/components/article/social-links';
-import Author from '~/components/article/author';
-import SubscribeForm from '~/components/subscribe-form';
 
 import Date from '~/components/date';
-import CardBlog from '~/components/card/blog';
 import useWindowDimensions from '~/functions/useWindowDimensions';
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
@@ -34,6 +30,12 @@ import {
   getAllPostsTotal,
   getPostAndMore
 } from '~/lib/sanity/requests';
+
+const Modal = dynamic(() => import('~/components/modal'));
+const SubscribeForm = dynamic(() => import('~/components/subscribe-form'));
+const Author = dynamic(() => import('~/components/article/author'));
+const SocialLinks = dynamic(() => import('~/components/article/social-links'));
+const CardBlog = dynamic(() => import('~/components/card/blog'));
 
 export default function Post({ siteConfig, post, morePosts, preview }) {
   const app = useApp();
