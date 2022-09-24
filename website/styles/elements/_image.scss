@@ -7,7 +7,7 @@
 // Wrapper
 
 .image__wrapper {
-  // opacity: 0;
+  opacity: 0.01;
   animation: npl-fade-in 0.1s forwards;
   display: block;
   position: relative;
@@ -49,7 +49,7 @@
 .image {
   transition: all ease-in-out 0.1s;
   // transition-delay: 0.3s;
-  opacity: 0;
+  opacity: 0.01;
   object-fit: cover;
   width: 100%;
   position: relative;

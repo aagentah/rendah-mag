@@ -1,8 +1,8 @@
 // Base
 
 .button {
-  opacity: 0;
-  animation: npl-fade-in 0.3s forwards;
+  opacity: 0.01;
+  animation: npl-fade-in 0.1s forwards;
   transition: all 0.3s ease-in-out;
   display: inline-flex;
   justify-content: center;
