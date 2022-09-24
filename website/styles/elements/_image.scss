@@ -7,8 +7,8 @@
 // Wrapper
 
 .image__wrapper {
-  opacity: 0;
-  animation: npl-fade-in 0.3s forwards;
+  // opacity: 0;
+  animation: npl-fade-in 0.1s forwards;
   display: block;
   position: relative;
   height: 100%;
@@ -29,9 +29,9 @@
 // Placeholder
 
 .image__loading {
-  transition: all ease-in-out 0.3s;
-  transition-delay: 0.3s;
-  opacity: 0;
+  // transition: all ease-in-out 0.1s;
+  // transition-delay: 0.3s;
+  // opacity: 0;
   pointer-events: none;
   object-fit: cover;
   width: 100%;
@@ -47,8 +47,8 @@
 // Image
 
 .image {
-  transition: all ease-in-out 0.3s;
-  transition-delay: 0.3s;
+  transition: all ease-in-out 0.1s;
+  // transition-delay: 0.3s;
   opacity: 0;
   object-fit: cover;
   width: 100%;

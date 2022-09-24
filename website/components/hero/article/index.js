@@ -35,8 +35,10 @@ export default function HeroDefault({
 }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  let imageUrlWidth = 700;
+  let imageUrlWidth = 650;
   let imageUrlHeight = 700;
+
+  if (!app.deviceSize) return;
 
   if (app.deviceSize === 'md') {
     imageUrlHeight = null;
