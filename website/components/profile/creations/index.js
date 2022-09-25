@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import filter from 'lodash/filter';
-import cloneDeep from 'lodash/cloneDeep';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 
@@ -15,7 +14,7 @@ export default function ProfileCreations() {
   const [user, { loading, mutate, error }] = useUser();
   const [originalPosts, setOriginalPosts] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [filters, setFilters] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState(null);
   const [postsLength, setPostsLength] = useState(9);
 
   // Fetch posts
@@ -32,36 +31,28 @@ export default function ProfileCreations() {
     await action();
   }, []);
 
-  // Fetch posts
+  // Set filtered posts
   useEffect(() => {
-    if (!filters?.length) {
+    if (!selectedFilter?.length) {
       setPosts(originalPosts);
       setPostsLength(originalPosts?.length);
       return;
     }
 
     let postsClone = filter(originalPosts, obj => {
-      for (let i = 0; i < filters.length; i++) {
-        if (obj?.categories?.length && obj.categories.includes(filters[i])) {
-          return true;
-        }
+      if (obj?.categories?.length && obj.categories.includes(selectedFilter)) {
+        return true;
       }
     });
 
     setPosts(postsClone);
     setPostsLength(postsClone?.length);
-  }, [filters?.length]);
+  }, [selectedFilter]);
 
   const toggleFilter = filterString => {
-    if (filters.includes(filterString)) {
-      const cloneFilters = cloneDeep(filters);
-      cloneFilters.splice(cloneFilters.indexOf(filterString), 1);
-      setFilters(cloneFilters);
-    } else {
-      const cloneFilters = cloneDeep(filters);
-      cloneFilters.push(filterString);
-      setFilters(cloneFilters);
-    }
+    selectedFilter === filterString
+      ? setSelectedFilter(null)
+      : setSelectedFilter(filterString);
   };
 
   if (user?.isDominion) {
@@ -92,7 +83,7 @@ export default function ProfileCreations() {
         <div className="flex  flex-wrap  justify-center  justify-start-md  pb4  mb2">
           <span
             className={`filter-tag  ${
-              filters.includes('tutorials') ? 'is-active' : ''
+              selectedFilter === 'tutorials' ? 'is-active' : ''
             }`}
             onClick={() => toggleFilter('tutorials')}
           >
@@ -100,7 +91,7 @@ export default function ProfileCreations() {
           </span>
           <span
             className={`filter-tag  ${
-              filters.includes('interviews') ? 'is-active' : ''
+              selectedFilter === 'interviews' ? 'is-active' : ''
             }`}
             onClick={() => toggleFilter('interviews')}
           >
@@ -108,7 +99,7 @@ export default function ProfileCreations() {
           </span>
           <span
             className={`filter-tag  ${
-              filters.includes('insights') ? 'is-active' : ''
+              selectedFilter === 'insights' ? 'is-active' : ''
             }`}
             onClick={() => toggleFilter('insights')}
           >

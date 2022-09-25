@@ -63,10 +63,13 @@ $creations-black: #1c1c1c;
     background-color: var(--almost-black);
 
     * {
-      color: var(--white);
+      color: $creations-white;
+    }
+
+    svg {
+      fill: $creations-white;
     }
   }
-
 
   .article__author {
     @extend .ba;
@@ -163,8 +166,6 @@ $creations-black: #1c1c1c;
   .input__label {
     opacity: 0.5;
   }
-
-
 }
 
 .creations__label-wrapper {

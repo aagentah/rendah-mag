@@ -41,7 +41,7 @@
 @include breakpoint-up(md) {
   .profile_heading {
     position: absolute;
-    top: -78px;
+    top: -65px;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -59,7 +59,7 @@
   border: 1px solid var(--white);
   color: var(--white);
   cursor: pointer;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   @extend .ml2;
   @extend .ml0-md;
@@ -72,7 +72,7 @@
   @extend .br-pill;
 
   &:hover {
-    background-color: var(--dark-grey)
+    background-color: var(--dark-grey);
   }
 }
 
