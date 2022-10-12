@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import Button from '~/components/elements/button';
 import Image from '~/components/elements/image';
 
-import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 const IconArrowRight = dynamic(() =>
@@ -31,16 +30,7 @@ export default function CardDashboard({
   const image = (
     <Image
       /* Options */
-      src={
-        coverImage &&
-        imageBuilder
-          .image(coverImage)
-          .width(imageUrlWidth * scale)
-          .height(imageHeight * scale)
-          .auto('format')
-          .fit('clip')
-          .url()
-      }
+      src={coverImage && coverImage}
       placeholder={null}
       alt={null}
       figcaption={null}

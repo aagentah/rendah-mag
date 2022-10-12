@@ -39,7 +39,7 @@ export default function ProfileCreations({ handleToggle }) {
               <CardDashboard
                 title="Dubplates"
                 id="offerings"
-                coverImage="https://cdn.sanity.io/images/q8z2vf2k/production/4c4ac0ecf1fee4d9b6b63177ad2842f1a158023b-1920x1342.jpg"
+                coverImage="/images/dubs.jpg"
                 i={1}
                 handleToggle={handleToggle}
               />
@@ -50,7 +50,7 @@ export default function ProfileCreations({ handleToggle }) {
               <CardDashboard
                 title="Samples"
                 id="packs"
-                coverImage="https://cdn.sanity.io/images/q8z2vf2k/production/94fca621e965634f8a04a042e2566cff87874d34-1920x1280.jpg"
+                coverImage="/images/packs.jpg"
                 i={2}
                 handleToggle={handleToggle}
               />
@@ -61,7 +61,7 @@ export default function ProfileCreations({ handleToggle }) {
               <CardDashboard
                 title="Creations"
                 id="creations"
-                coverImage="https://cdn.sanity.io/images/q8z2vf2k/production/f129fa57166915302fc49e368a0b58b26fc14de6-1024x682.jpg"
+                coverImage="/images/creations.jpg"
                 i={3}
                 handleToggle={handleToggle}
               />
