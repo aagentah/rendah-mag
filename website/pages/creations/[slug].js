@@ -149,7 +149,7 @@ export default function Creations({ siteConfig, post, preview }) {
                 <p className="t-secondary  f6  white  lh-copy  pb4">
                   {post.authors.map(i => (
                     <>
-                      <Link href={`/team/${i.author.slug.current}`}>
+                      <Link href={`/team/${i.author.slug.current}`} legacyBehavior>
                         <span className="cp  white  fw7">{i.author.name}</span>
                       </Link>
                       {' | '}

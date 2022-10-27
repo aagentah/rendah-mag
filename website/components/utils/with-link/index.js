@@ -17,8 +17,8 @@ export default function WithLink(props) {
   switch (type) {
     case 'next':
       return (
-        <Link href={href} {...routerLinkProps}>
-          <a {...newProps}>{children}</a>
+        <Link href={href} {...routerLinkProps} {...newProps}>
+          {children}
         </Link>
       );
     case 'external':

@@ -195,7 +195,7 @@ export default function Post({ siteConfig, post, preview }) {
               <p className="t-secondary  f6  almost-black  lh-copy  pb4">
                 {post.authors.map(i => (
                   <>
-                    <Link href={`/team/${i.author.slug.current}`}>
+                    <Link href={`/team/${i.author.slug.current}`} legacyBehavior>
                       <span className="cp  black  fw7">{i.author.name}</span>
                     </Link>
                     {' | '}

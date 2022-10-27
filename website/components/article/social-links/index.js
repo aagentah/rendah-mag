@@ -114,7 +114,7 @@ export default function SocialLinks({ article }) {
       tags.push(
         article.tags.map(e => (
           <>
-            <Link href={`/tag/${e.tag.slug}`}>
+            <Link href={`/tag/${e.tag.slug}`} legacyBehavior>
               <span className="t-secondary  f7  cp  grey  fw7  pr3">
                 #{e.tag.name}
               </span>

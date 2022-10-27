@@ -120,7 +120,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
         <Container>
           <div className="measure-wide  mla  mra  ph4  ph5-md  pv5  black  br3  h-100">
             <div className="flex  justify-center  cp  mb4">
-              <Link href="/">
+              <Link href="/" legacyBehavior>
                 <svg
                   version="1.0"
                   xmlns="http://www.w3.org/2000/svg"

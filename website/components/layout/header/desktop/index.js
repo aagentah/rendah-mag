@@ -22,7 +22,7 @@ export default function HeaderDestop({
     >
       <div className="flex  align-center  w-100">
         <div className="header__logo">
-          <Link href="/">
+          <Link href="/" legacyBehavior>
             <svg
               version="1.0"
               xmlns="http://www.w3.org/2000/svg"

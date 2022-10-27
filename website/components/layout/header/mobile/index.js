@@ -44,7 +44,7 @@ export default function HeaderMobile({
       </div>
 
       <div className="header__logo">
-        <Link href="/">
+        <Link href="/" legacyBehavior>
           <svg
             version="1.0"
             xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ export default function HeaderMobile({
         </div>
         <ul className="w-100  pt4">
           <li className="nav__item  db  pl4  pb3">
-            <Link href="/">
+            <Link href="/" legacyBehavior>
               <button
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                 onClick={toggleNav}
@@ -110,7 +110,7 @@ export default function HeaderMobile({
             // </li>
           }
           <li className="nav__item  db  pl4  pb3">
-            <Link href="/cyphers">
+            <Link href="/cyphers" legacyBehavior>
               <button
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                 onClick={toggleNav}
@@ -121,7 +121,7 @@ export default function HeaderMobile({
             </Link>
           </li>
           <li className="nav__item  db  pl4  pb3">
-            <Link href="/team">
+            <Link href="/team" legacyBehavior>
               <button
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                 onClick={toggleNav}
@@ -132,7 +132,7 @@ export default function HeaderMobile({
             </Link>
           </li>
           <li className="nav__item  db  pl4  pb3">
-            <Link href="/store">
+            <Link href="/store" legacyBehavior>
               <button
                 className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                 onClick={toggleNav}
@@ -144,7 +144,7 @@ export default function HeaderMobile({
           </li>
           {user && meta.title !== 'Profile' && (
             <li className="nav__item  db  pl4  pb3">
-              <Link href="/profile">
+              <Link href="/profile" legacyBehavior>
                 <button
                   className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                   onClick={toggleNav}
@@ -171,7 +171,7 @@ export default function HeaderMobile({
           ) : (
             <>
               <li className="nav__item  db  pl4  pb3">
-                <Link href="/dominion">
+                <Link href="/dominion" legacyBehavior>
                   <button
                     className="t-primary  rendah-red  f3  bb  bw1  bc-black  dib  mb2  pb2"
                     onClick={toggleNav}
@@ -182,7 +182,7 @@ export default function HeaderMobile({
                 </Link>
               </li>
               <li className="nav__item  db  pl4  pb3">
-                <Link href="/login">
+                <Link href="/login" legacyBehavior>
                   <button
                     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                     onClick={toggleNav}
