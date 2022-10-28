@@ -30,13 +30,11 @@ module.exports = withBundleAnalyzer(
         {
           protocol: 'https',
           hostname: 'cdn.sanity.io',
-          port: '',
           pathname: '/images/q8z2vf2k/**'
         },
         {
           protocol: 'https',
           hostname: 'res.cloudinary.com',
-          port: '',
           pathname: '/dzz8ji5lj/image/**'
         }
       ]

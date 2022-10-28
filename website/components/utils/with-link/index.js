@@ -14,11 +14,13 @@ export default function WithLink(props) {
   const { type, href, target, routerLink, routerLinkProps } = withLinkProps;
   const RouterLink = routerLink;
 
+  console.log('type', type, href);
+
   switch (type) {
     case 'next':
       return (
         <Link href={href} {...routerLinkProps} {...newProps}>
-          {children}
+          <a {...newProps}>{children}</a>
         </Link>
       );
     case 'external':

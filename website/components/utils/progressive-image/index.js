@@ -11,8 +11,6 @@ const ProgressiveImage = props => {
 
   const handleLoad = () => setLoaded(true);
 
-  console.log('alt', alt);
-
   if (src) {
     return (
       <Image
@@ -21,6 +19,7 @@ const ProgressiveImage = props => {
         src={src}
         className={`image ${loaded ? 'image--loaded' : ''}`}
         fill
+        layout="fill"
         priority={priority}
       />
     );

@@ -1,7 +1,8 @@
 // Figure
 
 .image__figure {
-  //
+  @extend .flex;
+  @extend .justify-center;
 }
 
 // Wrapper

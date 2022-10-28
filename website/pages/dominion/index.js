@@ -70,8 +70,8 @@ export default function Dominion({ siteConfig }) {
               placeholder={null}
               alt="Dominion"
               figcaption={null}
-              height={null}
-              width={null}
+              height={50}
+              width={400}
               customClass={null}
               skeleton={false}
               onClick={null}
