@@ -142,7 +142,7 @@ export default function Product({ siteConfig, product }) {
                 <Heading
                   /* Options */
                   htmlEntity="p"
-                  text="Subscribe instead for £7.99?"
+                  text="Subscribe instead for £9.00?"
                   color="black"
                   size="medium"
                   truncate={0}
