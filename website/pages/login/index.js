@@ -123,7 +123,8 @@ export default function Login({ siteConfig }) {
     if (user) Router.push(`${fwdRoute ? `/${fwdRoute}` : '/profile'}`);
   }, [user, fwdRoute]);
 
-  const buttonIconArrowRight = <IconArrowRight color="white" size={16} />;
+  const buttonIconArrowRightWhite = <IconArrowRight color="white" size={16} />;
+  const buttonIconArrowRightBlack = <IconArrowRight color="black" size={16} />;
   const inputIconEnvelope = <IconEnvelope color="black" size={16} />;
   const inputIconLock = <IconLock color="black" size={16} />;
 
@@ -199,7 +200,7 @@ export default function Login({ siteConfig }) {
                   text="Login"
                   color="black"
                   fluid={false}
-                  icon={buttonIconArrowRight}
+                  icon={buttonIconArrowRightWhite}
                   iconFloat={null}
                   inverted={false}
                   loading={submitButtonLoading}
@@ -224,7 +225,7 @@ export default function Login({ siteConfig }) {
                   text={"I don't have an account"}
                   color="black"
                   fluid={false}
-                  icon={buttonIconArrowRight}
+                  icon={buttonIconArrowRightBlack}
                   iconFloat={null}
                   inverted
                   loading={false}

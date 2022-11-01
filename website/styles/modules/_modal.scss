@@ -41,6 +41,8 @@
   background: var(--white);
   margin: 0 auto;
   padding: 40px;
+  @extend .br4;
+  @extend .shadow2;
 }
 
 .modal__close {

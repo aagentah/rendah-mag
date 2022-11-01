@@ -464,8 +464,8 @@ export default function ProfileEdit() {
                   placeholder={null}
                   alt={user?.username || ''}
                   figcaption={null}
-                  height={null}
-                  width={null}
+                  height={120}
+                  width={120}
                   customClass="shadow2"
                   skeleton={false}
                   onClick={null}
