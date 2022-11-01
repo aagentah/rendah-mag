@@ -65,7 +65,7 @@ function Buttons() {
     const priceId =
       process.env.ENV_TYPE === 'development'
         ? 'price_1KOTLxKb3SeE1fXfnkcObl4Q'
-        : 'dominion-subscription_2ff0f5';
+        : 'price_1Lg5qXKb3SeE1fXf5mFEgyzs';
 
     const response = await fetch(
       `${process.env.SITE_URL}/api/stripe/checkout-sessions`,
