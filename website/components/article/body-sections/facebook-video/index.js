@@ -26,7 +26,7 @@ export default function FacebookVideo({ url }) {
 
   return (
     <div className="tac  db  w-90  mla  mra">
-      <LazyLoad once offset={150} height={app.deviceSize === 'md' ? 266 : 490}>
+      <LazyLoad once offset={250} height={app.deviceSize === 'md' ? 266 : 490}>
         <FacebookProviderHook.Hook appId="154881868603516">
           <EmbeddedVideoHook.Hook href={url} />
         </FacebookProviderHook.Hook>

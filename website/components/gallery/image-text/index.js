@@ -58,7 +58,7 @@ export default function GalleryImageText({ post, component }) {
 
   if (app?.deviceSize) {
     return (
-      <LazyLoad once offset={150}>
+      <LazyLoad once offset={250}>
         <div className={`flex  flex-wrap  ${setWrap()}  pb5`}>
           <div className="col-24  col-12-md  ph4">
             <Parallax speed={20} disabled={app.deviceSize === 'md'}>

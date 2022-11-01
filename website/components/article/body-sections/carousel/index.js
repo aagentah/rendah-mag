@@ -94,7 +94,7 @@ export default function ImageSection({ section }) {
   };
 
   return (
-    <LazyLoad once offset={200} height={section?.carouselHeight}>
+    <LazyLoad once offset={250} height={section?.carouselHeight}>
       <div ref={sliderRef} className="keen-slider">
         {section?.images?.length &&
           section.images.map((p, i) => (

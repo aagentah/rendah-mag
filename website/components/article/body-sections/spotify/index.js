@@ -12,7 +12,7 @@ export default function Spotify({ uri }) {
   return (
     <div className="flex  justify-center  ph4-md">
       <div className="bg-dark-grey  pa2  w-100">
-        <LazyLoad once offset={150} height={100}>
+        <LazyLoad once offset={250} height={100}>
           <SpotifyPlayer uri={uri} size={size} view={view} theme={theme} />
         </LazyLoad>
       </div>

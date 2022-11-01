@@ -142,7 +142,7 @@ export default function CardBlog({ post, columnCount }) {
 
   return (
     <Observer {...observer}>
-      <LazyLoad once offset={150} height={imageHeight}>
+      <LazyLoad once offset={250} height={imageHeight}>
         <article
           className={`card  card--post  card--scroll  ${inView && 'in-view'}`}
         >

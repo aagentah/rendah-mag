@@ -316,8 +316,9 @@ export default function Product({ siteConfig, product }) {
                     alt={product?.title}
                     figcaption={null}
                     height={imageHeight}
-                    width={null}
+                    width={500}
                     customClass="shadow2"
+                    priority={true}
                     skeleton={false}
                     onClick={null}
                     /* Children */

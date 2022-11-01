@@ -34,7 +34,7 @@ export default function IframeBlock({ url, heightDesktop, heightMobile }) {
   }
 
   return (
-    <LazyLoad once offset={150} height={frameHeight}>
+    <LazyLoad once offset={250} height={frameHeight}>
       <div className="w-90  db  mla  mra">
         <Iframe
           url={url}

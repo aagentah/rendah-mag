@@ -105,7 +105,7 @@ export default function CardDashboard({
   );
 
   return (
-    <LazyLoad once offset={150} height={imageHeight}>
+    <LazyLoad once offset={250} height={imageHeight}>
       <article className="card  card--dashboard">
         {image && <div className="card__image">{image}</div>}
 

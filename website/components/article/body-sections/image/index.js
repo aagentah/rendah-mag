@@ -54,7 +54,7 @@ export default function ImageSection({ section }) {
         .url();
 
   return (
-    <LazyLoad once offset={100} height={360}>
+    <LazyLoad once offset={250} height={360}>
       <figure>
         <Image
           /* Options */

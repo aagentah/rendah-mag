@@ -150,7 +150,7 @@ export default function CardProduct({ product }) {
   );
 
   return (
-    <LazyLoad once offset={150} height={imageHeight}>
+    <LazyLoad once offset={250} height={imageHeight}>
       <article className="card  card--product">
         {image && <div className="card__image">{image}</div>}
 

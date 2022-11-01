@@ -14,7 +14,7 @@ const ProgressiveImage = props => {
   if (src) {
     return (
       <Image
-        onLoad={handleLoad}
+        onLoadingComplete={handleLoad}
         alt={alt || ''}
         src={src}
         className={`image ${loaded ? 'image--loaded' : ''}`}

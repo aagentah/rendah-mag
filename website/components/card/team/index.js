@@ -139,7 +139,7 @@ export default function CardBlog({ member, featured }) {
   // );
 
   return (
-    <LazyLoad once offset={150} height={imageHeight}>
+    <LazyLoad once offset={250} height={imageHeight}>
       <team className="card  card--member">
         {image && <div className="card__image">{image}</div>}
 
