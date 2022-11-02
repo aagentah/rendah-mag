@@ -9,7 +9,7 @@ const postFields = `
   title,
   publishedAt,
   body,
-  description,
+  introduction,
   'slug': slug.current,
   'coverImage': image.asset->url,
   'authors': authors[] {
