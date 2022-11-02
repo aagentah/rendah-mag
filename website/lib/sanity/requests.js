@@ -10,6 +10,8 @@ const postFields = `
   publishedAt,
   body,
   introduction,
+  socialHandles,
+  socialTagline,
   'slug': slug.current,
   'coverImage': image.asset->url,
   'authors': authors[] {
@@ -27,11 +29,15 @@ const postFieldsCard = `
 `;
 
 const creationsFields = `
-  ...,
   name,
   title,
   publishedAt,
   description,
+  socialHandles,
+  excerpt,
+  publicBody,
+  body,
+  socialTagline,
   'slug': slug.current,
   'coverImage': image.asset->url,
   categories,
