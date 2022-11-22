@@ -23,7 +23,7 @@ export default function CarouselItemSection({ pack }) {
     <section>
       <div className="flex  flex-wrap  pt0  pt3-md">
         <div className="col-24  col-12-md  ph3  pr4-md  ph0-md">
-          <div className="col-24">
+          <div className="col-24  pb3">
             <Heading
               /* Options */
               htmlEntity="h1"
@@ -62,7 +62,7 @@ export default function CarouselItemSection({ pack }) {
               withLinkProps={{
                 type: 'external',
                 href: `${pack.folder}?dl=`,
-                target: null,
+                target: '_blank',
                 routerLink: null,
                 routerLinkProps: null
               }}
