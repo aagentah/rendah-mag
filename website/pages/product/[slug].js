@@ -36,6 +36,10 @@ const IconMinus = dynamic(() =>
   import('~/components/elements/icon').then(m => m.IconMinus)
 );
 
+const IconInfoCircle = dynamic(() =>
+  import('~/components/elements/icon').then(m => m.IconInfoCircle)
+);
+
 export default function Product({ siteConfig, product }) {
   const app = useApp();
   const router = useRouter();
@@ -296,6 +300,69 @@ export default function Product({ siteConfig, product }) {
           <div className="pt4  pt0-md">
             <Container>
               <div className="flex  flex-wrap  pb5">
+                {isSoldOut && (
+                  <div className="col-24">
+                    <div className="relative">
+                      <div className="absolute  top  right  br-100  nt4  nr4  info-color  o-10  f4">
+                        <IconInfoCircle color="#6697f4" size={100} />
+                      </div>
+
+                      <div className="bc-info-color  ba  bw1  br3  pa4  ph5-md  mb4  relative">
+                        <div className="pb3">
+                          <Heading
+                            /* Options */
+                            htmlEntity="h1"
+                            text="Print sold out?"
+                            color="black"
+                            size="large"
+                            truncate={null}
+                            /* Children */
+                            withLinkProps={null}
+                          />
+                        </div>
+
+                        <p className="black  f6  lh-copy  mb3">
+                          You may be in luck. We reserve a few copies of our
+                          very latest print for those wishing to subscribe to
+                          our magazine instead. Joining our Dominion
+                          Subscription is cheaper than individual prints, and
+                          will give access to a great deal of additional
+                          features.
+                        </p>
+
+                        <div className="col-24">
+                          <Button
+                            /* Options */
+                            type="primary"
+                            size="small"
+                            text="Subscribe"
+                            color="black"
+                            fluid={false}
+                            icon={buttonIconPlusWhite}
+                            iconFloat="left"
+                            inverted={false}
+                            loading={false}
+                            disabled={false}
+                            skeleton={false}
+                            onClick={null}
+                            /* Children */
+                            withLinkProps={{
+                              type: 'next',
+                              href: '/dominion',
+                              target: null,
+                              routerLink: Link,
+                              routerLinkProps: {
+                                as: `/dominion`,
+                                scroll: false
+                              }
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 <div className="col-24  col-12-md  ph2  pb4  pb3-md">
                   <Image
                     /* Options */
@@ -317,7 +384,7 @@ export default function Product({ siteConfig, product }) {
                     figcaption={null}
                     height={imageHeight}
                     width={500}
-                    customClass="shadow2"
+                    customClass="shadow2  br3"
                     priority={true}
                     skeleton={false}
                     onClick={null}
