@@ -392,7 +392,7 @@ export default function Product({ siteConfig, product }) {
                   />
                 </div>
                 <div className="col-24  col-12-md  pl4-md">
-                  <div className="db  pb3  ph2">
+                  <div className="dib  pb3  pl2  pr3">
                     <Heading
                       /* Options */
                       htmlEntity="h1"
@@ -404,35 +404,40 @@ export default function Product({ siteConfig, product }) {
                       withLinkProps={null}
                     />
                   </div>
-                  <div className="flex  flex-wrap  ph2  pb3">
-                    <div className="dib  pr2">
+
+                  {product?.tag && product?.tag !== 'None' && (
+                    <div className="db  dib-md  pr2  pb3  pb0-md  pl2  pl0-md">
                       <Label
                         /* Options */
-                        customClass="bold  ba  bc-rendah-red"
-                        text={`£${product?.price}`}
-                        color="rendah-red"
-                        backgroundColor={null}
-                        skeleton={!product}
+                        customClass="bold  ba  bc-black"
+                        text={product?.tag}
+                        color="black"
+                        backgroundColor=""
                         onClick={null}
                         /* Children */
                         withLinkProps={null}
                       />
                     </div>
+                  )}
+                  <div className="flex  flex-wrap  ph2  pb3">
+                    <div className="dib  pr2">
+                      <p className="dib  black  f4  f5-md  lh-copy  fw7">
+                        £{product?.price}
+                      </p>
 
-                    {product?.tag && product?.tag !== 'None' && (
-                      <div className="dib  pr2">
-                        <Label
-                          /* Options */
-                          customClass="ph2"
-                          text={product?.tag}
-                          color="black"
-                          backgroundColor="white"
-                          onClick={null}
-                          /* Children */
-                          withLinkProps={null}
-                        />
-                      </div>
-                    )}
+                      {!isSoldOut && (
+                        <p className="db  dib-md  rendah-red  f6  lh-copy  pl2-md  pt2  pt0-md">
+                          (or <span className="fw7">£9 + free shipping</span> on
+                          the{' '}
+                          <Link href="/dominion" legacyBehavior>
+                            <span className="cp  underline  fw7">
+                              Dominion Subscription
+                            </span>
+                          </Link>
+                          )
+                        </p>
+                      )}
+                    </div>
                   </div>
 
                   <div className="product__tabs  bb  bc-black  mb3">
