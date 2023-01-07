@@ -323,11 +323,10 @@ export default function Product({ siteConfig, product }) {
 
                         <p className="black  f6  lh-copy  mb3">
                           You may be in luck. We reserve a few copies of our
-                          very latest print for those wishing to subscribe to
-                          our magazine instead. Joining our Dominion
-                          Subscription is cheaper than individual prints, and
-                          will give access to a great deal of additional
-                          features.
+                          latest print for those wishing to subscribe instead.
+                          Joining our Dominion Subscription is cheaper than
+                          individual prints, and will give access to a great
+                          deal of additional features.
                         </p>
 
                         <div className="col-24">
@@ -426,16 +425,18 @@ export default function Product({ siteConfig, product }) {
                         £{product?.price}
                       </p>
 
-                      <p className="db  dib-md  rendah-red  f6  lh-copy  pl2-md  pt2  pt0-md">
-                        (or <span className="fw7">£9 + free shipping</span> on
-                        the{' '}
-                        <Link href="/dominion" legacyBehavior>
-                          <span className="cp  underline  fw7">
-                            Dominion Subscription
-                          </span>
-                        </Link>
-                        )
-                      </p>
+                      {!isSoldOut && (
+                        <p className="db  dib-md  rendah-red  f6  lh-copy  pl2-md  pt2  pt0-md">
+                          (or <span className="fw7">£9 + free shipping</span> on
+                          the{' '}
+                          <Link href="/dominion" legacyBehavior>
+                            <span className="cp  underline  fw7">
+                              Dominion Subscription
+                            </span>
+                          </Link>
+                          )
+                        </p>
+                      )}
                     </div>
                   </div>
 
