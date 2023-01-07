@@ -322,12 +322,11 @@ export default function Product({ siteConfig, product }) {
                         </div>
 
                         <p className="black  f6  lh-copy  mb3">
-                          You may be in luck. We reserve a few copies of our
-                          very latest print for those wishing to subscribe to
-                          our magazine instead. Joining our Dominion
-                          Subscription is cheaper than individual prints, and
-                          will give access to a great deal of additional
-                          features.
+                          You may be in luck. We reserve some copies of our
+                          latest print for those wishing to subscribe instead.
+                          Joining our Dominion Subscription is cheaper than
+                          individual prints, and will give access to a great
+                          deal of additional features.
                         </p>
 
                         <div className="col-24">
