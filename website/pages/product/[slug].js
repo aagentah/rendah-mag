@@ -407,7 +407,7 @@ export default function Product({ siteConfig, product }) {
                   </div>
 
                   {product?.tag && product?.tag !== 'None' && (
-                    <div className="dib  pr2">
+                    <div className="db  dib-md  pr2  pb3  pb0-md  pl2  pl0-md">
                       <Label
                         /* Options */
                         customClass="bold  ba  bc-black"
@@ -422,14 +422,15 @@ export default function Product({ siteConfig, product }) {
                   )}
                   <div className="flex  flex-wrap  ph2  pb3">
                     <div className="dib  pr2">
-                      <p className="dib  black  f5  lh-copy  fw7">
+                      <p className="dib  black  f4  f5-md  lh-copy  fw7">
                         £{product?.price}
                       </p>
 
-                      <p className="dib  rendah-red  f6  lh-copy  pl2">
-                        (or £9 + free shipping on the{' '}
+                      <p className="db  dib-md  rendah-red  f6  lh-copy  pl2-md  pt2  pt0-md">
+                        (or <span className="fw7">£9 + free shipping</span> on
+                        the{' '}
                         <Link href="/dominion" legacyBehavior>
-                          <span className="cp  rendah-red  underline">
+                          <span className="cp  underline  fw7">
                             Dominion Subscription
                           </span>
                         </Link>
