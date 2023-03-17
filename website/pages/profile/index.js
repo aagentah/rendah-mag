@@ -38,40 +38,42 @@ const ProfilePacks = dynamic(() => import('~/components/profile/packs'));
 
 const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
 
+const ProfilePrints = dynamic(() => import('~/components/profile/prints'));
+
 const IconHouse = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconHouse)
+  import('~/components/elements/icon').then((m) => m.IconHouse)
 );
 
 const IconUser = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconUser)
+  import('~/components/elements/icon').then((m) => m.IconUser)
 );
 
 const IconEnvelope = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconEnvelope)
+  import('~/components/elements/icon').then((m) => m.IconEnvelope)
 );
 
 const IconHeadphones = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconHeadphones)
+  import('~/components/elements/icon').then((m) => m.IconHeadphones)
 );
 
 const IconAudio = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconAudio)
+  import('~/components/elements/icon').then((m) => m.IconAudio)
 );
 
 const IconNewspaper = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconNewspaper)
+  import('~/components/elements/icon').then((m) => m.IconNewspaper)
 );
 
 const IconList = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconList)
+  import('~/components/elements/icon').then((m) => m.IconList)
 );
 
 const IconMoney = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconMoney)
+  import('~/components/elements/icon').then((m) => m.IconMoney)
 );
 
 const IconStore = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconStore)
+  import('~/components/elements/icon').then((m) => m.IconStore)
 );
 
 export default function Profile({ siteConfig }) {
@@ -128,7 +130,7 @@ export default function Profile({ siteConfig }) {
               siteConfig,
               title: 'Profile',
               description: null,
-              image: null
+              image: null,
             }}
             preview={null}
           >
@@ -143,26 +145,31 @@ export default function Profile({ siteConfig }) {
                           id: 'dashboard',
                           tabTitle: 'Dashboard',
                           tabIcon: iconHouse,
-                          tabContent: ProfileDashboard
+                          tabContent: ProfileDashboard,
                         },
                         {
                           id: 'offerings',
                           tabTitle: 'Dubplates',
                           tabIcon: iconMusic,
-                          tabContent: ProfileOfferings
+                          tabContent: ProfileOfferings,
                         },
                         {
                           id: 'packs',
                           tabTitle: 'Samples',
                           tabIcon: iconPack,
-                          tabContent: ProfilePacks
+                          tabContent: ProfilePacks,
                         },
-
                         {
                           id: 'creations',
                           tabTitle: 'Creations',
                           tabIcon: iconNewspaper,
-                          tabContent: ProfileCreations
+                          tabContent: ProfileCreations,
+                        },
+                        {
+                          id: 'prints',
+                          tabTitle: 'Prints',
+                          tabIcon: iconNewspaper,
+                          tabContent: ProfilePrints,
                         },
                         // {
                         //   id: 'pipeline',
@@ -174,14 +181,14 @@ export default function Profile({ siteConfig }) {
                           id: 'profile',
                           tabTitle: 'Profile',
                           tabIcon: iconUser,
-                          tabContent: ProfileEdit
+                          tabContent: ProfileEdit,
                         },
                         {
                           id: 'billing',
                           tabTitle: 'Billing',
                           tabIcon: iconMoney,
-                          tabContent: ProfileBilling
-                        }
+                          tabContent: ProfileBilling,
+                        },
                       ]}
                       defaultSelected={handleSelected}
                       onToggle={handleToggle}
@@ -201,6 +208,6 @@ export async function getServerSideProps({ req }) {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig }
+    props: { siteConfig },
   };
 }

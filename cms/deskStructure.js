@@ -16,7 +16,7 @@ import MDImage from "react-icons/lib/md/image";
 import UsersAddress from "./components/previews/usersAddress";
 import UsersOverview from "./components/previews/usersOverview";
 
-const hiddenDocTypes = listItem =>
+const hiddenDocTypes = (listItem) =>
   !["siteSettings", "homePage", "textBlock"].includes(listItem.getId());
 
 export default async () => {
@@ -27,22 +27,14 @@ export default async () => {
     ? S.listItem()
         .icon(MdSettings)
         .title("Site Settings")
-        .child(
-          S.editor()
-            .schemaType("siteSettings")
-            .documentId("siteSettings")
-        )
+        .child(S.editor().schemaType("siteSettings").documentId("siteSettings"))
     : S.divider();
 
   const homePage = isOwner
     ? S.listItem()
         .icon(MdSettings)
         .title("Home Page")
-        .child(
-          S.editor()
-            .schemaType("homePage")
-            .documentId("homePage")
-        )
+        .child(S.editor().schemaType("homePage").documentId("homePage"))
     : S.divider();
 
   const store = isOwner
@@ -55,7 +47,7 @@ export default async () => {
             .items([
               S.documentTypeListItem("storeItem"),
               S.documentTypeListItem("storeCollection"),
-              S.documentTypeListItem("storeCategory")
+              S.documentTypeListItem("storeCategory"),
             ])
         )
     : S.divider();
@@ -91,6 +83,7 @@ export default async () => {
               S.documentTypeListItem("creations"),
               S.documentTypeListItem("offering"),
               S.documentTypeListItem("pack"),
+              S.documentTypeListItem("print"),
               S.listItem()
                 .icon(MDViewList)
                 .title("Dominion Pipeline")
@@ -111,7 +104,7 @@ export default async () => {
                       S.view
                         .component(UsersAddress)
                         .icon(MDViewList)
-                        .title("Dominion Shipping")
+                        .title("Dominion Shipping"),
                     ])
                 ),
               S.listItem()
@@ -125,9 +118,9 @@ export default async () => {
                       S.view
                         .component(UsersOverview)
                         .icon(MDViewList)
-                        .title("Dominion Overview")
+                        .title("Dominion Overview"),
                     ])
-                )
+                ),
             ])
         )
     : S.divider();
@@ -151,7 +144,7 @@ export default async () => {
               .items([
                 S.documentTypeListItem("post"),
                 S.documentTypeListItem("author"),
-                S.documentTypeListItem("category")
+                S.documentTypeListItem("category"),
               ])
           ),
         // Gallery
@@ -169,7 +162,7 @@ export default async () => {
         // Track
         S.documentTypeListItem("track").icon(MDMusicVideo),
         // Smart Link
-        S.documentTypeListItem("smartLink").icon(MDViewList)
+        S.documentTypeListItem("smartLink").icon(MDViewList),
       ])
   );
 };

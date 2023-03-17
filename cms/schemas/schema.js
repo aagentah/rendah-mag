@@ -28,6 +28,7 @@ import dominionPipelineItem from "./objects/dominionPipelineItem";
 import dominionPipeline from "./objects/dominionPipeline";
 import creations from "./documents/creations";
 import offering from "./documents/offering";
+import prints from "./documents/prints";
 
 import galleryPost from "./documents/galleryPost";
 
@@ -66,10 +67,11 @@ export default createSchema({
     dominionPipelineItem,
     dominionPipeline,
     creations,
+    prints,
     offering,
     galleryPost,
     //
     siteSettings,
-    homePage
-  ])
+    homePage,
+  ]),
 });

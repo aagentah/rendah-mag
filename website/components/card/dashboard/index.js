@@ -7,7 +7,7 @@ import Image from '~/components/elements/image';
 import { useApp } from '~/context-provider/app';
 
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowRight)
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
 export default function CardDashboard({
@@ -15,7 +15,7 @@ export default function CardDashboard({
   coverImage,
   handleToggle,
   id,
-  i
+  i,
 }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
@@ -23,7 +23,7 @@ export default function CardDashboard({
   let imageUrlWidth;
 
   imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  imageHeight = app?.deviceSize === 'md' ? 160 : 290;
+  imageHeight = app?.deviceSize === 'md' ? 160 : 160;
 
   const buttonIcon = <IconArrowRight color="white" size={16} />;
 

@@ -34,7 +34,7 @@ export default function ProfileCreations({ handleToggle }) {
         </div>
 
         <div className="flex  flex-wrap  pb3">
-          <div className="col-24  col-8-md">
+          <div className="col-24  col-12-md">
             <div className="ph3  pv2">
               <CardDashboard
                 title="Dubplates"
@@ -45,7 +45,7 @@ export default function ProfileCreations({ handleToggle }) {
               />
             </div>
           </div>
-          <div className="col-24  col-8-md">
+          <div className="col-24  col-12-md">
             <div className="ph3  pv2">
               <CardDashboard
                 title="Samples"
@@ -56,13 +56,24 @@ export default function ProfileCreations({ handleToggle }) {
               />
             </div>
           </div>
-          <div className="col-24  col-8-md">
+          <div className="col-24  col-12-md">
             <div className="ph3  pv2">
               <CardDashboard
                 title="Creations"
                 id="creations"
                 coverImage="/images/creations.jpg"
                 i={3}
+                handleToggle={handleToggle}
+              />
+            </div>
+          </div>
+          <div className="col-24  col-12-md">
+            <div className="ph3  pv2">
+              <CardDashboard
+                title="Prints"
+                id="prints"
+                coverImage="/images/prints.jpg"
+                i={4}
                 handleToggle={handleToggle}
               />
             </div>
@@ -109,8 +120,8 @@ export default function ProfileCreations({ handleToggle }) {
               target: null,
               routerLink: Link,
               routerLinkProps: {
-                scroll: false
-              }
+                scroll: false,
+              },
             }}
           />
         </div>
