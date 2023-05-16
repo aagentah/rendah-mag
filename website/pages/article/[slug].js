@@ -29,7 +29,7 @@ import {
   getSiteConfig,
   getAllPostsTotal,
   getPost,
-  getMorePosts
+  getMorePosts,
 } from '~/lib/sanity/requests';
 
 const Modal = dynamic(() => import('~/components/modal'));
@@ -70,7 +70,7 @@ export default function Post({ siteConfig, post, preview }) {
     }
   };
 
-  const handleIntersect = event => {
+  const handleIntersect = (event) => {
     if (
       event.isIntersecting &&
       !user &&
@@ -93,14 +93,14 @@ export default function Post({ siteConfig, post, preview }) {
     return (
       <Layout
         navOffset={null}
-        navOnWhite={false}
+        navOnWhite={true}
         hasNav
         hasFooter
         meta={{
           siteConfig,
           title: post.title,
           description: markdownToTxt(toMarkdown(post.introduction)),
-          image: post.coverImage
+          image: post.coverImage,
         }}
         preview={preview}
       >
@@ -159,74 +159,106 @@ export default function Post({ siteConfig, post, preview }) {
           </div>
         </Modal>
 
-        <div className="relative">
-          <Hero
-            image={post?.coverImage}
-            title={post.title}
-            description={null}
-            heroButtonText={null}
-            link={null}
-            marginTop={0}
-            marginBottom={0}
-            modifier="article"
-            skeleton={!post}
-          />
+        {
+          //   <div className="relative">
+          //   <Hero
+          //     image={post?.coverImage}
+          //     title={post.title}
+          //     description={null}
+          //     heroButtonText={null}
+          //     link={null}
+          //     marginTop={0}
+          //     marginBottom={0}
+          //     modifier="article"
+          //     skeleton={!post}
+          //   />
+          //   {renderCaption()}
+          // </div>
+        }
 
-          {renderCaption()}
+        <div className="flex  flex-wrap">
+          <div className="col-6"></div>
+
+          <div className="col-24  col-18-md">
+            <div className="pb3  pt6  col-18  hero--article__wrapper  relative">
+              <Heading
+                /* Options */
+                htmlEntity="h1"
+                text={post.title}
+                color="black"
+                size={app.deviceSize === 'md' ? 'large' : 'x-large'}
+                truncate={null}
+                onClick={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+
+            <Hero
+              image={post?.coverImage}
+              title={post.title}
+              description={null}
+              heroButtonText={null}
+              link={null}
+              marginTop={0}
+              marginBottom={0}
+              modifier="article"
+              skeleton={!post}
+            />
+          </div>
         </div>
 
-        <Container>
-          <article className="pt4  pt5-md  pb4  ph3  ph4-md">
-            <section className="measure-wide  mla  mra">
-              <div className="pb3">
-                <Heading
-                  /* Options */
-                  htmlEntity="h1"
-                  text={post.title}
-                  color="black"
-                  size={app.deviceSize === 'md' ? 'large' : 'x-large'}
-                  truncate={null}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
+        <article className="pt4  pb4">
+          <div className="flex  flex-wrap">
+            <div className="col-6"></div>
+            <div className="col-24  col-12-md">
+              <p className="t-secondary  f5  almost-black  lh-copy  pb4">
+                <span className="t-secondary  f5  almost-black  lh-copy  dib  ba  bc-black  pa2  mr3">
+                  {post.category}
+                </span>
 
-              <p className="t-secondary  f6  almost-black  lh-copy  pb4">
-                {post.authors.map(i => (
+                {post.authors.map((i) => (
                   <>
+                    Written by{' '}
                     <Link
                       href={`/team/${i.author.slug.current}`}
                       legacyBehavior
                     >
                       <span className="cp  black  fw7">{i.author.name}</span>
                     </Link>
-                    {' | '}
+                    {' on '}
                   </>
                 ))}
 
                 {post?.publishedAt && <Date dateString={post.publishedAt} />}
               </p>
+            </div>
+            <div className="col-6"></div>
+          </div>
 
-              <div className="rich-text  pb3  mb3  bb  bc-silver">
+          <div className="flex  flex-wrap">
+            <div className="col-6"></div>
+            <div className="col-24  col-12-md">
+              <div className="f4  lh-copy  pb4  mb4  bb  bw1  bc-rendah-red">
                 <BlockContent
                   blocks={post.introduction}
                   serializers={SANITY_BLOCK_SERIALIZERS}
                 />
               </div>
+            </div>
+            <div className="col-6"></div>
+          </div>
 
-              <div className="rich-text">
-                <Sections body={post.body} />
-              </div>
+          <Sections body={post.body} />
+        </article>
 
-              <div className="pb2  pb3-md  mb2">
-                <SocialLinks article={post} />
-              </div>
-            </section>
-          </article>
+        <div className="mla  mra  pv5  mb4  bg-light-grey">
+          <SocialLinks article={post} />
+        </div>
 
+        <Container>
           <section className="flex  flex-wrap  justify-center  align-center  pb3  pb4-md">
-            {post.authors.map(i => (
+            {post.authors.map((i) => (
               <div className="col-24  col-12-md  pb4  pb3-md  ph3">
                 <Author author={i.author} />
               </div>
@@ -286,9 +318,9 @@ export async function getStaticProps({ req, params, preview = false }) {
     props: {
       siteConfig,
       preview,
-      post: data || null
+      post: data || null,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }
 
@@ -297,11 +329,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      data.map(article => ({
+      data.map((article) => ({
         params: {
-          slug: article.slug
-        }
+          slug: article.slug,
+        },
       })) || [],
-    fallback: 'blocking'
+    fallback: 'blocking',
   };
 }

@@ -12,6 +12,7 @@ const postFields = `
   introduction,
   socialHandles,
   socialTagline,
+  'category': category->title,
   'slug': slug.current,
   'coverImage': image.asset->url,
   'authors': authors[] {
@@ -115,11 +116,11 @@ export async function getPostWithSearch(slug) {
   return data;
 }
 
-export async function getFeaturedPost(preview) {
+export async function getFeaturedPosts(preview) {
   const today = dateTodayISO();
 
   const results = await getClient(preview).fetch(
-    `*[_type == "post" && featured && publishedAt < $today] | order(publishedAt desc) [0] {
+    `*[_type == "post"] | order(publishedAt desc) [0..5] {
       ${postFieldsCard}
     }`,
     { today }

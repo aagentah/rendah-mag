@@ -7,14 +7,20 @@ import Image from '~/components/elements/image';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
-export default function ImageSection({ section }) {
+export default function ImageSection({ section, imageCount }) {
+  const isEven = (number) => {
+    return number % 2 === 0;
+  };
+
   const handleCaption = () => {
     let { caption, source } = section;
 
     // If blockContent
     if (isArray(caption)) {
       return (
-        <figcaption className="caption  pv2">
+        <figcaption
+          className={`caption  pv2  ph3  ${isEven(imageCount) ? 'tar' : 'tal'}`}
+        >
           <BlockContent
             blocks={caption}
             serializers={SANITY_BLOCK_SERIALIZERS}
@@ -28,7 +34,9 @@ export default function ImageSection({ section }) {
       if (source) {
         return (
           <a
-            className="caption  pv2"
+            className={`caption  pv2  ph3  ${
+              isEven(imageCount) ? 'tar' : 'tal'
+            }`}
             href={source}
             target="_blank"
             rel="noopener noreferrer"
@@ -38,7 +46,13 @@ export default function ImageSection({ section }) {
         );
       }
 
-      return <span className="caption  pv2">{caption}</span>;
+      return (
+        <span
+          className={`caption  pv2  ph3  ${isEven(imageCount) ? 'tar' : 'tal'}`}
+        >
+          {caption}
+        </span>
+      );
     }
   };
 
@@ -54,28 +68,37 @@ export default function ImageSection({ section }) {
         .url();
 
   return (
-    <LazyLoad once offset={250} height={360}>
-      <figure>
-        <Image
-          /* Options */
-          src={imageBuilder
-            .image(section.asset)
-            .auto('format')
-            .fit('clip')
-            .url()}
-          placeholder={placeholder}
-          alt="This is the alt text."
-          figcaption={null}
-          height={null}
-          width={null}
-          customClass="shadow2"
-          skeleton={false}
-          onClick={null}
-          /* Children */
-          withLinkProps={null}
-        />
-        {handleCaption()}
-      </figure>
-    </LazyLoad>
+    <div
+      className={`flex  flex-wrap   ${
+        isEven(imageCount) ? 'flex-row-reverse' : ''
+      }`}
+    >
+      <div className="col-24  col-18-md">
+        <LazyLoad once offset={250} height={360}>
+          <figure>
+            <Image
+              /* Options */
+              src={imageBuilder
+                .image(section.asset)
+                .auto('format')
+                .fit('clip')
+                .url()}
+              placeholder={placeholder}
+              alt="This is the alt text."
+              figcaption={null}
+              height={700}
+              width={null}
+              customClass=""
+              skeleton={false}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+            {handleCaption()}
+          </figure>
+        </LazyLoad>
+      </div>
+      <div className="col-6"></div>
+    </div>
   );
 }

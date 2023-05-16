@@ -19,10 +19,10 @@ import Hero from '~/components/hero/home';
 import CardBlog from '~/components/card/blog';
 
 import {
-  getFeaturedPost,
+  getFeaturedPosts,
   getHomePage,
   getCategory,
-  getAllCreationsTotal
+  getAllCreationsTotal,
 } from '~/lib/sanity/requests';
 
 import { useApp } from '~/context-provider/app';
@@ -33,14 +33,14 @@ const RenderCards = dynamic(() => import('~/components/index/renderCards'));
 const Modal = dynamic(() => import('~/components/modal'));
 const SubscribeForm = dynamic(() => import('~/components/subscribe-form'));
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowRight)
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
 export default function Home() {
   const app = useApp();
   const router = useRouter();
   const [user] = useUser();
-  const [featuredPost, setFeaturedPost] = useState(null);
+  const [featuredPosts, setFeaturedPosts] = useState(null);
   const [homePage, setHomePage] = useState(null);
   const [interviews, setInterviews] = useState(null);
   const [creations, setCreations] = useState(null);
@@ -49,15 +49,16 @@ export default function Home() {
 
   const [interviewsLength, setInterviewsLength] = useState(4);
   const [creationsLength, setCreationsLength] = useState(4);
+  const [featuredPostsLength, setFeaturedPostsLength] = useState(6);
 
   useEffect(() => {
     const action = async () => {
-      const featuredPostRes = await getFeaturedPost();
+      const featuredPostsRes = await getFeaturedPosts();
       const homePage = await getHomePage();
       const interviewsRes = await getCategory('interviews', [1, 4]);
       const creationsRes = await getAllCreationsTotal();
 
-      setFeaturedPost(featuredPostRes);
+      setFeaturedPosts(featuredPostsRes);
       setHomePage(homePage);
       setInterviews(interviewsRes);
       setCreations(creationsRes);
@@ -66,7 +67,7 @@ export default function Home() {
     action();
   }, []);
 
-  const handleIntersect = event => {
+  const handleIntersect = (event) => {
     if (
       event.isIntersecting &&
       !user &&
@@ -89,63 +90,157 @@ export default function Home() {
   return (
     <>
       <Layout
-        navOffset={null}
-        navOnWhite={false}
+        navOffset="top"
+        navOnWhite={true}
         hasNav
         hasFooter
         meta={{
           siteConfig: null,
           title: 'Home',
           description: null,
-          image: null
+          image: null,
         }}
         preview={null}
       >
-        <Hero
-          image={homePage?.heroImage}
-          title={homePage?.heroTitle || 'Loading...'}
-          description={homePage?.heroDescription || 'Loading...'}
-          heroButtonText={homePage?.heroLabel || 'Loading...'}
-          link={homePage?.heroLink}
-          marginTop={0}
-          marginBottom={0}
-          modifier="home"
-          skeleton={!homePage}
-        />
-
-        <div className="pt5  mt4  mt5-md">
-          <Container>
-            <div className="relative">
-              <ParallaxDiv speed={-3}>
-                <span className="category-label  category-label--interviews">
-                  Interviews
-                </span>
+        <div className="flex  flex-wrap">
+          <div className="col-6  over-none relative  mmm2__wrapper">
+            <div className="mmm2  absolute  top  mt5  pr5">
+              <ParallaxDiv speed={-7}>
+                Join our Dominion Subscription
               </ParallaxDiv>
+            </div>
+          </div>
+          <div className="col-18  over-none ">
+            <Hero
+              image={homePage?.heroImage}
+              title={homePage?.heroTitle || 'Loading...'}
+              description={homePage?.heroDescription || 'Loading...'}
+              heroButtonText={homePage?.heroLabel || 'Loading...'}
+              link={homePage?.heroLink}
+              marginTop={0}
+              marginBottom={0}
+              modifier="home"
+              skeleton={!homePage}
+            />
+          </div>
+        </div>
 
-              <section className="pb5">
-                <div className="flex  flex-wrap  relative">
-                  {[...Array(interviewsLength)].map((iteration, i) => (
-                    <div key={iteration} className="col-24  col-12-md">
-                      <div className="ph3  pv2">
+        <div className="flex  flex-wrap  pt5">
+          <div className="col-6" />
+
+          <div className="col-12">
+            <p className="f3  f2-md  t-primary  lh-title  light-silver">
+              Rendah Mag is a creative UK-based outlet, primarily focused on
+              exploring the progressive and innovative side of underground bass
+              music.
+            </p>
+          </div>
+
+          <div className="col-6" />
+        </div>
+
+        <div className="flex  flex-wrap  pt5">
+          <div className="col-24  pl3">
+            <section className="pb5">
+              <ParallaxDiv translateX={[15, 5]}>
+                <span className="f3  t-primary  bold  rendah-red  lh-copy">
+                  —Latest on the site
+                </span>
+
+                <div className="flex  flex-wrap  relative  pt2">
+                  {[...Array(featuredPostsLength)].map((iteration, i) => (
+                    <div key={iteration} className="col-24  col-4-md">
+                      <div className="ph2  pb3">
                         <CardBlog
                           i={i}
-                          post={interviews?.articles && interviews?.articles[i]}
+                          post={featuredPosts && featuredPosts[i]}
                           columnCount={2}
                         />
                       </div>
                     </div>
                   ))}
                 </div>
+              </ParallaxDiv>
+            </section>
+          </div>
+        </div>
 
+        <div className="creations  bg-black  mb6  mb5-md  relative">
+          <div className="absolute  top  left  mt6  nl6">
+            <ParallaxDiv translateY={[50, 200]}>
+              <img className="w5  o-50" src="/images/vector-red.png" />
+            </ParallaxDiv>
+          </div>
+
+          <Container>
+            <section className="pv5  creations  bg-black">
+              <div className="flex  flex-wrap  pb4  ph3">
+                <div className="col-12-md  flex  justify-start">
+                  <div className="bg-white  pa2  dib">
+                    <Heading
+                      /* Options */
+                      htmlEntity="h2"
+                      text="Creations"
+                      color="black"
+                      size="small"
+                      truncate={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+                </div>
+                <div className="col-12-md  flex  justify-end">
+                  <div className="pa2  dn  dib-md">
+                    <Heading
+                      /* Options */
+                      htmlEntity="h2"
+                      text="Exclusive to the Dominion Subscription"
+                      color="white"
+                      size="small"
+                      truncate={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+                  <div className="pa2  dib  dn-md">
+                    <Heading
+                      /* Options */
+                      htmlEntity="h2"
+                      text="Dominion Exclusives"
+                      color="white"
+                      size="small"
+                      truncate={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex  flex-wrap">
+                {[...Array(creationsLength)].map((iteration, i) => (
+                  <div key={iteration} className="col-24  col-6-md">
+                    <div className="ph3  pv2">
+                      <CardCreations
+                        i={i}
+                        post={creations && creations[i]}
+                        columnCount={2}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {user ? (
                 <div className="flex  justify-end  pr2">
                   <Button
                     /* Options */
                     type="secondary"
                     size="medium"
-                    text="All Interviews"
+                    text="All Creations"
                     color="black"
                     fluid={false}
-                    icon={buttonIcon}
+                    icon={buttonIconWhite}
                     iconFloat={null}
                     inverted={false}
                     loading={false}
@@ -155,87 +250,49 @@ export default function Home() {
                     /* Children */
                     withLinkProps={{
                       type: 'next',
-                      href: '/category/[slug]',
+                      href: '/profile?tab=creations',
                       target: null,
                       routerLink: Link,
-                      routerLinkProps: {
-                        as: `/category/interviews`,
-                        scroll: false
-                      }
+                      routerLinkProps: null,
                     }}
                   />
                 </div>
-              </section>
-            </div>
-          </Container>
-
-          <div className="creations  bg-black  mb6  mb5-md">
-            <Container>
-              <section className="pv5  creations  bg-black">
-                <div className="flex  flex-wrap  pb4  ph3">
-                  <div className="col-12-md  flex  justify-start">
-                    <div className="bg-white  pa2  dib">
-                      <Heading
-                        /* Options */
-                        htmlEntity="h2"
-                        text="Creations"
-                        color="black"
-                        size="small"
-                        truncate={null}
-                        /* Children */
-                        withLinkProps={null}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-12-md  flex  justify-end">
-                    <div className="pa2  dn  dib-md">
-                      <Heading
-                        /* Options */
-                        htmlEntity="h2"
-                        text="Exclusive to the Dominion Subscription"
-                        color="white"
-                        size="small"
-                        truncate={null}
-                        /* Children */
-                        withLinkProps={null}
-                      />
-                    </div>
-                    <div className="pa2  dib  dn-md">
-                      <Heading
-                        /* Options */
-                        htmlEntity="h2"
-                        text="Dominion Exclusives"
-                        color="white"
-                        size="small"
-                        truncate={null}
-                        /* Children */
-                        withLinkProps={null}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex  flex-wrap">
-                  {[...Array(creationsLength)].map((iteration, i) => (
-                    <div key={iteration} className="col-24  col-6-md">
-                      <div className="ph3  pv2">
-                        <CardCreations
-                          i={i}
-                          post={creations && creations[i]}
-                          columnCount={2}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {user ? (
-                  <div className="flex  justify-end  pr2">
+              ) : (
+                <div className="flex  justify-end  pr2">
+                  <div className="underline">
                     <Button
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="All Creations"
+                      text="Log in"
+                      color="black"
+                      fluid={false}
+                      icon={null}
+                      iconFloat={null}
+                      inverted={false}
+                      loading={false}
+                      disabled={false}
+                      skeleton={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'next',
+                        href: '/login',
+                        target: null,
+                        routerLink: Link,
+                        routerLinkProps: null,
+                      }}
+                    />
+                  </div>
+
+                  <span className="pl1  pr2  white">or</span>
+
+                  <div className="underline">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Sign up"
                       color="black"
                       fluid={false}
                       icon={buttonIconWhite}
@@ -248,82 +305,26 @@ export default function Home() {
                       /* Children */
                       withLinkProps={{
                         type: 'next',
-                        href: '/profile?tab=creations',
+                        href: '/dominion',
                         target: null,
                         routerLink: Link,
-                        routerLinkProps: null
+                        routerLinkProps: null,
                       }}
                     />
                   </div>
-                ) : (
-                  <div className="flex  justify-end  pr2">
-                    <div className="underline">
-                      <Button
-                        /* Options */
-                        type="secondary"
-                        size="medium"
-                        text="Log in"
-                        color="black"
-                        fluid={false}
-                        icon={null}
-                        iconFloat={null}
-                        inverted={false}
-                        loading={false}
-                        disabled={false}
-                        skeleton={false}
-                        onClick={null}
-                        /* Children */
-                        withLinkProps={{
-                          type: 'next',
-                          href: '/login',
-                          target: null,
-                          routerLink: Link,
-                          routerLinkProps: null
-                        }}
-                      />
-                    </div>
-
-                    <span className="pl1  pr2  white">or</span>
-
-                    <div className="underline">
-                      <Button
-                        /* Options */
-                        type="secondary"
-                        size="medium"
-                        text="Sign up"
-                        color="black"
-                        fluid={false}
-                        icon={buttonIconWhite}
-                        iconFloat={null}
-                        inverted={false}
-                        loading={false}
-                        disabled={false}
-                        skeleton={false}
-                        onClick={null}
-                        /* Children */
-                        withLinkProps={{
-                          type: 'next',
-                          href: '/dominion',
-                          target: null,
-                          routerLink: Link,
-                          routerLinkProps: null
-                        }}
-                      />
-                    </div>
-                  </div>
-                )}
-              </section>
-            </Container>
-          </div>
-
-          <Observer {...observer}>
-            <div className="" />
-          </Observer>
-
-          <LazyLoad once offset={800} height={800}>
-            <RenderCards />
-          </LazyLoad>
+                </div>
+              )}
+            </section>
+          </Container>
         </div>
+
+        <Observer {...observer}>
+          <div className="" />
+        </Observer>
+
+        <LazyLoad once offset={800} height={800}>
+          <RenderCards />
+        </LazyLoad>
 
         <Modal
           /* Options */

@@ -29,11 +29,17 @@ export default function ListItem({ text }) {
 
   if (text[0].text) {
     return (
-      <>
-        <li className="db  t-body  lh-copy  f6  dark-grey">
-          - {text.map((child, i) => renderChildren(child, i))}
-        </li>
-      </>
+      <div className="flex  flex-wrap  ph4  pb4">
+        <div className="col-6"></div>
+        <div className="col-24  col-12-md  flex  justify-center">
+          <>
+            <li className="db  t-secondary  lh-copy  f6  dark-grey">
+              - {text.map((child, i) => renderChildren(child, i))}
+            </li>
+          </>
+        </div>
+        <div className="col-6"></div>{' '}
+      </div>
     );
   }
   return false;

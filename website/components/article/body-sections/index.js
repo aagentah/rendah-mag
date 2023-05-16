@@ -16,6 +16,8 @@ import AudioEmbed from './audio';
 import ArticleLink from './article-link';
 
 export default function Sections({ body, ...props }) {
+  let imageCount = 0;
+
   const renderSections = (section, i) => {
     // Remove stray breaks
     if (section?.children?.length) {
@@ -31,10 +33,16 @@ export default function Sections({ body, ...props }) {
     if (section._type === 'block') {
       return (
         <>
-          <BlockContent
-            blocks={section}
-            serializers={SANITY_BLOCK_SERIALIZERS}
-          />
+          <div className="flex  flex-wrap">
+            <div className="col-6"></div>
+            <div className="col-24  col-12-md  rich-text">
+              <BlockContent
+                blocks={section}
+                serializers={SANITY_BLOCK_SERIALIZERS}
+              />
+            </div>
+            <div className="col-6"></div>
+          </div>
         </>
       );
     }
@@ -46,9 +54,11 @@ export default function Sections({ body, ...props }) {
         includes(section.asset._ref, '-png') ||
         includes(section.asset._ref, '-gif'))
     ) {
+      imageCount++;
+
       return (
         <div key={i} className="pv4">
-          <Image section={section} />
+          <Image section={section} imageCount={imageCount} />
         </div>
       );
     }

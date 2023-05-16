@@ -17,15 +17,15 @@ export default function CardBlog({ post, columnCount }) {
   const scale = app?.isRetina ? 2 : 1;
   let imageHeight;
   let imageUrlWidth;
-  const handleIntersect = event => setInView(event.isIntersecting);
+  const handleIntersect = (event) => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   if (columnCount == 2) {
     imageUrlWidth = app?.deviceSize === 'md' ? 260 : 500;
-    imageHeight = app?.deviceSize === 'md' ? 200 : 300;
+    imageHeight = app?.deviceSize === 'md' ? 200 : 400;
   } else {
     imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-    imageHeight = app?.deviceSize === 'md' ? 200 : 180;
+    imageHeight = app?.deviceSize === 'md' ? 200 : 260;
   }
 
   const image = (
@@ -46,7 +46,7 @@ export default function CardBlog({ post, columnCount }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass={null}
+      customClass="br4  shadow2"
       skeleton={!post}
       onClick={null}
       /* Children */
@@ -57,8 +57,8 @@ export default function CardBlog({ post, columnCount }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/article/${post?.slug}`,
-          scroll: false
-        }
+          scroll: false,
+        },
       }}
     />
   );
@@ -94,8 +94,8 @@ export default function CardBlog({ post, columnCount }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/article/${post?.slug}`,
-          scroll: false
-        }
+          scroll: false,
+        },
       }}
     />
   );

@@ -2,31 +2,31 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 const IconInstagram = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconInstagram)
+  import('~/components/elements/icon').then((m) => m.IconInstagram)
 );
 
 const IconFacebook = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconFacebook)
+  import('~/components/elements/icon').then((m) => m.IconFacebook)
 );
 
 const IconTwitter = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconTwitter)
+  import('~/components/elements/icon').then((m) => m.IconTwitter)
 );
 
 const IconSoundcloud = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconSoundcloud)
+  import('~/components/elements/icon').then((m) => m.IconSoundcloud)
 );
 
 const IconYoutube = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconYoutube)
+  import('~/components/elements/icon').then((m) => m.IconYoutube)
 );
 
 const IconDiscord = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconDiscord)
+  import('~/components/elements/icon').then((m) => m.IconDiscord)
 );
 
 const IconSpotify = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconSpotify)
+  import('~/components/elements/icon').then((m) => m.IconSpotify)
 );
 
 export default function SocialLinks({ article }) {
@@ -39,7 +39,7 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`soundcloud-${e}-${i}`}
-            className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
+            className="df  align-center  lh-copy  pb2  link  f6  black  t-secondary"
             title="soundcloud"
             href={`https://soundcloud.com/${e}`}
             rel="noopener noreferrer"
@@ -57,7 +57,7 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`facebook-${e}-${i}`}
-            className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
+            className="df  align-center  lh-copy  pb2  link  f6  black  t-secondary"
             title="facebook"
             href={`https://facebook.com/${e}`}
             rel="noopener noreferrer"
@@ -75,7 +75,7 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`twitter-${e}-${i}`}
-            className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
+            className="df  align-center  lh-copy  pb2  link  f6  black  t-secondary"
             title="twitter"
             href={`https://twitter.com/${e}`}
             rel="noopener noreferrer"
@@ -93,7 +93,7 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`instagram-${e}-${i}`}
-            className="df  align-center  lh-copy  pb2  link  f6  black  t-body"
+            className="df  align-center  lh-copy  pb2  link  f6  black  t-secondary"
             title="instagram"
             href={`https://instagram.com/${e}`}
             rel="noopener noreferrer"
@@ -108,11 +108,11 @@ export default function SocialLinks({ article }) {
 
     if (article?.tags?.length) {
       tags.push(
-        <p className="t-primary  f6  fw7  almost-black  lh-copy  pb2">Tags:</p>
+        <p className="t-primary  f6  fw7  black  lh-copy  pb2">Tags:</p>
       );
 
       tags.push(
-        article.tags.map(e => (
+        article.tags.map((e) => (
           <>
             <Link href={`/tag/${e.tag.slug}`} legacyBehavior>
               <span className="t-secondary  f7  cp  grey  fw7  pr3">
@@ -125,7 +125,7 @@ export default function SocialLinks({ article }) {
     }
 
     return (
-      <div className="article__social-links  mt3  pa4  br4  bg-almost-white">
+      <div className="article__social-links  measure-wide  mla  mra">
         {tags?.length ? <div className="pb4">{tags}</div> : ''}
         {links?.length ? links : ''}
       </div>

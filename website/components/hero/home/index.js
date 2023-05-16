@@ -2,6 +2,7 @@ import Link from 'next/link';
 import BlockContent from '@sanity/block-content-to-react';
 import isObject from 'lodash/isObject';
 import dynamic from 'next/dynamic';
+import { Parallax } from 'react-scroll-parallax';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -11,7 +12,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowRight)
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
 /**
@@ -36,7 +37,7 @@ export default function HeroDefault({
   marginBottom,
   modifier,
   //
-  skeleton
+  skeleton,
 }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
@@ -45,14 +46,15 @@ export default function HeroDefault({
   if (app.deviceSize === 'md') imageUrlWidth = 700;
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
-  const heroButtonIcon = <IconArrowRight color="white" size={24} />;
+  const heroButtonIcon = <IconArrowRight color="rendah-red" size={24} />;
   let heroTitle;
   let heroCopy;
   let linkProps;
   let heroButton;
+  const ParallaxDiv = app.deviceSize === 'md' ? 'div' : Parallax;
 
   const styles = {
-    height: `${imageHeight}px`
+    height: `${imageHeight}px`,
   };
 
   if (link) {
@@ -63,8 +65,8 @@ export default function HeroDefault({
       routerLink: Link,
       routerLinkProps: {
         as: `/${link}`,
-        scroll: false
-      }
+        scroll: false,
+      },
     };
   }
 
@@ -109,7 +111,7 @@ export default function HeroDefault({
         /* Options */
         htmlEntity="h2"
         text={title}
-        color="white"
+        color="rendah-red"
         size="x-large"
         truncate={null}
         skeleton={skeleton}
@@ -126,7 +128,7 @@ export default function HeroDefault({
       <Copy
         /* Options */
         text={description || ''}
-        color="white"
+        color="rendah-red"
         size="medium"
         truncate={null}
         skeleton={skeleton}
@@ -138,10 +140,10 @@ export default function HeroDefault({
     heroButton = (
       <Button
         /* Options */
-        type="secondary"
+        type="primary"
         size="medium"
         text={heroButtonText}
-        color="white"
+        color="rendah-red"
         fluid={false}
         icon={heroButtonIcon}
         iconFloat={null}
@@ -167,12 +169,18 @@ export default function HeroDefault({
       style={styles}
     >
       <div className="hero__dialog">
-        {heroTitle && <div className="hero__title">{heroTitle}</div>}
-        {heroCopy && <p className="hero__description">{heroCopy}</p>}
-        {heroButton && <div className="hero__button">{heroButton}</div>}
+        {
+          // {heroTitle && <div className="hero__title">{heroTitle}</div>}
+          //   {heroCopy && <p className="hero__description">{heroCopy}</p>}
+          // {heroButton && <div className="hero__button">{heroButton}</div>}
+        }
       </div>
 
       {heroImage && <div className="hero__image">{heroImage}</div>}
+
+      <div className="mmm  absolute  top  mt5  pr5">
+        <ParallaxDiv speed={-7}>Join our Dominion Subscription</ParallaxDiv>
+      </div>
     </article>
   );
 }

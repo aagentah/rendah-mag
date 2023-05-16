@@ -10,7 +10,7 @@ export default function HeaderDestop({
   navOnWhite,
   handleLogout,
   showBasket,
-  buttonIcons
+  buttonIcons,
 }) {
   const [user] = useUser();
 
@@ -37,8 +37,9 @@ export default function HeaderDestop({
             </svg>
           </Link>
         </div>
-        <div className="col-12  ph4">
-          <nav className="nav  w-100  flex  justify-start">
+        <div className="col-6" />
+        <div className="col-18">
+          <nav className="nav  w-100  flex  justify-end">
             <ul className="flex  flex-wrap">
               <li className="nav__item  dib  pr3">
                 <Button
@@ -63,8 +64,8 @@ export default function HeaderDestop({
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
-                      scroll: false
-                    }
+                      scroll: false,
+                    },
                   }}
                 />
               </li>
@@ -119,8 +120,8 @@ export default function HeaderDestop({
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
-                      scroll: false
-                    }
+                      scroll: false,
+                    },
                   }}
                 />
               </li>
@@ -145,8 +146,8 @@ export default function HeaderDestop({
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
-                      scroll: false
-                    }
+                      scroll: false,
+                    },
                   }}
                 />
               </li>
@@ -171,17 +172,12 @@ export default function HeaderDestop({
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
-                      scroll: false
-                    }
+                      scroll: false,
+                    },
                   }}
                 />
               </li>
-            </ul>
-          </nav>
-        </div>
-        <div className="col-12  ph4">
-          <nav className="nav  w-100  flex  justify-end">
-            <ul className="flex  flex-wrap">
+
               {user && meta.title !== 'Profile' && (
                 <li className="nav__item  dib  pr3">
                   <Button
@@ -205,8 +201,8 @@ export default function HeaderDestop({
                       target: null,
                       routerLink: Link,
                       routerLinkProps: {
-                        scroll: false
-                      }
+                        scroll: false,
+                      },
                     }}
                   />
                 </li>
@@ -255,8 +251,8 @@ export default function HeaderDestop({
                         target: null,
                         routerLink: Link,
                         routerLinkProps: {
-                          scroll: false
-                        }
+                          scroll: false,
+                        },
                       }}
                     />
                   </li>
@@ -282,8 +278,8 @@ export default function HeaderDestop({
                         target: null,
                         routerLink: Link,
                         routerLinkProps: {
-                          scroll: false
-                        }
+                          scroll: false,
+                        },
                       }}
                     />
                   </li>

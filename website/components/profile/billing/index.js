@@ -24,10 +24,10 @@ export default function ProfileOrders() {
       `${process.env.SITE_URL}/api/stripe/get-customer`,
       {
         body: JSON.stringify({
-          stripeCustomerId: user.stripeCustomerId
+          stripeCustomerId: user.stripeCustomerId,
         }),
         headers: { 'Content-Type': 'application/json' },
-        method: 'POST'
+        method: 'POST',
       }
     );
 
@@ -50,8 +50,8 @@ export default function ProfileOrders() {
         city: e.currentTarget.city.value,
         postal_code: e.currentTarget.postal_code.value,
         state: e.currentTarget.state.value,
-        country: e.currentTarget.country.value
-      }
+        country: e.currentTarget.country.value,
+      },
     };
 
     if (!body.address?.line1) {
@@ -81,7 +81,7 @@ export default function ProfileOrders() {
     const response = await fetch(`${process.env.SITE_URL}/api/user`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
 
     if (response.ok) {
@@ -274,7 +274,7 @@ export default function ProfileOrders() {
               onClick={null}
               /* Children */
               withLinkProps={{
-                type: 'form'
+                type: 'form',
               }}
             />
           </div>
@@ -295,7 +295,7 @@ export default function ProfileOrders() {
           </div>
 
           <div className="pa3  pa4-md  mb4  ba  bc-white  br4">
-            <p className="t-body  f6  lh-copy  white">
+            <p className="t-secondary  f6  lh-copy  white">
               If you'd like to pause or cancel your Dominion Subscription,
               please email us at{' '}
               <a className="white  underline" href="mailto:info@rendahmag.com">

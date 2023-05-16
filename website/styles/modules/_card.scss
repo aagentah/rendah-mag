@@ -69,9 +69,9 @@
     transform: translateY(12px);
   }
 
-  .image {
-    transition-delay: 0s;
-  }
+  // .image {
+  //   transition-delay: 0s;
+  // }
 
   @media only screen and (max-width: 950px) {
     .image {
@@ -95,13 +95,13 @@
 
     .image {
       filter: brightness(65%);
-      transform: scale(1.1);
+      // transform: scale(1.1);
     }
   }
 }
 
 @include breakpoint-up(md) {
-  .card--scroll:hover {
+  .card--scroll {
     .card__title {
       opacity: 1;
       transform: translateY(0px);
@@ -113,8 +113,13 @@
     }
 
     .image {
-      filter: brightness(65%);
-      transform: scale(1.1);
+      filter: brightness(70%);
+    }
+
+    &:hover {
+      .image {
+        // transform: scale(1.1);
+      }
     }
   }
 }
