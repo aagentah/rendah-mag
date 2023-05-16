@@ -29,7 +29,7 @@ import {
   getSiteConfig,
   getAllPostsTotal,
   getPost,
-  getMorePosts
+  getMorePosts,
 } from '~/lib/sanity/requests';
 
 const Modal = dynamic(() => import('~/components/modal'));
@@ -57,6 +57,15 @@ export default function Post({ siteConfig, post, preview }) {
     action();
   }, []);
 
+  useEffect(() => {
+    fetch('/api/discord/get-latest-articles', {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error('Error:', error));
+  }, []);
+
   const renderCaption = () => {
     if (isArray(post?.image?.caption)) {
       return (
@@ -70,7 +79,7 @@ export default function Post({ siteConfig, post, preview }) {
     }
   };
 
-  const handleIntersect = event => {
+  const handleIntersect = (event) => {
     if (
       event.isIntersecting &&
       !user &&
@@ -100,7 +109,7 @@ export default function Post({ siteConfig, post, preview }) {
           siteConfig,
           title: post.title,
           description: markdownToTxt(toMarkdown(post.introduction)),
-          image: post.coverImage
+          image: post.coverImage,
         }}
         preview={preview}
       >
@@ -193,7 +202,7 @@ export default function Post({ siteConfig, post, preview }) {
               </div>
 
               <p className="t-secondary  f6  almost-black  lh-copy  pb4">
-                {post.authors.map(i => (
+                {post.authors.map((i) => (
                   <>
                     <Link
                       href={`/team/${i.author.slug.current}`}
@@ -226,7 +235,7 @@ export default function Post({ siteConfig, post, preview }) {
           </article>
 
           <section className="flex  flex-wrap  justify-center  align-center  pb3  pb4-md">
-            {post.authors.map(i => (
+            {post.authors.map((i) => (
               <div className="col-24  col-12-md  pb4  pb3-md  ph3">
                 <Author author={i.author} />
               </div>
@@ -286,9 +295,9 @@ export async function getStaticProps({ req, params, preview = false }) {
     props: {
       siteConfig,
       preview,
-      post: data || null
+      post: data || null,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }
 
@@ -297,11 +306,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      data.map(article => ({
+      data.map((article) => ({
         params: {
-          slug: article.slug
-        }
+          slug: article.slug,
+        },
       })) || [],
-    fallback: 'blocking'
+    fallback: 'blocking',
   };
 }
