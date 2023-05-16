@@ -17,8 +17,9 @@ const webhookURL =
 
 const getAuthorNames = (authors) => {
   let names = '';
-  authors.forEach((author, i) => {
-    names += author.name;
+  authors.forEach((e, i) => {
+    console.log('author', e.author);
+    names += e.author.name;
     if (i < authors.length - 1) {
       names += ' & ';
     }
@@ -32,6 +33,7 @@ const handler = async (req, res) => {
     await cors(req, res);
 
     const posts = await getAllPosts();
+
     const notPostedInDiscord = [];
 
     for (let i = 0; i < posts.length; i++) {
