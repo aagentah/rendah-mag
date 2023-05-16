@@ -23,6 +23,7 @@ const postFields = `
 
 const postFieldsCard = `
   _id,
+  hasPostedDiscord,
   name,
   title,
   'slug': slug.current,
