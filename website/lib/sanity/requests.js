@@ -23,10 +23,17 @@ const postFields = `
 `;
 
 const postFieldsCard = `
+  _id,
+  hasPostedDiscord,
   name,
   title,
   'slug': slug.current,
   'coverImage': image.asset->url,
+  'authors': authors[] {
+    'author': *[_id == ^._ref] [0] {
+      ...,
+    },
+  },
 `;
 
 const creationsFields = `
