@@ -39,6 +39,8 @@ const handler = async (req, res) => {
     for (let i = 0; i < posts.length; i++) {
       const post = posts[i];
 
+      console.log('post', post);
+
       if (!post.hasPostedDiscord) {
         notPostedInDiscord.push(post);
 

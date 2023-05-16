@@ -22,6 +22,7 @@ const postFields = `
 `;
 
 const postFieldsCard = `
+  _id,
   name,
   title,
   'slug': slug.current,
