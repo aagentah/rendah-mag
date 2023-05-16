@@ -2,7 +2,7 @@ import Cors from 'cors';
 import fetch from 'node-fetch';
 import initMiddleware from '~/lib/init-middleware';
 import { getAllPosts } from '~/lib/sanity/requests';
-// import client from '~/lib/sanity/config-write';
+import client from '~/lib/sanity/config-write';
 
 // Initialize the cors middleware
 const cors = initMiddleware(
@@ -43,16 +43,16 @@ const handler = async (req, res) => {
         notPostedInDiscord.push(post);
 
         // Update post
-        // await client
-        //   .patch(post._id) // Document ID to patch
-        //   .set({ hasPostedDiscord: true }) // Shallow merge
-        //   .commit() // Perform the patch and return a promise
-        //   .then((e) => {
-        //     console.log('Updated!');
-        //   })
-        //   .catch((err) => {
-        //     console.log('Error', err.message);
-        //   });
+        await client
+          .patch(post._id) // Document ID to patch
+          .set({ hasPostedDiscord: true }) // Shallow merge
+          .commit() // Perform the patch and return a promise
+          .then((e) => {
+            console.log('Updated!');
+          })
+          .catch((err) => {
+            console.log('Error', err.message);
+          });
 
         // Send post to Discord
         const content = `New post up from ${getAuthorNames(
