@@ -15,15 +15,9 @@
     "@sanity/desk-tool",
     "@sanity/production-preview",
     "@sanity/dashboard",
-    "autocomplete-tags"
+    "autocomplete-tags",
+    "@sanity/vision"
   ],
-  "env": {
-    "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
-    }
-  },
   "parts": [
     {
       "name": "part:@sanity/base/schema",
