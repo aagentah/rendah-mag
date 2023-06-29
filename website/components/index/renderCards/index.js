@@ -66,7 +66,7 @@ export default function Home({ siteConfig }) {
 
         <div className="flex  flex-wrap">
           <div className="col-24">
-            <section className="pb6  pb5-md">
+            <section className="pb5">
               <div className="flex  flex-wrap">
                 {[...Array(premieresLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-6-md">
@@ -178,7 +178,7 @@ export default function Home({ siteConfig }) {
             </div>
 
             <div className="col-24  col-12-md">
-              <section className="pb6  pb5-md">
+              <section className="pb5">
                 <div className="flex  flex-wrap">
                   {[...Array(insightsLength)].map((iteration, i) => (
                     <div key={iteration} className="col-24  col-12-md">
@@ -243,7 +243,7 @@ export default function Home({ siteConfig }) {
 
         <div className="flex  flex-wrap">
           <div className="col-24">
-            <section className="pb5  pb6-md">
+            <section className="pb5">
               <div className="flex  flex-wrap">
                 {[...Array(guestMixesLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-6-md">

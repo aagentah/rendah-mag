@@ -178,7 +178,7 @@ export default function HeroDefault({
 
       {heroImage && <div className="hero__image">{heroImage}</div>}
 
-      <div className="mmm  absolute  top  mt5  pr5">
+      <div className="join-right  absolute  top  mt5  pr5">
         <ParallaxDiv speed={-7}>Join our Dominion Subscription</ParallaxDiv>
       </div>
     </article>

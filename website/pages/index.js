@@ -102,15 +102,15 @@ export default function Home() {
         }}
         preview={null}
       >
-        <div className="flex  flex-wrap">
-          <div className="col-6  over-none relative  mmm2__wrapper">
-            <div className="mmm2  absolute  top  mt5  pr5">
+        <div className="flex  flex-wrap  pt4  pt0-md">
+          <div className="col-6  over-none relative  join-left__wrapper">
+            <div className="join-left  absolute  top  mt5  pr5">
               <ParallaxDiv speed={-7}>
                 Join our Dominion Subscription
               </ParallaxDiv>
             </div>
           </div>
-          <div className="col-18  over-none ">
+          <div className="col-18  hero--home__col-18">
             <Hero
               image={homePage?.heroImage}
               title={homePage?.heroTitle || 'Loading...'}
@@ -126,28 +126,28 @@ export default function Home() {
         </div>
 
         <div className="flex  flex-wrap  pt5">
-          <div className="col-6" />
+          <div className="col-4  col-6-md" />
 
-          <div className="col-12">
-            <p className="f3  f2-md  t-primary  lh-title  light-silver">
+          <div className="col-16  col-12-md">
+            <p className="f4  f2-md  t-primary  lh-title  light-silver">
               Rendah Mag is a creative UK-based outlet, primarily focused on
               exploring the progressive and innovative side of underground bass
               music.
             </p>
           </div>
 
-          <div className="col-6" />
+          <div className="col-4  col-6-md" />
         </div>
 
         <div className="flex  flex-wrap  pt5">
-          <div className="col-24  pl3">
+          <div className="col-24  pl3  pr3  pr0-md">
             <section className="pb5">
               <ParallaxDiv translateX={[15, 5]}>
-                <span className="f3  t-primary  bold  rendah-red  lh-copy">
-                  —Latest on the site
+                <span className="f3  t-primary  bold  rendah-red  lh-copy  pl3">
+                  /// Latest on the site
                 </span>
 
-                <div className="flex  flex-wrap  relative  pt2">
+                <div className="flex  flex-wrap  relative  pt4  pt2-md">
                   {[...Array(featuredPostsLength)].map((iteration, i) => (
                     <div key={iteration} className="col-24  col-4-md">
                       <div className="ph2  pb3">
@@ -165,7 +165,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="creations  bg-black  mb6  mb5-md  relative">
+        <div className="creations  bg-black  mb5  relative">
           <div className="absolute  top  left  mt6  nl6">
             <ParallaxDiv translateY={[50, 200]}>
               <img className="w5  o-50" src="/images/vector-red.png" />
