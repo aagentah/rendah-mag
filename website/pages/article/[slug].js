@@ -172,7 +172,7 @@ export default function Post({ siteConfig, post, preview }) {
           <div className="col-6"></div>
 
           <div className="col-24  col-18-md">
-            <div className="pb3  pt6  col-18  hero--article__wrapper  relative">
+            <div className="ph4  ph0-md  pb3  pt6  col-18  hero--article__wrapper  relative">
               <Heading
                 /* Options */
                 htmlEntity="h1"
@@ -200,27 +200,29 @@ export default function Post({ siteConfig, post, preview }) {
           </div>
         </div>
 
-        <article className="pt4  pb4">
+        <article className="ph4  ph0-md  pt4  pb4">
           <div className="flex  flex-wrap">
             <div className="col-6"></div>
             <div className="col-24  col-12-md">
               <p className="t-secondary  f5  almost-black  lh-copy  pb4">
-                <span className="t-secondary  f5  almost-black  lh-copy  dib  ba  bc-black  pa2  mr3">
+                <span className="t-secondary  f5  almost-black  lh-copy  dib  ba  bc-black  pa2  mr3  mb3  mb0-md">
                   {post.category}
                 </span>
 
-                {post.authors.map((i) => (
-                  <>
-                    Written by{' '}
-                    <Link
-                      href={`/team/${i.author.slug.current}`}
-                      legacyBehavior
-                    >
-                      <span className="cp  black  fw7">{i.author.name}</span>
-                    </Link>
-                    {' on '}
-                  </>
-                ))}
+                <span className="db  dib-md">
+                  {post.authors.map((i) => (
+                    <>
+                      Written by{' '}
+                      <Link
+                        href={`/team/${i.author.slug.current}`}
+                        legacyBehavior
+                      >
+                        <span className="cp  black  fw7">{i.author.name}</span>
+                      </Link>
+                      {' on '}
+                    </>
+                  ))}
+                </span>
 
                 {post?.publishedAt && <Date dateString={post.publishedAt} />}
               </p>
@@ -231,7 +233,7 @@ export default function Post({ siteConfig, post, preview }) {
           <div className="flex  flex-wrap">
             <div className="col-6"></div>
             <div className="col-24  col-12-md">
-              <div className="f4  lh-copy  pb4  mb4  bb  bw1  bc-rendah-red">
+              <div className="f5  f4-md  lh-copy  pb4  mb4  bb  bw1  bc-rendah-red">
                 <BlockContent
                   blocks={post.introduction}
                   serializers={SANITY_BLOCK_SERIALIZERS}
@@ -244,7 +246,7 @@ export default function Post({ siteConfig, post, preview }) {
           <Sections body={post.body} />
         </article>
 
-        <div className="mla  mra  pv5  mb4  bg-light-grey">
+        <div className="mla  mra  pv5  mb4  bg-light-grey  ph4  ph0-md">
           <SocialLinks article={post} />
         </div>
 

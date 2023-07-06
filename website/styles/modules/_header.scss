@@ -29,36 +29,41 @@
   z-index: 10;
 
   .header__logo {
-    background-color: var(--white);
+    // background-color: var(--white);
     width: 42px;
     top: 20px;
     left: 20px;
     z-index: 999;
     @extend .absolute;
 
-    &::before {
-      position: absolute;
-      content: '';
-      background-color: var(--white);
-      top: 0;
-      left: -50px;
-      height: 70px;
-      width: 130px;
-      z-index: -1;
-    }
+    // &::before {
+    //   position: absolute;
+    //   content: '';
+    //   background-color: var(--white);
+    //   top: 0;
+    //   left: -50px;
+    //   height: 70px;
+    //   width: 130px;
+    //   z-index: -1;
+    // }
   }
+}
 
-  .nav ul .nav__item:first-of-type {
-    position: relative;
+.nav ul .nav__item:first-of-type {
+  position: relative;
 
-    &::before {
-      position: absolute;
-      content: '';
-      background-color: var(--rendah-red);
-      top: 10px;
-      right: calc(100% + 30px);
-      height: 2px;
-      width: 100vw;
+  &::before {
+    position: absolute;
+    content: '';
+    background-color: var(--rendah-red);
+    top: 10px;
+    right: calc(100% + 130px);
+    height: 2px;
+    width: 20vw;
+    transform: translateX(100px);
+
+    @include breakpoint-up(lg) {
+      width: 25vw;
     }
   }
 }

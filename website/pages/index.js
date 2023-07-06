@@ -102,28 +102,30 @@ export default function Home() {
         }}
         preview={null}
       >
-        <div className="flex  flex-wrap  pt4  pt0-md">
-          <div className="col-6  over-none relative  join-left__wrapper">
-            <div className="join-left  absolute  top  mt5  pr5">
-              <ParallaxDiv speed={-7}>
-                Join our Dominion Subscription
-              </ParallaxDiv>
+        <Link href="/dominion" legacyBehavior>
+          <div className="flex  flex-wrap  pt4  pt0-md  cp">
+            <div className="col-6  over-none relative  join-left__wrapper">
+              <div className="join-left  absolute  top  mt5  pr5">
+                <ParallaxDiv speed={-7}>
+                  Join our Dominion Subscription
+                </ParallaxDiv>
+              </div>
+            </div>
+            <div className="col-18  hero--home__col-18">
+              <Hero
+                image={homePage?.heroImage}
+                title={homePage?.heroTitle || 'Loading...'}
+                description={homePage?.heroDescription || 'Loading...'}
+                heroButtonText={homePage?.heroLabel || 'Loading...'}
+                link={homePage?.heroLink}
+                marginTop={0}
+                marginBottom={0}
+                modifier="home"
+                skeleton={!homePage}
+              />
             </div>
           </div>
-          <div className="col-18  hero--home__col-18">
-            <Hero
-              image={homePage?.heroImage}
-              title={homePage?.heroTitle || 'Loading...'}
-              description={homePage?.heroDescription || 'Loading...'}
-              heroButtonText={homePage?.heroLabel || 'Loading...'}
-              link={homePage?.heroLink}
-              marginTop={0}
-              marginBottom={0}
-              modifier="home"
-              skeleton={!homePage}
-            />
-          </div>
-        </div>
+        </Link>
 
         <div className="flex  flex-wrap  pt5">
           <div className="col-4  col-6-md" />
