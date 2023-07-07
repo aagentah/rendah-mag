@@ -3,7 +3,7 @@ import Button from '~/components/elements/button';
 export default function ArticleLink({ text, url }) {
   return (
     <div className="flex  flex-wrap  pb3">
-      <div className="col-6"></div>
+      <div className="col-6" />
       <div className="col-24  col-12-md  pv3  flex  justify-center">
         <Button
           /* Options */
@@ -29,7 +29,7 @@ export default function ArticleLink({ text, url }) {
           }}
         />
       </div>
-      <div className="col-6"></div>
+      <div className="col-6" />
     </div>
   );
 }

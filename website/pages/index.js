@@ -146,7 +146,7 @@ export default function Home() {
             <section className="pb5">
               <ParallaxDiv translateX={[15, 5]}>
                 <span className="f3  t-primary  bold  rendah-red  lh-copy  pl3">
-                  /// Latest on the site
+                  {'///'} Latest on the site
                 </span>
 
                 <div className="flex  flex-wrap  relative  pt4  pt2-md">

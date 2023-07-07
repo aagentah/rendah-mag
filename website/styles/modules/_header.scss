@@ -65,6 +65,10 @@
     @include breakpoint-up(lg) {
       width: 25vw;
     }
+
+    @include breakpoint-up(xl) {
+      width: 30vw;
+    }
   }
 }
 

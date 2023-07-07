@@ -36,7 +36,7 @@ export default function IframeBlock({ url, heightDesktop, heightMobile }) {
   return (
     <LazyLoad once offset={250} height={frameHeight}>
       <div className="flex  flex-wrap  ph4  bg-moon-grey  pv5">
-        <div className="col-6"></div>
+        <div className="col-6" />
         <div className="col-24  col-12-md  flex  justify-center">
           <div className="w-90  db  mla  mra">
             <Iframe
@@ -48,7 +48,7 @@ export default function IframeBlock({ url, heightDesktop, heightMobile }) {
             />
           </div>
         </div>
-        <div className="col-6"></div>
+        <div className="col-6" />
       </div>
     </LazyLoad>
   );

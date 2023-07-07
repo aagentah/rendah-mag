@@ -11,7 +11,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowRight)
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
 export default function CardProduct({ product }) {
@@ -39,7 +39,7 @@ export default function CardProduct({ product }) {
       figcaption={null}
       height={imageHeight}
       width={imageUrlWidth}
-      customClass={null}
+      customClass="br4  shadow2"
       skeleton={!product}
       onClick={null}
       /* Children */
@@ -50,8 +50,8 @@ export default function CardProduct({ product }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/product/${product?.slug}`,
-          scroll: false
-        }
+          scroll: false,
+        },
       }}
     />
   );
@@ -67,7 +67,7 @@ export default function CardProduct({ product }) {
       onClick={null}
       /* Children */
       withLinkProps={null}
-    />
+    />,
   ];
 
   if (product?.tag === 'Sold-out') {
@@ -103,8 +103,8 @@ export default function CardProduct({ product }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/product/${product?.slug}`,
-          scroll: false
-        }
+          scroll: false,
+        },
       }}
     />
   );
@@ -143,8 +143,8 @@ export default function CardProduct({ product }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/product/${product?.slug}`,
-          scroll: false
-        }
+          scroll: false,
+        },
       }}
     />
   );

@@ -15,11 +15,11 @@ import CardCypher from '~/components/card/cypher';
 import {
   getSiteConfig,
   imageBuilder,
-  getCurrentAndPreviousCyphers
+  getCurrentAndPreviousCyphers,
 } from '~/lib/sanity/requests';
 
 const IconInfoCircle = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconInfoCircle)
+  import('~/components/elements/icon').then((m) => m.IconInfoCircle)
 );
 
 export default function Cyphers({ siteConfig }) {
@@ -48,7 +48,7 @@ export default function Cyphers({ siteConfig }) {
           siteConfig,
           title: 'Cyphers',
           description: null,
-          image: null
+          image: null,
         }}
         preview={null}
       >
@@ -115,7 +115,7 @@ export default function Cyphers({ siteConfig }) {
                             href: cyphers.current.packLink,
                             target: '_blank',
                             routerLink: null,
-                            routerLinkProps: null
+                            routerLinkProps: null,
                           }}
                         />
                       </div>
@@ -140,7 +140,7 @@ export default function Cyphers({ siteConfig }) {
                             href: cyphers.current.submissionFormLink,
                             target: '_blank',
                             routerLink: null,
-                            routerLinkProps: null
+                            routerLinkProps: null,
                           }}
                         />
                       </div>
@@ -216,7 +216,7 @@ export default function Cyphers({ siteConfig }) {
                   <IconInfoCircle color="#6697f4" size={200} />
                 </div>
 
-                <div className="bg-almost-white  br3  pa4  pa5-md  mb5  relative">
+                <div className="bg-light-grey  br3  pa4  pa5-md  mb5  relative">
                   <div className="absolute  top  right  shadow1  br-100  bg-almost-white  nt3  mr4  mr5-md  info-color">
                     <IconInfoCircle color="#6697f4" size={60} />
                   </div>
@@ -293,6 +293,6 @@ export async function getServerSideProps() {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig }
+    props: { siteConfig },
   };
 }

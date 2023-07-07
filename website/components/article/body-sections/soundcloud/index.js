@@ -5,7 +5,7 @@ export default function Soundcloud({ url }) {
   return (
     <LazyLoad once offset={250} height={166}>
       <div className="flex  flex-wrap  ph4  pb3">
-        <div className="col-6"></div>
+        <div className="col-6" />
         <div className="col-24  col-12-md  flex  justify-center">
           <div className="w-90  db  mla  mra  o-80">
             <Iframe
@@ -17,7 +17,7 @@ export default function Soundcloud({ url }) {
             />
           </div>
         </div>
-        <div className="col-6"></div>
+        <div className="col-6" />
       </div>
     </LazyLoad>
   );

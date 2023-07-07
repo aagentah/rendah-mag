@@ -2,6 +2,19 @@
   @extend .taj;
 }
 
+.rich-text__product {
+  .col-6 {
+    display: none;
+  }
+
+  @include breakpoint-up(md) {
+    .col-12-md {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
+
 .rich-text p,
 .rich-text ul,
 .rich-text ol,

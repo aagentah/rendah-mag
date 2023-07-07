@@ -11,7 +11,7 @@ export default function Spotify({ uri }) {
 
   return (
     <div className="flex  flex-wrap  ph4  pb4">
-      <div className="col-6"></div>
+      <div className="col-6" />
       <div className="col-24  col-12-md  flex  justify-center">
         <div className="flex  justify-center  ph4-md">
           <div className="bg-dark-grey  pa2  w-100">
@@ -21,7 +21,7 @@ export default function Spotify({ uri }) {
           </div>
         </div>
       </div>
-      <div className="col-6"></div>
+      <div className="col-6" />
     </div>
   );
 }

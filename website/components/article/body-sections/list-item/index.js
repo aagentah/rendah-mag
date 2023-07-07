@@ -30,7 +30,7 @@ export default function ListItem({ text }) {
   if (text[0].text) {
     return (
       <div className="flex  flex-wrap  ph4  pb4">
-        <div className="col-6"></div>
+        <div className="col-6" />
         <div className="col-24  col-12-md  flex  justify-center">
           <>
             <li className="db  t-secondary  lh-copy  f6  dark-grey">
@@ -38,7 +38,7 @@ export default function ListItem({ text }) {
             </li>
           </>
         </div>
-        <div className="col-6"></div>{' '}
+        <div className="col-6" />{' '}
       </div>
     );
   }

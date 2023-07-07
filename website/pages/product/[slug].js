@@ -19,25 +19,25 @@ import {
   getSiteConfig,
   getProduct,
   getAllProductsTotal,
-  imageBuilder
+  imageBuilder,
 } from '~/lib/sanity/requests';
 
 const Modal = dynamic(() => import('~/components/modal'));
 
 const IconShoppingCart = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconShoppingCart)
+  import('~/components/elements/icon').then((m) => m.IconShoppingCart)
 );
 
 const IconPlus = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconPlus)
+  import('~/components/elements/icon').then((m) => m.IconPlus)
 );
 
 const IconMinus = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconMinus)
+  import('~/components/elements/icon').then((m) => m.IconMinus)
 );
 
 const IconInfoCircle = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconInfoCircle)
+  import('~/components/elements/icon').then((m) => m.IconInfoCircle)
 );
 
 export default function Product({ siteConfig, product }) {
@@ -54,7 +54,7 @@ export default function Product({ siteConfig, product }) {
     Router.push('/404');
   }
 
-  const submit = async priceId => {
+  const submit = async (priceId) => {
     const response = await fetch(
       `${process.env.SITE_URL}/api/stripe/checkout-sessions`,
       {
@@ -68,13 +68,13 @@ export default function Product({ siteConfig, product }) {
             shipping: {
               uk: product.shippingUK,
               europe: product.shippingEurope,
-              worldwide: product.shippingWorldwide
+              worldwide: product.shippingWorldwide,
             },
-            discount
-          }
+            discount,
+          },
         }),
         headers: { 'Content-Type': 'application/json' },
-        method: 'POST'
+        method: 'POST',
       }
     );
 
@@ -216,8 +216,8 @@ export default function Product({ siteConfig, product }) {
                       routerLink: Link,
                       routerLinkProps: {
                         as: `/dominion`,
-                        scroll: false
-                      }
+                        scroll: false,
+                      },
                     }}
                   />
                 </div>
@@ -268,7 +268,7 @@ export default function Product({ siteConfig, product }) {
     };
 
     const descriptionTab = (
-      <div className="rich-text">
+      <div className="rich-text  rich-text__product">
         <Sections body={product?.description} />
       </div>
     );
@@ -293,7 +293,7 @@ export default function Product({ siteConfig, product }) {
             siteConfig,
             title: product?.title,
             description: null,
-            image: product?.image1
+            image: product?.image1,
           }}
           preview={null}
         >
@@ -352,8 +352,8 @@ export default function Product({ siteConfig, product }) {
                               routerLink: Link,
                               routerLinkProps: {
                                 as: `/dominion`,
-                                scroll: false
-                              }
+                                scroll: false,
+                              },
                             }}
                           />
                         </div>
@@ -447,13 +447,13 @@ export default function Product({ siteConfig, product }) {
                         {
                           id: '1',
                           tabTitle: 'Description',
-                          tabContent: descriptionTab
+                          tabContent: descriptionTab,
                         },
                         {
                           id: '2',
                           tabTitle: 'Shipping Info',
-                          tabContent: deliveryTab
-                        }
+                          tabContent: deliveryTab,
+                        },
                       ]}
                       defaultSelected="1"
                     />
@@ -484,13 +484,13 @@ export default function Product({ siteConfig, product }) {
                         </div>
                       </div>
                       <div className="col-24  col-8-md  flex  flex-wrap  align-center">
-                        <div className="flex  flex-wrap  bg-white  justify-center  pa2  ph3  br2  w-100">
+                        <div className="flex  flex-wrap  bg-white  justify-center  pa2  ph3  br2  w-100  bg-white  shadow2">
                           <input
                             className="input  w-100  tac"
                             placeholder="PROMO CODE"
                             type="text"
                             value={discount}
-                            onChange={e => setDiscount(e.target.value)}
+                            onChange={(e) => setDiscount(e.target.value)}
                           />
                         </div>
                       </div>
@@ -522,9 +522,9 @@ export async function getStaticProps({ req, params, preview = false }) {
   return {
     props: {
       siteConfig,
-      product
+      product,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }
 
@@ -533,11 +533,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      data.map(product => ({
+      data.map((product) => ({
         params: {
-          slug: product.slug
-        }
+          slug: product.slug,
+        },
       })) || [],
-    fallback: 'blocking'
+    fallback: 'blocking',
   };
 }

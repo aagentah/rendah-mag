@@ -52,13 +52,13 @@ export default function Paragraph({ text, markDefs }) {
     return (
       <>
         <div className="flex  flex-wrap  ph4  pb4">
-          <div className="col-6"></div>
+          <div className="col-6" />
           <div className="col-24  col-12-md  flex  justify-center">
             <p className="db  t-secondary  lh-copy  f6  dark-grey  taj  pv3">
               {text.map((child, i) => renderChildren(child, markDefs, i))}
             </p>
           </div>
-          <div className="col-6"></div>{' '}
+          <div className="col-6" />{' '}
         </div>
       </>
     );

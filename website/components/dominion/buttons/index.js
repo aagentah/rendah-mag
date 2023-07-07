@@ -1,65 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import fetch from 'isomorphic-unfetch';
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import dynamic from 'next/dynamic';
 
-import classNames from 'classnames';
-
 import Button from '~/components/elements/button';
-import PaypalPay from '~/components/dominion/paypalPay';
-import PaypalFree from '~/components/dominion/paypalFree';
 
 import { useApp } from '~/context-provider/app';
 
 const IconShoppingCart = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconShoppingCart)
+  import('~/components/elements/icon').then((m) => m.IconShoppingCart)
 );
 
 const IconPlus = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconPlus)
+  import('~/components/elements/icon').then((m) => m.IconPlus)
 );
 
 function Buttons() {
-  const [sdkReady, setSdkReady] = useState(false);
   const [discount, setDiscount] = useState('');
   const buttonIconCart = <IconShoppingCart color="rendah-red" size={16} />;
   const buttonIconPlus = <IconPlus color="rendah-red" size={16} />;
   const app = useApp();
-
-  const addPayPalScript = () => {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = `https://www.paypal.com/sdk/js?client-id=AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq`;
-    // script.setAttribute("data-namespace", "paypal_sdk");
-    script.async = true;
-    script.onload = () => {
-      setTimeout(() => {
-        setSdkReady(true);
-      }, 10);
-    };
-
-    document.body.appendChild(script);
-  };
-
-  useEffect(() => {
-    if (!window.paypal) {
-      addPayPalScript();
-    } else {
-      setTimeout(() => {
-        setSdkReady(true);
-      }, 10);
-    }
-  }, []);
-
-  let payBtn = classNames({
-    db: discount !== 'RND1MONTH',
-    dn: discount === 'RND1MONTH'
-  });
-
-  let freeBtn = classNames({
-    db: discount === 'RND1MONTH',
-    dn: discount !== 'RND1MONTH'
-  });
 
   const submit = async () => {
     const priceId =
@@ -77,11 +36,11 @@ function Buttons() {
             mode: 'subscription',
             successUrl: '/dominion-thank-you',
             cancelUrl: '/dominion',
-            discount
-          }
+            discount,
+          },
         }),
         headers: { 'Content-Type': 'application/json' },
-        method: 'POST'
+        method: 'POST',
       }
     );
 
@@ -94,11 +53,11 @@ function Buttons() {
 
   return (
     <>
-      <div className="dominion__subscribe-col  col-24  col-7-md  flex  align-center  justify-center  pb3  pb1-md">
+      <div className="col-24  col-12-md  flex  align-center  justify-center  pr3-md  pb3  pb0-md">
         <Button
           /* Options */
           type="primary"
-          size="small"
+          size="medium"
           text="Subscribe"
           color="black"
           fluid={true}
@@ -114,74 +73,14 @@ function Buttons() {
         />
       </div>
 
-      <div className="col-24  col-10-md  flex  align-center  justify-center  pb3  pb0-md  ph3">
-        <PayPalScriptProvider
-          options={{
-            'client-id':
-              'AXJ4HaEwC7x-IEoVwM1z0_8Oh3AtG5EhS5h71ZXfDOypuuiw8h5LEwYIQYgrWpP1fD9W_rHBV6yQtBWq',
-            components: 'buttons',
-            intent: 'subscription',
-            vault: true
-          }}
-        >
-          <div className={`w-100-md  ${payBtn}`}>
-            {sdkReady ? (
-              <PaypalPay />
-            ) : (
-              <Button
-                /* Options */
-                type="secondary"
-                size="small"
-                text=""
-                color="black"
-                fluid={true}
-                icon={null}
-                iconFloat={null}
-                inverted={false}
-                loading={true}
-                disabled={true}
-                skeleton={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            )}
-          </div>
-
-          <div className={`w-100-md  ${freeBtn}`}>
-            {sdkReady ? (
-              <PaypalFree />
-            ) : (
-              <Button
-                /* Options */
-                type="secondary"
-                size="small"
-                text="Loading"
-                color="black"
-                fluid={true}
-                icon={null}
-                iconFloat={null}
-                inverted={false}
-                loading={false}
-                disabled={true}
-                skeleton={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            )}
-          </div>
-        </PayPalScriptProvider>
-      </div>
-
-      <div className="col-24  col-7-md  flex  align-center  justify-center  pb3  pb0-md  pb1">
-        <div className="mw4  shadow1">
+      <div className="col-24  col-12-md  flex  align-center  justify-center  pl3-md">
+        <div className="flex  flex-wrap  bg-white  justify-center  pa2  ph3  br2  w-100  bg-white  shadow2">
           <input
-            className="input"
+            className="input  w-100  tac"
             placeholder="PROMO CODE"
             type="text"
             value={discount}
-            onChange={e => {
+            onChange={(e) => {
               const val = e.target.value;
               setDiscount(val.toUpperCase());
             }}

@@ -27,7 +27,7 @@ export default function FacebookVideo({ url }) {
   return (
     <LazyLoad once offset={250} height={app.deviceSize === 'md' ? 266 : 490}>
       <div className="flex  flex-wrap  ph4  pb4">
-        <div className="col-6"></div>
+        <div className="col-6" />
         <div className="col-24  col-12-md  flex  justify-center">
           <div className="tac  db  w-90  mla  mra">
             <FacebookProviderHook.Hook appId="154881868603516">
@@ -35,7 +35,7 @@ export default function FacebookVideo({ url }) {
             </FacebookProviderHook.Hook>
           </div>
         </div>
-        <div className="col-6"></div>{' '}
+        <div className="col-6" />{' '}
       </div>
     </LazyLoad>
   );

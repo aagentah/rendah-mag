@@ -98,7 +98,7 @@ export default function ImageSection({ section, imageCount }) {
           </figure>
         </LazyLoad>
       </div>
-      <div className="col-6"></div>
+      <div className="col-6" />
     </div>
   );
 }

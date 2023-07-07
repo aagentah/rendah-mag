@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Script from 'next/script';
 
 import Heading from '~/components/elements/heading';
 import Image from '~/components/elements/image';
@@ -10,7 +9,7 @@ import Buttons from '~/components/dominion/buttons';
 import {
   getSiteConfig,
   getDominionUsers,
-  imageBuilder
+  imageBuilder,
 } from '~/lib/sanity/requests';
 
 import { useApp } from '~/context-provider/app';
@@ -57,25 +56,14 @@ export default function Dominion({ siteConfig }) {
         title: 'Dominion',
         description: 'Something new & exciting.',
         image:
-          'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610196181/dominion/dominion-social-facebook-meta.png'
+          'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610196181/dominion/dominion-social-facebook-meta.png',
       }}
       preview={null}
     >
       <div className="pt4  pt0-md">
         <Container>
           <div className="measure-wide  mla  mra  pb4  mb3-md">
-            <Image
-              /* Options */
-              src="/images/dominion-logo.png"
-              placeholder={null}
-              alt="Dominion"
-              figcaption={null}
-              height={50}
-              width={400}
-              customClass={null}
-              skeleton={false}
-              onClick={null}
-            />
+            <img src="/images/dominion-logo.png" alt="Dominion" />
           </div>
 
           <div className="flex  flex-wrap  pb5-md  mb3  mb4-md  ph5-md">
@@ -124,16 +112,14 @@ export default function Dominion({ siteConfig }) {
                 </p>
               </div>
 
-              <div className="flex  flex-wrap  w-100  pt4  pt0-md">
+              <div className="flex  flex-wrap  w-100  pt4  pt0-md  ph3  ph0-md">
                 {renderButtons && <Buttons />}
-                <div id="paypal-button-container" />
-                <Script src="https://www.paypal.com/sdk/js?client-id=sb&disable-funding=card" />
               </div>
             </div>
           </div>
         </Container>
 
-        <div className="bg-almost-white  pt5  pb4">
+        <div className="bg-almost-white  pt4  pb4">
           <Container>
             <div className="pb4  flex  justify-center">
               <Heading
@@ -194,7 +180,7 @@ export async function getServerSideProps({ params, preview = false }) {
 
   return {
     props: {
-      siteConfig
-    }
+      siteConfig,
+    },
   };
 }

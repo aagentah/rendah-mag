@@ -169,7 +169,7 @@ export default function Post({ siteConfig, post, preview }) {
         </Modal>
 
         <div className="flex  flex-wrap">
-          <div className="col-6"></div>
+          <div className="col-6" />
 
           <div className="col-24  col-18-md">
             <div className="ph4  ph0-md  pb3  pt6  col-18  hero--article__wrapper  relative">
@@ -202,7 +202,7 @@ export default function Post({ siteConfig, post, preview }) {
 
         <article className="ph4  ph0-md  pt4  pb4">
           <div className="flex  flex-wrap">
-            <div className="col-6"></div>
+            <div className="col-6" />
             <div className="col-24  col-12-md">
               <p className="t-secondary  f5  almost-black  lh-copy  pb4">
                 <span className="t-secondary  f5  almost-black  lh-copy  dib  ba  bc-black  pa2  mr3  mb3  mb0-md">
@@ -229,11 +229,11 @@ export default function Post({ siteConfig, post, preview }) {
                 </span>
               </p>
             </div>
-            <div className="col-6"></div>
+            <div className="col-6" />
           </div>
 
           <div className="flex  flex-wrap">
-            <div className="col-6"></div>
+            <div className="col-6" />
             <div className="col-24  col-12-md">
               <div className="f5  f4-md  lh-copy  pb3  mb4  bb  bw1  bc-rendah-red  rich-text">
                 <BlockContent
@@ -242,7 +242,7 @@ export default function Post({ siteConfig, post, preview }) {
                 />
               </div>
             </div>
-            <div className="col-6"></div>
+            <div className="col-6" />
           </div>
 
           <Sections body={post.body} />

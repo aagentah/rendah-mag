@@ -34,14 +34,14 @@ export default function Sections({ body, ...props }) {
       return (
         <>
           <div className="flex  flex-wrap">
-            <div className="col-6"></div>
+            <div className="col-6" />
             <div className="col-24  col-12-md  rich-text">
               <BlockContent
                 blocks={section}
                 serializers={SANITY_BLOCK_SERIALIZERS}
               />
             </div>
-            <div className="col-6"></div>
+            <div className="col-6" />
           </div>
         </>
       );

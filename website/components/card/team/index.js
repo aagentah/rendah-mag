@@ -10,7 +10,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowRight)
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
 export default function CardBlog({ member, featured }) {
@@ -44,7 +44,7 @@ export default function CardBlog({ member, featured }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass={null}
+      customClass="br4  shadow2"
       skeleton={!member}
       onClick={null}
       /* Children */
@@ -55,8 +55,8 @@ export default function CardBlog({ member, featured }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/team/${member?.slug}`,
-          scroll: false
-        }
+          scroll: false,
+        },
       }}
     />
   );
@@ -92,8 +92,8 @@ export default function CardBlog({ member, featured }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/team/${member?.slug}`,
-          scroll: false
-        }
+          scroll: false,
+        },
       }}
     />
   );

@@ -70,7 +70,7 @@ export default function Audio({
 
   return (
     <div className="flex  flex-wrap  ph4  pb4">
-      <div className="col-6"></div>
+      <div className="col-6" />
       <div className="col-24  col-12-md  flex  justify-center">
         <div className="audio__wrapper">
           <div className="audio__icon">
@@ -184,7 +184,7 @@ export default function Audio({
           </div>
         </div>
       </div>
-      <div className="col-6"></div>
+      <div className="col-6" />
     </div>
   );
 }
