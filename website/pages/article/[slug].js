@@ -219,12 +219,14 @@ export default function Post({ siteConfig, post, preview }) {
                       >
                         <span className="cp  black  fw7">{i.author.name}</span>
                       </Link>
-                      {' on '}
+                      {' on'}
                     </>
                   ))}
                 </span>
 
-                {post?.publishedAt && <Date dateString={post.publishedAt} />}
+                <span className="pl0  pl1-md">
+                  {post?.publishedAt && <Date dateString={post.publishedAt} />}
+                </span>
               </p>
             </div>
             <div className="col-6"></div>
@@ -233,7 +235,7 @@ export default function Post({ siteConfig, post, preview }) {
           <div className="flex  flex-wrap">
             <div className="col-6"></div>
             <div className="col-24  col-12-md">
-              <div className="f5  f4-md  lh-copy  pb4  mb4  bb  bw1  bc-rendah-red">
+              <div className="f5  f4-md  lh-copy  pb3  mb4  bb  bw1  bc-rendah-red  rich-text">
                 <BlockContent
                   blocks={post.introduction}
                   serializers={SANITY_BLOCK_SERIALIZERS}
