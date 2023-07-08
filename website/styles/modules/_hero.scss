@@ -71,97 +71,63 @@
   }
 }
 
-.over-none {
-  overflow: hidden;
-}
-
-.hero--home__col-18 {
-  overflow: unset;
-}
-
-.join-left__wrapper {
-  overflow: auto;
-
-  &::before {
-    position: absolute;
-    top: 60px;
-    right: -120px;
-    transform: rotate(90deg);
-    content: '////';
-    font-size: 120px;
-    color: var(--rendah-red);
-    @extend .t-primary;
-  }
-}
-
+.join-right,
 .join-left {
-  z-index: -1;
+  white-space: nowrap;
+  z-index: 9;
   position: absolute;
-  top: 271px;
-  left: 85px;
+  top: 265px;
+  left: -50px;
   margin: 0;
-  max-width: 600px;
-  color: var(--rendah-red);
+  max-width: 300px;
+  color: var(--white);
   font-size: 50px;
   @extend .t-primary;
   font-weight: bold;
   line-height: 1;
-  visibility: hidden;
-}
-
-@include breakpoint-up(md) {
-  .hero--home__col-18 {
-    overflow: hidden;
-  }
-
-  .join-left__wrapper {
-    overflow: hidden;
-  }
-
-  .join-left {
-    z-index: -1;
-    position: absolute;
-    top: 269px;
-    left: 227px;
-    margin: 0;
-    max-width: 600px;
-    color: var(--rendah-red);
-    font-size: 100px;
-    @extend .t-primary;
-    font-weight: bold;
-    line-height: 1;
-    visibility: visible;
-  }
 }
 
 .join-right {
-  z-index: 999;
-  position: relative;
-  top: -431px;
-  left: -45px;
-  margin: 0;
-  max-width: 300px;
+  display: none;
+}
+
+.join-left {
+  max-width: 100%;
+  overflow: unset;
+  text-overflow: unset;
   color: var(--rendah-red);
-  font-size: 50px;
-  @extend .t-primary;
-  font-weight: bold;
-  line-height: 1;
+  z-index: 10;
 }
 
 @include breakpoint-up(md) {
-  .join-right {
-    z-index: 999;
-    position: relative;
-    top: -431px;
-    left: -147px;
-    margin: 0;
-    max-width: 600px;
-    color: var(--white);
+  .join-right,
+  .join-left {
+    left: -150px;
     font-size: 100px;
-    @extend .t-primary;
-    font-weight: bold;
-    line-height: 1;
   }
+
+  .join-left {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: clip;
+    color: var(--rendah-red);
+    z-index: 10;
+  }
+
+  .join-right {
+    display: block;
+  }
+}
+
+.hero--home:before {
+  @extend .t-primary;
+  position: absolute;
+  color: var(--rendah-red);
+  top: 60px;
+  left: -100px;
+  transform: rotate(90deg);
+  content: '////';
+  font-size: 120px;
 }
 
 .hero--home {

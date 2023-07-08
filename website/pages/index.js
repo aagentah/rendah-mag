@@ -103,14 +103,8 @@ export default function Home() {
         preview={null}
       >
         <Link href="/dominion" legacyBehavior>
-          <div className="flex  flex-wrap  pt4  pt0-md  cp">
-            <div className="col-6  over-none relative  join-left__wrapper">
-              <div className="join-left  absolute  top  mt5  pr5">
-                <ParallaxDiv speed={-7}>
-                  Join our Dominion Subscription
-                </ParallaxDiv>
-              </div>
-            </div>
+          <div className="flex  flex-wrap  pt4  pt0-md  cp  relative">
+            <div className="col-6"></div>
             <div className="col-18  hero--home__col-18">
               <Hero
                 image={homePage?.heroImage}
