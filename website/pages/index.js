@@ -104,7 +104,7 @@ export default function Home() {
       >
         <Link href="/dominion" legacyBehavior>
           <div className="flex  flex-wrap  pt4  pt0-md  cp  relative">
-            <div className="col-6"></div>
+            <div className="col-6" />
             <div className="col-18  hero--home__col-18">
               <Hero
                 image={homePage?.heroImage}
