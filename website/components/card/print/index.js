@@ -8,8 +8,8 @@ export default function CardPrint({ post, handleClick, i }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  const imageHeight = app?.deviceSize === 'md' ? 220 : 220;
-  const imageUrlHeight = app?.deviceSize === 'md' ? 220 : 220;
+  const imageHeight = app?.deviceSize === 'md' ? 300 : 260;
+  const imageUrlHeight = app?.deviceSize === 'md' ? 260 : 260;
 
   const image = (
     <Image
@@ -21,7 +21,8 @@ export default function CardPrint({ post, handleClick, i }) {
           .width(imageUrlWidth * scale)
           .height(imageUrlHeight * scale)
           .auto('format')
-          .fit('scale')
+          .fit('crop')
+          .crop('center')
           .url()
       }
       placeholder={null}
@@ -68,7 +69,7 @@ export default function CardPrint({ post, handleClick, i }) {
           {heading}
         </div>
 
-        <div className="card__button  pb3">
+        <div className="card__button  pt2  pb3">
           <Button
             /* Options */
             type="primary"

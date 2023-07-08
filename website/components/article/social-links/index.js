@@ -125,7 +125,7 @@ export default function SocialLinks({ article }) {
     }
 
     return (
-      <div className="article__social-links  measure-wide  mla  mra">
+      <div className="article__social-links  measure-wide  mla  mra  df  db-md  flex-wrap  justify-center  justify-start-md">
         {tags?.length ? <div className="pb4">{tags}</div> : ''}
         {links?.length ? links : ''}
       </div>

@@ -22,10 +22,10 @@ export default function CardBlog({ post, columnCount }) {
 
   if (columnCount == 2) {
     imageUrlWidth = app?.deviceSize === 'md' ? 260 : 500;
-    imageHeight = app?.deviceSize === 'md' ? 200 : 400;
+    imageHeight = app?.deviceSize === 'md' ? 260 : 400;
   } else {
     imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-    imageHeight = app?.deviceSize === 'md' ? 200 : 260;
+    imageHeight = app?.deviceSize === 'md' ? 260 : 260;
   }
 
   const image = (
@@ -38,7 +38,8 @@ export default function CardBlog({ post, columnCount }) {
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
-          .fit('clip')
+          .fit('crop')
+          .crop(app?.deviceSize === 'md' ? 'top' : 'center')
           .url()
       }
       placeholder={null}

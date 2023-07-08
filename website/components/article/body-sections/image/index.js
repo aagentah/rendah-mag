@@ -3,11 +3,14 @@ import BlockContent from '@sanity/block-content-to-react';
 import isArray from 'lodash/isArray';
 import includes from 'lodash/includes';
 import Image from '~/components/elements/image';
+import { useApp } from '~/context-provider/app';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
 export default function ImageSection({ section, imageCount }) {
+  const app = useApp();
+
   const isEven = (number) => {
     return number % 2 === 0;
   };
@@ -73,7 +76,7 @@ export default function ImageSection({ section, imageCount }) {
         isEven(imageCount) ? 'flex-row-reverse' : ''
       }`}
     >
-      <div className="col-24  col-18-md">
+      <div className="col-24  col-20-md">
         <LazyLoad once offset={250} height={360}>
           <figure>
             <Image
@@ -86,7 +89,7 @@ export default function ImageSection({ section, imageCount }) {
               placeholder={placeholder}
               alt="This is the alt text."
               figcaption={null}
-              height={700}
+              height={app.deviceSize === 'md' ? null : 700}
               width={null}
               customClass=""
               skeleton={false}
@@ -98,7 +101,7 @@ export default function ImageSection({ section, imageCount }) {
           </figure>
         </LazyLoad>
       </div>
-      <div className="col-6" />
+      <div className="col-4" />
     </div>
   );
 }

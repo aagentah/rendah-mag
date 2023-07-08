@@ -276,7 +276,7 @@ export default function Product({ siteConfig, product }) {
     const deliveryTab = (
       <div className="rich-text">
         <p>
-          All physical products are shipped from the UK within 2 working days
+          All physical products are shipped from the UK within 4 working days
           and are available to purchase globally.
         </p>
       </div>

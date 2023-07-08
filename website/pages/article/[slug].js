@@ -200,8 +200,8 @@ export default function Post({ siteConfig, post, preview }) {
           </div>
         </div>
 
-        <article className="ph4  ph0-md  pt4  pb4">
-          <div className="flex  flex-wrap">
+        <article className="pt4  pb4">
+          <div className="flex  flex-wrap  ph4  ph0-md">
             <div className="col-6" />
             <div className="col-24  col-12-md">
               <p className="t-secondary  f5  almost-black  lh-copy  pb4">
@@ -235,7 +235,7 @@ export default function Post({ siteConfig, post, preview }) {
           <div className="flex  flex-wrap">
             <div className="col-6" />
             <div className="col-24  col-12-md">
-              <div className="f5  f4-md  lh-copy  pb3  mb4  bb  bw1  bc-rendah-red  rich-text">
+              <div className="f5  f4-md  lh-copy  pb3  mb4  bb  bw1  bc-rendah-red  rich-text  ph4  ph0-md">
                 <BlockContent
                   blocks={post.introduction}
                   serializers={SANITY_BLOCK_SERIALIZERS}

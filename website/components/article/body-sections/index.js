@@ -33,7 +33,7 @@ export default function Sections({ body, ...props }) {
     if (section._type === 'block') {
       return (
         <>
-          <div className="flex  flex-wrap">
+          <div className="flex  flex-wrap  ph4  ph0-md">
             <div className="col-6" />
             <div className="col-24  col-12-md  rich-text">
               <BlockContent
@@ -66,7 +66,7 @@ export default function Sections({ body, ...props }) {
     // carousel
     if (section._type === 'carousel') {
       return (
-        <div key={i} className="pv4">
+        <div key={i} className="pv4  ph4  ph0-md">
           <Carousel section={section} />
         </div>
       );
@@ -145,7 +145,7 @@ export default function Sections({ body, ...props }) {
     // subtitleBlock
     if (section._type === 'subtitleBlock') {
       return (
-        <div key={i} className="pv2  mb2">
+        <div key={i} className="pv2  mb2  ph4  ph0-md">
           <Heading text={section.subtitle} />
         </div>
       );
@@ -154,7 +154,7 @@ export default function Sections({ body, ...props }) {
     // quoteBlock
     if (section._type === 'quoteBlock') {
       return (
-        <div key={i} className="pv2  mb2">
+        <div key={i} className="pv2  mb2  ph4  ph0-md">
           <Quote quote={section.quote} source={section.source} />
         </div>
       );
@@ -163,7 +163,7 @@ export default function Sections({ body, ...props }) {
     // linkBlock
     if (section._type === 'linkBlock') {
       return (
-        <div key={i} className="pv2  mb2">
+        <div key={i} className="pv2  mb2  ph4  ph0-md">
           <ArticleLink text={section.text} url={section.url} />
         </div>
       );

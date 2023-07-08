@@ -9,7 +9,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowRight)
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
 export default function CardCreations({ post, columnCount }) {
@@ -20,10 +20,10 @@ export default function CardCreations({ post, columnCount }) {
 
   if (columnCount == 2) {
     imageUrlWidth = app?.deviceSize === 'md' ? 260 : 500;
-    imageHeight = app?.deviceSize === 'md' ? 160 : 300;
+    imageHeight = app?.deviceSize === 'md' ? 260 : 400;
   } else {
     imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-    imageHeight = app?.deviceSize === 'md' ? 160 : 160;
+    imageHeight = app?.deviceSize === 'md' ? 260 : 260;
   }
 
   const buttonIcon = <IconArrowRight color="black" size={16} />;
@@ -38,7 +38,8 @@ export default function CardCreations({ post, columnCount }) {
           .width(imageUrlWidth * scale)
           .height(imageHeight * scale)
           .auto('format')
-          .fit('clip')
+          .fit('crop')
+          .crop(app?.deviceSize === 'md' ? 'top' : 'center')
           .url()
       }
       placeholder={null}
@@ -55,7 +56,7 @@ export default function CardCreations({ post, columnCount }) {
         href: `/creations/${post?.slug}`,
         target: '_blank',
         routerLink: null,
-        routerLinkProps: null
+        routerLinkProps: null,
       }}
     />
   );
@@ -89,7 +90,7 @@ export default function CardCreations({ post, columnCount }) {
         href: `/creations/${post?.slug}`,
         target: '_blank',
         routerLink: null,
-        routerLinkProps: null
+        routerLinkProps: null,
       }}
     />
   );
