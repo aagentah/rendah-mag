@@ -179,11 +179,15 @@ export default function HeroDefault({
       {heroImage && <div className="hero__image">{heroImage}</div>}
 
       <div className="join-left  absolute  top  mt5  pr5">
-        Join our <br /> Dominion <br /> Subscription
+        <ParallaxDiv speed={-8}>
+          Join our <br /> Dominion <br /> Subscription
+        </ParallaxDiv>
       </div>
 
       <div className="join-right  absolute  top  mt5  pr5">
-        Join our <br /> Dominion <br /> Subscription
+        <ParallaxDiv speed={-8}>
+          Join our <br /> Dominion <br /> Subscription
+        </ParallaxDiv>
       </div>
     </article>
   );

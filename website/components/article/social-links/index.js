@@ -39,14 +39,14 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`soundcloud-${e}-${i}`}
-            className="df  align-center  lh-copy  pb2  link  f6  black  t-secondary"
+            className="justify-center  pr3  pr4-md  df  align-center  lh-copy  pv2  link  f6  black  t-secondary"
             title="soundcloud"
             href={`https://soundcloud.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
             <IconSoundcloud color="black" size={16} />
-            <span className="pl2">/ {e}</span>
+            <span className="pl2">{e}</span>
           </a>
         );
       });
@@ -57,14 +57,14 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`facebook-${e}-${i}`}
-            className="df  align-center  lh-copy  pb2  link  f6  black  t-secondary"
+            className="justify-center  pr3  pr4-md  df  align-center  lh-copy  pv2  link  f6  black  t-secondary"
             title="facebook"
             href={`https://facebook.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
             <IconFacebook color="black" size={16} />
-            <span className="pl2">/ {e}</span>
+            <span className="pl2">{e}</span>
           </a>
         );
       });
@@ -75,14 +75,14 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`twitter-${e}-${i}`}
-            className="df  align-center  lh-copy  pb2  link  f6  black  t-secondary"
+            className="justify-center  pr3  pr4-md  df  align-center  lh-copy  pv2  link  f6  black  t-secondary"
             title="twitter"
             href={`https://twitter.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
             <IconTwitter color="black" size={16} />
-            <span className="pl2">/ {e}</span>
+            <span className="pl2">{e}</span>
           </a>
         );
       });
@@ -93,14 +93,14 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`instagram-${e}-${i}`}
-            className="df  align-center  lh-copy  pb2  link  f6  black  t-secondary"
+            className="justify-center  pr3  pr4-md  df  align-center  lh-copy  pv2  link  f6  black  t-secondary"
             title="instagram"
             href={`https://instagram.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
             <IconInstagram color="black" size={16} />
-            <span className="pl2">/ {e}</span>
+            <span className="pl2">{e}</span>
           </a>
         );
       });
@@ -108,14 +108,14 @@ export default function SocialLinks({ article }) {
 
     if (article?.tags?.length) {
       tags.push(
-        <p className="t-primary  f6  fw7  black  lh-copy  pb2">Tags:</p>
+        <p className="t-primary  f6  fw7  black  lh-copy  pv2">Tags:</p>
       );
 
       tags.push(
         article.tags.map((e) => (
           <>
             <Link href={`/tag/${e.tag.slug}`} legacyBehavior>
-              <span className="t-secondary  f7  cp  grey  fw7  pr3">
+              <span className="t-secondary  f7  cp  grey  fw7  pr4">
                 #{e.tag.name}
               </span>
             </Link>
@@ -125,7 +125,7 @@ export default function SocialLinks({ article }) {
     }
 
     return (
-      <div className="article__social-links  measure-wide  mla  mra  df  db-md  flex-wrap  justify-center  justify-start-md">
+      <div className="article__social-links  flex  flex-wrap  justify-center  measure-wide  mla  mra">
         {tags?.length ? <div className="pb4">{tags}</div> : ''}
         {links?.length ? links : ''}
       </div>

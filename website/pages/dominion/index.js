@@ -94,8 +94,11 @@ export default function Dominion({ siteConfig }) {
                     A quarter-yearly printed issue of Rendah Mag.
                   </li>
                   <li className="f-secondary  tal  f6  pb2  lh-copy">
-                    Monthly exclusive music, samples, tutorials, and 'behind the
-                    scenes' insights of underground music.
+                    Frequent exclusive music, samples, tutorials, and 'behind
+                    the scenes' insights of underground music.
+                  </li>
+                  <li className="f-secondary  tal  f6  pb2  lh-copy">
+                    Digital access to all previous prints.
                   </li>
                   <li className="f-secondary  tal  f6  pb2  lh-copy">
                     Your own Dominion Profile & login.

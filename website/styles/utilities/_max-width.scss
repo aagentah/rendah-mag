@@ -19,7 +19,7 @@ $max-widths: (
 
 @for $i from 1 through 10 {
   .mw-#{$i}0 {
-    max-width: #{$i}0%;
+    max-width: ($i * 10) + 0%;
   }
 }
 
@@ -38,7 +38,7 @@ $max-widths: (
 
     @for $i from 1 through 10 {
       .mw-#{$i}0-#{$infix} {
-        max-width: #{$i}0%;
+        max-width: ($i * 10) + 0%;
       }
     }
 

@@ -138,11 +138,13 @@ export default function Home() {
         <div className="flex  flex-wrap  pt5">
           <div className="col-24  pl3  pr3  pr0-md">
             <section className="pb5">
-              <ParallaxDiv translateX={[15, 5]}>
+              <ParallaxDiv translateX={[15, 10]}>
                 <span className="f3  t-primary  bold  rendah-red  lh-copy  pl3">
                   /// Latest on the site
                 </span>
+              </ParallaxDiv>
 
+              <ParallaxDiv translateX={[15, 0]}>
                 <div className="flex  flex-wrap  relative  pt4  pt2-md">
                   {[...Array(featuredPostsLength)].map((iteration, i) => (
                     <div key={iteration} className="col-24  col-4-md">
@@ -162,7 +164,7 @@ export default function Home() {
         </div>
 
         <div className="creations  bg-black  mb5  relative">
-          <div className="absolute  top  left  mt6  nl6">
+          <div className="absolute  top  left  mt6  nl6  dn  db-md">
             <ParallaxDiv translateY={[50, 200]}>
               <img className="w5  o-50" src="/images/vector-red.png" />
             </ParallaxDiv>

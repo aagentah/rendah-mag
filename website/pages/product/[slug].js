@@ -181,6 +181,9 @@ export default function Product({ siteConfig, product }) {
                       the scenes' insights of underground music
                     </li>
                     <li className="f-secondary  tal  f6  pb2  lh-copy">
+                      Digital access to all previous prints.
+                    </li>
+                    <li className="f-secondary  tal  f6  pb2  lh-copy">
                       Your own Dominion Profile & login.
                     </li>
                     {
@@ -303,11 +306,11 @@ export default function Product({ siteConfig, product }) {
                 {isSoldOut && (
                   <div className="col-24">
                     <div className="relative">
-                      <div className="absolute  top  right  br-100  nt4  nr4  info-color  o-10  f4">
+                      <div className="absolute  top  right  br-100  nt4  nr3  nr4-md  info-color  z2  bg-white  f4">
                         <IconInfoCircle color="#6697f4" size={100} />
                       </div>
 
-                      <div className="bc-info-color  ba  bw1  br3  pa4  ph5-md  mb4  relative">
+                      <div className="bg-white  bc-info-color  ba  bw1  br3  pa4  z1  ph5-md  mb4  relative">
                         <div className="pb3">
                           <Heading
                             /* Options */

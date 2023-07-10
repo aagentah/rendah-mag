@@ -248,12 +248,12 @@ export default function Post({ siteConfig, post, preview }) {
           <Sections body={post.body} />
         </article>
 
-        <div className="mla  mra  pv5  mb4  bg-light-grey  ph4  ph0-md">
+        <div className="mla  mra  pv5  mb4  mb5-md  bg-light-grey  ph4  ph0-md">
           <SocialLinks article={post} />
         </div>
 
         <Container>
-          <section className="flex  flex-wrap  justify-center  align-center  pb3  pb4-md">
+          <section className="flex  flex-wrap  justify-center  align-center  pb4  pb5-md">
             {post.authors.map((i) => (
               <div className="col-24  col-12-md  pb4  pb3-md  ph3">
                 <Author author={i.author} />
