@@ -146,7 +146,7 @@ export default function Product({ siteConfig, product }) {
                 <Heading
                   /* Options */
                   htmlEntity="p"
-                  text="Subscribe instead for £9.00?"
+                  text="Subscribe instead for £9.00 + Free Shipping?"
                   color="black"
                   size="medium"
                   truncate={0}
@@ -174,11 +174,12 @@ export default function Product({ siteConfig, product }) {
                       A Welcome package (+ membership card & stickers).
                     </li>
                     <li className="f-secondary  tal  f6  pb2  lh-copy">
-                      A quarter-yearly printed issue of Rendah Mag.
+                      A quarter-yearly printed issue of Rendah Mag + FREE
+                      Shipping.
                     </li>
                     <li className="f-secondary  tal  f6  pb2  lh-copy">
-                      Monthly exclusive music, samples, tutorials, and 'behind
-                      the scenes' insights of underground music
+                      Frequent exclusive music, samples, tutorials, and 'behind
+                      the scenes' insights of underground music.
                     </li>
                     <li className="f-secondary  tal  f6  pb2  lh-copy">
                       Digital access to all previous prints.
@@ -430,7 +431,7 @@ export default function Product({ siteConfig, product }) {
 
                       {!isSoldOut && (
                         <p className="db  dib-md  rendah-red  f6  lh-copy  pl2-md  pt2  pt0-md">
-                          (or <span className="fw7">£9 + free shipping</span> on
+                          (or <span className="fw7">£9 + Free Shipping</span> on
                           the{' '}
                           <Link href="/dominion" legacyBehavior>
                             <span className="cp  underline  fw7">

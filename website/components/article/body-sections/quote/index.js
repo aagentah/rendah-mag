@@ -13,7 +13,7 @@ export default function Quote({ quote, source }) {
 
             <div className="col-24">
               <span className="t-secondary  lh-copy  f5  grey  fw7  tal  db">
-                {source}
+                ~ {source}
               </span>
             </div>
           </p>

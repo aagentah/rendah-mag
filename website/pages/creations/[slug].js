@@ -46,7 +46,7 @@ export default function Creations({ siteConfig, post, preview }) {
 
       if (!user?.isDominion && !preview) {
         return (
-          <div className="relative  br4  shadow2  bg-light-grey  pa3  pa4-md  mt3">
+          <div className="relative  br4  shadow2  bg-light-grey  pa3  pa4-md  mt3  col-20  col-16-md  mla  mra">
             <div className="absolute  pa2  w4  top  left  right  mla  mra  nt3  bg-light-grey  br4  shadow2">
               <img
                 /* Options */
@@ -61,7 +61,7 @@ export default function Creations({ siteConfig, post, preview }) {
                 htmlEntity="h1"
                 text="Hold up!"
                 color="black"
-                size="small"
+                size="medium"
                 truncate={null}
                 onClick={null}
                 /* Children */
@@ -107,70 +107,82 @@ export default function Creations({ siteConfig, post, preview }) {
         preview={preview}
       >
         <div className="creations">
-          <Container>
-            <div className="pt5  pt6-md  ph3  ph0-md">
-              <div className="pt4  pt0-md">
-                <div className="relative">
-                  <Hero
-                    image={post?.coverImage}
-                    title={null}
-                    description={null}
-                    heroButtonText={null}
-                    link={null}
-                    marginTop={0}
-                    marginBottom={0}
-                    modifier="creations"
-                    skeleton={!post}
-                  />
+          <div className="pt5  pt6-md  ph3  ph0-md">
+            <div className="pt4  pt0-md">
+              <div className="relative">
+                <Hero
+                  image={post?.coverImage}
+                  title={null}
+                  description={null}
+                  heroButtonText={null}
+                  link={null}
+                  marginTop={0}
+                  marginBottom={0}
+                  modifier="creations"
+                  skeleton={!post}
+                />
 
-                  <div className="creations__label-wrapper">
-                    <span className="t-primary  f7  bold  pa2  black  bg-light-grey">
-                      DOMINION: CREATIONS
-                    </span>
-                  </div>
+                <div className="creations__label-wrapper">
+                  <span className="t-primary  f7  bold  pa2  black  bg-light-grey">
+                    DOMINION: CREATIONS
+                  </span>
                 </div>
               </div>
             </div>
+          </div>
 
-            <article className="pt5  pb4  ph3  ph4-md">
-              <section className="measure-wide  mla  mra">
-                <Heading
-                  /* Options */
-                  htmlEntity="h1"
-                  text={post.title}
-                  color="white"
-                  size={app.deviceSize === 'md' ? 'large' : 'x-large'}
-                  truncate={null}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
+          <article className="pt5  pb4">
+            <section>
+              <div className="flex  flex-wrap">
+                <div className="col-6" />
 
-                <p className="t-secondary  f6  white  lh-copy  pb4">
-                  {post.authors.map((i) => (
-                    <>
-                      <Link
-                        href={`/team/${i.author.slug.current}`}
-                        legacyBehavior
-                      >
-                        <span className="cp  white  fw7">{i.author.name}</span>
-                      </Link>
-                      {' | '}
-                    </>
-                  ))}
+                <div className="col-24  col-18-md">
+                  <div className="ph4  ph0-md  pb3  col-18  relative">
+                    <Heading
+                      /* Options */
+                      htmlEntity="h1"
+                      text={post.title}
+                      color="white"
+                      size={app.deviceSize === 'md' ? 'large' : 'x-large'}
+                      truncate={null}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
 
-                  {post?.publishedAt && <Date dateString={post.publishedAt} />}
-                </p>
+                    <p className="t-secondary  f6  white  lh-copy  pt4  pb3">
+                      {post.authors.map((i) => (
+                        <>
+                          <Link
+                            href={`/team/${i.author.slug.current}`}
+                            legacyBehavior
+                          >
+                            <span className="cp  white  fw7">
+                              {i.author.name}
+                            </span>
+                          </Link>
+                          {' | '}
+                        </>
+                      ))}
 
-                {renderPublicSections()}
-                {renderSections()}
-
-                <div className="pb4  mb2">
-                  <SocialLinks article={post} />
+                      {post?.publishedAt && (
+                        <Date dateString={post.publishedAt} />
+                      )}
+                    </p>
+                  </div>
                 </div>
-              </section>
-            </article>
+              </div>
 
+              {renderPublicSections()}
+              {renderSections()}
+
+              <div className="pb4  mb2">
+                <SocialLinks article={post} />
+              </div>
+            </section>
+          </article>
+
+          <Container>
             <section className="flex  flex-wrap  justify-center  align-center  pb3  pb4-md">
               {post.authors.map((i) => (
                 <div className="col-24  col-12-md  pb4  pb3-md  ph3">

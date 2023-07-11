@@ -91,7 +91,8 @@ export default function Dominion({ siteConfig }) {
                     A Welcome package (+ membership card & stickers).
                   </li>
                   <li className="f-secondary  tal  f6  pb2  lh-copy">
-                    A quarter-yearly printed issue of Rendah Mag.
+                    A quarter-yearly printed issue of Rendah Mag + FREE
+                    Shipping.
                   </li>
                   <li className="f-secondary  tal  f6  pb2  lh-copy">
                     Frequent exclusive music, samples, tutorials, and 'behind

@@ -11,7 +11,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconStar)
+  import('~/components/elements/icon').then((m) => m.IconStar)
 );
 
 /**
@@ -36,16 +36,16 @@ export default function HeroDefault({
   marginBottom,
   modifier,
   //
-  skeleton
+  skeleton,
 }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   let imageUrlWidth;
-  let imageHeight = 600;
+  let imageHeight = null;
 
   if (app.deviceSize === 'md') {
     imageUrlWidth = 700;
-    imageHeight = 400;
+    imageHeight = null;
   }
 
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
@@ -57,13 +57,13 @@ export default function HeroDefault({
   let heroButton;
 
   const styles = {
-    height: `${imageHeight}px`
+    height: `${imageHeight}px`,
   };
 
   if (link) {
     linkProps = {
       type: 'external',
-      href: link
+      href: link,
     };
   }
 
