@@ -14,6 +14,7 @@ import Youtube from './youtube';
 import FacebookVideo from './facebook-video';
 import AudioEmbed from './audio';
 import ArticleLink from './article-link';
+import CodeBlock from './code-block';
 
 export default function Sections({ body, ...props }) {
   let imageCount = 0;
@@ -139,6 +140,18 @@ export default function Sections({ body, ...props }) {
             allowDownload={section?.allowDownload}
           />
         </div>
+      );
+    }
+
+    // codeBlock
+    if (section._type === 'codeBlock') {
+      return (
+        <CodeBlock
+          {...props}
+          i={i}
+          language={section.language}
+          code={section.code}
+        />
       );
     }
 

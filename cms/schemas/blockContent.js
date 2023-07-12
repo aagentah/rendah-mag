@@ -26,6 +26,7 @@ export default {
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
+          { title: "Code", value: "code" },
         ],
         annotations: [
           {
@@ -291,6 +292,27 @@ export default {
           name: "allowDownload",
           title: "Allow Download",
           type: "boolean",
+        },
+      ],
+    },
+    {
+      name: "codeBlock",
+      title: "Code Block",
+      type: "object",
+      fields: [
+        {
+          name: "language",
+          title: "Language",
+          type: "string",
+          description: "",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "code",
+          title: "code",
+          type: "text",
+          description: "",
+          validation: (Rule) => Rule.required(),
         },
       ],
     },

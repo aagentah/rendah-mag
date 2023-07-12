@@ -89,3 +89,24 @@ input[type='tel'],
 input[type='color'] {
   font-size: 16px;
 }
+
+pre {
+  overflow: auto;
+  border: 1px solid white;
+  @extend .ph3;
+  @extend .pv4;
+  @extend .br3;
+  @extend .mb4;
+
+  * {
+    font-size: 14px !important;
+    // background-color: var(--light-grey);
+  }
+}
+
+p > code {
+  border: 1px solid white;
+  // background-color: var(--light-grey);
+  @extend .ph1;
+  @extend .br3;
+}

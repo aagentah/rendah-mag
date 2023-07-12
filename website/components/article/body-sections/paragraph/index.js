@@ -58,7 +58,7 @@ export default function Paragraph({ text, markDefs }) {
               {text.map((child, i) => renderChildren(child, markDefs, i))}
             </p>
           </div>
-          <div className="col-6" />{' '}
+          <div className="col-6" />
         </div>
       </>
     );
