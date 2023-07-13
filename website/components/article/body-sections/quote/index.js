@@ -6,7 +6,7 @@ export default function Quote({ quote, source }) {
         <div className="col-24  col-12-md  flex  justify-center">
           <p className="flex  flex-wrap  justify-center  pt4">
             <div className="col-24  pb3">
-              <q className="t-primary  lh-title  f5  f3-md  grey  tal  db">
+              <q className="t-primary  lh-title  f5  f3-md  rendah-red  tal  db">
                 {quote}
               </q>
             </div>
