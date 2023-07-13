@@ -165,7 +165,7 @@ export default function Product({ siteConfig, product }) {
                   </p>
                 </div>
 
-                <div className="measure-wide  ph4  ph0-md">
+                <div className="measure-wide">
                   <p className="f-secondary  taj  f6  pb3  lh-copy">
                     <strong>We offer the following:</strong>
                   </p>

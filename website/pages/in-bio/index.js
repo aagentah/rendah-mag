@@ -19,7 +19,7 @@ const Modal = dynamic(() => import('~/components/modal'));
 const SubscribeForm = dynamic(() => import('~/components/subscribe-form'));
 
 const IconHeart = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconHeart)
+  import('~/components/elements/icon').then((m) => m.IconHeart)
 );
 
 export default function LinkInBio({ siteConfig, posts, preview }) {
@@ -28,7 +28,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  const renderItemType = post => {
+  const renderItemType = (post) => {
     return (
       <div className="flex  flex-wrap  mb3  cp">
         <a
@@ -58,7 +58,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
           siteConfig,
           title: 'Link In Bio',
           description: null,
-          image: null
+          image: null,
         }}
         preview={preview}
       >
@@ -160,7 +160,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
                   >
                     <img
                       className="linkInBio__dominion-logo"
-                      src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610317978/dominion/dominion-logo.png"
+                      src="/images/dominion-logo.png"
                     />
                   </a>
                 </div>
@@ -179,7 +179,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
                 </div>
               </div>
 
-              <div className="col-24  pb3">
+              <div className="col-24">
                 <div className="flex  flex-wrap  mb3  cp">
                   <a
                     href="/cyphers"
@@ -188,6 +188,19 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
                     className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
                   >
                     <p className="t-secondary  f5  tac  lh-copy">Cyphers</p>
+                  </a>
+                </div>
+              </div>
+
+              <div className="col-24  pb3">
+                <div className="flex  flex-wrap  mb3  cp">
+                  <a
+                    href="https://forms.gle/xpPtVhUiuzZzehdy8"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
+                  >
+                    <p className="t-secondary  f5  tac  lh-copy">Contact</p>
                   </a>
                 </div>
               </div>
@@ -244,8 +257,8 @@ export async function getServerSideProps({ req, preview = false }) {
     props: {
       siteConfig,
       posts,
-      preview
-    }
+      preview,
+    },
   };
 }
 

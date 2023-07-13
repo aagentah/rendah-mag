@@ -55,8 +55,7 @@ export default function Dominion({ siteConfig }) {
         siteConfig,
         title: 'Dominion',
         description: 'Something new & exciting.',
-        image:
-          'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610196181/dominion/dominion-social-facebook-meta.png',
+        image: '/images/dominion-logo.png',
       }}
       preview={null}
     >
