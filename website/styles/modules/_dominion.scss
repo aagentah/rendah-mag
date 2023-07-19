@@ -145,3 +145,14 @@
     right: -30px;
   }
 }
+
+.dominion-modal-wrapper--offerings {
+  .col-6 {
+    flex: 0 0 0%;
+    max-width: 0%;
+  }
+
+  .col-12-md {
+    @extend .col-24-md;
+  }
+}

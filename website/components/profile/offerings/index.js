@@ -15,7 +15,7 @@ import { getAllOfferings } from '~/lib/sanity/requests';
 const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
 const IconArrowLeft = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowLeft)
+  import('~/components/elements/icon').then((m) => m.IconArrowLeft)
 );
 
 export default function ProfileDominion() {
@@ -23,7 +23,7 @@ export default function ProfileDominion() {
   const [offerings, setOfferings] = useState([]);
   const [offeringsLength, setOfferingsLength] = useState(9);
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
-  const handleAudioPlay = playerRef => setCurrentAudioSelected(playerRef);
+  const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
   const [modalActive, setModalActive] = useState(false);
   const [cardsShow, setCardsShow] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -35,7 +35,7 @@ export default function ProfileDominion() {
 
   const buttonIconArrowLeft = <IconArrowLeft color="white" size={16} />;
 
-  const apply = i => {
+  const apply = (i) => {
     setModalActive(i);
     setCardsShow(false);
   };
@@ -156,7 +156,7 @@ export default function ProfileDominion() {
                       type: 'form',
                       url: null,
                       target: null,
-                      routerLink: null
+                      routerLink: null,
                     }}
                   />
                 </div>
@@ -170,6 +170,7 @@ export default function ProfileDominion() {
                       key={i}
                       className={`
                     dominion-modal-wrapper
+                    dominion-modal-wrapper--offerings
                     ${modalActive === i ? 'dominion-modal-wrapper--active' : ''}
                   `}
                     >
@@ -247,8 +248,8 @@ export default function ProfileDominion() {
               target: null,
               routerLink: Link,
               routerLinkProps: {
-                scroll: false
-              }
+                scroll: false,
+              },
             }}
           />
         </div>

@@ -46,7 +46,7 @@ export default function Creations({ siteConfig, post, preview }) {
 
       if (!user?.isDominion && !preview) {
         return (
-          <div className="relative  br4  shadow2  bg-light-grey  pa3  pa4-md  mt3  col-20  col-16-md  mla  mra">
+          <div className="relative  br4  shadow2  bg-light-grey  pa3  pa4-md  mt5  col-20  col-12-md  mla  mra">
             <div className="absolute  pa2  w4  top  left  right  mla  mra  nt3  bg-light-grey  br4  shadow2">
               <img
                 /* Options */
