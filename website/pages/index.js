@@ -21,7 +21,6 @@ import CardBlog from '~/components/card/blog';
 import {
   getFeaturedPosts,
   getHomePage,
-  getCategory,
   getAllCreationsTotal,
 } from '~/lib/sanity/requests';
 
@@ -42,12 +41,10 @@ export default function Home() {
   const [user] = useUser();
   const [featuredPosts, setFeaturedPosts] = useState(null);
   const [homePage, setHomePage] = useState(null);
-  const [interviews, setInterviews] = useState(null);
   const [creations, setCreations] = useState(null);
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  const [interviewsLength, setInterviewsLength] = useState(4);
   const [creationsLength, setCreationsLength] = useState(4);
   const [featuredPostsLength, setFeaturedPostsLength] = useState(6);
 
@@ -55,12 +52,10 @@ export default function Home() {
     const action = async () => {
       const featuredPostsRes = await getFeaturedPosts();
       const homePage = await getHomePage();
-      const interviewsRes = await getCategory('interviews', [1, 4]);
       const creationsRes = await getAllCreationsTotal();
 
       setFeaturedPosts(featuredPostsRes);
       setHomePage(homePage);
-      setInterviews(interviewsRes);
       setCreations(creationsRes);
     };
 
