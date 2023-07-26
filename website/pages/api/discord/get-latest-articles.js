@@ -13,7 +13,7 @@ const cors = initMiddleware(
 );
 
 const webhookURL =
-  'https://discord.com/api/webhooks/1108010549914128467/-nY1rv3LF8bZA5r3OkEK5d-IO79W9cZDuAs23Hzq9KVpplDO1iYpWsMbEO3wnMYrnxcQ';
+  'https://discord.com/api/webhooks/1133720981471506442/6dt4oAAC-1I9B7_GF3kxx6LiJcFXniPqGbNZXxW9tNT2PgqNYi7DHmnksKH6aWXJTdib';
 
 const getAuthorNames = (authors) => {
   let names = '';
@@ -39,34 +39,41 @@ const handler = async (req, res) => {
     for (let i = 0; i < posts.length; i++) {
       const post = posts[i];
 
-      console.log('post', post);
-
       if (!post.hasPostedDiscord) {
         notPostedInDiscord.push(post);
-
-        // Update post
-        await client
-          .patch(post._id) // Document ID to patch
-          .set({ hasPostedDiscord: true }) // Shallow merge
-          .commit() // Perform the patch and return a promise
-          .then((e) => {
-            console.log('Updated!');
-          })
-          .catch((err) => {
-            console.log('Error', err.message);
-          });
 
         // Send post to Discord
         const content = `New post up from ${getAuthorNames(
           post.authors
         )}!\n\nhttps://rendahmag.com/article/${post.slug}`;
+
         await fetch(webhookURL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ content }),
-        });
+        })
+          .then(async (response) => {
+            if (response.ok) {
+              // Update post only if the webhook request was successful
+              await client
+                .patch(post._id) // Document ID to patch
+                .set({ hasPostedDiscord: true }) // Shallow merge
+                .commit() // Perform the patch and return a promise
+                .then((e) => {
+                  console.log('Updated!');
+                })
+                .catch((err) => {
+                  console.log('Error', err.message);
+                });
+            } else {
+              console.log('Webhook request failed');
+            }
+          })
+          .catch((error) => {
+            console.log('Webhook request failed', error);
+          });
       }
     }
 
