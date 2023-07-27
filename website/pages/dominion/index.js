@@ -5,6 +5,7 @@ import Image from '~/components/elements/image';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Buttons from '~/components/dominion/buttons';
+import Accordion from '~/components/accordion';
 
 import {
   getSiteConfig,
@@ -18,6 +19,26 @@ export default function Dominion({ siteConfig }) {
   const [renderButtons, setRenderButtons] = useState(false);
   const [dominion, setDominion] = useState(null);
   const app = useApp();
+
+  const accordionData = [
+    {
+      question: 'When do I get my first printed mag?',
+      answer:
+        'Once you’ve subscribed, we’ll send out the very latest magazine happening at that point in time, regardless of anything else that may be happening in our schedule. From there, you can expect a new print in the mail every 3-4 months on average.',
+    },
+    {
+      question: `How do I access the digital content?`,
+      answer: `A Dominion profile & login will be automatically created where you can access all of our digital content off-the-bat. In addition, we'll typically send a few emails each month to expand on what we're building as a team, and highlight the various things launching across the Dominion platform.`,
+    },
+    {
+      question: 'Can I cancel whenever?',
+      answer: 'Yes. You’re absolutely free to cancel at any time via email.',
+    },
+    {
+      question: 'Why not Patreon?',
+      answer: `We built this website and the Dominion dashboard completely bespoke to create a custom experience for those using the platform. Instead of going down the Patreon route, we've enjoyed the experiences that arise in creating something specifically for our vision. Technologies used are React.js, Next.js, and Sanity.io, with Stripe integrations to handle security & payments.`,
+    },
+  ];
 
   useEffect(() => {
     const action = async () => {
@@ -65,7 +86,7 @@ export default function Dominion({ siteConfig }) {
             <img src="/images/dominion-logo.png" alt="Dominion" />
           </div>
 
-          <div className="flex  flex-wrap  pb5-md  mb3  mb4-md  ph5-md">
+          <div className="flex  flex-wrap  pb5  mb3  mb4-md  ph5-md">
             <div className="col-24  col-10-md  flex  flex-wrap  justify-center  align-center">
               <img
                 className="mb3  mb0-md"
@@ -75,39 +96,39 @@ export default function Dominion({ siteConfig }) {
             </div>
             <div className="col-24  col-14-md  flex  flex-wrap  justify-center  ph0  pl4-md  pr0-md">
               <div className="measure-wide  ph4  ph0-md  pb2">
-                <p className="f-secondary  taj  f6  lh-copy  pb3">
+                <p className="t-secondary  taj  f6  lh-copy  pb3">
                   With so much happening right now, we want to push our platform
                   into new territory, offering a new way for people to explore
                   the landscape of underground music culture.
                 </p>
 
-                <p className="f-secondary  taj  f6  pb3  lh-copy">
+                <p className="t-secondary  taj  f6  pb3  lh-copy">
                   <strong>We offer the following:</strong>
                 </p>
 
                 <ul className="pl3">
-                  <li className="f-secondary  tal  f6  pb2  lh-copy">
+                  <li className="t-secondary  tal  f6  pb2  lh-copy">
                     A Welcome package (+ membership card & stickers).
                   </li>
-                  <li className="f-secondary  tal  f6  pb2  lh-copy">
+                  <li className="t-secondary  tal  f6  pb2  lh-copy">
                     A quarter-yearly printed issue of Rendah Mag + FREE
                     Shipping.
                   </li>
-                  <li className="f-secondary  tal  f6  pb2  lh-copy">
+                  <li className="t-secondary  tal  f6  pb2  lh-copy">
                     Frequent exclusive music, samples, tutorials, and 'behind
                     the scenes' insights of underground music.
                   </li>
-                  <li className="f-secondary  tal  f6  pb2  lh-copy">
+                  <li className="t-secondary  tal  f6  pb2  lh-copy">
                     Digital access to all previous prints.
                   </li>
-                  <li className="f-secondary  tal  f6  pb2  lh-copy">
+                  <li className="t-secondary  tal  f6  pb2  lh-copy">
                     Your own Dominion Profile & login.
                   </li>
                 </ul>
               </div>
 
               <div className="measure-wide  mb3  ph4  ph0-md">
-                <p className="f-secondary  taj  f6  lh-copy  pb3-md">
+                <p className="t-secondary  taj  f6  lh-copy  pb3-md">
                   Our mission with this project is to present something new and
                   exciting for the community in the hope that we can truly bring
                   something of value to artists and listeners alike. We hope you
@@ -119,6 +140,26 @@ export default function Dominion({ siteConfig }) {
                 {renderButtons && <Buttons />}
               </div>
             </div>
+          </div>
+        </Container>
+
+        <Container>
+          <div className="pb4  flex  justify-center">
+            <Heading
+              /* Options */
+              htmlEntity="h3"
+              text="FAQ"
+              color="black"
+              size="medium"
+              truncate={null}
+              skeleton={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+
+          <div className="measure-wide  mla  mra  pb4">
+            <Accordion data={accordionData} />
           </div>
         </Container>
 

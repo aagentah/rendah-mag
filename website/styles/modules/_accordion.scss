@@ -1,0 +1,53 @@
+.accordion {
+  //   overflow: hidden;
+  width: 100%;
+}
+
+.accordion-item {
+  transition: background-color 0.3s ease-in-out;
+
+  .question {
+    position: relative;
+
+    @extend .t-primary;
+    @extend .bold;
+    @extend .f6;
+    @extend .lh-title;
+    @extend .pa3;
+    @extend .shadow2;
+    @extend .br3;
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z'/%3E%3C/svg%3E");
+      position: absolute;
+      right: 15px;
+      top: 25px;
+      transform: translateY(-50%);
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+      background-size: 70%;
+      background-position: center;
+    }
+  }
+
+  .answer {
+    @extend .t-secondary;
+    @extend .f6;
+    @extend .lh-copy;
+    @extend .ph3;
+    @extend .pb3;
+  }
+}
+
+.accordion-item.active {
+  .answer {
+    @extend .pt3;
+  }
+
+  .question::after {
+    transform: translateY(-50%) rotate(-180deg);
+  }
+}

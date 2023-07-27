@@ -15,7 +15,7 @@ import { useApp } from '~/context-provider/app';
 import {
   getSiteConfig,
   getSmartLink,
-  getSmartLinksTotal
+  getSmartLinksTotal,
 } from '~/lib/sanity/requests';
 
 const Modal = dynamic(() => import('~/components/modal'));
@@ -23,27 +23,27 @@ const Modal = dynamic(() => import('~/components/modal'));
 const SubscribeForm = dynamic(() => import('~/components/subscribe-form'));
 
 const IconFacebook = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconFacebook)
+  import('~/components/elements/icon').then((m) => m.IconFacebook)
 );
 
 const IconInstagram = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconInstagram)
+  import('~/components/elements/icon').then((m) => m.IconInstagram)
 );
 
 const IconYoutube = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconYoutube)
+  import('~/components/elements/icon').then((m) => m.IconYoutube)
 );
 
 const IconSoundcloud = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconSoundcloud)
+  import('~/components/elements/icon').then((m) => m.IconSoundcloud)
 );
 
 const IconWebLink = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconWebLink)
+  import('~/components/elements/icon').then((m) => m.IconWebLink)
 );
 
 const IconHeart = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconHeart)
+  import('~/components/elements/icon').then((m) => m.IconHeart)
 );
 
 export default function SmartLink({ siteConfig, post, preview }) {
@@ -52,7 +52,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  const renderItemType = item => {
+  const renderItemType = (item) => {
     let service;
     let icon;
     let url = item.url;
@@ -143,7 +143,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
           siteConfig,
           title: post.title,
           description: null,
-          image: null
+          image: null,
         }}
         preview={preview}
       >
@@ -245,7 +245,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
 
             <div className="flex  justify-center  pt3">
               <button
-                className="f-secondary  f5  black  lh-copy  cp  underline"
+                className="t-secondary  f5  black  lh-copy  cp  underline"
                 onClick={() => {
                   setModalActive(true);
                 }}
@@ -274,9 +274,9 @@ export async function getStaticProps({ req, params, preview = false }) {
     props: {
       siteConfig,
       post: data || null,
-      preview
+      preview,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }
 
@@ -285,11 +285,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      data.map(link => ({
+      data.map((link) => ({
         params: {
-          slug: link.slug
-        }
+          slug: link.slug,
+        },
       })) || [],
-    fallback: true
+    fallback: true,
   };
 }

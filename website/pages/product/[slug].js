@@ -158,7 +158,7 @@ export default function Product({ siteConfig, product }) {
 
               <div className="pb4  pb3-md">
                 <div className="pb3">
-                  <p className="f-secondary  taj  f6  pb3  lh-copy">
+                  <p className="t-secondary  taj  f6  pb3  lh-copy">
                     Joining our Dominion Subscription is cheaper than individual
                     prints, and will give access to a great deal of additional
                     features.
@@ -166,29 +166,29 @@ export default function Product({ siteConfig, product }) {
                 </div>
 
                 <div className="measure-wide">
-                  <p className="f-secondary  taj  f6  pb3  lh-copy">
+                  <p className="t-secondary  taj  f6  pb3  lh-copy">
                     <strong>We offer the following:</strong>
                   </p>
                   <ul className="pl3">
-                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                    <li className="t-secondary  tal  f6  pb2  lh-copy">
                       A Welcome package (+ membership card & stickers).
                     </li>
-                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                    <li className="t-secondary  tal  f6  pb2  lh-copy">
                       A quarter-yearly printed issue of Rendah Mag + FREE
                       Shipping.
                     </li>
-                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                    <li className="t-secondary  tal  f6  pb2  lh-copy">
                       Frequent exclusive music, samples, tutorials, and 'behind
                       the scenes' insights of underground music.
                     </li>
-                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                    <li className="t-secondary  tal  f6  pb2  lh-copy">
                       Digital access to all previous prints.
                     </li>
-                    <li className="f-secondary  tal  f6  pb2  lh-copy">
+                    <li className="t-secondary  tal  f6  pb2  lh-copy">
                       Your own Dominion Profile & login.
                     </li>
                     {
-                      // <li className="f-secondary  tal  f5  pb2  lh-copy">
+                      // <li className="t-secondary  tal  f5  pb2  lh-copy">
                       //   Discounts from all coming Rendah Mag products.
                       // </li>
                     }
@@ -488,7 +488,7 @@ export default function Product({ siteConfig, product }) {
                         </div>
                       </div>
                       <div className="col-24  col-8-md  flex  flex-wrap  align-center">
-                        <div className="flex  flex-wrap  bg-white  justify-center  pa2  ph3  br2  w-100  bg-white  shadow2">
+                        <div className="flex  flex-wrap  bg-white  justify-center  pa2  ph3  br2  w-100  bg-white  shadow2  input__promo">
                           <input
                             className="input  w-100  tac"
                             placeholder="PROMO CODE"

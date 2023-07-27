@@ -228,7 +228,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
 
             <div className="flex  justify-center  pt3">
               <p
-                className="f-secondary  f5  black  lh-copy  cp  underline"
+                className="t-secondary  f5  black  lh-copy  cp  underline"
                 onClick={() => {
                   setModalActive(true);
                 }}

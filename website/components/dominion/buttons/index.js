@@ -74,7 +74,7 @@ function Buttons() {
       </div>
 
       <div className="col-24  col-12-md  flex  align-center  justify-center  pl3-md">
-        <div className="flex  flex-wrap  bg-white  justify-center  pa2  ph3  br2  w-100  bg-white  shadow2">
+        <div className="flex  flex-wrap  bg-white  justify-center  pa2  ph3  br2  w-100  bg-white  shadow2  input__promo">
           <input
             className="input  w-100  tac"
             placeholder="PROMO CODE"
