@@ -47,6 +47,8 @@ export default function Post({ siteConfig, post, preview }) {
   const [modalActive, setModalActive] = useState(false);
   const [morePosts, setMorePosts] = useState([]);
 
+  console.log('post', post);
+
   useEffect(() => {
     const action = async () => {
       const morePostsRes = await getMorePosts(post?.slug);
@@ -196,6 +198,7 @@ export default function Post({ siteConfig, post, preview }) {
               marginBottom={0}
               modifier="article"
               skeleton={!post}
+              caption={post?.coverImageCaption}
             />
           </div>
         </div>

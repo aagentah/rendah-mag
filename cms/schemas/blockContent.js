@@ -65,6 +65,11 @@ export default {
       icon: iconImage,
       fields: [
         {
+          name: "fullImage",
+          title: "Full Image",
+          type: "boolean",
+        },
+        {
           name: "resize",
           title: "Resize",
           type: "string",

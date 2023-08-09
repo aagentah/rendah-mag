@@ -15,6 +15,7 @@ const postFields = `
   'category': category->title,
   'slug': slug.current,
   'coverImage': image.asset->url,
+  'coverImageCaption': image.caption,
   'authors': authors[] {
     'author': *[_id == ^._ref] [0] {
       ...,

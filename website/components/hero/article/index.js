@@ -1,9 +1,11 @@
 import dynamic from 'next/dynamic';
+import BlockContent from '@sanity/block-content-to-react';
 
 import Image from '~/components/elements/image';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
+import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
@@ -30,6 +32,7 @@ export default function HeroDefault({
   marginTop,
   marginBottom,
   modifier,
+  caption,
   //
   skeleton,
 }) {
@@ -37,6 +40,8 @@ export default function HeroDefault({
   const scale = app?.isRetina ? 2 : 1;
   let imageUrlWidth = 650;
   let imageUrlHeight = 700;
+
+  console.log('image', image);
 
   if (!app.deviceSize) return;
 
@@ -93,6 +98,16 @@ export default function HeroDefault({
       style={styles}
     >
       {heroImage && <div className="hero__image">{heroImage}</div>}
+      {caption && (
+        <div className="relative">
+          <figcaption className="absolute  bg-white  black  f7  lh-copy  pv2  ph3  bottom  right  mr3  nb3  shadow1  br3">
+            <BlockContent
+              blocks={caption}
+              serializers={SANITY_BLOCK_SERIALIZERS}
+            />
+          </figcaption>
+        </div>
+      )}
     </article>
   );
 }

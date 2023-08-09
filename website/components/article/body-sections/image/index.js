@@ -11,21 +11,21 @@ import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 export default function ImageSection({ section, imageCount }) {
   const app = useApp();
 
+  console.log('section', section);
+
   const isEven = (number) => {
     return number % 2 === 0;
   };
 
   const handleCaption = () => {
-    let { caption, source } = section;
+    let { source, fullImage } = section;
 
     // If blockContent
-    if (isArray(caption)) {
+    if (isArray(section?.caption)) {
       return (
-        <figcaption
-          className={`caption  pv2  ph3  ${isEven(imageCount) ? 'tar' : 'tal'}`}
-        >
+        <figcaption className="black  f7  lh-copy  pa2  mla  mra  tac">
           <BlockContent
-            blocks={caption}
+            blocks={section?.caption}
             serializers={SANITY_BLOCK_SERIALIZERS}
           />
         </figcaption>
@@ -33,7 +33,7 @@ export default function ImageSection({ section, imageCount }) {
     }
 
     // Fallback for old text
-    if (caption) {
+    if (section?.caption) {
       if (source) {
         return (
           <a
@@ -44,7 +44,7 @@ export default function ImageSection({ section, imageCount }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {caption}
+            {section?.caption}
           </a>
         );
       }
@@ -53,7 +53,7 @@ export default function ImageSection({ section, imageCount }) {
         <span
           className={`caption  pv2  ph3  ${isEven(imageCount) ? 'tar' : 'tal'}`}
         >
-          {caption}
+          {section?.caption}
         </span>
       );
     }
@@ -72,11 +72,15 @@ export default function ImageSection({ section, imageCount }) {
 
   return (
     <div
-      className={`flex  flex-wrap   ${
+      className={`flex  flex-wrap  justify-center  ${
         isEven(imageCount) ? 'flex-row-reverse' : ''
       }`}
     >
-      <div className="col-24  col-20-md">
+      <div
+        className={`justify-center  ${
+          section?.fullImage ? 'col-24  col-10-md' : 'col-24  col-20-md'
+        }`}
+      >
         <LazyLoad once offset={250} height={360}>
           <figure>
             <Image
@@ -89,7 +93,9 @@ export default function ImageSection({ section, imageCount }) {
               placeholder={placeholder}
               alt="This is the alt text."
               figcaption={null}
-              height={app.deviceSize === 'md' ? null : 700}
+              height={
+                app.deviceSize === 'md' || section?.fullImage ? null : 700
+              }
               width={null}
               customClass=""
               skeleton={false}
@@ -101,7 +107,7 @@ export default function ImageSection({ section, imageCount }) {
           </figure>
         </LazyLoad>
       </div>
-      <div className="col-4" />
+      <div className={section?.fullImage ? 'dn' : 'col-4'} />
     </div>
   );
 }
