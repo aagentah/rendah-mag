@@ -7,7 +7,7 @@ export default {
       name: "title",
       title: "Article Title",
       type: "string",
-      validation: Rule => Rule.required().max(60)
+      validation: (Rule) => Rule.required().max(60),
     },
     {
       name: "slug",
@@ -16,9 +16,9 @@ export default {
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96
+        maxLength: 96,
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     // {
     //   name: "showAuthor",
@@ -39,9 +39,9 @@ export default {
       of: [
         {
           type: "reference",
-          to: { type: "author" }
-        }
-      ]
+          to: { type: "author" },
+        },
+      ],
     },
     // {
     //   name: "tags",
@@ -58,26 +58,31 @@ export default {
       name: "featured",
       title: "Featured Article",
       description: "Feature on the big Homepage Hero banner.",
-      type: "boolean"
+      type: "boolean",
     },
     {
       name: "category",
       title: "Category",
       type: "reference",
       to: { type: "category" },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "publishedAt",
       title: "Publish Date",
       type: "datetime",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "image",
       title: "Image",
       type: "image",
       fields: [
+        {
+          name: "fullImage",
+          title: "Full Image",
+          type: "boolean",
+        },
         {
           name: "resize",
           title: "Resize",
@@ -86,19 +91,19 @@ export default {
             list: [
               { title: "None", value: "none" },
               { title: "1080px", value: "1080" },
-              { title: "1920px", value: "1920" }
+              { title: "1920px", value: "1920" },
             ],
-            layout: "radio"
-          }
+            layout: "radio",
+          },
         },
         {
           name: "caption",
           title: "Source / Caption",
           type: "blockContent",
-          required: "false"
-        }
+          required: "false",
+        },
       ],
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     // {
     //   name: 'categories',
@@ -111,7 +116,7 @@ export default {
       title: "Social Tagline",
       description: "Short description for social media SEO.",
       type: "string",
-      validation: Rule => Rule.required().max(70)
+      validation: (Rule) => Rule.required().max(70),
     },
     // {
     //   name: "description",
@@ -125,13 +130,13 @@ export default {
       title: "Introduction",
       description: "Shown as first paragraph in the article.",
       type: "array",
-      of: [{ type: "block" }]
+      of: [{ type: "block" }],
     },
     {
       name: "body",
       title: "Article Body",
       description: "Everything after the description.",
-      type: "blockContent"
+      type: "blockContent",
     },
     {
       type: "object",
@@ -139,8 +144,8 @@ export default {
       title: "Social Media Handles",
       fieldsets: [
         {
-          name: "social"
-        }
+          name: "social",
+        },
       ],
       fields: [
         {
@@ -148,58 +153,58 @@ export default {
           title: "Twitter Handle",
           description: 'Do not include "@" symbol.',
           type: "string",
-          fieldset: "social"
+          fieldset: "social",
         },
         {
           name: "instagram",
           title: "Instagram Handle",
           description: 'Do not include "@" symbol.',
           type: "string",
-          fieldset: "social"
+          fieldset: "social",
         },
         {
           name: "facebook",
           title: "Facebook Handle",
           description: 'Do not include "@" symbol.',
           type: "string",
-          fieldset: "social"
+          fieldset: "social",
         },
         {
           name: "soundcloud",
           title: "SoundCloud Handle",
           description: 'Do not include "@" symbol.',
           type: "string",
-          fieldset: "social"
-        }
-      ]
+          fieldset: "social",
+        },
+      ],
     },
     {
       name: "hasPostedDiscord",
       title: "Has Posted in Discord",
-      type: "boolean"
-    }
+      type: "boolean",
+    },
   ],
   initialValue: () => ({
-    publishedAt: new Date().toISOString()
+    publishedAt: new Date().toISOString(),
   }),
   orderings: [
     {
       title: "Publish Date",
       name: "publishedAtDesc",
-      by: [{ field: "publishedAt", direction: "desc" }]
-    }
+      by: [{ field: "publishedAt", direction: "desc" }],
+    },
   ],
   preview: {
     select: {
       title: "title",
       author: "author.name",
-      media: "image"
+      media: "image",
     },
     prepare(selection) {
       const { author } = selection;
       return Object.assign({}, selection, {
-        subtitle: author && `by ${author}`
+        subtitle: author && `by ${author}`,
       });
-    }
-  }
+    },
+  },
 };

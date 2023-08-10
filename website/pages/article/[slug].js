@@ -199,6 +199,7 @@ export default function Post({ siteConfig, post, preview }) {
               modifier="article"
               skeleton={!post}
               caption={post?.coverImageCaption}
+              fullImage={post?.coverImageFullImage}
             />
           </div>
         </div>

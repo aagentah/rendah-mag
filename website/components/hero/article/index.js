@@ -35,11 +35,12 @@ export default function HeroDefault({
   caption,
   //
   skeleton,
+  fullImage,
 }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   let imageUrlWidth = 650;
-  let imageUrlHeight = 700;
+  let imageUrlHeight = fullImage ? null : 700;
 
   console.log('image', image);
 
@@ -58,9 +59,11 @@ export default function HeroDefault({
   let heroButton;
   let heroImage;
 
-  const styles = {
-    maxHeight: 'calc(120vh + 100px)',
-  };
+  const styles = fullImage
+    ? null
+    : {
+        maxHeight: 'calc(120vh + 100px)',
+      };
 
   if (link) {
     linkProps = {

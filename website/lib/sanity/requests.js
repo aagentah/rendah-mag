@@ -16,6 +16,7 @@ const postFields = `
   'slug': slug.current,
   'coverImage': image.asset->url,
   'coverImageCaption': image.caption,
+  'coverImageFullImage': image.fullImage,
   'authors': authors[] {
     'author': *[_id == ^._ref] [0] {
       ...,
