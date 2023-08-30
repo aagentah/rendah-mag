@@ -12,8 +12,7 @@ const cors = initMiddleware(
   })
 );
 
-const webhookURL =
-  'https://discord.com/api/webhooks/1133720981471506442/6dt4oAAC-1I9B7_GF3kxx6LiJcFXniPqGbNZXxW9tNT2PgqNYi7DHmnksKH6aWXJTdib';
+const webhookURL = process.env.DISCORD_WEBHOOK;
 
 const getAuthorNames = (authors) => {
   let names = '';

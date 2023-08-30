@@ -4,7 +4,7 @@ const path = require('path');
 require('dotenv').config();
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true'
+  enabled: process.env.ANALYZE === 'true',
 });
 
 module.exports = withBundleAnalyzer(
@@ -22,7 +22,8 @@ module.exports = withBundleAnalyzer(
       ENV_TYPE: process.env.ENV_TYPE,
       STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
       STRIPE_SIGNING_SECRET: process.env.STRIPE_SIGNING_SECRET,
-      PAYPAL_SECRET: process.env.PAYPAL_SECRET
+      PAYPAL_SECRET: process.env.PAYPAL_SECRET,
+      DISCORD_WEBHOOK: process.env.DISCORD_WEBHOOK,
     },
     images: {
       domains: ['cdn.sanity.io', 'res.cloudinary.com'],
@@ -30,14 +31,14 @@ module.exports = withBundleAnalyzer(
         {
           protocol: 'https',
           hostname: 'cdn.sanity.io',
-          pathname: '/images/q8z2vf2k/**'
+          pathname: '/images/q8z2vf2k/**',
         },
         {
           protocol: 'https',
           hostname: 'res.cloudinary.com',
-          pathname: '/dzz8ji5lj/image/**'
-        }
-      ]
+          pathname: '/dzz8ji5lj/image/**',
+        },
+      ],
     },
     webpack(config, { dev, isServer }) {
       // // Move Preact into the framework chunk instead of duplicating in routes:
@@ -78,6 +79,6 @@ module.exports = withBundleAnalyzer(
       config.resolve.alias['~'] = path.resolve(__dirname);
 
       return config;
-    }
+    },
   })
 );
