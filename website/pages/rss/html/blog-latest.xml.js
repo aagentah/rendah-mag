@@ -33,6 +33,9 @@ const sitemapXml = (posts) => {
         : process.env.SITE_URL;
 
       const date = new Date(post?.publishedAt).toUTCString();
+      console.log('post', post);
+      console.log('post?.publishedAt', post?.publishedAt);
+      console.log('date', date);
       const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left;  ${
         isEven(i) ? 'color: #d9d9d9;' : ''
       }" href="${url}" target="_blank">Read full article</a></p>`;

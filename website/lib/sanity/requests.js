@@ -29,6 +29,7 @@ const postFieldsCard = `
   hasPostedDiscord,
   name,
   title,
+  publishedAt,
   'slug': slug.current,
   'coverImage': image.asset->url,
   'authors': authors[] {
