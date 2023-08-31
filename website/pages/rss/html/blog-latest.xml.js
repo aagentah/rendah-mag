@@ -5,10 +5,6 @@ import { getAllPosts, imageBuilder } from '~/lib/sanity/requests';
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
-const isEven = (number) => {
-  return number % 2 === 0;
-};
-
 const sitemapXml = (posts) => {
   if (posts.length) {
     let postsXML = '';
@@ -17,15 +13,11 @@ const sitemapXml = (posts) => {
       const title = post?.title;
 
       const titleBlock = post?.title
-        ? `<h2 style="font-weight: bold; text-align: left;  ${
-            isEven(i) ? 'color: #d9d9d9;' : ''
-          }">${title}</h2>`
+        ? `<h2 style="font-weight: bold; text-align: left;  color: #000000 !important;">${title}</h2>`
         : '';
 
       const tagLineBlock = post?.socialTagline
-        ? `<p style="color: #000000; text-align: left;  ${
-            isEven(i) ? 'color: #d9d9d9;' : ''
-          }">${post.socialTagline}</p>`
+        ? `<p style="color: #000000; text-align: left;  color: #000000 !important;">${post.socialTagline}</p>`
         : '';
 
       const url = post?.slug
@@ -33,24 +25,10 @@ const sitemapXml = (posts) => {
         : process.env.SITE_URL;
 
       const date = new Date(post?.publishedAt).toUTCString();
-      const readMoreLink = `<p><a style="color: #000000 !important; text-decoration: underline; text-align: left;  ${
-        isEven(i) ? 'color: #d9d9d9 !important;' : ''
-      }" href="${url}" target="_blank">Read full article</a></p>`;
+      const readMoreLink = `<p><a style="color: #000000 !important; text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;
 
       const html = `
-      <table cellspacing="0" cellpadding="0" border="0" width="100%" ${
-        isEven(i) ? `style="background: #1c1c1c; color: #d9d9d9;` : ''
-      }>
-        ${
-          isEven(i)
-            ? `
-            <tr>
-              <td><br /></td>
-            </tr>
-              `
-            : `
-              `
-        }
+      <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
           <td width="300" valign="top" style="border-radius: 1rem;">
             <img width="300" style="width: 300px; border-radius: 1rem;" src="${imageBuilder
@@ -71,16 +49,6 @@ const sitemapXml = (posts) => {
             ${readMoreLink}
           </td>
         </tr>
-        ${
-          isEven(i)
-            ? `
-            <tr>
-              <td><br /></td>
-            </tr>
-              `
-            : `
-              `
-        }
         <tr>
           <td><br /></td>
         </tr>
