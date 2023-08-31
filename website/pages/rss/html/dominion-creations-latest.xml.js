@@ -36,7 +36,7 @@ const sitemapXml = (posts) => {
         ? `${process.env.SITE_URL}/creations/${post.slug}`
         : process.env.SITE_URL;
 
-      const readMoreLink = `<p><a style="color: #000000; text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;
+      const readMoreLink = `<p><a style="color: #000000 !important; text-decoration: underline; text-align: left;" href="${url}" target="_blank">Read full article</a></p>`;
 
       const date = new Date(post?.publishedAt).toUTCString();
 
