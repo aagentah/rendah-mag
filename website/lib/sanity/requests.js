@@ -62,6 +62,7 @@ const creationsFields = `
 const creationsFieldsCard = `
   name,
   title,
+  excerpt,
   'slug': slug.current,
   categories,
   'coverImage': image.asset->url,
