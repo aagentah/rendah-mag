@@ -27,8 +27,16 @@ export default function Dominion({ siteConfig }) {
         'Once you’ve subscribed, we’ll send out the very latest magazine happening at that point in time, regardless of anything else that may be happening in our schedule. From there, you can expect a new print in the mail every 3-4 months on average.',
     },
     {
+      question: 'Free shipping?',
+      answer: `On the subscription, shipping is totally free—forever—regardless of where you're based.`,
+    },
+    {
       question: `How do I access the digital content?`,
       answer: `A Dominion profile & login will be automatically created where you can access all of our digital content off-the-bat. In addition, we'll typically send a few emails each month to expand on what we're building as a team, and highlight the various things launching across the Dominion platform.`,
+    },
+    {
+      question: `Who is the Dominion aimed at?`,
+      answer: `We hope there's something for everyone here. Whether you're a DJ; artist; general listener; we aim to switch up what we offer to support plenty of avenues!`,
     },
     {
       question: 'Can I cancel whenever?',
