@@ -23,9 +23,9 @@ const sitemapXml = (posts) => {
         ? `<p style="color: #000000; text-align: left;">${post.excerpt}</p>`
         : '';
 
-      const image = post?.image?.asset
+      const image = post?.coverImage
         ? `<img width="400" style="width: 400px; border-radius: 1rem;" src="${imageBuilder
-            .image(post.image)
+            .image(post.coverImage)
             .width(400)
             .height(300)
             .auto('format')
