@@ -15,17 +15,17 @@ const xml = (item) => {
 
     // const description = blocksToHtml({ blocks: item?.description });
     const serializers = {
+      block: (props) => `${props.children}`,
       types: {
         image: ({ value }) => {
-          console.log('value', value);
           return `
           <table cellspacing="0" cellpadding="0" border="0" width="100%">
             <tr>
-              <td><br /><br /></td>
+              <td><br /></td>
             </tr>
             <tr>
-              <td width="400" valign="top">
-                <img width="400" style="width: 400px; border-radius: 16px;"
+              <td width="500" valign="top">
+                <img width="500" style="width: 500px; border-radius: 16px;"
                   src="${imageBuilder
                     .image(value)
                     .width(800)
@@ -36,7 +36,7 @@ const xml = (item) => {
               </td>
             </tr>
             <tr>
-              <td><br /><br /></td>
+              <td><br /></td>
             </tr>
           </table>
         `;
@@ -60,7 +60,7 @@ const xml = (item) => {
             <tr>
               <td width="50" valign="top">
               </td>
-              <td width="400" valign="top">
+              <td width="500" valign="top">
                 <p>
                   <em style="font-style: italic;">
                     Please <a style="text-decoration: underline;" href="${process.env.SITE_URL}/login">log in</a>
@@ -82,7 +82,7 @@ const xml = (item) => {
             <tr>
               <td width="50" valign="top">
               </td>
-              <td width="400" valign="top">
+              <td width="500" valign="top">
                 ${description}
               </td>
               <td width="50" valign="top">
