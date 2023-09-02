@@ -7,7 +7,7 @@ export default {
       name: "title",
       title: "Title",
       type: "string",
-      validation: Rule => Rule.required().max(60)
+      validation: (Rule) => Rule.required().max(60),
     },
     {
       name: "slug",
@@ -15,9 +15,9 @@ export default {
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96
+        maxLength: 96,
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     // {
     //   name: "image",
@@ -54,24 +54,29 @@ export default {
             list: [
               { title: "None", value: "none" },
               { title: "1080px", value: "1080" },
-              { title: "1920px", value: "1920" }
+              { title: "1920px", value: "1920" },
             ],
-            layout: "radio"
-          }
-        }
-      ]
+            layout: "radio",
+          },
+        },
+      ],
     },
     {
       name: "activeFrom",
       title: "Active From",
       type: "date",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "description",
       title: "Description",
       type: "array",
-      of: [{ type: "block" }]
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+        },
+      ],
     },
     // {
     //   name: "body",
@@ -86,16 +91,16 @@ export default {
     {
       name: "includeLoginPrompt",
       title: "Include Login Prompt",
-      type: "boolean"
-    }
+      type: "boolean",
+    },
   ],
   initialValue: () => ({
-    activeFrom: new Date()
+    activeFrom: new Date(),
   }),
   preview: {
     select: {
       title: "title",
-      media: "image"
-    }
-  }
+      media: "image",
+    },
+  },
 };

@@ -1,44 +1,46 @@
 import React from 'react';
 import blocksToHtml from '@sanity/block-content-to-html';
-
 import { imageBuilder, getLatestDominionItem } from '~/lib/sanity/requests';
 
 import escapeXml from '~/functions/escapeXml';
 import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
-const sitemapXml = item => {
+const xml = (item) => {
   let postXML;
 
   if (item?.slug?.current) {
     const title = item?.title || '';
     let hasLoginPrompt;
-    let image;
 
-    const description = blocksToHtml({ blocks: item?.description });
+    // const description = blocksToHtml({ blocks: item?.description });
+    const serializers = {
+      types: {
+        image: (props) =>
+          `
+          <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+              <td><br /><br /></td>
+            </tr>
+            <img width="400" style="width: 400px; border-radius: 16px;"
+              src="${imageBuilder
+                .image(props.node)
+                .width(800)
+                .auto('format')
+                .url()}"
+              alt="${title}"
+            />
+            <tr>
+              <td><br /><br /></td>
+            </tr>
+          </table>
+          `,
+      },
+    };
 
-    if (item?.imagePortrait?.asset) {
-      image = `
-        <img width="500" style="width: 500px; border-radius: 16px;"
-          src="${imageBuilder
-            .image(item.imagePortrait)
-            .width(1000)
-            .auto('format')
-            .url()}"
-          alt="${title}"
-        />`;
-    } else if (item?.image?.asset) {
-      image = `
-        <img width="500" style="width: 500px; border-radius: 16px;"
-          src="${imageBuilder
-            .image(item.image)
-            .width(1000)
-            .auto('format')
-            .url()}"
-          alt="${title}"
-        />`;
-    } else {
-      image = '';
-    }
+    const description = blocksToHtml({
+      blocks: item?.description,
+      serializers,
+    });
 
     const url = process.env.SITE_URL;
 
@@ -80,16 +82,13 @@ const sitemapXml = item => {
               <td width="50" valign="top">
               </td>
             </tr>
-            ${hasLoginPrompt ||
+            ${
+              hasLoginPrompt ||
               `
               <tr>
                 <td><br /><br /><br /></td>
-              </tr>`}
-            <tr>
-              <td colspan="3" width="500" valign="top">
-                ${image}
-              </td>
-            </tr>
+              </tr>`
+            }
           </table>
           `;
 
@@ -132,7 +131,7 @@ export default class BlogLatest extends React.Component {
     const item = await getLatestDominionItem();
 
     res.setHeader('Content-Type', 'text/xml');
-    res.write(sitemapXml(item));
+    res.write(xml(item));
     res.end();
   }
 }
