@@ -15,7 +15,6 @@ const xml = (item) => {
 
     // const description = blocksToHtml({ blocks: item?.description });
     const serializers = {
-      block: (props) => `${props.children}`,
       types: {
         image: ({ value }) => {
           return `
