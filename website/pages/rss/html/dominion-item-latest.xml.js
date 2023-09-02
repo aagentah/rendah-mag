@@ -1,5 +1,6 @@
 import React from 'react';
-import blocksToHtml from '@sanity/block-content-to-html';
+import { toHTML } from '@portabletext/to-html';
+
 import { imageBuilder, getLatestDominionItem } from '~/lib/sanity/requests';
 
 import escapeXml from '~/functions/escapeXml';
@@ -15,31 +16,36 @@ const xml = (item) => {
     // const description = blocksToHtml({ blocks: item?.description });
     const serializers = {
       types: {
-        image: (props) =>
-          `
+        image: ({ value }) => {
+          console.log('value', value);
+          return `
           <table cellspacing="0" cellpadding="0" border="0" width="100%">
             <tr>
               <td><br /><br /></td>
             </tr>
-            <img width="400" style="width: 400px; border-radius: 16px;"
-              src="${imageBuilder
-                .image(props.node)
-                .width(800)
-                .auto('format')
-                .url()}"
-              alt="${title}"
-            />
+            <tr>
+              <td width="400" valign="top">
+                <img width="400" style="width: 400px; border-radius: 16px;"
+                  src="${imageBuilder
+                    .image(value)
+                    .width(800)
+                    .auto('format')
+                    .url()}"
+                  alt="${title}"
+                />
+              </td>
+            </tr>
             <tr>
               <td><br /><br /></td>
             </tr>
           </table>
-          `,
+        `;
+        },
       },
     };
 
-    const description = blocksToHtml({
-      blocks: item?.description,
-      serializers,
+    const description = toHTML(item?.description, {
+      components: serializers,
     });
 
     const url = process.env.SITE_URL;
@@ -92,13 +98,17 @@ const xml = (item) => {
           </table>
           `;
 
+    // ${escapeXml(encodeSpecialChar(html))}
+
     postXML = `
           <item>
             <title>${escapeXml(title)}</title>
             <link>${escapeXml(encodeSpecialChar(url))}</link>
             <pubDate>${date}</pubDate>
             <description>
-              ${escapeXml(encodeSpecialChar(html))}
+              <![CDATA[
+                ${html}
+              ]]>
             </description>
           </item>
           `;
