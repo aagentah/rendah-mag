@@ -120,10 +120,10 @@ export default function Home() {
           <div className="col-4  col-6-md" />
 
           <div className="col-16  col-12-md">
-            <p className="f4  f2-md  t-primary  lh-title  light-silver">
+            <p className="f4  f3-md  t-primary  lh-title  light-silver">
               Rendah Mag is a creative UK-based outlet, primarily focused on
-              exploring the progressive and innovative side of underground bass
-              music.
+              exploring the intersection of experimental music, art, and
+              technology.
             </p>
           </div>
 

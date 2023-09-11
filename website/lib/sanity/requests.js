@@ -246,13 +246,13 @@ export async function getCurrentAndPreviousCyphers(preview) {
   const [current, previous] = await Promise.all([
     curClient
       .fetch(
-        `*[_type == "cypher" && announcementFields.isAnnounced && !defined(publishedFields)] | order(announcementFields.announcedAt desc) {
+        `*[_type == "cypher" && announcementFields.announcedAt != null] | order(announcementFields.announcedAt desc) [0] {
               ...,
             } `
       )
-      .then((res) => res?.[0]),
+      .then((res) => res),
     curClient.fetch(
-      `*[_type == "cypher" && publishedFields.isPublished] {
+      `*[_type == "cypher" && publishedFields.publishedAt != null] {
             ...,
             }  | order(publishedFields.publishedAt desc)`
     ),
@@ -263,7 +263,7 @@ export async function getCurrentAndPreviousCyphers(preview) {
 
 export async function getLatestAnouncedCypher(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "cypher" && announcementFields.isAnnounced && !defined(publishedFields)] | order(announcementFields.announcedAt desc) [0] {
+    .fetch(`*[_type == "cypher" && announcementFields.announcedAt != null] | order(announcementFields.announcedAt desc) [0] {
       ...,
     }`);
 
@@ -272,7 +272,7 @@ export async function getLatestAnouncedCypher(preview) {
 
 export async function getLatestPublishedCypher(preview) {
   const results = await getClient(preview)
-    .fetch(`*[_type == "cypher" && publishedFields.isPublished] | order(publishedFields.publishedAt desc) [0] {
+    .fetch(`*[_type == "cypher" && publishedFields.publishedAt != null] | order(publishedFields.publishedAt desc) [0] {
       ...,
     }`);
 

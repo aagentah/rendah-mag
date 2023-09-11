@@ -180,13 +180,13 @@ export default function HeroDefault({
 
       <div className="join-left  absolute  top  mt5  pr5">
         <ParallaxDiv speed={-8}>
-          Join our <br /> Dominion <br /> Subscription
+          Explore the <br /> Dominion <br /> Subscription
         </ParallaxDiv>
       </div>
 
       <div className="join-right  absolute  top  mt5  pr5">
         <ParallaxDiv speed={-8}>
-          Join our <br /> Dominion <br /> Subscription
+          Explore the <br /> Dominion <br /> Subscription
         </ParallaxDiv>
       </div>
     </article>

@@ -8,7 +8,7 @@ export default {
       title: "Title",
       type: "string",
       description: "For example: Cypher 009 (Curated By Renraku)",
-      validation: Rule => Rule.required().max(60)
+      validation: (Rule) => Rule.required().max(60),
     },
     {
       name: "slug",
@@ -16,9 +16,9 @@ export default {
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96
+        maxLength: 96,
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "imageLandscape",
@@ -33,12 +33,12 @@ export default {
             list: [
               { title: "None", value: "none" },
               { title: "1080px", value: "1080" },
-              { title: "1920px", value: "1920" }
+              { title: "1920px", value: "1920" },
             ],
-            layout: "radio"
-          }
-        }
-      ]
+            layout: "radio",
+          },
+        },
+      ],
     },
     {
       name: "imageSquare",
@@ -53,25 +53,25 @@ export default {
             list: [
               { title: "None", value: "none" },
               { title: "1080px", value: "1080" },
-              { title: "1920px", value: "1920" }
+              { title: "1920px", value: "1920" },
             ],
-            layout: "radio"
-          }
-        }
+            layout: "radio",
+          },
+        },
       ],
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "packLink",
       title: "Pack Link",
       type: "string",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "submissionFormLink",
       title: "Submission Form Link",
       type: "string",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       type: "object",
@@ -79,26 +79,21 @@ export default {
       title: "Announcement Fields",
       options: {
         collapsible: true,
-        collapsed: true
+        collapsed: true,
       },
       fields: [
         {
           name: "announcedAt",
           title: "Announcement Date",
-          type: "datetime"
-        },
-        {
-          name: "isAnnounced",
-          title: "Announced",
-          type: "boolean"
+          type: "datetime",
         },
         {
           name: "announcementDescription",
           title: "Announcement Description",
           type: "array",
-          of: [{ type: "block" }]
-        }
-      ]
+          of: [{ type: "block" }],
+        },
+      ],
     },
     {
       type: "object",
@@ -106,45 +101,40 @@ export default {
       title: "Published Fields",
       options: {
         collapsible: true,
-        collapsed: true
+        collapsed: true,
       },
       fields: [
         {
           name: "publishedAt",
           title: "Published Date",
-          type: "datetime"
-        },
-        {
-          name: "isPublished",
-          title: "Published",
-          type: "boolean"
+          type: "datetime",
         },
         {
           name: "publishedDescription",
           title: "Published Description",
           type: "array",
-          of: [{ type: "block" }]
+          of: [{ type: "block" }],
         },
         {
           name: "publishedUrl",
           title: "URL",
           type: "string",
-          description: "URL or Shortened gate link for the track."
-        }
-      ]
-    }
+          description: "URL or Shortened gate link for the track.",
+        },
+      ],
+    },
   ],
   orderings: [
     {
       title: "Announcement Date",
       name: "announcedAtDesc",
-      by: [{ field: "announcementFields.announcedAt", direction: "desc" }]
-    }
+      by: [{ field: "announcementFields.announcedAt", direction: "desc" }],
+    },
   ],
   preview: {
     select: {
       title: "title",
-      media: "imageSquare"
-    }
-  }
+      media: "imageSquare",
+    },
+  },
 };

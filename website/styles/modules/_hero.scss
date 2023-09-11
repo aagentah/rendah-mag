@@ -89,6 +89,7 @@
 
 .join-right {
   display: none;
+  mix-blend-mode: overlay;
 }
 
 .join-left {
@@ -102,12 +103,12 @@
 @include breakpoint-up(md) {
   .join-right,
   .join-left {
-    left: -150px;
-    font-size: 100px;
+    left: -165px;
+    font-size: 110px;
   }
 
   .join-left {
-    max-width: 150px;
+    max-width: 166px;
     overflow: hidden;
     text-overflow: clip;
     color: var(--rendah-red);
@@ -135,8 +136,9 @@
   position: relative;
 
   .hero__image .image__wrapper {
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    @extend .shadow2;
   }
 
   .hero__dialog {

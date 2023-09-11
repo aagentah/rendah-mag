@@ -30,6 +30,8 @@ export default function Cyphers({ siteConfig }) {
     const action = async () => {
       const cyphersData = await getCurrentAndPreviousCyphers();
 
+      console.log('cyphersData', cyphersData);
+
       setCyphersLength(cyphersData.previous.length);
       setCyphers(cyphersData);
     };
