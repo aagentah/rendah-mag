@@ -108,7 +108,11 @@ export default function Post({ siteConfig, post, preview }) {
     console.log('post', post);
     let canShowBody = true;
 
-    if (post?.categories.includes('Dominion Exclusive') && !user?.isDominion) {
+    if (
+      post?.categories?.length &&
+      post?.categories.includes('Dominion Exclusive') &&
+      !user?.isDominion
+    ) {
       canShowBody = false;
     }
 
@@ -279,7 +283,7 @@ export default function Post({ siteConfig, post, preview }) {
               </div>
 
               <p className="t-secondary  f5  almost-black  lh-copy  pb4">
-                {post?.categories.length &&
+                {post?.categories?.length &&
                   post?.categories.map((i) => (
                     <span className="t-secondary  f5  almost-black  lh-copy  dib  ba  bc-black  pa2  mr3  mb3  mb0-md">
                       {i}

@@ -90,12 +90,12 @@ export default {
       ],
       validation: (Rule) => Rule.required(),
     },
-    {
-      name: "category",
-      title: "Category",
-      type: "reference",
-      to: { type: "category" },
-    },
+    // {
+    //   name: "category",
+    //   title: "Category",
+    //   type: "reference",
+    //   to: { type: "category" },
+    // },
     {
       name: "featured",
       title: "Featured Article",
