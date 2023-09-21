@@ -15,7 +15,7 @@ import { getAllPacks } from '~/lib/sanity/requests';
 const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
 const IconArrowLeft = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowLeft)
+  import('~/components/elements/icon').then((m) => m.IconArrowLeft)
 );
 
 export default function ProfilePacks() {
@@ -23,7 +23,7 @@ export default function ProfilePacks() {
   const [samples, setSamples] = useState([]);
   const [samplesLength, setSamplesLength] = useState(9);
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
-  const handleAudioPlay = playerRef => setCurrentAudioSelected(playerRef);
+  const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
   const [modalActive, setModalActive] = useState(false);
   const [cardsShow, setCardsShow] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -35,7 +35,7 @@ export default function ProfilePacks() {
 
   const buttonIconArrowLeft = <IconArrowLeft color="white" size={16} />;
 
-  const apply = i => {
+  const apply = (i) => {
     setModalActive(i);
     setCardsShow(false);
   };
@@ -81,17 +81,26 @@ export default function ProfilePacks() {
     return (
       <>
         <section>
-          <div className="profile_heading">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text="Samples"
-              color="white"
-              size="medium"
-              truncate={null}
-              /* Children */
-              withLinkProps={null}
-            />
+          <div className="ph3">
+            <div className="profile_heading">
+              <Heading
+                /* Options */
+                htmlEntity="h1"
+                text="Samples"
+                color="white"
+                size="medium"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+            <div className="pb4  mb2">
+              <p className="white  f6  lh-copy  measure-wide">
+                Each month, we feature an exclusive sample pack from the various
+                artists that we work with in the community, available to
+                download on the Dominion.
+              </p>
+            </div>
           </div>
 
           <div className="relative  ">
@@ -101,17 +110,9 @@ export default function ProfilePacks() {
               ${cardsShow && 'dominion-cards--active'}
           `}
             >
-              <div className="pb4  mb2">
-                <p className="white  f6  lh-copy">
-                  Each month, we feature an exclusive sample pack from the
-                  various artists that we work with in the community, available
-                  to download on the Dominion.
-                </p>
-              </div>
-
               <div className="flex  flex-wrap  pb3">
                 {[...Array(samplesLength)].map((iteration, i) => (
-                  <div key={iteration} className="col-24  col-8-md  ph3  pv2">
+                  <div key={iteration} className="col-24  col-6-md  ph3  pv2">
                     <CardPack
                       i={i}
                       post={samples?.length && samples[i]}
@@ -150,7 +151,7 @@ export default function ProfilePacks() {
                       type: 'form',
                       url: null,
                       target: null,
-                      routerLink: null
+                      routerLink: null,
                     }}
                   />
                 </div>
@@ -240,8 +241,8 @@ export default function ProfilePacks() {
               target: null,
               routerLink: Link,
               routerLinkProps: {
-                scroll: false
-              }
+                scroll: false,
+              },
             }}
           />
         </div>

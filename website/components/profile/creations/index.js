@@ -1,30 +1,33 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import filter from 'lodash/filter';
+// import filter from 'lodash/filter';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 
-import CardCreations from '~/components/card/creations';
+import CardBlog from '~/components/card/blog';
 
 import { useUser } from '~/lib/hooks';
-import { getAllCreationsTotal } from '~/lib/sanity/requests';
+import { getCategory } from '~/lib/sanity/requests';
 
 export default function ProfileCreations() {
   const [user, { loading, mutate, error }] = useUser();
-  const [originalPosts, setOriginalPosts] = useState([]);
+  // const [originalPosts, setOriginalPosts] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState(null);
+  // const [selectedFilter, setSelectedFilter] = useState(null);
   const [postsLength, setPostsLength] = useState(9);
 
   // Fetch posts
   useEffect(async () => {
     const action = async () => {
-      const data = await getAllCreationsTotal();
+      const data = await getCategory('dominion-exclusive', [1, 100]);
+
+      console.log('data', data);
+
       if (data) {
-        setPosts(data);
-        setOriginalPosts(data);
-        setPostsLength(data?.length);
+        setPosts(data?.posts);
+        // setOriginalPosts(data?.posts);
+        setPostsLength(data?.posts?.length);
       }
     };
 
@@ -32,90 +35,87 @@ export default function ProfileCreations() {
   }, []);
 
   // Set filtered posts
-  useEffect(() => {
-    if (!selectedFilter?.length) {
-      setPosts(originalPosts);
-      setPostsLength(originalPosts?.length);
-      return;
-    }
+  // useEffect(() => {
+  //   if (!selectedFilter?.length) {
+  //     setPosts(originalPosts);
+  //     setPostsLength(originalPosts?.length);
+  //     return;
+  //   }
 
-    let postsClone = filter(originalPosts, obj => {
-      if (obj?.categories?.length && obj.categories.includes(selectedFilter)) {
-        return true;
-      }
-    });
+  //   let postsClone = filter(originalPosts, (obj) => {
+  //     if (obj?.categories?.length && obj.categories.includes(selectedFilter)) {
+  //       return true;
+  //     }
+  //   });
 
-    setPosts(postsClone);
-    setPostsLength(postsClone?.length);
-  }, [selectedFilter]);
+  //   setPosts(postsClone);
+  //   setPostsLength(postsClone?.length);
+  // }, [selectedFilter]);
 
-  const toggleFilter = filterString => {
-    selectedFilter === filterString
-      ? setSelectedFilter(null)
-      : setSelectedFilter(filterString);
-  };
+  // const toggleFilter = (filterString) => {
+  //   selectedFilter === filterString
+  //     ? setSelectedFilter(null)
+  //     : setSelectedFilter(filterString);
+  // };
 
   if (user?.isDominion) {
     return (
       <section>
-        <div className="profile_heading">
-          <Heading
-            /* Options */
-            htmlEntity="h1"
-            text="Creations"
-            color="white"
-            size="medium"
-            truncate={null}
-            /* Children */
-            withLinkProps={null}
-          />
-        </div>
-        <div className="pb4  mb2">
-          <p className="white  f6  lh-copy">
-            'Creations' serves as our internal medium for additional exclusive
-            content on the Dominion. The idea behind this is to share insights
-            not only on music, but as a wider-appeal to the industry as a whole,
-            including tutorials, technical interviews, branding tips, creative
-            features, and much more!
-          </p>
+        <div className="ph3">
+          <div className="profile_heading">
+            <Heading
+              /* Options */
+              htmlEntity="h1"
+              text="Articles"
+              color="white"
+              size="medium"
+              truncate={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <div className="pb4  mb2">
+            <p className="white  f6  lh-copy  measure-wide">
+              Here you can find additional exclusive articles on the Dominion,
+              not currently publically available.
+            </p>
+          </div>
         </div>
 
-        <div className="flex  flex-wrap  justify-center  justify-start-md  pb4  mb2">
-          <span
-            className={`filter-tag  ${
-              selectedFilter === 'tutorials' ? 'is-active' : ''
-            }`}
-            onClick={() => toggleFilter('tutorials')}
-          >
-            Tutorials
-          </span>
-          <span
-            className={`filter-tag  ${
-              selectedFilter === 'interviews' ? 'is-active' : ''
-            }`}
-            onClick={() => toggleFilter('interviews')}
-          >
-            Interviews
-          </span>
-          <span
-            className={`filter-tag  ${
-              selectedFilter === 'insights' ? 'is-active' : ''
-            }`}
-            onClick={() => toggleFilter('insights')}
-          >
-            Insights
-          </span>
-        </div>
+        {
+          //    <div className="flex  flex-wrap  justify-center  justify-start-md  pb4  mb2">
+          //    <span
+          //      className={`filter-tag  ${
+          //        selectedFilter === 'tutorials' ? 'is-active' : ''
+          //      }`}
+          //      onClick={() => toggleFilter('tutorials')}
+          //    >
+          //      Tutorials
+          //    </span>
+          //    <span
+          //      className={`filter-tag  ${
+          //        selectedFilter === 'interviews' ? 'is-active' : ''
+          //      }`}
+          //      onClick={() => toggleFilter('interviews')}
+          //    >
+          //      Interviews
+          //    </span>
+          //    <span
+          //      className={`filter-tag  ${
+          //        selectedFilter === 'insights' ? 'is-active' : ''
+          //      }`}
+          //      onClick={() => toggleFilter('insights')}
+          //    >
+          //      Insights
+          //    </span>
+          //  </div>
+        }
 
         <div className="flex  flex-wrap  pb3">
           {[...Array(postsLength)].map((iteration, i) => (
-            <div key={iteration} className="col-24  col-8-md">
+            <div key={iteration} className="col-24  col-6-md">
               <div className="ph3  pv2">
-                <CardCreations
-                  i={i}
-                  post={posts?.length && posts[i]}
-                  columnCount={3}
-                />
+                <CardBlog i={i} post={posts?.length && posts[i]} />
               </div>
             </div>
           ))}
@@ -161,8 +161,8 @@ export default function ProfileCreations() {
               target: null,
               routerLink: Link,
               routerLinkProps: {
-                scroll: false
-              }
+                scroll: false,
+              },
             }}
           />
         </div>

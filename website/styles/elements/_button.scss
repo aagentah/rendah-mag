@@ -29,6 +29,14 @@
     align-items: center;
   }
 
+  &.x-small {
+    @extend .f7;
+
+    .button__icon {
+      width: 8px;
+    }
+  }
+
   &.small {
     @extend .f6;
 
@@ -67,11 +75,13 @@
   }
 
   .button__icon--left {
+    margin-left: 7px;
     margin-right: 7px;
   }
 
   .button__icon--right {
     margin-left: 7px;
+    margin-right: 7px;
   }
 }
 

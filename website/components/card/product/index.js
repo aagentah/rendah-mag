@@ -43,16 +43,18 @@ export default function CardProduct({ product }) {
       skeleton={!product}
       onClick={null}
       /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/product/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/product/${product?.slug}`,
-          scroll: false,
-        },
-      }}
+      withLinkProps={
+        product?.slug && {
+          type: 'next',
+          href: '/product/[slug]',
+          target: null,
+          routerLink: Link,
+          routerLinkProps: {
+            as: `/product/${product?.slug}`,
+            scroll: false,
+          },
+        }
+      }
     />
   );
 
@@ -96,16 +98,18 @@ export default function CardProduct({ product }) {
       truncate={1}
       skeleton={!product}
       /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/product/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/product/${product?.slug}`,
-          scroll: false,
-        },
-      }}
+      withLinkProps={
+        product?.slug && {
+          type: 'next',
+          href: '/product/[slug]',
+          target: null,
+          routerLink: Link,
+          routerLinkProps: {
+            as: `/product/${product?.slug}`,
+            scroll: false,
+          },
+        }
+      }
     />
   );
 
@@ -136,16 +140,18 @@ export default function CardProduct({ product }) {
       skeleton={false}
       onClick={null}
       /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/product/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/product/${product?.slug}`,
-          scroll: false,
-        },
-      }}
+      withLinkProps={
+        product?.slug && {
+          type: 'next',
+          href: '/product/[slug]',
+          target: null,
+          routerLink: Link,
+          routerLinkProps: {
+            as: `/product/${product?.slug}`,
+            scroll: false,
+          },
+        }
+      }
     />
   );
 

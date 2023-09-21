@@ -12,29 +12,31 @@ export default function ProfileCreations({ handleToggle }) {
   if (user?.isDominion) {
     return (
       <section>
-        <div className="profile_heading">
-          <Heading
-            /* Options */
-            htmlEntity="h1"
-            text="Dominion Dashboard"
-            color="white"
-            size="medium"
-            truncate={null}
-            /* Children */
-            withLinkProps={null}
-          />
-        </div>
+        <div className="ph3">
+          <div className="profile_heading">
+            <Heading
+              /* Options */
+              htmlEntity="h1"
+              text="Dominion Dashboard"
+              color="white"
+              size="medium"
+              truncate={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
 
-        <div className="pb4  mb2">
-          <p className="white  f6  lh-copy  mla  mra  tac  measure-wide">
-            Welcome to the Dominion! Here you can access all exclusive content
-            available on your subscription. We add new content here frequently
-            month-to-month, make sure to keep an eye here for cool stuff.
-          </p>
+          <div className="pb4  mb2">
+            <p className="white  f6  lh-copy  measure-wide">
+              Welcome to the Dominion! Here you can access all exclusive content
+              available on your subscription. We add new content here frequently
+              month-to-month, make sure to keep an eye here for cool stuff.
+            </p>
+          </div>
         </div>
 
         <div className="flex  flex-wrap  pb3">
-          <div className="col-24  col-12-md">
+          <div className="col-24  col-6-md">
             <div className="ph3  pv2">
               <CardDashboard
                 title="Dubplates"
@@ -45,7 +47,7 @@ export default function ProfileCreations({ handleToggle }) {
               />
             </div>
           </div>
-          <div className="col-24  col-12-md">
+          <div className="col-24  col-6-md">
             <div className="ph3  pv2">
               <CardDashboard
                 title="Samples"
@@ -56,10 +58,10 @@ export default function ProfileCreations({ handleToggle }) {
               />
             </div>
           </div>
-          <div className="col-24  col-12-md">
+          <div className="col-24  col-6-md">
             <div className="ph3  pv2">
               <CardDashboard
-                title="Creations"
+                title="Articles"
                 id="creations"
                 coverImage="/images/creations.jpg"
                 i={3}
@@ -67,7 +69,7 @@ export default function ProfileCreations({ handleToggle }) {
               />
             </div>
           </div>
-          <div className="col-24  col-12-md">
+          <div className="col-24  col-6-md">
             <div className="ph3  pv2">
               <CardDashboard
                 title="Prints"

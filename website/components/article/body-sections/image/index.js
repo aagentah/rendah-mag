@@ -11,8 +11,6 @@ import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 export default function ImageSection({ section, imageCount }) {
   const app = useApp();
 
-  console.log('section', section);
-
   const isEven = (number) => {
     return number % 2 === 0;
   };
@@ -37,9 +35,7 @@ export default function ImageSection({ section, imageCount }) {
       if (source) {
         return (
           <a
-            className={`caption  pv2  ph3  ${
-              isEven(imageCount) ? 'tar' : 'tal'
-            }`}
+            className="caption  pv2  ph3  tac"
             href={source}
             target="_blank"
             rel="noopener noreferrer"
@@ -50,11 +46,7 @@ export default function ImageSection({ section, imageCount }) {
       }
 
       return (
-        <span
-          className={`caption  pv2  ph3  ${isEven(imageCount) ? 'tar' : 'tal'}`}
-        >
-          {section?.caption}
-        </span>
+        <span className="caption  pv2  ph3  tac">{section?.caption}</span>
       );
     }
   };
@@ -71,14 +63,10 @@ export default function ImageSection({ section, imageCount }) {
         .url();
 
   return (
-    <div
-      className={`flex  flex-wrap  justify-center  ${
-        isEven(imageCount) ? 'flex-row-reverse' : ''
-      }`}
-    >
+    <div className="flex  flex-wrap  justify-center">
       <div
         className={`justify-center  ${
-          section?.fullImage ? 'col-24  col-10-md' : 'col-24  col-20-md'
+          section?.fullImage ? 'col-24' : 'col-24  col-12-md'
         }`}
       >
         <LazyLoad once offset={250} height={360}>
@@ -93,9 +81,7 @@ export default function ImageSection({ section, imageCount }) {
               placeholder={placeholder}
               alt="This is the alt text."
               figcaption={null}
-              height={
-                app.deviceSize === 'md' || section?.fullImage ? null : 700
-              }
+              height={null}
               width={null}
               customClass=""
               skeleton={false}
@@ -107,7 +93,6 @@ export default function ImageSection({ section, imageCount }) {
           </figure>
         </LazyLoad>
       </div>
-      <div className={section?.fullImage ? 'dn' : 'col-4'} />
     </div>
   );
 }

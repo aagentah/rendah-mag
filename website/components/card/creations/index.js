@@ -51,13 +51,15 @@ export default function CardCreations({ post, columnCount }) {
       skeleton={!post}
       onClick={null}
       /* Children */
-      withLinkProps={{
-        type: 'external',
-        href: `/creations/${post?.slug}`,
-        target: '_blank',
-        routerLink: null,
-        routerLinkProps: null,
-      }}
+      withLinkProps={
+        post?.slug && {
+          type: 'external',
+          href: `/creations/${post?.slug}`,
+          target: '_blank',
+          routerLink: null,
+          routerLinkProps: null,
+        }
+      }
     />
   );
 
@@ -85,13 +87,15 @@ export default function CardCreations({ post, columnCount }) {
       truncate={3}
       skeleton={!post}
       /* Children */
-      withLinkProps={{
-        type: 'external',
-        href: `/creations/${post?.slug}`,
-        target: '_blank',
-        routerLink: null,
-        routerLinkProps: null,
-      }}
+      withLinkProps={
+        post?.slug && {
+          type: 'external',
+          href: `/creations/${post?.slug}`,
+          target: '_blank',
+          routerLink: null,
+          routerLinkProps: null,
+        }
+      }
     />
   );
 

@@ -42,7 +42,7 @@ export default function HeroDefault({
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   let imageUrlWidth;
-  let imageHeight = 700;
+  let imageHeight = null;
   if (app.deviceSize === 'md') imageUrlWidth = 700;
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
@@ -178,17 +178,30 @@ export default function HeroDefault({
 
       {heroImage && <div className="hero__image">{heroImage}</div>}
 
-      <div className="join-left  absolute  top  mt5  pr5">
-        <ParallaxDiv speed={-8}>
-          Explore the <br /> Dominion <br /> Subscription
-        </ParallaxDiv>
-      </div>
+      <p className="t-primary  f4  scroll-down  white">
+        <span className="flex  justify-center">
+          <svg
+            fill="#ffffff"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+          </svg>
+        </span>
+      </p>
 
-      <div className="join-right  absolute  top  mt5  pr5">
-        <ParallaxDiv speed={-8}>
-          Explore the <br /> Dominion <br /> Subscription
-        </ParallaxDiv>
-      </div>
+      {
+        //   <div className="join-left  absolute  top  mt5  pr5">
+        //   <ParallaxDiv speed={-8}>
+        //     Exp
+        //     <span className="join-right">
+        //       lore our <br /> Magazine <br /> Subscription
+        //     </span>
+        //   </ParallaxDiv>
+        // </div>
+      }
     </article>
   );
 }

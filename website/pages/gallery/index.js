@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import Copy from '~/components/elements/copy';
 import Heading from '~/components/elements/heading';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -37,13 +38,13 @@ export default function Gallery({ siteConfig }) {
           siteConfig,
           title: 'Gallery',
           description: null,
-          image: null
+          image: null,
         }}
         preview={null}
       >
         <div className="creations">
-          <Container>
-            <section className="pb5  pb6-md">
+          <section className="pb5  pb6-md">
+            <Container>
               <div className="pb4">
                 <Heading
                   /* Options */
@@ -57,10 +58,28 @@ export default function Gallery({ siteConfig }) {
                 />
               </div>
 
+              <div className="pb5">
+                <Copy
+                  /* Options */
+                  text={`
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur 
+                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+                id est laborum.
+                `}
+                  color="white"
+                  size="medium"
+                  truncate={null}
+                  skeleton={null}
+                />
+              </div>
+
               <div className="flex  flex-wrap">
                 {[...Array(galleryLength)].map((iteration, i) => (
-                  <div key={iteration} className="col-24  col-6-md">
-                    <div className="ph3  pv2">
+                  <div key={iteration} className="col-24">
+                    <div className="pv2">
                       <CardGallery
                         i={i}
                         post={gallery && gallery[i]}
@@ -70,8 +89,8 @@ export default function Gallery({ siteConfig }) {
                   </div>
                 ))}
               </div>
-            </section>
-          </Container>
+            </Container>
+          </section>
         </div>
       </Layout>
     </>
@@ -82,6 +101,6 @@ export async function getServerSideProps() {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig }
+    props: { siteConfig },
   };
 }

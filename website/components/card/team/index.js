@@ -48,16 +48,18 @@ export default function CardBlog({ member, featured }) {
       skeleton={!member}
       onClick={null}
       /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/team/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/team/${member?.slug}`,
-          scroll: false,
-        },
-      }}
+      withLinkProps={
+        member?.slug && {
+          type: 'next',
+          href: '/team/[slug]',
+          target: null,
+          routerLink: Link,
+          routerLinkProps: {
+            as: `/team/${member?.slug}`,
+            scroll: false,
+          },
+        }
+      }
     />
   );
 
@@ -85,16 +87,18 @@ export default function CardBlog({ member, featured }) {
       truncate={1}
       skeleton={!member}
       /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/team/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/team/${member?.slug}`,
-          scroll: false,
-        },
-      }}
+      withLinkProps={
+        member?.slug && {
+          type: 'next',
+          href: '/team/[slug]',
+          target: null,
+          routerLink: Link,
+          routerLinkProps: {
+            as: `/team/${member?.slug}`,
+            scroll: false,
+          },
+        }
+      }
     />
   );
 

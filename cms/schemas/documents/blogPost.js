@@ -55,17 +55,52 @@ export default {
     //   ]
     // },
     {
-      name: "featured",
-      title: "Featured Article",
-      description: "Feature on the big Homepage Hero banner.",
-      type: "boolean",
+      name: "divisions",
+      title: "Divisions",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "division" },
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "tag",
+      title: "Tag",
+      type: "reference",
+      to: { type: "gallery" },
+      hidden: ({ document }) => {
+        // Check if the 'divisions' field contains a reference to a division with the slug 'art'
+        return !document.divisions?.some(
+          (division) => division._ref === "bad8cd79-c94d-4fcf-8011-ab4e4a23f21d"
+        );
+      },
+    },
+    {
+      name: "categories",
+      title: "Categories",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "category" },
+        },
+      ],
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "category",
       title: "Category",
       type: "reference",
       to: { type: "category" },
-      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "featured",
+      title: "Featured Article",
+      description: "Feature on the big Homepage Hero banner.",
+      type: "boolean",
     },
     {
       name: "publishedAt",
@@ -105,12 +140,7 @@ export default {
       ],
       validation: (Rule) => Rule.required(),
     },
-    // {
-    //   name: 'categories',
-    //   title: 'Categories',
-    //   type: 'array',
-    //   of: [{type: 'reference', to: {type: 'category'}}]
-    // },
+
     {
       name: "socialTagline",
       title: "Social Tagline",

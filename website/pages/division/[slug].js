@@ -5,15 +5,14 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardBlog from '~/components/card/blog';
 
-import { getSiteConfig, getCategory } from '~/lib/sanity/requests';
+import { getSiteConfig, getDivision } from '~/lib/sanity/requests';
 
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
-export default function Category({ siteConfig, category, queryParamValue }) {
+export default function Division({ siteConfig, division }) {
   const buttonIcon = <IconArrowRight color="white" size={30} />;
-
   return (
     <>
       <Layout
@@ -23,25 +22,21 @@ export default function Category({ siteConfig, category, queryParamValue }) {
         hasFooter
         meta={{
           siteConfig,
-          title: category.title,
-          description: category.description,
+          title: division.title,
+          description: division.description,
           image: null,
         }}
         preview={null}
       >
         <div className="pt6">
           <Container>
-            {category.posts.length > 0 && (
+            {division.posts.length > 0 && (
               <section className="pb5  pb6-md">
                 <div className="pb4">
                   <Heading
                     /* Options */
                     htmlEntity="h2"
-                    text={`${category.title} ${
-                      queryParamValue
-                        ? ` [${queryParamValue.toUpperCase()}]`
-                        : ''
-                    }`}
+                    text={`${division.title}`}
                     color="black"
                     size="medium"
                     truncate={null}
@@ -51,7 +46,7 @@ export default function Category({ siteConfig, category, queryParamValue }) {
                 </div>
 
                 <div className="flex  flex-wrap">
-                  {category.posts.map((post, i) => (
+                  {division.posts.map((post, i) => (
                     <div key={post.slug} className="col-24  col-6-md">
                       <div className="ph3  pv2">
                         <CardBlog i={i} post={post} columnCount={4} />
@@ -68,18 +63,15 @@ export default function Category({ siteConfig, category, queryParamValue }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { req, params, query, preview = false } = context;
-  const queryParamValue = query.division || null;
-
+export async function getServerSideProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
-  const category = await getCategory(params.slug, [1, 100], queryParamValue);
+  const division = await getDivision(params.slug, [1, 100]);
+  console.log('division', division);
 
   return {
     props: {
       siteConfig,
-      category,
-      queryParamValue,
+      division,
     },
   };
 }

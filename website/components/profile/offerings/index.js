@@ -86,17 +86,28 @@ export default function ProfileDominion() {
     return (
       <>
         <section>
-          <div className="profile_heading">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text="Dubplates"
-              color="white"
-              size="medium"
-              truncate={null}
-              /* Children */
-              withLinkProps={null}
-            />
+          <div className="ph3">
+            <div className="profile_heading">
+              <Heading
+                /* Options */
+                htmlEntity="h1"
+                text="Dubplates"
+                color="white"
+                size="medium"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+
+            <div className="pb4  mb2">
+              <p className="white  f6  lh-copy  measure-wide">
+                A 'Dubplates' pack consists of exclusive music from the artists
+                & labels that we work with, available as part of the Dominion.
+                Each month we add an additional Offering to this tab from the
+                month in which you joined.
+              </p>
+            </div>
           </div>
 
           <div className="relative  ">
@@ -106,18 +117,9 @@ export default function ProfileDominion() {
               ${cardsShow && 'dominion-cards--active'}
           `}
             >
-              <div className="pb4  mb2">
-                <p className="white  f6  lh-copy">
-                  A 'Dubplates' pack consists of exclusive music from the
-                  artists & labels that we work with, available as part of the
-                  Dominion. Each month we add an additional Offering to this tab
-                  from the month in which you joined.
-                </p>
-              </div>
-
               <div className="flex  flex-wrap  pb3">
                 {[...Array(offeringsLength)].map((iteration, i) => (
-                  <div key={iteration} className="col-24  col-8-md  ph3  pv2">
+                  <div key={iteration} className="col-24  col-6-md  ph3  pv2">
                     <CardOffering
                       i={i}
                       post={offerings?.length && offerings[i]}

@@ -13,7 +13,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowRight)
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
 export default function CardGallery({ post }) {
@@ -23,8 +23,10 @@ export default function CardGallery({ post }) {
   const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
   const imageHeight = app?.deviceSize === 'md' ? 200 : 230;
   const buttonIcon = <IconArrowRight color="black" size={16} />;
-  const handleIntersect = event => setInView(event.isIntersecting);
+  const handleIntersect = (event) => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
+
+  console.log('post', post);
 
   const image = (
     <Image
@@ -55,8 +57,8 @@ export default function CardGallery({ post }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/gallery/${post?.slug}`,
-          scroll: false
-        }
+          scroll: false,
+        },
       }}
     />
   );
@@ -81,8 +83,8 @@ export default function CardGallery({ post }) {
       htmlEntity="h2"
       text={post?.title}
       color="white"
-      size="small"
-      truncate={2}
+      size="medium"
+      truncate={null}
       skeleton={!post}
       /* Children */
       withLinkProps={{
@@ -92,8 +94,8 @@ export default function CardGallery({ post }) {
         routerLink: Link,
         routerLinkProps: {
           as: `/gallery/${post?.slug}`,
-          scroll: false
-        }
+          scroll: false,
+        },
       }}
     />
   );
@@ -141,22 +143,51 @@ export default function CardGallery({ post }) {
   return (
     <Observer {...observer}>
       <LazyLoad once offset={250} height={imageHeight}>
-        <article
-          className={`card  card--post  card--scroll  ${inView && 'in-view'}`}
-        >
-          {image && <div className="card__image">{image}</div>}
-
-          <div className="card__dialog">
-            {labels?.length && (
-              <div className="card__labels">{[...labels]}</div>
-            )}
-            {heading && <div className="card__title">{heading}</div>}
-            {
-              // copy && <div className="card__description">{copy}</div>
-            }
-            {
-              // button && <div className="card__button">{button}</div>
-            }
+        <article className={`${inView && 'in-view'}`}>
+          <div className="flex flex-wrap">
+            <div className="dib  pa2  ba  bc-white  mb4">{heading}</div>
+          </div>
+          <div className="flex flex-wrap  mb5  cp">
+            {(() => {
+              return post?.galleryImages.slice(0, 8).map((image, i) => (
+                <div className="col-6  col-3-md" key={i}>
+                  <Image
+                    src={imageBuilder
+                      .image(image.asset)
+                      .height(500)
+                      .width(500)
+                      .auto('format')
+                      .fit('clip')
+                      .url()}
+                    placeholder={imageBuilder
+                      .image(image.asset)
+                      .height(25)
+                      .width(25)
+                      .auto('format')
+                      .fit('clip')
+                      .blur('20')
+                      .url()}
+                    alt={image.alt || ''}
+                    figcaption={image.caption || null}
+                    height={200}
+                    width={null}
+                    customClass=""
+                    skeleton={!post}
+                    onClick={null}
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/gallery/[slug]',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        as: `/gallery/${post?.slug}`,
+                        scroll: false,
+                      },
+                    }}
+                  />
+                </div>
+              ));
+            })()}
           </div>
         </article>
       </LazyLoad>

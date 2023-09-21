@@ -9,7 +9,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowRight)
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
 export default function CardBlog({ post }) {
@@ -41,13 +41,15 @@ export default function CardBlog({ post }) {
       skeleton={!post}
       onClick={null}
       /* Children */
-      withLinkProps={{
-        type: 'external',
-        href: post?.publishedFields?.publishedUrl,
-        target: '_blank',
-        routerLink: null,
-        routerLinkProps: null
-      }}
+      withLinkProps={
+        post?.publishedFields?.publishedUrl && {
+          type: 'external',
+          href: post?.publishedFields?.publishedUrl,
+          target: '_blank',
+          routerLink: null,
+          routerLinkProps: null,
+        }
+      }
     />
   );
 
@@ -75,13 +77,15 @@ export default function CardBlog({ post }) {
       truncate={2}
       skeleton={!post}
       /* Children */
-      withLinkProps={{
-        type: 'external',
-        href: post?.publishedFields?.publishedUrl,
-        target: '_blank',
-        routerLink: null,
-        routerLinkProps: null
-      }}
+      withLinkProps={
+        post?.publishedFields?.publishedUrl && {
+          type: 'external',
+          href: post?.publishedFields?.publishedUrl,
+          target: '_blank',
+          routerLink: null,
+          routerLinkProps: null,
+        }
+      }
     />
   );
 

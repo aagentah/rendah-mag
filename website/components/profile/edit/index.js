@@ -19,35 +19,35 @@ import findUserByHandle from '~/lib/sanity/user/findUserByHandle';
 const Modal = dynamic(() => import('~/components/modal'));
 
 const IconEnvelope = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconEnvelope)
+  import('~/components/elements/icon').then((m) => m.IconEnvelope)
 );
 
 const IconUser = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconUser)
+  import('~/components/elements/icon').then((m) => m.IconUser)
 );
 
 const IconLock = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconLock)
+  import('~/components/elements/icon').then((m) => m.IconLock)
 );
 
 const IconReceipt = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconReceipt)
+  import('~/components/elements/icon').then((m) => m.IconReceipt)
 );
 
 const IconAt = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconAt)
+  import('~/components/elements/icon').then((m) => m.IconAt)
 );
 
 const IconHashtag = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconHashtag)
+  import('~/components/elements/icon').then((m) => m.IconHashtag)
 );
 
 const IconDiscord = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconDiscord)
+  import('~/components/elements/icon').then((m) => m.IconDiscord)
 );
 
 const IconPencil = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconPencil)
+  import('~/components/elements/icon').then((m) => m.IconPencil)
 );
 
 export default function ProfileEdit() {
@@ -55,10 +55,8 @@ export default function ProfileEdit() {
   const dispatch = useDispatchApp();
   const [updateButtonLoading, setUpdateButtonLoading] = useState(false);
   const [passwordModalActive, setPasswordModalActive] = useState(false);
-  const [
-    updatePasswordButtonLoading,
-    setUpdatePasswordButtonLoading
-  ] = useState(false);
+  const [updatePasswordButtonLoading, setUpdatePasswordButtonLoading] =
+    useState(false);
   const [avatarModalActive, setAvatarModalActive] = useState(false);
   const [user, { mutate }] = useUser();
   const [avatarBlob, setAvatarBlob] = useState(null);
@@ -71,11 +69,11 @@ export default function ProfileEdit() {
     'Label',
     'Listener',
     'Developer',
-    'Engineer'
+    'Engineer',
   ];
 
   const onDrop = useCallback(
-    acceptedFiles => {
+    (acceptedFiles) => {
       setAvatarModalActive(false);
 
       toast.info(`To save your image, make sure to hit Update.`);
@@ -94,7 +92,7 @@ export default function ProfileEdit() {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     multiple: false,
-    onDrop
+    onDrop,
   });
 
   useEffect(() => {
@@ -117,7 +115,7 @@ export default function ProfileEdit() {
     if (updatePasswordButtonLoading) return false;
 
     const body = {
-      password: e.currentTarget.password.value
+      password: e.currentTarget.password.value,
     };
 
     if (!body.password) {
@@ -153,7 +151,7 @@ export default function ProfileEdit() {
     const response = await fetch(`${process.env.SITE_URL}/api/user`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
 
     if (response.ok) {
@@ -184,7 +182,7 @@ export default function ProfileEdit() {
 
       tags.push({
         name: checkbox.name,
-        status: checkbox.checked ? 'active' : 'inactive'
+        status: checkbox.checked ? 'active' : 'inactive',
       });
     }
 
@@ -193,7 +191,7 @@ export default function ProfileEdit() {
       name: e.currentTarget.name.value,
       handle: e.currentTarget.handle.value,
       discordId: e.currentTarget.discordId.value,
-      publicProfile: e.currentTarget.publicProfile.checked
+      publicProfile: e.currentTarget.publicProfile.checked,
     };
 
     if (!body.name) {
@@ -232,7 +230,7 @@ export default function ProfileEdit() {
     const response = await fetch(`${process.env.SITE_URL}/api/user`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
 
     if (response.ok) {
@@ -350,7 +348,7 @@ export default function ProfileEdit() {
                     type: 'form',
                     url: null,
                     target: null,
-                    routerLink: null
+                    routerLink: null,
                   }}
                 />
               </div>
@@ -440,211 +438,214 @@ export default function ProfileEdit() {
             </div>
           </div>
         </Modal>
-
-        <div className="profile_heading">
-          <Heading
-            /* Options */
-            htmlEntity="h1"
-            text="Edit Profile"
-            color="white"
-            size="medium"
-            truncate={null}
-            /* Children */
-            withLinkProps={null}
-          />
-        </div>
-
-        <div className="flex  flex-wrap  pt4  pt0-md">
-          <div className="col-24  pb4">
-            <div className="w4  relative">
-              <div className="o-50">
-                <Image
-                  /* Options */
-                  src={avatarImage || '/images/avatar-placeholder.png'}
-                  placeholder={null}
-                  alt={user?.username || ''}
-                  figcaption={null}
-                  height={120}
-                  width={120}
-                  customClass="shadow2"
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
-
-              <div className="absolute  bottom  right  nb2  nr3">
-                <div
-                  className="f7  w2  h2  br-100  bg-white  shadow2  flex  align-center  justify-center  cp"
-                  onClick={() => setAvatarModalActive(!avatarModalActive)}
-                >
-                  <IconPencil color="black" size={16} />
-                </div>
-              </div>
-            </div>
+        <div className="ph3">
+          <div className="profile_heading">
+            <Heading
+              /* Options */
+              htmlEntity="h1"
+              text="Edit Profile"
+              color="white"
+              size="medium"
+              truncate={null}
+              /* Children */
+              withLinkProps={null}
+            />
           </div>
-        </div>
 
-        <form noValidate className="w-100" onSubmit={handleEditProfile}>
-          <div className="flex  flex-wrap">
-            <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-              <div className="pv2">
-                <Input
-                  /* Options */
-                  type="email"
-                  label="Email"
-                  name="username"
-                  value={user?.username || ''}
-                  icon={inputIconEnvelope}
-                  required
-                  disabled={false}
-                  readOnly
-                />
-              </div>
-              <div className="pv2">
-                <Input
-                  /* Options */
-                  type="text"
-                  label="Name"
-                  name="name"
-                  value={user?.name || ''}
-                  icon={inputIconUser}
-                  required
-                  disabled={false}
-                  readOnly={false}
-                />
-              </div>
-              <div className="pv2">
-                <Input
-                  /* Options */
-                  type="text"
-                  label="Dominion Handle"
-                  name="handle"
-                  value={user?.handle || ''}
-                  icon={inputIconAt}
-                  required
-                  disabled={false}
-                  readOnly={false}
-                />
-              </div>
-              <div className="pv2  relative">
-                <Input
-                  /* Options */
-                  type="text"
-                  label="Discord ID"
-                  name="discordId"
-                  value={user?.discordId || ''}
-                  icon={inputIconHash}
-                  required
-                  disabled={false}
-                  readOnly={false}
-                />
-                <a
-                  href="https://discord.com/invite/ev2Q22C"
-                  target="_blank"
-                  className="absolute  top  right  f5  pt4  pr2  grey  underline"
-                >
-                  {iconDiscord}
-                </a>
-              </div>
-              <div className="pv3">
-                <Checkbox
-                  /* Options */
-                  label="Public Profile"
-                  name="publicProfile"
-                  checked={user.publicProfile}
-                  required={false}
-                  disabled={false}
-                  onClick={null}
-                />
-              </div>
-            </div>
-            <div className="col-24  col-12-md  pb3  pb0-md">
-              <div className="ba  bc-white  br4  pa3  pa4-md">
-                <div className="pb2">
-                  <Heading
+          <div className="flex  flex-wrap  pt4  pt0-md">
+            <div className="col-24  pb4">
+              <div className="w4  relative">
+                <div className="o-50">
+                  <Image
                     /* Options */
-                    htmlEntity="h1"
-                    text="I am..."
-                    color="white"
-                    size="small"
-                    truncate={0}
+                    src={avatarImage || '/images/avatar-placeholder.png'}
+                    placeholder={null}
+                    alt={user?.username || ''}
+                    figcaption={null}
+                    height={120}
+                    width={120}
+                    customClass="shadow2"
+                    skeleton={false}
                     onClick={null}
                     /* Children */
                     withLinkProps={null}
                   />
                 </div>
-                <div className="flex  flex-wrap">
-                  {userTags.map(tag => (
-                    <div key={tag} className="col-24  col-12-md">
-                      <div className="pv2">
-                        <Checkbox
-                          /* Options */
-                          label={tag}
-                          name={tag}
-                          checked={user.tags?.length && user.tags.includes(tag)}
-                          required={false}
-                          disabled={false}
-                          onClick={null}
-                        />
-                      </div>
-                    </div>
-                  ))}
+
+                <div className="absolute  bottom  right  nb2  nr3">
+                  <div
+                    className="f7  w2  h2  br-100  bg-white  shadow2  flex  align-center  justify-center  cp"
+                    onClick={() => setAvatarModalActive(!avatarModalActive)}
+                  >
+                    <IconPencil color="black" size={16} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex-md  flex-wrap  align-end-md  justify-between-md  pt4">
-            <div className="col-24  col-12-md  pr3  pb4  pb0-md">
-              <Button
-                /* Options */
-                type="primary"
-                size="medium"
-                text="Update"
-                color="white"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted
-                loading={updateButtonLoading}
-                disabled={app.isLoading}
-                skeleton={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={{
-                  type: 'form',
-                  url: null,
-                  target: null,
-                  routerLink: null
-                }}
-              />
-            </div>
-            <div className="col-24  col-12-md  flex  flex-wrap  justify-end-md">
-              <div className="col-24  col-10-md  flex  justify-end-md  pr0  pr3-md  pb3  pb1-md">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="small"
-                  text="Change Password"
-                  color="white"
-                  fluid={false}
-                  icon={inputIconLock}
-                  iconFloat="left"
-                  inverted
-                  loading={false}
-                  disabled={app.isLoading}
-                  skeleton={false}
-                  onClick={() => {
-                    setPasswordModalActive(!passwordModalActive);
-                  }}
-                  /* Children */
-                  withLinkProps={null}
-                />
+
+          <form noValidate className="w-100" onSubmit={handleEditProfile}>
+            <div className="flex  flex-wrap">
+              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="email"
+                    label="Email"
+                    name="username"
+                    value={user?.username || ''}
+                    icon={inputIconEnvelope}
+                    required
+                    disabled={false}
+                    readOnly
+                  />
+                </div>
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="Name"
+                    name="name"
+                    value={user?.name || ''}
+                    icon={inputIconUser}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
+                </div>
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="Dominion Handle"
+                    name="handle"
+                    value={user?.handle || ''}
+                    icon={inputIconAt}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
+                </div>
+                <div className="pv2  relative">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="Discord ID"
+                    name="discordId"
+                    value={user?.discordId || ''}
+                    icon={inputIconHash}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
+                  <a
+                    href="https://discord.com/invite/ev2Q22C"
+                    target="_blank"
+                    className="absolute  top  right  f5  pt4  pr2  grey  underline"
+                  >
+                    {iconDiscord}
+                  </a>
+                </div>
+                <div className="pv3">
+                  <Checkbox
+                    /* Options */
+                    label="Public Profile"
+                    name="publicProfile"
+                    checked={user.publicProfile}
+                    required={false}
+                    disabled={false}
+                    onClick={null}
+                  />
+                </div>
+              </div>
+              <div className="col-24  col-12-md  pb3  pb0-md">
+                <div className="ba  bc-white  br4  pa3  pa4-md">
+                  <div className="pb2">
+                    <Heading
+                      /* Options */
+                      htmlEntity="h1"
+                      text="I am..."
+                      color="white"
+                      size="small"
+                      truncate={0}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+                  <div className="flex  flex-wrap">
+                    {userTags.map((tag) => (
+                      <div key={tag} className="col-24  col-12-md">
+                        <div className="pv2">
+                          <Checkbox
+                            /* Options */
+                            label={tag}
+                            name={tag}
+                            checked={
+                              user.tags?.length && user.tags.includes(tag)
+                            }
+                            required={false}
+                            disabled={false}
+                            onClick={null}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
+            <div className="flex-md  flex-wrap  align-end-md  justify-between-md  pt4">
+              <div className="col-24  col-12-md  pr3  pb4  pb0-md">
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="medium"
+                  text="Update"
+                  color="white"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted
+                  loading={updateButtonLoading}
+                  disabled={app.isLoading}
+                  skeleton={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'form',
+                    url: null,
+                    target: null,
+                    routerLink: null,
+                  }}
+                />
+              </div>
+              <div className="col-24  col-12-md  flex  flex-wrap  justify-end-md">
+                <div className="col-24  col-10-md  flex  justify-end-md  pr0  pr3-md  pb3  pb1-md">
+                  <Button
+                    /* Options */
+                    type="secondary"
+                    size="small"
+                    text="Change Password"
+                    color="white"
+                    fluid={false}
+                    icon={inputIconLock}
+                    iconFloat="left"
+                    inverted
+                    loading={false}
+                    disabled={app.isLoading}
+                    skeleton={false}
+                    onClick={() => {
+                      setPasswordModalActive(!passwordModalActive);
+                    }}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </>
     );
   }

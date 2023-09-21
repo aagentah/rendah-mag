@@ -32,10 +32,10 @@ export default function ProfilePrints() {
 
   const buttonIconArrowLeft = <IconArrowLeft color="white" size={16} />;
 
-  const apply = (i) => {
-    setModalActive(i);
-    setCardsShow(false);
-  };
+  // const apply = (i) => {
+  //   setModalActive(i);
+  //   setCardsShow(false);
+  // };
 
   // Fetch samples
   useEffect(() => {
@@ -55,17 +55,27 @@ export default function ProfilePrints() {
     return (
       <>
         <section>
-          <div className="profile_heading">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text="Prints"
-              color="white"
-              size="medium"
-              truncate={null}
-              /* Children */
-              withLinkProps={null}
-            />
+          <div className="ph3">
+            <div className="profile_heading">
+              <Heading
+                /* Options */
+                htmlEntity="h1"
+                text="Prints"
+                color="white"
+                size="medium"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+
+            <div className="pb4  mb2">
+              <p className="white  f6  lh-copy  measure-wide">
+                Here you can download any of our previous prints. For future
+                prints, keep an eye on your email as we frequently update
+                progress on upcoming issues.
+              </p>
+            </div>
           </div>
 
           <div className="relative  ">
@@ -75,21 +85,13 @@ export default function ProfilePrints() {
               ${cardsShow && 'dominion-cards--active'}
           `}
             >
-              <div className="pb4  mb2">
-                <p className="white  f6  lh-copy">
-                  Here you can download any of our previous prints. For future
-                  prints, keep an eye on your email as we frequently update
-                  progress on upcoming issues.
-                </p>
-              </div>
-
               <div className="flex  flex-wrap  pb3">
                 {[...Array(samplesLength)].map((iteration, i) => (
-                  <div key={iteration} className="col-24  col-8-md  ph3  pv2">
+                  <div key={iteration} className="col-24  col-6-md  ph3  pv2">
                     <CardPrint
                       i={i}
                       post={samples?.length && samples[i]}
-                      handleClick={apply}
+                      handleClick={null}
                     />
                   </div>
                 ))}

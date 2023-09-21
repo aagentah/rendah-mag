@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 
 const IconInstagram = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconInstagram)
@@ -106,27 +105,8 @@ export default function SocialLinks({ article }) {
       });
     }
 
-    if (article?.tags?.length) {
-      tags.push(
-        <p className="t-primary  f6  fw7  black  lh-copy  pv2">Tags:</p>
-      );
-
-      tags.push(
-        article.tags.map((e) => (
-          <>
-            <Link href={`/tag/${e.tag.slug}`} legacyBehavior>
-              <span className="t-secondary  f7  cp  grey  fw7  pr4">
-                #{e.tag.name}
-              </span>
-            </Link>
-          </>
-        ))
-      );
-    }
-
     return (
       <div className="article__social-links  flex  flex-wrap  justify-center  measure-wide  mla  mra">
-        {tags?.length ? <div className="pb4">{tags}</div> : ''}
         {links?.length ? links : ''}
       </div>
     );

@@ -51,16 +51,18 @@ export default function CardBlog({ post, columnCount }) {
       skeleton={!post}
       onClick={null}
       /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/article/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/article/${post?.slug}`,
-          scroll: false,
-        },
-      }}
+      withLinkProps={
+        post?.slug && {
+          type: 'next',
+          href: '/article/[slug]',
+          target: null,
+          routerLink: Link,
+          routerLinkProps: {
+            as: `/article/${post?.slug}`,
+            scroll: false,
+          },
+        }
+      }
     />
   );
 
@@ -88,16 +90,18 @@ export default function CardBlog({ post, columnCount }) {
       truncate={null}
       skeleton={!post}
       /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/article/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/article/${post?.slug}`,
-          scroll: false,
-        },
-      }}
+      withLinkProps={
+        post?.slug && {
+          type: 'next',
+          href: '/article/[slug]',
+          target: null,
+          routerLink: Link,
+          routerLinkProps: {
+            as: `/article/${post?.slug}`,
+            scroll: false,
+          },
+        }
+      }
     />
   );
 
@@ -128,7 +132,7 @@ export default function CardBlog({ post, columnCount }) {
   //     skeleton={false}
   //     onClick={null}
   //     /* Children */
-  //     withLinkProps={{
+  //     withLinkProps={post?.slug &&  {
   //       type: 'next',
   //       href: '/article/[slug]',
   //       target: null,

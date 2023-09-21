@@ -23,7 +23,7 @@ export default function CardDashboard({
   let imageUrlWidth;
 
   imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  imageHeight = app?.deviceSize === 'md' ? 160 : 160;
+  imageHeight = app?.deviceSize === 'md' ? 160 : 340;
 
   const buttonIcon = <IconArrowRight color="white" size={16} />;
 

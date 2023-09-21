@@ -53,7 +53,7 @@ export default function CardPrint({ post, handleClick, i }) {
   );
 
   return (
-    <article className="card  card--pack">
+    <article className="card  card--print">
       <div
         className="card__image"
         onClick={() => handleClick && handleClick(i)}

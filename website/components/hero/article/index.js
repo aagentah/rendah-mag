@@ -42,8 +42,6 @@ export default function HeroDefault({
   let imageUrlWidth = 650;
   let imageUrlHeight = fullImage ? null : 700;
 
-  console.log('image', image);
-
   if (!app.deviceSize) return;
 
   if (app.deviceSize === 'md') {
@@ -62,7 +60,7 @@ export default function HeroDefault({
   const styles = fullImage
     ? null
     : {
-        maxHeight: 'calc(120vh + 100px)',
+        maxHeight: 'calc(100vh)',
       };
 
   if (link) {

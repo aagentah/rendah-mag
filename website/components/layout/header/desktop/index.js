@@ -37,6 +37,19 @@ export default function HeaderDestop({
             </svg>
           </Link>
         </div>
+        {
+          //    <div className="absolute  top  left  ml5  pl3  mt3  pt2">
+          //    <Link href="/" legacyBehavior>
+          //      <h1
+          //        className={`t-primary  f4  bold  pt1  cp ${
+          //          navOnWhite ? 'black' : 'white'
+          //        }`}
+          //      >
+          //        Rendah Mag
+          //      </h1>
+          //    </Link>
+          //  </div>
+        }
         <div className="col-6" />
         <div className="col-18">
           <nav className="nav  w-100  flex  justify-end">
@@ -61,6 +74,34 @@ export default function HeaderDestop({
                   withLinkProps={{
                     type: 'next',
                     href: '/',
+                    target: null,
+                    routerLink: Link,
+                    routerLinkProps: {
+                      scroll: false,
+                    },
+                  }}
+                />
+              </li>
+
+              <li className="nav__item  dib  pr3">
+                <Button
+                  /* Options */
+                  type="secondary"
+                  size="medium"
+                  text="Cyphers"
+                  color={navColour}
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'next',
+                    href: '/cyphers',
                     target: null,
                     routerLink: Link,
                     routerLinkProps: {
@@ -98,33 +139,6 @@ export default function HeaderDestop({
                 //   />
                 // </li>
               }
-              <li className="nav__item  dib  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Cyphers"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/cyphers',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false,
-                    },
-                  }}
-                />
-              </li>
               <li className="nav__item  dib  pr3">
                 <Button
                   /* Options */
@@ -258,7 +272,7 @@ export default function HeaderDestop({
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="Sign Up Dominion"
+                      text="Subscription"
                       color="rendah-red"
                       fluid={false}
                       icon={buttonIcons.store}

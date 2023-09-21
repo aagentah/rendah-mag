@@ -12,7 +12,8 @@ const postFields = `
   introduction,
   socialHandles,
   socialTagline,
-  'category': category->title,
+  'categories': categories[]->title,
+  'tag': tag->{...},
   'slug': slug.current,
   'coverImage': image.asset->url,
   'coverImageCaption': image.caption,
@@ -198,35 +199,71 @@ export async function getAllGalleryTotal(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "gallery"] | order(publishedAt desc) {
       ${postFieldsCard}
+      galleryImages
     }`);
   return results;
 }
 
 export async function getGallery(slug, preview) {
-  const results = await getClient(preview).fetch(
-    `*[_type == "gallery" && slug.current == $slug] | order(publishedAt desc) [0] {
-      ${postFields}
+  const [gallery, morePosts] = await Promise.all([
+    getClient(preview)
+      .fetch(
+        `*[_type == "gallery" && slug.current == $slug] | order(publishedAt desc) [0] {
+          ${postFields}
+          galleryImages
+        }`,
+        { slug }
+      )
+      .then((res) => res),
+    getClient(preview).fetch(
+      `*[_type == "post" && tag._ref in *[_type == "gallery" && slug.current == $slug]._id] {
+          ${postFields}
+          galleryImages
+        }`,
+      { slug }
+    ),
+  ]);
+
+  return { gallery, morePosts };
+}
+
+export async function getCategory(category, range, division = null) {
+  const today = dateTodayISO();
+  const rangeFrom = range[0] - 1;
+  const rangeTo = range[1] - 1;
+
+  let divisionFilter = '';
+  if (division) {
+    divisionFilter = `&& count(divisions[_ref in *[_type == "division" && slug.current == $division]._id]) > 0`;
+  }
+
+  const results = await getClient(null).fetch(
+    `*[_type == "category" && slug.current == $category] [0] {
+      ...,
+      "posts": *[_type == "post" && references(^._id) ${divisionFilter} && publishedAt < $today] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
+        ${postFieldsCard}
+      }
     }`,
-    { slug }
+    { category, rangeFrom, rangeTo, today, division }
   );
 
   return results;
 }
 
-export async function getCategory(category, range) {
+export async function getDivision(division, range) {
   const today = dateTodayISO();
 
   const rangeFrom = range[0] - 1;
   const rangeTo = range[1] - 1;
 
   const results = await getClient(null).fetch(
-    `*[_type == "category" && slug.current == $category] [0] {
+    `*[_type == "division" && slug.current == $division] [0] {
       ...,
-          "articles": *[_type == "post" && references(^._id) && publishedAt < $today] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
-            ${postFieldsCard}
-            }
-          }`,
-    { category, rangeFrom, rangeTo, today }
+      "posts": *[_type == "post" && references(^._id) && publishedAt < $today] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
+        ${postFieldsCard}
+      }
+    }`,
+    { division, rangeFrom, rangeTo, today }
   );
 
   return results;

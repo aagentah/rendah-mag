@@ -13,6 +13,7 @@ import dynamic from 'next/dynamic';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
+import Image from '~/components/elements/image';
 import Hero from '~/components/hero/article';
 
 import Layout from '~/components/layout';
@@ -30,6 +31,7 @@ import {
   getAllPostsTotal,
   getPost,
   getMorePosts,
+  imageBuilder,
 } from '~/lib/sanity/requests';
 
 const Modal = dynamic(() => import('~/components/modal'));
@@ -37,6 +39,10 @@ const SubscribeForm = dynamic(() => import('~/components/subscribe-form'));
 const Author = dynamic(() => import('~/components/article/author'));
 const SocialLinks = dynamic(() => import('~/components/article/social-links'));
 const CardBlog = dynamic(() => import('~/components/card/blog'));
+
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
+);
 
 export default function Post({ siteConfig, post, preview }) {
   const app = useApp();
@@ -46,8 +52,6 @@ export default function Post({ siteConfig, post, preview }) {
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
   const [morePosts, setMorePosts] = useState([]);
-
-  console.log('post', post);
 
   useEffect(() => {
     const action = async () => {
@@ -101,10 +105,17 @@ export default function Post({ siteConfig, post, preview }) {
   }
 
   if (!router.isFallback && post?.slug) {
+    console.log('post', post);
+    let canShowBody = true;
+
+    if (post?.categories.includes('Dominion Exclusive') && !user?.isDominion) {
+      canShowBody = false;
+    }
+
     return (
       <Layout
         navOffset={null}
-        navOnWhite={true}
+        navOnWhite={false}
         hasNav
         hasFooter
         meta={{
@@ -170,62 +181,137 @@ export default function Post({ siteConfig, post, preview }) {
           </div>
         </Modal>
 
-        <div className="flex  flex-wrap">
-          <div className="col-6" />
-
-          <div className="col-24  col-18-md">
-            <div className="ph4  ph0-md  pb3  pt6  col-18  hero--article__wrapper  relative">
-              <Heading
-                /* Options */
-                htmlEntity="h1"
-                text={post.title}
-                color="black"
-                size={app.deviceSize === 'md' ? 'large' : 'x-large'}
-                truncate={null}
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-
-            <Hero
-              image={post?.coverImage}
-              title={post.title}
-              description={null}
-              heroButtonText={null}
-              link={null}
-              marginTop={0}
-              marginBottom={0}
-              modifier="article"
-              skeleton={!post}
-              caption={post?.coverImageCaption}
-              fullImage={post?.coverImageFullImage}
-            />
-          </div>
+        <div className="mb4">
+          <Hero
+            image={post?.coverImage}
+            title={post.title}
+            description={null}
+            heroButtonText={null}
+            link={null}
+            marginTop={0}
+            marginBottom={0}
+            modifier="article"
+            skeleton={!post}
+            caption={post?.coverImageCaption}
+            fullImage={post?.coverImageFullImage}
+          />
         </div>
 
         <article className="pt4  pb4">
+          {post.tag && (
+            <>
+              <div className="flex  flex-wrap  mb4  pb3">
+                <div className="col-6" />
+                <div className="col-24 col-12-md br4 shadow2 pa3 relative pt4">
+                  <div className="t-primary bg-white ba bc-black black absolute dib pa2 top left ml3 nt3">
+                    This article has a linked Gallery page
+                  </div>
+
+                  <div className="flex  flex-wrap  pv2">
+                    {post?.tag?.galleryImages.slice(0, 10).map((image, i) => {
+                      const opacityClass = `o-${100 - i * 10}`;
+                      return (
+                        <div
+                          className={`col-2  ph1  br3 ${opacityClass}`}
+                          key={i}
+                        >
+                          <Image
+                            src={imageBuilder
+                              .image(image.asset)
+                              .height(500)
+                              .width(500)
+                              .auto('format')
+                              .fit('clip')
+                              .url()}
+                            placeholder={imageBuilder
+                              .image(image.asset)
+                              .height(25)
+                              .width(25)
+                              .auto('format')
+                              .fit('clip')
+                              .blur('20')
+                              .url()}
+                            alt={image.alt || ''}
+                            figcaption={image.caption || null}
+                            height={null}
+                            width={null}
+                            customClass="br3"
+                            skeleton={false}
+                            onClick={null}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="absolute top right pt2  mt4 nr3">
+                    <div className="cp pa1 bw1 ba br-100 bg-white  bc-rendah-red">
+                      <Link
+                        href={`/gallery/${post.tag.slug.current}`}
+                        legacyBehavior
+                      >
+                        <span className="cp rendah-red">
+                          <IconArrowRight color="#e9393f" />
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+
           <div className="flex  flex-wrap  ph4  ph0-md">
             <div className="col-6" />
             <div className="col-24  col-12-md">
+              <div className="mb4">
+                <Heading
+                  /* Options */
+                  htmlEntity="h1"
+                  text={post.title}
+                  color="rendah-red"
+                  size={app.deviceSize === 'md' ? 'large' : 'x-large'}
+                  truncate={null}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
+
               <p className="t-secondary  f5  almost-black  lh-copy  pb4">
-                <span className="t-secondary  f5  almost-black  lh-copy  dib  ba  bc-black  pa2  mr3  mb3  mb0-md">
-                  {post.category}
-                </span>
+                {post?.categories.length &&
+                  post?.categories.map((i) => (
+                    <span className="t-secondary  f5  almost-black  lh-copy  dib  ba  bc-black  pa2  mr3  mb3  mb0-md">
+                      {i}
+                    </span>
+                  ))}
 
                 <span className="db  dib-md">
-                  {post.authors.map((i) => (
-                    <>
-                      Written by{' '}
-                      <Link
-                        href={`/team/${i.author.slug.current}`}
-                        legacyBehavior
-                      >
-                        <span className="cp  black  fw7">{i.author.name}</span>
-                      </Link>
-                      {' on'}
-                    </>
-                  ))}
+                  Written by{' '}
+                  {post.authors.map((i, index, array) => {
+                    let separator = '';
+                    if (index > 0) {
+                      if (index === array.length - 1) {
+                        separator = ' & ';
+                      } else {
+                        separator = ', ';
+                      }
+                    }
+                    return (
+                      <>
+                        {separator}
+                        <Link
+                          href={`/team/${i.author.slug.current}`}
+                          legacyBehavior
+                        >
+                          <span className="cp  black  fw7">
+                            {i.author.name}
+                          </span>
+                        </Link>
+                      </>
+                    );
+                  })}
+                  {' on'}
                 </span>
 
                 <span className="pl0  pl1-md">
@@ -249,7 +335,46 @@ export default function Post({ siteConfig, post, preview }) {
             <div className="col-6" />
           </div>
 
-          <Sections body={post.body} />
+          {canShowBody ? (
+            <Sections body={post.body} />
+          ) : (
+            <div className="relative  br4  shadow2  bg-light-grey  pa3  pa4-md  mt4  mb4  col-20  col-12-md  mla  mra">
+              <div className="absolute  pa2  w4  top  left  right  mla  mra  nt3  bg-light-grey  br4  shadow2">
+                <img
+                  /* Options */
+                  src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1617575443/dominion/dominion-logo-transparent.png"
+                  alt="Dominion"
+                />
+              </div>
+
+              <div className="pb2">
+                <Heading
+                  /* Options */
+                  htmlEntity="h1"
+                  text="Hold up!"
+                  color="black"
+                  size="medium"
+                  truncate={null}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
+
+              <p className="t-secondary  f6  lh-copy  taj  black">
+                This article is exclusive to the Dominion. To read the full
+                article, please{' '}
+                <a className="underline" href="/login">
+                  log in
+                </a>{' '}
+                or{' '}
+                <a className="underline" href="/dominion">
+                  sign up
+                </a>
+                .
+              </p>
+            </div>
+          )}
         </article>
 
         <div className="mla  mra  pv5  mb4  mb5-md  bg-light-grey  ph4  ph0-md">

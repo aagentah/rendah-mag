@@ -26,6 +26,10 @@
   @extend .pb3;
 }
 
+.rich-text p:empty {
+  display: none;
+}
+
 .rich-text ul,
 .rich-text ol {
   @extend .ml3;

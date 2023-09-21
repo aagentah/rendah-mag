@@ -84,6 +84,7 @@ export default async () => {
               S.documentTypeListItem("offering"),
               S.documentTypeListItem("pack"),
               S.documentTypeListItem("print"),
+              S.documentTypeListItem("track").icon(MDMusicVideo),
               S.listItem()
                 .icon(MDViewList)
                 .title("Dominion Pipeline")
@@ -132,6 +133,8 @@ export default async () => {
       .items([
         siteSettings,
         homePage,
+        // Smart Link
+        S.documentTypeListItem("smartLink").icon(MDViewList),
         // Divider
         S.divider(),
         // Blog
@@ -144,25 +147,18 @@ export default async () => {
               .items([
                 S.documentTypeListItem("post"),
                 S.documentTypeListItem("author"),
+                S.documentTypeListItem("division"),
                 S.documentTypeListItem("category"),
+                S.documentTypeListItem("gallery"),
               ])
           ),
-        // Gallery
-        S.documentTypeListItem("gallery").icon(MDImage),
+
         // Store
         store,
         // Dominion
         dominion,
         // Cypher
-        S.documentTypeListItem("refTag").icon(MDMusic),
-        // Cypher
         S.documentTypeListItem("cypher").icon(MDMusic),
-        // Mix
-        S.documentTypeListItem("mix").icon(MDMusicVideo),
-        // Track
-        S.documentTypeListItem("track").icon(MDMusicVideo),
-        // Smart Link
-        S.documentTypeListItem("smartLink").icon(MDViewList),
       ])
   );
 };

@@ -6,7 +6,6 @@ import zenscroll from 'zenscroll';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Layout from '~/components/layout';
-import Container from '~/components/layout/container';
 import Tabs from '~/components/tabs';
 
 import { useApp } from '~/context-provider/app';
@@ -86,14 +85,14 @@ export default function Profile({ siteConfig }) {
   const [refreshPack, setRefreshPack] = useState(false);
   const [tabQuery, setTabQuery] = useState(router.query?.tab);
 
-  const iconHouse = <IconStore color="grey" size={16} />;
-  const iconUser = <IconUser color="grey" size={16} />;
-  const iconEnvelope = <IconEnvelope color="grey" size={16} />;
-  const iconMusic = <IconHeadphones color="grey" size={16} />;
-  const iconPack = <IconAudio color="grey" size={16} />;
-  const iconNewspaper = <IconNewspaper color="grey" size={16} />;
-  const iconList = <IconList color="grey" size={16} />;
-  const iconMoney = <IconMoney color="grey" size={16} />;
+  const iconHouse = <IconStore color="#ffffff" size={16} />;
+  const iconUser = <IconUser color="#ffffff" size={16} />;
+  const iconEnvelope = <IconEnvelope color="#ffffff" size={16} />;
+  const iconMusic = <IconHeadphones color="#ffffff" size={16} />;
+  const iconPack = <IconAudio color="#ffffff" size={16} />;
+  const iconNewspaper = <IconNewspaper color="#ffffff" size={16} />;
+  const iconList = <IconList color="#ffffff" size={16} />;
+  const iconMoney = <IconMoney color="#ffffff" size={16} />;
 
   useEffect(() => {
     // redirect user to login if not authenticated
@@ -135,67 +134,65 @@ export default function Profile({ siteConfig }) {
             preview={null}
           >
             <div className="pt4  pt0-md  pb4  pb0-md">
-              <Container>
-                {user && app.deviceSize && (
-                  <div className="tabs-wrapper--profile  tabs-wrapper--side-bar">
-                    <Tabs
-                      /* Options */
-                      content={[
-                        {
-                          id: 'dashboard',
-                          tabTitle: 'Dashboard',
-                          tabIcon: iconHouse,
-                          tabContent: ProfileDashboard,
-                        },
-                        {
-                          id: 'offerings',
-                          tabTitle: 'Dubplates',
-                          tabIcon: iconMusic,
-                          tabContent: ProfileOfferings,
-                        },
-                        {
-                          id: 'packs',
-                          tabTitle: 'Samples',
-                          tabIcon: iconPack,
-                          tabContent: ProfilePacks,
-                        },
-                        {
-                          id: 'creations',
-                          tabTitle: 'Creations',
-                          tabIcon: iconNewspaper,
-                          tabContent: ProfileCreations,
-                        },
-                        {
-                          id: 'prints',
-                          tabTitle: 'Prints',
-                          tabIcon: iconNewspaper,
-                          tabContent: ProfilePrints,
-                        },
-                        // {
-                        //   id: 'pipeline',
-                        //   tabTitle: 'Pipeline',
-                        //   tabIcon: iconList,
-                        //   tabContent: <ProfilePipeline />,
-                        // },
-                        {
-                          id: 'profile',
-                          tabTitle: 'Profile',
-                          tabIcon: iconUser,
-                          tabContent: ProfileEdit,
-                        },
-                        {
-                          id: 'billing',
-                          tabTitle: 'Billing',
-                          tabIcon: iconMoney,
-                          tabContent: ProfileBilling,
-                        },
-                      ]}
-                      defaultSelected={handleSelected}
-                      onToggle={handleToggle}
-                    />
-                  </div>
-                )}
-              </Container>
+              {user && app.deviceSize && (
+                <div className="tabs-wrapper--profile  tabs-wrapper--side-bar">
+                  <Tabs
+                    /* Options */
+                    content={[
+                      {
+                        id: 'dashboard',
+                        tabTitle: 'Dashboard',
+                        tabIcon: iconHouse,
+                        tabContent: ProfileDashboard,
+                      },
+                      {
+                        id: 'offerings',
+                        tabTitle: 'Dubplates',
+                        tabIcon: iconMusic,
+                        tabContent: ProfileOfferings,
+                      },
+                      {
+                        id: 'packs',
+                        tabTitle: 'Samples',
+                        tabIcon: iconPack,
+                        tabContent: ProfilePacks,
+                      },
+                      {
+                        id: 'creations',
+                        tabTitle: 'Articles',
+                        tabIcon: iconNewspaper,
+                        tabContent: ProfileCreations,
+                      },
+                      {
+                        id: 'prints',
+                        tabTitle: 'Prints',
+                        tabIcon: iconNewspaper,
+                        tabContent: ProfilePrints,
+                      },
+                      // {
+                      //   id: 'pipeline',
+                      //   tabTitle: 'Pipeline',
+                      //   tabIcon: iconList,
+                      //   tabContent: <ProfilePipeline />,
+                      // },
+                      {
+                        id: 'profile',
+                        tabTitle: 'Profile',
+                        tabIcon: iconUser,
+                        tabContent: ProfileEdit,
+                      },
+                      {
+                        id: 'billing',
+                        tabTitle: 'Billing',
+                        tabIcon: iconMoney,
+                        tabContent: ProfileBilling,
+                      },
+                    ]}
+                    defaultSelected={handleSelected}
+                    onToggle={handleToggle}
+                  />
+                </div>
+              )}
             </div>
           </Layout>
         </div>

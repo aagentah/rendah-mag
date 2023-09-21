@@ -37,7 +37,7 @@ export default function ProfileOrders() {
           />
         </div>
         <div className="pb4  mb2">
-          <p className="white  f6  lh-copy">
+          <p className="white  f6  lh-copy  measure-wide">
             Here we document progress in upcoming features and services. If
             you&apos;d like something as part of your Dominion subscription,{' '}
             <a className="underline" href="mailto:info@rendahmag.com">
@@ -127,8 +127,8 @@ export default function ProfileOrders() {
               target: null,
               routerLink: Link,
               routerLinkProps: {
-                scroll: false
-              }
+                scroll: false,
+              },
             }}
           />
         </div>
