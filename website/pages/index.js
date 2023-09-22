@@ -16,9 +16,7 @@ import 'intersection-observer';
 import Layout from '~/components/layout';
 import Hero from '~/components/hero/home';
 
-import {
-  getHomePage,
-} from '~/lib/sanity/requests';
+import { getHomePage } from '~/lib/sanity/requests';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
@@ -175,10 +173,6 @@ export default function Home() {
           //  </div>
         }
 
-        <Observer {...observer}>
-          <div className="" />
-        </Observer>
-
         <div className="absolute  top  left  nl6  dn  db-md">
           <ParallaxDiv translateY={[750, 880]}>
             <img className="w5  o-50" src="/images/vector-red.png" />
@@ -188,6 +182,10 @@ export default function Home() {
         <LazyLoad once offset={800} height={800}>
           <RenderCards />
         </LazyLoad>
+
+        <Observer {...observer}>
+          <div className="" />
+        </Observer>
 
         {/* <div className="creations  bg-black  relative">
 <Container>
