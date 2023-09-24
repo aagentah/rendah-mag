@@ -64,6 +64,35 @@
   // }
 }
 
+.nav__item--search-bar {
+  transform: translateX(-32px);
+  width: 242px;
+  right: -242px;
+  position: relative;
+  overflow: hidden;
+  transition: right 0.3s ease-in-out, clip-path 0.3s ease-in-out;
+  clip-path: inset(0 calc(100% - 32px) 0 0); /* Adjusted clip-path */
+
+  &.active {
+    right: -32px; /* Adjusted right */
+    clip-path: inset(0);
+  }
+}
+
+.nav__item--divider {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 36px;
+    background-color: currentColor;
+  }
+}
+
 // Mobile
 
 .header--mobile {

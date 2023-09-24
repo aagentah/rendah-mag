@@ -1,7 +1,14 @@
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { useState, useRef } from 'react';
 
 import Button from '~/components/elements/button';
+import SearchBar from '~/components/search-bar';
 import { useUser } from '~/lib/hooks';
+
+const IconSearch = dynamic(() =>
+  import('~/components/elements/icon').then((m) => m.IconSearch)
+);
 
 export default function HeaderDestop({
   meta,
@@ -13,6 +20,18 @@ export default function HeaderDestop({
   buttonIcons,
 }) {
   const [user] = useUser();
+  const [searchActive, setSearchActive] = useState(false);
+
+  const searchBarRef = useRef(null);
+
+  const focus = () => {
+    searchBarRef.current.focusInput();
+  };
+
+  const toggleSearchActive = () => {
+    setSearchActive(!searchActive);
+    focus();
+  };
 
   return (
     <div
@@ -54,7 +73,25 @@ export default function HeaderDestop({
         <div className="col-18">
           <nav className="nav  w-100  flex  justify-end">
             <ul className="flex  flex-wrap">
-              <li className="nav__item  dib  pr3">
+              <li
+                className={`nav__item  nav__item--search-bar  dib  flex  align-center   ${
+                  searchActive ? 'active' : ''
+                }`}
+              >
+                <div className="cp  mr3" onClick={toggleSearchActive}>
+                  <IconSearch
+                    color={navOnWhite ? 'black' : 'white'}
+                    size={16}
+                  />
+                </div>
+                <SearchBar ref={searchBarRef} />
+              </li>
+              <li
+                className={`nav__item  nav__item--divider  dib  flex  align-center  pr3  ${
+                  navOnWhite ? 'black' : 'white'
+                }`}
+              />
+              <li className="nav__item  dib  flex  align-center  pr3">
                 <Button
                   /* Options */
                   type="secondary"
@@ -83,7 +120,7 @@ export default function HeaderDestop({
                 />
               </li>
 
-              <li className="nav__item  dib  pr3">
+              <li className="nav__item  dib  flex  align-center  pr3">
                 <Button
                   /* Options */
                   type="secondary"
@@ -111,7 +148,7 @@ export default function HeaderDestop({
                 />
               </li>
               {
-                // <li className="nav__item  dib  pr3">
+                // <li className="nav__item  dib  flex  align-center  pr3">
                 //   <Button
                 //     /* Options */
                 //     type="secondary"
@@ -139,7 +176,7 @@ export default function HeaderDestop({
                 //   />
                 // </li>
               }
-              <li className="nav__item  dib  pr3">
+              <li className="nav__item  dib  flex  align-center  pr3">
                 <Button
                   /* Options */
                   type="secondary"
@@ -165,7 +202,7 @@ export default function HeaderDestop({
                   }}
                 />
               </li>
-              <li className="nav__item  dib  pr3">
+              <li className="nav__item  dib  flex  align-center  pr3">
                 <Button
                   /* Options */
                   type="secondary"
@@ -191,7 +228,7 @@ export default function HeaderDestop({
                   }}
                 />
               </li>
-              <li className="nav__item  dib  pr3">
+              <li className="nav__item  dib  flex  align-center  pr3">
                 <Button
                   /* Options */
                   type="secondary"
@@ -217,7 +254,7 @@ export default function HeaderDestop({
               </li>
 
               {user && meta.title !== 'Profile' && (
-                <li className="nav__item  dib  pr3">
+                <li className="nav__item  dib  flex  align-center  pr3">
                   <Button
                     /* Options */
                     type="secondary"
@@ -246,7 +283,7 @@ export default function HeaderDestop({
                 </li>
               )}
               {user ? (
-                <li className="nav__item  dib  pr3">
+                <li className="nav__item  dib  flex  align-center  pr3">
                   <Button
                     /* Options */
                     type="secondary"
@@ -267,7 +304,7 @@ export default function HeaderDestop({
                 </li>
               ) : (
                 <>
-                  <li className="nav__item  dib  pr3">
+                  <li className="nav__item  dib  flex  align-center  pr3">
                     <Button
                       /* Options */
                       type="secondary"
@@ -294,7 +331,7 @@ export default function HeaderDestop({
                       }}
                     />
                   </li>
-                  <li className="nav__item  dib  pr3">
+                  <li className="nav__item  dib  flex  align-center  pr3">
                     <Button
                       /* Options */
                       type="secondary"

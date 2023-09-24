@@ -14,7 +14,6 @@ import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import passwordStrength from '~/lib/password-strength';
 import { imageBuilder } from '~/lib/sanity/requests';
-import findUserByHandle from '~/lib/sanity/user/findUserByHandle';
 
 const Modal = dynamic(() => import('~/components/modal'));
 
@@ -189,35 +188,11 @@ export default function ProfileEdit() {
     const body = {
       username: e.currentTarget.username.value,
       name: e.currentTarget.name.value,
-      handle: e.currentTarget.handle.value,
       discordId: e.currentTarget.discordId.value,
-      publicProfile: e.currentTarget.publicProfile.checked,
     };
 
     if (!body.name) {
       return toast.error('Please enter your name');
-    }
-
-    if (!body.handle) {
-      return toast.error('Please add a Dominion handle');
-    }
-
-    if (body.discordId && !Number(body.discordId)) {
-      return toast.error('Discord ID must contain numbers only');
-    }
-
-    if (!/^[a-zA-Z0-9]*$/.test(body.handle)) {
-      return toast.error(
-        'The Dominion handle should only contain alphanumeric characters'
-      );
-    }
-
-    if (body.handle && body.handle !== user.handle) {
-      const userByHandle = await findUserByHandle(body.handle);
-
-      if (userByHandle?.username) {
-        return toast.error('This Dominion handle is already in use');
-      }
     }
 
     if (tags.length > 0) body.tags = tags;
@@ -237,6 +212,13 @@ export default function ProfileEdit() {
       // Success
       mutate(await response.json());
       toast.success('Successfully updated');
+
+      fetch('/api/discord/get-dominion-members', {
+        method: 'GET',
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error('Error:', error));
     } else if (response.status === 413) {
       // File too big
       toast.error(
@@ -513,27 +495,14 @@ export default function ProfileEdit() {
                     readOnly={false}
                   />
                 </div>
-                <div className="pv2">
-                  <Input
-                    /* Options */
-                    type="text"
-                    label="Dominion Handle"
-                    name="handle"
-                    value={user?.handle || ''}
-                    icon={inputIconAt}
-                    required
-                    disabled={false}
-                    readOnly={false}
-                  />
-                </div>
                 <div className="pv2  relative">
                   <Input
                     /* Options */
                     type="text"
-                    label="Discord ID"
+                    label="Discord Username"
                     name="discordId"
                     value={user?.discordId || ''}
-                    icon={inputIconHash}
+                    icon={inputIconAt}
                     required
                     disabled={false}
                     readOnly={false}
@@ -545,17 +514,6 @@ export default function ProfileEdit() {
                   >
                     {iconDiscord}
                   </a>
-                </div>
-                <div className="pv3">
-                  <Checkbox
-                    /* Options */
-                    label="Public Profile"
-                    name="publicProfile"
-                    checked={user.publicProfile}
-                    required={false}
-                    disabled={false}
-                    onClick={null}
-                  />
                 </div>
               </div>
               <div className="col-24  col-12-md  pb3  pb0-md">

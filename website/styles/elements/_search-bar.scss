@@ -6,8 +6,31 @@
 .search-bar__input {
   box-shadow: 0;
   outline: 0;
-  background-color: var(--white);
-  @extend .pa2;
+  background-color: transparent;
+  color: var(--white);
+  @extend .br4;
+  @extend .pv2;
+  @extend .ph3;
   @extend .ba;
-  @extend .bc-almost-black;
+  @extend .bc-white;
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+
+  &::placeholder {
+    color: var(--white);
+    opacity: 1;
+  }
+}
+
+.nav-on-white {
+  .search-bar__input {
+    color: var(--black);
+
+    @extend .bc-black;
+
+    &::placeholder {
+      color: var(--black);
+    }
+  }
 }

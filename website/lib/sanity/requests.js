@@ -120,13 +120,33 @@ export async function getPreviewPostBySlug(slug) {
 export async function getPostWithSearch(slug) {
   const today = dateTodayISO();
 
-  const data = await client.fetch(
-    `*[_type == "post" && title match $slug || _type == "post" && excerpt match $slug && publishedAt < $today] | order(publishedAt desc) {
+  // Fetch posts matching title
+  const titleMatches = await client.fetch(
+    `*[_type == "post" && title match $slug && publishedAt < $today] | order(publishedAt desc) {
       ${postFieldsCard}
-     }`,
+    }`,
     { slug, today }
   );
-  return data;
+
+  // Fetch posts matching all other fields
+  const otherMatches = await client.fetch(
+    `*[_type == "post" && 
+      (excerpt match $slug || 
+      introduction[].children[].text match $slug || 
+      body[].children[].text match $slug) && 
+      publishedAt < $today] | order(publishedAt desc) {
+      ${postFieldsCard}
+    }`,
+    { slug, today }
+  );
+
+  // Merge and remove duplicates
+  const mergedData = [...titleMatches, ...otherMatches];
+  const uniqueData = Array.from(new Set(mergedData.map((a) => a._id))).map(
+    (_id) => mergedData.find((a) => a._id === _id)
+  );
+
+  return uniqueData;
 }
 
 export async function getFeaturedPosts(preview) {

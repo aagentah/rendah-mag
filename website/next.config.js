@@ -24,6 +24,7 @@ module.exports = withBundleAnalyzer(
       STRIPE_SIGNING_SECRET: process.env.STRIPE_SIGNING_SECRET,
       PAYPAL_SECRET: process.env.PAYPAL_SECRET,
       DISCORD_WEBHOOK: process.env.DISCORD_WEBHOOK,
+      DISCORD_BOT_KEY: process.env.DISCORD_BOT_KEY,
     },
     images: {
       domains: ['cdn.sanity.io', 'res.cloudinary.com'],
