@@ -105,9 +105,13 @@ export default function Dominion({ siteConfig }) {
             <div className="col-24  col-14-md  flex  flex-wrap  justify-center  ph0  pl4-md  pr0-md">
               <div className="measure-wide  ph4  ph0-md  pb2">
                 <p className="t-secondary  taj  f6  lh-copy  pb3">
+                  <strong>
+                    The Rendah Mag 'Dominion' is our monthly hybrid
+                    subsription-service.
+                  </strong>{' '}
                   With so much happening right now, we want to push our platform
                   into new territory, offering a new way for people to explore
-                  the landscape of underground music culture.
+                  the landscape of underground music, art, and technology.
                 </p>
 
                 <p className="t-secondary  taj  f6  pb3  lh-copy">
@@ -123,8 +127,13 @@ export default function Dominion({ siteConfig }) {
                     Shipping.
                   </li>
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    Frequent exclusive music, samples, tutorials, and 'behind
-                    the scenes' insights of underground music.
+                    Access to all subscriber-only blog posts.
+                  </li>
+                  <li className="t-secondary  tal  f6  pb2  lh-copy">
+                    Exclusive music downloads from the labels we work with.
+                  </li>
+                  <li className="t-secondary  tal  f6  pb2  lh-copy">
+                    High-res access to artwork from our Gallery.
                   </li>
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
                     Digital access to all previous prints.

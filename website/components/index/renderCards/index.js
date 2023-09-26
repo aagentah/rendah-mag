@@ -101,7 +101,7 @@ export default function Home({ siteConfig }) {
 
   return (
     <>
-      <div className="bg-light-grey  pv5">
+      <div className="bg-light-grey  pv6">
         <Container>
           <div className="bb  bc-rendah-red  pa2  ml3  dib  mb4">
             <Heading
@@ -118,37 +118,66 @@ export default function Home({ siteConfig }) {
 
           <div className="flex  flex-wrap">
             <div className="col-24">
-              <section className="pb5">
-                <div className="flex  flex-wrap  pb4">
-                  {[...Array(musicLength)].map((iteration, i) => (
-                    <div key={iteration} className="col-24  col-6-md">
-                      <div className="ph3  pv2">
-                        <CardBlog
-                          i={i}
-                          post={music?.posts && music?.posts[i]}
-                          columnCount={4}
-                        />
-                      </div>
+              <div className="flex  flex-wrap  pb4">
+                {[...Array(musicLength)].map((iteration, i) => (
+                  <div key={iteration} className="col-24  col-6-md">
+                    <div className="ph3  pv2">
+                      <CardBlog
+                        i={i}
+                        post={music?.posts && music?.posts[i]}
+                        columnCount={4}
+                      />
                     </div>
-                  ))}
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex  flex-wrap  justify-center  pb4  pt3">
+                <p className="t-primary  bold  tac  black  f5">
+                  Find more in Music...
+                </p>
+              </div>
+
+              <div className="flex  flex-wrap  justify-center">
+                <div className="ph2  pb3  pb0-md">
+                  <Button
+                    /* Options */
+                    type="primary"
+                    size="x-small"
+                    text="All Music"
+                    color="black"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted={true}
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/division/music',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        as: `/division/music`,
+                        scroll: false,
+                      },
+                    }}
+                  />
                 </div>
 
-                <div className="flex  flex-wrap  justify-center  pb4  pt3">
-                  <p className="t-primary  bold  tac  black  f5">
-                    Find more in Music...
-                  </p>
-                </div>
-
-                <div className="flex  flex-wrap  justify-center">
-                  <div className="ph2  pb3  pb0-md">
+                {musicCategories.map((category) => (
+                  <div className="ph2  pb3  pb0-md" key={category.slug}>
                     <Button
                       /* Options */
                       type="primary"
                       size="x-small"
-                      text="All Music"
+                      text={category.title}
                       color="black"
                       fluid={false}
-                      icon={null}
+                      icon={category?.icon || null}
                       iconFloat={null}
                       inverted={true}
                       loading={false}
@@ -158,55 +187,24 @@ export default function Home({ siteConfig }) {
                       /* Children */
                       withLinkProps={{
                         type: 'next',
-                        href: '/division/music',
+                        href: '/category/[slug]?division=music',
                         target: null,
                         routerLink: Link,
                         routerLinkProps: {
-                          as: `/division/music`,
+                          as: `/category/${category.slug}?division=music`,
                           scroll: false,
                         },
                       }}
                     />
                   </div>
-
-                  {musicCategories.map((category) => (
-                    <div className="ph2  pb3  pb0-md" key={category.slug}>
-                      <Button
-                        /* Options */
-                        type="primary"
-                        size="x-small"
-                        text={category.title}
-                        color="black"
-                        fluid={false}
-                        icon={category?.icon || null}
-                        iconFloat={null}
-                        inverted={true}
-                        loading={false}
-                        disabled={false}
-                        skeleton={false}
-                        onClick={null}
-                        /* Children */
-                        withLinkProps={{
-                          type: 'next',
-                          href: '/category/[slug]?division=music',
-                          target: null,
-                          routerLink: Link,
-                          routerLinkProps: {
-                            as: `/category/${category.slug}?division=music`,
-                            scroll: false,
-                          },
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </section>
+                ))}
+              </div>
             </div>
           </div>
         </Container>
       </div>
 
-      <div className="pv5  mt4">
+      <div className="pv6">
         <Container>
           <div className="bb  bc-rendah-red  pa2  ml3  dib  mb4">
             <Heading
@@ -223,36 +221,64 @@ export default function Home({ siteConfig }) {
 
           <div className="flex  flex-wrap">
             <div className="col-24">
-              <section className="pb5">
-                <div className="flex  flex-wrap  pb4">
-                  {[...Array(artLength)].map((iteration, i) => (
-                    <div key={iteration} className="col-24  col-6-md">
-                      <div className="ph3  pv2">
-                        <CardBlog
-                          i={i}
-                          post={art?.posts && art?.posts[i]}
-                          columnCount={4}
-                        />
-                      </div>
+              <div className="flex  flex-wrap  pb4">
+                {[...Array(artLength)].map((iteration, i) => (
+                  <div key={iteration} className="col-24  col-6-md">
+                    <div className="ph3  pv2">
+                      <CardBlog
+                        i={i}
+                        post={art?.posts && art?.posts[i]}
+                        columnCount={4}
+                      />
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
+              </div>
 
-                <div className="flex  flex-wrap  justify-center  pb4  pt3">
-                  <p className="t-primary  bold  tac  black  f5">
-                    Find more in Art...
-                  </p>
+              <div className="flex  flex-wrap  justify-center  pb4  pt3">
+                <p className="t-primary  bold  tac  black  f5">
+                  Find more in Art...
+                </p>
+              </div>
+              <div className="flex  flex-wrap  justify-center">
+                <div className="ph2  pb3  pb0-md">
+                  <Button
+                    /* Options */
+                    type="primary"
+                    size="x-small"
+                    text="All Art"
+                    color="black"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted={true}
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/division/art',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        as: `/division/art`,
+                        scroll: false,
+                      },
+                    }}
+                  />
                 </div>
-                <div className="flex  flex-wrap  justify-center">
-                  <div className="ph2  pb3  pb0-md">
+                {artCategories.map((category) => (
+                  <div className="ph2  pb3  pb0-md" key={category.slug}>
                     <Button
                       /* Options */
                       type="primary"
                       size="x-small"
-                      text="All Art"
+                      text={category.title}
                       color="black"
                       fluid={false}
-                      icon={null}
+                      icon={category?.icon || null}
                       iconFloat={null}
                       inverted={true}
                       loading={false}
@@ -262,84 +288,54 @@ export default function Home({ siteConfig }) {
                       /* Children */
                       withLinkProps={{
                         type: 'next',
-                        href: '/division/art',
+                        href: '/category/[slug]?division=art',
                         target: null,
                         routerLink: Link,
                         routerLinkProps: {
-                          as: `/division/art`,
+                          as: `/category/${category.slug}?division=art`,
                           scroll: false,
                         },
                       }}
                     />
                   </div>
-                  {artCategories.map((category) => (
-                    <div className="ph2  pb3  pb0-md" key={category.slug}>
-                      <Button
-                        /* Options */
-                        type="primary"
-                        size="x-small"
-                        text={category.title}
-                        color="black"
-                        fluid={false}
-                        icon={category?.icon || null}
-                        iconFloat={null}
-                        inverted={true}
-                        loading={false}
-                        disabled={false}
-                        skeleton={false}
-                        onClick={null}
-                        /* Children */
-                        withLinkProps={{
-                          type: 'next',
-                          href: '/category/[slug]?division=art',
-                          target: null,
-                          routerLink: Link,
-                          routerLinkProps: {
-                            as: `/category/${category.slug}?division=art`,
-                            scroll: false,
-                          },
-                        }}
-                      />
-                    </div>
-                  ))}
-                  {
-                    //   <div className="ph2  pb3  pb0-md">
-                    //   <Button
-                    //     /* Options */
-                    //     type="primary"
-                    //     size="x-small"
-                    //     text="Gallery"
-                    //     color="rendah-red"
-                    //     fluid={false}
-                    //     icon={null}
-                    //     iconFloat={null}
-                    //     inverted={false}
-                    //     loading={false}
-                    //     disabled={false}
-                    //     skeleton={false}
-                    //     onClick={null}
-                    //     /* Children */
-                    //     withLinkProps={{
-                    //       type: 'next',
-                    //       href: '/gallery',
-                    //       target: null,
-                    //       routerLink: Link,
-                    //       routerLinkProps: {
-                    //         as: `/gallery`,
-                    //         scroll: false,
-                    //       },
-                    //     }}
-                    //   />
-                    // </div>
-                  }
-                </div>
-              </section>
+                ))}
+                {
+                  //   <div className="ph2  pb3  pb0-md">
+                  //   <Button
+                  //     /* Options */
+                  //     type="primary"
+                  //     size="x-small"
+                  //     text="Gallery"
+                  //     color="rendah-red"
+                  //     fluid={false}
+                  //     icon={null}
+                  //     iconFloat={null}
+                  //     inverted={false}
+                  //     loading={false}
+                  //     disabled={false}
+                  //     skeleton={false}
+                  //     onClick={null}
+                  //     /* Children */
+                  //     withLinkProps={{
+                  //       type: 'next',
+                  //       href: '/gallery',
+                  //       target: null,
+                  //       routerLink: Link,
+                  //       routerLinkProps: {
+                  //         as: `/gallery`,
+                  //         scroll: false,
+                  //       },
+                  //     }}
+                  //   />
+                  // </div>
+                }
+              </div>
             </div>
           </div>
         </Container>
       </div>
 
-      <div className="bg-creations-black  pv5">
+      <div className="bg-creations-black  pv6">
         <Container>
           <div className="bb  bc-white  pa2  ml3  dib  mb4">
             <Heading
@@ -356,36 +352,64 @@ export default function Home({ siteConfig }) {
 
           <div className="flex  flex-wrap">
             <div className="col-24">
-              <section className="pb5">
-                <div className="flex  flex-wrap  pb4">
-                  {[...Array(technologyLength)].map((iteration, i) => (
-                    <div key={iteration} className="col-24  col-6-md">
-                      <div className="ph3  pv2">
-                        <CardBlog
-                          i={i}
-                          post={technology?.posts && technology?.posts[i]}
-                          columnCount={4}
-                        />
-                      </div>
+              <div className="flex  flex-wrap  pb4">
+                {[...Array(technologyLength)].map((iteration, i) => (
+                  <div key={iteration} className="col-24  col-6-md">
+                    <div className="ph3  pv2">
+                      <CardBlog
+                        i={i}
+                        post={technology?.posts && technology?.posts[i]}
+                        columnCount={4}
+                      />
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
+              </div>
 
-                <div className="flex  flex-wrap  justify-center  pb4  pt3">
-                  <p className="t-primary  bold  tac  white  f5">
-                    Find more in Technology...
-                  </p>
+              <div className="flex  flex-wrap  justify-center  pb4  pt3">
+                <p className="t-primary  bold  tac  white  f5">
+                  Find more in Technology...
+                </p>
+              </div>
+              <div className="flex  flex-wrap  justify-center">
+                <div className="ph2  pb3  pb0-md">
+                  <Button
+                    /* Options */
+                    type="primary"
+                    size="x-small"
+                    text="All Technology"
+                    color="white"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted={true}
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/division/technology',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: {
+                        as: `/division/technology`,
+                        scroll: false,
+                      },
+                    }}
+                  />
                 </div>
-                <div className="flex  flex-wrap  justify-center">
-                  <div className="ph2  pb3  pb0-md">
+                {technologyCategories.map((category) => (
+                  <div className="ph2  pb3  pb0-md" key={category.slug}>
                     <Button
                       /* Options */
                       type="primary"
                       size="x-small"
-                      text="All Technology"
+                      text={category.title}
                       color="white"
                       fluid={false}
-                      icon={null}
+                      icon={category?.icon || null}
                       iconFloat={null}
                       inverted={true}
                       loading={false}
@@ -395,48 +419,18 @@ export default function Home({ siteConfig }) {
                       /* Children */
                       withLinkProps={{
                         type: 'next',
-                        href: '/division/technology',
+                        href: '/category/[slug]?division=technology',
                         target: null,
                         routerLink: Link,
                         routerLinkProps: {
-                          as: `/division/technology`,
+                          as: `/category/${category.slug}?division=technology`,
                           scroll: false,
                         },
                       }}
                     />
                   </div>
-                  {technologyCategories.map((category) => (
-                    <div className="ph2  pb3  pb0-md" key={category.slug}>
-                      <Button
-                        /* Options */
-                        type="primary"
-                        size="x-small"
-                        text={category.title}
-                        color="white"
-                        fluid={false}
-                        icon={category?.icon || null}
-                        iconFloat={null}
-                        inverted={true}
-                        loading={false}
-                        disabled={false}
-                        skeleton={false}
-                        onClick={null}
-                        /* Children */
-                        withLinkProps={{
-                          type: 'next',
-                          href: '/category/[slug]?division=technology',
-                          target: null,
-                          routerLink: Link,
-                          routerLinkProps: {
-                            as: `/category/${category.slug}?division=technology`,
-                            scroll: false,
-                          },
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </section>
+                ))}
+              </div>
             </div>
           </div>
         </Container>

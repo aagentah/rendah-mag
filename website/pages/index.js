@@ -107,10 +107,11 @@ export default function Home() {
           </div>
         </div>
 
-        <ParallaxDiv speed={-3}>
-          <div className="lines" />
-        </ParallaxDiv>
-
+        {
+          //    <ParallaxDiv speed={-3}>
+          //    <div className="lines" />
+          //  </ParallaxDiv>
+        }
         <div className="flex  flex-wrap  pv5  pv6-md">
           <div className="col-4  col-6-md" />
 

@@ -169,6 +169,7 @@ export default function Product({ siteConfig, product }) {
                   <p className="t-secondary  taj  f6  pb3  lh-copy">
                     <strong>We offer the following:</strong>
                   </p>
+
                   <ul className="pl3">
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
                       A Welcome package (+ membership card & stickers).
@@ -178,8 +179,13 @@ export default function Product({ siteConfig, product }) {
                       Shipping.
                     </li>
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      Frequent exclusive music, samples, tutorials, and 'behind
-                      the scenes' insights of underground music.
+                      Access to all subscriber-only blog posts.
+                    </li>
+                    <li className="t-secondary  tal  f6  pb2  lh-copy">
+                      Exclusive music downloads from the labels we work with.
+                    </li>
+                    <li className="t-secondary  tal  f6  pb2  lh-copy">
+                      High-res access to artwork from our Gallery.
                     </li>
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
                       Digital access to all previous prints.
@@ -187,11 +193,6 @@ export default function Product({ siteConfig, product }) {
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
                       Your own Dominion Profile & login.
                     </li>
-                    {
-                      // <li className="t-secondary  tal  f5  pb2  lh-copy">
-                      //   Discounts from all coming Rendah Mag products.
-                      // </li>
-                    }
                   </ul>
                 </div>
               </div>
