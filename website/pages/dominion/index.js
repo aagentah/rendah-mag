@@ -106,8 +106,8 @@ export default function Dominion({ siteConfig }) {
               <div className="measure-wide  ph4  ph0-md  pb2">
                 <p className="t-secondary  taj  f6  lh-copy  pb3">
                   <strong>
-                    The Rendah Mag 'Dominion' is our monthly hybrid
-                    subsription-service.
+                    The Rendah Mag 'Dominion' is our very own monthly
+                    subscription-service.
                   </strong>{' '}
                   With so much happening right now, we want to push our platform
                   into new territory, offering a new way for people to explore
