@@ -22,6 +22,8 @@ const IconLock = dynamic(() =>
 export default function Home({ siteConfig }) {
   const app = useApp();
 
+  const defaultLoad = app?.deviceSize === 'md' ? 4 : 12;
+
   const [music, setMusic] = useState(null);
   const [art, setArt] = useState(null);
   const [technology, setTechnology] = useState(null);
@@ -29,7 +31,7 @@ export default function Home({ siteConfig }) {
   //   const [premieres, setPremieres] = useState(null);
   //   const [guestMixes, setGuestMixes] = useState(null);
 
-  const [musicLength, setInterviewsLength] = useState(12);
+  const [musicLength, setInterviewsLength] = useState(defaultLoad);
   const [artLength, setNewsLength] = useState(4);
   const [technologyLength, setTechnologyLength] = useState(4);
   // const [insightsLength, setInsightsLength] = useState(6);
@@ -40,11 +42,11 @@ export default function Home({ siteConfig }) {
     const action = async () => {
       const musicRes = await getDivision(
         'music',
-        [1, 12],
+        [1, defaultLoad],
         ['premieres', 'news', 'guest-mix']
       );
-      const artRes = await getDivision('art', [1, 12]);
-      const technologyRes = await getDivision('technology', [1, 12]);
+      const artRes = await getDivision('art', [1, defaultLoad]);
+      const technologyRes = await getDivision('technology', [1, defaultLoad]);
       // const insightsRes = await getCategory('insights', [1, 6]);
       // const premieresRes = await getCategory('premieres', [1, 4]);
       // const guestMixesRes = await getCategory('guest-mix', [1, 4]);
@@ -360,6 +362,7 @@ export default function Home({ siteConfig }) {
                         i={i}
                         post={technology?.posts && technology?.posts[i]}
                         columnCount={4}
+                        inverted
                       />
                     </div>
                   </div>

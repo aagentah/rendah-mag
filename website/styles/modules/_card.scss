@@ -41,39 +41,14 @@
 
   .card__title {
     transition: all 0.2s ease-in-out;
-    opacity: 0;
-    position: absolute;
-    top: 10px;
-    left: 5px;
-    right: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    pointer-events: none;
-    transform: translateY(20px);
+    position: relative;
+    @extend .ph3;
+    @extend .ph2-md;
+    @extend .pt2;
+    @extend .pt0-md;
   }
 
-  .card__title .heading {
-    color: var(--white);
-  }
-
-  .card__labels {
-    transition: all 0.2s ease-in-out;
-    opacity: 0;
-    position: absolute;
-    bottom: 30px;
-    left: 5px;
-    right: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    pointer-events: none;
-    transform: translateY(12px);
-  }
-
-  // .image {
-  //   transition-delay: 0s;
-  // }
-
-  @media only screen and (max-width: 950px) {
+  @include breakpoint-up(md) {
     .image {
       filter: brightness(100%);
       transform: scale(1);
@@ -81,45 +56,16 @@
   }
 }
 
-@media only screen and (max-width: 950px) {
-  .card--scroll.in-view {
-    .card__title {
-      opacity: 1;
-      transform: translateY(0px);
-    }
-
-    .card__labels {
-      opacity: 1;
-      transform: translateY(0px);
-    }
-
-    .image {
-      filter: brightness(65%);
-      // transform: scale(1.1);
-    }
-  }
-}
-
 @include breakpoint-up(md) {
   .card--scroll {
     .card__title {
-      opacity: 1;
-      transform: translateY(0px);
+      position: absolute;
+      top: 10px;
+      left: 5px;
+      right: 0;
     }
-
-    .card__labels {
-      opacity: 1;
-      transform: translateY(0px);
-    }
-
     .image {
       filter: brightness(70%);
-    }
-
-    &:hover {
-      .image {
-        // transform: scale(1.1);
-      }
     }
   }
 }
