@@ -10,11 +10,19 @@
   z-index: 1080;
   height: auto;
   pointer-events: none;
+
+  * {
+    pointer-events: none;
+  }
 }
 
 .modal.active {
   opacity: 1;
   pointer-events: auto;
+
+  * {
+    pointer-events: auto;
+  }
 }
 
 .modal--small .modal__dialog {

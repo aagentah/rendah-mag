@@ -1,8 +1,11 @@
 // Figure
 
 .image__figure {
-  @extend .flex;
-  @extend .justify-center;
+  // @extend .flex;
+  // @extend .justify-center;
+  // width: ;
+  width: 100%;
+  height: 100%;
 }
 
 // Wrapper
@@ -15,10 +18,6 @@
   height: 100%;
   overflow: hidden;
   background: #aaaaaa;
-
-  img {
-    position: relative !important;
-  }
 }
 
 .image__wrapper:after {
@@ -27,34 +26,26 @@
   position: absolute;
 }
 
-// Placeholder
-
-.image__loading {
-  // transition: all ease-in-out 0.1s;
-  // transition-delay: 0.3s;
-  // opacity: 0;
-  pointer-events: none;
-  object-fit: cover;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.image__loading--done {
-  opacity: 1;
-}
-
 // Image
 
 .image {
-  transition: all ease-in-out 0.3s;
+  transition: opacity ease-in-out 0.3s;
+  transition-delay: 0.3s;
   // transition-delay: 0.3s;
   opacity: 0.01;
   object-fit: cover;
   object-position: center 25%;
   width: 100%;
-  position: relative;
+  position: relative !important;
+  z-index: 2;
+}
+
+.image--placeholder {
+  position: absolute !important;
+  opacity: 0.01;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .image--loaded {

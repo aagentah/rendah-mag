@@ -228,17 +228,20 @@ export async function getGallery(slug, preview) {
   const [gallery, morePosts] = await Promise.all([
     getClient(preview)
       .fetch(
-        `*[_type == "gallery" && slug.current == $slug] | order(publishedAt desc) [0] {
+        `*[_type == "gallery" && slug.current == $slug] | order(publishedAt desc)[0] {
           ${postFields}
-          galleryImages
-        }`,
+          galleryImages[]{
+            "fileName": asset->originalFilename,
+            ...,
+          }
+        }
+        `,
         { slug }
       )
       .then((res) => res),
     getClient(preview).fetch(
       `*[_type == "post" && tag._ref in *[_type == "gallery" && slug.current == $slug]._id] {
           ${postFields}
-          galleryImages
         }`,
       { slug }
     ),
@@ -270,20 +273,24 @@ export async function getCategory(category, range, division = null) {
   return results;
 }
 
-export async function getDivision(division, range) {
+export async function getDivision(division, range, exclude = null) {
   const today = dateTodayISO();
 
   const rangeFrom = range[0] - 1;
   const rangeTo = range[1] - 1;
 
+  const exclusionQuery = exclude
+    ? `&& count((categories[]->slug.current)[@ in $exclude]) == 0`
+    : '';
+
   const results = await getClient(null).fetch(
-    `*[_type == "division" && slug.current == $division] [0] {
+    `*[_type == "division" && slug.current == $division][0] {
       ...,
-      "posts": *[_type == "post" && references(^._id) && publishedAt < $today] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
+      "posts": *[_type == "post" && references(^._id) ${exclusionQuery} && publishedAt < $today] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
         ${postFieldsCard}
       }
     }`,
-    { division, rangeFrom, rangeTo, today }
+    { division, rangeFrom, rangeTo, today, exclude }
   );
 
   return results;

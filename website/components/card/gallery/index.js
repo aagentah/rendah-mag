@@ -26,57 +26,6 @@ export default function CardGallery({ post }) {
   const handleIntersect = (event) => setInView(event.isIntersecting);
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
-  console.log('post', post);
-
-  const image = (
-    <Image
-      /* Options */
-      src={
-        post?.image?.asset &&
-        imageBuilder
-          .image(post.image.asset)
-          .width(imageUrlWidth * scale)
-          .height(imageHeight * scale)
-          .auto('format')
-          .fit('clip')
-          .url()
-      }
-      placeholder={null}
-      alt={post?.title}
-      figcaption={null}
-      height={imageHeight}
-      width={null}
-      customClass={null}
-      skeleton={!post}
-      onClick={null}
-      /* Children */
-      withLinkProps={{
-        type: 'next',
-        href: '/gallery/[slug]',
-        target: null,
-        routerLink: Link,
-        routerLinkProps: {
-          as: `/gallery/${post?.slug}`,
-          scroll: false,
-        },
-      }}
-    />
-  );
-
-  const labels = (
-    <Label
-      /* Options */
-      customClass=""
-      text="Blog"
-      color="white"
-      backgroundColor="black"
-      skeleton={!post}
-      onClick={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
-
   const heading = (
     <Heading
       /* Options */
@@ -147,47 +96,48 @@ export default function CardGallery({ post }) {
           <div className="flex flex-wrap">
             <div className="dib  pa2  ba  bc-white  mb4">{heading}</div>
           </div>
-          <div className="flex flex-wrap  mb5  cp">
+          <div className="flex flex-wrap  mb5">
             {(() => {
-              return post?.galleryImages.slice(0, 8).map((image, i) => (
-                <div className="col-6  col-3-md" key={i}>
-                  <Image
-                    src={imageBuilder
-                      .image(image.asset)
-                      .height(500)
-                      .width(500)
-                      .auto('format')
-                      .fit('clip')
-                      .url()}
-                    placeholder={imageBuilder
-                      .image(image.asset)
-                      .height(25)
-                      .width(25)
-                      .auto('format')
-                      .fit('clip')
-                      .blur('20')
-                      .url()}
-                    alt={image.alt || ''}
-                    figcaption={image.caption || null}
-                    height={200}
-                    width={null}
-                    customClass=""
-                    skeleton={!post}
-                    onClick={null}
-                    withLinkProps={{
-                      type: 'next',
-                      href: '/gallery/[slug]',
-                      target: null,
-                      routerLink: Link,
-                      routerLinkProps: {
-                        as: `/gallery/${post?.slug}`,
-                        scroll: false,
-                      },
-                    }}
-                  />
+              return post?.galleryImages.slice(0, 7).map((image, i) => (
+                <div className="col-6  col-3-md  pa2" key={i}>
+                  <Link href={`/gallery/${post?.slug}`} legacyBehavior>
+                    <Image
+                      src={imageBuilder
+                        .image(image.asset)
+                        .height(500)
+                        .width(500)
+                        .auto('format')
+                        .fit('clip')
+                        .url()}
+                      placeholder={imageBuilder
+                        .image(image.asset)
+                        .height(25)
+                        .width(25)
+                        .auto('format')
+                        .fit('clip')
+                        .blur('20')
+                        .url()}
+                      alt={image.alt || ''}
+                      figcaption={null}
+                      height={imageHeight}
+                      width={null}
+                      customClass="br3  shadow3  cp"
+                      skeleton={!post}
+                      onClick={null}
+                      withLinkProps={null}
+                    />
+                  </Link>
                 </div>
               ));
             })()}
+
+            <div className="col-6  col-3-md  pa2  flex  align-center  justify-center">
+              <Link href={`/gallery/${post?.slug}`} legacyBehavior>
+                <span className="ba  bc-white  br-100  pa2  cp">
+                  <IconArrowRight color="white" size={24} />
+                </span>
+              </Link>
+            </div>
           </div>
         </article>
       </LazyLoad>

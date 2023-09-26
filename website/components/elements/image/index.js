@@ -1,12 +1,11 @@
-import React from 'react';
-import ProgressiveImage from '../../utils/progressive-image';
+import React, { useState } from 'react';
+import Image from 'next/future/image';
 import WithLink from '../../utils/with-link';
 
-/**
- * An Image.
- */
+const ImageComponent = (props) => {
+  const [loaded, setLoaded] = useState(false);
+  const [placeholderLoaded, setPlaceholderLoaded] = useState(false);
 
-export default function Image(props) {
   const {
     /* Options */
     src,
@@ -20,27 +19,65 @@ export default function Image(props) {
     onClick,
     skeleton,
     /* Children */
-    withLinkProps
+    withLinkProps,
   } = props;
 
   const dimensions = {
     minHeight: height ? `${height}px` : '100%',
     height: height ? `${height}px` : '100%',
     width: width ? `${width}px` : '100%',
-    maxWidth: '100%'
+    maxWidth: '100%',
   };
 
-  const skeletonClass = skeleton ? 'skeleton  skeleton-active' : 'skeleton';
+  let skeletonActive = true;
+
+  if (src && loaded) {
+    skeletonActive = false;
+  }
+
+  if (placeholder && placeholderLoaded) {
+    skeletonActive = false;
+  }
+
+  const skeletonClass = skeletonActive
+    ? 'skeleton skeleton-active'
+    : 'skeleton';
+
+  const handleLoad = () => setLoaded(true);
+  const handlePlaceholderLoad = () => setPlaceholderLoaded(true);
 
   return (
     <figure className="image__figure">
       <WithLink
         style={dimensions}
-        className={`image__wrapper  ${skeletonClass}  ${customClass || ''} `}
+        className={`image__wrapper  ${skeletonClass} ${customClass || ''} `}
         {...(withLinkProps && { withLinkProps })}
         {...(onClick && { onClick })}
       >
-        <ProgressiveImage src={src} alt={alt} priority={priority} />
+        {src && (
+          <Image
+            onLoadingComplete={handleLoad}
+            alt={alt || ''}
+            src={src}
+            className={`image ${loaded ? 'image--loaded' : ''}`}
+            fill
+            layout="fill"
+            priority={priority}
+          />
+        )}
+
+        {placeholder && (
+          <Image
+            onLoadingComplete={handlePlaceholderLoad}
+            alt={alt || 'placeholder'}
+            src={placeholder}
+            fill
+            layout="fill"
+            className={`image  image--placeholder ${
+              loaded ? 'image--loaded' : ''
+            }`}
+          />
+        )}
       </WithLink>
 
       {figcaption && (
@@ -50,4 +87,6 @@ export default function Image(props) {
       )}
     </figure>
   );
-}
+};
+
+export default ImageComponent;

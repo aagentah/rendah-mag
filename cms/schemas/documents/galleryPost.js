@@ -37,20 +37,6 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "image",
-      title: "Image",
-      type: "image",
-      fields: [
-        {
-          name: "caption",
-          title: "Source / Caption",
-          type: "blockContent",
-          required: "false",
-        },
-      ],
-      validation: (Rule) => Rule.required(),
-    },
-    {
       name: "galleryImages",
       title: "Gallery Images",
       type: "array",
@@ -70,6 +56,12 @@ export default {
                 ],
                 layout: "radio",
               },
+            },
+            {
+              name: "caption",
+              title: "Source / Caption",
+              type: "blockContent",
+              required: "false",
             },
           ],
         },

@@ -38,7 +38,11 @@ export default function Home({ siteConfig }) {
 
   useEffect(() => {
     const action = async () => {
-      const musicRes = await getDivision('music', [1, 12]);
+      const musicRes = await getDivision(
+        'music',
+        [1, 12],
+        ['premieres', 'news', 'guest-mix']
+      );
       const artRes = await getDivision('art', [1, 12]);
       const technologyRes = await getDivision('technology', [1, 12]);
       // const insightsRes = await getCategory('insights', [1, 6]);
