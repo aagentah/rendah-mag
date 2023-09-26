@@ -14,7 +14,6 @@ import Image from '~/components/elements/image';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 
-import useWindowDimensions from '~/functions/useWindowDimensions';
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
@@ -127,7 +126,7 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                         .fit('clip')
                         .url()}&dl=`}
                       target="_external"
-                      className={`cp`}
+                      className="cp"
                       onClick={() => {
                         triggerOnDownloadEvt({
                           filename: selectedImage?.fileName,

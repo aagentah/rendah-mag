@@ -7,7 +7,6 @@ import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
 import Heading from '~/components/elements/heading';
 import Image from '~/components/elements/image';
-import Label from '~/components/elements/label';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
