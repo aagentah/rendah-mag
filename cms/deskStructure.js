@@ -23,116 +23,25 @@ export default async () => {
   const { displayName } = await userStore.getUser("me");
   const isOwner = displayName === "Dan Jones";
 
-  const siteSettings = isOwner
-    ? S.listItem()
-        .icon(MdSettings)
-        .title("Site Settings")
-        .child(S.editor().schemaType("siteSettings").documentId("siteSettings"))
-    : S.divider();
-
-  const homePage = isOwner
-    ? S.listItem()
-        .icon(MdSettings)
-        .title("Home Page")
-        .child(S.editor().schemaType("homePage").documentId("homePage"))
-    : S.divider();
-
-  const store = isOwner
-    ? S.listItem()
-        .icon(MDShop)
-        .title("Store")
-        .child(
-          S.list()
-            .title("Store")
-            .items([
-              S.documentTypeListItem("storeItem"),
-              S.documentTypeListItem("storeCollection"),
-              S.documentTypeListItem("storeCategory"),
-            ])
-        )
-    : S.divider();
-
-  const dominion = isOwner
-    ? S.listItem()
-        .icon(MDLoyalty)
-        .title("Dominion")
-        .child(
-          S.list()
-            .title("Dominion")
-            .items([
-              S.documentTypeListItem("user").icon(MDPerson),
-              // S.listItem()
-              //   .title("User")
-              //   .schemaType("user")
-              //   .child(
-              //     S.documentTypeList("user")
-              //       .title("Projects")
-              //       .child((documentId) =>
-              //         S.document()
-              //           .documentId(documentId)
-              //           .schemaType("user")
-              //           .views([
-              //             S.view
-              //               .component(SeoPreview)
-              //               .icon(MDViewList)
-              //               .title("Address Label"),
-              //           ])
-              //       )
-              //   ),
-              S.documentTypeListItem("dominionItem"),
-              S.documentTypeListItem("creations"),
-              S.documentTypeListItem("offering"),
-              S.documentTypeListItem("pack"),
-              S.documentTypeListItem("print"),
-              S.documentTypeListItem("track").icon(MDMusicVideo),
-              S.listItem()
-                .icon(MDViewList)
-                .title("Dominion Pipeline")
-                .child(
-                  S.editor()
-                    .schemaType("dominionPipeline")
-                    .documentId("dominionPipeline")
-                ),
-              S.divider(),
-              S.listItem()
-                .icon(MDViewList)
-                .title("Dominion Shipping")
-                .child(
-                  S.editor()
-                    .schemaType("user")
-                    .title("Dominion Shipping")
-                    .views([
-                      S.view
-                        .component(UsersAddress)
-                        .icon(MDViewList)
-                        .title("Dominion Shipping"),
-                    ])
-                ),
-              S.listItem()
-                .icon(MDViewList)
-                .title("Dominion Overview")
-                .child(
-                  S.editor()
-                    .schemaType("user")
-                    .title("Dominion Overview")
-                    .views([
-                      S.view
-                        .component(UsersOverview)
-                        .icon(MDViewList)
-                        .title("Dominion Overview"),
-                    ])
-                ),
-            ])
-        )
-    : S.divider();
-
   return (
     S.list()
       // Top Level
       .title("Content")
       .items([
-        siteSettings,
-        homePage,
+        // Site Settings
+        isOwner &&
+          S.listItem()
+            .icon(MdSettings)
+            .title("Site Settings")
+            .child(
+              S.editor().schemaType("siteSettings").documentId("siteSettings")
+            ),
+        // Homepage
+        isOwner &&
+          S.listItem()
+            .icon(MdSettings)
+            .title("Home Page")
+            .child(S.editor().schemaType("homePage").documentId("homePage")),
         // Smart Link
         S.documentTypeListItem("smartLink").icon(MDViewList),
         // Divider
@@ -146,19 +55,85 @@ export default async () => {
               .title("Blog")
               .items([
                 S.documentTypeListItem("post"),
-                S.documentTypeListItem("author"),
-                S.documentTypeListItem("division"),
-                S.documentTypeListItem("category"),
+                isOwner && S.documentTypeListItem("author"),
+                isOwner && S.documentTypeListItem("division"),
+                isOwner && S.documentTypeListItem("category"),
                 S.documentTypeListItem("gallery"),
+                isOwner && S.documentTypeListItem("newsletterGeneral"),
               ])
           ),
 
         // Store
-        store,
+        isOwner &&
+          S.listItem()
+            .icon(MDShop)
+            .title("Store")
+            .child(
+              S.list()
+                .title("Store")
+                .items([
+                  S.documentTypeListItem("storeItem"),
+                  S.documentTypeListItem("storeCollection"),
+                  S.documentTypeListItem("storeCategory"),
+                ])
+            ),
         // Dominion
-        dominion,
+        isOwner &&
+          S.listItem()
+            .icon(MDLoyalty)
+            .title("Dominion")
+            .child(
+              S.list()
+                .title("Dominion")
+                .items([
+                  S.documentTypeListItem("user").icon(MDPerson),
+                  S.documentTypeListItem("dominionItem"),
+                  S.documentTypeListItem("creations"),
+                  S.documentTypeListItem("offering"),
+                  S.documentTypeListItem("pack"),
+                  S.documentTypeListItem("print"),
+                  S.documentTypeListItem("track").icon(MDMusicVideo),
+                  S.listItem()
+                    .icon(MDViewList)
+                    .title("Dominion Pipeline")
+                    .child(
+                      S.editor()
+                        .schemaType("dominionPipeline")
+                        .documentId("dominionPipeline")
+                    ),
+                  S.divider(),
+                  S.listItem()
+                    .icon(MDViewList)
+                    .title("Dominion Shipping")
+                    .child(
+                      S.editor()
+                        .schemaType("user")
+                        .title("Dominion Shipping")
+                        .views([
+                          S.view
+                            .component(UsersAddress)
+                            .icon(MDViewList)
+                            .title("Dominion Shipping"),
+                        ])
+                    ),
+                  S.listItem()
+                    .icon(MDViewList)
+                    .title("Dominion Overview")
+                    .child(
+                      S.editor()
+                        .schemaType("user")
+                        .title("Dominion Overview")
+                        .views([
+                          S.view
+                            .component(UsersOverview)
+                            .icon(MDViewList)
+                            .title("Dominion Overview"),
+                        ])
+                    ),
+                ])
+            ),
         // Cypher
-        S.documentTypeListItem("cypher").icon(MDMusic),
+        isOwner && S.documentTypeListItem("cypher").icon(MDMusic),
       ])
   );
 };

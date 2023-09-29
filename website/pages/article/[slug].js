@@ -19,6 +19,7 @@ import Hero from '~/components/hero/article';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';
+import SubscriptionBanner from '~/components/subscription-banner';
 
 import Date from '~/components/date';
 import useWindowDimensions from '~/functions/useWindowDimensions';
@@ -381,12 +382,14 @@ export default function Post({ siteConfig, post, preview }) {
           )}
         </article>
 
-        <div className="mla  mra  pv5  mb4  mb5-md  bg-light-grey  ph4  ph0-md">
-          <SocialLinks article={post} />
+        <div className="mla  mra  pt5  pb6  bg-light-grey  ph4  ph0-md  nb6">
+          <div className="pb6  nb4">
+            <SocialLinks article={post} />
+          </div>
         </div>
 
         <Container>
-          <section className="flex  flex-wrap  justify-center  align-center  pb4  pb5-md">
+          <section className="flex  flex-wrap  justify-center  align-center">
             {post.authors.map((i) => (
               <div className="col-24  col-12-md  pb4  pb3-md  ph3">
                 <Author author={i.author} />
@@ -394,8 +397,10 @@ export default function Post({ siteConfig, post, preview }) {
             ))}
           </section>
 
+          <SubscriptionBanner />
+
           {morePosts.length > 0 && (
-            <section className="pb3">
+            <section className="pb6">
               <div className="pb3  ph3">
                 <div className="bg-black  pa2  dib">
                   <Heading

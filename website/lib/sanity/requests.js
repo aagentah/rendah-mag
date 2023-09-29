@@ -517,6 +517,16 @@ export async function getLatestDominionItem(preview) {
   return results;
 }
 
+export async function getLatestNewsletterGeneral(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "newsletterGeneral"] | order(activeFrom desc) [0] {
+      ...,
+    }`
+  );
+
+  return results;
+}
+
 export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
   const curClient = getClient(preview);
   const today = dateTodayYyyyMmDd();

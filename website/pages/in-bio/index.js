@@ -192,6 +192,19 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
                 </div>
               </div>
 
+              <div className="col-24">
+                <div className="flex  flex-wrap  mb3  cp">
+                  <a
+                    href="/gallery"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="w-100  w-70-md  mla  mra  flex  justify-center  align-center  ph3  pv3  br3  bg-white  black  shadow2  link"
+                  >
+                    <p className="t-secondary  f5  tac  lh-copy">Gallery</p>
+                  </a>
+                </div>
+              </div>
+
               <div className="col-24  pb3">
                 <div className="flex  flex-wrap  mb3  cp">
                   <a

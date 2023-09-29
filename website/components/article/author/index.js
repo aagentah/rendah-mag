@@ -13,18 +13,20 @@ export default function Author({ siteConfig, author }) {
   const { posts } = author;
 
   return (
-    <div className="article__author  flex  flex-wrap  br4  shadow2  relative  pa4">
+    <div className="article__author  flex  flex-wrap  br4  bg-white  shadow2  relative  pa4">
       <div className="absolute  top  right  nt2  mr4">
-        <Label
-          /* Options */
-          customClass=""
-          text="Author"
-          color="black"
-          backgroundColor="light-grey"
-          onClick={null}
-          /* Children */
-          withLinkProps={null}
-        />
+        <div className="ba  bc-black  br3">
+          <Label
+            /* Options */
+            customClass="br3"
+            text="Author"
+            color="black"
+            backgroundColor="white"
+            onClick={null}
+            /* Children */
+            withLinkProps={null}
+          />
+        </div>
       </div>
 
       {author.image && (
@@ -61,8 +63,8 @@ export default function Author({ siteConfig, author }) {
               routerLink: Link,
               routerLinkProps: {
                 as: `/team/${author.slug.current}`,
-                scroll: false
-              }
+                scroll: false,
+              },
             }}
           />
         </div>
@@ -86,8 +88,8 @@ export default function Author({ siteConfig, author }) {
                 routerLink: Link,
                 routerLinkProps: {
                   as: `/team/${author.slug.current}`,
-                  scroll: false
-                }
+                  scroll: false,
+                },
               }}
             />
           </div>

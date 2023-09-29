@@ -1,6 +1,5 @@
 import { Parallax } from 'react-scroll-parallax';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import dynamic from 'next/dynamic';
 import Cookies from 'js-cookie';
@@ -15,6 +14,7 @@ import 'intersection-observer';
 
 import Layout from '~/components/layout';
 import Hero from '~/components/hero/home';
+import SubscriptionBanner from '~/components/subscription-banner';
 
 import { getHomePage } from '~/lib/sanity/requests';
 
@@ -112,35 +112,7 @@ export default function Home() {
           //    <div className="lines" />
           //  </ParallaxDiv>
         }
-        <div className="flex  flex-wrap  pv5  pv6-md">
-          <div className="col-4  col-6-md" />
-
-          <div className="col-16  col-12-md">
-            <p className="f4  f3-md  t-primary  lh-title  light-silver  tac  mb4">
-              Rendah Mag is a creative UK-based outlet, primarily focused on
-              exploring the intersection of experimental music, art, and
-              technology.
-            </p>
-
-            <Link href="/dominion" legacyBehavior>
-              <div className="flex  justify-center">
-                <p className="flex-inline  flex-wrap  justify-center  mla  mra  f5  f4-md  t-secondary  lh-title  rendah-red  tac  align-center  cp">
-                  <span className="pr2">
-                    {' '}
-                    Explore{' '}
-                    <span className="dn  dib-md">
-                      what we offer through
-                    </span>{' '}
-                    our Subscription
-                  </span>
-                  <span>{buttonIconRed}</span>
-                </p>
-              </div>
-            </Link>
-          </div>
-
-          <div className="col-4  col-6-md" />
-        </div>
+        <SubscriptionBanner />
 
         {
           //    <div className="pb5">

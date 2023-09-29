@@ -32,6 +32,10 @@ const IconDownload = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconDownload)
 );
 
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
+);
+
 export default function Gallery({ siteConfig, post, morePosts, preview }) {
   const app = useApp();
   const router = useRouter();
@@ -40,6 +44,7 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
   const [modalActive, setModalActive] = useState(false);
   const [selectedImage, setSelectedImage] = useState(false);
   const plausible = usePlausible();
+  const arrowRight = <IconArrowRight color="white" size={12} />;
 
   if (!router.isFallback && !post?.slug) {
     Router.push('/404');
@@ -74,12 +79,12 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
       >
         <Modal
           /* Options */
-          size="large"
+          size="x-large"
           active={modalActive}
         >
           {selectedImage && (
-            <div className="flex  flex-wrap  pb2">
-              <div className="col-14  flex  justify-center  align-center">
+            <div className="flex  flex-wrap">
+              <div className="col-24  col-14-md  flex  justify-center  align-center  pb4  pb0-md">
                 <Image
                   src={imageBuilder
                     .image(selectedImage.asset)
@@ -98,14 +103,14 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                     .url()}
                   alt={null}
                   figcaption={null}
-                  height={500}
+                  height={app.deviceSize === 'md' ? 300 : 600}
                   width={null}
                   customClass="br3"
                   skeleton={false}
                   onClick={null}
                 />
               </div>
-              <div className="col-10  flex  justify-start  align-start  pv3  ph4">
+              <div className="col-24  col-10-md  flex  justify-start  align-center  pv3  ph4">
                 <div>
                   {selectedImage?.caption && (
                     <div className="rich-text  measure-wide  mb4">
@@ -115,6 +120,10 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                       />
                     </div>
                   )}
+
+                  <div className="mb3">
+                    <p className="t-primary  f3  lh-title  white">Download</p>
+                  </div>
 
                   <div className="mb3">
                     <a
@@ -138,7 +147,7 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                         /* Options */
                         type="primary"
                         size="medium"
-                        text="Download Low-res"
+                        text="Low-res"
                         color="black"
                         fluid={true}
                         icon={<IconDownload color="white" size={16} />}
@@ -174,7 +183,7 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                         /* Options */
                         type="primary"
                         size="medium"
-                        text="Download High-res"
+                        text="High-res"
                         color="black"
                         fluid={true}
                         icon={<IconDownload color="white" size={16} />}
@@ -206,7 +215,7 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                     </div>
                   )}
 
-                  <div className="pt2">
+                  <div className="">
                     <Button
                       /* Options */
                       type="primary"
@@ -237,14 +246,14 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
           )}
         </Modal>
 
-        <div className="creations">
+        <div className="creations  pt5">
           <Container>
             <div className="mb5">
               <div className="mb4  measure-wide">
                 <Heading
                   /* Options */
                   htmlEntity="h1"
-                  text={`Gallery: ${post.title}`}
+                  text={`${post.title}`}
                   color="white"
                   size={app.deviceSize === 'md' ? 'large' : 'x-large'}
                   truncate={null}
@@ -260,43 +269,59 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
             </div>
           </Container>
 
-          <div className="flex flex-wrap  mb5  pb4">
-            {post?.galleryImages.map((image, i) => (
-              <div className="col-6" key={i}>
-                <Image
-                  src={imageBuilder
-                    .image(image.asset)
-                    .height(800)
-                    .width(800)
-                    .auto('format')
-                    .fit('clip')
-                    .url()}
-                  placeholder={imageBuilder
-                    .image(image.asset)
-                    .height(25)
-                    .width(25)
-                    .auto('format')
-                    .fit('clip')
-                    .blur('20')
-                    .url()}
-                  alt={image.alt || ''}
-                  figcaption={null}
-                  height={null}
-                  width={null}
-                  customClass="cp"
-                  skeleton={false}
-                  onClick={() => {
-                    setSelectedImage(image);
-                    setModalActive(true);
-                  }}
-                />
-              </div>
-            ))}
+          <div className="flex flex-wrap  pb5">
+            {post?.galleryImages
+              .slice()
+              .reverse()
+              .map((image, i) => (
+                <div
+                  className="card__gallery  col-8  col-6-md  pa2  relative  flex  align-center  jsutify-center"
+                  key={i}
+                >
+                  <div className="card__gallery__image  w-100  h-100">
+                    <Image
+                      src={imageBuilder
+                        .image(image)
+                        .height(800)
+                        .width(800)
+                        .auto('format')
+                        .fit('clip')
+                        .url()}
+                      placeholder={imageBuilder
+                        .image(image)
+                        .height(25)
+                        .width(25)
+                        .auto('format')
+                        .fit('clip')
+                        .blur('20')
+                        .url()}
+                      alt={image.alt || ''}
+                      figcaption={null}
+                      height={null}
+                      width={null}
+                      customClass="cp"
+                      skeleton={false}
+                      onClick={() => {
+                        setSelectedImage(image);
+                        setModalActive(true);
+                      }}
+                      withLinkProps={null}
+                    />
+                  </div>
+
+                  <div className="card__gallery__title  white  f4  lh-title  cp  t-primary  absolute  left  right  mla  mra  tac  flex  align-center  justify-center">
+                    <p className="ph5">
+                      Preview
+                      <span className="pl2  dib">{arrowRight}</span>
+                    </p>
+                  </div>
+                </div>
+              ))}
           </div>
 
           {morePosts.length > 0 && (
             <Container>
-              <section className="pb5">
+              <section className="pv5">
                 <div className="pb3  ph3">
                   <Heading
                     /* Options */
@@ -325,11 +350,13 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
             </Container>
           )}
 
-          <Container>
-            <div className="measure-wide  mla  mra  pb2  pb3-md  mb5">
-              <SocialLinks article={post} />
-            </div>
-          </Container>
+          {post?.socialHandles && (
+            <Container>
+              <div className="measure-wide  mla  mra  pb2  pb3-md  mb5">
+                <SocialLinks article={post} />
+              </div>
+            </Container>
+          )}
         </div>
       </Layout>
     );

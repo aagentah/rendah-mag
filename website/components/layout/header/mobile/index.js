@@ -108,17 +108,17 @@ export default function HeaderMobile({
             </Link>
           </li>
           {
-            //   <li className="nav__item  db  pl4  pb3">
-            //   <Link href="/gallery" legacyBehavior>
-            //     <button
-            //       className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-            //       onClick={toggleNav}
-            //       type="button"
-            //     >
-            //       Gallery
-            //     </button>
-            //   </Link>
-            // </li>
+            //    <li className="nav__item  db  pl4  pb3">
+            //    <Link href="/gallery" legacyBehavior>
+            //      <button
+            //        className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+            //        onClick={toggleNav}
+            //        type="button"
+            //      >
+            //        Gallery
+            //      </button>
+            //    </Link>
+            //  </li>
           }
           <li className="nav__item  db  pl4  pb3">
             <Link href="/team" legacyBehavior>

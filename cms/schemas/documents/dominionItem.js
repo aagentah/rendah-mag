@@ -94,9 +94,6 @@ export default {
       type: "boolean",
     },
   ],
-  initialValue: () => ({
-    activeFrom: new Date(),
-  }),
   preview: {
     select: {
       title: "title",

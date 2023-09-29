@@ -6,39 +6,36 @@ import Button from '~/components/elements/button';
 import Container from '../container';
 
 const IconInstagram = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconInstagram)
+  import('~/components/elements/icon').then((m) => m.IconInstagram)
 );
 
 const IconFacebook = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconFacebook)
+  import('~/components/elements/icon').then((m) => m.IconFacebook)
 );
 
 const IconTwitter = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconTwitter)
+  import('~/components/elements/icon').then((m) => m.IconTwitter)
 );
 
 const IconSoundcloud = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconSoundcloud)
+  import('~/components/elements/icon').then((m) => m.IconSoundcloud)
 );
 
 const IconYoutube = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconYoutube)
+  import('~/components/elements/icon').then((m) => m.IconYoutube)
 );
 
 const IconDiscord = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconDiscord)
+  import('~/components/elements/icon').then((m) => m.IconDiscord)
 );
 
 const IconSpotify = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconSpotify)
+  import('~/components/elements/icon').then((m) => m.IconSpotify)
 );
 
 export default function Footer() {
   return (
     <LazyLoad once offset={300} height={300}>
-      {
-        // <SubscribeForm />
-      }
       <footer className="footer  pv5">
         <Container>
           <div className="flex  flex-wrap">
@@ -79,8 +76,8 @@ export default function Footer() {
                       target: null,
                       routerLink: Link,
                       routerLinkProps: {
-                        scroll: false
-                      }
+                        scroll: false,
+                      },
                     }}
                   />
                 </li>
@@ -106,8 +103,8 @@ export default function Footer() {
                       target: null,
                       routerLink: Link,
                       routerLinkProps: {
-                        scroll: false
-                      }
+                        scroll: false,
+                      },
                     }}
                   />
                 </li>
@@ -162,8 +159,8 @@ export default function Footer() {
                       target: null,
                       routerLink: Link,
                       routerLinkProps: {
-                        scroll: false
-                      }
+                        scroll: false,
+                      },
                     }}
                   />
                 </li>
@@ -188,7 +185,7 @@ export default function Footer() {
                       href: 'https://forms.gle/xpPtVhUiuzZzehdy8',
                       target: '_blank',
                       routerLink: null,
-                      routerLinkProps: null
+                      routerLinkProps: null,
                     }}
                   />
                 </li>
@@ -214,8 +211,8 @@ export default function Footer() {
                       target: null,
                       routerLink: Link,
                       routerLinkProps: {
-                        scroll: false
-                      }
+                        scroll: false,
+                      },
                     }}
                   />
                 </li>

@@ -101,3 +101,28 @@
     text-align: center;
   }
 }
+
+// Gallery
+
+.card__gallery {
+  .card__gallery__image {
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+  }
+
+  .card__gallery__title {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in;
+  }
+
+  &:hover {
+    .card__gallery__image {
+      opacity: 0.3;
+    }
+
+    .card__gallery__title {
+      opacity: 1;
+    }
+  }
+}

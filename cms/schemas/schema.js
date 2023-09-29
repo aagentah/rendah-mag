@@ -8,6 +8,7 @@ import blogPost from "./documents/blogPost";
 import blogAuthor from "./documents/blogAuthor";
 import blogCategory from "./documents/blogCategory";
 import blogDivision from "./documents/blogDivision";
+import newsletterGeneral from "./documents/newsletterGeneral";
 import refTag from "./documents/refTag";
 
 // Store
@@ -54,6 +55,7 @@ export default createSchema({
     blogAuthor,
     blogCategory,
     blogDivision,
+    newsletterGeneral,
     storeCategory,
     storeCollection,
     storeItem,

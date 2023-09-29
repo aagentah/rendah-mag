@@ -148,33 +148,33 @@ export default function HeaderDestop({
                 />
               </li>
               {
-                // <li className="nav__item  dib  flex  align-center  pr3">
-                //   <Button
-                //     /* Options */
-                //     type="secondary"
-                //     size="medium"
-                //     text="Gallery"
-                //     color={navColour}
-                //     fluid={false}
-                //     icon={null}
-                //     iconFloat={null}
-                //     inverted
-                //     loading={false}
-                //     disabled={false}
-                //     skeleton={false}
-                //     onClick={null}
-                //     /* Children */
-                //     withLinkProps={{
-                //       type: 'next',
-                //       href: '/gallery',
-                //       target: null,
-                //       routerLink: Link,
-                //       routerLinkProps: {
-                //         scroll: false,
-                //       },
-                //     }}
-                //   />
-                // </li>
+                //    <li className="nav__item  dib  flex  align-center  pr3">
+                //    <Button
+                //      /* Options */
+                //      type="secondary"
+                //      size="medium"
+                //      text="Gallery"
+                //      color={navColour}
+                //      fluid={false}
+                //      icon={null}
+                //      iconFloat={null}
+                //      inverted
+                //      loading={false}
+                //      disabled={false}
+                //      skeleton={false}
+                //      onClick={null}
+                //      /* Children */
+                //      withLinkProps={{
+                //        type: 'next',
+                //        href: '/gallery',
+                //        target: null,
+                //        routerLink: Link,
+                //        routerLinkProps: {
+                //          scroll: false,
+                //        },
+                //      }}
+                //    />
+                //  </li>
               }
               <li className="nav__item  dib  flex  align-center  pr3">
                 <Button

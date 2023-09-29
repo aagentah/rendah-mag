@@ -19,17 +19,6 @@ export default {
       },
       validation: (Rule) => Rule.required(),
     },
-    // {
-    //   name: "tags",
-    //   title: "Tags",
-    //   type: "array",
-    //   of: [
-    //     {
-    //       type: "reference",
-    //       to: { type: "refTag" },
-    //     },
-    //   ],
-    // },
     {
       name: "publishedAt",
       title: "Publish Date",
@@ -38,6 +27,7 @@ export default {
     },
     {
       name: "galleryImages",
+      description: "From oldest to newest",
       title: "Gallery Images",
       type: "array",
       of: [
@@ -80,6 +70,7 @@ export default {
       title: "Introduction",
       description: "Shown as first paragraph in the article.",
       type: "blockContent",
+      validation: (Rule) => Rule.required().max(70),
     },
     {
       type: "object",
