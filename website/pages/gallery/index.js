@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+import LazyLoad from 'react-lazyload';
 
 import Copy from '~/components/elements/copy';
 import Heading from '~/components/elements/heading';
@@ -93,7 +94,7 @@ export default function Gallery({ siteConfig }) {
               <div className="pb5  measure-wide">
                 <Copy
                   /* Options */
-                  text="Gallery"
+                  text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                   color="white"
                   size="medium"
                   truncate={null}
@@ -110,39 +111,41 @@ export default function Gallery({ siteConfig }) {
                     key={i}
                   >
                     <div className="card__gallery__image  w-100  h-100">
-                      <Image
-                        src={imageBuilder
-                          .image(image)
-                          .height(800)
-                          .width(800)
-                          .auto('format')
-                          .fit('clip')
-                          .url()}
-                        placeholder={imageBuilder
-                          .image(image)
-                          .height(25)
-                          .width(25)
-                          .auto('format')
-                          .fit('clip')
-                          .blur('20')
-                          .url()}
-                        alt={image.alt || ''}
-                        figcaption={null}
-                        height={null}
-                        width={null}
-                        customClass="cp"
-                        skeleton={false}
-                        onClick={false}
-                        withLinkProps={
-                          artist?.slug && {
-                            type: 'external',
-                            href: `/gallery/${artist?.slug}`,
-                            target: null,
-                            routerLink: null,
-                            routerLinkProps: null,
+                      <LazyLoad once offset={250} height={300}>
+                        <Image
+                          src={imageBuilder
+                            .image(image)
+                            .height(800)
+                            .width(800)
+                            .auto('format')
+                            .fit('clip')
+                            .url()}
+                          placeholder={imageBuilder
+                            .image(image)
+                            .height(25)
+                            .width(25)
+                            .auto('format')
+                            .fit('clip')
+                            .blur('20')
+                            .url()}
+                          alt={image.alt || ''}
+                          figcaption={null}
+                          height={null}
+                          width={null}
+                          customClass="cp"
+                          skeleton={false}
+                          onClick={false}
+                          withLinkProps={
+                            artist?.slug && {
+                              type: 'external',
+                              href: `/gallery/${artist?.slug}`,
+                              target: null,
+                              routerLink: null,
+                              routerLinkProps: null,
+                            }
                           }
-                        }
-                      />
+                        />
+                      </LazyLoad>
                     </div>
 
                     <div className="card__gallery__title  white  f4  lh-title  cp  t-primary  absolute  left  right  mla  mra  tac  flex  align-center  justify-center">

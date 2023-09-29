@@ -6,6 +6,7 @@ import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
 import BlockContent from '@sanity/block-content-to-react';
 import { usePlausible } from 'next-plausible';
+import LazyLoad from 'react-lazyload';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -279,34 +280,36 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                   key={i}
                 >
                   <div className="card__gallery__image  w-100  h-100">
-                    <Image
-                      src={imageBuilder
-                        .image(image)
-                        .height(800)
-                        .width(800)
-                        .auto('format')
-                        .fit('clip')
-                        .url()}
-                      placeholder={imageBuilder
-                        .image(image)
-                        .height(25)
-                        .width(25)
-                        .auto('format')
-                        .fit('clip')
-                        .blur('20')
-                        .url()}
-                      alt={image.alt || ''}
-                      figcaption={null}
-                      height={null}
-                      width={null}
-                      customClass="cp"
-                      skeleton={false}
-                      onClick={() => {
-                        setSelectedImage(image);
-                        setModalActive(true);
-                      }}
-                      withLinkProps={null}
-                    />
+                    <LazyLoad once offset={250} height={300}>
+                      <Image
+                        src={imageBuilder
+                          .image(image)
+                          .height(800)
+                          .width(800)
+                          .auto('format')
+                          .fit('clip')
+                          .url()}
+                        placeholder={imageBuilder
+                          .image(image)
+                          .height(25)
+                          .width(25)
+                          .auto('format')
+                          .fit('clip')
+                          .blur('20')
+                          .url()}
+                        alt={image.alt || ''}
+                        figcaption={null}
+                        height={null}
+                        width={null}
+                        customClass="cp"
+                        skeleton={false}
+                        onClick={() => {
+                          setSelectedImage(image);
+                          setModalActive(true);
+                        }}
+                        withLinkProps={null}
+                      />
+                    </LazyLoad>
                   </div>
 
                   <div className="card__gallery__title  white  f4  lh-title  cp  t-primary  absolute  left  right  mla  mra  tac  flex  align-center  justify-center">
