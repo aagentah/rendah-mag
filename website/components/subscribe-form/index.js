@@ -3,23 +3,28 @@ import fetch from 'isomorphic-unfetch';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import { usePlausible } from 'next-plausible';
 
 import Button from '~/components/elements/button';
 
 import { useApp, useDispatchApp } from '../../context-provider/app';
 
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowRight)
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
 export default function SubscribeForm({ onSuccess }) {
   const app = useApp();
+  const router = useRouter();
   const dispatch = useDispatchApp();
+  const plausible = usePlausible();
   const [buttonLoading, setButtonLoading] = useState(false);
+  const fullPath = router.asPath;
 
   const inputEl = useRef(null);
 
-  const subscribe = async e => {
+  const subscribe = async (e) => {
     e.preventDefault();
 
     if (!inputEl.current.value) {
@@ -35,11 +40,11 @@ export default function SubscribeForm({ onSuccess }) {
         body: JSON.stringify({
           data: {
             email_address: inputEl.current.value,
-            status: 'subscribed'
-          }
+            status: 'subscribed',
+          },
         }),
         headers: { 'Content-Type': 'application/json' },
-        method: 'POST'
+        method: 'POST',
       }
     );
 
@@ -48,6 +53,13 @@ export default function SubscribeForm({ onSuccess }) {
       toast.success('Welcome to the newsletter');
       Cookies.set('rndh-newsletter-set', true, { expires: 365 });
       if (onSuccess) onSuccess();
+
+      plausible('Newsletter', {
+        props: {
+          action: 'subscribe',
+          label: fullPath,
+        },
+      });
     } else if (response.status === 400) {
       // Already subscribed
       toast.info('You are already added to our newsletter.');
@@ -100,7 +112,7 @@ export default function SubscribeForm({ onSuccess }) {
               type: 'form',
               url: null,
               target: null,
-              routerLink: null
+              routerLink: null,
             }}
           />
         </div>

@@ -9,31 +9,23 @@ import { getSiteConfig } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 const IconInstagram = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconInstagram)
+  import('~/components/elements/icon').then((m) => m.IconInstagram)
 );
 
 const IconFacebook = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconFacebook)
+  import('~/components/elements/icon').then((m) => m.IconFacebook)
 );
 
 const IconTwitter = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconTwitter)
+  import('~/components/elements/icon').then((m) => m.IconTwitter)
 );
 
 const IconSoundcloud = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconSoundcloud)
-);
-
-const IconYoutube = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconYoutube)
+  import('~/components/elements/icon').then((m) => m.IconSoundcloud)
 );
 
 const IconDiscord = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconDiscord)
-);
-
-const IconSpotify = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconSpotify)
+  import('~/components/elements/icon').then((m) => m.IconDiscord)
 );
 
 export default function Connect({ siteConfig, preview }) {
@@ -49,7 +41,7 @@ export default function Connect({ siteConfig, preview }) {
         siteConfig,
         title: 'Connect',
         description: null,
-        image: null
+        image: null,
       }}
       preview={preview}
     >
@@ -110,16 +102,6 @@ export default function Connect({ siteConfig, preview }) {
               <IconSoundcloud color="black" size={55} />
             </a>
           </div>
-          <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
-            <a
-              href="https://www.youtube.com/channel/UC4dYeD1ceX8sSY3J3UuMn8w"
-              target="_blank"
-              rel="noreferrer"
-              className="black"
-            >
-              <IconYoutube color="black" size={55} />
-            </a>
-          </div>
           <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
             <a
               href="https://discord.com/invite/ev2Q22C"
@@ -128,16 +110,6 @@ export default function Connect({ siteConfig, preview }) {
               className="black"
             >
               <IconDiscord color="black" size={55} />
-            </a>
-          </div>
-          <div className="col-24  col-3-md  dn  df-md  justify-center  justify-end-md  pt4  pt0-md">
-            <a
-              href="https://open.spotify.com/user/z7wa87uoc308b4dmp8qpoukdf?si=28825cb6910f4e39"
-              target="_blank"
-              rel="noreferrer"
-              className="black"
-            >
-              <IconSpotify color="black" size={55} />
             </a>
           </div>
         </div>
@@ -151,8 +123,8 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      siteConfig
-    }
+      siteConfig,
+    },
   };
 }
 

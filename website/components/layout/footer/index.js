@@ -21,16 +21,8 @@ const IconSoundcloud = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconSoundcloud)
 );
 
-const IconYoutube = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconYoutube)
-);
-
 const IconDiscord = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconDiscord)
-);
-
-const IconSpotify = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconSpotify)
 );
 
 export default function Footer() {
@@ -265,17 +257,6 @@ export default function Footer() {
                     <IconSoundcloud color="white" size={30} />
                   </a>
                 </div>
-                <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
-                  <a
-                    aria-label="Youtube"
-                    href="https://www.youtube.com/channel/UC4dYeD1ceX8sSY3J3UuMn8w"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="white"
-                  >
-                    <IconYoutube color="white" size={30} />
-                  </a>
-                </div>
                 <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
                   <a
                     aria-label="Discord"
@@ -285,17 +266,6 @@ export default function Footer() {
                     className="white"
                   >
                     <IconDiscord color="white" size={30} />
-                  </a>
-                </div>
-                <div className="col-24  col-3-md  dn  df-md  justify-center  justify-end-md  pt4  pt0-md">
-                  <a
-                    aria-label="Spotify"
-                    href="https://open.spotify.com/user/z7wa87uoc308b4dmp8qpoukdf?si=28825cb6910f4e39"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="white"
-                  >
-                    <IconSpotify color="white" size={30} />
                   </a>
                 </div>
               </div>
