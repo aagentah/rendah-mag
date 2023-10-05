@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import dynamic from 'next/dynamic';
+import { usePlausible } from 'next-plausible';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -25,6 +26,7 @@ const IconInfoCircle = dynamic(() =>
 export default function Cyphers({ siteConfig }) {
   const [cyphers, setCyphers] = useState(null);
   const [cyphersLength, setCyphersLength] = useState(24);
+  const plausible = usePlausible();
 
   useEffect(() => {
     const action = async () => {
@@ -110,7 +112,14 @@ export default function Cyphers({ siteConfig }) {
                           loading={false}
                           disabled={false}
                           skeleton={false}
-                          onClick={null}
+                          onClick={() => {
+                            plausible('Cypher', {
+                              props: {
+                                action: 'download',
+                                label: new Date(),
+                              },
+                            });
+                          }}
                           /* Children */
                           withLinkProps={{
                             type: 'external',
