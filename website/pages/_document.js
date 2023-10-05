@@ -8,9 +8,9 @@ export default class MyDocument extends Document {
     ctx.renderPage = () =>
       originalRenderPage({
         // Useful for wrapping the whole react tree
-        enhanceApp: App => App,
+        enhanceApp: (App) => App,
         // Useful for wrapping in a per-page basis
-        enhanceComponent: Component => Component
+        enhanceComponent: (Component) => Component,
       });
 
     // Run the parent `getInitialProps`, it now includes the custom `renderPage`
@@ -61,6 +61,11 @@ export default class MyDocument extends Document {
           />
 
           <meta name="theme-color" content="#000" />
+
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          />
 
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         </Head>

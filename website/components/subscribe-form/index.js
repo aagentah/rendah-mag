@@ -24,6 +24,15 @@ export default function SubscribeForm({ type, onSuccess }) {
 
   const inputEl = useRef(null);
 
+  const log = () => {
+    plausible('Newsletter', {
+      props: {
+        action: type || '',
+        label: fullPath,
+      },
+    });
+  };
+
   const subscribe = async (e) => {
     e.preventDefault();
 
@@ -50,16 +59,10 @@ export default function SubscribeForm({ type, onSuccess }) {
 
     if (response.ok) {
       // Success
+      log();
       toast.success('Welcome to the newsletter');
       Cookies.set('rndh-newsletter-set', true, { expires: 365 });
       if (onSuccess) onSuccess();
-
-      plausible('Newsletter', {
-        props: {
-          action: type || '',
-          label: fullPath,
-        },
-      });
     } else if (response.status === 400) {
       // Already subscribed
       toast.info('You are already added to our newsletter.');

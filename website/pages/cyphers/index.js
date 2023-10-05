@@ -32,14 +32,21 @@ export default function Cyphers({ siteConfig }) {
     const action = async () => {
       const cyphersData = await getCurrentAndPreviousCyphers();
 
-      console.log('cyphersData', cyphersData);
-
       setCyphersLength(cyphersData.previous.length);
       setCyphers(cyphersData);
     };
 
     action();
   }, []);
+
+  const log = () => {
+    plausible('Cypher', {
+      props: {
+        action: 'download',
+        label: cyphers?.current?.title,
+      },
+    });
+  };
 
   return (
     <>
@@ -113,12 +120,7 @@ export default function Cyphers({ siteConfig }) {
                           disabled={false}
                           skeleton={false}
                           onClick={() => {
-                            plausible('Cypher', {
-                              props: {
-                                action: 'download',
-                                label: new Date(),
-                              },
-                            });
+                            log();
                           }}
                           /* Children */
                           withLinkProps={{
