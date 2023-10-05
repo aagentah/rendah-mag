@@ -175,7 +175,10 @@ export default function SmartLink({ siteConfig, post, preview }) {
             />
           </div>
           <div className="pb3  mb2">
-            <SubscribeForm onSuccess={() => setModalActive(false)} />
+            <SubscribeForm
+              type="modal"
+              onSuccess={() => setModalActive(false)}
+            />
           </div>
           <div className="flex  flex-wrap  pb2">
             <div className="col-24  flex  justify-center  align-center">

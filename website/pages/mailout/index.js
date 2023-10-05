@@ -26,7 +26,7 @@ export default function Mailout({ siteConfig, preview }) {
           siteConfig,
           title: 'Mailout',
           description: null,
-          image: null
+          image: null,
         }}
         preview={preview}
       >
@@ -55,7 +55,7 @@ export default function Mailout({ siteConfig, preview }) {
               />
             </div>
             <div className="pb3  mb2">
-              <SubscribeForm />
+              <SubscribeForm type="mailout" />
             </div>
           </div>
         </Container>
@@ -72,8 +72,8 @@ export async function getServerSideProps({ req, preview = false }) {
   return {
     props: {
       siteConfig,
-      preview
-    }
+      preview,
+    },
   };
 }
 

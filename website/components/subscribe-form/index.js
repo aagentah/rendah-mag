@@ -14,7 +14,7 @@ const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
-export default function SubscribeForm({ onSuccess }) {
+export default function SubscribeForm({ type, onSuccess }) {
   const app = useApp();
   const router = useRouter();
   const dispatch = useDispatchApp();
@@ -56,7 +56,7 @@ export default function SubscribeForm({ onSuccess }) {
 
       plausible('Newsletter', {
         props: {
-          action: 'subscribe',
+          action: type || '',
           label: fullPath,
         },
       });
@@ -79,7 +79,7 @@ export default function SubscribeForm({ onSuccess }) {
   return (
     <form
       noValidate
-      className="subscribe-banner  w-100  flex  flex-wrap  justify-center  align-center"
+      className={`subscribe-banner  subscribe-banner--${type}  w-100  flex  flex-wrap  justify-center  align-center`}
       onSubmit={subscribe}
     >
       <div className="flex  flex-wrap  mt2  w-100">
@@ -98,7 +98,7 @@ export default function SubscribeForm({ onSuccess }) {
             type="primary"
             size="medium"
             text="Join"
-            color="black"
+            color={type === 'footer' ? 'white' : 'black'}
             fluid={false}
             icon={buttonIconArrowRight}
             iconFloat={null}

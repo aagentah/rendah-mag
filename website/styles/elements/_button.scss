@@ -184,6 +184,15 @@
     }
   }
 
+  .button.primary.button--white {
+    color: var(--black);
+    fill: var(--black);
+
+    svg {
+      fill: var(--black);
+    }
+  }
+
   .button.primary.button--#{'' + $color}.inverted {
     color: var($hex);
     fill: var($hex);

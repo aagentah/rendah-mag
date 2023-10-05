@@ -23,3 +23,15 @@
 .subscribe-banner__submit .button {
   border-radius: 0;
 }
+
+.subscribe-banner--footer {
+  .subscribe-banner__input {
+    background-color: transparent;
+    border-color: var(--white);
+
+    &::placeholder {
+      color: var(--white);
+      opacity: 1;
+    }
+  }
+}

@@ -152,14 +152,17 @@ export default function Post({ siteConfig, post, preview }) {
           <div className="pb2">
             <Copy
               /* Options */
-              text="Can we add you to our Mailing List? We usually only send a few emails each month, and keep the content relevant as ever."
+              text="Can we add you to our Newsletter? We usually only send a few emails each month, and keep the content relevant as ever."
               color="black"
               size="medium"
               truncate={null}
             />
           </div>
           <div className="pb3  mb2">
-            <SubscribeForm onSuccess={() => setModalActive(false)} />
+            <SubscribeForm
+              type="modal"
+              onSuccess={() => setModalActive(false)}
+            />
           </div>
           <div className="flex  flex-wrap  pb2">
             <div className="col-24  flex  justify-center  align-center">

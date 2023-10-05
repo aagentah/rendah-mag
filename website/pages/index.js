@@ -304,7 +304,7 @@ export default function Home() {
             <Heading
               /* Options */
               htmlEntity="h3"
-              text="Join our Mailing List?"
+              text="Join our Newsletter?"
               color="black"
               size="medium"
               truncate={0}
@@ -323,7 +323,10 @@ export default function Home() {
             />
           </div>
           <div className="pb3  mb2">
-            <SubscribeForm onSuccess={() => setModalActive(false)} />
+            <SubscribeForm
+              type="modal"
+              onSuccess={() => setModalActive(false)}
+            />
           </div>
           <div className="flex  flex-wrap  pb2">
             <div className="col-24  flex  justify-center  align-center">
