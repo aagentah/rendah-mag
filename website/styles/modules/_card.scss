@@ -116,6 +116,10 @@
     transition: opacity 0.3s ease-in;
   }
 
+  .card__gallery__title--profile {
+    pointer-events: all;
+  }
+
   &:hover {
     .card__gallery__image {
       opacity: 0.3;

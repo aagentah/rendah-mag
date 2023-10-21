@@ -10,6 +10,12 @@ export default {
       validation: (Rule) => Rule.required().max(60),
     },
     {
+      name: "from",
+      title: "From (Author name)",
+      type: "string",
+      validation: (Rule) => Rule.required().max(60),
+    },
+    {
       name: "slug",
       title: "URL",
       type: "slug",

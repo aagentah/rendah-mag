@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Image from '~/components/elements/image';
+import Button from '~/components/elements/button';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import Buttons from '~/components/dominion/buttons';
 import Accordion from '~/components/accordion';
 
 import {
@@ -15,10 +16,14 @@ import {
 
 import { useApp } from '~/context-provider/app';
 
+const IconPlus = dynamic(() =>
+  import('~/components/elements/icon').then((m) => m.IconPlus)
+);
+
 export default function Dominion({ siteConfig }) {
-  const [renderButtons, setRenderButtons] = useState(false);
   const [dominion, setDominion] = useState(null);
   const app = useApp();
+  const buttonIconPlus = <IconPlus color="rendah-red" size={16} />;
 
   const accordionData = [
     {
@@ -64,16 +69,6 @@ export default function Dominion({ siteConfig }) {
     action();
   }, []);
 
-  useEffect(() => {
-    if (renderButtons) {
-      return;
-    }
-
-    setTimeout(() => {
-      setRenderButtons(true);
-    }, 100);
-  }, []);
-
   return (
     <Layout
       navOffset="top"
@@ -88,7 +83,7 @@ export default function Dominion({ siteConfig }) {
       }}
       preview={null}
     >
-      <div className="pt4  pt0-md">
+      <div className="pt4  pt0-md  page--dominion">
         <Container>
           <div className="measure-wide  mla  mra  pb4  mb3-md">
             <img src="/images/dominion-logo.png" alt="Dominion" />
@@ -104,11 +99,14 @@ export default function Dominion({ siteConfig }) {
             </div>
             <div className="col-24  col-14-md  flex  flex-wrap  justify-center  ph0  pl4-md  pr0-md">
               <div className="measure-wide  ph4  ph0-md  pb2">
-                <p className="t-secondary  taj  f6  lh-copy  pb3">
+                <p className="t-secondary  taj  f5  lh-copy  pb3">
                   <strong>
-                    The Rendah Mag 'Dominion' is our very own monthly
+                    The Rendah Mag 'Dominion' is our hybrid
                     subscription-service.
-                  </strong>{' '}
+                  </strong>
+                </p>
+
+                <p className="t-secondary  taj  f6  lh-copy  pb3">
                   With so much happening right now, we want to push our platform
                   into new territory, offering a new way for people to explore
                   the landscape of underground music, art, and technology.
@@ -120,26 +118,22 @@ export default function Dominion({ siteConfig }) {
 
                 <ul className="pl3">
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    A Welcome package (+ membership card & stickers).
+                    4 x Printed magazines per year (+ FREE SHIPPING)
                   </li>
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    A quarter-yearly printed issue of Rendah Mag + FREE
-                    Shipping.
+                    A Welcome package
                   </li>
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    Access to all subscriber-only blog posts.
+                    Access to subscriber-only articles
                   </li>
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    Exclusive music downloads from the labels we work with.
+                    Exclusive music & downloads from the labels we work with
                   </li>
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    High-res access to artwork from our Gallery.
+                    High-res access to artwork from our Gallery
                   </li>
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    Digital access to all previous prints.
-                  </li>
-                  <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    Your own Dominion Profile & login.
+                    Digital access to ALL previous prints
                   </li>
                 </ul>
               </div>
@@ -154,7 +148,31 @@ export default function Dominion({ siteConfig }) {
               </div>
 
               <div className="flex  flex-wrap  w-100  pt4  pt0-md  ph3  ph0-md">
-                {renderButtons && <Buttons />}
+                <div className="col-24  col-12-md  flex  align-center  justify-center">
+                  <Button
+                    /* Options */
+                    type="primary"
+                    size="medium"
+                    text="Subscribe Now"
+                    color="black"
+                    fluid={true}
+                    icon={buttonIconPlus}
+                    iconFloat="left"
+                    inverted={false}
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'external',
+                      href: 'https://buy.stripe.com/6oE2br5XDdj3144eUZ',
+                      target: '_blank',
+                      routerLink: null,
+                      routerLinkProps: null,
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>

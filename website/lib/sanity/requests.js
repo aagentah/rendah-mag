@@ -77,6 +77,7 @@ const productFields = `
   'slug': slug.current,
   'image1': image1.asset->url,
   'image2': image2.asset->url,
+  creditsItems,
 `;
 
 const teamFields = `
@@ -350,6 +351,24 @@ export async function getTeamMembers(preview) {
     }`);
   return results;
 }
+
+// export async function getCredits(preview) {
+//   const results = await getClient(preview)
+//     .fetch(`*[_type == "credits"] | order(order asc){
+//       ...
+//     }`);
+//   return results;
+// }
+
+// export async function getCreditsItem(slug, preview) {
+//   const results = await getClient(preview).fetch(
+//     `*[_type == "credits" && slug.current == $slug] [0] {
+//      ...,
+//     }`,
+//     { slug }
+//   );
+//   return results;
+// }
 
 export async function getTeamMemberAndPosts(slug, preview) {
   const today = dateTodayISO();

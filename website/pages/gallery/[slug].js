@@ -6,6 +6,7 @@ import 'intersection-observer';
 import Observer from '@researchgate/react-intersection-observer';
 import BlockContent from '@sanity/block-content-to-react';
 import { usePlausible } from 'next-plausible';
+import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 
 import Layout from '~/components/layout';
@@ -35,6 +36,10 @@ const IconDownload = dynamic(() =>
 
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
+);
+
+const IconArrowLeft = dynamic(() =>
+  import('~/components/elements/icon').then((m) => m.IconArrowLeft)
 );
 
 export default function Gallery({ siteConfig, post, morePosts, preview }) {
@@ -112,7 +117,7 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                 />
               </div>
               <div className="col-24  col-10-md  flex  justify-start  align-center  pv3  ph4">
-                <div>
+                <div className="col-24">
                   {selectedImage?.caption && (
                     <div className="rich-text  measure-wide  mb4">
                       <BlockContent
@@ -136,7 +141,7 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                         .fit('clip')
                         .url()}&dl=`}
                       target="_external"
-                      className="cp"
+                      className="cp  w-100"
                       onClick={() => {
                         triggerOnDownloadEvt({
                           filename: selectedImage?.fileName,
@@ -168,12 +173,18 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                     <a
                       href={
                         user &&
+                        selectedImage?.allowHighResDl &&
                         `${imageBuilder.image(selectedImage.asset).url()}?dl=`
                       }
                       target="_external"
-                      className={`${user ? 'cp' : ''}`}
+                      className={`${
+                        user && selectedImage?.allowHighResDl
+                          ? 'cp  w-100'
+                          : 'w-100'
+                      }`}
                       onClick={() => {
                         user &&
+                          selectedImage?.allowHighResDl &&
                           triggerOnDownloadEvt({
                             filename: selectedImage?.fileName,
                             res: 'High-res',
@@ -191,7 +202,7 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                         iconFloat="left"
                         inverted={false}
                         loading={false}
-                        disabled={!user}
+                        disabled={!user || !selectedImage?.allowHighResDl}
                         skeleton={false}
                         onClick={null}
                         /* Children */
@@ -199,10 +210,22 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                       />
                     </a>
                   </div>
+
+                  {!selectedImage?.allowHighResDl && (
+                    <div className="mb3">
+                      <p className="t-secondary  f6  lh-copy  tal  white">
+                        High-resolution downloads of this specific artwork are
+                        not available in order to honor the intellectual
+                        property of the artist.
+                      </p>
+                    </div>
+                  )}
+
                   {!user && (
                     <div className="mb3">
                       <p className="t-secondary  f6  lh-copy  tal  rendah-red">
-                        High-res downloads are exclusive to the Dominion
+                        High-res downloads of certain artworks—where approved by
+                        the artist—are available exclusively to the Dominion
                         Subscription. To access, please{' '}
                         <a className="rendah-red  underline" href="/login">
                           log in
@@ -250,7 +273,14 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
         <div className="creations  pt5">
           <Container>
             <div className="mb5">
-              <div className="mb4  measure-wide">
+              <Link legacyBehavior href="/gallery">
+                <a className="white  df">
+                  <IconArrowLeft color="#ffffff" size={12} />
+                  <span className="pl2">Back to Gallery</span>
+                </a>
+              </Link>
+
+              <div className="mt3  mb4  measure-wide">
                 <Heading
                   /* Options */
                   htmlEntity="h1"

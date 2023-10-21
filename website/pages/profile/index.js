@@ -39,6 +39,8 @@ const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
 
 const ProfilePrints = dynamic(() => import('~/components/profile/prints'));
 
+const ProfileGallery = dynamic(() => import('~/components/profile/gallery'));
+
 const IconHouse = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconHouse)
 );
@@ -151,12 +153,18 @@ export default function Profile({ siteConfig }) {
                         tabIcon: iconMusic,
                         tabContent: ProfileOfferings,
                       },
-                      {
-                        id: 'packs',
-                        tabTitle: 'Samples',
-                        tabIcon: iconPack,
-                        tabContent: ProfilePacks,
-                      },
+                      // {
+                      //   id: 'packs',
+                      //   tabTitle: 'Samples',
+                      //   tabIcon: iconPack,
+                      //   tabContent: ProfilePacks,
+                      // },
+                      // {
+                      //   id: 'gallery',
+                      //   tabTitle: 'Gallery',
+                      //   tabIcon: iconPack,
+                      //   tabContent: ProfileGallery,
+                      // },
                       {
                         id: 'creations',
                         tabTitle: 'Articles',

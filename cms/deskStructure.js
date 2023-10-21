@@ -29,19 +29,21 @@ export default async () => {
       .title("Content")
       .items([
         // Site Settings
-        isOwner &&
-          S.listItem()
-            .icon(MdSettings)
-            .title("Site Settings")
-            .child(
-              S.editor().schemaType("siteSettings").documentId("siteSettings")
-            ),
+        isOwner
+          ? S.listItem()
+              .icon(MdSettings)
+              .title("Site Settings")
+              .child(
+                S.editor().schemaType("siteSettings").documentId("siteSettings")
+              )
+          : S.divider(),
         // Homepage
-        isOwner &&
-          S.listItem()
-            .icon(MdSettings)
-            .title("Home Page")
-            .child(S.editor().schemaType("homePage").documentId("homePage")),
+        isOwner
+          ? S.listItem()
+              .icon(MdSettings)
+              .title("Home Page")
+              .child(S.editor().schemaType("homePage").documentId("homePage"))
+          : S.divider(),
         // Smart Link
         S.documentTypeListItem("smartLink").icon(MDViewList),
         // Divider
@@ -55,85 +57,89 @@ export default async () => {
               .title("Blog")
               .items([
                 S.documentTypeListItem("post"),
-                isOwner && S.documentTypeListItem("author"),
-                isOwner && S.documentTypeListItem("division"),
-                isOwner && S.documentTypeListItem("category"),
+                isOwner ? S.documentTypeListItem("author") : S.divider(),
+                isOwner ? S.documentTypeListItem("division") : S.divider(),
+                isOwner ? S.documentTypeListItem("category") : S.divider(),
                 S.documentTypeListItem("gallery"),
-                isOwner && S.documentTypeListItem("newsletterGeneral"),
+                isOwner
+                  ? S.documentTypeListItem("newsletterGeneral")
+                  : S.divider(),
               ])
           ),
 
         // Store
-        isOwner &&
-          S.listItem()
-            .icon(MDShop)
-            .title("Store")
-            .child(
-              S.list()
-                .title("Store")
-                .items([
-                  S.documentTypeListItem("storeItem"),
-                  S.documentTypeListItem("storeCollection"),
-                  S.documentTypeListItem("storeCategory"),
-                ])
-            ),
+        isOwner
+          ? S.listItem()
+              .icon(MDShop)
+              .title("Store")
+              .child(
+                S.list()
+                  .title("Store")
+                  .items([
+                    S.documentTypeListItem("storeItem"),
+                    S.documentTypeListItem("storeCollection"),
+                    S.documentTypeListItem("storeCategory"),
+                  ])
+              )
+          : S.divider(),
         // Dominion
-        isOwner &&
-          S.listItem()
-            .icon(MDLoyalty)
-            .title("Dominion")
-            .child(
-              S.list()
-                .title("Dominion")
-                .items([
-                  S.documentTypeListItem("user").icon(MDPerson),
-                  S.documentTypeListItem("dominionItem"),
-                  S.documentTypeListItem("creations"),
-                  S.documentTypeListItem("offering"),
-                  S.documentTypeListItem("pack"),
-                  S.documentTypeListItem("print"),
-                  S.documentTypeListItem("track").icon(MDMusicVideo),
-                  S.listItem()
-                    .icon(MDViewList)
-                    .title("Dominion Pipeline")
-                    .child(
-                      S.editor()
-                        .schemaType("dominionPipeline")
-                        .documentId("dominionPipeline")
-                    ),
-                  S.divider(),
-                  S.listItem()
-                    .icon(MDViewList)
-                    .title("Dominion Shipping")
-                    .child(
-                      S.editor()
-                        .schemaType("user")
-                        .title("Dominion Shipping")
-                        .views([
-                          S.view
-                            .component(UsersAddress)
-                            .icon(MDViewList)
-                            .title("Dominion Shipping"),
-                        ])
-                    ),
-                  S.listItem()
-                    .icon(MDViewList)
-                    .title("Dominion Overview")
-                    .child(
-                      S.editor()
-                        .schemaType("user")
-                        .title("Dominion Overview")
-                        .views([
-                          S.view
-                            .component(UsersOverview)
-                            .icon(MDViewList)
-                            .title("Dominion Overview"),
-                        ])
-                    ),
-                ])
-            ),
+        isOwner
+          ? S.listItem()
+              .icon(MDLoyalty)
+              .title("Dominion")
+              .child(
+                S.list()
+                  .title("Dominion")
+                  .items([
+                    S.documentTypeListItem("user").icon(MDPerson),
+                    S.documentTypeListItem("dominionItem"),
+                    S.documentTypeListItem("creations"),
+                    S.documentTypeListItem("offering"),
+                    S.documentTypeListItem("pack"),
+                    S.documentTypeListItem("print"),
+                    S.documentTypeListItem("track").icon(MDMusicVideo),
+                    S.listItem()
+                      .icon(MDViewList)
+                      .title("Dominion Pipeline")
+                      .child(
+                        S.editor()
+                          .schemaType("dominionPipeline")
+                          .documentId("dominionPipeline")
+                      ),
+                    S.divider(),
+                    S.listItem()
+                      .icon(MDViewList)
+                      .title("Dominion Shipping")
+                      .child(
+                        S.editor()
+                          .schemaType("user")
+                          .title("Dominion Shipping")
+                          .views([
+                            S.view
+                              .component(UsersAddress)
+                              .icon(MDViewList)
+                              .title("Dominion Shipping"),
+                          ])
+                      ),
+                    S.listItem()
+                      .icon(MDViewList)
+                      .title("Dominion Overview")
+                      .child(
+                        S.editor()
+                          .schemaType("user")
+                          .title("Dominion Overview")
+                          .views([
+                            S.view
+                              .component(UsersOverview)
+                              .icon(MDViewList)
+                              .title("Dominion Overview"),
+                          ])
+                      ),
+                  ])
+              )
+          : S.divider(),
         // Cypher
-        isOwner && S.documentTypeListItem("cypher").icon(MDMusic),
+        isOwner ? S.documentTypeListItem("cypher").icon(MDMusic) : S.divider(),
       ])
   );
 };

@@ -184,7 +184,7 @@
     }
   }
 
-  .button.primary.button--white {
+  .button.primary.button--white:not(.inverted) {
     color: var(--black);
     fill: var(--black);
 

@@ -53,6 +53,12 @@ export default {
               type: "blockContent",
               required: "false",
             },
+            {
+              name: "allowHighResDl",
+              title: "Allow High-res Download",
+              description: "High-res available for Dominion.",
+              type: "boolean",
+            },
           ],
         },
       ],

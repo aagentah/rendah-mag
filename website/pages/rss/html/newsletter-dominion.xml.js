@@ -8,12 +8,12 @@ import encodeSpecialChar from '~/functions/encodeSpecialChar';
 
 const xml = (item) => {
   let postXML;
+  const { title, description, activeFrom, from, slug, includeLoginPrompt } =
+    item;
 
-  if (item?.slug?.current) {
-    const title = item?.title || '';
+  if (title && description && from && slug?.current) {
     let hasLoginPrompt;
 
-    // const description = blocksToHtml({ blocks: item?.description });
     const serializers = {
       types: {
         image: ({ value }) => {
@@ -43,15 +43,15 @@ const xml = (item) => {
       },
     };
 
-    const description = toHTML(item?.description, {
+    const descriptionHtml = toHTML(description, {
       components: serializers,
     });
 
     const url = process.env.SITE_URL;
 
-    const date = new Date(item?.activeFrom).toUTCString();
+    const date = new Date(activeFrom).toUTCString();
 
-    if (item?.includeLoginPrompt) {
+    if (includeLoginPrompt) {
       hasLoginPrompt = `
             <tr>
               <td><br /></td>
@@ -82,7 +82,7 @@ const xml = (item) => {
               <td width="50" valign="top">
               </td>
               <td width="500" valign="top">
-                ${description}
+                ${descriptionHtml}
               </td>
               <td width="50" valign="top">
               </td>
@@ -104,20 +104,21 @@ const xml = (item) => {
             <title>${escapeXml(title)}</title>
             <link>${escapeXml(encodeSpecialChar(url))}</link>
             <pubDate>${date}</pubDate>
+            <dc:creator>${escapeXml(from)}</dc:creator>	
             <description>
-              <![CDATA[
-                ${html}
-              ]]>
+                <![CDATA[
+                  ${html}
+                ]]>
             </description>
           </item>
           `;
 
     return `
-      <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+      <rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
         <channel>
           <title>${escapeXml(title)}</title>
           <link>${process.env.SITE_URL}</link>
-          <description>Dominion Items Latest</description>
+          <description>Newsletter Dominion</description>
           ${postXML}
         </channel>
       </rss>
@@ -125,7 +126,7 @@ const xml = (item) => {
   }
 
   return `
-    <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
         <title></title>
         <link></link>
@@ -135,7 +136,7 @@ const xml = (item) => {
     `;
 };
 
-export default class BlogLatest extends React.Component {
+export default class Rss extends React.Component {
   static async getInitialProps({ res }) {
     const item = await getLatestDominionItem();
 

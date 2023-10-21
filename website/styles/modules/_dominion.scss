@@ -156,3 +156,16 @@
     @extend .col-24-md;
   }
 }
+
+.page--dominion {
+  ul {
+    list-style-type: none; /* Remove default bullets */
+    margin: 0;
+    padding: 0;
+  }
+
+  ul li::before {
+    content: '+'; /* Add + symbol before each list item */
+    @extend .pr2;
+  }
+}

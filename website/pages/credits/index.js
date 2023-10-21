@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import uniqBy from 'lodash/uniqBy';
+import Link from 'next/link';
 
 import Heading from '~/components/elements/heading';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import CardProduct from '~/components/card/product';
+import Button from '~/components/elements/button';
 
 import { getSiteConfig, getAllProducts } from '~/lib/sanity/requests';
 
@@ -26,6 +27,8 @@ export default function Store({ siteConfig }) {
 
     action();
   }, []);
+
+  console.log('products', products);
 
   useEffect(() => {
     if (products) {
@@ -70,7 +73,7 @@ export default function Store({ siteConfig }) {
           <Heading
             /* Options */
             htmlEntity="h1"
-            text="Store"
+            text="Credits"
             color="black"
             size="large"
             truncate={0}
@@ -94,19 +97,49 @@ export default function Store({ siteConfig }) {
                       </div>
                       <div className="flex  flex-wrap  pb3">
                         {[...Array(productsLength)].map(
-                          (productIteration, ii) => (
-                            <div
-                              key={productIteration}
-                              className="col-24  col-6-md  pa3"
-                            >
-                              <CardProduct
-                                i={ii}
-                                product={
-                                  categorys && categorys[i]?.products[ii]
-                                }
-                              />
-                            </div>
-                          )
+                          (productIteration, ii) =>
+                            products[ii]?.creditsItems?.length && (
+                              <div
+                                key={productIteration}
+                                className="col-24  pa3  flex  flex-wrap  bb  bc-silver"
+                              >
+                                <div className="col-24  col-12-md  pa3  flex  align-center  justify-center  justify-start-md">
+                                  <p className="t-primary  f5">
+                                    {products[ii].title}
+                                  </p>
+                                </div>
+                                <div className="col-24  col-12-md  pa3  flex  align-center  justify-center  justify-end-md">
+                                  <Button
+                                    /* Options */
+                                    type="primary"
+                                    size="small"
+                                    text="View Credits"
+                                    color="black"
+                                    fluid={false}
+                                    icon={null}
+                                    iconFloat="left"
+                                    inverted={false}
+                                    loading={false}
+                                    disabled={false}
+                                    skeleton={false}
+                                    onClick={null}
+                                    /* Children */
+                                    withLinkProps={
+                                      products[ii]?.slug && {
+                                        type: 'next',
+                                        href: '/credits/[slug]',
+                                        target: null,
+                                        routerLink: Link,
+                                        routerLinkProps: {
+                                          as: `/credits/${products[ii]?.slug}`,
+                                          scroll: false,
+                                        },
+                                      }
+                                    }
+                                  />
+                                </div>
+                              </div>
+                            )
                         )}
                       </div>
                     </div>
