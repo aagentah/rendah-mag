@@ -11,9 +11,6 @@ export default (title, body, image, buttonText, buttonLink) => {
           <td width="50" valign="top">
           </td>
         </tr>
-        <tr>
-          <td height="30">&nbsp;</td>
-        </tr>
       </table>
     `
     : '';
@@ -31,7 +28,7 @@ export default (title, body, image, buttonText, buttonLink) => {
           </td>
         </tr>
         <tr>
-          <td height="40">&nbsp;</td>
+          <td height="10">&nbsp;</td>
         </tr>
       </table>
       `
@@ -50,7 +47,7 @@ export default (title, body, image, buttonText, buttonLink) => {
             </td>
           </tr>
           <tr>
-            <td height="40">&nbsp;</td>
+            <td height="10">&nbsp;</td>
           </tr>
         </table>
         `
@@ -61,7 +58,7 @@ export default (title, body, image, buttonText, buttonLink) => {
       ? `
         <table cellspacing="0" cellpadding="0" border="0" width="100%">
           <tr>
-            <td width="200" valign="top">
+            <td width="50" valign="top">
             </td>
             <td width="200" valign="top" style="text-align: justify; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 22px;">
               <div>
@@ -72,11 +69,13 @@ export default (title, body, image, buttonText, buttonLink) => {
                 </a>
               </div>
             </td>
-            <td width="200" valign="top">
+            <td width="300" valign="top">
+            </td>
+            <td width="50" valign="top">
             </td>
           </tr>
           <tr>
-            <td height="40">&nbsp;</td>
+            <td height="10">&nbsp;</td>
           </tr>
         </table>
         `
