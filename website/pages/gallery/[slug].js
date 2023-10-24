@@ -335,55 +335,56 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
           </Container>
 
           <div className="flex flex-wrap  pb5">
-            {post?.galleryImages
-              .slice()
-              .reverse()
-              .map((image, i) => (
-                <div
-                  className="card__gallery  col-8  col-6-md  pa2  relative  flex  align-center  jsutify-center"
-                  key={i}
-                >
-                  <div className="card__gallery__image  w-100  h-100">
-                    <LazyLoad once offset={250} height={300}>
-                      <Image
-                        src={imageBuilder
-                          .image(image)
-                          .height(800)
-                          .width(800)
-                          .auto('format')
-                          .fit('clip')
-                          .url()}
-                        placeholder={imageBuilder
-                          .image(image)
-                          .height(25)
-                          .width(25)
-                          .auto('format')
-                          .fit('clip')
-                          .blur('20')
-                          .url()}
-                        alt={image.alt || ''}
-                        figcaption={null}
-                        height={null}
-                        width={null}
-                        customClass="cp"
-                        skeleton={false}
-                        onClick={() => {
-                          setSelectedImage(image);
-                          setModalActive(true);
-                        }}
-                        withLinkProps={null}
-                      />
-                    </LazyLoad>
-                  </div>
+            {post?.galleryImages?.length &&
+              post?.galleryImages
+                .slice()
+                .reverse()
+                .map((image, i) => (
+                  <div
+                    className="card__gallery  col-8  col-6-md  pa2  relative  flex  align-center  jsutify-center"
+                    key={i}
+                  >
+                    <div className="card__gallery__image  w-100  h-100">
+                      <LazyLoad once offset={250} height={300}>
+                        <Image
+                          src={imageBuilder
+                            .image(image)
+                            .height(800)
+                            .width(800)
+                            .auto('format')
+                            .fit('clip')
+                            .url()}
+                          placeholder={imageBuilder
+                            .image(image)
+                            .height(25)
+                            .width(25)
+                            .auto('format')
+                            .fit('clip')
+                            .blur('20')
+                            .url()}
+                          alt={image.alt || ''}
+                          figcaption={null}
+                          height={null}
+                          width={null}
+                          customClass="cp"
+                          skeleton={false}
+                          onClick={() => {
+                            setSelectedImage(image);
+                            setModalActive(true);
+                          }}
+                          withLinkProps={null}
+                        />
+                      </LazyLoad>
+                    </div>
 
-                  <div className="card__gallery__title  white  f4  lh-title  cp  t-primary  absolute  left  right  mla  mra  tac  flex  align-center  justify-center">
-                    <p className="ph5">
-                      Preview
-                      <span className="pl2  dib">{arrowRight}</span>
-                    </p>
+                    <div className="card__gallery__title  white  f4  lh-title  cp  t-primary  absolute  left  right  mla  mra  tac  flex  align-center  justify-center">
+                      <p className="ph5">
+                        Preview
+                        <span className="pl2  dib">{arrowRight}</span>
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
           </div>
 
           {morePosts.length > 0 && (
