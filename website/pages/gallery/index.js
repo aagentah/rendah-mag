@@ -35,15 +35,16 @@ export default function Gallery({ siteConfig }) {
       let allFormattedData = [];
 
       galleryData.forEach((gallery) => {
-        gallery.galleryImages.forEach((image) => {
-          allFormattedData.push({
-            image: image.asset, // Or whatever field contains the image URL
-            artist: {
-              ...gallery,
-              // Add more artist info fields here as needed
-            },
+        gallery?.galleryImages?.length &&
+          gallery.galleryImages.forEach((image) => {
+            allFormattedData.push({
+              image: image.asset, // Or whatever field contains the image URL
+              artist: {
+                ...gallery,
+                // Add more artist info fields here as needed
+              },
+            });
           });
-        });
       });
 
       // Shuffle the allFormattedData array for randomness
@@ -94,7 +95,10 @@ export default function Gallery({ siteConfig }) {
               <div className="pb5  measure-wide">
                 <Copy
                   /* Options */
-                  text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                  text={`
+                  A showcase of diversity in art, AV, animation, graphic design, 3D rendering, VR, and concept art, featuring artists from Rendah Mag's print editions along with their extended portfolios.
+                  
+                  `}
                   color="white"
                   size="medium"
                   truncate={null}

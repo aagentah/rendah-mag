@@ -183,26 +183,27 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                           : 'w-100'
                       }`}
                       onClick={() => {
-                        user &&
-                          selectedImage?.allowHighResDl &&
-                          triggerOnDownloadEvt({
-                            filename: selectedImage?.fileName,
-                            res: 'High-res',
-                          });
+                        // user &&
+                        //   selectedImage?.allowHighResDl &&
+                        //   triggerOnDownloadEvt({
+                        //     filename: selectedImage?.fileName,
+                        //     res: 'High-res',
+                        //   });
                       }}
                     >
                       <Button
                         /* Options */
                         type="primary"
                         size="medium"
-                        text="High-res"
+                        text="High-res (Coming soon)"
                         color="black"
                         fluid={true}
                         icon={<IconDownload color="white" size={16} />}
                         iconFloat="left"
                         inverted={false}
                         loading={false}
-                        disabled={!user || !selectedImage?.allowHighResDl}
+                        // disabled={!user || !selectedImage?.allowHighResDl}
+                        disabled={true}
                         skeleton={false}
                         onClick={null}
                         /* Children */
@@ -211,33 +212,34 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                     </a>
                   </div>
 
-                  {!selectedImage?.allowHighResDl && (
-                    <div className="mb3">
-                      <p className="t-secondary  f6  lh-copy  tal  white">
-                        High-resolution downloads of this specific artwork are
-                        not available in order to honor the intellectual
-                        property of the artist.
-                      </p>
-                    </div>
-                  )}
-
-                  {!user && (
-                    <div className="mb3">
-                      <p className="t-secondary  f6  lh-copy  tal  rendah-red">
-                        High-res downloads of certain artworks—where approved by
-                        the artist—are available exclusively to the Dominion
-                        Subscription. To access, please{' '}
-                        <a className="rendah-red  underline" href="/login">
-                          log in
-                        </a>{' '}
-                        or{' '}
-                        <a className="rendah-red  underline" href="/dominion">
-                          sign up
-                        </a>
-                        .
-                      </p>
-                    </div>
-                  )}
+                  {
+                    //  {!selectedImage?.allowHighResDl && (
+                    //   <div className="mb3">
+                    //     <p className="t-secondary  f6  lh-copy  tal  white">
+                    //       High-resolution downloads of this specific artwork are
+                    //       not available in order to honor the intellectual
+                    //       property of the artist.
+                    //     </p>
+                    //   </div>
+                    // )}
+                    // {!user && (
+                    //   <div className="mb3">
+                    //     <p className="t-secondary  f6  lh-copy  tal  rendah-red">
+                    //       High-res downloads of certain artworks—where approved by
+                    //       the artist—are available exclusively to the Dominion
+                    //       Subscription. To access, please{' '}
+                    //       <a className="rendah-red  underline" href="/login">
+                    //         log in
+                    //       </a>{' '}
+                    //       or{' '}
+                    //       <a className="rendah-red  underline" href="/dominion">
+                    //         sign up
+                    //       </a>
+                    //       .
+                    //     </p>
+                    //   </div>
+                    // )}
+                  }
 
                   <div className="">
                     <Button
@@ -280,22 +282,54 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                 </a>
               </Link>
 
-              <div className="mt3  mb4  measure-wide">
-                <Heading
-                  /* Options */
-                  htmlEntity="h1"
-                  text={`${post.title}`}
-                  color="white"
-                  size={app.deviceSize === 'md' ? 'large' : 'x-large'}
-                  truncate={null}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
+              <div className="flex  flex-wrap  mt4">
+                <div className="col-24  col-8-md  pb4  pb0-md">
+                  <Image
+                    src={imageBuilder
+                      .image(post?.coverImage)
+                      .auto('format')
+                      .fit('clip')
+                      .url()}
+                    placeholder={imageBuilder
+                      .image(post?.coverImage)
+                      .height(25)
+                      .width(25)
+                      .auto('format')
+                      .fit('clip')
+                      .blur('20')
+                      .url()}
+                    alt={null}
+                    figcaption={null}
+                    height={null}
+                    width={null}
+                    customClass=""
+                    skeleton={false}
+                    onClick={null}
+                  />
+                </div>
 
-              <div className="rich-text  white  measure-wide">
-                {toMarkdown(post.introduction)}
+                <div className="col-24  col-16-md  ph4">
+                  <div className="mb3">
+                    <Heading
+                      /* Options */
+                      htmlEntity="h1"
+                      text={`${post.title}`}
+                      color="white"
+                      size={app.deviceSize === 'md' ? 'large' : 'x-large'}
+                      truncate={null}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+
+                  <div className="rich-text  rich-text--gallery  white">
+                    <BlockContent
+                      blocks={post.introduction}
+                      serializers={SANITY_BLOCK_SERIALIZERS}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </Container>

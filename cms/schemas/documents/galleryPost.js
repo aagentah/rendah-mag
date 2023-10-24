@@ -20,6 +20,25 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "image",
+      title: "Image",
+      type: "image",
+      fields: [
+        {
+          name: "fullImage",
+          title: "Full Image",
+          type: "boolean",
+        },
+        {
+          name: "caption",
+          title: "Source / Caption",
+          type: "blockContent",
+          required: "false",
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "publishedAt",
       title: "Publish Date",
       type: "datetime",
@@ -63,14 +82,14 @@ export default {
         },
       ],
     },
-    {
-      name: "socialTagline",
-      title: "Social Tagline",
-      description:
-        "A short tagline for social media cards, typically around maximum of 70 characters",
-      type: "string",
-      validation: (Rule) => Rule.required().max(70),
-    },
+    // {
+    //   name: "socialTagline",
+    //   title: "Social Tagline",
+    //   description:
+    //     "A short tagline for social media cards, typically around maximum of 70 characters",
+    //   type: "string",
+    //   validation: (Rule) => Rule.required().max(70),
+    // },
     {
       name: "introduction",
       title: "Introduction",
@@ -78,43 +97,43 @@ export default {
       type: "blockContent",
       validation: (Rule) => Rule.required().max(70),
     },
-    {
-      type: "object",
-      name: "socialHandles",
-      title: "Social Media Handles",
-      fieldsets: [
-        {
-          name: "social",
-          description: 'Do not include "@" symbol',
-        },
-      ],
-      fields: [
-        {
-          name: "twitter",
-          title: "Twitter Handle",
-          type: "string",
-          fieldset: "social",
-        },
-        {
-          name: "instagram",
-          title: "Instagram Handle",
-          type: "string",
-          fieldset: "social",
-        },
-        {
-          name: "facebook",
-          title: "Facebook Handle",
-          type: "string",
-          fieldset: "social",
-        },
-        {
-          name: "soundcloud",
-          title: "SoundCloud Handle",
-          type: "string",
-          fieldset: "social",
-        },
-      ],
-    },
+    // {
+    //   type: "object",
+    //   name: "socialHandles",
+    //   title: "Social Media Handles",
+    //   fieldsets: [
+    //     {
+    //       name: "social",
+    //       description: 'Do not include "@" symbol',
+    //     },
+    //   ],
+    //   fields: [
+    //     {
+    //       name: "twitter",
+    //       title: "Twitter Handle",
+    //       type: "string",
+    //       fieldset: "social",
+    //     },
+    //     {
+    //       name: "instagram",
+    //       title: "Instagram Handle",
+    //       type: "string",
+    //       fieldset: "social",
+    //     },
+    //     {
+    //       name: "facebook",
+    //       title: "Facebook Handle",
+    //       type: "string",
+    //       fieldset: "social",
+    //     },
+    //     {
+    //       name: "soundcloud",
+    //       title: "SoundCloud Handle",
+    //       type: "string",
+    //       fieldset: "social",
+    //     },
+    //   ],
+    // },
   ],
   initialValue: () => ({
     publishedAt: new Date().toISOString(),

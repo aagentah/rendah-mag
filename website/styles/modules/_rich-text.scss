@@ -2,6 +2,10 @@
   @extend .taj;
 }
 
+.rich-text--gallery {
+  text-align: left;
+}
+
 .rich-text__product {
   .col-6 {
     display: none;
@@ -75,5 +79,9 @@
 }
 
 .rich-text br {
+  display: none;
+}
+
+p:has(> br:only-child) {
   display: none;
 }
