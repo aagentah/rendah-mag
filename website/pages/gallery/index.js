@@ -2,8 +2,6 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import LazyLoad from 'react-lazyload';
 import 'intersection-observer';
-import Observer from '@researchgate/react-intersection-observer';
-import Cookies from 'js-cookie';
 
 import Copy from '~/components/elements/copy';
 import Heading from '~/components/elements/heading';
@@ -246,12 +244,6 @@ export default function Gallery({ siteConfig }) {
             </div>
           </section>
         </div>
-
-        <Observer {...observer}>
-          <div>
-            <br />
-          </div>
-        </Observer>
       </Layout>
     </>
   );
