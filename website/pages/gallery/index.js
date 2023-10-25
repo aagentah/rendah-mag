@@ -70,20 +70,20 @@ export default function Gallery({ siteConfig }) {
     action();
   }, []);
 
-  const handleIntersect = (event) => {
-    if (
-      event.isIntersecting &&
-      !user &&
-      !hasShownModal &&
-      !Cookies.get('rndh-newsletter-set')
-    ) {
-      setHasShownModal(true);
-      setModalActive(true);
-      Cookies.set('rndh-newsletter-set', true, { expires: 5 });
-    }
-  };
+  // const handleIntersect = (event) => {
+  //   if (
+  //     event.isIntersecting &&
+  //     !user &&
+  //     !hasShownModal &&
+  //     !Cookies.get('rndh-newsletter-set')
+  //   ) {
+  //     setHasShownModal(true);
+  //     setModalActive(true);
+  //     Cookies.set('rndh-newsletter-set', true, { expires: 5 });
+  //   }
+  // };
 
-  const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
+  // const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
   console.log('formattedData', formattedData);
 
