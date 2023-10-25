@@ -193,7 +193,7 @@ export default function Gallery({ siteConfig }) {
               {formattedData?.length &&
                 formattedData.map(({ image, artist }, i) => (
                   <div
-                    className="card__gallery  col-8  col-6-md  pa2  relative  flex  align-center  jsutify-center"
+                    className="card__gallery  col-12  col-6-md  pa2  relative  flex  align-center  jsutify-center"
                     key={i}
                   >
                     <div className="card__gallery__image  w-100  h-100">
@@ -234,9 +234,10 @@ export default function Gallery({ siteConfig }) {
                       </LazyLoad>
                     </div>
 
-                    <div className="card__gallery__title  white  f4  lh-title  cp  t-primary  absolute  left  right  mla  mra  tac  flex  align-center  justify-center">
+                    <div className="card__gallery__title  white  f7  f4-md  lh-title  cp  t-primary  absolute  left  right  mla  mra  tac  flex  align-center  justify-center">
                       <p className="ph5">
-                        Check out {artist?.title}
+                        <span className="dn dib-md">Check out </span>
+                        {artist?.title}
                         <span className="pl2  dib">{arrowRight}</span>
                       </p>
                     </div>
