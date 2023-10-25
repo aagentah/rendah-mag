@@ -164,6 +164,24 @@ $creations-black: #1c1c1c;
   .input__label {
     opacity: 0.5;
   }
+
+  .modal__dialog {
+    border: 1px solid
+      rgba(
+        red($creations-white),
+        green($creations-white),
+        blue($creations-white),
+        0.5
+      );
+  }
+
+  .subscribe-banner__input {
+    border-color: $creations-white;
+
+    &::placeholder {
+      color: $creations-white;
+    }
+  }
 }
 
 .creations__label-wrapper {

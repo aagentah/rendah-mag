@@ -164,7 +164,7 @@ export default function Gallery({ siteConfig }) {
         <div className="creations  pt5">
           <section className="pb5  pb6-md">
             <Container>
-              <div className="pb4">
+              <div className="pb3">
                 <Heading
                   /* Options */
                   htmlEntity="h1"

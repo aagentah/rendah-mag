@@ -308,7 +308,7 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                   />
                 </div>
 
-                <div className="col-24  col-16-md  ph4">
+                <div className="col-24  col-16-md  ph3  ph4-md">
                   <div className="mb3">
                     <Heading
                       /* Options */

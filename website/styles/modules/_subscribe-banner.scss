@@ -7,13 +7,17 @@
   outline: 0;
   border-radius: 0;
   color: var(--black);
+  background: transparent;
 
   @extend .f7;
   @extend .f6-md;
   @extend .w5-md;
   @extend .pa2;
   @extend .ba;
+  @extend .bw1;
   @extend .bc-black;
+
+  border-right: 0;
 
   &::placeholder {
     color: var(--black);
