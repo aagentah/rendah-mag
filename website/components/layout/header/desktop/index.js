@@ -69,8 +69,7 @@ export default function HeaderDestop({
           //    </Link>
           //  </div>
         }
-        <div className="col-6" />
-        <div className="col-18">
+        <div className="col-24">
           <nav className="nav  w-100  flex  justify-end">
             <ul className="flex  flex-wrap">
               <li
@@ -147,35 +146,33 @@ export default function HeaderDestop({
                   }}
                 />
               </li>
-              {
-                //    <li className="nav__item  dib  flex  align-center  pr3">
-                //    <Button
-                //      /* Options */
-                //      type="secondary"
-                //      size="medium"
-                //      text="Gallery"
-                //      color={navColour}
-                //      fluid={false}
-                //      icon={null}
-                //      iconFloat={null}
-                //      inverted
-                //      loading={false}
-                //      disabled={false}
-                //      skeleton={false}
-                //      onClick={null}
-                //      /* Children */
-                //      withLinkProps={{
-                //        type: 'next',
-                //        href: '/gallery',
-                //        target: null,
-                //        routerLink: Link,
-                //        routerLinkProps: {
-                //          scroll: false,
-                //        },
-                //      }}
-                //    />
-                //  </li>
-              }
+              <li className="nav__item  dib  flex  align-center  pr3">
+                <Button
+                  /* Options */
+                  type="secondary"
+                  size="medium"
+                  text="Gallery"
+                  color={navColour}
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'next',
+                    href: '/gallery',
+                    target: null,
+                    routerLink: Link,
+                    routerLinkProps: {
+                      scroll: false,
+                    },
+                  }}
+                />
+              </li>
               <li className="nav__item  dib  flex  align-center  pr3">
                 <Button
                   /* Options */
