@@ -197,7 +197,7 @@ export default function Gallery({ siteConfig }) {
                     key={i}
                   >
                     <div className="card__gallery__image  w-100  h-100">
-                      <LazyLoad once offset={250} height={300}>
+                      <LazyLoad once offset={800} height={300}>
                         <Image
                           src={imageBuilder
                             .image(image)
