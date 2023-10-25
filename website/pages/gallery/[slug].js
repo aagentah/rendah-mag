@@ -377,7 +377,7 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                       </LazyLoad>
                     </div>
 
-                    <div className="card__gallery__title  white  f4  lh-title  cp  t-primary  absolute  left  right  mla  mra  tac  flex  align-center  justify-center">
+                    <div className="card__gallery__title  white  f6  f4-md  lh-title  cp  t-primary  absolute  left  right  mla  mra  tac  flex  align-center  justify-center">
                       <p className="ph5">
                         Preview
                         <span className="pl2  dib">{arrowRight}</span>
