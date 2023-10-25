@@ -233,8 +233,8 @@ export default function Gallery({ siteConfig }) {
                     </div>
 
                     <div className="card__gallery__title  white  f6  f4-md  lh-title  cp  t-primary  absolute  left  right  mla  mra  tac  flex  align-center  justify-center">
-                      <p className="ph5">
-                        <span className="dn dib-md">Check out </span>
+                      <p className="ph3  ph5-md">
+                        <span className="dn dib-md">Check out&nbsp;</span>
                         {artist?.title}
                         <span className="pl2  dib">{arrowRight}</span>
                       </p>
