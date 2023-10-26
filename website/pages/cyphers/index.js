@@ -260,7 +260,7 @@ export default function Cyphers({ siteConfig }) {
               </div>
 
               <section className="pb5  pb6-md">
-                <div className="pb4">
+                <div className="pb3">
                   <Heading
                     /* Options */
                     htmlEntity="h1"
@@ -271,6 +271,18 @@ export default function Cyphers({ siteConfig }) {
                     /* Children */
                     withLinkProps={null}
                   />
+                </div>
+
+                <div className="pb4  t-secondary  f5">
+                  Listen to the Previous Cyphers{' '}
+                  <a
+                    className="underline"
+                    target="_blank"
+                    href="https://soundcloud.com/rendahmag/sets/rendah-cyphers"
+                  >
+                    here
+                  </a>
+                  .
                 </div>
 
                 <div className="flex  flex-wrap">

@@ -41,15 +41,7 @@ export default function CardBlog({ post }) {
       skeleton={!post}
       onClick={null}
       /* Children */
-      withLinkProps={
-        post?.publishedFields?.publishedUrl && {
-          type: 'external',
-          href: post?.publishedFields?.publishedUrl,
-          target: '_blank',
-          routerLink: null,
-          routerLinkProps: null,
-        }
-      }
+      withLinkProps={null}
     />
   );
 
@@ -77,15 +69,7 @@ export default function CardBlog({ post }) {
       truncate={2}
       skeleton={!post}
       /* Children */
-      withLinkProps={
-        post?.publishedFields?.publishedUrl && {
-          type: 'external',
-          href: post?.publishedFields?.publishedUrl,
-          target: '_blank',
-          routerLink: null,
-          routerLinkProps: null,
-        }
-      }
+      withLinkProps={null}
     />
   );
 
