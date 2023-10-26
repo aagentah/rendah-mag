@@ -28,6 +28,8 @@ export default function Cyphers({ siteConfig }) {
   const [cyphersLength, setCyphersLength] = useState(24);
   const plausible = usePlausible();
 
+  console.log('cyphers', cyphers);
+
   useEffect(() => {
     const action = async () => {
       const cyphersData = await getCurrentAndPreviousCyphers();
@@ -96,12 +98,7 @@ export default function Cyphers({ siteConfig }) {
                     </div>
 
                     <div className="rich-text  measure-wide  mb3">
-                      <BlockContent
-                        blocks={
-                          cyphers.current.announcementFields
-                            .announcementDescription
-                        }
-                      />
+                      <BlockContent blocks={cyphers.current.description} />
                     </div>
 
                     <div className="flex  flex-wrap">

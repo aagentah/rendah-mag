@@ -311,37 +311,15 @@ export async function getCurrentAndPreviousCyphers(preview) {
   const [current, previous] = await Promise.all([
     curClient
       .fetch(
-        `*[_type == "cypher" && announcementFields.announcedAt != null] | order(announcementFields.announcedAt desc) [0] {
-              ...,
-            } `
+        `*[_type == "cypher" && isActive] | order(publishedAt desc) [0] { ..., } `
       )
       .then((res) => res),
     curClient.fetch(
-      `*[_type == "cypher" && publishedFields.publishedAt != null] {
-            ...,
-            }  | order(publishedFields.publishedAt desc)`
+      `*[_type == "cypher" && (isActive == null || !isActive)] { ..., }  | order(_createdAt desc)`
     ),
   ]);
 
   return { current: current || null, previous };
-}
-
-export async function getLatestAnouncedCypher(preview) {
-  const results = await getClient(preview)
-    .fetch(`*[_type == "cypher" && announcementFields.announcedAt != null] | order(announcementFields.announcedAt desc) [0] {
-      ...,
-    }`);
-
-  return results;
-}
-
-export async function getLatestPublishedCypher(preview) {
-  const results = await getClient(preview)
-    .fetch(`*[_type == "cypher" && publishedFields.publishedAt != null] | order(publishedFields.publishedAt desc) [0] {
-      ...,
-    }`);
-
-  return results;
 }
 
 export async function getTeamMembers(preview) {

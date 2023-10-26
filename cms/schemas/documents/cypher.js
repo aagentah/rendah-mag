@@ -21,24 +21,21 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "imageLandscape",
-      title: "Landscape Image",
-      type: "image",
-      fields: [
-        {
-          name: "resize",
-          title: "Resize",
-          type: "string",
-          options: {
-            list: [
-              { title: "None", value: "none" },
-              { title: "1080px", value: "1080" },
-              { title: "1920px", value: "1920" },
-            ],
-            layout: "radio",
-          },
-        },
-      ],
+      name: "description",
+      title: "Description",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
+      name: "isActive",
+      title: "Cypher Active",
+      type: "boolean",
+    },
+    {
+      name: "publishedAt",
+      title: "Publish Date",
+      type: "datetime",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "imageSquare",
@@ -72,56 +69,6 @@ export default {
       title: "Submission Form Link",
       type: "string",
       validation: (Rule) => Rule.required(),
-    },
-    {
-      type: "object",
-      name: "announcementFields",
-      title: "Announcement Fields",
-      options: {
-        collapsible: true,
-        collapsed: true,
-      },
-      fields: [
-        {
-          name: "announcedAt",
-          title: "Announcement Date",
-          type: "datetime",
-        },
-        {
-          name: "announcementDescription",
-          title: "Announcement Description",
-          type: "array",
-          of: [{ type: "block" }],
-        },
-      ],
-    },
-    {
-      type: "object",
-      name: "publishedFields",
-      title: "Published Fields",
-      options: {
-        collapsible: true,
-        collapsed: true,
-      },
-      fields: [
-        {
-          name: "publishedAt",
-          title: "Published Date",
-          type: "datetime",
-        },
-        {
-          name: "publishedDescription",
-          title: "Published Description",
-          type: "array",
-          of: [{ type: "block" }],
-        },
-        {
-          name: "publishedUrl",
-          title: "URL",
-          type: "string",
-          description: "URL or Shortened gate link for the track.",
-        },
-      ],
     },
   ],
   orderings: [
