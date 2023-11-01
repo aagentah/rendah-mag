@@ -56,7 +56,7 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
     Router.push('/404');
   }
 
-  console.log('post', post);
+  // console.log('post', post);
 
   const triggerOnDownloadEvt = ({ filename, res }) => {
     plausible('Image Download', {
@@ -444,7 +444,7 @@ export async function getStaticProps({ req, params, preview = false }) {
   //   };
   // }
 
-  console.log('data', data);
+  // console.log('data', data);
 
   return {
     props: {

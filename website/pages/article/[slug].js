@@ -240,7 +240,7 @@ export default function Post({ siteConfig, post, preview }) {
                               .blur('20')
                               .url()}
                             alt={image.alt || ''}
-                            figcaption={image.caption || null}
+                            figcaption={null}
                             height={null}
                             width={null}
                             customClass="br3"

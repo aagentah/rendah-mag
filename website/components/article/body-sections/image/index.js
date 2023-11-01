@@ -45,9 +45,7 @@ export default function ImageSection({ section, imageCount }) {
         );
       }
 
-      return (
-        <span className="caption  pv2  ph3  tac">{section?.caption}</span>
-      );
+      return <span className="caption  pv2  ph3  tac">{section?.caption}</span>;
     }
   };
 
