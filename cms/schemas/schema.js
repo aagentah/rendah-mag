@@ -9,6 +9,7 @@ import blogAuthor from "./documents/blogAuthor";
 import blogCategory from "./documents/blogCategory";
 import blogDivision from "./documents/blogDivision";
 import newsletterGeneral from "./documents/newsletterGeneral";
+import newsletterCypher from "./documents/newsletterCypher";
 import refTag from "./documents/refTag";
 
 // Store
@@ -56,6 +57,7 @@ export default createSchema({
     blogCategory,
     blogDivision,
     newsletterGeneral,
+    newsletterCypher,
     storeCategory,
     storeCollection,
     storeItem,

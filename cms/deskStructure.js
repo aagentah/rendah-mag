@@ -64,6 +64,9 @@ export default async () => {
                 isOwner
                   ? S.documentTypeListItem("newsletterGeneral")
                   : S.divider(),
+                isOwner
+                  ? S.documentTypeListItem("newsletterCypher")
+                  : S.divider(),
               ])
           ),
 

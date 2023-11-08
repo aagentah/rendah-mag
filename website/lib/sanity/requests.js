@@ -524,6 +524,16 @@ export async function getLatestNewsletterGeneral(preview) {
   return results;
 }
 
+export async function getLatestNewsletterCypher(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "newsletterCypher"] | order(activeFrom desc) [0] {
+      ...,
+    }`
+  );
+
+  return results;
+}
+
 export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
   const curClient = getClient(preview);
   const today = dateTodayYyyyMmDd();
