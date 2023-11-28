@@ -208,7 +208,7 @@ export default function Post({ siteConfig, post, preview }) {
         <article className="pt4  pb4">
           {post.tag && (
             <>
-              <div className="flex  flex-wrap  mb4  pb3">
+              <div className="flex  flex-wrap  mb4  pb3  ph4  ph0-md">
                 <div className="col-6" />
                 <div className="col-24 col-12-md br4 shadow2 pa3 relative pt4">
                   <div className="t-primary bg-white ba bc-black black absolute dib pa2 top left ml3 nt3">
@@ -252,7 +252,7 @@ export default function Post({ siteConfig, post, preview }) {
                     })}
                   </div>
 
-                  <div className="absolute top right pt2  mt4 nr3">
+                  <div className="absolute top right pt2  mt3  mt4-md nr3">
                     <div className="cp pa1 bw1 ba br-100 bg-white  bc-rendah-red">
                       <Link
                         href={`/gallery/${post.tag.slug.current}`}

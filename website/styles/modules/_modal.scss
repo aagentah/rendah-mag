@@ -45,6 +45,11 @@
   width: 90%;
 }
 
+.modal--gallery .modal__dialog {
+  max-width: fit-content;
+  width: auto;
+}
+
 .modal__dialog {
   position: absolute;
   left: 0;
