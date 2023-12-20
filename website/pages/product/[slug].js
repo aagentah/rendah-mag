@@ -172,26 +172,22 @@ export default function Product({ siteConfig, product }) {
 
                   <ul className="pl3">
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      A Welcome package (+ membership card & stickers).
+                      3 x Printed magazines per year (+ FREE SHIPPING)
                     </li>
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      A quarter-yearly printed issue of Rendah Mag + FREE
-                      Shipping.
+                      A Welcome package
                     </li>
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      Access to all subscriber-only blog posts.
+                      Access to subscriber-only articles
                     </li>
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      Exclusive music downloads from the labels we work with.
+                      Exclusive music & downloads from the labels we work with
                     </li>
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      High-res access to artwork from our Gallery.
+                      Digital access to ALL previous prints
                     </li>
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      Digital access to all previous prints.
-                    </li>
-                    <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      Your own Dominion Profile & login.
+                      Discount on all upcoming merch
                     </li>
                   </ul>
                 </div>

@@ -118,7 +118,7 @@ export default function Dominion({ siteConfig }) {
 
                 <ul className="pl3">
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    4 x Printed magazines per year (+ FREE SHIPPING)
+                    3 x Printed magazines per year (+ FREE SHIPPING)
                   </li>
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
                     A Welcome package
@@ -130,10 +130,10 @@ export default function Dominion({ siteConfig }) {
                     Exclusive music & downloads from the labels we work with
                   </li>
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    High-res access to artwork from our Gallery
+                    Digital access to ALL previous prints
                   </li>
                   <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    Digital access to ALL previous prints
+                    Discount on all upcoming merch
                   </li>
                 </ul>
               </div>
