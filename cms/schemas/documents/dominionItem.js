@@ -1,6 +1,6 @@
 export default {
   name: "dominionItem",
-  title: "Dominion Item",
+  title: "Newsletter (Dominion)",
   type: "document",
   fields: [
     {

@@ -44,8 +44,6 @@ export default async () => {
               .title("Home Page")
               .child(S.editor().schemaType("homePage").documentId("homePage"))
           : S.divider(),
-        // Smart Link
-        S.documentTypeListItem("smartLink").icon(MDViewList),
         // Divider
         S.divider(),
         // Blog
@@ -61,12 +59,6 @@ export default async () => {
                 isOwner ? S.documentTypeListItem("division") : S.divider(),
                 isOwner ? S.documentTypeListItem("category") : S.divider(),
                 S.documentTypeListItem("gallery"),
-                isOwner
-                  ? S.documentTypeListItem("newsletterGeneral")
-                  : S.divider(),
-                isOwner
-                  ? S.documentTypeListItem("newsletterCypher")
-                  : S.divider(),
               ])
           ),
 
@@ -95,7 +87,6 @@ export default async () => {
                   .title("Dominion")
                   .items([
                     S.documentTypeListItem("user").icon(MDPerson),
-                    S.documentTypeListItem("dominionItem"),
                     S.documentTypeListItem("creations"),
                     S.documentTypeListItem("offering"),
                     S.documentTypeListItem("pack"),
@@ -143,6 +134,10 @@ export default async () => {
           : S.divider(),
         // Cypher
         isOwner ? S.documentTypeListItem("cypher").icon(MDMusic) : S.divider(),
+        S.divider(),
+        isOwner ? S.documentTypeListItem("newsletterGeneral") : S.divider(),
+        isOwner ? S.documentTypeListItem("newsletterCypher") : S.divider(),
+        isOwner ? S.documentTypeListItem("dominionItem") : S.divider(),
       ])
   );
 };

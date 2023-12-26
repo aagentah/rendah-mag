@@ -1,6 +1,6 @@
 export default {
   name: "newsletterGeneral",
-  title: "General Newsletter",
+  title: "Newsletter (General)",
   type: "document",
   fields: [
     {

@@ -1,6 +1,6 @@
 export default {
   name: "newsletterCypher",
-  title: "Cypher Newsletter",
+  title: "Newsletter (Cypher)",
   type: "document",
   fields: [
     {
