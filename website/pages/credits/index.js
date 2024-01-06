@@ -98,7 +98,7 @@ export default function Store({ siteConfig }) {
                       <div className="flex  flex-wrap  pb3">
                         {[...Array(productsLength)].map(
                           (productIteration, ii) =>
-                            products[ii]?.creditsItems?.length && (
+                            products[ii]?.credits?.length && (
                               <div
                                 key={productIteration}
                                 className="col-24  pa3  flex  flex-wrap  bb  bc-silver"

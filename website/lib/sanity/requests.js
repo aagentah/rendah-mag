@@ -77,7 +77,7 @@ const productFields = `
   'slug': slug.current,
   'image1': image1.asset->url,
   'image2': image2.asset->url,
-  creditsItems,
+  credits,
 `;
 
 const teamFields = `

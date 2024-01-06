@@ -15,6 +15,7 @@ import {
   getAllProductsTotal,
 } from '~/lib/sanity/requests';
 
+
 const Modal = dynamic(() => import('~/components/modal'));
 
 const IconShoppingCart = dynamic(() =>
@@ -47,7 +48,7 @@ export default function Product({ siteConfig, product }) {
     Router.push('/404');
   }
 
-  console.log('product?.creditsItems', product?.creditsItems);
+  console.log('product?.credits', product?.credits);
 
   const submit = async (priceId) => {
     const response = await fetch(
@@ -113,38 +114,16 @@ export default function Product({ siteConfig, product }) {
         >
           <div className="pt4">
             <Container>
-              {product?.creditsItems?.length ? (
+              {product?.credits ? (
                 <div className="ba  bc-red  shadow2  pa4  mb5">
                   <div className="rendah-red  t-primary  bold  f3  f2-md  pb3">
                     Credits ({product?.title})
                   </div>
-
-                  {product?.creditsItems.map(
-                    ({ feature, creditsItemPages }, i) => (
-                      <div key={i} className="col-24  col-12-md  pa3">
-                        <div className="silver  t-primary  bold  f4-md  f3-md  pb3">
-                          {feature}
-                        </div>
-                        <div>
-                          {creditsItemPages?.length &&
-                            creditsItemPages.map(
-                              ({ pages, description }, i) => (
-                                <div key={i} className="col-24  pa3">
-                                  <div className="rendah-red  t-primary  bold  f5  pb3">
-                                    {pages}
-                                  </div>
-                                  <div className="pa3">
-                                    <div className="rich-text  rich-text__product">
-                                      <Sections body={description} />
-                                    </div>
-                                  </div>
-                                </div>
-                              )
-                            )}
-                        </div>
-                      </div>
-                    )
-                  )}
+                  <div className="col-24  pa3">
+                    <div className="rich-text__product">
+                      <Sections body={product?.credits} />
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <div className="rendah-red  t-primary  bold  f4  f5-md  pb3  tac  mla  mra  mt5">

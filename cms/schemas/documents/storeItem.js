@@ -95,51 +95,9 @@ export default {
       ],
     },
     {
-      title: "Credits Items",
-      name: "creditsItems",
-      type: "array",
-      of: [
-        {
-          title: "Credits Item",
-          name: "creditsItem",
-          type: "object",
-          fields: [
-            {
-              name: "feature",
-              title: "Feature",
-              type: "string",
-              validation: (Rule) => Rule.required().max(60),
-            },
-            {
-              title: "Credits Item Pages",
-              name: "creditsItemPages",
-              type: "array",
-              of: [
-                {
-                  title: "Credits Item Pages Item",
-                  name: "creditsItemPagesItem",
-                  type: "object",
-                  fields: [
-                    {
-                      name: "pages",
-                      title: "Page(s)",
-                      type: "string",
-                      validation: (Rule) => Rule.required().max(60),
-                    },
-                    {
-                      name: "description",
-                      title: "Description",
-                      type: "array",
-                      of: [{ type: "block" }],
-                      validation: (Rule) => Rule.required().max(300),
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      name: "credits",
+      title: "Credits",
+      type: "blockContent",
     },
     {
       name: "weight",
