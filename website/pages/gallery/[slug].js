@@ -52,11 +52,11 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
   const plausible = usePlausible();
   const arrowRight = <IconArrowRight color="white" size={12} />;
 
+  console.log('post', post);
+
   if (!router.isFallback && !post?.slug) {
     Router.push('/404');
   }
-
-  // console.log('post', post);
 
   const triggerOnDownloadEvt = ({ filename, res }) => {
     plausible('Image Download', {
