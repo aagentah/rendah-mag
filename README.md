@@ -1,4 +1,4 @@
-# next-boilerplate
+# rendah-mag
 
 ## Features
 
