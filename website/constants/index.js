@@ -1,3 +1,10 @@
+import imageUrlBuilder from '@sanity/image-url';
+import sanityClient from '@sanity/client';
+
+function urlFor(source) {
+  return imageUrlBuilder(sanityClient).image(source);
+}
+
 export const SANITY_BLOCK_SERIALIZERS = {
   types: {
     block: (props) => {
@@ -15,6 +22,12 @@ export const SANITY_BLOCK_SERIALIZERS = {
       // Otherwise, render the paragraph as usual
       return <p>{props.children}</p>;
     },
+  },
+  image: ({ value }) => {
+    if (!value?.asset?._ref) {
+      return null;
+    }
+    return <img src={urlFor(value).url()} alt={value.alt || ' '} />;
   },
   list: (props) => <>{props.children}</>,
   listItem: (props) => <li>{props.children}</li>,

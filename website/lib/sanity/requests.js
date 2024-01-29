@@ -534,29 +534,16 @@ export async function getLatestNewsletterCypher(preview) {
   return results;
 }
 
-export async function getDominionItemsSinceDate(sinceStartOfMonth, preview) {
+export async function getLastThreeDominionItems(preview) {
   const curClient = getClient(preview);
-  const today = dateTodayYyyyMmDd();
 
-  const [results, welcome] = await Promise.all([
-    curClient
-      .fetch(
-        `*[_type == "dominionItem" && slug.current != "welcome-to-the-dominion" && activeFrom >= $sinceStartOfMonth && activeFrom <= $today && showInProfile] | order(activeFrom asc) {
-        ...,
-        "slug": slug.current,
-      }`,
-        { sinceStartOfMonth, today }
-      )
-      .then((res) => res),
-    curClient.fetch(
-      `*[_type == "dominionItem" && slug.current == "welcome-to-the-dominion" && showInProfile] [0] {
-        ...,
-        "slug": slug.current,
-      }`
-    ),
-  ]);
+  const results = await curClient.fetch(
+    `*[_type == "dominionItem"] | order(activeFrom desc) [0...3] {
+      ...,
+      "slug": slug.current,
+    }`
+  );
 
-  results.unshift(welcome);
   return results;
 }
 

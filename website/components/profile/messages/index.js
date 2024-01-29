@@ -5,12 +5,11 @@ import NProgress from 'nprogress';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
-import CardOffering from '~/components/card/offering';
+import CardMessage from '~/components/card/message';
 
 import { useUser } from '~/lib/hooks';
-import setCharAt from '~/functions/setCharAt';
 
-import { getAllOfferings } from '~/lib/sanity/requests';
+import { getLastThreeDominionItems } from '~/lib/sanity/requests';
 
 const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
@@ -20,8 +19,8 @@ const IconArrowLeft = dynamic(() =>
 
 export default function ProfileDominion() {
   const [user, { loading, mutate, error }] = useUser();
-  const [offerings, setOfferings] = useState([]);
-  const [offeringsLength, setOfferingsLength] = useState(9);
+  const [messages, setMessages] = useState([]);
+  const [messagesLength, setMessagesLength] = useState(9);
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
   const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
   const [modalActive, setModalActive] = useState(false);
@@ -40,22 +39,14 @@ export default function ProfileDominion() {
     setCardsShow(false);
   };
 
-  // Fetch offerings
+  // Fetch messages
   useEffect(() => {
     const action = async () => {
-      let sinceStartOfMonth = user?.dominionSince.split('T')[0];
-      sinceStartOfMonth = setCharAt(sinceStartOfMonth, 8, '0');
-      sinceStartOfMonth = setCharAt(sinceStartOfMonth, 9, '1');
-      const d = new Date(sinceStartOfMonth);
-      d.setMonth(d.getMonth() - 1);
+      const data = await getLastThreeDominionItems();
 
-      const data = await getAllOfferings(
-        d.toISOString().split('T')[0],
-        showAll
-      );
       if (data) {
-        setOfferings(data);
-        setOfferingsLength(data?.length);
+        setMessages(data);
+        setMessagesLength(data?.length);
       }
     };
 
@@ -63,15 +54,15 @@ export default function ProfileDominion() {
   }, [showAll]);
 
   const renderGhostCards = () => {
-    const count = 9 - offerings?.length;
+    const count = 6 - messages?.length;
     const ghostCards = [];
-    const ghostItem = { title: 'TBA' };
+    const ghostItem = { title: 'Expired' };
 
     if (count > 0) {
       for (let i = 0; i < count; i++) {
         ghostCards.push(
           <div className="col-24  col-8-md  ph3  pv2  o-30">
-            <CardOffering i={i} post={ghostItem} handleClick={null} />
+            <CardMessage i={i} post={ghostItem} handleClick={null} />
           </div>
         );
       }
@@ -86,7 +77,7 @@ export default function ProfileDominion() {
     return (
       <>
         <section>
-          <div className="relative">
+          <div className="relative  ">
             <div
               className={`
               dominion-cards
@@ -98,7 +89,7 @@ export default function ProfileDominion() {
                   <Heading
                     /* Options */
                     htmlEntity="h1"
-                    text="Dubplates"
+                    text="Messages"
                     color="white"
                     size="medium"
                     truncate={null}
@@ -109,20 +100,17 @@ export default function ProfileDominion() {
 
                 <div className="pb4  mb2">
                   <p className="white  f6  lh-copy  measure-wide">
-                    A 'Dubplates' pack consists of exclusive music from the
-                    artists & labels that we work with, available as part of the
-                    Dominion. Each month we add an additional Offering to this
-                    tab from the month in which you joined.
+                    Our latest 3 newsletters on the Dominion.
                   </p>
                 </div>
               </div>
 
               <div className="flex  flex-wrap  pb3">
-                {[...Array(offeringsLength)].map((iteration, i) => (
-                  <div key={iteration} className="col-24  col-6-md  ph3  pv2">
-                    <CardOffering
+                {[...Array(messagesLength)].map((iteration, i) => (
+                  <div key={iteration} className="col-24  col-8-md  ph3  pv2">
+                    <CardMessage
                       i={i}
-                      post={offerings?.length && offerings[i]}
+                      post={messages?.length && messages[i]}
                       handleClick={apply}
                     />
                   </div>
@@ -131,11 +119,11 @@ export default function ProfileDominion() {
                 {renderGhostCards()}
               </div>
 
-              {offerings?.length > 9 && (
+              {messages?.length > 9 && (
                 <div
                   className="flex  justify-center"
                   onClick={() => {
-                    if (showAll || offerings?.length <= 12) return;
+                    if (showAll || messages?.length <= 12) return;
                     setShowAll(true);
                   }}
                 >
@@ -150,7 +138,7 @@ export default function ProfileDominion() {
                     iconFloat={null}
                     inverted={true}
                     loading={null}
-                    disabled={showAll || offerings?.length <= 12}
+                    disabled={showAll || messages?.length <= 12}
                     skeleton={false}
                     onClick={null}
                     /* Children */
@@ -166,13 +154,13 @@ export default function ProfileDominion() {
             </div>
 
             <section>
-              {offerings.length
-                ? offerings.map((item, i) => (
+              {messages.length
+                ? messages.map((item, i) => (
                     <div
                       key={i}
                       className={`
                     dominion-modal-wrapper
-                    dominion-modal-wrapper--offerings
+                    dominion-modal-wrapper--messages
                     ${modalActive === i ? 'dominion-modal-wrapper--active' : ''}
                   `}
                     >
@@ -202,7 +190,7 @@ export default function ProfileDominion() {
                       {modalActive === i && (
                         <>
                           {startProgress()}
-                          <CarouselItemSection offering={item} />
+                          <CarouselItemSection message={item} />
                         </>
                       )}
                     </div>

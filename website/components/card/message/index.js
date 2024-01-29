@@ -40,7 +40,7 @@ export default function CardOffering({ post, handleClick, i }) {
   );
 
   return (
-    <article className="card  card--offering">
+    <article className="card  card--message">
       <div
         className="card__image"
         onClick={() => handleClick && handleClick(i)}

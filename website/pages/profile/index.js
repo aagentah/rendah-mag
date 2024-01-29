@@ -33,6 +33,8 @@ const ProfileCreations = dynamic(() =>
   import('~/components/profile/creations')
 );
 
+const ProfileMessages = dynamic(() => import('~/components/profile/messages'));
+
 const ProfilePacks = dynamic(() => import('~/components/profile/packs'));
 
 const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
@@ -148,17 +150,18 @@ export default function Profile({ siteConfig }) {
                         tabContent: ProfileDashboard,
                       },
                       {
+                        id: 'messages',
+                        tabTitle: 'Messages',
+                        tabIcon: iconEnvelope,
+                        tabContent: ProfileMessages,
+                      },
+                      {
                         id: 'offerings',
                         tabTitle: 'Dubplates',
                         tabIcon: iconMusic,
                         tabContent: ProfileOfferings,
                       },
-                      // {
-                      //   id: 'packs',
-                      //   tabTitle: 'Samples',
-                      //   tabIcon: iconPack,
-                      //   tabContent: ProfilePacks,
-                      // },
+
                       // {
                       //   id: 'gallery',
                       //   tabTitle: 'Gallery',

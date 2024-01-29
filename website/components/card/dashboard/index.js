@@ -36,7 +36,7 @@ export default function CardDashboard({
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass="shadow2  cp"
+      customClass="shadow2  br4  cp"
       skeleton={null}
       onClick={() => handleToggle(id, i)}
       /* Children */

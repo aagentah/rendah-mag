@@ -70,6 +70,7 @@
   width: 100%;
   display: none;
   opacity: 0;
+  @extend .mt4;
 }
 
 .dominion-modal-wrapper--active {

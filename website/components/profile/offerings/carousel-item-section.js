@@ -6,7 +6,7 @@ import AudioEmbed from '~/components/article/body-sections/audio';
 
 export default function CarouselItemSection({ offering }) {
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
-  const handleAudioPlay = playerRef => setCurrentAudioSelected(playerRef);
+  const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
 
   const downloadAll = () => {
     for (let i = 0; i < offering.tracks.length; i++) {
@@ -15,8 +15,8 @@ export default function CarouselItemSection({ offering }) {
   };
 
   return (
-    <section>
-      <div className="pb3  pt0  pt3-md">
+    <section className="pv5  ph3  pa5-md  ba-md  bc-white  br4">
+      <div className="pb4">
         <Heading
           /* Options */
           htmlEntity="h1"
@@ -29,14 +29,14 @@ export default function CarouselItemSection({ offering }) {
         />
       </div>
 
-      <div className="pb3  mb4  rich-text  bb  bc-white">
+      <div className="pb3  mb4  rich-text  measure-wide">
         <BlockContent blocks={offering.description} />
       </div>
 
       <div className="flex  flex-wrap">
         <section key={offering.slug} className="col-24  pb3">
           {offering.tracks.map((item, i) => (
-            <div key={item.track.slug} className="col-24  pb4">
+            <div key={item.track.slug} className="col-24  pb3">
               <AudioEmbed
                 i={i}
                 title={item.track?.title}

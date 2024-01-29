@@ -20,8 +20,8 @@ export default async ({ email, temporaryPassword }) => {
     <br />
     <br />
     Your Dominion Profile will allow you to keep on top of everything related to
-    your Subscription, including access to Dominion content. We'll also send you
-    updates via email, just to keep you in the loop.
+    your Subscription, including access to Dominion content. We also send out frequent
+    emails with latest updates; and we'll fire another over in a few days!
     <br />
     <br />
     <strong>Login details:</strong>
@@ -40,7 +40,7 @@ export default async ({ email, temporaryPassword }) => {
     const buttonLink = `${process.env.SITE_URL}/login?prefillEmail=${email}`;
 
     const sendSmtpEmail = {
-      sender: { name: 'Dan at Rendah Mag', email: 'dan@rendahmag.com' },
+      sender: { name: 'Dan', email: 'dan@rendahmag.com' },
       to: [{ email }],
       subject: 'Welcome to the Dominion',
       htmlContent: emailCommon(title, body, image, buttonText, buttonLink),

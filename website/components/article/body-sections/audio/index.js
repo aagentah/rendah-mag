@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 
 import BlockContent from '@sanity/block-content-to-react';
 import { usePlausible } from 'next-plausible';
-import Button from '~/components/elements/button';
 import Image from '~/components/elements/image';
 
 import { useUser } from '~/lib/hooks';
@@ -13,6 +12,10 @@ import { useFirstRender } from '~/lib/useFirstRender';
 
 const IconMusic = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconMusic)
+);
+
+const IconDownload = dynamic(() =>
+  import('~/components/elements/icon').then((m) => m.IconDownload)
 );
 
 export default function Audio({
@@ -69,7 +72,7 @@ export default function Audio({
   };
 
   return (
-    <div className="flex  flex-wrap  ph4  pb4">
+    <div className="flex  flex-wrap  pb4">
       <div className="col-6" />
       <div className="col-24  col-12-md  flex  justify-center">
         <div className="audio__wrapper">
@@ -161,23 +164,7 @@ export default function Audio({
                     triggerOnDownloadEvt();
                   }}
                 >
-                  <Button
-                    /* Options */
-                    type="primary"
-                    size="small"
-                    text="Download"
-                    color="black"
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted={true}
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
+                  <IconDownload color="white" />
                 </a>
               </div>
             )}

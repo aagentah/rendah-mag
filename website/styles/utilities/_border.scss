@@ -27,3 +27,13 @@
   border-left-style: solid;
   border-left-width: 1px;
 }
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .ba-#{$infix} {
+      border-style: solid;
+      border-width: 1px;
+    }
+  }
+}

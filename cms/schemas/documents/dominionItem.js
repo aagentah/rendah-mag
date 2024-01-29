@@ -94,11 +94,11 @@ export default {
     //   title: "Show in profile",
     //   type: "boolean",
     // },
-    {
-      name: "includeLoginPrompt",
-      title: "Include Login Prompt",
-      type: "boolean",
-    },
+    // {
+    //   name: "includeLoginPrompt",
+    //   title: "Include Login Prompt",
+    //   type: "boolean",
+    // },
   ],
   preview: {
     select: {

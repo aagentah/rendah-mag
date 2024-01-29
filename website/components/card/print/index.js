@@ -30,7 +30,7 @@ export default function CardPrint({ post, handleClick, i }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass="shadow2  bb  bw1  bc-white"
+      customClass="shadow2  br4"
       skeleton={!post}
       onClick={null}
       /* Children */
