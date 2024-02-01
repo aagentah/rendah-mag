@@ -70,38 +70,27 @@
   }
 }
 
+.card--message,
 .card--offering {
   position: relative;
+  @extend .h4;
+  @extend .ba;
+  @extend .bw1;
+  @extend .br4;
+  @extend .bc-white;
+  @extend .tac;
+  @extend .flex;
+  @extend .align-center;
+  @extend .justify-center;
+  @extend .ph5;
+  @extend .shadow4;
 
-  .card__image,
   .card__dialog {
     cursor: pointer;
   }
 
-  .card__dialog {
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-25%);
-    text-align: center;
-  }
-}
-
-.card--message {
-  position: relative;
-
-  .card__image,
-  .card__dialog {
-    cursor: pointer;
-  }
-
-  .card__dialog {
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-25%);
-    text-align: center;
-    @extend .ph5;
+  .card__title {
+    margin: 0;
   }
 }
 
