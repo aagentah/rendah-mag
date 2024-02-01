@@ -5,6 +5,7 @@ import Heading from '~/components/elements/heading';
 import Copy from '~/components/elements/copy';
 import Button from '~/components/elements/button';
 import Container from '../container';
+import { useUser } from '~/lib/hooks';
 
 const SubscribeForm = dynamic(() => import('~/components/subscribe-form'));
 
@@ -29,38 +30,44 @@ const IconDiscord = dynamic(() =>
 );
 
 export default function Footer() {
+  const [user] = useUser();
+
   return (
     <LazyLoad once offset={300} height={300}>
       <footer className="footer  pv5">
         <Container>
           <div className="flex  flex-wrap">
             <div className="col-24  col-14-md">
-              <div className="pb2  mb2">
-                <Heading
-                  /* Options */
-                  htmlEntity="h3"
-                  text="Join our Newsletter?"
-                  color="white"
-                  size="small"
-                  truncate={0}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
-              <div className="pb2">
-                <Copy
-                  /* Options */
-                  text="We usually only send a few emails each month, and keep the content relevant as ever."
-                  color="white"
-                  size="medium"
-                  truncate={null}
-                />
-              </div>
+              {!user && (
+                <>
+                  <div className="pb2  mb2">
+                    <Heading
+                      /* Options */
+                      htmlEntity="h3"
+                      text="Join our Newsletter?"
+                      color="white"
+                      size="small"
+                      truncate={0}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+                  <div className="pb2">
+                    <Copy
+                      /* Options */
+                      text="We usually only send a few emails each month, and keep the content relevant as ever."
+                      color="white"
+                      size="medium"
+                      truncate={null}
+                    />
+                  </div>
 
-              <div className="pb5  tac  tal-md">
-                <SubscribeForm type="footer" />
-              </div>
+                  <div className="pb5  tac  tal-md">
+                    <SubscribeForm type="footer" />
+                  </div>
+                </>
+              )}
 
               <ul className="pb3  pb0-md">
                 <li className="db  pb3  tac  tal-md">
