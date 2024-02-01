@@ -118,16 +118,20 @@ export default function CardBlog({ post }) {
       <article className="card  card--post">
         {image && <div className="card__image">{image}</div>}
 
-        <div className="card__dialog">
-          {labels?.length && <div className="card__labels">{[...labels]}</div>}
-          {heading && <div className="card__title">{heading}</div>}
-          {
-            // copy && <div className="card__description">{copy}</div>
-          }
-          {
-            // button && <div className="card__button">{button}</div>
-          }
-        </div>
+        {
+          //    <div className="card__dialog">
+          //    {labels?.length && <div className="card__labels">{[...labels]}</div>}
+          //    {
+          //      // heading && <div className="card__title">{heading}</div>
+          //    }
+          //    {
+          //      // copy && <div className="card__description">{copy}</div>
+          //    }
+          //    {
+          //      // button && <div className="card__button">{button}</div>
+          //    }
+          //  </div>
+        }
       </article>
     </LazyLoad>
   );

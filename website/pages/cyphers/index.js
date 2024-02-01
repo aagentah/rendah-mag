@@ -209,7 +209,7 @@ export default function Cyphers({ siteConfig }) {
                       <Copy
                         /* Options */
                         text={`
-                      We usually host a new Cypher each month, keep an eye out for the next one!
+                      We host new Cyphers accross the year, keep an eye out for the next one!
                       `}
                         color="black"
                         size="medium"
@@ -243,7 +243,7 @@ export default function Cyphers({ siteConfig }) {
                   <Copy
                     /* Options */
                     text={`
-                    Each month, Rendah Mag works with an artist to
+                    Frequently, Rendah Mag works with an artist to
                     curate a sample pack consisting of a variety of
                     instruments, loops, basses, and anything else that
                     could be used to make a track. We release this pack publicly
@@ -260,29 +260,36 @@ export default function Cyphers({ siteConfig }) {
               </div>
 
               <section className="pb5  pb6-md">
-                <div className="pb3">
-                  <Heading
-                    /* Options */
-                    htmlEntity="h1"
-                    text="Previous Cyphers."
-                    color="black"
-                    size="medium"
-                    truncate={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
+                <div className="pb3  t-secondary  f5  tac-md">
+                  Check out the Cypher history.
                 </div>
 
-                <div className="pb4  t-secondary  f5">
-                  Listen to the Previous Cyphers{' '}
-                  <a
-                    className="underline"
-                    target="_blank"
-                    href="https://soundcloud.com/rendahmag/sets/rendah-cyphers"
-                  >
-                    here
-                  </a>
-                  .
+                <div className="pb5  tac  flex  justify-center-md">
+                  <Button
+                    /* Options */
+                    type="primary"
+                    size="medium"
+                    text="Previous Cyphers"
+                    color="black"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted={false}
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={() => {
+                      log();
+                    }}
+                    /* Children */
+                    withLinkProps={{
+                      type: 'external',
+                      href: 'https://soundcloud.com/rendahmag/sets/rendah-cyphers',
+                      target: '_blank',
+                      routerLink: null,
+                      routerLinkProps: null,
+                    }}
+                  />
                 </div>
 
                 <div className="flex  flex-wrap">

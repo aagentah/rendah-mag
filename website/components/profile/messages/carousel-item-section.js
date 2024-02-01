@@ -14,7 +14,7 @@ function myPortableTextComponents() {
 
         return (
           <img
-            className="w-100  br4  shadow2  mb3  pv2"
+            className="mw6  br4  shadow2  mb3  pv2"
             src={imageBuilder
               .image(value?.node?.asset)
               .height(2000)

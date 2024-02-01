@@ -39,10 +39,10 @@ export default function ProfileCreations({ handleToggle }) {
           <div className="col-24  col-6-md  pb3  pb0-md">
             <div className="ph3  pv2">
               <CardDashboard
-                title="Dubplates"
-                id="offerings"
-                coverImage="/images/dubs.jpg"
-                i={1}
+                title="Messages"
+                id="messages"
+                coverImage="/images/packs.jpg"
+                i={2}
                 handleToggle={handleToggle}
               />
             </div>
@@ -50,10 +50,10 @@ export default function ProfileCreations({ handleToggle }) {
           <div className="col-24  col-6-md  pb3  pb0-md">
             <div className="ph3  pv2">
               <CardDashboard
-                title="Messages"
-                id="messages"
-                coverImage="/images/packs.jpg"
-                i={2}
+                title="Dubplates"
+                id="offerings"
+                coverImage="/images/dubs.jpg"
+                i={1}
                 handleToggle={handleToggle}
               />
             </div>
