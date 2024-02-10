@@ -8,6 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
+    "build": "sanity build dist -y",
     "test": "sanity check"
   },
   "keywords": [
