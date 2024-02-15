@@ -15,6 +15,7 @@ import MDImage from "react-icons/lib/md/image";
 
 import UsersAddress from "./components/previews/usersAddress";
 import UsersOverview from "./components/previews/usersOverview";
+import stripeMetrics from "./components/previews/stripeMetrics";
 
 const hiddenDocTypes = (listItem) =>
   !["siteSettings", "homePage", "textBlock"].includes(listItem.getId());
@@ -127,6 +128,20 @@ export default async () => {
                               .component(UsersOverview)
                               .icon(MDViewList)
                               .title("Dominion Overview"),
+                          ])
+                      ),
+                    S.listItem()
+                      .icon(MDViewList)
+                      .title("Stripe Metrics")
+                      .child(
+                        S.editor()
+                          .schemaType("user")
+                          .title("Stripe Metrics")
+                          .views([
+                            S.view
+                              .component(stripeMetrics)
+                              .icon(MDViewList)
+                              .title("Stripe Metrics"),
                           ])
                       ),
                   ])
