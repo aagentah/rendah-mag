@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev": "next",
-    "dev-ngrok": "next & ngrok http 3000",
+    "dev-ngrok": "next & ngrok http http://localhost:3000",
     "build": "next build",
     "prestart": "next build",
     "start": "next start -p $PORT",

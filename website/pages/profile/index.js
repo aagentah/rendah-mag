@@ -119,20 +119,6 @@ export default function Profile({ siteConfig }) {
     return app.deviceSize === 'md' ? null : 'dashboard';
   };
 
-  // const playground = async () => {
-  //   fetch(`${process.env.SITE_URL}/api/stripe/playground`, {
-  //     headers: { 'Content-Type': 'application/json' },
-  //     method: 'POST',
-  //   });
-
-  //   // if (response.ok) {
-  //   //   // Success
-  //   //   console.log('response.json()', response.json());
-  //   // }
-  // };
-
-  // playground();
-
   if (user) {
     return (
       <Elements stripe={stripePromise}>

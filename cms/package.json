@@ -15,8 +15,8 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/cli": "latest",
     "@sanity/base": "^2.36.2",
+    "@sanity/cli": "latest",
     "@sanity/client": "^2.23.2",
     "@sanity/components": "^2.14.0",
     "@sanity/core": "^2.36.2",
@@ -32,6 +32,7 @@
     "lodash": "^4.17.21",
     "prop-types": "^15.6",
     "react": "^16.2",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^16.2",
     "react-icons": "2.2.7",
     "sanity-plugin-autocomplete-tags": "^1.0.1",

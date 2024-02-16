@@ -1,46 +1,98 @@
-/* eslint-disable react/no-unused-prop-types, react/no-multi-comp, react/no-did-mount-set-state, react/forbid-prop-types */
-import React from "react";
-import PropTypes from "prop-types";
-import imageUrlBuilder from "@sanity/image-url";
-import sanityClient from "part:@sanity/base/client";
-// import { assemblePageUrl, websiteUrl, toPlainText } from "./frontendUtils";
-import styles from "./userAddress.css";
-import { countries } from "./country-alpha-codes.js";
-import countBy from "lodash/countBy";
+import React, { useState, useEffect } from "react";
 
-const builder = imageUrlBuilder(sanityClient);
+const StripeMetrics = () => {
+  const [results, setResults] = useState([]);
+  const [weeklySubs, setWeeklySubs] = useState([]);
 
-class StripeMetrics extends React.PureComponent {
-  constructor() {
-    super();
-    this.state = {
-      results: [],
-    };
-  }
-
-  render() {
-    const playground = async () => {
-      const response = await fetch(
-        `https://rendahmag.com/api/stripe/playground`,
-        {
-          headers: { "Content-Type": "application/json" },
-          method: "POST",
+  useEffect(() => {
+    const fetchMonthlySubs = async () => {
+      try {
+        const response = await fetch(
+          "https://rendahmag.com/api/stripe/subs-per-month",
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+          }
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      );
-
-      if (response.ok) {
-        // Success
-        console.log("response.json()", response.json());
+        const data = await response.json();
+        setResults(data);
+      } catch (error) {
+        console.error("Error fetching monthly subs data: ", error);
       }
     };
-    playground();
 
-    if (true) {
-      return <>aaa</>;
-    }
+    // const fetchWeeklySubs = async () => {
+    //   try {
+    //     const response = await fetch(
+    //       "https://593f-146-70-132-236.ngrok-free.app/api/stripe/subs-per-week",
+    //       {
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //         method: "POST",
+    //       }
+    //     );
+    //     if (!response.ok) {
+    //       throw new Error(`HTTP error! status: ${response.status}`);
+    //     }
+    //     const data = await response.json();
+    //     setWeeklySubs(data);
+    //   } catch (error) {
+    //     console.error("Error fetching weekly subs data: ", error);
+    //   }
+    // };
 
-    return false;
-  }
-}
+    fetchMonthlySubs();
+    // fetchWeeklySubs();
+  }, []);
+
+  return (
+    <>
+      <table>
+        <thead>
+          <tr>
+            <th>Month-Year</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {results.map((item, index) => (
+            <tr key={index}>
+              <td>{item.monthYear}</td>
+              <td>{item.count}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {
+        //   <table>
+        //   <thead>
+        //     <tr>
+        //       <th>week</th>
+        //       <th>month</th>
+        //       <th>year</th>
+        //       <th>count</th>
+        //     </tr>
+        //   </thead>
+        //   <tbody>
+        //     {weeklySubs.map((item, index) => (
+        //       <tr key={index}>
+        //         <td>{item.weekNumberOfMonth}</td>
+        //         <td>{item.monthName}</td>
+        //         <td>{item.year}</td>
+        //         <td>{item.count}</td>
+        //       </tr>
+        //     ))}
+        //   </tbody>
+        // </table>
+      }
+    </>
+  );
+};
 
 export default StripeMetrics;
