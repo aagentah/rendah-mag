@@ -200,3 +200,10 @@ $creations-black: #1c1c1c;
     text-align: left;
   }
 }
+
+.card--post {
+  .card__title,
+  .card__title * {
+    color: var(--white);
+  }
+}

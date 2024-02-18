@@ -63,14 +63,14 @@ export default function ProfileDominion() {
   }, [showAll]);
 
   const renderGhostCards = () => {
-    const count = 9 - offerings?.length;
+    const count = 12 - offerings?.length;
     const ghostCards = [];
     const ghostItem = { title: 'TBA' };
 
     if (count > 0) {
       for (let i = 0; i < count; i++) {
         ghostCards.push(
-          <div className="col-24  col-8-md  ph3  pv2  o-30">
+          <div className="col-24  col-6-md  ph3  pv2  o-30">
             <CardOffering i={i} post={ghostItem} handleClick={null} />
           </div>
         );

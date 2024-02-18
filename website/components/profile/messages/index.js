@@ -54,7 +54,7 @@ export default function ProfileDominion() {
   }, [showAll]);
 
   const renderGhostCards = () => {
-    const count = 6 - messages?.length;
+    const count = 9 - messages?.length;
     const ghostCards = [];
     const ghostItem = { title: 'Expired' };
 
