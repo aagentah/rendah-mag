@@ -182,6 +182,13 @@ $creations-black: #1c1c1c;
       color: $creations-white;
     }
   }
+
+  .card--post {
+    .card__title,
+    .card__title * {
+      color: var(--white);
+    }
+  }
 }
 
 .creations__label-wrapper {
@@ -198,12 +205,5 @@ $creations-black: #1c1c1c;
     left: 100px;
     margin: auto;
     text-align: left;
-  }
-}
-
-.card--post {
-  .card__title,
-  .card__title * {
-    color: var(--white);
   }
 }
