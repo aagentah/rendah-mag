@@ -274,24 +274,46 @@ export async function getCategory(category, range, division = null) {
   return results;
 }
 
-export async function getDivision(division, range, exclude = null) {
+export async function getDivision(
+  division,
+  range,
+  category = null,
+  exclude = null
+) {
   const today = dateTodayISO();
 
   const rangeFrom = range[0] - 1;
   const rangeTo = range[1] - 1;
 
+  const categoryQuery = category
+    ? `&& "${category}" in categories[]->slug.current`
+    : '';
+
   const exclusionQuery = exclude
-    ? `&& count((categories[]->slug.current)[@ in $exclude]) == 0`
+    ? `&& !(${exclude
+        .map((e) => `"${e}" in categories[]->slug.current`)
+        .join(' || ')})`
     : '';
 
   const results = await getClient(null).fetch(
     `*[_type == "division" && slug.current == $division][0] {
       ...,
-      "posts": *[_type == "post" && references(^._id) ${exclusionQuery} && publishedAt < $today] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
-        ${postFieldsCard}
+      "posts": *[_type == "post" && references(^._id) ${categoryQuery} ${exclusionQuery} && publishedAt < $today] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
+        _id,
+        hasPostedDiscord,
+        name,
+        title,
+        publishedAt,
+        'slug': slug.current,
+        'coverImage': image.asset->url,
+        'authors': authors[] {
+          'author': *[_id == ^._ref][0] {
+            ...,
+          },
+        },
       }
     }`,
-    { division, rangeFrom, rangeTo, today, exclude }
+    { division, rangeFrom, rangeTo, today, category, exclude }
   );
 
   return results;

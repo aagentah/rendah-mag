@@ -40,18 +40,27 @@ export default function Home({ siteConfig }) {
 
   useEffect(() => {
     const action = async () => {
-      const musicRes = await getDivision(
-        'music',
-        [1, defaultLoad],
-        ['premieres', 'news', 'guest-mix']
-      );
+      const musicRes = await getDivision('music', [1, defaultLoad], null, [
+        'premieres',
+      ]);
+      const premiereRes = await getDivision('music', [1, 3], 'premieres');
+      // Assuming both `musicRes` and `premiereRes` have a "posts" array
+      console.log('musicRes', musicRes);
+      console.log('premiereRes', premiereRes);
+      const combinedPosts = {
+        posts: musicRes.posts
+          .concat(premiereRes.posts)
+          .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)),
+      }; // Concat and sort by publishedAt
+
+      console.log('combinedPosts', combinedPosts);
       const artRes = await getDivision('art', [1, defaultLoad]);
       const technologyRes = await getDivision('technology', [1, defaultLoad]);
       // const insightsRes = await getCategory('insights', [1, 6]);
       // const premieresRes = await getCategory('premieres', [1, 4]);
       // const guestMixesRes = await getCategory('guest-mix', [1, 4]);
 
-      setMusic(musicRes);
+      setMusic(combinedPosts);
       setArt(artRes);
       setTechnology(technologyRes);
       // setInsights(insightsRes);
