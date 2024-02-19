@@ -58,7 +58,7 @@ function Buttons() {
           /* Options */
           type="primary"
           size="medium"
-          text="Subscribe Now"
+          text="Join Subscription"
           color="black"
           fluid={true}
           icon={buttonIconPlus}

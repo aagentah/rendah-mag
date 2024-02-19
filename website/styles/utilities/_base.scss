@@ -92,7 +92,7 @@ input[type='color'] {
 
 pre {
   overflow: auto;
-  border: 1px solid white;
+  border: 1px solid var(--black);
   @extend .ph3;
   @extend .pv4;
   @extend .br3;
@@ -105,7 +105,7 @@ pre {
 }
 
 p > code {
-  border: 1px solid white;
+  border: 1px solid var(--black);
   // background-color: var(--light-grey);
   @extend .ph1;
   @extend .br3;

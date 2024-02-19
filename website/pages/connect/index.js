@@ -60,56 +60,71 @@ export default function Connect({ siteConfig, preview }) {
           />
         </div>
 
-        <div className="flex  flex-wrap  col-24">
-          <div className="col-8  col-3-md  flex  justify-end  justify-end-md  pt4  pt0-md">
+        <div className="flex  flex-wrap  justify-center  col-24">
+          <div className="col-8  col-3-md  flex  justify-center  pt4  pt0-md">
             <a
               href="https://www.instagram.com/rendahmag/"
               target="_blank"
               rel="noreferrer"
               className="black"
             >
-              <IconInstagram color="black" size={55} />
+              <IconInstagram
+                color="black"
+                size={app?.deviceSize === 'md' ? 36 : 48}
+              />
             </a>
           </div>
-          <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
+          <div className="col-8  col-3-md  flex  justify-center  pt4  pt0-md">
             <a
               href="https://www.facebook.com/rendahmag/"
               target="_blank"
               rel="noreferrer"
               className="black"
             >
-              <IconFacebook color="black" size={55} />
+              <IconFacebook
+                color="black"
+                size={app?.deviceSize === 'md' ? 36 : 48}
+              />
             </a>
           </div>
-          <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
+          <div className="col-8  col-3-md  flex  justify-center  pt4  pt0-md">
             <a
               href="https://twitter.com/RendahMag"
               target="_blank"
               rel="noreferrer"
               className="black"
             >
-              <IconTwitter color="black" size={55} />
+              <IconTwitter
+                color="black"
+                size={app?.deviceSize === 'md' ? 36 : 48}
+              />
             </a>
           </div>
 
-          <div className="col-8  col-3-md  flex  justify-end  justify-end-md  pt4  pt0-md">
+          <div className="col-8  col-3-md  flex  justify-center  pt4  pt0-md">
             <a
               href="https://soundcloud.com/rendahmag"
               target="_blank"
               rel="noreferrer"
               className="black"
             >
-              <IconSoundcloud color="black" size={55} />
+              <IconSoundcloud
+                color="black"
+                size={app?.deviceSize === 'md' ? 36 : 48}
+              />
             </a>
           </div>
-          <div className="col-8  col-3-md  flex  justify-start  justify-end-md  pt4  pt0-md">
+          <div className="col-8  col-3-md  flex  justify-center  pt4  pt0-md">
             <a
               href="https://discord.com/invite/ev2Q22C"
               target="_blank"
               rel="noreferrer"
               className="black"
             >
-              <IconDiscord color="black" size={55} />
+              <IconDiscord
+                color="black"
+                size={app?.deviceSize === 'md' ? 36 : 48}
+              />
             </a>
           </div>
         </div>

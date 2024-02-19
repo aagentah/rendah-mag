@@ -198,7 +198,7 @@
     fill: var($hex);
     border-color: var($hex);
 
-    &:hover:not(.loading):not(.disabled):not(.white) {
+    &:hover:not(.loading):not(.disabled):not(.button--white) {
       background-color: var($hex);
       color: var(--white);
 
@@ -207,7 +207,7 @@
       }
     }
 
-    &:hover:not(.loading):not(.disabled).white {
+    &:hover:not(.loading):not(.disabled).button--white {
       background-color: var($hex);
       color: var(--black);
 
