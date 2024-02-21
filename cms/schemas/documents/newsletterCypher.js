@@ -19,8 +19,10 @@ export default {
       name: "slug",
       title: "URL",
       type: "slug",
+      description:
+        "https://us17.campaign-archive.com/?u=df0d549f92845c8dfc4d99dde&id=386e804df3",
       options: {
-        source: "title",
+        source: "activeFrom",
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
