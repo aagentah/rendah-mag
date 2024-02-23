@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from "./userAddress.css";
 
 const StripeMetrics = () => {
   const [results, setResults] = useState([]);
@@ -8,7 +9,8 @@ const StripeMetrics = () => {
     const fetchMonthlySubs = async () => {
       try {
         const response = await fetch(
-          "https://rendahmag.com/api/stripe/subs-per-month",
+          "https://0363-146-70-132-204.ngrok-free.app/api/stripe/subs-per-month",
+          // "https://rendahmag.com/api/stripe/subs-per-month",
           {
             headers: {
               "Content-Type": "application/json",
@@ -53,22 +55,47 @@ const StripeMetrics = () => {
 
   return (
     <>
-      <table>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>Month-Year</th>
-            <th>Count</th>
+            <th>Subscriptions</th>
+            <th>Cancelled</th>
+            <th>Total</th>
           </tr>
         </thead>
         <tbody>
           {results.map((item, index) => (
             <tr key={index}>
               <td>{item.monthYear}</td>
-              <td>{item.count}</td>
+              <td>{item.subs}</td>
+              <td>{item.cancelled}</td>
+              <td>{item.total}</td>
             </tr>
           ))}
+          <tr>
+            <td>
+              <strong>Total</strong>
+            </td>
+            <td>
+              <strong>
+                {results.reduce((sum, item) => sum + item.subs, 0)}
+              </strong>
+            </td>
+            <td>
+              <strong>
+                {results.reduce((sum, item) => sum + item.cancelled, 0)}
+              </strong>
+            </td>
+            <td>
+              <strong>
+                {results.reduce((sum, item) => sum + item.total, 0)}
+              </strong>
+            </td>
+          </tr>
         </tbody>
       </table>
+
       {
         //   <table>
         //   <thead>

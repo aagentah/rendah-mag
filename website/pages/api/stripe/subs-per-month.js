@@ -15,24 +15,25 @@ const handler = async (req, res) => {
   await cors(req, res);
 
   try {
-    let hasMore = true;
-    let startingAfter = null;
+    let hasMoreSubs = true;
+    let hasMoreCancels = true;
+    let startingAfterSubs = null;
+    let startingAfterCancels = null;
     const subsEachMonth = {};
 
-    while (hasMore) {
-      let options = {
-        limit: 500,
+    while (hasMoreSubs) {
+      let optionsSubs = {
+        limit: 100,
         expand: ['data.items.data.price'],
       };
 
-      if (startingAfter) {
-        options.starting_after = startingAfter;
+      if (startingAfterSubs) {
+        optionsSubs.starting_after = startingAfterSubs;
       }
 
-      const subscriptions = await stripe.subscriptions.list(options);
+      const subscriptions = await stripe.subscriptions.list(optionsSubs);
 
       subscriptions.data.forEach((subscription) => {
-        // Check if the subscription matches one of the specified product prices
         if (
           subscription.items.data.some(
             (item) =>
@@ -42,17 +43,67 @@ const handler = async (req, res) => {
         ) {
           const date = new Date(subscription.created * 1000);
           const monthYear = `${date.getMonth() + 1}-${date.getFullYear()}`;
-          subsEachMonth[monthYear] = (subsEachMonth[monthYear] || 0) + 1;
+          if (!subsEachMonth[monthYear]) {
+            subsEachMonth[monthYear] = { subs: 0, cancels: 0, total: 0 };
+          }
+          subsEachMonth[monthYear].subs++;
         }
       });
 
-      hasMore = subscriptions.has_more;
-      if (hasMore && subscriptions.data.length > 0) {
-        startingAfter = subscriptions.data[subscriptions.data.length - 1].id;
+      hasMoreSubs = subscriptions.has_more;
+      if (hasMoreSubs && subscriptions.data.length > 0) {
+        startingAfterSubs =
+          subscriptions.data[subscriptions.data.length - 1].id;
       } else {
-        hasMore = false;
+        hasMoreSubs = false;
       }
     }
+
+    while (hasMoreCancels) {
+      let optionsCancels = {
+        limit: 100,
+        status: 'canceled',
+      };
+
+      if (startingAfterCancels) {
+        optionsCancels.starting_after = startingAfterCancels;
+      }
+
+      const canceledSubscriptions = await stripe.subscriptions.list(
+        optionsCancels
+      );
+
+      canceledSubscriptions.data.forEach((subscription) => {
+        if (
+          subscription.items.data.some(
+            (item) =>
+              item.price.id === 'price_1Lg5qXKb3SeE1fXf5mFEgyzs' ||
+              item.price.product === 'dominion-subscription_2ff0f5'
+          )
+        ) {
+          const date = new Date(subscription.created * 1000);
+          const monthYear = `${date.getMonth() + 1}-${date.getFullYear()}`;
+          if (!subsEachMonth[monthYear]) {
+            subsEachMonth[monthYear] = { subs: 0, cancels: 0, total: 0 };
+          }
+          subsEachMonth[monthYear].cancels++;
+        }
+      });
+
+      hasMoreCancels = canceledSubscriptions.has_more;
+      if (hasMoreCancels && canceledSubscriptions.data.length > 0) {
+        startingAfterCancels =
+          canceledSubscriptions.data[canceledSubscriptions.data.length - 1].id;
+      } else {
+        hasMoreCancels = false;
+      }
+    }
+
+    // Calculate totals for each month
+    Object.keys(subsEachMonth).forEach((monthYear) => {
+      subsEachMonth[monthYear].total =
+        subsEachMonth[monthYear].subs - subsEachMonth[monthYear].cancels;
+    });
 
     // Convert subsEachMonth object into an array and sort by date
     const sortedMonths = Object.entries(subsEachMonth)
@@ -61,9 +112,11 @@ const handler = async (req, res) => {
         const [monthB, yearB] = b[0].split('-').map(Number);
         return yearA - yearB || monthA - monthB;
       })
-      .map(([monthYear, count]) => ({
+      .map(([monthYear, data]) => ({
         monthYear,
-        count,
+        subs: data.subs,
+        cancelled: data.cancels,
+        total: data.total,
       }));
 
     console.log('sortedMonths', sortedMonths);
