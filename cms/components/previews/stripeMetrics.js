@@ -9,8 +9,8 @@ const StripeMetrics = () => {
     const fetchMonthlySubs = async () => {
       try {
         const response = await fetch(
-          "https://0363-146-70-132-204.ngrok-free.app/api/stripe/subs-per-month",
-          // "https://rendahmag.com/api/stripe/subs-per-month",
+          // "https://0363-146-70-132-204.ngrok-free.app/api/stripe/subs-per-month",
+          "https://rendahmag.com/api/stripe/subs-per-month",
           {
             headers: {
               "Content-Type": "application/json",
