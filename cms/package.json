@@ -9,6 +9,7 @@
   "scripts": {
     "start": "sanity start",
     "build": "sanity build dist -y",
+    "backup": "sanity dataset export production",
     "test": "sanity check"
   },
   "keywords": [
