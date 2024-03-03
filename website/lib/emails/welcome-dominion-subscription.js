@@ -19,9 +19,11 @@ export default async ({ email, temporaryPassword }) => {
     <strong>My Dominion Profile?</strong>
     <br />
     <br />
-    Your Dominion Profile will allow you to keep on top of everything related to
-    your Subscription, including access to Dominion content. We also send out frequent
-    emails with latest updates; and we'll fire another over in a few days!
+    This is where you'll access everything related to the Subscription; including 
+    all Dominion content, and keeping shipping/payment details up to date.
+    <br />
+    <br />
+    We send out frequent emails with latest updates. We'll send out another update in a few days!
     <br />
     <br />
     <strong>Login details:</strong>
