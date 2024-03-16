@@ -61,7 +61,11 @@ export default function ImageSection({ section, imageCount }) {
         .url();
 
   return (
-    <div className="flex  flex-wrap  justify-center">
+    <div
+      className={`flex  flex-wrap  justify-center ${
+        section?.fullImage ? 'pv5' : 'pv4'
+      } `}
+    >
       <div
         className={`justify-center  ${
           section?.fullImage ? 'col-24' : 'col-24  col-12-md'

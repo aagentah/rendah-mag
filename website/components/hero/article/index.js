@@ -40,28 +40,14 @@ export default function HeroDefault({
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   let imageUrlWidth = 650;
-  let imageUrlHeight = fullImage ? null : 700;
 
   if (!app.deviceSize) return;
-
-  if (app.deviceSize === 'md') {
-    imageUrlHeight = null;
-  }
 
   if (app.deviceSize === 'lg') imageUrlWidth = 1600;
   if (app.deviceSize === 'xl') imageUrlWidth = 1800;
   const heroButtonIcon = <IconArrowRight color="black" size={16} />;
-  let heroTitle;
-  let heroCopy;
   let linkProps;
-  let heroButton;
   let heroImage;
-
-  const styles = fullImage
-    ? null
-    : {
-        maxHeight: 'calc(100vh)',
-      };
 
   if (link) {
     linkProps = {
@@ -77,11 +63,10 @@ export default function HeroDefault({
       placeholder={null}
       alt={title}
       figcaption={null}
-      height={imageUrlHeight}
+      height={null}
       width={null}
       customClass={null}
       priority={true}
-      skeleton={skeleton}
       onClick={null}
       /* Children */
       withLinkProps={linkProps}
@@ -96,7 +81,7 @@ export default function HeroDefault({
         mt${marginTop}
         mb${marginBottom}
       `}
-      style={styles}
+      style={null}
     >
       {heroImage && <div className="hero__image">{heroImage}</div>}
       {caption && (

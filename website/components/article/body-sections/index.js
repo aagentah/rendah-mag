@@ -58,7 +58,7 @@ export default function Sections({ body, ...props }) {
       imageCount++;
 
       return (
-        <div key={i} className="pv4">
+        <div key={i}>
           <Image section={section} imageCount={imageCount} />
         </div>
       );

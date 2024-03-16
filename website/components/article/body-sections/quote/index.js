@@ -1,22 +1,18 @@
 export default function Quote({ quote, source }) {
   return (
     <>
-      <div className="flex  flex-wrap  pb4">
+      <div className="flex  flex-wrap  pv3">
         <div className="col-6" />
         <div className="col-24  col-12-md  flex  justify-center">
-          <p className="flex  flex-wrap  justify-center  pt4">
-            <div className="col-24  pb3">
-              <q className="t-primary  lh-title  f5  f3-md  rendah-red  tal  db">
-                {quote}
-              </q>
-            </div>
-
-            <div className="col-24">
-              <span className="t-secondary  lh-copy  f5  grey  fw7  tal  db">
-                ~ {source}
-              </span>
-            </div>
-          </p>
+          <blockquote className="flex flex-wrap justify-center">
+            <p
+              className={`col-24 t-primary lh-copy f5 ${
+                quote.length > 700 ? 'f5-md' : 'f4-md'
+              } rendah-red tal db`}
+            >
+              "{quote}"<cite className="grey dib pl2">~ {source}</cite>
+            </p>
+          </blockquote>
         </div>
         <div className="col-6" />{' '}
       </div>

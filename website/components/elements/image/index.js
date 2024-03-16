@@ -17,7 +17,6 @@ const ImageComponent = (props) => {
     customClass,
     priority,
     onClick,
-    skeleton,
     /* Children */
     withLinkProps,
   } = props;
