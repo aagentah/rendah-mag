@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 
 import Heading from '~/components/elements/heading';
 import Image from '~/components/elements/image';
@@ -23,7 +24,15 @@ const IconPlus = dynamic(() =>
 export default function Dominion({ siteConfig }) {
   const [dominion, setDominion] = useState(null);
   const app = useApp();
+  const [isTrial, setIsTrial] = useState(false);
   const buttonIconPlus = <IconPlus color="rendah-red" size={16} />;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.query.isTrial === 'true') {
+      setIsTrial(true);
+    }
+  }, [router.query.isTrial]);
 
   const accordionData = [
     {
@@ -166,7 +175,9 @@ export default function Dominion({ siteConfig }) {
                     /* Children */
                     withLinkProps={{
                       type: 'external',
-                      href: 'https://buy.stripe.com/6oE2br5XDdj3144eUZ',
+                      href: isTrial
+                        ? 'https://buy.stripe.com/00g6rH85LceZ3cc5kq'
+                        : 'https://buy.stripe.com/6oE2br5XDdj3144eUZ',
                       target: '_blank',
                       routerLink: null,
                       routerLinkProps: null,
