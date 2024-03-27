@@ -18,7 +18,7 @@ export default function SubscriptionBanner(props) {
       <div className="col-16  col-12-md">
         <p className="f5  f3-md  t-primary  lh-title  light-silver  tac  mb4">
           Rendah Mag is a creative UK-based outlet, primarily focused on
-          exploring the intersection of experimental music, art, and technology.
+          exploring the nexus of experimental music, art, and technology.
         </p>
 
         {!user && (
