@@ -108,47 +108,44 @@ export default function Dominion({ siteConfig }) {
             </div>
             <div className="col-24  col-14-md  flex  flex-wrap  justify-center  ph0  pl4-md  pr0-md">
               <div className="measure-wide  ph4  ph0-md  pb2">
-                <p className="t-secondary  taj  f5  lh-copy  pb3">
+                <p className="t-secondary  tal  f5  lh-copy  pb3">
                   <strong>
                     The Rendah Mag 'Dominion' is our hybrid
                     subscription-service.
                   </strong>
                 </p>
 
-                <p className="t-secondary  taj  f6  lh-copy  pb3">
+                <p className="t-secondary  tal  f5  lh-copy  pb3">
                   With so much happening right now, we want to push our platform
                   into new territory, offering a new way for people to explore
                   the landscape of underground music, art, and technology.
                 </p>
 
-                <p className="t-secondary  taj  f6  pb3  lh-copy">
+                <p className="t-secondary  tal  f5  pb3  lh-copy">
                   <strong>We offer the following:</strong>
                 </p>
 
                 <ul className="pl3">
-                  <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    3 x Printed magazines per year (+ FREE SHIPPING)
+                  <li className="t-secondary  tal  f5  pb2  lh-copy">
+                    3 x Printed magazines per year (Free Global Shipping)
                   </li>
-                  <li className="t-secondary  tal  f6  pb2  lh-copy">
+                  <li className="t-secondary  tal  f5  pb2  lh-copy">
                     A Welcome package
                   </li>
-                  <li className="t-secondary  tal  f6  pb2  lh-copy">
+                  <li className="t-secondary  tal  f5  pb2  lh-copy">
                     Access to subscriber-only articles
                   </li>
-                  <li className="t-secondary  tal  f6  pb2  lh-copy">
-                    Exclusive music & downloads from the labels we work with
-                  </li>
-                  <li className="t-secondary  tal  f6  pb2  lh-copy">
+                  <li className="t-secondary  tal  f5  pb2  lh-copy">
                     Digital access to ALL previous prints
                   </li>
-                  <li className="t-secondary  tal  f6  pb2  lh-copy">
+                  <li className="t-secondary  tal  f5  pb2  lh-copy">
                     Discount on all upcoming merch
                   </li>
                 </ul>
               </div>
 
               <div className="measure-wide  mb3  ph4  ph0-md">
-                <p className="t-secondary  taj  f6  lh-copy  pb3-md">
+                <p className="t-secondary  tal  f5  lh-copy  pb3-md">
                   Our mission with this project is to present something new and
                   exciting for the community in the hope that we can truly bring
                   something of value to artists and listeners alike. We hope you

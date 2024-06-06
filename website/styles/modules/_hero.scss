@@ -162,6 +162,10 @@
     }
   }
 
+  img {
+    filter: brightness(0.3);
+  }
+
   .hero__image,
   .image__wrapper,
   .image {
@@ -265,5 +269,35 @@
     right: 0;
     transform: rotate(0deg);
     font-size: 100px;
+  }
+}
+
+.fff {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fff2 {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.5s ease-out 1s forwards;
+}
+
+.fff3 {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.5s ease-out 1.75s forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -114,7 +114,7 @@ export default function Home({ siteConfig }) {
     <>
       <div className="bg-light-grey  pv6">
         <Container>
-          <div className="bb  bc-rendah-red  pa2  ml3  dib  mb4">
+          <div className="ml3  dib  mb4">
             <Heading
               /* Options */
               htmlEntity="h2"
@@ -217,7 +217,7 @@ export default function Home({ siteConfig }) {
 
       <div className="pv6">
         <Container>
-          <div className="bb  bc-rendah-red  pa2  ml3  dib  mb4">
+          <div className="ml3  dib  mb4">
             <Heading
               /* Options */
               htmlEntity="h2"
@@ -348,7 +348,7 @@ export default function Home({ siteConfig }) {
 
       <div className="bg-creations-black  pv6">
         <Container>
-          <div className="bb  bc-white  pa2  ml3  dib  mb4">
+          <div className="ml3  dib  mb4">
             <Heading
               /* Options */
               htmlEntity="h2"

@@ -16,8 +16,14 @@
 
 .t-primary {
   font-family: $t-primary;
+  text-wrap: balance;
+  font-weight: 600;
 }
 
 .t-secondary {
+  font-family: $t-secondary;
+}
+
+* {
   font-family: $t-secondary;
 }

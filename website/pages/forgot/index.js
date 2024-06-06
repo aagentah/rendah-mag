@@ -14,11 +14,11 @@ import { getSiteConfig } from '~/lib/sanity/requests';
 import validEmail from '~/lib/valid-email';
 
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowRight)
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
 const IconEnvelope = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconEnvelope)
+  import('~/components/elements/icon').then((m) => m.IconEnvelope)
 );
 
 export default function Forgot({ siteConfig }) {
@@ -33,7 +33,7 @@ export default function Forgot({ siteConfig }) {
     if (submitButtonLoading) return false;
 
     const body = {
-      username: e.currentTarget.username.value
+      username: e.currentTarget.username.value,
     };
 
     if (!body.username || !validEmail(body.username)) {
@@ -47,7 +47,7 @@ export default function Forgot({ siteConfig }) {
     const response = await fetch(`${process.env.SITE_URL}/api/forgot`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
 
     if (response.ok) {
@@ -79,7 +79,7 @@ export default function Forgot({ siteConfig }) {
           siteConfig,
           title: 'Forgot Password',
           description: 'Forgot your password?.',
-          image: null
+          image: null,
         }}
         preview={null}
       >
@@ -139,36 +139,16 @@ export default function Forgot({ siteConfig }) {
                     href: null,
                     target: null,
                     routerLink: null,
-                    routerLinkProps: null
+                    routerLinkProps: null,
                   }}
                 />
               </div>
               <div className="df  db-md  di-md  pb3  pb0-md  pr3-md">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Log in"
-                  color="black"
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted={false}
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/login',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false
-                    }
-                  }}
-                />
+                <Link href="/dominion" legacyBehavior>
+                  <div className="flex  justify-start  underline  cp">
+                    Don't have an account
+                  </div>
+                </Link>
               </div>
             </div>
           </form>
@@ -182,6 +162,6 @@ export async function getServerSideProps() {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig }
+    props: { siteConfig },
   };
 }

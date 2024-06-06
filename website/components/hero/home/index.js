@@ -10,6 +10,7 @@ import Copy from '~/components/elements/copy';
 import Image from '~/components/elements/image';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
+import { useUser } from '~/lib/hooks';
 
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
@@ -40,6 +41,8 @@ export default function HeroDefault({
   skeleton,
 }) {
   const app = useApp();
+  const [user] = useUser();
+
   const scale = app?.isRetina ? 2 : 1;
   let imageUrlWidth;
   let imageHeight = null;
@@ -52,6 +55,8 @@ export default function HeroDefault({
   let linkProps;
   let heroButton;
   const ParallaxDiv = app.deviceSize === 'md' ? 'div' : Parallax;
+
+  const buttonIconRed = <IconArrowRight color="#e9393f" size={16} />;
 
   const styles = {
     height: `${imageHeight}px`,
@@ -191,6 +196,15 @@ export default function HeroDefault({
           </svg>
         </span>
       </p>
+
+      <div className="w-100  col-12-md  pa4  pa5-md  br4 fff">
+        <div className="fff2">
+          <p className="f5  f3-md  t-primary  lh-title  almost-white  tac  mb4">
+            Rendah Mag is a creative UK-based outlet, primarily focused on
+            exploring the nexus of experimental music, art, and technology.
+          </p>
+        </div>
+      </div>
 
       {
         //   <div className="join-left  absolute  top  mt5  pr5">

@@ -75,9 +75,9 @@ const productFields = `
   'category': category->title,
   'collection': collection->title,
   'slug': slug.current,
-  'image1': image1.asset->url,
-  'image2': image2.asset->url,
+  'images': images[].asset->url,
   credits,
+  stripeCheckoutUrl,
 `;
 
 const teamFields = `
@@ -166,7 +166,7 @@ export async function getAllPosts(preview) {
   const today = dateTodayISO();
 
   const results = await getClient(preview).fetch(
-    `*[_type == "post" && publishedAt < $today] | order(publishedAt desc) [0..31] {
+    `*[_type == "post" && publishedAt < $today] | order(publishedAt desc) [0..12] {
       ${postFieldsCard}
     }`,
     { today }

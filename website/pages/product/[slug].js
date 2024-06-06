@@ -1,7 +1,6 @@
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useState } from 'react';
-import fetch from 'isomorphic-unfetch';
 import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
@@ -54,42 +53,45 @@ export default function Product({ siteConfig, product }) {
     Router.push('/404');
   }
 
-  const submit = async (priceId) => {
-    const response = await fetch(
-      `${process.env.SITE_URL}/api/stripe/checkout-sessions`,
-      {
-        body: JSON.stringify({
-          data: {
-            priceId,
-            quantity,
-            mode: 'payment',
-            successUrl: `/product/${product.slug}`,
-            cancelUrl: `/product/${product.slug}`,
-            shipping: {
-              uk: product.shippingUK,
-              europe: product.shippingEurope,
-              worldwide: product.shippingWorldwide,
-            },
-            discount,
-          },
-        }),
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
-      }
-    );
+  console.log('product', product);
 
-    if (response.ok) {
-      // Success
-      const data = await response.json();
-      window.location.href = data.url;
-    }
-  };
+  // const submit = async (priceId) => {
+  //   const response = await fetch(
+  //     `${process.env.SITE_URL}/api/stripe/checkout-sessions`,
+  //     {
+  //       body: JSON.stringify({
+  //         data: {
+  //           priceId,
+  //           quantity,
+  //           mode: 'payment',
+  //           successUrl: `/product/${product.slug}`,
+  //           cancelUrl: `/product/${product.slug}`,
+  //           shipping: {
+  //             uk: product.shippingUK,
+  //             europe: product.shippingEurope,
+  //             worldwide: product.shippingWorldwide,
+  //           },
+  //           discount,
+  //         },
+  //       }),
+  //       headers: { 'Content-Type': 'application/json' },
+  //       method: 'POST',
+  //     }
+  //   );
+
+  //   if (response.ok) {
+  //     // Success
+  //     const data = await response.json();
+  //     window.location.href = data.url;
+  //   }
+  // };
 
   if (!router.isFallback && product?.slug) {
     const buttonIconCart = <IconShoppingCart color="white" size={16} />;
     const buttonIconPlus = <IconPlus color="black" size={16} />;
     const buttonIconPlusWhite = <IconPlus color="white" size={16} />;
     const buttonIconMinus = <IconMinus color="black" size={16} />;
+    const columns = 24 / product?.images?.length;
 
     const renderPurchaseButton = () => {
       if (isSoldOut) {
@@ -146,7 +148,7 @@ export default function Product({ siteConfig, product }) {
                 <Heading
                   /* Options */
                   htmlEntity="p"
-                  text="Subscribe instead for £9.00 + Free Shipping?"
+                  text="Subscribe instead for £9.00 + Free Global Shipping?"
                   color="black"
                   size="medium"
                   truncate={0}
@@ -172,16 +174,13 @@ export default function Product({ siteConfig, product }) {
 
                   <ul className="pl3">
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      3 x Printed magazines per year (+ FREE SHIPPING)
+                      3 x Printed magazines per year (Free Global Shipping)
                     </li>
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
                       A Welcome package
                     </li>
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
                       Access to subscriber-only articles
-                    </li>
-                    <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      Exclusive music & downloads from the labels we work with
                     </li>
                     <li className="t-secondary  tal  f6  pb2  lh-copy">
                       Digital access to ALL previous prints
@@ -236,9 +235,15 @@ export default function Product({ siteConfig, product }) {
                     loading={false}
                     disabled={false}
                     skeleton={false}
-                    onClick={() => submit(product?.priceId)}
+                    onClick={null}
                     /* Children */
-                    withLinkProps={null}
+                    withLinkProps={{
+                      type: 'external',
+                      href: product?.stripeCheckoutUrl,
+                      target: '_blank',
+                      routerLink: null,
+                      routerLinkProps: null,
+                    }}
                   />
                 </div>
               </div>
@@ -252,7 +257,7 @@ export default function Product({ siteConfig, product }) {
           /* Options */
           type="primary"
           size="medium"
-          text="Add to Cart"
+          text="Purchase"
           color="black"
           fluid={true}
           icon={buttonIconPlusWhite}
@@ -261,18 +266,24 @@ export default function Product({ siteConfig, product }) {
           loading={false}
           disabled={false}
           skeleton={false}
-          onClick={() => submit(product?.priceId)}
+          onClick={null}
           /* Children */
-          withLinkProps={null}
+          withLinkProps={{
+            type: 'external',
+            href: product?.stripeCheckoutUrl,
+            target: '_blank',
+            routerLink: null,
+            routerLinkProps: null,
+          }}
         />
       );
     };
 
-    const descriptionTab = (
+    const descriptionTab = product?.description ? (
       <div className="rich-text  rich-text__product">
         <Sections body={product?.description} />
       </div>
-    );
+    ) : null;
 
     const deliveryTab = (
       <div className="rich-text">
@@ -300,7 +311,7 @@ export default function Product({ siteConfig, product }) {
         >
           <div className="pt4  pt0-md">
             <Container>
-              <div className="flex  flex-wrap  pb5">
+              <div className="flex  flex-wrap  pb4">
                 {isSoldOut && (
                   <div className="col-24">
                     <div className="relative">
@@ -465,39 +476,46 @@ export default function Product({ siteConfig, product }) {
                       <div className="col-24  col-8-md  flex  flex-wrap  align-center  pb3  pb0-md">
                         {renderPurchaseButton()}
                       </div>
-                      <div className="col-24  col-8-md  flex  flex-wrap  justify-center  align-center  ph3-md  pb3  pb0-md">
-                        <div className="flex  flex-wrap  bg-white  justify-center  pv3  br2  w-100">
-                          <span
-                            onClick={() =>
-                              quantity > 1 && setQuantity(quantity - 1)
-                            }
-                            className="ph2  cp"
-                          >
-                            {buttonIconMinus}
-                          </span>
-                          <span className="w2  tac">{quantity}</span>
-                          <span
-                            onClick={() => setQuantity(quantity + 1)}
-                            className="ph2  cp"
-                          >
-                            {buttonIconPlus}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="col-24  col-8-md  flex  flex-wrap  align-center">
-                        <div className="flex  flex-wrap  bg-white  justify-center  pa2  ph3  br2  w-100  bg-white  shadow2  input__promo">
-                          <input
-                            className="input  w-100  tac"
-                            placeholder="PROMO CODE"
-                            type="text"
-                            value={discount}
-                            onChange={(e) => setDiscount(e.target.value)}
-                          />
-                        </div>
-                      </div>
                     </div>
                   )}
                 </div>
+              </div>
+
+              <div className="flex flex-wrap mb4">
+                {product.images?.map((image, index) => (
+                  <div
+                    key={index}
+                    className={`col-24 col-${columns}-md ph2 pb4 pb3-md`}
+                  >
+                    <Image
+                      /* Options */
+                      src={imageBuilder
+                        .image(image)
+                        .width(1000)
+                        .auto('format')
+                        .fit('clip')
+                        .url()}
+                      placeholder={imageBuilder
+                        .image(image)
+                        .height(25)
+                        .width(25)
+                        .auto('format')
+                        .fit('clip')
+                        .blur('20')
+                        .url()}
+                      alt={product?.title}
+                      figcaption={null}
+                      height={330}
+                      width={null}
+                      customClass="shadow2 br3"
+                      priority={true}
+                      skeleton={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={null}
+                    />
+                  </div>
+                ))}
               </div>
             </Container>
           </div>

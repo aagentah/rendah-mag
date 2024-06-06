@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import map from 'lodash/map';
-import filter from 'lodash/filter';
-import uniqBy from 'lodash/uniqBy';
+import uniq from 'lodash/uniq';
 
 import Heading from '~/components/elements/heading';
 import Layout from '~/components/layout';
@@ -29,19 +27,28 @@ export default function Store({ siteConfig }) {
 
   useEffect(() => {
     if (products) {
-      const categoryNames = map(products, 'category');
-      const uniqueCategoryNames = uniqBy(categoryNames, 'category');
+      console.log('products', products);
+
+      const categoryNames = products.map((product) => product.category);
+      console.log('categoryNames', categoryNames);
+
+      const uniqueCategoryNames = uniq(categoryNames);
+      console.log('uniqueCategoryNames', uniqueCategoryNames);
+
       const categoryGroups = [];
 
       for (let i = 0; i < uniqueCategoryNames.length; i += 1) {
-        const categoryProducts = filter(products, {
-          category: uniqueCategoryNames[i],
-        });
+        const categoryProducts = products.filter(
+          (product) => product.category === uniqueCategoryNames[i]
+        );
 
         const categoryWithProducts = {
           name: uniqueCategoryNames[i],
           products: categoryProducts,
+          productsLength: categoryProducts.length, // Adding the number of products
         };
+
+        console.log('categoryWithProducts', categoryWithProducts);
 
         categoryGroups.push(categoryWithProducts);
       }
@@ -49,6 +56,9 @@ export default function Store({ siteConfig }) {
       setCategorysLength(categoryGroups.length);
       setCategorys(categoryGroups);
     }
+
+    console.log('products', products);
+    console.log('categorys', categorys);
   }, [products]);
 
   return (
@@ -80,25 +90,22 @@ export default function Store({ siteConfig }) {
           />
 
           <section className="pb3  pt5">
-            <div className="flex  flex-wrap">
+            <div className="flex flex-wrap">
               {[...Array(categorysLength)].map((categoryIteration, i) => {
                 if (categorys && products && categorys[i]?.name) {
                   return (
-                    <div className="col-24" key={categoryIteration}>
-                      <div className="flex  flex-wrap  relative  bb  bc-black  mb4">
-                        <div className="absolute  left  bottom  pa2  bg-black  nb3">
-                          <h2 className="t-primary  f5  white">
+                    <div className="col-24 pb4" key={i}>
+                      <div className="flex flex-wrap relative bb bc-black mb4">
+                        <div className="absolute left bottom pa2 bg-black nb3">
+                          <h2 className="t-primary f5 white">
                             {categorys && products && categorys[i]?.name}
                           </h2>
                         </div>
                       </div>
-                      <div className="flex  flex-wrap  pb3">
-                        {[...Array(productsLength)].map(
+                      <div className="flex flex-wrap pb3">
+                        {[...Array(categorys[i].productsLength)].map(
                           (productIteration, ii) => (
-                            <div
-                              key={productIteration}
-                              className="col-24  col-6-md  pa3"
-                            >
+                            <div key={ii} className="col-24 col-6-md pa3">
                               <CardProduct
                                 i={ii}
                                 product={
@@ -112,6 +119,7 @@ export default function Store({ siteConfig }) {
                     </div>
                   );
                 }
+                return null;
               })}
             </div>
           </section>

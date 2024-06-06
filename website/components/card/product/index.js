@@ -58,19 +58,7 @@ export default function CardProduct({ product }) {
     />
   );
 
-  const labels = [
-    <Label
-      /* Options */
-      customClass="bold  ba  bc-rendah-red"
-      text={`£${product?.price}`}
-      color="rendah-red"
-      backgroundColor={null}
-      skeleton={!product}
-      onClick={null}
-      /* Children */
-      withLinkProps={null}
-    />,
-  ];
+  const labels = [];
 
   if (product?.tag === 'Sold-out') {
     labels.push(
@@ -78,6 +66,22 @@ export default function CardProduct({ product }) {
         /* Options */
         customClass="fw7"
         text="Sold-out"
+        color="black"
+        backgroundColor=""
+        skeleton={!product}
+        onClick={null}
+        /* Children */
+        withLinkProps={null}
+      />
+    );
+  }
+
+  if (product?.tag === 'Pre-order') {
+    labels.push(
+      <Label
+        /* Options */
+        customClass="fw7"
+        text="Pre-order"
         color="black"
         backgroundColor=""
         skeleton={!product}

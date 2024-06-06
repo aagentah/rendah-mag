@@ -32,12 +32,12 @@ export default function Division({ siteConfig, division }) {
           <Container>
             {division.posts.length > 0 && (
               <section className="pb5  pb6-md">
-                <div className="pb4">
+                <div className="pl3 pb4">
                   <Heading
                     /* Options */
                     htmlEntity="h2"
                     text={`${division.title}`}
-                    color="black"
+                    color="rendah-red"
                     size="medium"
                     truncate={null}
                     /* Children */

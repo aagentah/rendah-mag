@@ -16,15 +16,15 @@ import { getSiteConfig } from '~/lib/sanity/requests';
 import validEmail from '~/lib/valid-email';
 
 const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconArrowRight)
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
 const IconEnvelope = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconEnvelope)
+  import('~/components/elements/icon').then((m) => m.IconEnvelope)
 );
 
 const IconLock = dynamic(() =>
-  import('~/components/elements/icon').then(m => m.IconLock)
+  import('~/components/elements/icon').then((m) => m.IconLock)
 );
 
 export default function Login({ siteConfig }) {
@@ -36,7 +36,7 @@ export default function Login({ siteConfig }) {
   const prefillEmail = router.query?.prefillEmail || null;
   const [submitButtonLoading, setSubmitButtonLoading] = useState(false);
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     // Prevent double submit
@@ -44,7 +44,7 @@ export default function Login({ siteConfig }) {
 
     const body = {
       username: e.currentTarget.username.value,
-      password: e.currentTarget.password.value
+      password: e.currentTarget.password.value,
     };
 
     if (!body.username || !validEmail(body.username)) {
@@ -62,7 +62,7 @@ export default function Login({ siteConfig }) {
     const response = await fetch(`${process.env.SITE_URL}/api/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
 
     if (response.ok) {
@@ -86,7 +86,7 @@ export default function Login({ siteConfig }) {
       const loginViaQuery = async () => {
         const body = {
           username: router.query.username,
-          password: `${router.query.salt}:${router.query.hash}`
+          password: `${router.query.salt}:${router.query.hash}`,
         };
 
         dispatch({ type: 'TOGGLE_LOADING' });
@@ -96,7 +96,7 @@ export default function Login({ siteConfig }) {
         const response = await fetch(`${process.env.SITE_URL}/api/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
+          body: JSON.stringify(body),
         });
 
         if (response.ok) {
@@ -140,7 +140,7 @@ export default function Login({ siteConfig }) {
           siteConfig,
           title: 'Log In',
           description: null,
-          image: null
+          image: null,
         }}
         preview={null}
       >
@@ -213,63 +213,23 @@ export default function Login({ siteConfig }) {
                     href: null,
                     target: null,
                     routerLink: null,
-                    routerLinkProps: null
+                    routerLinkProps: null,
                   }}
                 />
               </div>
               <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text={"I don't have an account"}
-                  color="black"
-                  fluid={false}
-                  icon={buttonIconArrowRightBlack}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/dominion',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false
-                    }
-                  }}
-                />
+                <Link href="/dominion" legacyBehavior>
+                  <div className="flex  justify-start  underline  cp">
+                    Don't have an account
+                  </div>
+                </Link>
               </div>
               <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Forgot Password"
-                  color="black"
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/forgot',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false
-                    }
-                  }}
-                />
+                <Link href="/forgot" legacyBehavior>
+                  <div className="flex  justify-start  underline  cp">
+                    Forgot Password
+                  </div>
+                </Link>
               </div>
             </div>
           </form>
@@ -283,6 +243,6 @@ export async function getServerSideProps({ req }) {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig }
+    props: { siteConfig },
   };
 }

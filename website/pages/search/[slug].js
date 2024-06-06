@@ -16,47 +16,50 @@ export default function Post({ siteConfig, allPosts, params }) {
         siteConfig,
         title: 'Search',
         description: null,
-        image: null
+        image: null,
       }}
       preview={null}
     >
       <Container>
-        <div className="pt4  pb2">
+        <div className="pl3 pb3">
           <Heading
             /* Options */
-            htmlEntity="h1"
+            htmlEntity="h2"
             text="Search"
-            color="black"
-            size="large"
-            truncate={0}
-            onClick={null}
+            color="rendah-red"
+            size="medium"
+            truncate={null}
             /* Children */
             withLinkProps={null}
           />
         </div>
 
         {allPosts.length === 0 && (
-          <section className="pb3">
-            <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-              - No Results for &quot;
+          <section className="pl3  pb3">
+            <p className="t-primary  f5  lh-title  grey  tal  pb4">
+              No Results for &quot;
               {params.slug}
               &quot;
-            </h2>
+            </p>
           </section>
         )}
 
         {allPosts.length > 0 && (
-          <section className="pb3">
-            <h2 className="t-primary  f5  lh-title  grey  tal  pb4">
-              - Results for &quot;
+          <section className="pl3  pb3">
+            <p className="t-primary  f5  lh-title  grey  tal  pb4">
+              Results for &quot;
               {params.slug}
               &quot;
-            </h2>
+            </p>
+          </section>
+        )}
 
+        {allPosts.length > 0 && (
+          <section className="pb6">
             <div className="flex  flex-wrap">
               {allPosts.map((post, i) => (
                 <div key={post.slug} className="col-24  col-6-md">
-                  <div className="pa3">
+                  <div className="ph3 pv2">
                     <CardBlog i={i} post={post} />
                   </div>
                 </div>
@@ -78,7 +81,7 @@ export async function getServerSideProps({ req, params, preview = false }) {
       siteConfig,
       preview,
       allPosts,
-      params
-    }
+      params,
+    },
   };
 }

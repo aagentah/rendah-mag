@@ -18,7 +18,8 @@
   @extend .mb2;
 
   .label__wrapper {
-    @extend .mr2;
+    display: table-cell;
+    border: 1px solid currentColor;
   }
 }
 

@@ -12,7 +12,7 @@ import {
   getSiteConfig,
   getTeamMemberAndPosts,
   getTeamMembers,
-  imageBuilder
+  imageBuilder,
 } from '~/lib/sanity/requests';
 
 import { useApp } from '~/context-provider/app';
@@ -37,7 +37,7 @@ export default function Post({ siteConfig, member }) {
           siteConfig,
           title: member.name,
           description: member.description,
-          image: member.image
+          image: member.image,
         }}
         preview={null}
       >
@@ -73,7 +73,7 @@ export default function Post({ siteConfig, member }) {
               />
             </div>
             <div className="measure-wide  ph3-md">
-              <div className="dib  ph2">
+              <div className="dib  ph2  pb3">
                 <Heading
                   /* Options */
                   htmlEntity="h1"
@@ -126,12 +126,12 @@ export default function Post({ siteConfig, member }) {
 
           {member?.posts.length > 0 && (
             <section className="pb5  pb6-md">
-              <div className="pb4">
+              <div className="pl3  pb4">
                 <Heading
                   /* Options */
                   htmlEntity="h2"
-                  text={`Latest from ${member.name}.`}
-                  color="black"
+                  text={`Latest from ${member.name}`}
+                  color="rendah-red"
                   size="medium"
                   truncate={null}
                   /* Children */
@@ -172,9 +172,9 @@ export async function getStaticProps({ req, params, preview = false }) {
   return {
     props: {
       siteConfig,
-      member
+      member,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }
 
@@ -183,11 +183,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      team.map(member => ({
+      team.map((member) => ({
         params: {
-          slug: member.slug
-        }
+          slug: member.slug,
+        },
       })) || [],
-    fallback: 'blocking'
+    fallback: 'blocking',
   };
 }

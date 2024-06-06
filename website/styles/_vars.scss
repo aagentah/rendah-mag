@@ -73,6 +73,39 @@
       format('svg'); /* Legacy iOS */
 }
 
+/* roboto-mono-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/roboto-mono-v23-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* roboto-mono-italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Roboto Mono';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/roboto-mono-v23-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* roboto-mono-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/roboto-mono-v23-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* roboto-mono-700italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Roboto Mono';
+  font-style: italic;
+  font-weight: 600;
+  src: url('/fonts/roboto-mono-v23-latin-600italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 @font-face {
   font-family: 'Archive';
   src: url('/fonts/archive.otf') format('opentype');
@@ -89,8 +122,8 @@ $sans: sans-serif;
 $serif: serif;
 $archive: 'Archive', serif;
 
-$t-primary: 'Play', sans-serif;
-$t-secondary: 'Roboto', sans-serif;
+$t-primary: 'Roboto Mono', monospace;
+$t-secondary: 'Roboto Mono', monospace;
 
 $typography-base-size: 16px !default;
 $typography-base-weight: 400 !default;
@@ -100,16 +133,16 @@ $typography-body: $system-sans !default;
 $typography-input: $system-sans !default;
 
 $type-scale: (
-  f-headline: 6rem,
-  f-subheadline: 5rem,
-  f1: 3rem,
-  f2: 2.25rem,
-  f3: 1.5rem,
-  f4: 1.25rem,
-  f5: 1rem,
-  f6: 0.875rem,
-  f7: 0.75rem,
-  f8: 0.6rem,
+  f-headline: calc(6rem - 10%),
+  f-subheadline: calc(5rem - 10%),
+  f1: calc(3rem - 10%),
+  f2: calc(2.25rem - 10%),
+  f3: calc(1.5rem - 10%),
+  f4: calc(1.25rem - 10%),
+  f5: calc(1rem - 10%),
+  f6: calc(0.875rem - 10%),
+  f7: calc(0.75rem - 10%),
+  f8: calc(0.6rem - 10%),
 ) !default;
 
 // colors

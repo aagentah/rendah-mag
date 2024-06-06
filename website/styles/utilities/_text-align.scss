@@ -11,7 +11,8 @@
 }
 
 .taj {
-  text-align: justify;
+  // text-align: justify;
+  text-align: left;
 }
 
 @each $modifier, $breakpoint in $grid-breakpoints {
@@ -30,7 +31,8 @@
     }
 
     .taj-#{$infix} {
-      text-align: justify;
+      // text-align: justify;
+      text-align: left;
     }
   }
 }
