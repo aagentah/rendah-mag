@@ -461,11 +461,11 @@ export default function Product({ siteConfig, product }) {
                           tabTitle: 'Description',
                           tabContent: descriptionTab,
                         },
-                        {
-                          id: '2',
-                          tabTitle: 'Shipping Info',
-                          tabContent: deliveryTab,
-                        },
+                        // {
+                        //   id: '2',
+                        //   tabTitle: 'Shipping Info',
+                        //   tabContent: deliveryTab,
+                        // },
                       ]}
                       defaultSelected="1"
                     />
