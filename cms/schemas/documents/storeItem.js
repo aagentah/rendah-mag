@@ -59,22 +59,27 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "image2",
-      title: "Image 2",
-      type: "image",
-      fields: [
+      name: "images",
+      title: "Images",
+      type: "array",
+      of: [
         {
-          name: "resize",
-          title: "Resize",
-          type: "string",
-          options: {
-            list: [
-              { title: "None", value: "none" },
-              { title: "1080px", value: "1080" },
-              { title: "1920px", value: "1920" },
-            ],
-            layout: "radio",
-          },
+          type: "image",
+          fields: [
+            {
+              name: "resize",
+              title: "Resize",
+              type: "string",
+              options: {
+                list: [
+                  { title: "None", value: "none" },
+                  { title: "1080px", value: "1080" },
+                  { title: "1920px", value: "1920" },
+                ],
+                layout: "radio",
+              },
+            },
+          ],
         },
       ],
     },
@@ -84,39 +89,34 @@ export default {
       type: "blockContent",
     },
     {
-      title: "Variants",
-      name: "variants",
-      type: "array",
-      of: [
-        {
-          title: "Variant",
-          type: "storeVariant",
-        },
-      ],
-    },
-    {
       name: "credits",
       title: "Credits",
       type: "blockContent",
     },
     {
-      name: "weight",
-      title: "Item Weight (g)",
-      type: "number",
+      name: "stripeCheckoutUrl",
+      title: "Stripe Checkout URL",
+      type: "string",
       validation: (Rule) => Rule.required(),
     },
+    // {
+    //   name: "weight",
+    //   title: "Item Weight (g)",
+    //   type: "number",
+    //   validation: (Rule) => Rule.required(),
+    // },
     {
       name: "price",
       title: "Item Price (GBP)",
       type: "number",
       validation: (Rule) => Rule.required(),
     },
-    {
-      name: "specialPrice",
-      title: "Special Price (GBP)",
-      description: "Will be used as the new price.",
-      type: "number",
-    },
+    // {
+    //   name: "specialPrice",
+    //   title: "Special Price (GBP)",
+    //   description: "Will be used as the new price.",
+    //   type: "number",
+    // },
     {
       name: "tag",
       title: "Tag",
@@ -132,31 +132,31 @@ export default {
       },
       validation: (Rule) => Rule.required(),
     },
-    {
-      name: "priceId",
-      title: "Price ID",
-      description: "Fetched from Stripe",
-      type: "string",
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: "shippingUK",
-      title: "Shipping UK",
-      type: "number",
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: "shippingEurope",
-      title: "Shipping Europe",
-      type: "number",
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: "shippingWorldwide",
-      title: "Shipping Worldwide",
-      type: "number",
-      validation: (Rule) => Rule.required(),
-    },
+    // {
+    //   name: "priceId",
+    //   title: "Price ID",
+    //   description: "Fetched from Stripe",
+    //   type: "string",
+    //   validation: (Rule) => Rule.required(),
+    // },
+    // {
+    //   name: "shippingUK",
+    //   title: "Shipping UK",
+    //   type: "number",
+    //   validation: (Rule) => Rule.required(),
+    // },
+    // {
+    //   name: "shippingEurope",
+    //   title: "Shipping Europe",
+    //   type: "number",
+    //   validation: (Rule) => Rule.required(),
+    // },
+    // {
+    //   name: "shippingWorldwide",
+    //   title: "Shipping Worldwide",
+    //   type: "number",
+    //   validation: (Rule) => Rule.required(),
+    // },
   ],
 
   orderings: [
