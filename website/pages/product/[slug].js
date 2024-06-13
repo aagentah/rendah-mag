@@ -437,18 +437,20 @@ export default function Product({ siteConfig, product }) {
                         £{product?.price}
                       </p>
 
-                      {!isSoldOut && (
-                        <p className="db  dib-md  rendah-red  f6  lh-copy  pl2-md  pt2  pt0-md">
-                          (or <span className="fw7">£9 + Free Shipping</span> on
-                          the{' '}
-                          <Link href="/dominion" legacyBehavior>
-                            <span className="cp  underline  fw7">
-                              Dominion Subscription
-                            </span>
-                          </Link>
-                          )
-                        </p>
-                      )}
+                      {
+                        //  {!isSoldOut && (
+                        //   <p className="db  dib-md  rendah-red  f6  lh-copy  pl2-md  pt2  pt0-md">
+                        //     (or <span className="fw7">£9 + Free Shipping</span> on
+                        //     the{' '}
+                        //     <Link href="/dominion" legacyBehavior>
+                        //       <span className="cp  underline  fw7">
+                        //         Dominion Subscription
+                        //       </span>
+                        //     </Link>
+                        //     )
+                        //   </p>
+                        // )}
+                      }
                     </div>
                   </div>
 
