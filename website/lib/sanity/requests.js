@@ -560,7 +560,7 @@ export async function getLastThreeDominionItems(preview) {
   const curClient = getClient(preview);
 
   const results = await curClient.fetch(
-    `*[_type == "dominionItem"] | order(activeFrom desc) [0...3] {
+    `*[_type == "dominionItem"] | order(activeFrom desc) [0...9] {
       ...,
       "slug": slug.current,
     }`

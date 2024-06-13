@@ -7,7 +7,6 @@ function myPortableTextComponents() {
   return {
     types: {
       image: (value) => {
-        console.log('value', value);
         if (!value?.node?.asset) {
           return null;
         }
@@ -15,14 +14,7 @@ function myPortableTextComponents() {
         return (
           <img
             className="w-100  mw6  br4  shadow2  mb3  pv2"
-            src={imageBuilder
-              .image(value?.node?.asset)
-              .height(2000)
-              .width(2000)
-              .auto('format')
-              .fit('clip')
-              .blur('20')
-              .url()}
+            src={imageBuilder.image(value?.node?.asset).auto('format').url()}
           />
         );
       },
