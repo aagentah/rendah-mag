@@ -1,10 +1,9 @@
 .copy {
-  opacity: 0.01;
-  animation: npl-fade-in 0.3s forwards;
   position: relative;
   display: block;
   font-family: $t-secondary;
   line-height: 1.5;
+  z-index: 4;
 
   &.small {
     font-size: 0.75rem;

@@ -41,7 +41,7 @@ export default function CardBlog({ post, columnCount, inverted }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass="br4  shadow2"
+      customClass="shadow2"
       skeleton={!post}
       onClick={null}
       /* Children */
@@ -80,7 +80,7 @@ export default function CardBlog({ post, columnCount, inverted }) {
       htmlEntity="h2"
       text={post?.title}
       color={app?.deviceSize === 'md' && !inverted ? 'black' : 'white'}
-      size={app?.deviceSize === 'md' ? 'medium' : 'small'}
+      size={app?.deviceSize === 'md' ? 'small' : 'small'}
       truncate={null}
       skeleton={!post}
       /* Children */

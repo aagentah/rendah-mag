@@ -162,7 +162,7 @@ export default function CardProduct({ product }) {
   return (
     <LazyLoad once offset={250} height={imageHeight}>
       <article className="card  card--product">
-        {image && <div className="card__image">{image}</div>}
+        {image && <div className="card__image mb3">{image}</div>}
 
         <div className="card__dialog">
           {labels?.length && <div className="card__labels">{[...labels]}</div>}

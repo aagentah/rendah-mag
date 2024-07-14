@@ -114,7 +114,7 @@ export default function Home({ siteConfig }) {
     <>
       <div className="bg-light-grey  pv6">
         <Container>
-          <div className="ml3  dib  mb4">
+          <div className="dib  mb4">
             <Heading
               /* Options */
               htmlEntity="h2"
@@ -132,7 +132,7 @@ export default function Home({ siteConfig }) {
               <div className="flex  flex-wrap  pb4">
                 {[...Array(musicLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-6-md">
-                    <div className="ph3  pv2">
+                    <div className="replaceph3pv2">
                       <CardBlog
                         i={i}
                         post={music?.posts && music?.posts[i]}
@@ -143,14 +143,14 @@ export default function Home({ siteConfig }) {
                 ))}
               </div>
 
-              <div className="flex  flex-wrap  justify-center  pb4  pt3">
+              <div className="flex  flex-wrap  justify-start  pb4  pt3">
                 <p className="t-primary  bold  tac  black  f5">
                   Find more in Music...
                 </p>
               </div>
 
-              <div className="flex  flex-wrap  justify-center">
-                <div className="ph2  pb3  pb0-md">
+              <div className="flex  flex-wrap  justify-start">
+                <div className="pr3  pb3  pb0-md">
                   <Button
                     /* Options */
                     type="primary"
@@ -180,7 +180,7 @@ export default function Home({ siteConfig }) {
                 </div>
 
                 {musicCategories.map((category) => (
-                  <div className="ph2  pb3  pb0-md" key={category.slug}>
+                  <div className="pr3  pb3  pb0-md" key={category.slug}>
                     <Button
                       /* Options */
                       type="primary"
@@ -217,7 +217,7 @@ export default function Home({ siteConfig }) {
 
       <div className="pv6">
         <Container>
-          <div className="ml3  dib  mb4">
+          <div className="dib  mb4">
             <Heading
               /* Options */
               htmlEntity="h2"
@@ -235,7 +235,7 @@ export default function Home({ siteConfig }) {
               <div className="flex  flex-wrap  pb4">
                 {[...Array(artLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-6-md">
-                    <div className="ph3  pv2">
+                    <div className="replaceph3pv2">
                       <CardBlog
                         i={i}
                         post={art?.posts && art?.posts[i]}
@@ -246,13 +246,13 @@ export default function Home({ siteConfig }) {
                 ))}
               </div>
 
-              <div className="flex  flex-wrap  justify-center  pb4  pt3">
+              <div className="flex  flex-wrap  justify-start  pb4  pt3">
                 <p className="t-primary  bold  tac  black  f5">
                   Find more in Art...
                 </p>
               </div>
-              <div className="flex  flex-wrap  justify-center">
-                <div className="ph2  pb3  pb0-md">
+              <div className="flex  flex-wrap  justify-start">
+                <div className="pr3  pb3  pb0-md">
                   <Button
                     /* Options */
                     type="primary"
@@ -281,7 +281,7 @@ export default function Home({ siteConfig }) {
                   />
                 </div>
                 {artCategories.map((category) => (
-                  <div className="ph2  pb3  pb0-md" key={category.slug}>
+                  <div className="pr3  pb3  pb0-md" key={category.slug}>
                     <Button
                       /* Options */
                       type="primary"
@@ -348,7 +348,7 @@ export default function Home({ siteConfig }) {
 
       <div className="bg-creations-black  pv6">
         <Container>
-          <div className="ml3  dib  mb4">
+          <div className="dib  mb4">
             <Heading
               /* Options */
               htmlEntity="h2"
@@ -366,7 +366,7 @@ export default function Home({ siteConfig }) {
               <div className="flex  flex-wrap  pb4">
                 {[...Array(technologyLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-6-md">
-                    <div className="ph3  pv2">
+                    <div className="replaceph3pv2">
                       <CardBlog
                         i={i}
                         post={technology?.posts && technology?.posts[i]}
@@ -378,13 +378,13 @@ export default function Home({ siteConfig }) {
                 ))}
               </div>
 
-              <div className="flex  flex-wrap  justify-center  pb4  pt3">
+              <div className="flex  flex-wrap  justify-start  pb4  pt3">
                 <p className="t-primary  bold  tac  white  f5">
                   Find more in Technology...
                 </p>
               </div>
-              <div className="flex  flex-wrap  justify-center">
-                <div className="ph2  pb3  pb0-md">
+              <div className="flex  flex-wrap  justify-start">
+                <div className="pr3  pb3  pb0-md">
                   <Button
                     /* Options */
                     type="primary"
@@ -413,7 +413,7 @@ export default function Home({ siteConfig }) {
                   />
                 </div>
                 {technologyCategories.map((category) => (
-                  <div className="ph2  pb3  pb0-md" key={category.slug}>
+                  <div className="pr3  pb3  pb0-md" key={category.slug}>
                     <Button
                       /* Options */
                       type="primary"
@@ -450,7 +450,7 @@ export default function Home({ siteConfig }) {
 
       {
         //   <Container>
-        //   <div className="bg-black  pa2  ml3  dib  mb4">
+        //   <div className="bg-black  pa2  dib  mb4">
         //     <Heading
         //       /* Options */
         //       htmlEntity="h2"
@@ -468,7 +468,7 @@ export default function Home({ siteConfig }) {
         //         <div className="flex  flex-wrap">
         //           {[...Array(premieresLength)].map((iteration, i) => (
         //             <div key={iteration} className="col-24  col-6-md">
-        //               <div className="ph3  pv2">
+        //               <div className="replaceph3pv2">
         //                 <CardBlog
         //                   i={i}
         //                   post={premieres?.articles && premieres?.articles[i]}
@@ -512,7 +512,7 @@ export default function Home({ siteConfig }) {
         // </Container>
         // <div className="bg-light-grey  pv5  mv4">
         //   <Container>
-        //     <div className="bg-black  pa2  ml3  dib  mb4">
+        //     <div className="bg-black  pa2  dib  mb4">
         //       <Heading
         //         /* Options */
         //         htmlEntity="h2"
@@ -530,7 +530,7 @@ export default function Home({ siteConfig }) {
         //           <div className="flex  flex-wrap">
         //             {[...Array(artLength)].map((iteration, i) => (
         //               <div key={iteration} className="col-24  col-12-md">
-        //                 <div className="ph3  pv2">
+        //                 <div className="replaceph3pv2">
         //                   <CardBlog
         //                     i={i}
         //                     post={art?.articles && art?.articles[i]}
@@ -575,7 +575,7 @@ export default function Home({ siteConfig }) {
         //           <div className="flex  flex-wrap">
         //             {[...Array(insightsLength)].map((iteration, i) => (
         //               <div key={iteration} className="col-24  col-12-md">
-        //                 <div className="ph3  pv2">
+        //                 <div className="replaceph3pv2">
         //                   <CardBlog
         //                     i={i}
         //                     post={insights?.articles && insights?.articles[i]}
@@ -619,7 +619,7 @@ export default function Home({ siteConfig }) {
         //   </Container>
         // </div>
         // <Container>
-        //   <div className="bg-black  pa2  ml3  dib  mb4  mt4">
+        //   <div className="bg-black  pa2  dib  mb4  mt4">
         //     <Heading
         //       /* Options */
         //       htmlEntity="h2"
@@ -637,7 +637,7 @@ export default function Home({ siteConfig }) {
         //         <div className="flex  flex-wrap">
         //           {[...Array(guestMixesLength)].map((iteration, i) => (
         //             <div key={iteration} className="col-24  col-6-md">
-        //               <div className="ph3  pv2">
+        //               <div className="replaceph3pv2">
         //                 <CardBlog
         //                   i={i}
         //                   post={guestMixes?.articles && guestMixes?.articles[i]}

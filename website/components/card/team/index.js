@@ -20,8 +20,8 @@ export default function CardBlog({ member, featured }) {
   let imageHeight = app?.deviceSize === 'md' ? 260 : 180;
 
   if (featured) {
-    imageUrlWidth = app?.deviceSize === 'md' ? 260 : 120;
-    imageHeight = app?.deviceSize === 'md' ? 260 : 120;
+    imageUrlWidth = app?.deviceSize === 'md' ? 260 : 180;
+    imageHeight = app?.deviceSize === 'md' ? 260 : 180;
   }
 
   const buttonIcon = <IconArrowRight color="black" size={16} />;
@@ -44,7 +44,7 @@ export default function CardBlog({ member, featured }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass="br4  shadow2"
+      customClass={null}
       skeleton={!member}
       onClick={null}
       /* Children */
@@ -82,7 +82,7 @@ export default function CardBlog({ member, featured }) {
       /* Options */
       htmlEntity="h2"
       text={member?.name}
-      color="black"
+      color="white"
       size="small"
       truncate={1}
       skeleton={!member}
@@ -144,7 +144,7 @@ export default function CardBlog({ member, featured }) {
 
   return (
     <LazyLoad once offset={250} height={imageHeight}>
-      <team className="card  card--member">
+      <team className="card  card--member  card--scroll">
         {image && <div className="card__image">{image}</div>}
 
         <div className="card__dialog">

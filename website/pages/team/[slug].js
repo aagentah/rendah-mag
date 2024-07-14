@@ -43,7 +43,7 @@ export default function Post({ siteConfig, member }) {
       >
         <Container>
           <div className="flex  flex-wrap  pt4  pb5">
-            <div className="col-24  col-8-md  ph2  pb4  pb3-md">
+            <div className="col-24  col-8-md  pb4  pb3-md">
               <Image
                 /* Options */
                 src={imageBuilder
@@ -65,7 +65,7 @@ export default function Post({ siteConfig, member }) {
                 figcaption={null}
                 height={250}
                 width={null}
-                customClass="br4  shadow2"
+                customClass={null}
                 skeleton={false}
                 onClick={null}
                 /* Children */
@@ -142,7 +142,7 @@ export default function Post({ siteConfig, member }) {
               <div className="flex  flex-wrap">
                 {member?.posts.map((post, i) => (
                   <div key={post.slug} className="col-24  col-6-md">
-                    <div className="ph3  pv2">
+                    <div className="replaceph3pv2">
                       <CardBlog i={i} post={post} columnCount={4} />
                     </div>
                   </div>

@@ -180,8 +180,8 @@ export default function ProfileEdit() {
       const checkbox = e.currentTarget[userTags[i]];
 
       tags.push({
-        name: checkbox.name,
-        status: checkbox.checked ? 'active' : 'inactive',
+        name: checkbox?.name,
+        status: checkbox?.checked ? 'active' : 'inactive',
       });
     }
 
@@ -195,7 +195,7 @@ export default function ProfileEdit() {
       return toast.error('Please enter your name');
     }
 
-    if (tags.length > 0) body.tags = tags;
+    // if (tags.length > 0) body.tags = tags;
     if (avatarBlob) body.avatar = avatarBlob;
 
     dispatch({ type: 'TOGGLE_LOADING' });
@@ -245,27 +245,24 @@ export default function ProfileEdit() {
   if (user) {
     return (
       <>
+        {/* 
         <Modal
-          /* Options */
           size="small"
           active={passwordModalActive}
         >
           <div className="pb2">
             <Heading
-              /* Options */
               htmlEntity="h1"
               text="Change your password"
               color="white"
               size="large"
               truncate={0}
               onClick={null}
-              /* Children */
               withLinkProps={null}
             />
           </div>
           <div className="pb3">
             <Copy
-              /* Options */
               text="Enter your new password."
               color="white"
               size="medium"
@@ -283,7 +280,6 @@ export default function ProfileEdit() {
               <div className="col-24  pb3">
                 <div className="pv2">
                   <Input
-                    /* Options */
                     type="password"
                     label="Change Password"
                     name="password"
@@ -296,7 +292,6 @@ export default function ProfileEdit() {
                 </div>
                 <div className="pv2  mb3">
                   <Input
-                    /* Options */
                     type="password"
                     label="Repeat Change Password"
                     name="rpassword"
@@ -312,7 +307,6 @@ export default function ProfileEdit() {
             <div className="flex  flex-wrap  pb2">
               <div className="col-12  flex  justify-center  justify-start-md  align-center">
                 <Button
-                  /* Options */
                   type="primary"
                   size="medium"
                   text="Update"
@@ -325,7 +319,6 @@ export default function ProfileEdit() {
                   disabled={false}
                   skeleton={false}
                   onClick={null}
-                  /* Children */
                   withLinkProps={{
                     type: 'form',
                     url: null,
@@ -336,7 +329,6 @@ export default function ProfileEdit() {
               </div>
               <div className="col-12  flex  justify-center  justify-start-md  align-center">
                 <Button
-                  /* Options */
                   type="secondary"
                   size="medium"
                   text="Cancel"
@@ -351,35 +343,31 @@ export default function ProfileEdit() {
                   onClick={() => {
                     setPasswordModalActive(false);
                   }}
-                  /* Children */
                   withLinkProps={null}
                 />
               </div>
             </div>
           </form>
-        </Modal>
+        </Modal> 
+        */}
 
-        <Modal
-          /* Options */
+        {/* <Modal
           size="medium"
           active={avatarModalActive}
         >
           <div className="pb3">
             <Heading
-              /* Options */
               htmlEntity="h1"
               text="Change Avatar"
               color="white"
               size="large"
               truncate={0}
               onClick={null}
-              /* Children */
               withLinkProps={null}
             />
           </div>
           <div className="pb4">
             <Copy
-              /* Options */
               text="Recomended square & at least 720px & under 1 MB."
               color="white"
               size="medium"
@@ -399,7 +387,6 @@ export default function ProfileEdit() {
           <div className="flex  flex-wrap  pb2">
             <div className="col-24  col-12-md  flex  justify-center  justify-start-md  align-center">
               <Button
-                /* Options */
                 type="secondary"
                 size="medium"
                 text="Cancel"
@@ -414,16 +401,15 @@ export default function ProfileEdit() {
                 onClick={() => {
                   setAvatarModalActive(!avatarModalActive);
                 }}
-                /* Children */
                 withLinkProps={null}
               />
             </div>
           </div>
-        </Modal>
-        <div className="ph3">
+        </Modal> */}
+
+        <div className="">
           <div className="profile_heading">
             <Heading
-              /* Options */
               htmlEntity="h1"
               text="Edit Profile"
               color="white"
@@ -434,12 +420,11 @@ export default function ProfileEdit() {
             />
           </div>
 
-          <div className="flex  flex-wrap  pt4  pt0-md">
+          {/* <div className="flex  flex-wrap  pt4  pt0-md">
             <div className="col-24  pb4">
               <div className="w4  relative">
                 <div className="o-50">
                   <Image
-                    /* Options */
                     src={avatarImage || '/images/avatar-placeholder.png'}
                     placeholder={null}
                     alt={user?.username || ''}
@@ -449,7 +434,6 @@ export default function ProfileEdit() {
                     customClass="shadow2"
                     skeleton={false}
                     onClick={null}
-                    /* Children */
                     withLinkProps={null}
                   />
                 </div>
@@ -464,7 +448,7 @@ export default function ProfileEdit() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <form noValidate className="w-100" onSubmit={handleEditProfile}>
             <div className="flex  flex-wrap">
@@ -516,18 +500,16 @@ export default function ProfileEdit() {
                   </a>
                 </div>
               </div>
-              <div className="col-24  col-12-md  pb3  pb0-md">
+              {/* <div className="col-24  col-12-md  pb3  pb0-md">
                 <div className="ba  bc-white  br4  pa3  pa4-md">
                   <div className="pb2">
                     <Heading
-                      /* Options */
                       htmlEntity="h1"
                       text="I am..."
                       color="white"
                       size="small"
                       truncate={0}
                       onClick={null}
-                      /* Children */
                       withLinkProps={null}
                     />
                   </div>
@@ -536,7 +518,6 @@ export default function ProfileEdit() {
                       <div key={tag} className="col-24  col-12-md">
                         <div className="pv2">
                           <Checkbox
-                            /* Options */
                             label={tag}
                             name={tag}
                             checked={
@@ -551,15 +532,15 @@ export default function ProfileEdit() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="flex-md  flex-wrap  align-end-md  justify-between-md  pt4">
               <div className="col-24  col-12-md  pr3  pb4  pb0-md">
                 <Button
                   /* Options */
                   type="primary"
-                  size="medium"
-                  text="Update"
+                  size="small"
+                  text="Update profile"
                   color="white"
                   fluid={false}
                   icon={null}
@@ -578,10 +559,9 @@ export default function ProfileEdit() {
                   }}
                 />
               </div>
-              <div className="col-24  col-12-md  flex  flex-wrap  justify-end-md">
+              {/* <div className="col-24  col-12-md  flex  flex-wrap  justify-end-md">
                 <div className="col-24  col-10-md  flex  justify-end-md  pr0  pr3-md  pb3  pb1-md">
                   <Button
-                    /* Options */
                     type="secondary"
                     size="small"
                     text="Change Password"
@@ -596,11 +576,10 @@ export default function ProfileEdit() {
                     onClick={() => {
                       setPasswordModalActive(!passwordModalActive);
                     }}
-                    /* Children */
                     withLinkProps={null}
                   />
                 </div>
-              </div>
+              </div> */}
             </div>
           </form>
         </div>

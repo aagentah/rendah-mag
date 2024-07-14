@@ -99,6 +99,13 @@ const getClient = (preview) => (preview ? previewClient : client);
 
 export const imageBuilder = sanityImage(client);
 
+export async function getFileUrl(fileRef) {
+  const query = `*[_id == $id][0] {url: asset->url}`;
+  const params = { id: fileRef };
+  const result = await client.fetch(query, params);
+  return result.url;
+}
+
 export async function getSiteConfig() {
   const data = await client.fetch('*[_type == "siteSettings"] [0] { ..., }');
   return data;
@@ -563,6 +570,12 @@ export async function getLastThreeDominionItems(preview) {
     `*[_type == "dominionItem"] | order(activeFrom desc) [0...9] {
       ...,
       "slug": slug.current,
+      "attachments": attachments[] {
+        title,
+        "file": file.asset->url,
+        "url": file.asset->url,
+        "mimeType": file.asset->mimeType,
+      },
     }`
   );
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaTimes } from 'react-icons/fa'; // Import the close icon
 
 /**
  * A card displays site content in a manner similar to a playing card.
@@ -9,13 +10,24 @@ export default function Modal(props) {
     /* Options */
     size,
     active,
+    closeIcon,
     /* Children */
     children,
   } = props;
 
   return (
     <section className={`modal  modal--${size}  ${active && 'active'}`}>
-      <div className="modal__dialog">{children}</div>
+      <div className="modal__dialog">
+        {closeIcon && (
+          <div
+            className="absolute top right white mt3 mr3 cp z9 pa2"
+            onClick={() => closeIcon(false)}
+          >
+            <FaTimes />
+          </div>
+        )}
+        {children}
+      </div>
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import NProgress from 'nprogress';
+import { FaPaperclip, FaCog } from 'react-icons/fa';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -17,13 +18,21 @@ const IconArrowLeft = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowLeft)
 );
 
+const Modal = dynamic(() => import('~/components/modal'));
+
+const ProfileEdit = dynamic(() => import('~/components/profile/edit'));
+
+const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
+
 export default function ProfileDominion() {
   const [user, { loading, mutate, error }] = useUser();
   const [messages, setMessages] = useState([]);
   const [messagesLength, setMessagesLength] = useState(9);
   const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
   const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
+  const [articleActive, setArticleActive] = useState(false);
   const [modalActive, setModalActive] = useState(false);
+
   const [cardsShow, setCardsShow] = useState(true);
   const [showAll, setShowAll] = useState(false);
 
@@ -35,7 +44,7 @@ export default function ProfileDominion() {
   const buttonIconArrowLeft = <IconArrowLeft color="white" size={16} />;
 
   const apply = (i) => {
-    setModalActive(i);
+    setArticleActive(i);
     setCardsShow(false);
   };
 
@@ -61,7 +70,7 @@ export default function ProfileDominion() {
     if (count > 0) {
       for (let i = 0; i < count; i++) {
         ghostCards.push(
-          <div className="col-24  col-8-md  ph3  pv2  o-30">
+          <div className="col-24  col-8-md  replaceph3pv2  o-30">
             <CardMessage i={i} post={ghostItem} handleClick={null} />
           </div>
         );
@@ -73,50 +82,67 @@ export default function ProfileDominion() {
     return false;
   };
 
+  const backButton = () => {
+    setArticleActive(null);
+    setCardsShow(true);
+  };
+
   if (user?.isDominion) {
     return (
       <>
         <section>
-          <div className="relative  ">
+          <div className="relative">
             <div
               className={`
               dominion-cards
               ${cardsShow && 'dominion-cards--active'}
           `}
             >
-              <div className="ph3">
-                <div className="profile_heading">
-                  <Heading
-                    /* Options */
-                    htmlEntity="h1"
-                    text="Messages"
-                    color="white"
-                    size="medium"
-                    truncate={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
-
-                <div className="pb4  mb2">
-                  <p className="white  f6  lh-copy  measure-wide">
-                    Our latest 3 newsletters on the Dominion.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex  flex-wrap  pb3">
-                {[...Array(messagesLength)].map((iteration, i) => (
-                  <div key={iteration} className="col-24  col-8-md  ph3  pv2">
-                    <CardMessage
-                      i={i}
-                      post={messages?.length && messages[i]}
-                      handleClick={apply}
+              <div className="container mla mra">
+                <div className="relative">
+                  <div className="pb4 mb4 bb bc-white">
+                    <Heading
+                      /* Options */
+                      htmlEntity="h1"
+                      text="Dominion Dashboard"
+                      color="white"
+                      size="medium"
+                      truncate={null}
+                      /* Children */
+                      withLinkProps={null}
                     />
                   </div>
-                ))}
 
-                {renderGhostCards()}
+                  <div className="pb4  mb2">
+                    <p className="white  f6  lh-copy  measure-wide">
+                      Hello {user?.name}, welcome. Here you can access all
+                      exclusive content available on your subscription. We add
+                      new content here frequently month-to-month, make sure to
+                      keep an eye here for cool stuff.
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setModalActive(true)}
+                    className="absolute top right white cp mr3"
+                  >
+                    <FaCog />
+                  </div>
+                </div>
+
+                <div className="flex  flex-wrap  pb5">
+                  {[...Array(messagesLength)].map((iteration, i) => (
+                    <div key={iteration} className="col-24  col-8-md">
+                      <CardMessage
+                        i={i}
+                        post={messages?.length && messages[i]}
+                        handleClick={apply}
+                      />
+                    </div>
+                  ))}
+
+                  {renderGhostCards()}
+                </div>
               </div>
 
               {messages?.length > 9 && (
@@ -153,44 +179,27 @@ export default function ProfileDominion() {
               )}
             </div>
 
-            <section>
+            <section className="">
               {messages.length
                 ? messages.map((item, i) => (
                     <div
                       key={i}
                       className={`
                     dominion-modal-wrapper
-                    dominion-modal-wrapper--messages
-                    ${modalActive === i ? 'dominion-modal-wrapper--active' : ''}
+                    ${
+                      articleActive === i
+                        ? 'dominion-modal-wrapper--active'
+                        : ''
+                    }
                   `}
                     >
-                      <div className="absolute  top  left  ml3  ml4-md  nt3  bg-creations-black">
-                        <Button
-                          /* Options */
-                          type="primary"
-                          size="small"
-                          text="Back"
-                          color="white"
-                          fluid={false}
-                          icon={buttonIconArrowLeft}
-                          iconFloat="left"
-                          inverted={true}
-                          loading={false}
-                          disabled={false}
-                          skeleton={false}
-                          onClick={() => {
-                            setModalActive(null);
-                            setCardsShow(true);
-                          }}
-                          /* Children */
-                          withLinkProps={null}
-                        />
-                      </div>
-
-                      {modalActive === i && (
+                      {articleActive === i && (
                         <>
                           {startProgress()}
-                          <CarouselItemSection message={item} />
+                          <CarouselItemSection
+                            message={item}
+                            backButton={backButton}
+                          />
                         </>
                       )}
                     </div>
@@ -199,6 +208,33 @@ export default function ProfileDominion() {
             </section>
           </div>
         </section>
+
+        <Modal
+          /* Options */
+          size="large"
+          active={modalActive}
+          closeIcon={setModalActive}
+        >
+          <div className="pb4 pb5-md">
+            <Heading
+              /* Options */
+              htmlEntity="h3"
+              text="Profile & Billing"
+              color="white"
+              size="medium"
+              truncate={0}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+          <div className="pb3 pb5-md z9 relative">
+            <ProfileEdit />
+          </div>
+          <div className="z9 relative">
+            <ProfileBilling />
+          </div>
+        </Modal>
       </>
     );
   }

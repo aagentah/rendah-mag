@@ -107,7 +107,7 @@ export default function ProfileOrders() {
   if (user) {
     return (
       <section>
-        <div className="ph3">
+        <div className="">
           <div className="profile_heading">
             <Heading
               /* Options */
@@ -257,7 +257,7 @@ export default function ProfileOrders() {
               </div>
             </div>
 
-            <div className="flex  justify-end-md">
+            <div className="flex">
               <Button
                 /* Options */
                 type="primary"

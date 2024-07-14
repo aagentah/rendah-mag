@@ -7,6 +7,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Layout from '~/components/layout';
 import Tabs from '~/components/tabs';
+import Heading from '~/components/elements/heading';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
@@ -138,72 +139,7 @@ export default function Profile({ siteConfig }) {
             preview={null}
           >
             <div className="pt4  pt0-md  pb4  pb0-md">
-              {user && app.deviceSize && (
-                <div className="tabs-wrapper--profile  tabs-wrapper--side-bar">
-                  <Tabs
-                    /* Options */
-                    content={[
-                      {
-                        id: 'dashboard',
-                        tabTitle: 'Dashboard',
-                        tabIcon: iconHouse,
-                        tabContent: ProfileDashboard,
-                      },
-                      {
-                        id: 'messages',
-                        tabTitle: 'Messages',
-                        tabIcon: iconEnvelope,
-                        tabContent: ProfileMessages,
-                      },
-                      {
-                        id: 'offerings',
-                        tabTitle: 'Dubplates',
-                        tabIcon: iconMusic,
-                        tabContent: ProfileOfferings,
-                      },
-
-                      // {
-                      //   id: 'gallery',
-                      //   tabTitle: 'Gallery',
-                      //   tabIcon: iconPack,
-                      //   tabContent: ProfileGallery,
-                      // },
-                      {
-                        id: 'creations',
-                        tabTitle: 'Articles',
-                        tabIcon: iconNewspaper,
-                        tabContent: ProfileCreations,
-                      },
-                      {
-                        id: 'prints',
-                        tabTitle: 'Prints',
-                        tabIcon: iconNewspaper,
-                        tabContent: ProfilePrints,
-                      },
-                      // {
-                      //   id: 'pipeline',
-                      //   tabTitle: 'Pipeline',
-                      //   tabIcon: iconList,
-                      //   tabContent: <ProfilePipeline />,
-                      // },
-                      {
-                        id: 'profile',
-                        tabTitle: 'Profile',
-                        tabIcon: iconUser,
-                        tabContent: ProfileEdit,
-                      },
-                      {
-                        id: 'billing',
-                        tabTitle: 'Billing',
-                        tabIcon: iconMoney,
-                        tabContent: ProfileBilling,
-                      },
-                    ]}
-                    defaultSelected={handleSelected}
-                    onToggle={handleToggle}
-                  />
-                </div>
-              )}
+              <ProfileMessages />
             </div>
           </Layout>
         </div>

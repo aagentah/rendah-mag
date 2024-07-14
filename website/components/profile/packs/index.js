@@ -65,7 +65,7 @@ export default function ProfilePacks() {
     if (count > 0) {
       for (let i = 0; i < count; i++) {
         ghostCards.push(
-          <div className="col-24  col-8-md  ph3  pv2  o-30">
+          <div className="col-24  col-8-md  replaceph3pv2  o-30">
             <CardPack i={i} post={ghostItem} handleClick={null} />
           </div>
         );
@@ -112,7 +112,10 @@ export default function ProfilePacks() {
             >
               <div className="flex  flex-wrap  pb3">
                 {[...Array(samplesLength)].map((iteration, i) => (
-                  <div key={iteration} className="col-24  col-6-md  ph3  pv2">
+                  <div
+                    key={iteration}
+                    className="col-24  col-6-md  replaceph3pv2"
+                  >
                     <CardPack
                       i={i}
                       post={samples?.length && samples[i]}

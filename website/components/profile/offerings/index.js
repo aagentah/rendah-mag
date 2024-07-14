@@ -70,7 +70,7 @@ export default function ProfileDominion() {
     if (count > 0) {
       for (let i = 0; i < count; i++) {
         ghostCards.push(
-          <div className="col-24  col-6-md  ph3  pv2  o-30">
+          <div className="col-24  col-6-md  replaceph3pv2  o-30">
             <CardOffering i={i} post={ghostItem} handleClick={null} />
           </div>
         );
@@ -119,7 +119,10 @@ export default function ProfileDominion() {
 
               <div className="flex  flex-wrap  pb3">
                 {[...Array(offeringsLength)].map((iteration, i) => (
-                  <div key={iteration} className="col-24  col-6-md  ph3  pv2">
+                  <div
+                    key={iteration}
+                    className="col-24  col-6-md  replaceph3pv2"
+                  >
                     <CardOffering
                       i={i}
                       post={offerings?.length && offerings[i]}
