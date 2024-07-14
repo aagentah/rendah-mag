@@ -27,48 +27,11 @@ export default {
       },
       validation: (Rule) => Rule.required(),
     },
-    // {
-    //   name: "image",
-    //   title: "Image (Landscape)",
-    //   description: "Used on website profile",
-    //   type: "image",
-    //   fields: [
-    //     {
-    //       name: "resize",
-    //       title: "Resize",
-    //       type: "string",
-    //       options: {
-    //         list: [
-    //           { title: "None", value: "none" },
-    //           { title: "1080px", value: "1080" },
-    //           { title: "1920px", value: "1920" },
-    //         ],
-    //         layout: "radio",
-    //       },
-    //     },
-    //   ],
-    // },
-    // {
-    //   name: "imagePortrait",
-    //   title: "Image",
-    //   description: "Used on email",
-    //   type: "image",
-    //   fields: [
-    //     {
-    //       name: "resize",
-    //       title: "Resize",
-    //       type: "string",
-    //       options: {
-    //         list: [
-    //           { title: "None", value: "none" },
-    //           { title: "1080px", value: "1080" },
-    //           { title: "1920px", value: "1920" },
-    //         ],
-    //         layout: "radio",
-    //       },
-    //     },
-    //   ],
-    // },
+    {
+      name: "coverImage",
+      title: "Image",
+      type: "image",
+    },
     {
       name: "activeFrom",
       title: "Active From",
@@ -86,26 +49,63 @@ export default {
         },
       ],
     },
-    // {
-    //   name: "body",
-    //   title: "Body",
-    //   type: "blockContent",
-    // },
-    // {
-    //   name: "showInProfile",
-    //   title: "Show in profile",
-    //   type: "boolean",
-    // },
-    // {
-    //   name: "includeLoginPrompt",
-    //   title: "Include Login Prompt",
-    //   type: "boolean",
-    // },
+    {
+      name: "attachments",
+      title: "Attachments",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Title",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "file",
+              title: "File",
+              type: "file",
+              options: {
+                accept: "any",
+              },
+            },
+            {
+              name: "url",
+              title: "URL",
+              type: "url",
+              validation: (Rule) =>
+                Rule.uri({
+                  scheme: ["http", "https"],
+                }),
+            },
+          ],
+          preview: {
+            select: {
+              title: "title",
+              file: "file",
+              url: "url",
+            },
+            prepare(selection) {
+              const { title, file, url } = selection;
+              const subtitle = file
+                ? `File: ${file.asset.mimeType}`
+                : `URL: ${url}`;
+              return {
+                title,
+                subtitle,
+              };
+            },
+          },
+        },
+      ],
+    },
   ],
   preview: {
     select: {
       title: "title",
-      media: "image",
+      media: "coverImage",
     },
   },
 };
