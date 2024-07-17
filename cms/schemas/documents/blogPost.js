@@ -18,20 +18,17 @@ export default {
         source: "title",
         maxLength: 96,
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((slug) => {
+          if (!slug) {
+            return true;
+          }
+          const regex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+          return regex.test(slug.current)
+            ? true
+            : "Slug must be lowercase and contain only alphanumeric characters and hyphens.";
+        }),
     },
-    // {
-    //   name: "showAuthor",
-    //   title: "Show Author",
-    //   type: "boolean",
-    // },
-    // {
-    //   name: "author",
-    //   title: "Author",
-    //   type: "reference",
-    //   to: { type: "author" },
-    //   validation: (Rule) => Rule.required(),
-    // },
     {
       name: "authors",
       title: "Authors",
@@ -42,18 +39,8 @@ export default {
           to: { type: "author" },
         },
       ],
+      validation: (Rule) => Rule.required(),
     },
-    // {
-    //   name: "tags",
-    //   title: "Tags",
-    //   type: "array",
-    //   of: [
-    //     {
-    //       type: "reference",
-    //       to: { type: "refTag" }
-    //     }
-    //   ]
-    // },
     {
       name: "divisions",
       title: "Divisions",
@@ -72,7 +59,6 @@ export default {
       type: "reference",
       to: { type: "gallery" },
       hidden: ({ document }) => {
-        // Check if the 'divisions' field contains a reference to a division with the slug 'art'
         return !document.divisions?.some(
           (division) => division._ref === "bad8cd79-c94d-4fcf-8011-ab4e4a23f21d"
         );
@@ -90,18 +76,6 @@ export default {
       ],
       validation: (Rule) => Rule.required(),
     },
-    // {
-    //   name: "category",
-    //   title: "Category",
-    //   type: "reference",
-    //   to: { type: "category" },
-    // },
-    {
-      name: "featured",
-      title: "Featured Article",
-      description: "Feature on the big Homepage Hero banner.",
-      type: "boolean",
-    },
     {
       name: "publishedAt",
       title: "Publish Date",
@@ -114,33 +88,13 @@ export default {
       type: "image",
       fields: [
         {
-          name: "fullImage",
-          title: "Full Image",
-          type: "boolean",
-        },
-        {
-          name: "resize",
-          title: "Resize",
-          type: "string",
-          options: {
-            list: [
-              { title: "None", value: "none" },
-              { title: "1080px", value: "1080" },
-              { title: "1920px", value: "1920" },
-            ],
-            layout: "radio",
-          },
-        },
-        {
           name: "caption",
           title: "Source / Caption",
           type: "blockContent",
-          required: "false",
         },
       ],
       validation: (Rule) => Rule.required(),
     },
-
     {
       name: "socialTagline",
       title: "Social Tagline",
@@ -148,13 +102,6 @@ export default {
       type: "string",
       validation: (Rule) => Rule.required().max(70),
     },
-    // {
-    //   name: "description",
-    //   title: "Article Description",
-    //   description: "Shown as first paragraph in the article.",
-    //   type: "text",
-    //   validation: (Rule) => Rule.required().max(300),
-    // },
     {
       name: "introduction",
       title: "Introduction",
@@ -232,9 +179,10 @@ export default {
     },
     prepare(selection) {
       const { author } = selection;
-      return Object.assign({}, selection, {
+      return {
+        ...selection,
         subtitle: author && `by ${author}`,
-      });
+      };
     },
   },
 };

@@ -7,7 +7,7 @@
   "author": "Danny Jones <dannyjones360@gmail.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "sanity start",
+    "start": "sanity build && sanity start",
     "build": "sanity build dist -y",
     "backup": "sanity dataset export production",
     "test": "sanity check"
@@ -16,28 +16,28 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^2.36.2",
     "@sanity/cli": "^3.30.0",
     "@sanity/client": "^2.23.2",
     "@sanity/components": "^2.14.0",
-    "@sanity/core": "^2.36.2",
     "@sanity/dashboard": "^2.36.0",
-    "@sanity/default-layout": "^2.36.2",
-    "@sanity/default-login": "^2.36.2",
     "@sanity/desk-tool": "^2.36.2",
+    "@sanity/form-builder": "^2.36.2",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/portable-text-editor": "^3.48.1",
     "@sanity/production-preview": "^2.35.3",
     "@sanity/react-hooks": "^2.36.2",
-    "@sanity/vision": "^2.36.2",
+    "@sanity/types": "^3.50.0",
+    "@sanity/vision": "^3.51.0",
     "compressorjs": "^1.0.6",
     "lodash": "^4.17.21",
-    "prop-types": "^15.6",
-    "react": "^16.2",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "^16.2",
-    "react-icons": "2.2.7",
+    "react-dom": "^18.3.1",
+    "react-icons": "^4.12.0",
+    "sanity": "^3.50.0",
     "sanity-plugin-autocomplete-tags": "^1.0.1",
     "sanity-plugin-graph-view": "^1.0.4",
-    "styled-components": "5.3.1"
+    "styled-components": "^6.1.11"
   }
 }

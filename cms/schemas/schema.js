@@ -1,83 +1,54 @@
-import createSchema from "part:@sanity/base/schema-creator";
-import schemaTypes from "all:part:@sanity/base/schema-type";
-
+// schemas/schema.js
 import blockContent from "./blockContent";
-
-// Blog
 import blogPost from "./documents/blogPost";
 import blogAuthor from "./documents/blogAuthor";
 import blogCategory from "./documents/blogCategory";
 import blogDivision from "./documents/blogDivision";
 import newsletterGeneral from "./documents/newsletterGeneral";
 import newsletterCypher from "./documents/newsletterCypher";
-import refTag from "./documents/refTag";
-
-// Store
 import storeCategory from "./documents/storeCategory";
 import storeCollection from "./documents/storeCollection";
 import storeItem from "./documents/storeItem";
-import storeVariant from "./documents/storeVariant";
-
-// Cypher
 import cypher from "./documents/cypher";
-
-// Guest Mix
-import mix from "./documents/mix";
-
-// Dominion
 import dominionItem from "./documents/dominionItem";
 import user from "./documents/user";
-import dominionPipelineItem from "./objects/dominionPipelineItem";
-import dominionPipeline from "./objects/dominionPipeline";
+// import dominionPipeline from "./objects/dominionPipeline";
 import creations from "./documents/creations";
 import offering from "./documents/offering";
 import prints from "./documents/prints";
-
 import galleryPost from "./documents/galleryPost";
-
-// Smart Link
-import smartLinkItem from "./documents/smartLinkItem";
-import smartLink from "./documents/smartLink";
-
-// Audio
 import track from "./documents/audio/track";
 import pack from "./documents/audio/pack";
-
 import homePage from "./objects/homePage";
 import siteSettings from "./objects/siteSettings";
+// import dominionShipping from "./objects/dominionShipping";
+// import dominionOverview from "./objects/dominionOverview";
+// import stripeMetrics from "./objects/stripeMetrics";
 
-export default createSchema({
-  name: "default",
-  types: schemaTypes.concat([
-    blockContent,
-    //
-    refTag,
-    blogPost,
-    blogAuthor,
-    blogCategory,
-    blogDivision,
-    newsletterGeneral,
-    newsletterCypher,
-    storeCategory,
-    storeCollection,
-    storeItem,
-    storeVariant,
-    cypher,
-    mix,
-    user,
-    track,
-    pack,
-    dominionItem,
-    smartLinkItem,
-    smartLink,
-    dominionPipelineItem,
-    dominionPipeline,
-    creations,
-    prints,
-    offering,
-    galleryPost,
-    //
-    siteSettings,
-    homePage,
-  ]),
-});
+export default [
+  blockContent,
+  siteSettings,
+  homePage,
+  blogPost,
+  blogAuthor,
+  blogCategory,
+  blogDivision,
+  galleryPost,
+  storeCategory,
+  storeCollection,
+  storeItem,
+  cypher,
+  dominionItem,
+  user,
+  // dominionPipeline,
+  creations,
+  offering,
+  prints,
+  track,
+  pack,
+  // dominionShipping,
+  // dominionOverview,
+  // stripeMetrics,
+  newsletterGeneral,
+  newsletterCypher,
+];

@@ -1,3 +1,6 @@
+// import musicLink from "./musicLink"; // Adjust the path as necessary
+// import customImage from "./customImage"; // Adjust the path as necessary
+
 export default {
   name: "refTag",
   title: "Tag",
@@ -20,11 +23,6 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "description",
-      title: "Description",
-      type: "blockContent",
-    },
-    {
       name: "type",
       title: "Type",
       type: "string",
@@ -37,6 +35,16 @@ export default {
         ],
         layout: "radio",
       },
+    },
+    {
+      name: "description",
+      title: "Description",
+      type: "array",
+      of: [
+        { type: "block" },
+        // { type: "musicLink" },
+        // { type: "customImage" },
+      ],
     },
   ],
   preview: {
