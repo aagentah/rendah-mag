@@ -119,8 +119,8 @@ export default function Post({ siteConfig, post, preview }) {
 
     return (
       <Layout
-        navOffset={null}
-        navOnWhite={false}
+        navOffset={'top'}
+        navOnWhite={true}
         hasNav
         hasFooter
         meta={{
@@ -189,22 +189,6 @@ export default function Post({ siteConfig, post, preview }) {
           </div>
         </Modal>
 
-        <div className="mb4">
-          <Hero
-            image={post?.coverImage}
-            title={post.title}
-            description={null}
-            heroButtonText={null}
-            link={null}
-            marginTop={0}
-            marginBottom={0}
-            modifier="article"
-            skeleton={!post}
-            caption={post?.coverImageCaption}
-            fullImage={post?.coverImageFullImage}
-          />
-        </div>
-
         <article className="pt4  pb4">
           {post.tag && (
             <>
@@ -272,13 +256,30 @@ export default function Post({ siteConfig, post, preview }) {
           <div className="flex  flex-wrap  ph4  ph0-md">
             <div className="col-6" />
             <div className="col-24  col-12-md">
-              <div className="mb4">
+              <div className="mb5">
+                <Hero
+                  image={post?.coverImage}
+                  coverImageNew={post?.coverImageNew}
+                  title={post.title}
+                  description={null}
+                  heroButtonText={null}
+                  link={null}
+                  marginTop={0}
+                  marginBottom={0}
+                  modifier="article"
+                  skeleton={!post}
+                  caption={post?.coverImageCaption}
+                  fullImage={post?.coverImageFullImage}
+                />
+              </div>
+
+              <div className="mb4 pb2">
                 <Heading
                   /* Options */
                   htmlEntity="h1"
                   text={post.title}
                   color="rendah-red"
-                  size={app.deviceSize === 'md' ? 'large' : 'x-large'}
+                  size={app.deviceSize === 'md' ? 'large' : 'large'}
                   truncate={null}
                   onClick={null}
                   /* Children */

@@ -1,8 +1,10 @@
 import imageUrlBuilder from '@sanity/image-url';
-import sanityClient from '@sanity/client';
+import { sanityClient } from '~/lib/sanity/config.js';
+
+const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
-  return imageUrlBuilder(sanityClient).image(source);
+  return builder.image(source);
 }
 
 export const SANITY_BLOCK_SERIALIZERS = {

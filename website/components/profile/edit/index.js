@@ -75,7 +75,7 @@ export default function ProfileEdit() {
     (acceptedFiles) => {
       setAvatarModalActive(false);
 
-      toast.info(`To save your image, make sure to hit Update.`);
+      toast.info(`To save your image, make sure to hit Update Profile.`);
 
       if (acceptedFiles.length > 0) {
         const file = acceptedFiles[0];
@@ -408,10 +408,11 @@ export default function ProfileEdit() {
         </Modal> */}
 
         <div className="">
-          <div className="profile_heading">
+          <div className="pb4">
             <Heading
-              htmlEntity="h1"
-              text="Edit Profile"
+              /* Options */
+              htmlEntity="h2"
+              text="Profile & Billing"
               color="white"
               size="medium"
               truncate={null}
@@ -420,7 +421,19 @@ export default function ProfileEdit() {
             />
           </div>
 
-          {/* <div className="flex  flex-wrap  pt4  pt0-md">
+          <div className="profile_heading">
+            <Heading
+              htmlEntity="h1"
+              text="Edit Profile"
+              color="white"
+              size="small"
+              truncate={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+
+          <div className="flex  flex-wrap  pt4  pt0-md">
             <div className="col-24  pb4">
               <div className="w4  relative">
                 <div className="o-50">
@@ -437,22 +450,43 @@ export default function ProfileEdit() {
                     withLinkProps={null}
                   />
                 </div>
-
-                <div className="absolute  bottom  right  nb2  nr3">
-                  <div
-                    className="f7  w2  h2  br-100  bg-white  shadow2  flex  align-center  justify-center  cp"
-                    onClick={() => setAvatarModalActive(!avatarModalActive)}
-                  >
-                    <IconPencil color="black" size={16} />
-                  </div>
-                </div>
               </div>
             </div>
-          </div> */}
+          </div>
 
-          <form noValidate className="w-100" onSubmit={handleEditProfile}>
+          <div className="pb3">
+            <Heading
+              htmlEntity="h1"
+              text="Change Avatar"
+              color="white"
+              size="small"
+              truncate={0}
+              onClick={null}
+              withLinkProps={null}
+            />
+          </div>
+          <div className="pb3">
+            <Copy
+              text="Recomended square & at least 720px & under 1 MB."
+              color="white"
+              size="medium"
+              truncate={null}
+            />
+          </div>
+          <div className="pb4">
+            <div className="react-dropzone__wrapper" {...getRootProps()}>
+              <input {...getInputProps()} />
+              {isDragActive ? (
+                <p>Drop the file here...</p>
+              ) : (
+                <p>Drag & drop your image here, or click to select file</p>
+              )}
+            </div>
+          </div>
+
+          <form noValidate className="w-100 mb4" onSubmit={handleEditProfile}>
             <div className="flex  flex-wrap">
-              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+              <div className="col-24  col-12-md">
                 <div className="pv2">
                   <Input
                     /* Options */
@@ -580,6 +614,79 @@ export default function ProfileEdit() {
                   />
                 </div>
               </div> */}
+            </div>
+          </form>
+
+          <div className="profile_heading">
+            <Heading
+              htmlEntity="h1"
+              text="Change your password"
+              color="white"
+              size="small"
+              truncate={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
+
+          <form
+            noValidate
+            autoComplete="off"
+            name="lastpass-disable-search"
+            className="w-100"
+            onSubmit={handleUpdatePassword}
+          >
+            <div className="flex  flex-wrap">
+              <div className="col-24  col-12-md">
+                <div className="pv2">
+                  <Input
+                    type="password"
+                    label="New Password"
+                    name="password"
+                    value=""
+                    icon={inputIconLock}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
+                </div>
+                <div className="pv2  mb3">
+                  <Input
+                    type="password"
+                    label="Repeat New Password"
+                    name="rpassword"
+                    value=""
+                    icon={inputIconLock}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex  flex-wrap  pb2">
+              <div className="col-12  flex  justify-center  justify-start-md  align-center">
+                <Button
+                  type="primary"
+                  size="small"
+                  text="Update password"
+                  color="white"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={false}
+                  loading={updatePasswordButtonLoading}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  withLinkProps={{
+                    type: 'form',
+                    url: null,
+                    target: null,
+                    routerLink: null,
+                  }}
+                />
+              </div>
             </div>
           </form>
         </div>

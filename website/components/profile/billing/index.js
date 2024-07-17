@@ -108,7 +108,7 @@ export default function ProfileOrders() {
     return (
       <section>
         <div className="">
-          <div className="profile_heading">
+          <div className="pb4">
             <Heading
               /* Options */
               htmlEntity="h1"
@@ -120,33 +120,6 @@ export default function ProfileOrders() {
               withLinkProps={null}
             />
           </div>
-
-          {customer ? (
-            <div className="w-100  mb4  pt3  pt0-md">
-              <div className="pb3">
-                <Heading
-                  /* Options */
-                  htmlEntity="h2"
-                  text="Payment Method & Invoices"
-                  color="white"
-                  size="small"
-                  truncate={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
-
-              <div className="pa3  pa4-md  mb4  ba  bc-white  br4  flex  flex-wrap">
-                <a
-                  className="underline  f6  white"
-                  target="_blank"
-                  href={customer?.billingPortal?.url}
-                >
-                  Update Payment Method & View Invoices
-                </a>
-              </div>
-            </div>
-          ) : null}
 
           <form className="w-100  mb4" onSubmit={handleEditProfile}>
             <div className="pb3">
@@ -162,97 +135,95 @@ export default function ProfileOrders() {
               />
             </div>
 
-            <div className="pa3  pa4-md  mb4  ba  bc-white  br4">
-              <div className="flex  flex-wrap">
-                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                  <div className="pv2">
-                    <Input
-                      /* Options */
-                      type="text"
-                      label="Address Line 1"
-                      name="line1"
-                      value={user?.address?.line1 || ''}
-                      icon={null}
-                      required
-                      disabled={false}
-                      readOnly={false}
-                    />
-                  </div>
+            <div className="flex  flex-wrap mb4">
+              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="Address Line 1"
+                    name="line1"
+                    value={user?.address?.line1 || ''}
+                    icon={null}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
                 </div>
-                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                  <div className="pv2">
-                    <Input
-                      /* Options */
-                      type="text"
-                      label="Address Line 2"
-                      name="line2"
-                      value={user?.address?.line2 || ''}
-                      icon={null}
-                      required={false}
-                      disabled={false}
-                      readOnly={false}
-                    />
-                  </div>
+              </div>
+              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="Address Line 2"
+                    name="line2"
+                    value={user?.address?.line2 || ''}
+                    icon={null}
+                    required={false}
+                    disabled={false}
+                    readOnly={false}
+                  />
                 </div>
-                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                  <div className="pv2">
-                    <Input
-                      /* Options */
-                      type="text"
-                      label="City"
-                      name="city"
-                      value={user?.address?.city || ''}
-                      icon={null}
-                      required
-                      disabled={false}
-                      readOnly={false}
-                    />
-                  </div>
+              </div>
+              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="City"
+                    name="city"
+                    value={user?.address?.city || ''}
+                    icon={null}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
                 </div>
-                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                  <div className="pv2">
-                    <Input
-                      /* Options */
-                      type="text"
-                      label="Postal Code"
-                      name="postal_code"
-                      value={user?.address?.postal_code || ''}
-                      icon={null}
-                      required
-                      disabled={false}
-                      readOnly={false}
-                    />
-                  </div>
+              </div>
+              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="Postal Code"
+                    name="postal_code"
+                    value={user?.address?.postal_code || ''}
+                    icon={null}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
                 </div>
-                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                  <div className="pv2">
-                    <Input
-                      /* Options */
-                      type="text"
-                      label="State/County"
-                      name="state"
-                      value={user?.address?.state || ''}
-                      icon={null}
-                      required
-                      disabled={false}
-                      readOnly={false}
-                    />
-                  </div>
+              </div>
+              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="State/County"
+                    name="state"
+                    value={user?.address?.state || ''}
+                    icon={null}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
                 </div>
-                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                  <div className="pv2">
-                    <Input
-                      /* Options */
-                      type="text"
-                      label="Country"
-                      name="country"
-                      value={user?.address?.country || ''}
-                      icon={null}
-                      required
-                      disabled={false}
-                      readOnly={false}
-                    />
-                  </div>
+              </div>
+              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                <div className="pv2">
+                  <Input
+                    /* Options */
+                    type="text"
+                    label="Country"
+                    name="country"
+                    value={user?.address?.country || ''}
+                    icon={null}
+                    required
+                    disabled={false}
+                    readOnly={false}
+                  />
                 </div>
               </div>
             </div>
@@ -280,6 +251,33 @@ export default function ProfileOrders() {
               />
             </div>
           </form>
+
+          {customer ? (
+            <div className="w-100  mb4  pt3  pt0-md">
+              <div className="profile_heading">
+                <Heading
+                  /* Options */
+                  htmlEntity="h2"
+                  text="Payment Method & Invoices"
+                  color="white"
+                  size="small"
+                  truncate={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
+
+              <div className="pa3  pa4-md  mb4  ba  bc-white  br4  flex  flex-wrap">
+                <a
+                  className="underline  f6  white"
+                  target="_blank"
+                  href={customer?.billingPortal?.url}
+                >
+                  Update Payment Method & View Invoices
+                </a>
+              </div>
+            </div>
+          ) : null}
 
           <section className="w-100  mb4">
             <div className="pb3">

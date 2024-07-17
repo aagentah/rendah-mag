@@ -16,8 +16,12 @@ const postFields = `
   'tag': tag->{...},
   'slug': slug.current,
   'coverImage': image.asset->url,
-  'coverImageCaption': image.caption,
-  'coverImageFullImage': image.fullImage,
+  'coverImageNew': {
+    'url': image.asset->url,
+    'caption': image.caption,
+    'fullImage': image.fullImage,
+    'dimensions': image.asset->metadata.dimensions
+  },
   'authors': authors[] {
     'author': *[_id == ^._ref] [0] {
       ...,

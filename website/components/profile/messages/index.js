@@ -215,20 +215,7 @@ export default function ProfileDominion() {
           active={modalActive}
           closeIcon={setModalActive}
         >
-          <div className="pb4 pb5-md">
-            <Heading
-              /* Options */
-              htmlEntity="h3"
-              text="Profile & Billing"
-              color="white"
-              size="medium"
-              truncate={0}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-          <div className="pb3 pb5-md z9 relative">
+          <div className="pb4 z9 relative">
             <ProfileEdit />
           </div>
           <div className="z9 relative">

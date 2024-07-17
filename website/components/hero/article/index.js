@@ -25,6 +25,7 @@ const IconArrowRight = dynamic(() =>
 
 export default function HeroDefault({
   image,
+  coverImageNew,
   title,
   description,
   heroButtonText,
@@ -39,12 +40,10 @@ export default function HeroDefault({
 }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  let imageUrlWidth = 650;
+  let imageUrlWidth = 800;
 
   if (!app.deviceSize) return;
 
-  if (app.deviceSize === 'lg') imageUrlWidth = 1600;
-  if (app.deviceSize === 'xl') imageUrlWidth = 1800;
   const heroButtonIcon = <IconArrowRight color="black" size={16} />;
   let linkProps;
   let heroImage;
@@ -56,22 +55,7 @@ export default function HeroDefault({
     };
   }
 
-  heroImage = (
-    <Image
-      /* Options */
-      src={image && imageBuilder.image(image).auto('format').fit('clip').url()}
-      placeholder={null}
-      alt={title}
-      figcaption={null}
-      height={null}
-      width={null}
-      customClass={null}
-      priority={true}
-      onClick={null}
-      /* Children */
-      withLinkProps={linkProps}
-    />
-  );
+  heroImage = <Image coverImageNew={coverImageNew} />;
 
   return (
     <article
@@ -84,7 +68,7 @@ export default function HeroDefault({
       style={null}
     >
       {heroImage && <div className="hero__image">{heroImage}</div>}
-      {caption && (
+      {/* {caption && (
         <div className="relative">
           <figcaption className="absolute  bg-white  black  f7  lh-copy  pv2  ph3  bottom  right  mr3  nb3  shadow1  br3">
             <BlockContent
@@ -93,7 +77,7 @@ export default function HeroDefault({
             />
           </figcaption>
         </div>
-      )}
+      )} */}
     </article>
   );
 }

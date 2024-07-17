@@ -4,7 +4,7 @@ export default function ArticleLink({ text, url }) {
   return (
     <div className="flex  flex-wrap  pb3">
       <div className="col-6" />
-      <div className="col-24  col-12-md  pv3  flex  justify-center">
+      <div className="col-24  col-12-md  pv3">
         <Button
           /* Options */
           type="primary"
