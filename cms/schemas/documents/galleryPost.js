@@ -54,29 +54,10 @@ export default {
           type: "image",
           fields: [
             {
-              name: "resize",
-              title: "Resize",
-              type: "string",
-              options: {
-                list: [
-                  { title: "None", value: "none" },
-                  { title: "1080px", value: "1080" },
-                  { title: "1920px", value: "1920" },
-                ],
-                layout: "radio",
-              },
-            },
-            {
               name: "caption",
               title: "Source / Caption",
               type: "blockContent",
               required: "false",
-            },
-            {
-              name: "allowHighResDl",
-              title: "Allow High-res Download",
-              description: "High-res available for Dominion.",
-              type: "boolean",
             },
           ],
         },

@@ -68,16 +68,16 @@ export default function HeroDefault({
       style={null}
     >
       {heroImage && <div className="hero__image">{heroImage}</div>}
-      {/* {caption && (
+      {coverImageNew?.caption && (
         <div className="relative">
           <figcaption className="absolute  bg-white  black  f7  lh-copy  pv2  ph3  bottom  right  mr3  nb3  shadow1  br3">
             <BlockContent
-              blocks={caption}
+              blocks={coverImageNew?.caption}
               serializers={SANITY_BLOCK_SERIALIZERS}
             />
           </figcaption>
         </div>
-      )} */}
+      )}
     </article>
   );
 }

@@ -73,24 +73,7 @@ export default function ImageSection({ section, imageCount }) {
       >
         <LazyLoad once offset={250} height={360}>
           <figure>
-            <Image
-              /* Options */
-              src={imageBuilder
-                .image(section.asset)
-                .auto('format')
-                .fit('clip')
-                .url()}
-              placeholder={placeholder}
-              alt="This is the alt text."
-              figcaption={null}
-              height={null}
-              width={null}
-              customClass=""
-              skeleton={false}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
+            <Image coverImageNew={section} />
             {handleCaption()}
           </figure>
         </LazyLoad>

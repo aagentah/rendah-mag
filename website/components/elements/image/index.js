@@ -1,25 +1,36 @@
 import React, { useState } from 'react';
 import NextImage from 'next/image';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import ContentLoader from 'react-content-loader';
 import { imageBuilder } from '~/lib/sanity/requests';
 import WithLink from '../../utils/with-link';
-import BlockContent from '@sanity/block-content-to-react';
-import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
+
+const ImageSkeleton = (props) => (
+  <ContentLoader
+    speed={2}
+    width={props.width || 200}
+    height={props.height || 200}
+    viewBox={`0 0 ${props.width || 200} ${props.height || 200}`}
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
+    {...props}
+  >
+    <rect x="0" y="0" rx="5" ry="5" width="100%" height="100%" />
+  </ContentLoader>
+);
 
 const ImageComponent = (props) => {
   const {
     src,
-    placeholder,
     alt,
-    figcaption,
     height,
     width,
     customClass,
     priority,
     onClick,
-    withLinkProps,
     coverImageNew,
+    figcaption,
+    placeholder,
+    withLinkProps,
   } = props;
 
   const [loaded, setLoaded] = useState(false);
@@ -30,7 +41,7 @@ const ImageComponent = (props) => {
     const { url, caption, dimensions } = coverImageNew || {};
 
     if (!coverImageNew) {
-      return <Skeleton height={200} width={200} />;
+      return <ImageSkeleton height={200} width={200} />;
     }
 
     const aspectRatio = dimensions?.width / dimensions?.height;
@@ -38,40 +49,41 @@ const ImageComponent = (props) => {
     return (
       <div className={`coverImageNew`}>
         {!loaded && (
-          <Skeleton
-            className="skeleton"
+          <ImageSkeleton
             style={{ paddingTop: `${100 / aspectRatio}%` }}
             width="100%"
+            height="100%"
           />
         )}
         {url && (
-          <NextImage
-            src={
-              url &&
-              imageBuilder
-                .image(url)
-                .width(1920)
-                .auto('format')
-                .fit('clip')
-                .url()
-            }
-            alt={caption || 'Cover Image'}
-            width={dimensions?.width || 200}
-            height={dimensions?.height || 200}
-            layout="responsive"
-            onLoadingComplete={handleLoad}
-            className={`image ${loaded ? 'image--loaded' : ''}`}
-          />
-        )}
-        {caption && (
-          <div className="relative">
-            <figcaption className="absolute  bg-white  black  f7  lh-copy  pv2  ph3  bottom  right  mr3  nb3  shadow1  br3">
-              <BlockContent
-                blocks={caption}
-                serializers={SANITY_BLOCK_SERIALIZERS}
+          <>
+            <WithLink {...(withLinkProps && { withLinkProps })}>
+              <NextImage
+                src={
+                  url &&
+                  imageBuilder
+                    .image(url)
+                    .width(1920)
+                    .auto('format')
+                    .fit('clip')
+                    .url()
+                }
+                alt={caption || 'Cover Image'}
+                width={dimensions?.width || 200}
+                height={dimensions?.height || 200}
+                layout="responsive"
+                onLoadingComplete={handleLoad}
+                className={`image ${loaded ? 'image--loaded' : ''}`}
+                placeholder={placeholder || ''}
               />
-            </figcaption>
-          </div>
+            </WithLink>
+
+            {figcaption && (
+              <figcaption className={`image__figcaption`}>
+                {figcaption}
+              </figcaption>
+            )}
+          </>
         )}
       </div>
     );

@@ -375,8 +375,8 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                             .url()}
                           alt={image.alt || ''}
                           figcaption={null}
-                          height={null}
-                          width={null}
+                          height={300}
+                          width={800}
                           customClass="cp"
                           skeleton={false}
                           onClick={() => {

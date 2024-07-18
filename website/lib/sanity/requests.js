@@ -8,7 +8,15 @@ const postFields = `
   name,
   title,
   publishedAt,
-  body,
+  body[]{
+    ...,
+    _type == "image" => {
+      'url': asset->url,
+      'caption': caption,
+      'fullImage': fullImage,
+      'dimensions': asset->metadata.dimensions
+    }
+  },
   introduction,
   socialHandles,
   socialTagline,

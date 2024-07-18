@@ -71,6 +71,7 @@
     "preact-render-to-string": "5.2.3",
     "raw-body": "2.4.2",
     "react": "npm:@preact/compat@17.1.1",
+    "react-content-loader": "^7.0.2",
     "react-dom": "npm:@preact/compat@17.1.1",
     "react-dropzone": "11.0.3",
     "react-facebook": "8.1.4",
