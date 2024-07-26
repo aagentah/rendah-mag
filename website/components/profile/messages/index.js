@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import NProgress from 'nprogress';
-import { FaPaperclip, FaCog } from 'react-icons/fa';
+import { FaCog } from 'react-icons/fa';
+import zenscroll from 'zenscroll';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -10,7 +11,7 @@ import CardMessage from '~/components/card/message';
 
 import { useUser } from '~/lib/hooks';
 
-import { getLastThreeDominionItems } from '~/lib/sanity/requests';
+import { getDominionItemsSince } from '~/lib/sanity/requests';
 
 const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
 
@@ -25,42 +26,25 @@ const ProfileEdit = dynamic(() => import('~/components/profile/edit'));
 const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
 
 export default function ProfileDominion() {
-  const [user, { loading, mutate, error }] = useUser();
+  const [user] = useUser();
   const [messages, setMessages] = useState([]);
   const [messagesLength, setMessagesLength] = useState(9);
-  const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
-  const handleAudioPlay = (playerRef) => setCurrentAudioSelected(playerRef);
   const [articleActive, setArticleActive] = useState(false);
   const [modalActive, setModalActive] = useState(false);
-
   const [cardsShow, setCardsShow] = useState(true);
-  const [showAll, setShowAll] = useState(false);
+
+  zenscroll.setup(300, 15);
 
   const startProgress = () => {
     NProgress.start();
     setTimeout(() => NProgress.done(), 750);
   };
 
-  const buttonIconArrowLeft = <IconArrowLeft color="white" size={16} />;
-
   const apply = (i) => {
     setArticleActive(i);
     setCardsShow(false);
+    zenscroll.toY(0);
   };
-
-  // Fetch messages
-  useEffect(() => {
-    const action = async () => {
-      const data = await getLastThreeDominionItems();
-
-      if (data) {
-        setMessages(data);
-        setMessagesLength(data?.length);
-      }
-    };
-
-    action();
-  }, [showAll]);
 
   const renderGhostCards = () => {
     const count = 9 - messages?.length;
@@ -83,11 +67,29 @@ export default function ProfileDominion() {
   };
 
   const backButton = () => {
+    zenscroll.toY(0);
+
     setArticleActive(null);
     setCardsShow(true);
   };
 
   if (user?.isDominion) {
+    // Fetch messages
+    useEffect(() => {
+      const action = async () => {
+        const data = await getDominionItemsSince(user);
+
+        console.log('data', data);
+
+        if (data) {
+          setMessages(data);
+          setMessagesLength(data?.length);
+        }
+      };
+
+      action();
+    }, []);
+
     return (
       <>
         <section>
@@ -145,7 +147,7 @@ export default function ProfileDominion() {
                 </div>
               </div>
 
-              {messages?.length > 9 && (
+              {/* {messages?.length > 9 && (
                 <div
                   className="flex  justify-center"
                   onClick={() => {
@@ -154,7 +156,6 @@ export default function ProfileDominion() {
                   }}
                 >
                   <Button
-                    /* Options */
                     type="primary"
                     size="small"
                     text="Load more"
@@ -167,7 +168,6 @@ export default function ProfileDominion() {
                     disabled={showAll || messages?.length <= 12}
                     skeleton={false}
                     onClick={null}
-                    /* Children */
                     withLinkProps={{
                       type: 'form',
                       url: null,
@@ -176,7 +176,7 @@ export default function ProfileDominion() {
                     }}
                   />
                 </div>
-              )}
+              )} */}
             </div>
 
             <section className="">

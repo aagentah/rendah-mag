@@ -1,4 +1,5 @@
 import sanityImage from '@sanity/image-url';
+import { subMonths } from 'date-fns';
 
 import client, { previewClient } from './config';
 import dateTodayISO from '~/functions/dateTodayISO';
@@ -575,11 +576,22 @@ export async function getLatestNewsletterCypher(preview) {
   return results;
 }
 
-export async function getLastThreeDominionItems(preview) {
+export async function getDominionItemsSince(user, preview) {
   const curClient = getClient(preview);
 
+  const dominionSinceDate = user.dominionSince;
+
+  // Extract the year from the dominionSinceDate and create the start of the year date
+  const year = new Date(dominionSinceDate).getFullYear();
+  const startOfYearDate = new Date(`${year}-01-01`).toISOString();
+
+  // Set the start date to January 1, 2024
+  const startDate2024 = new Date('2024-01-01').toISOString();
+
+  console.log('startOfYearDate', startOfYearDate);
+
   const results = await curClient.fetch(
-    `*[_type == "dominionItem"] | order(activeFrom desc) [0...9] {
+    `*[_type == "dominionItem" && activeFrom >= $startOfYearDate && activeFrom >= $startDate2024] | order(activeFrom desc) {
       ...,
       "slug": slug.current,
       "attachments": attachments[] {
@@ -588,7 +600,8 @@ export async function getLastThreeDominionItems(preview) {
         "url": file.asset->url,
         "mimeType": file.asset->mimeType,
       },
-    }`
+    }`,
+    { startOfYearDate, startDate2024 }
   );
 
   return results;

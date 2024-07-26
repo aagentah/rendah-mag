@@ -68,8 +68,10 @@ export default {
               title: "File",
               type: "file",
               options: {
-                accept: "any",
+                accept:
+                  ".jpg,.jpeg,.png,.gif,.webp,.bmp,.tiff,.svg,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.wav,.mp3,.mp4,.avi,.mov,.mkv,.flv,.webm",
               },
+              hidden: ({ parent }) => !!parent?.url,
             },
             {
               name: "url",
@@ -79,6 +81,7 @@ export default {
                 Rule.uri({
                   scheme: ["http", "https"],
                 }),
+              hidden: ({ parent }) => !!parent?.file,
             },
           ],
           preview: {

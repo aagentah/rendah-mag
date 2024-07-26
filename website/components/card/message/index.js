@@ -101,17 +101,20 @@ export default function CardBlog({ post, handleClick, i }) {
             {image}
 
             <span className="z3 absolute bottom left ml3 mb3 white">
-              <div className="flex">
-                {post?.attachments?.length &&
-                  post.attachments.map((attachment, index) => (
+              {post?.attachments?.length && (
+                <div className="flex align-center">
+                  {'['}
+                  {post.attachments.map((attachment, index) => (
                     <span
                       key={index}
-                      className="pa2 pa0-md pr2-md bg-almost-black bg-transparent-md"
+                      className="pa2 pa0-md ph1-md bg-almost-black bg-transparent-md"
                     >
                       {getIconByMimeType(attachment.mimeType)}
                     </span>
                   ))}
-              </div>
+                  {']'}
+                </div>
+              )}
             </span>
           </div>
         )}

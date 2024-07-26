@@ -2,3 +2,8 @@
   object-fit: cover;
   object-position: center;
 }
+
+.object-fit-container {
+  object-fit: contain;
+  object-position: center;
+}

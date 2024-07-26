@@ -30,9 +30,10 @@ function myPortableTextComponents() {
         }
 
         return (
-          <div className="bg-dark-grey ph3 pv4 w-100 mv4">
+          <div className="bg-dark-grey ph4 pv4 w-100 mv4">
             <img
-              className="mw6 mla mra ph4 ph5-md"
+              style={{ maxHeight: '330px', maxWidth: '500px' }}
+              className="w-100 mla mra object-fit-container"
               src={imageBuilder.image(value?.node?.asset).auto('format').url()}
             />
           </div>
@@ -81,25 +82,39 @@ export default function CarouselItemSection({ message, backButton }) {
               withLinkProps={null}
             />
           </div>
-          <div className="col-12 flex justify-end pb1">
+          <div className="col-12 flex align-center justify-end pb1">
             {message?.attachments?.length && (
-              <Button
-                type="secondary"
-                size="small"
-                text="Access attachments"
-                color="white"
-                fluid={false}
-                icon={message.attachments?.map((attachment, index) =>
-                  getIconByMimeType(attachment.mimeType)
+              <>
+                <div className="mr3">
+                  <Button
+                    type="secondary"
+                    size="small"
+                    text="Access attachments"
+                    color="white"
+                    fluid={false}
+                    icon={null}
+                    iconFloat="right"
+                    inverted={true}
+                    loading={false}
+                    disabled={!message.attachments?.length}
+                    skeleton={false}
+                    onClick={toggleModal}
+                    withLinkProps={null}
+                  />
+                </div>
+
+                {message.attachments?.length && (
+                  <div className="white flex align-center">
+                    {'['}
+                    {message.attachments?.map((attachment, index) => (
+                      <div className="white ph1">
+                        {getIconByMimeType(attachment.mimeType)}
+                      </div>
+                    ))}
+                    {']'}
+                  </div>
                 )}
-                iconFloat="right"
-                inverted={true}
-                loading={false}
-                disabled={!message.attachments?.length}
-                skeleton={false}
-                onClick={toggleModal}
-                withLinkProps={null}
-              />
+              </>
             )}
           </div>
         </div>

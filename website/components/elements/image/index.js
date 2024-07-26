@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
 import NextImage from 'next/image';
-import ContentLoader from 'react-content-loader';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 import { imageBuilder } from '~/lib/sanity/requests';
 import WithLink from '../../utils/with-link';
-
-const ImageSkeleton = (props) => (
-  <ContentLoader
-    speed={2}
-    width={props.width || 200}
-    height={props.height || 200}
-    viewBox={`0 0 ${props.width || 200} ${props.height || 200}`}
-    backgroundColor="#f3f3f3"
-    foregroundColor="#ecebeb"
-    {...props}
-  >
-    <rect x="0" y="0" rx="5" ry="5" width="100%" height="100%" />
-  </ContentLoader>
-);
 
 const ImageComponent = (props) => {
   const {
@@ -27,6 +15,7 @@ const ImageComponent = (props) => {
     customClass,
     priority,
     onClick,
+    //
     coverImageNew,
     figcaption,
     placeholder,
@@ -41,7 +30,7 @@ const ImageComponent = (props) => {
     const { url, caption, dimensions } = coverImageNew || {};
 
     if (!coverImageNew) {
-      return <ImageSkeleton height={200} width={200} />;
+      return <Skeleton height={200} width={200} />;
     }
 
     const aspectRatio = dimensions?.width / dimensions?.height;
@@ -49,10 +38,10 @@ const ImageComponent = (props) => {
     return (
       <div className={`coverImageNew`}>
         {!loaded && (
-          <ImageSkeleton
+          <Skeleton
+            className="skeleton"
             style={{ paddingTop: `${100 / aspectRatio}%` }}
             width="100%"
-            height="100%"
           />
         )}
         {url && (
