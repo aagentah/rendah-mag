@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import NProgress from 'nprogress';
-import { FaCog } from 'react-icons/fa';
+import { FaCog, FaBook } from 'react-icons/fa';
 import zenscroll from 'zenscroll';
 
 import Heading from '~/components/elements/heading';
@@ -25,12 +25,15 @@ const ProfileEdit = dynamic(() => import('~/components/profile/edit'));
 
 const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
 
+const ProfilePrints = dynamic(() => import('~/components/profile/prints'));
+
 export default function ProfileDominion() {
   const [user] = useUser();
   const [messages, setMessages] = useState([]);
   const [messagesLength, setMessagesLength] = useState(9);
   const [articleActive, setArticleActive] = useState(false);
   const [modalActive, setModalActive] = useState(false);
+  const [modalPrintsActive, setModalPrintsActive] = useState(false);
   const [cardsShow, setCardsShow] = useState(true);
 
   zenscroll.setup(300, 15);
@@ -124,11 +127,17 @@ export default function ProfileDominion() {
                     </p>
                   </div>
 
-                  <div
-                    onClick={() => setModalActive(true)}
-                    className="absolute top right white cp mr3"
-                  >
-                    <FaCog />
+                  <div className="flex align-center absolute top right white mr3">
+                    <div
+                      onClick={() => setModalPrintsActive(true)}
+                      className="cp mr2 pr1"
+                    >
+                      <FaBook />
+                    </div>
+
+                    <div onClick={() => setModalActive(true)} className="cp">
+                      <FaCog />
+                    </div>
                   </div>
                 </div>
 
@@ -220,6 +229,17 @@ export default function ProfileDominion() {
           </div>
           <div className="z9 relative">
             <ProfileBilling />
+          </div>
+        </Modal>
+
+        <Modal
+          /* Options */
+          size="large"
+          active={modalPrintsActive}
+          closeIcon={setModalPrintsActive}
+        >
+          <div className="pb4 z9 relative">
+            <ProfilePrints />
           </div>
         </Modal>
       </>

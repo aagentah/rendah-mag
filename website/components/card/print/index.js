@@ -7,9 +7,9 @@ import { useApp } from '~/context-provider/app';
 export default function CardPrint({ post, handleClick, i }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  const imageHeight = app?.deviceSize === 'md' ? 300 : 260;
-  const imageUrlHeight = app?.deviceSize === 'md' ? 260 : 260;
+  const imageUrlWidth = app?.deviceSize === 'md' ? 200 : 200;
+  const imageHeight = app?.deviceSize === 'md' ? 200 : 200;
+  const imageUrlHeight = app?.deviceSize === 'md' ? 200 : 200;
 
   const image = (
     <Image
@@ -55,7 +55,7 @@ export default function CardPrint({ post, handleClick, i }) {
   return (
     <article className="card  card--print">
       <div
-        className="card__image"
+        className="card__image pb3"
         onClick={() => handleClick && handleClick(i)}
       >
         {image}
@@ -69,11 +69,11 @@ export default function CardPrint({ post, handleClick, i }) {
           {heading}
         </div>
 
-        <div className="card__button  pt2  pb3">
+        <div className="card__button  pt1  pb3">
           <Button
             /* Options */
             type="primary"
-            size="small"
+            size="x-small"
             text="Download"
             color="black"
             fluid={false}

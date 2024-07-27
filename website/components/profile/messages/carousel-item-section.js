@@ -82,14 +82,15 @@ export default function CarouselItemSection({ message, backButton }) {
               withLinkProps={null}
             />
           </div>
-          <div className="col-12 flex align-center justify-end pb1">
+          <div className="col-12 flex align-center justify-end pb1 white">
             {message?.attachments?.length && (
-              <>
-                <div className="mr3">
+              <div className="cp flex" onClick={toggleModal}>
+                <div className="pr1">{'['}</div>
+                <div className="flex align-center pr1">
                   <Button
                     type="secondary"
                     size="small"
-                    text="Access attachments"
+                    text="Attachments"
                     color="white"
                     fluid={false}
                     icon={null}
@@ -98,14 +99,13 @@ export default function CarouselItemSection({ message, backButton }) {
                     loading={false}
                     disabled={!message.attachments?.length}
                     skeleton={false}
-                    onClick={toggleModal}
+                    onClick={null}
                     withLinkProps={null}
                   />
                 </div>
 
                 {message.attachments?.length && (
                   <div className="white flex align-center">
-                    {'['}
                     {message.attachments?.map((attachment, index) => (
                       <div className="white ph1">
                         {getIconByMimeType(attachment.mimeType)}
@@ -114,13 +114,13 @@ export default function CarouselItemSection({ message, backButton }) {
                     {']'}
                   </div>
                 )}
-              </>
+              </div>
             )}
           </div>
         </div>
       </div>
 
-      <div className="col-24 col-12-md mla mra">
+      <div className="col-24 col-12-md mla mra ph4 ph0-md">
         <div className="pv3">
           <Heading
             /* Options */
