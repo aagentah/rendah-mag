@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import zenscroll from 'zenscroll';
 
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Layout from '~/components/layout';
-import Tabs from '~/components/tabs';
-import Heading from '~/components/elements/heading';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
@@ -103,22 +100,6 @@ export default function Profile({ siteConfig }) {
     // redirect user to login if not authenticated
     if ((!loading && !user) || error) Router.replace('/login');
   }, [user, loading, error]);
-
-  const handleToggle = (visibleTab, current) => {
-    // Handles tab scroll on mobile
-    if (app.deviceSize === 'md') {
-      zenscroll.setup(300, 15);
-      zenscroll.toY(0);
-    }
-  };
-
-  const handleSelected = () => {
-    if (tabQuery) {
-      return tabQuery;
-    }
-
-    return app.deviceSize === 'md' ? null : 'dashboard';
-  };
 
   if (user) {
     return (

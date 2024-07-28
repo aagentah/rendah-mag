@@ -38,15 +38,25 @@ export default function ProfileDominion() {
 
   zenscroll.setup(300, 15);
 
-  const startProgress = () => {
-    NProgress.start();
-    setTimeout(() => NProgress.done(), 750);
-  };
-
   const apply = (i) => {
     setArticleActive(i);
     setCardsShow(false);
-    zenscroll.toY(0);
+
+    NProgress.start();
+    setTimeout(() => NProgress.done(), 300);
+
+    setTimeout(() => {
+      zenscroll.toY(0);
+    }, 100);
+  };
+
+  const backButton = () => {
+    setArticleActive(null);
+    setCardsShow(true);
+
+    setTimeout(() => {
+      zenscroll.toY(0);
+    }, 100);
   };
 
   const renderGhostCards = () => {
@@ -67,13 +77,6 @@ export default function ProfileDominion() {
     }
 
     return false;
-  };
-
-  const backButton = () => {
-    zenscroll.toY(0);
-
-    setArticleActive(null);
-    setCardsShow(true);
   };
 
   if (user?.isDominion) {
@@ -204,7 +207,6 @@ export default function ProfileDominion() {
                     >
                       {articleActive === i && (
                         <>
-                          {startProgress()}
                           <CarouselItemSection
                             message={item}
                             backButton={backButton}

@@ -4,6 +4,8 @@ import { structureTool } from "sanity/structure"; // Updated import
 import { visionTool } from "@sanity/vision";
 import schemas from "./schemas/schema";
 
+import { PreviewLink } from "./actions/PreviewLink"; // Adjust the import path as necessary
+
 const deskStructure = (S) =>
   S.list()
     .title("Content")
@@ -98,5 +100,13 @@ export default defineConfig({
   plugins: [structureTool({ structure: deskStructure }), visionTool()], // Updated plugin usage
   schema: {
     types: schemas,
+  },
+  document: {
+    actions: (prev, context) => {
+      if (context.schemaType === "post" || context.schemaType === "creations") {
+        return [...prev, PreviewLink];
+      }
+      return prev;
+    },
   },
 });
