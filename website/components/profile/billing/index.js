@@ -121,144 +121,13 @@ export default function ProfileOrders() {
             />
           </div>
 
-          <form className="w-100  mb4" onSubmit={handleEditProfile}>
-            <div className="pb3">
-              <Heading
-                /* Options */
-                htmlEntity="h2"
-                text="Shipping & Billing Address"
-                color="white"
-                size="small"
-                truncate={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-
-            <div className="flex  flex-wrap mb4">
-              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                <div className="pv2">
-                  <Input
-                    /* Options */
-                    type="text"
-                    label="Address Line 1"
-                    name="line1"
-                    value={user?.address?.line1 || ''}
-                    icon={null}
-                    required
-                    disabled={false}
-                    readOnly={false}
-                  />
-                </div>
-              </div>
-              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                <div className="pv2">
-                  <Input
-                    /* Options */
-                    type="text"
-                    label="Address Line 2"
-                    name="line2"
-                    value={user?.address?.line2 || ''}
-                    icon={null}
-                    required={false}
-                    disabled={false}
-                    readOnly={false}
-                  />
-                </div>
-              </div>
-              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                <div className="pv2">
-                  <Input
-                    /* Options */
-                    type="text"
-                    label="City"
-                    name="city"
-                    value={user?.address?.city || ''}
-                    icon={null}
-                    required
-                    disabled={false}
-                    readOnly={false}
-                  />
-                </div>
-              </div>
-              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                <div className="pv2">
-                  <Input
-                    /* Options */
-                    type="text"
-                    label="Postal Code"
-                    name="postal_code"
-                    value={user?.address?.postal_code || ''}
-                    icon={null}
-                    required
-                    disabled={false}
-                    readOnly={false}
-                  />
-                </div>
-              </div>
-              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                <div className="pv2">
-                  <Input
-                    /* Options */
-                    type="text"
-                    label="State/County"
-                    name="state"
-                    value={user?.address?.state || ''}
-                    icon={null}
-                    required
-                    disabled={false}
-                    readOnly={false}
-                  />
-                </div>
-              </div>
-              <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
-                <div className="pv2">
-                  <Input
-                    /* Options */
-                    type="text"
-                    label="Country"
-                    name="country"
-                    value={user?.address?.country || ''}
-                    icon={null}
-                    required
-                    disabled={false}
-                    readOnly={false}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex">
-              <Button
-                /* Options */
-                type="primary"
-                size="small"
-                text="Update Address"
-                color="white"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted={true}
-                loading={updateButtonLoading}
-                disabled={null}
-                disabled={!stripe}
-                skeleton={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={{
-                  type: 'form',
-                }}
-              />
-            </div>
-          </form>
-
-          {customer ? (
-            <div className="w-100  mb4  pt3  pt0-md">
-              <div className="profile_heading">
+          <div className="bg-dark-grey pa4 br3 mb4">
+            <form className="w-100" onSubmit={handleEditProfile}>
+              <div className="pb3">
                 <Heading
                   /* Options */
                   htmlEntity="h2"
-                  text="Payment Method & Invoices"
+                  text="Shipping Address"
                   color="white"
                   size="small"
                   truncate={null}
@@ -267,46 +136,183 @@ export default function ProfileOrders() {
                 />
               </div>
 
-              <div className="pa3  pa4-md  mb4  ba  bc-white  br4  flex  flex-wrap">
-                <a
-                  className="underline  f6  white"
-                  target="_blank"
-                  href={customer?.billingPortal?.url}
-                >
-                  Update Payment Method & View Invoices
-                </a>
+              <div className="flex  flex-wrap mb4">
+                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                  <div className="pv2">
+                    <Input
+                      /* Options */
+                      type="text"
+                      label="Address Line 1"
+                      name="line1"
+                      value={user?.address?.line1 || ''}
+                      icon={null}
+                      required
+                      disabled={false}
+                      readOnly={false}
+                    />
+                  </div>
+                </div>
+                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                  <div className="pv2">
+                    <Input
+                      /* Options */
+                      type="text"
+                      label="Address Line 2"
+                      name="line2"
+                      value={user?.address?.line2 || ''}
+                      icon={null}
+                      required={false}
+                      disabled={false}
+                      readOnly={false}
+                    />
+                  </div>
+                </div>
+                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                  <div className="pv2">
+                    <Input
+                      /* Options */
+                      type="text"
+                      label="City"
+                      name="city"
+                      value={user?.address?.city || ''}
+                      icon={null}
+                      required
+                      disabled={false}
+                      readOnly={false}
+                    />
+                  </div>
+                </div>
+                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                  <div className="pv2">
+                    <Input
+                      /* Options */
+                      type="text"
+                      label="Postal Code"
+                      name="postal_code"
+                      value={user?.address?.postal_code || ''}
+                      icon={null}
+                      required
+                      disabled={false}
+                      readOnly={false}
+                    />
+                  </div>
+                </div>
+                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                  <div className="pv2">
+                    <Input
+                      /* Options */
+                      type="text"
+                      label="State/County"
+                      name="state"
+                      value={user?.address?.state || ''}
+                      icon={null}
+                      required
+                      disabled={false}
+                      readOnly={false}
+                    />
+                  </div>
+                </div>
+                <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
+                  <div className="pv2">
+                    <Input
+                      /* Options */
+                      type="text"
+                      label="Country"
+                      name="country"
+                      value={user?.address?.country || ''}
+                      icon={null}
+                      required
+                      disabled={false}
+                      readOnly={false}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex">
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="small"
+                  text="Update Address"
+                  color="white"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={true}
+                  loading={updateButtonLoading}
+                  disabled={null}
+                  disabled={!stripe}
+                  skeleton={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'form',
+                  }}
+                />
+              </div>
+            </form>
+          </div>
+
+          {customer ? (
+            <div className="bg-dark-grey pa4 br3 mb4">
+              <div className="w-100  pt3  pt0-md">
+                <div className="profile_heading">
+                  <Heading
+                    /* Options */
+                    htmlEntity="h2"
+                    text="Payment Method & Invoices"
+                    color="white"
+                    size="small"
+                    truncate={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
+
+                <div className="pa3  pa4-md  ba  bc-white  br4  flex  flex-wrap">
+                  <a
+                    className="underline  f6  white"
+                    target="_blank"
+                    href={customer?.billingPortal?.url}
+                  >
+                    Update Payment Method & View Invoices
+                  </a>
+                </div>
               </div>
             </div>
           ) : null}
 
-          <section className="w-100  mb4">
-            <div className="pb3">
-              <Heading
-                /* Options */
-                htmlEntity="h2"
-                text="Pause/Cancel Subscription"
-                color="white"
-                size="small"
-                truncate={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
+          <div className="bg-dark-grey pa4 br3 mb4">
+            <section className="w-100">
+              <div className="pb3">
+                <Heading
+                  /* Options */
+                  htmlEntity="h2"
+                  text="Pause/Cancel Subscription"
+                  color="white"
+                  size="small"
+                  truncate={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
 
-            <div className="pa3  pa4-md  mb4  ba  bc-white  br4">
-              <p className="t-secondary  f6  lh-copy  white">
-                If you'd like to pause or cancel your Dominion Subscription,
-                please email us at{' '}
-                <a
-                  className="white  underline"
-                  href="mailto:info@rendahmag.com"
-                >
-                  info@rendahmag.com
-                </a>
-                .
-              </p>
-            </div>
-          </section>
+              <div className="pa3  pa4-md  ba  bc-white  br4">
+                <p className="t-secondary  f6  lh-copy  white">
+                  If you'd like to pause or cancel your Dominion Subscription,
+                  please email us at{' '}
+                  <a
+                    className="white  underline"
+                    href="mailto:info@rendahmag.com"
+                  >
+                    info@rendahmag.com
+                  </a>
+                  .
+                </p>
+              </div>
+            </section>
+          </div>
         </div>
       </section>
     );

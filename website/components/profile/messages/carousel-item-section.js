@@ -30,7 +30,7 @@ function myPortableTextComponents() {
         }
 
         return (
-          <div className="bg-dark-grey ph4 pv4 w-100 mv4">
+          <div className="bg-dark-grey ph4 pv4 w-100 mv4 br3">
             <img
               style={{ maxHeight: '330px', maxWidth: '500px' }}
               className="w-100 mla mra object-fit-container"

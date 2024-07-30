@@ -58,12 +58,12 @@
   transform: translateY(-50%);
   background: var(--white);
   margin: 0 auto;
-  padding: 40px;
   overflow: auto;
   max-height: 80vh;
 
   @extend .br4;
   @extend .shadow2;
+  @extend .pa4;
 }
 
 .modal__close {

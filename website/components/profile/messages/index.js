@@ -108,7 +108,7 @@ export default function ProfileDominion() {
             >
               <div className="container mla mra">
                 <div className="relative">
-                  <div className="pb4 mb4 bb bc-white">
+                  <div className="pb4 mb4 bb bc-white tac-md mla-md mra-md">
                     <Heading
                       /* Options */
                       htmlEntity="h1"
@@ -121,8 +121,8 @@ export default function ProfileDominion() {
                     />
                   </div>
 
-                  <div className="pb4  mb2">
-                    <p className="white  f6  lh-copy  measure-wide">
+                  <div className="pb4 mb4">
+                    <p className="white  f6  lh-copy  measure-wide tac-md mla-md mra-md">
                       Hello {user?.name}, welcome. Here you can access all
                       exclusive content available on your subscription. We add
                       new content here frequently month-to-month, make sure to
@@ -226,7 +226,7 @@ export default function ProfileDominion() {
           active={modalActive}
           closeIcon={setModalActive}
         >
-          <div className="pb4 z9 relative">
+          <div className="z9 relative">
             <ProfileEdit />
           </div>
           <div className="z9 relative">
