@@ -106,6 +106,7 @@ export default async (req, res) => {
     return res.status(200).json({ error: '' });
   } catch (error) {
     console.error('Error in /api/stripe/payment-succeeded', error);
+
     return res.status(500).json({ error });
   }
 };
