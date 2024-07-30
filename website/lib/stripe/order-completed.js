@@ -3,7 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import formatHttpError from '~/functions/formatHttpError';
 import orderEmail from '~/lib/emails/order-notification';
 
-export default async ({ session }) => {
+export default async ({ session, products }) => {
   try {
     const { customer_details } = session;
     const { email } = customer_details;
@@ -19,8 +19,8 @@ export default async ({ session }) => {
         status: 'subscribed',
         merge_fields: {
           FNAME: firstName,
-          LNAME: lastName
-        }
+          LNAME: lastName,
+        },
       };
 
       const addOrUpdateMember = async () => {
@@ -29,11 +29,10 @@ export default async ({ session }) => {
           {
             body: JSON.stringify({ email, data }),
             headers: { 'Content-Type': 'application/json' },
-            method: 'POST'
+            method: 'POST',
           }
         );
 
-        // Error
         if (!response.ok) {
           throw new Error(await formatHttpError(response));
         }
@@ -47,11 +46,10 @@ export default async ({ session }) => {
           {
             body: JSON.stringify({ email, tags }),
             headers: { 'Content-Type': 'application/json' },
-            method: 'POST'
+            method: 'POST',
           }
         );
 
-        // Error
         if (!response.ok) {
           throw new Error(await formatHttpError(response));
         }
@@ -61,20 +59,19 @@ export default async ({ session }) => {
       await addMembertags();
     };
 
-    // Add or update mailchimp user
     await addUpdateMailchimpUser();
-    await orderEmail({ email, name });
+    await orderEmail({ email, name, products, session });
 
     return { error: '' };
   } catch (error) {
-    // Handle catch
     console.error(
       `Error in stripe/order-completed: ${error.message || error.toString()}`
     );
 
     return {
-      error: `Error in stripe/order-completed: ${error.message ||
-        error.toString()}`
+      error: `Error in stripe/order-completed: ${
+        error.message || error.toString()
+      }`,
     };
   }
 };

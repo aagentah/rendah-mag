@@ -9,7 +9,7 @@ import subscriptionCreated from '~/lib/stripe/subscription-created';
 import subscriptionCancelled from '~/lib/stripe/subscription-cancelled';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2020-08-27'
+  apiVersion: '2020-08-27',
 });
 
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
@@ -41,11 +41,10 @@ export default async (req, res) => {
         {
           body: JSON.stringify({ stripeCustomerId: session.customer }),
           headers: { 'Content-Type': 'application/json' },
-          method: 'POST'
+          method: 'POST',
         }
       );
 
-      // Error
       if (!response.ok) {
         throw new Error(await formatHttpError(response));
       }
@@ -64,7 +63,19 @@ export default async (req, res) => {
         const { address } = shipping;
         const { line1, line2, city, postal_code, state, country } = address;
 
-        await orderCompleted({ session });
+        const lineItems = await stripe.checkout.sessions.listLineItems(
+          session.id,
+          { limit: 100 }
+        );
+
+        const products = lineItems.data.map((item) => ({
+          name: item.description,
+          quantity: item.quantity,
+        }));
+
+        console.log('session, products', session, products);
+
+        await orderCompleted({ session, products });
 
         if (session.mode === 'subscription') {
           await subscriptionCreated({
@@ -77,31 +88,23 @@ export default async (req, res) => {
               city: address?.city ? city : '',
               postal_code: address?.postal_code ? postal_code : '',
               state: address?.state ? state : '',
-              country: address?.country ? country : ''
-            }
+              country: address?.country ? country : '',
+            },
           });
         }
 
         break;
       case 'subscription_schedule.canceled':
-        await getEmail();
-        await subscriptionCancelled({ email });
-
-        break;
       case 'customer.subscription.deleted':
         await getEmail();
         await subscriptionCancelled({ email });
-
         break;
       default:
-
-      // console.log(`Unhandled event type ${event.type}`);
+        break;
     }
 
-    // Success
     return res.status(200).json({ error: '' });
   } catch (error) {
-    // Handle catch
     console.error('Error in /api/stripe/payment-succeeded', error);
     return res.status(500).json({ error });
   }
@@ -109,6 +112,6 @@ export default async (req, res) => {
 
 export const config = {
   api: {
-    bodyParser: false
-  }
+    bodyParser: false,
+  },
 };
