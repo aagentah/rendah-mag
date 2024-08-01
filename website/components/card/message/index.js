@@ -97,25 +97,27 @@ export default function CardBlog({ post, handleClick, i }) {
         onClick={() => handleClick && handleClick(i)}
       >
         {image && (
-          <div className="card__image relative">
+          <div className="card__image">
             {image}
 
-            <span className="z3 absolute bottom left ml3 mb3 white">
-              {post?.attachments?.length && (
-                <div className="flex align-center">
-                  {'['}
-                  {post.attachments.map((attachment, index) => (
-                    <span
-                      key={index}
-                      className="pa2 pa0-md ph1-md bg-almost-black bg-transparent-md"
-                    >
-                      {getIconByMimeType(attachment.mimeType)}
-                    </span>
-                  ))}
-                  {']'}
-                </div>
-              )}
-            </span>
+            <div className="relative">
+              <span className="z0 absolute bottom left ml3 mb3 white">
+                {post?.attachments?.length && (
+                  <div className="flex align-center relative">
+                    {'['}
+                    {post.attachments.map((attachment, index) => (
+                      <span
+                        key={index}
+                        className="pa2 pa0-md ph1-md bg-almost-black bg-transparent-md"
+                      >
+                        {getIconByMimeType(attachment.mimeType)}
+                      </span>
+                    ))}
+                    {']'}
+                  </div>
+                )}
+              </span>
+            </div>
           </div>
         )}
 

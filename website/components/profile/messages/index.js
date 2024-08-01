@@ -4,6 +4,8 @@ import dynamic from 'next/dynamic';
 import NProgress from 'nprogress';
 import { FaCog, FaBook } from 'react-icons/fa';
 import zenscroll from 'zenscroll';
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -108,7 +110,7 @@ export default function ProfileDominion() {
             >
               <div className="container mla mra">
                 <div className="relative">
-                  <div className="pb4 mb4 bb bc-white tac-md mla-md mra-md">
+                  <div className="pb4 mb4 bb bc-white tac mla mra">
                     <Heading
                       /* Options */
                       htmlEntity="h1"
@@ -121,27 +123,36 @@ export default function ProfileDominion() {
                     />
                   </div>
 
-                  <div className="pb4 mb4">
-                    <p className="white  f6  lh-copy  measure-wide tac-md mla-md mra-md">
-                      Hello {user?.name}, welcome. Here you can access all
-                      exclusive content available on your subscription. We add
-                      new content here frequently month-to-month, make sure to
-                      keep an eye here for cool stuff.
-                    </p>
-                  </div>
-
-                  <div className="flex align-center absolute top right white mr3">
+                  <div className="flex align-center justify-center white pb4">
                     <div
+                      data-tooltip-id="my-tooltip"
+                      data-tooltip-content="Prints"
                       onClick={() => setModalPrintsActive(true)}
                       className="cp mr2 pr1"
                     >
                       <FaBook />
                     </div>
 
-                    <div onClick={() => setModalActive(true)} className="cp">
+                    <div
+                      data-tooltip-id="my-tooltip"
+                      data-tooltip-content="Profile & Settings"
+                      onClick={() => setModalActive(true)}
+                      className="cp"
+                    >
                       <FaCog />
                     </div>
+
+                    <Tooltip id="my-tooltip" />
                   </div>
+
+                  {/* <div className="pb4 mb4">
+                    <p className="white  f6  lh-copy  measure-wide tac mla mra">
+                      Hello {user?.name}, welcome. Here you can access all
+                      exclusive content available on your subscription. We add
+                      new content here frequently month-to-month, make sure to
+                      keep an eye here for cool stuff.
+                    </p>
+                  </div> */}
                 </div>
 
                 <div className="flex  flex-wrap  pb5">

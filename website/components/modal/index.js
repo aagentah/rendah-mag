@@ -16,7 +16,9 @@ export default function Modal(props) {
   } = props;
 
   return (
-    <section className={`modal  modal--${size}  ${active && 'active'}`}>
+    <section
+      className={`modal relative  modal--${size}  ${active && 'active'}`}
+    >
       <div className="modal__dialog">
         {closeIcon && (
           <div
@@ -26,7 +28,7 @@ export default function Modal(props) {
             <FaTimes />
           </div>
         )}
-        {children}
+        <div className="z1 relative">{children}</div>
       </div>
     </section>
   );

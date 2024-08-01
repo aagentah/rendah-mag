@@ -87,6 +87,7 @@
     "react-spotify-player": "1.0.4",
     "react-ssr-prepass": "npm:preact-ssr-prepass@1.2.0",
     "react-toastify": "6.0.8",
+    "react-tooltip": "^5.27.1",
     "react-truncate-markup": "5.1.2",
     "react-youtube": "7.11.3",
     "request": "2.88.2",
