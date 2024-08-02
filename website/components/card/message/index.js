@@ -54,7 +54,7 @@ export default function CardBlog({ post, handleClick, i }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass="shadow2"
+      customClass="shadow2 br3"
       skeleton={!post}
       onClick={null}
       /* Children */
