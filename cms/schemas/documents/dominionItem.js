@@ -10,10 +10,21 @@ export default {
       validation: (Rule) => Rule.required().max(60),
     },
     {
+      name: "subtitle",
+      title: "Sub Title",
+      type: "string",
+    },
+    {
       name: "from",
       title: "From (Author name)",
       type: "string",
       validation: (Rule) => Rule.required().max(60),
+    },
+    {
+      name: "activeFrom",
+      title: "Active From",
+      type: "date",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "slug",
@@ -33,9 +44,15 @@ export default {
       type: "image",
     },
     {
-      name: "activeFrom",
-      title: "Active From",
-      type: "date",
+      name: "type",
+      title: "Type",
+      type: "string",
+      options: {
+        list: [
+          { title: "Message", value: "message" },
+          { title: "Resource", value: "resource" },
+        ],
+      },
       validation: (Rule) => Rule.required(),
     },
     {

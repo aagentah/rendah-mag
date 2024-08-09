@@ -121,7 +121,7 @@ export default function ProfileOrders() {
             />
           </div>
 
-          <div className="bg-dark-grey pa4 br3 mb4">
+          <div className="bg-darker-grey pa4 br3 mb4">
             <form className="w-100" onSubmit={handleEditProfile}>
               <div className="pb3">
                 <Heading
@@ -255,7 +255,7 @@ export default function ProfileOrders() {
           </div>
 
           {customer ? (
-            <div className="bg-dark-grey pa4 br3 mb4">
+            <div className="bg-darker-grey pa4 br3 mb4">
               <div className="w-100  pt3  pt0-md">
                 <div className="profile_heading">
                   <Heading
@@ -283,7 +283,7 @@ export default function ProfileOrders() {
             </div>
           ) : null}
 
-          <div className="bg-dark-grey pa4 br3 mb4">
+          <div className="bg-darker-grey pa4 br3 mb4">
             <section className="w-100">
               <div className="pb3">
                 <Heading

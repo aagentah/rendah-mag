@@ -26,14 +26,31 @@ function getIconByMimeType(mimeType) {
   return <FaFileAlt />;
 }
 
+function groupAttachmentsByMimeType(attachments) {
+  const grouped = {};
+
+  attachments.forEach((attachment) => {
+    const icon = getIconByMimeType(attachment.mimeType);
+    const iconKey = icon.type.displayName || icon.type.name;
+
+    if (grouped[iconKey]) {
+      grouped[iconKey].count += 1;
+    } else {
+      grouped[iconKey] = { icon, count: 1 };
+    }
+  });
+
+  return Object.values(grouped);
+}
+
 export default function CardBlog({ post, handleClick, i }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   let imageHeight;
   let imageUrlWidth;
 
-  imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  imageHeight = app?.deviceSize === 'md' ? 260 : 260;
+  imageUrlWidth = app?.deviceSize === 'md' ? 160 : 160;
+  imageHeight = app?.deviceSize === 'md' ? 160 : 160;
 
   const image = (
     <Image
@@ -82,7 +99,7 @@ export default function CardBlog({ post, handleClick, i }) {
       htmlEntity="h2"
       text={post?.title}
       color="white"
-      size={app?.deviceSize === 'md' ? 'small' : 'small'}
+      size={app?.deviceSize === 'md' ? 'medium' : 'medium'}
       truncate={null}
       skeleton={!post}
       /* Children */
@@ -90,24 +107,43 @@ export default function CardBlog({ post, handleClick, i }) {
     />
   );
 
+  console.log('post', post);
+
   return (
     <LazyLoad once offset={250} height={imageHeight}>
       <article
-        className="card  card--post  card--scroll  mb4  mb0-md  relative cp"
+        className="card  mb4  mb0-md  relative cp flex flex-wrap bg-darker-grey br3"
         onClick={() => handleClick && handleClick(i)}
       >
-        {image && <div className="card__image">{image}</div>}
+        {image && <div className="card__image col-24 col-4-md">{image}</div>}
 
-        <div className="card__dialog pt3">
-          {heading && (
-            <div className="card__title mb3">
-              {heading}
+        <div className="col-24 col-10-md pa3">
+          {heading && <div className="card__title mb3">{heading}</div>}
 
-              {post?.subtitle && (
-                <p className="lh-copy f6 white pt2">{post?.subtitle}</p>
-              )}
-            </div>
+          {post?.subtitle && (
+            <p className="lh-copy f6 white mb2 mb3-md">{post?.subtitle}</p>
           )}
+
+          <div className="relative">
+            <span className="white">
+              {post.attachments.length && (
+                <div className="flex align-center relative">
+                  {'['}
+                  {groupAttachmentsByMimeType(post.attachments).map(
+                    ({ icon, count }, index) => (
+                      <span
+                        key={index}
+                        className="pa2 pa0-md ph1-md bg-transparent-md flex"
+                      >
+                        <span className="pr2">{count}x</span> {icon}
+                      </span>
+                    )
+                  )}
+                  {']'}
+                </div>
+              )}
+            </span>
+          </div>
         </div>
       </article>
     </LazyLoad>

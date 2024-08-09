@@ -421,7 +421,7 @@ export default function ProfileEdit() {
             />
           </div>
 
-          <div className="bg-dark-grey pa4 br3 mb4">
+          <div className="bg-darker-grey pa4 br3 mb4">
             <div className="profile_heading">
               <Heading
                 htmlEntity="h1"
@@ -619,7 +619,7 @@ export default function ProfileEdit() {
             </form>
           </div>
 
-          <div className="bg-dark-grey pa4 br3 mb4">
+          <div className="bg-darker-grey pa4 br3 mb4">
             <div className="profile_heading">
               <Heading
                 htmlEntity="h1"

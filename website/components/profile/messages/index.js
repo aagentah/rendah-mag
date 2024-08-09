@@ -10,6 +10,7 @@ import 'react-tooltip/dist/react-tooltip.css';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import CardMessage from '~/components/card/message';
+import CardResource from '~/components/card/resource'; // Assuming you have a CardResource component
 
 import { useUser } from '~/lib/hooks';
 
@@ -37,7 +38,7 @@ export default function ProfileDominion() {
   const [modalActive, setModalActive] = useState(false);
   const [modalPrintsActive, setModalPrintsActive] = useState(false);
   const [cardsShow, setCardsShow] = useState(true);
-  const [filter, setFilter] = useState('all'); // 'all', 'withAttachments', 'withoutAttachments'
+  const [filter, setFilter] = useState('messages'); // 'messages', 'resources'
 
   zenscroll.setup(300, 15);
 
@@ -100,11 +101,8 @@ export default function ProfileDominion() {
     }, []);
 
     const filteredMessages = messages.filter((message) => {
-      if (filter === 'all') return true;
-      if (filter === 'withAttachments')
-        return message.attachments && message.attachments.length > 0;
-      if (filter === 'withoutAttachments')
-        return !message.attachments || message.attachments.length === 0;
+      if (filter === 'messages') return message.type === 'message';
+      if (filter === 'resources') return message.type === 'resource';
     });
 
     return (
@@ -146,22 +144,24 @@ export default function ProfileDominion() {
                   <div className="flex flex-wrap">
                     <div className="col-12 flex align-center justify-start white pb4">
                       <button
-                        onClick={() => setFilter('all')}
+                        onClick={() => setFilter('messages')}
                         className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
-                          filter === 'all' ? 'bg-white almost-black' : 'white'
-                        }`}
-                      >
-                        All
-                      </button>
-                      <button
-                        onClick={() => setFilter('withAttachments')}
-                        className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
-                          filter === 'withAttachments'
+                          filter === 'messages'
                             ? 'bg-white almost-black'
                             : 'white'
                         }`}
                       >
-                        With Attachments
+                        Messages
+                      </button>
+                      <button
+                        onClick={() => setFilter('resources')}
+                        className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
+                          filter === 'resources'
+                            ? 'bg-white almost-black'
+                            : 'white'
+                        }`}
+                      >
+                        Resources
                       </button>
                     </div>
                     <div className="col-12 flex align-center justify-end white pb4">
@@ -190,16 +190,31 @@ export default function ProfileDominion() {
 
                 <div className="flex flex-wrap pb5">
                   {[...Array(filteredMessages.length)].map((_, i) => (
-                    <div
-                      key={filteredMessages[i]._id}
-                      className="col-24 col-8-md pa2"
-                    >
-                      <CardMessage
-                        i={i}
-                        post={filteredMessages[i]}
-                        handleClick={() => apply(filteredMessages[i]._id)}
-                      />
-                    </div>
+                    <>
+                      {filter === 'messages' ? (
+                        <div
+                          key={filteredMessages[i]._id}
+                          className="col-24 col-8-md pa2"
+                        >
+                          <CardMessage
+                            i={i}
+                            post={filteredMessages[i]}
+                            handleClick={() => apply(filteredMessages[i]._id)}
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          key={filteredMessages[i]._id}
+                          className="col-24 pa2"
+                        >
+                          <CardResource
+                            i={i}
+                            post={filteredMessages[i]}
+                            handleClick={() => apply(filteredMessages[i]._id)}
+                          />
+                        </div>
+                      )}
+                    </>
                   ))}
                   {renderGhostCards()}
                 </div>
