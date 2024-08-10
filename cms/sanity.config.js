@@ -32,36 +32,31 @@ const deskStructure = async (S) => {
     .title("Content")
     .items(
       [
-        S.documentTypeListItem("post").title("Post"),
-        S.documentTypeListItem("cypher").title("Cypher"),
-        S.documentTypeListItem("gallery").title("Gallery Post"),
-        admin && S.divider(),
         admin &&
           S.listItem()
             .title("Site Settings")
             .child(
               S.document().schemaType("siteSettings").documentId("siteSettings")
             ),
-        admin && S.divider(),
         admin &&
           S.listItem()
             .title("Home Page")
             .child(S.document().schemaType("homePage").documentId("homePage")),
         admin && S.divider(),
-        admin &&
-          S.listItem()
-            .title("Blog")
-            .child(
-              S.list()
-                .title("Blog")
-                .items([
-                  S.documentTypeListItem("post").title("Post"),
-                  S.documentTypeListItem("author").title("Author"),
-                  S.documentTypeListItem("category").title("Category"),
-                  S.documentTypeListItem("division").title("Division"),
-                ])
-            ),
-        admin && S.divider(),
+        S.listItem()
+          .title("Blog")
+          .child(
+            S.list()
+              .title("Blog")
+              .items([
+                S.documentTypeListItem("post").title("Post"),
+                S.documentTypeListItem("author").title("Author"),
+                S.documentTypeListItem("category").title("Category"),
+                S.documentTypeListItem("division").title("Division"),
+                S.documentTypeListItem("gallery").title("Gallery Post"),
+                S.documentTypeListItem("cypher").title("Cypher"),
+              ])
+          ),
         admin &&
           S.listItem()
             .title("Store")
@@ -78,7 +73,6 @@ const deskStructure = async (S) => {
                   ),
                 ])
             ),
-        admin && S.divider(),
         admin &&
           S.listItem()
             .title("Dominion")
@@ -86,7 +80,8 @@ const deskStructure = async (S) => {
               S.list()
                 .title("Dominion")
                 .items([
-                  S.documentTypeListItem("dominionItem").title("Dominion Item"),
+                  S.documentTypeListItem("user").title("User"),
+                  S.documentTypeListItem("print").title("Prints"),
                   S.listItem()
                     .title("UsersOverview")
                     .child(S.component(UsersOverview).title("UsersOverview")),
@@ -98,7 +93,6 @@ const deskStructure = async (S) => {
                     .child(S.component(StripeMetrics).title("StripeMetrics")),
                 ])
             ),
-        admin && S.divider(),
         admin &&
           S.listItem()
             .title("Newsletters")
@@ -106,6 +100,9 @@ const deskStructure = async (S) => {
               S.list()
                 .title("Newsletters")
                 .items([
+                  S.documentTypeListItem("dominionItem").title(
+                    "Newsletter Dominion"
+                  ),
                   S.documentTypeListItem("newsletterGeneral").title(
                     "Newsletter General"
                   ),
@@ -114,9 +111,6 @@ const deskStructure = async (S) => {
                   ),
                 ])
             ),
-        admin && S.divider(),
-        admin && S.documentTypeListItem("print").title("Prints"),
-        admin && S.documentTypeListItem("user").title("User"),
       ].filter(Boolean)
     ); // Filter out false values
 };
