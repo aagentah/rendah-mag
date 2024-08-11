@@ -25,7 +25,7 @@ const postFields = `
   'tag': tag->{...},
   'slug': slug.current,
   'coverImage': image.asset->url,
-  'coverImageNew': {
+  'imageObject': {
     'url': image.asset->url,
     'caption': image.caption,
     'fullImage': image.fullImage,
@@ -46,6 +46,12 @@ const postFieldsCard = `
   publishedAt,
   'slug': slug.current,
   'coverImage': image.asset->url,
+  'imageObject': {
+    'url': image.asset->url,
+    'caption': image.caption,
+    'fullImage': image.fullImage,
+    'dimensions': image.asset->metadata.dimensions
+  },
   'authors': authors[] {
     'author': *[_id == ^._ref] [0] {
       ...,
@@ -65,6 +71,12 @@ const creationsFields = `
   socialTagline,
   'slug': slug.current,
   'coverImage': image.asset->url,
+  'imageObject': {
+    'url': image.asset->url,
+    'caption': image.caption,
+    'fullImage': image.fullImage,
+    'dimensions': image.asset->metadata.dimensions
+  },
   categories,
   'authors': authors[] {
     'author': *[_id == ^._ref] [0] {
@@ -81,6 +93,12 @@ const creationsFieldsCard = `
   'slug': slug.current,
   categories,
   'coverImage': image.asset->url,
+  'imageObject': {
+    'url': image.asset->url,
+    'caption': image.caption,
+    'fullImage': image.fullImage,
+    'dimensions': image.asset->metadata.dimensions
+  },
 `;
 
 const productFields = `
@@ -95,6 +113,12 @@ const productFields = `
 
 const teamFields = `
   image,
+  'imageObject': {
+    'url': image.asset->url,
+    'caption': image.caption,
+    'fullImage': image.fullImage,
+    'dimensions': image.asset->metadata.dimensions
+  },
   name,
   alias,
   description,
@@ -326,6 +350,12 @@ export async function getDivision(
         publishedAt,
         'slug': slug.current,
         'coverImage': image.asset->url,
+        'imageObject': {
+          'url': image.asset->url,
+          'caption': image.caption,
+          'fullImage': image.fullImage,
+          'dimensions': image.asset->metadata.dimensions
+        },
         'authors': authors[] {
           'author': *[_id == ^._ref][0] {
             ...,

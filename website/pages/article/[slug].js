@@ -259,7 +259,7 @@ export default function Post({ siteConfig, post, preview }) {
               <div className="mb5">
                 <Hero
                   image={post?.coverImage}
-                  coverImageNew={post?.coverImageNew}
+                  imageObject={post?.imageObject}
                   title={post.title}
                   description={null}
                   heroButtonText={null}

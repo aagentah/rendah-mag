@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import BlockContent from '@sanity/block-content-to-react';
 
-import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
@@ -25,7 +25,7 @@ const IconArrowRight = dynamic(() =>
 
 export default function HeroDefault({
   image,
-  coverImageNew,
+  imageObject,
   title,
   description,
   heroButtonText,
@@ -55,7 +55,7 @@ export default function HeroDefault({
     };
   }
 
-  heroImage = <Image coverImageNew={coverImageNew} />;
+  heroImage = <ImageNew imageObject={imageObject} />;
 
   return (
     <article
@@ -68,11 +68,12 @@ export default function HeroDefault({
       style={null}
     >
       {heroImage && <div className="hero__image">{heroImage}</div>}
-      {coverImageNew?.caption && (
+
+      {imageObject?.caption && (
         <div className="relative">
           <figcaption className="absolute  bg-white  black  f7  lh-copy  pv2  ph3  bottom  right  mr3  nb3  shadow1  br3">
             <BlockContent
-              blocks={coverImageNew?.caption}
+              blocks={imageObject?.caption}
               serializers={SANITY_BLOCK_SERIALIZERS}
             />
           </figcaption>

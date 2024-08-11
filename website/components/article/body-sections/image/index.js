@@ -3,6 +3,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import isArray from 'lodash/isArray';
 import includes from 'lodash/includes';
 import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 import { useApp } from '~/context-provider/app';
 
 import { imageBuilder } from '~/lib/sanity/requests';
@@ -73,7 +74,7 @@ export default function ImageSection({ section, imageCount }) {
       >
         <LazyLoad once offset={250} height={360}>
           <figure>
-            <Image coverImageNew={section} />
+            <ImageNew imageObject={section} />
             {handleCaption()}
           </figure>
         </LazyLoad>
