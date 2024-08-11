@@ -642,6 +642,17 @@ export async function getDominionItemsSince(user, preview) {
         'fullImage': coverImage.fullImage,
         'dimensions': coverImage.asset->metadata.dimensions
       },
+      'description': description[]{
+        ...,
+        _type == 'image' => {
+          'imageObject': {
+            'url': asset->url,
+            'caption': caption,
+            'fullImage': fullImage,
+            'dimensions': asset->metadata.dimensions
+          }
+        }
+      }
     }`,
     { startOfYearDate, startDate2024 }
   );

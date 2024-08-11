@@ -12,12 +12,8 @@ import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 export default function ImageSection({ section, imageCount }) {
   const app = useApp();
 
-  const isEven = (number) => {
-    return number % 2 === 0;
-  };
-
   const handleCaption = () => {
-    let { source, fullImage } = section;
+    let { source } = section;
 
     // If blockContent
     if (isArray(section?.caption)) {

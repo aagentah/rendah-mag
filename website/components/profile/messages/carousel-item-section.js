@@ -6,6 +6,7 @@ import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 import { imageBuilder } from '~/lib/sanity/requests';
 import Button from '~/components/elements/button';
 import Modal from '~/components/modal';
+import ImageNew from '~/components/elements/image-new';
 import {
   FaMusic,
   FaVideo,
@@ -30,12 +31,10 @@ function myPortableTextComponents() {
         }
 
         return (
-          <div className="bg-darker-grey ph4 pv4 w-100 mv4 br3">
-            <img
-              style={{ maxHeight: '330px', maxWidth: '500px' }}
-              className="w-100 mla mra object-fit-container"
-              src={imageBuilder.image(value?.node?.asset).auto('format').url()}
-            />
+          <div className="bg-darker-grey pa4 pa5-md w-100 mv4 br3">
+            <div className="w-100 mla mra">
+              <ImageNew imageObject={value?.node?.imageObject} />
+            </div>
           </div>
         );
       },
