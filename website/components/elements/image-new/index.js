@@ -8,7 +8,9 @@ const ImageNew = React.memo((props) => {
   const { imageObject, placeholder, height, width } = props;
   const [loaded, setLoaded] = useState(false);
 
-  const handleLoad = useCallback(() => setLoaded(true), []);
+  const handleLoad = useCallback(() => {
+    setLoaded(true);
+  }, []);
 
   // Early return if no imageObject is provided
   if (!imageObject) return null;
@@ -35,14 +37,21 @@ const ImageNew = React.memo((props) => {
       .url();
   }, [url, width]);
 
+  let paddingTop = `${100 / aspectRatio}%`;
+
+  if (height) {
+    paddingTop = null;
+  }
+
+  if (height && height === '100vh') {
+    paddingTop = `${window.innerHeight}px`;
+  }
+
   // Memoize styles
   const skeletonStyle = useMemo(
     () => ({
       height: height || 'auto',
-      paddingTop:
-        height && height === '100vh'
-          ? `${window.innerHeight}px`
-          : `${100 / aspectRatio}%`,
+      paddingTop,
       width: '100%',
     }),
     [height, aspectRatio]
@@ -50,7 +59,10 @@ const ImageNew = React.memo((props) => {
 
   return (
     <div className="imageObject">
-      {!loaded && <Skeleton className="skeletonNew" style={skeletonStyle} />}
+      <Skeleton
+        className={`skeletonNew ${loaded ? 'skeleton--fade' : ''}`}
+        style={skeletonStyle}
+      />
       <NextImage
         src={imageUrl}
         alt={caption || 'Cover Image'}

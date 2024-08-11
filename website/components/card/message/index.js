@@ -11,54 +11,25 @@ import {
 } from 'react-icons/fa'; // Import necessary icons
 
 import Heading from '~/components/elements/heading';
-import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 import Label from '~/components/elements/label';
 
-import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
-
-function getIconByMimeType(mimeType) {
-  if (!mimeType) return <FaFile />;
-  if (mimeType.startsWith('audio/')) return <FaMusic />;
-  if (mimeType.startsWith('video/')) return <FaVideo />;
-  if (mimeType.startsWith('image/')) return <FaFileImage />;
-  if (mimeType === 'application/pdf') return <FaFilePdf />;
-  return <FaFileAlt />;
-}
 
 export default function CardBlog({ post, handleClick, i }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   let imageHeight;
-  let imageUrlWidth;
+  let imageWidth;
 
-  imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  imageHeight = app?.deviceSize === 'md' ? 260 : 260;
+  imageWidth = 328;
+  imageHeight = 328;
 
   const image = (
-    <Image
-      /* Options */
-      src={
-        post?.coverImage &&
-        imageBuilder
-          .image(post?.coverImage)
-          .width(imageUrlWidth * scale)
-          .height(imageHeight * scale)
-          .auto('format')
-          .fit('crop')
-          .crop(app?.deviceSize === 'md' ? 'top' : 'center')
-          .url()
-      }
-      placeholder={null}
-      alt={post?.title}
-      figcaption={null}
+    <ImageNew
+      imageObject={post?.imageObject}
       height={imageHeight}
-      width={null}
-      customClass="shadow2 br3"
-      skeleton={!post}
-      onClick={null}
-      /* Children */
-      withLinkProps={null}
+      width={imageWidth}
     />
   );
 
@@ -98,7 +69,7 @@ export default function CardBlog({ post, handleClick, i }) {
       >
         {image && <div className="card__image">{image}</div>}
 
-        <div className="card__dialog pt3">
+        <div className="card__dialog">
           {heading && (
             <div className="card__title mb3">
               {heading}

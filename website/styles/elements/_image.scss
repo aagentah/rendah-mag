@@ -65,22 +65,37 @@
 .imageObject {
   position: relative;
 
+  br {
+    display: none;
+  }
+
   .skeletonNew {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    transition: opacity 0.3s ease-in-out; /* Smooth 1-second fade-out */
+    opacity: 1; /* Initially fully visible */
+  }
+
+  .skeleton--fade {
+    opacity: 0; /* Fade out when the image is loaded */
   }
 
   .image {
+    position: absolute; /* Ensure the image overlays the skeleton */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    transition: opacity 0.3s ease-in-out;
-    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Smooth 1-second fade-in */
+    opacity: 0; /* Initially hidden */
   }
 
   .image--loaded {
-    opacity: 1;
+    opacity: 1; /* Fade in when loaded */
   }
 
   .figcaption {

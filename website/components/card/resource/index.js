@@ -11,10 +11,9 @@ import {
 } from 'react-icons/fa'; // Import necessary icons
 
 import Heading from '~/components/elements/heading';
-import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 import Label from '~/components/elements/label';
 
-import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 function getIconByMimeType(mimeType) {
@@ -49,33 +48,14 @@ export default function CardBlog({ post, handleClick, i }) {
   let imageHeight;
   let imageUrlWidth;
 
-  imageUrlWidth = app?.deviceSize === 'md' ? 160 : 160;
-  imageHeight = app?.deviceSize === 'md' ? 160 : 160;
+  imageUrlWidth = 160;
+  imageHeight = 160;
 
   const image = (
-    <Image
-      /* Options */
-      src={
-        post?.coverImage &&
-        imageBuilder
-          .image(post?.coverImage)
-          .width(imageUrlWidth * scale)
-          .height(imageHeight * scale)
-          .auto('format')
-          .fit('crop')
-          .crop(app?.deviceSize === 'md' ? 'top' : 'center')
-          .url()
-      }
-      placeholder={null}
-      alt={post?.title}
-      figcaption={null}
+    <ImageNew
+      imageObject={post?.imageObject}
       height={imageHeight}
-      width={null}
-      customClass="shadow2 br3"
-      skeleton={!post}
-      onClick={null}
-      /* Children */
-      withLinkProps={null}
+      width={imageUrlWidth}
     />
   );
 

@@ -580,6 +580,12 @@ export async function getLatestDominionItem(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "dominionItem"] | order(activeFrom desc) [0] {
       ...,
+      'imageObject': {
+        'url': coverImage.asset->url,
+        'caption': coverImage.caption,
+        'fullImage': coverImage.fullImage,
+        'dimensions': coverImage.asset->metadata.dimensions
+      },
     }`
   );
 
@@ -629,6 +635,12 @@ export async function getDominionItemsSince(user, preview) {
         "file": file.asset->url,
         "url": file.asset->url,
         "mimeType": file.asset->mimeType,
+      },
+      'imageObject': {
+        'url': coverImage.asset->url,
+        'caption': coverImage.caption,
+        'fullImage': coverImage.fullImage,
+        'dimensions': coverImage.asset->metadata.dimensions
       },
     }`,
     { startOfYearDate, startDate2024 }
