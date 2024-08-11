@@ -94,7 +94,7 @@ export default function Home() {
         <div className="flex  flex-wrap  relative">
           <div className="col-24  hero--home__col-18">
             <Hero
-              image={homePage?.heroImage}
+              imageObject={homePage?.imageObject}
               title={homePage?.heroTitle || 'Loading...'}
               description={homePage?.heroDescription || 'Loading...'}
               heroButtonText={homePage?.heroLabel || 'Loading...'}

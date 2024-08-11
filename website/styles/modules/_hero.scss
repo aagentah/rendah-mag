@@ -133,10 +133,10 @@
 
 .hero--home {
   z-index: 1;
-  @extend .hero--darken-top;
+  // @extend .hero--darken-top;
 
-  position: relative;
-  height: 80vh !important;
+  // position: relative;
+  // height: 80vh !important;
 
   @include breakpoint-up(md) {
     height: 100vh !important;
@@ -166,15 +166,15 @@
     filter: brightness(0.3);
   }
 
-  .hero__image,
-  .image__wrapper,
-  .image {
-    height: 80vh !important;
+  // .hero__image,
+  // .image__wrapper,
+  // .image {
+  //   height: 80vh !important;
 
-    @include breakpoint-up(md) {
-      height: 100vh !important;
-    }
-  }
+  //   @include breakpoint-up(md) {
+  //     height: 100vh !important;
+  //   }
+  // }
 
   .hero__image .image__wrapper {
     // @extend .shadow2;

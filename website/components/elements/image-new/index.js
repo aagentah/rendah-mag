@@ -39,21 +39,13 @@ const ImageNew = React.memo((props) => {
   const skeletonStyle = useMemo(
     () => ({
       height: height || 'auto',
-      paddingTop: height ? `${height}px` : `${100 / aspectRatio}%`,
+      paddingTop:
+        height && height === '100vh'
+          ? `${window.innerHeight}px`
+          : `${100 / aspectRatio}%`,
       width: '100%',
     }),
     [height, aspectRatio]
-  );
-
-  const containerStyle = useMemo(
-    () => ({
-      height: height || 'auto',
-      width: '100%',
-      maxWidth: '100%',
-      display: 'block',
-      objectFit: 'cover',
-    }),
-    [height]
   );
 
   return (
@@ -63,7 +55,11 @@ const ImageNew = React.memo((props) => {
         src={imageUrl}
         alt={caption || 'Cover Image'}
         width={width || dimensions?.width || 200}
-        height={height || dimensions?.height || 200}
+        height={
+          height === '100vh'
+            ? window.innerHeight + 50
+            : height || dimensions?.height || 200
+        }
         layout="responsive"
         onLoadingComplete={handleLoad}
         className={`image ${loaded ? 'image--loaded' : ''}`}

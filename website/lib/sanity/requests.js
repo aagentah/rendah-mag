@@ -732,6 +732,12 @@ export async function getHomePage() {
   const data = await client.fetch(`*[_type == "homePage"] [0] {
     ...,
     'heroImage': heroImage.asset->url,
+    'imageObject': {
+      'url': heroImage.asset->url,
+      'caption': heroImage.caption,
+      'fullImage': heroImage.fullImage,
+      'dimensions': heroImage.asset->metadata.dimensions
+    },
    }`);
   return data;
 }
