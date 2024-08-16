@@ -6,7 +6,6 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // Initialize the cors middleware
 const cors = initMiddleware(
   Cors({
-    // Only allow requests with GET, POST and OPTIONS
     methods: ['GET', 'POST', 'OPTIONS'],
   })
 );
@@ -21,10 +20,12 @@ const handler = async (req, res) => {
     let startingAfterCancels = null;
     const subsEachMonth = {};
 
+    // Collecting all active subscriptions
     while (hasMoreSubs) {
       let optionsSubs = {
         limit: 100,
         expand: ['data.items.data.price'],
+        status: 'all', // To include both active and canceled subscriptions
       };
 
       if (startingAfterSubs) {
@@ -34,19 +35,39 @@ const handler = async (req, res) => {
       const subscriptions = await stripe.subscriptions.list(optionsSubs);
 
       subscriptions.data.forEach((subscription) => {
+        const dateCreated = new Date(subscription.created * 1000);
+        const monthYearCreated = `${
+          dateCreated.getMonth() + 1
+        }-${dateCreated.getFullYear()}`;
+
         if (
           subscription.items.data.some(
             (item) =>
               item.price.id === 'price_1Lg5qXKb3SeE1fXf5mFEgyzs' ||
-              item.price.product === 'dominion-subscription_2ff0f5'
+              item.price.id === 'dominion-subscription_7fbe26' ||
+              item.price.id === 'dominion-subscription_2ff0f5'
           )
         ) {
-          const date = new Date(subscription.created * 1000);
-          const monthYear = `${date.getMonth() + 1}-${date.getFullYear()}`;
-          if (!subsEachMonth[monthYear]) {
-            subsEachMonth[monthYear] = { subs: 0, cancels: 0, total: 0 };
+          if (!subsEachMonth[monthYearCreated]) {
+            subsEachMonth[monthYearCreated] = { subs: 0, cancels: 0, total: 0 };
           }
-          subsEachMonth[monthYear].subs++;
+          subsEachMonth[monthYearCreated].subs++;
+        }
+
+        if (subscription.canceled_at) {
+          const dateCanceled = new Date(subscription.canceled_at * 1000);
+          const monthYearCanceled = `${
+            dateCanceled.getMonth() + 1
+          }-${dateCanceled.getFullYear()}`;
+
+          if (!subsEachMonth[monthYearCanceled]) {
+            subsEachMonth[monthYearCanceled] = {
+              subs: 0,
+              cancels: 0,
+              total: 0,
+            };
+          }
+          subsEachMonth[monthYearCanceled].cancels++;
         }
       });
 
@@ -56,46 +77,6 @@ const handler = async (req, res) => {
           subscriptions.data[subscriptions.data.length - 1].id;
       } else {
         hasMoreSubs = false;
-      }
-    }
-
-    while (hasMoreCancels) {
-      let optionsCancels = {
-        limit: 100,
-        status: 'canceled',
-      };
-
-      if (startingAfterCancels) {
-        optionsCancels.starting_after = startingAfterCancels;
-      }
-
-      const canceledSubscriptions = await stripe.subscriptions.list(
-        optionsCancels
-      );
-
-      canceledSubscriptions.data.forEach((subscription) => {
-        if (
-          subscription.items.data.some(
-            (item) =>
-              item.price.id === 'price_1Lg5qXKb3SeE1fXf5mFEgyzs' ||
-              item.price.product === 'dominion-subscription_2ff0f5'
-          )
-        ) {
-          const date = new Date(subscription.created * 1000);
-          const monthYear = `${date.getMonth() + 1}-${date.getFullYear()}`;
-          if (!subsEachMonth[monthYear]) {
-            subsEachMonth[monthYear] = { subs: 0, cancels: 0, total: 0 };
-          }
-          subsEachMonth[monthYear].cancels++;
-        }
-      });
-
-      hasMoreCancels = canceledSubscriptions.has_more;
-      if (hasMoreCancels && canceledSubscriptions.data.length > 0) {
-        startingAfterCancels =
-          canceledSubscriptions.data[canceledSubscriptions.data.length - 1].id;
-      } else {
-        hasMoreCancels = false;
       }
     }
 

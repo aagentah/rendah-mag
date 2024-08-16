@@ -9,6 +9,7 @@ const StripeMetrics = () => {
     const fetchMonthlySubs = async () => {
       try {
         const response = await fetch(
+          // "http://localhost:3000/api/stripe/subs-per-month",
           "https://rendahmag.com/api/stripe/subs-per-month",
           {
             headers: {
