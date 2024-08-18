@@ -203,7 +203,7 @@ export default function Home() {
     <div className="flex  flex-wrap">
       {[...Array(creationsLength)].map((iteration, i) => (
         <div key={iteration} className="col-24  col-6-md">
-          <div className="replaceph3pv2">
+          <div className="ph3 pv2">
             <CardCreations
               i={i}
               post={creations && creations[i]}

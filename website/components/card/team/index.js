@@ -44,7 +44,7 @@ export default function CardBlog({ member, featured }) {
       figcaption={null}
       height={imageHeight}
       width={null}
-      customClass={null}
+      customClass="br3 shadow2"
       skeleton={!member}
       onClick={null}
       /* Children */

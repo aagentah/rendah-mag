@@ -1,23 +1,25 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import NextImage from 'next/image';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import toMarkdown from '@sanity/block-content-to-markdown';
+import BlockContent from '@sanity/block-content-to-react';
+
 import { imageBuilder } from '~/lib/sanity/requests';
+import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
 const ImageNew = React.memo((props) => {
-  const { imageObject, placeholder, height, width } = props;
+  const { imageObject, placeholder, height, width, className } = props;
   const [loaded, setLoaded] = useState(false);
 
   const handleLoad = useCallback(() => {
     setLoaded(true);
   }, []);
 
-  // Early return if no imageObject is provided
   if (!imageObject) return null;
 
   const { url, caption, dimensions } = imageObject;
 
-  // Memoize aspectRatio calculation
+  const altText = toMarkdown(caption) || '';
+
   const aspectRatio = useMemo(
     () =>
       dimensions?.width && dimensions?.height
@@ -26,7 +28,6 @@ const ImageNew = React.memo((props) => {
     [dimensions]
   );
 
-  // Memoize image URL generation
   const imageUrl = useMemo(() => {
     if (!url) return '';
     return imageBuilder
@@ -47,36 +48,41 @@ const ImageNew = React.memo((props) => {
     paddingTop = `${window.innerHeight}px`;
   }
 
-  // Memoize styles
-  const skeletonStyle = useMemo(
-    () => ({
-      height: height || 'auto',
-      paddingTop,
-      width: '100%',
-    }),
-    [height, aspectRatio]
-  );
-
   return (
-    <div className="imageObject">
-      <Skeleton
-        className={`skeletonNew ${loaded ? 'skeleton--fade' : ''}`}
-        style={skeletonStyle}
-      />
-      <NextImage
-        src={imageUrl}
-        alt={caption || 'Cover Image'}
-        width={width || dimensions?.width || 200}
-        height={
-          height === '100vh'
-            ? window.innerHeight + 50
-            : height || dimensions?.height || 200
-        }
-        layout="responsive"
-        onLoadingComplete={handleLoad}
-        className={`image ${loaded ? 'image--loaded' : ''}`}
-        placeholder={placeholder || 'empty'}
-      />
+    <div className="imageNew">
+      <div className={`imageObject over-hidden ${className || ''}`}>
+        <div
+          className="skeletonNew"
+          style={{
+            height: height || 'auto',
+            paddingTop,
+          }}
+        />
+
+        <NextImage
+          src={imageUrl}
+          alt={altText}
+          width={width || dimensions?.width || 200}
+          height={
+            height === '100vh'
+              ? window.innerHeight + 50
+              : height || dimensions?.height || 200
+          }
+          layout="responsive"
+          onLoadingComplete={handleLoad}
+          className={`image ${loaded ? 'image--loaded' : ''}`}
+          placeholder={placeholder || 'empty'}
+        />
+      </div>
+
+      {caption && (
+        <figcaption className="imageNew__captions tac mt2 pt1 grey f6 ph3">
+          <BlockContent
+            blocks={caption}
+            serializers={SANITY_BLOCK_SERIALIZERS}
+          />
+        </figcaption>
+      )}
     </div>
   );
 });

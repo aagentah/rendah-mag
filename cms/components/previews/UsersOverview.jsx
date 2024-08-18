@@ -170,7 +170,41 @@ const UsersOverview = () => {
     );
   };
 
+  const calculateTagPercentages = () => {
+    const tagCounts = {};
+    let noTagCount = 0;
+
+    results.forEach((user) => {
+      if (user.tags && user.tags.length > 0) {
+        user.tags.forEach((tag) => {
+          if (tagCounts[tag]) {
+            tagCounts[tag] += 1;
+          } else {
+            tagCounts[tag] = 1;
+          }
+        });
+      } else {
+        noTagCount += 1;
+      }
+    });
+
+    const tagPercentages = Object.keys(tagCounts).map((tag) => ({
+      tag,
+      percentage: ((tagCounts[tag] / results.length) * 100).toFixed(2),
+    }));
+
+    // Add the no-tag percentage
+    tagPercentages.push({
+      tag: "No Tags",
+      percentage: ((noTagCount / results.length) * 100).toFixed(2),
+    });
+
+    return tagPercentages;
+  };
+
   if (results.length > 0) {
+    const tagPercentages = calculateTagPercentages();
+
     return (
       <div>
         <h2>Total Dominion Members: {results.length}</h2>
@@ -275,6 +309,23 @@ const UsersOverview = () => {
                 <strong>{calculateTotal().toFixed(2)}</strong>
               </td>
             </tr>
+          </tbody>
+        </table>
+
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Tag</th>
+              <th>Percentage (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tagPercentages.map((tagData) => (
+              <tr key={tagData.tag}>
+                <td>{tagData.tag}</td>
+                <td>{tagData.percentage}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
 

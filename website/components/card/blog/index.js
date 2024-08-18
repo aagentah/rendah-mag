@@ -14,7 +14,12 @@ export default function CardBlog({ post, columnCount, inverted }) {
   const width = 260;
 
   const image = (
-    <ImageNew imageObject={post?.imageObject} height={height} width={width} />
+    <ImageNew
+      imageObject={post?.imageObject}
+      height={height}
+      width={width}
+      className="br3 shadow2"
+    />
   );
 
   const labels = (

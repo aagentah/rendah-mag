@@ -39,8 +39,39 @@ export default function ProfileDominion() {
   const [modalPrintsActive, setModalPrintsActive] = useState(false);
   const [cardsShow, setCardsShow] = useState(true);
   const [filter, setFilter] = useState('messages'); // 'messages', 'resources'
+  const [fileTypeFilter, setFileTypeFilter] = useState('all');
 
   zenscroll.setup(300, 15);
+
+  // Define file type categories
+  const fileTypeCategories = {
+    audio: ['wav', 'mp3', 'flac', 'aac'],
+    images: ['jpg', 'png', 'gif', 'svg'],
+    videos: ['mp4', 'mkv', 'webm', 'avi'],
+    // documents: ['pdf', 'docx', 'xlsx', 'pptx'],
+    all: [],
+  };
+
+  const filteredMessages = messages.filter((message) => {
+    if (filter === 'messages') return message.type === 'message';
+
+    if (filter === 'resources') {
+      // Extract the mime types from the attachments array
+      const mimeTypes = message.attachments?.map(
+        (attachment) => attachment.mimeType.split('/')[1]
+      );
+
+      if (fileTypeFilter === 'all') return message.type === 'resource';
+
+      // Check if any of the mime types match the selected fileTypeFilter
+      return (
+        message.type === 'resource' &&
+        mimeTypes?.some((mimeType) =>
+          fileTypeCategories[fileTypeFilter]?.includes(mimeType)
+        )
+      );
+    }
+  });
 
   const apply = (i) => {
     setArticleActive(i);
@@ -71,7 +102,7 @@ export default function ProfileDominion() {
     if (count > 0) {
       for (let i = 0; i < count; i++) {
         ghostCards.push(
-          <div className="col-24  col-8-md  replaceph3pv2  o-30">
+          <div className="col-24  col-8-md  ph3 pv2  o-30">
             <CardMessage i={i} post={ghostItem} handleClick={null} />
           </div>
         );
@@ -100,10 +131,7 @@ export default function ProfileDominion() {
       action();
     }, []);
 
-    const filteredMessages = messages.filter((message) => {
-      if (filter === 'messages') return message.type === 'message';
-      if (filter === 'resources') return message.type === 'resource';
-    });
+    console.log('messages', messages);
 
     return (
       <>
@@ -142,10 +170,10 @@ export default function ProfileDominion() {
                   </div>
 
                   <div className="flex flex-wrap">
-                    <div className="col-12 flex align-center justify-start white pb4">
+                    <div className="col-12 flex align-center justify-start white pb3">
                       <button
                         onClick={() => setFilter('messages')}
-                        className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
+                        className={`pv2 ph3 ba bc-white cp mr2 f7 ${
                           filter === 'messages'
                             ? 'bg-white almost-black'
                             : 'white'
@@ -155,7 +183,7 @@ export default function ProfileDominion() {
                       </button>
                       <button
                         onClick={() => setFilter('resources')}
-                        className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
+                        className={`pv2 ph3 ba bc-white cp mr2 f7 ${
                           filter === 'resources'
                             ? 'bg-white almost-black'
                             : 'white'
@@ -186,9 +214,64 @@ export default function ProfileDominion() {
                       <Tooltip id="my-tooltip" />
                     </div>
                   </div>
+
+                  {filter === 'resources' && (
+                    <div className="col-12 flex align-center justify-start white pb3">
+                      <button
+                        onClick={() => setFileTypeFilter('all')}
+                        className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
+                          fileTypeFilter === 'all'
+                            ? 'bg-white almost-black'
+                            : 'white'
+                        }`}
+                      >
+                        All
+                      </button>
+                      <button
+                        onClick={() => setFileTypeFilter('audio')}
+                        className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
+                          fileTypeFilter === 'audio'
+                            ? 'bg-white almost-black'
+                            : 'white'
+                        }`}
+                      >
+                        Audio
+                      </button>
+                      <button
+                        onClick={() => setFileTypeFilter('images')}
+                        className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
+                          fileTypeFilter === 'images'
+                            ? 'bg-white almost-black'
+                            : 'white'
+                        }`}
+                      >
+                        Images
+                      </button>
+                      <button
+                        onClick={() => setFileTypeFilter('videos')}
+                        className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
+                          fileTypeFilter === 'videos'
+                            ? 'bg-white almost-black'
+                            : 'white'
+                        }`}
+                      >
+                        Videos
+                      </button>
+                      {/* <button
+                        onClick={() => setFileTypeFilter('documents')}
+                        className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
+                          fileTypeFilter === 'documents'
+                            ? 'bg-white almost-black'
+                            : 'white'
+                        }`}
+                      >
+                        Documents
+                      </button> */}
+                    </div>
+                  )}
                 </div>
 
-                <div className="flex flex-wrap pb5">
+                <div className="flex flex-wrap pb5 pt2">
                   {[...Array(filteredMessages.length)].map((_, i) => (
                     <>
                       {filter === 'messages' ? (

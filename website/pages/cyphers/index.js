@@ -295,7 +295,7 @@ export default function Cyphers({ siteConfig }) {
                 <div className="flex  flex-wrap">
                   {[...Array(cyphersLength)].map((iteration, i) => (
                     <div key={iteration} className="col-24  col-6-md">
-                      <div className="replaceph3pv2">
+                      <div className="ph3 pv2">
                         <CardCypher
                           i={i}
                           post={cyphers?.previous && cyphers.previous[i]}

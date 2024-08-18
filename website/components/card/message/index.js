@@ -30,6 +30,7 @@ export default function CardBlog({ post, handleClick, i }) {
       imageObject={post?.imageObject}
       height={imageHeight}
       width={imageWidth}
+      className="br3 shadow2"
     />
   );
 

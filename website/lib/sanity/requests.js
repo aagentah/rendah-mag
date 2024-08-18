@@ -103,10 +103,23 @@ const creationsFieldsCard = `
 
 const productFields = `
   ...,
+   'imageObject': {
+    'url': image1.asset->url,
+    'caption': image1.caption,
+    'fullImage': image1.fullImage,
+    'dimensions': image1.asset->metadata.dimensions
+  },
   'category': category->title,
   'collection': collection->title,
   'slug': slug.current,
-  'images': images[].asset->url,
+  'images': images[] {
+    'imageObject': {
+      'url': asset->url,
+      'caption': caption,
+      'fullImage': fullImage,
+      'dimensions': asset->metadata.dimensions
+    }
+  },
   credits,
   stripeCheckoutUrl,
 `;
@@ -463,6 +476,15 @@ export async function getAllProducts(preview) {
     .fetch(`*[_type == "storeItem"] | order(publishedAt desc) {
       ${productFields}
     }`);
+  return results;
+}
+
+export async function getLatestPrintedIssue(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "storeItem" && category->title == "Printed Issues"] | order(publishedAt desc) [0] {
+       ${productFields}
+    }`
+  );
   return results;
 }
 

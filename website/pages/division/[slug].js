@@ -48,7 +48,7 @@ export default function Division({ siteConfig, division }) {
                 <div className="flex  flex-wrap">
                   {division.posts.map((post, i) => (
                     <div key={post.slug} className="col-24  col-6-md">
-                      <div className="replaceph3pv2">
+                      <div className="ph3 pv2">
                         <CardBlog i={i} post={post} columnCount={4} />
                       </div>
                     </div>

@@ -132,7 +132,7 @@ export default function Home({ siteConfig }) {
               <div className="flex  flex-wrap  pb4">
                 {[...Array(musicLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-6-md">
-                    <div className="replaceph3pv2">
+                    <div className="pa2">
                       <CardBlog
                         i={i}
                         post={music?.posts && music?.posts[i]}
@@ -235,7 +235,7 @@ export default function Home({ siteConfig }) {
               <div className="flex  flex-wrap  pb4">
                 {[...Array(artLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-6-md">
-                    <div className="replaceph3pv2">
+                    <div className="pa2">
                       <CardBlog
                         i={i}
                         post={art?.posts && art?.posts[i]}
@@ -366,7 +366,7 @@ export default function Home({ siteConfig }) {
               <div className="flex  flex-wrap  pb4">
                 {[...Array(technologyLength)].map((iteration, i) => (
                   <div key={iteration} className="col-24  col-6-md">
-                    <div className="replaceph3pv2">
+                    <div className="pa2">
                       <CardBlog
                         i={i}
                         post={technology?.posts && technology?.posts[i]}
@@ -468,7 +468,7 @@ export default function Home({ siteConfig }) {
         //         <div className="flex  flex-wrap">
         //           {[...Array(premieresLength)].map((iteration, i) => (
         //             <div key={iteration} className="col-24  col-6-md">
-        //               <div className="replaceph3pv2">
+        //               <div className="pa2">
         //                 <CardBlog
         //                   i={i}
         //                   post={premieres?.articles && premieres?.articles[i]}
@@ -530,7 +530,7 @@ export default function Home({ siteConfig }) {
         //           <div className="flex  flex-wrap">
         //             {[...Array(artLength)].map((iteration, i) => (
         //               <div key={iteration} className="col-24  col-12-md">
-        //                 <div className="replaceph3pv2">
+        //                 <div className="pa2">
         //                   <CardBlog
         //                     i={i}
         //                     post={art?.articles && art?.articles[i]}
@@ -575,7 +575,7 @@ export default function Home({ siteConfig }) {
         //           <div className="flex  flex-wrap">
         //             {[...Array(insightsLength)].map((iteration, i) => (
         //               <div key={iteration} className="col-24  col-12-md">
-        //                 <div className="replaceph3pv2">
+        //                 <div className="pa2">
         //                   <CardBlog
         //                     i={i}
         //                     post={insights?.articles && insights?.articles[i]}
@@ -637,7 +637,7 @@ export default function Home({ siteConfig }) {
         //         <div className="flex  flex-wrap">
         //           {[...Array(guestMixesLength)].map((iteration, i) => (
         //             <div key={iteration} className="col-24  col-6-md">
-        //               <div className="replaceph3pv2">
+        //               <div className="pa2">
         //                 <CardBlog
         //                   i={i}
         //                   post={guestMixes?.articles && guestMixes?.articles[i]}

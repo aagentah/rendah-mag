@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 import Label from '~/components/elements/label';
 import { useApp } from '~/context-provider/app';
 
@@ -375,32 +376,9 @@ export default function Product({ siteConfig, product }) {
                 )}
 
                 <div className="col-24  col-12-md  ph2  pb4  pb3-md">
-                  <Image
-                    /* Options */
-                    src={imageBuilder
-                      .image(product?.image1)
-                      .width(1000)
-                      .auto('format')
-                      .fit('clip')
-                      .url()}
-                    placeholder={imageBuilder
-                      .image(product?.image1)
-                      .height(25)
-                      .width(25)
-                      .auto('format')
-                      .fit('clip')
-                      .blur('20')
-                      .url()}
-                    alt={product?.title}
-                    figcaption={null}
-                    height={imageHeight}
-                    width={500}
-                    customClass="shadow2  br3"
-                    priority={true}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={null}
+                  <ImageNew
+                    imageObject={product?.imageObject}
+                    className="br3 shadow2"
                   />
                 </div>
                 <div className="col-24  col-12-md  pl4-md">
@@ -483,42 +461,33 @@ export default function Product({ siteConfig, product }) {
                 </div>
               </div>
 
-              <div className="flex flex-wrap mb4">
-                {product.images?.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`col-24 col-${columns}-md ph2 pb4 pb3-md`}
-                  >
-                    <Image
+              {product.images?.length && (
+                <>
+                  <div className="pb4">
+                    <Heading
                       /* Options */
-                      src={imageBuilder
-                        .image(image)
-                        .width(1000)
-                        .auto('format')
-                        .fit('clip')
-                        .url()}
-                      placeholder={imageBuilder
-                        .image(image)
-                        .height(25)
-                        .width(25)
-                        .auto('format')
-                        .fit('clip')
-                        .blur('20')
-                        .url()}
-                      alt={product?.title}
-                      figcaption={null}
-                      height={330}
-                      width={null}
-                      customClass="shadow2 br3"
-                      priority={true}
-                      skeleton={false}
-                      onClick={null}
+                      htmlEntity="h1"
+                      text="Additional shots"
+                      color="black"
+                      size="medium"
+                      truncate={null}
                       /* Children */
                       withLinkProps={null}
                     />
                   </div>
-                ))}
-              </div>
+
+                  <div className="flex flex-wrap mb4">
+                    {product.images?.map((image, index) => (
+                      <div
+                        key={index}
+                        className={`col-24 col-${columns}-md ph2 pb4 pb3-md`}
+                      >
+                        <ImageNew imageObject={image.imageObject} />
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </Container>
           </div>
         </Layout>

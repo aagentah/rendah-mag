@@ -62,7 +62,7 @@ export default function Post({ siteConfig }) {
 
           <div className="flex  flex-wrap">
             {[...Array(coreLength)].map((iteration, i) => (
-              <div key={iteration} className="col-24  col-6-md">
+              <div key={iteration} className="col-24  col-6-md pa2">
                 <CardTeam i={i} member={core && core[i]} />
               </div>
             ))}
@@ -84,7 +84,7 @@ export default function Post({ siteConfig }) {
 
           <div className="flex  flex-wrap">
             {[...Array(featuredLength)].map((iteration, i) => (
-              <div key={iteration} className="col-24  col-4-md">
+              <div key={iteration} className="col-24  col-4-md pa2">
                 <CardTeam i={i} member={featured && featured[i]} featured />
               </div>
             ))}
