@@ -94,26 +94,6 @@ export default function ProfileDominion() {
     }, 100);
   };
 
-  const renderGhostCards = () => {
-    const count = 9 - messages?.length;
-    const ghostCards = [];
-    const ghostItem = { title: 'Expired' };
-
-    if (count > 0) {
-      for (let i = 0; i < count; i++) {
-        ghostCards.push(
-          <div className="col-24  col-8-md  ph3 pv2  o-30">
-            <CardMessage i={i} post={ghostItem} handleClick={null} />
-          </div>
-        );
-      }
-
-      return ghostCards;
-    }
-
-    return false;
-  };
-
   if (user?.isDominion) {
     // Fetch messages
     useEffect(() => {
@@ -130,8 +110,6 @@ export default function ProfileDominion() {
 
       action();
     }, []);
-
-    console.log('messages', messages);
 
     return (
       <>
@@ -271,36 +249,37 @@ export default function ProfileDominion() {
                   )}
                 </div>
 
-                <div className="flex flex-wrap pb5 pt2">
-                  {[...Array(filteredMessages.length)].map((_, i) => (
-                    <>
-                      {filter === 'messages' ? (
-                        <div
-                          key={filteredMessages[i]._id}
-                          className="col-24 col-8-md pa2"
-                        >
-                          <CardMessage
-                            i={i}
-                            post={filteredMessages[i]}
-                            handleClick={() => apply(filteredMessages[i]._id)}
-                          />
-                        </div>
-                      ) : (
-                        <div
-                          key={filteredMessages[i]._id}
-                          className="col-24 pa2"
-                        >
-                          <CardResource
-                            i={i}
-                            post={filteredMessages[i]}
-                            handleClick={() => apply(filteredMessages[i]._id)}
-                          />
-                        </div>
-                      )}
-                    </>
-                  ))}
-                  {renderGhostCards()}
-                </div>
+                {filteredMessages.length && (
+                  <div className="flex flex-wrap pb5 pt2">
+                    {[...Array(filteredMessages.length)].map((_, i) => (
+                      <>
+                        {filter === 'messages' ? (
+                          <div
+                            key={filteredMessages[i]._id}
+                            className="col-24 col-8-md pa2"
+                          >
+                            <CardMessage
+                              i={i}
+                              post={filteredMessages[i]}
+                              handleClick={() => apply(filteredMessages[i]._id)}
+                            />
+                          </div>
+                        ) : (
+                          <div
+                            key={filteredMessages[i]._id}
+                            className="col-24 pa2"
+                          >
+                            <CardResource
+                              i={i}
+                              post={filteredMessages[i]}
+                              handleClick={() => apply(filteredMessages[i]._id)}
+                            />
+                          </div>
+                        )}
+                      </>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 

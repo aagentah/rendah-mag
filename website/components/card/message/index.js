@@ -18,18 +18,14 @@ import { useApp } from '~/context-provider/app';
 
 export default function CardBlog({ post, handleClick, i }) {
   const app = useApp();
-  const scale = app?.isRetina ? 2 : 1;
-  let imageHeight;
-  let imageWidth;
-
-  imageWidth = 328;
-  imageHeight = 328;
+  const height = app.deviceSize === 'md' ? 180 : 260;
+  const width = 260;
 
   const image = (
     <ImageNew
       imageObject={post?.imageObject}
-      height={imageHeight}
-      width={imageWidth}
+      height={height}
+      width={width}
       className="br3 shadow2"
     />
   );
@@ -63,7 +59,7 @@ export default function CardBlog({ post, handleClick, i }) {
   );
 
   return (
-    <LazyLoad once offset={250} height={imageHeight}>
+    <LazyLoad once offset={250} height={height}>
       <article
         className="card  card--post  card--scroll  mb4  mb0-md  relative cp"
         onClick={() => handleClick && handleClick(i)}

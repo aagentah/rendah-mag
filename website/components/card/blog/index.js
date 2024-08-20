@@ -10,7 +10,7 @@ import { useApp } from '~/context-provider/app';
 
 export default function CardBlog({ post, columnCount, inverted }) {
   const app = useApp();
-  const height = 260;
+  const height = app.deviceSize === 'md' ? 180 : 260;
   const width = 260;
 
   const image = (

@@ -9,6 +9,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import toMarkdown from '@sanity/block-content-to-markdown';
 import markdownToTxt from 'markdown-to-txt';
 import dynamic from 'next/dynamic';
+import LazyLoad from 'react-lazyload';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -20,6 +21,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';
 import SubscriptionBanner from '~/components/subscription-banner';
+import LatestPrint from '~/components/latest-print';
 
 import Date from '~/components/date';
 import useWindowDimensions from '~/functions/useWindowDimensions';
@@ -434,6 +436,12 @@ export default function Post({ siteConfig, post, preview }) {
             </section>
           )}
         </Container>
+
+        <div className="bg-light-grey">
+          <LazyLoad once offset={800} height={800}>
+            <LatestPrint showDominionButton={true} />
+          </LazyLoad>
+        </div>
       </Layout>
     );
   }

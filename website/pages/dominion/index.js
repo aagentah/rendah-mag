@@ -14,11 +14,11 @@ import Button from '~/components/elements/button';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Accordion from '~/components/accordion';
+import LatestPrint from '~/components/latest-print';
 
 import {
   getSiteConfig,
   getDominionUsers,
-  getLatestPrintedIssue,
   getTeamMemberAndPosts,
   imageBuilder,
 } from '~/lib/sanity/requests';
@@ -33,9 +33,7 @@ export default function Dominion({ siteConfig }) {
   const [dominion, setDominion] = useState(null);
   const app = useApp();
   const [isTrial, setIsTrial] = useState(false);
-  const buttonIconPlus = <IconPlus color="rendah-red" size={16} />;
   const router = useRouter();
-  const [latestIssue, setLatestIssue] = useState(null);
 
   const isMobile = app.deviceSize === 'md';
 
@@ -63,18 +61,6 @@ export default function Dominion({ siteConfig }) {
 
     return () => clearInterval(interval);
   }, [instanceRef]);
-
-  useEffect(() => {
-    const fetchLatestIssue = async () => {
-      const issue = await getLatestPrintedIssue();
-      setLatestIssue(issue);
-    };
-    fetchLatestIssue();
-  }, []);
-
-  if (!latestIssue) {
-    return null; // or a loading indicator
-  }
 
   const IconWelcome = (
     <svg
@@ -120,7 +106,7 @@ export default function Dominion({ siteConfig }) {
       icon: IconWelcome, // Sign-up icon
     },
     {
-      title: 'Receive your first print',
+      title: 'Receive our latest magazine',
       description:
         'We ship our latest print to you. Future issues are sent automatically as they’re released.',
       icon: IconMagazine, // Newspaper icon
@@ -275,20 +261,20 @@ export default function Dominion({ siteConfig }) {
                   </p>
 
                   <ul className="pl3">
-                    <li className="t-primary  tal  f5  pb2  lh-copy">
+                    <li className="t-primary  tal  f6  pb2  lh-copy">
                       3x Printed magazines per year (free global shipping).
                     </li>
-                    <li className="t-primary  tal  f5  pb2  lh-copy">
+                    <li className="t-primary  tal  f6  pb2  lh-copy">
                       Welcome pack with stickers and membership card.
                     </li>
-                    <li className="t-primary  tal  f5  pb2  lh-copy">
+                    <li className="t-primary  tal  f6  pb2  lh-copy">
                       Subscriber-dashboard; crafted for both artists &
                       enthusiasts.
                     </li>
-                    <li className="t-primary  tal  f5  pb2  lh-copy">
+                    <li className="t-primary  tal  f6  pb2  lh-copy">
                       Exlusive music, art, samples, resources, and insights.
                     </li>
-                    <li className="t-primary  tal  f5  pb2  lh-copy">
+                    <li className="t-primary  tal  f6  pb2  lh-copy">
                       Digital access to previous prints.
                     </li>
                   </ul>
@@ -378,70 +364,7 @@ export default function Dominion({ siteConfig }) {
           </Container>
         </div>
 
-        <div className="bg-white pv6">
-          <Container>
-            <div className="pb4 flex justify-center">
-              <Heading
-                htmlEntity="h3"
-                text="Highlights from our latest print"
-                color="black"
-                size="medium"
-              />
-            </div>
-          </Container>
-
-          <div className="ph6-md">
-            {isMobile ? (
-              <div className="relative">
-                <div ref={sliderRef} className="keen-slider">
-                  {latestIssue.images.map((image, index) => (
-                    <div key={index} className="keen-slider__slide">
-                      <ImageNew
-                        imageObject={image.imageObject}
-                        alt={`Latest Print Image ${index + 1}`}
-                        className="bg-white w-100"
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                <Arrow
-                  left
-                  onClick={(e) =>
-                    e.stopPropagation() || instanceRef.current?.prev()
-                  }
-                  // disabled={currentSlide === 0}
-                />
-                <Arrow
-                  onClick={(e) =>
-                    e.stopPropagation() || instanceRef.current?.next()
-                  }
-                  // disabled={
-                  //   currentSlide ===
-                  //   instanceRef.current?.track.details.slides.length - 1
-                  // }
-                />
-              </div>
-            ) : (
-              <div className="flex flex-wrap justify-between">
-                {latestIssue.images.map((image, index) => (
-                  <div
-                    key={index}
-                    className="col-24 col-12-md col-6-lg mb4 pa3"
-                  >
-                    <div className="flex flex-column">
-                      <ImageNew
-                        imageObject={image.imageObject}
-                        alt={`Latest Print Image ${index + 1}`}
-                        className="bg-white shadow1 br3 w-100"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+        <LatestPrint showDominionButton={false} />
 
         <div className="bg-creations-black white pv6 ph3">
           <Container>

@@ -8,6 +8,7 @@ import { PreviewLink } from "./actions/PreviewLink";
 import UsersOverview from "./components/previews/UsersOverview";
 import UsersAddress from "./components/previews/UsersAddress";
 import StripeMetrics from "./components/previews/StripeMetrics";
+import RecentOrders from "./components/previews/RecentOrders";
 
 import sanityClient from "@sanity/client";
 
@@ -91,6 +92,9 @@ const deskStructure = async (S) => {
                   S.listItem()
                     .title("StripeMetrics")
                     .child(S.component(StripeMetrics).title("StripeMetrics")),
+                  S.listItem()
+                    .title("RecentOrders")
+                    .child(S.component(RecentOrders).title("RecentOrders")),
                 ])
             ),
         admin &&

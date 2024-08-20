@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import dynamic from 'next/dynamic';
+import { saveAs } from 'file-saver';
+
 import Heading from '~/components/elements/heading';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 import { imageBuilder } from '~/lib/sanity/requests';
@@ -16,6 +18,7 @@ import {
   FaFileImage,
   FaFile,
   FaPaperclip,
+  FaDownload,
 } from 'react-icons/fa';
 
 const IconArrowLeft = dynamic(() =>
@@ -32,7 +35,7 @@ function myPortableTextComponents() {
 
         return (
           <div className="bg-darker-grey pa4 pa5-md w-100 mv4 br3">
-            <div className="w-100 mla mra">
+            <div className="w-100 mla mra mw6">
               <ImageNew imageObject={value?.node?.imageObject} />
             </div>
           </div>
@@ -51,12 +54,51 @@ function getIconByMimeType(mimeType) {
   return <FaFileAlt />;
 }
 
+function groupAttachmentsByMimeType(attachments) {
+  const grouped = {};
+
+  attachments.forEach((attachment) => {
+    const icon = getIconByMimeType(attachment.mimeType);
+    const iconKey = icon.type.displayName || icon.type.name;
+
+    if (grouped[iconKey]) {
+      grouped[iconKey].count += 1;
+    } else {
+      grouped[iconKey] = { icon, count: 1 };
+    }
+  });
+
+  return Object.values(grouped);
+}
+
 export default function CarouselItemSection({ message, backButton }) {
   console.log('message', message);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [downloadButtonLoading, setDownloadButtonLoading] = useState(false);
 
   const buttonIconArrowLeft = <IconArrowLeft color="white" size={16} />;
   const toggleModal = () => setIsModalOpen(!isModalOpen);
+
+  // const handleDownloadAll = async () => {
+  //   setDownloadButtonLoading(true);
+
+  //   const response = await fetch('/api/download-attachments', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ attachments: message.attachments }),
+  //   });
+
+  //   if (response.ok) {
+  //     const blob = await response.blob();
+  //     saveAs(blob, `rendah-mag-dominion-${message.activeFrom}.zip`);
+  //   } else {
+  //     console.error('Failed to download attachments');
+  //   }
+
+  //   setDownloadButtonLoading(false);
+  // };
 
   return (
     <section className="pb6">
@@ -81,38 +123,25 @@ export default function CarouselItemSection({ message, backButton }) {
               withLinkProps={null}
             />
           </div>
-          <div className="col-12 flex align-center justify-end pb1 white">
+          <div className="col-12 flex align-center justify-end pb1 rendah-red f6">
             {message?.attachments?.length && (
               <div className="cp flex" onClick={toggleModal}>
                 <div className="pr1">{'['}</div>
-                <div className="flex align-center pr1">
-                  <Button
-                    type="secondary"
-                    size="small"
-                    text="Attachments"
-                    color="white"
-                    fluid={false}
-                    icon={null}
-                    iconFloat="right"
-                    inverted={true}
-                    loading={false}
-                    disabled={!message.attachments?.length}
-                    skeleton={false}
-                    onClick={null}
-                    withLinkProps={null}
-                  />
-                </div>
+                <div className="flex align-center pr1">Attachments</div>
 
-                {message.attachments?.length && (
-                  <div className="white flex align-center">
-                    {message.attachments?.map((attachment, index) => (
-                      <div className="white ph1">
-                        {getIconByMimeType(attachment.mimeType)}
-                      </div>
-                    ))}
-                    {']'}
-                  </div>
-                )}
+                <div className="flex align-center">
+                  {groupAttachmentsByMimeType(message.attachments).map(
+                    ({ icon, count }, index) => (
+                      <span
+                        key={index}
+                        className="pa2 pa0-md ph1-md bg-transparent-md flex"
+                      >
+                        <span className="pr2">{count}x</span> {icon}
+                      </span>
+                    )
+                  )}
+                  {']'}
+                </div>
               </div>
             )}
           </div>
@@ -151,41 +180,65 @@ export default function CarouselItemSection({ message, backButton }) {
       {isModalOpen && (
         <Modal size="medium" active={isModalOpen} closeIcon={toggleModal}>
           <div className="pv3 white f5">
-            <p className="pb3">
+            <p className="t-title f5 pb4">
               This message features {message.attachments.length} exclusive
               Dominion attachments:
             </p>
-            <ul className="ls-none">
-              {message.attachments.map((attachment, index) => (
-                <li className="pv2" key={index}>
-                  {attachment.file ? (
-                    <a
-                      href={`${attachment.file}?dl=`}
-                      className="white align-center pb1 bb bc-white dif"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className="pr2">
-                        {getIconByMimeType(attachment.mimeType)}
-                      </span>
-                      {attachment.title}
-                    </a>
-                  ) : (
-                    <a
-                      href={attachment.url}
-                      className="white align-center pb1 bb bc-white dif"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className="pr2">
-                        <FaFileAlt />
-                      </span>
-                      {attachment.title}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <div className="">
+              <ul className="ls-none">
+                {message.attachments.map((attachment, index) => (
+                  <li className="pv2" key={index}>
+                    {attachment.file ? (
+                      <a
+                        href={`${attachment.file}?dl=`}
+                        className="white align-center pb3 dif w-100 flex justify-between bb bc-mid-grey ph2"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <div className="dif align-center">
+                          <span className="pr2 mid-grey">
+                            {getIconByMimeType(attachment.mimeType)}
+                          </span>
+                          {attachment.title}
+                        </div>
+                        <div className="align-center">
+                          <FaDownload />
+                        </div>
+                      </a>
+                    ) : (
+                      <a
+                        href={attachment.url}
+                        className="white align-center pb2"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span className="pr2">
+                          <FaFileAlt />
+                        </span>
+                        {attachment.title}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* <div className="mw4">
+              <Button
+                type="primary"
+                size="small"
+                text="Download All"
+                color="white"
+                fluid={true}
+                icon={null}
+                iconFloat={null}
+                inverted={true}
+                loading={downloadButtonLoading}
+                disabled={!message.attachments?.length || downloadButtonLoading}
+                onClick={handleDownloadAll}
+                withLinkProps={null}
+              />
+            </div> */}
           </div>
         </Modal>
       )}

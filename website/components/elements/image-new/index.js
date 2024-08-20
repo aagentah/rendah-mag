@@ -54,7 +54,7 @@ const ImageNew = React.memo((props) => {
         <div
           className="skeletonNew"
           style={{
-            height: height || 'auto',
+            height: '100%',
             paddingTop,
           }}
         />

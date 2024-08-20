@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import LazyLoad from 'react-lazyload';
 
 import filter from 'lodash/filter';
 import Heading from '~/components/elements/heading';
@@ -6,6 +7,7 @@ import Heading from '~/components/elements/heading';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardTeam from '~/components/card/team';
+import LatestPrint from '~/components/latest-print';
 
 import { getSiteConfig, getTeamMembers } from '~/lib/sanity/requests';
 
@@ -91,6 +93,12 @@ export default function Post({ siteConfig }) {
           </div>
         </section>
       </Container>
+
+      <div className="bg-light-grey">
+        <LazyLoad once offset={800} height={800}>
+          <LatestPrint showDominionButton={true} />
+        </LazyLoad>
+      </div>
     </Layout>
   );
 }

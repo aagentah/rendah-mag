@@ -44,19 +44,15 @@ function groupAttachmentsByMimeType(attachments) {
 
 export default function CardBlog({ post, handleClick, i }) {
   const app = useApp();
-  const scale = app?.isRetina ? 2 : 1;
-  let imageHeight;
-  let imageUrlWidth;
-
-  imageUrlWidth = 160;
-  imageHeight = 160;
+  const height = app.deviceSize === 'md' ? 180 : 260;
+  const width = 260;
 
   const image = (
     <ImageNew
       imageObject={post?.imageObject}
-      height={imageHeight}
-      width={imageUrlWidth}
-      className="br3 shadow2"
+      height={height}
+      width={width}
+      className="br3"
     />
   );
 
@@ -88,17 +84,15 @@ export default function CardBlog({ post, handleClick, i }) {
     />
   );
 
-  console.log('post', post);
-
   return (
-    <LazyLoad once offset={250} height={imageHeight}>
+    <LazyLoad once offset={250} height={height}>
       <article
-        className="card  mb4  mb0-md  relative cp flex flex-wrap bg-darker-grey br3"
+        className="card  mb4  mb0-md  relative cp flex flex-wrap bg-darker-grey br3 shadow2"
         onClick={() => handleClick && handleClick(i)}
       >
-        {image && <div className="card__image col-24 col-4-md">{image}</div>}
+        {image && <div className="card__image col-24 col-3-md">{image}</div>}
 
-        <div className="col-24 col-10-md pa3">
+        <div className="col-24 col-11-md pa3">
           {heading && <div className="card__title mb3">{heading}</div>}
 
           {post?.subtitle && (

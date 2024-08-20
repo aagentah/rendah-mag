@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import Observer from '@researchgate/react-intersection-observer';
+import LatestPrint from '~/components/latest-print';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -154,6 +155,10 @@ export default function Home() {
 
         <LazyLoad once offset={800} height={800}>
           <RenderCards />
+        </LazyLoad>
+
+        <LazyLoad once offset={800} height={800}>
+          <LatestPrint showDominionButton={true} />
         </LazyLoad>
 
         <Observer {...observer}>
