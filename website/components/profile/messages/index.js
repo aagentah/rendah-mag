@@ -14,9 +14,13 @@ import CardResource from '~/components/card/resource'; // Assuming you have a Ca
 
 import { useUser } from '~/lib/hooks';
 
-import { getDominionItemsSince } from '~/lib/sanity/requests';
+import {
+  getDominionItemsSince,
+  getDominionResourcesSince,
+} from '~/lib/sanity/requests';
 
 const CarouselItemSection = dynamic(() => import('./carousel-item-section'));
+const Resource = dynamic(() => import('./resource'));
 
 const IconArrowLeft = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowLeft)
@@ -33,7 +37,7 @@ const ProfilePrints = dynamic(() => import('~/components/profile/prints'));
 export default function ProfileDominion() {
   const [user] = useUser();
   const [messages, setMessages] = useState([]);
-  const [messagesLength, setMessagesLength] = useState(9);
+  const [resources, setResources] = useState([]);
   const [articleActive, setArticleActive] = useState(false);
   const [modalActive, setModalActive] = useState(false);
   const [modalPrintsActive, setModalPrintsActive] = useState(false);
@@ -48,29 +52,20 @@ export default function ProfileDominion() {
     audio: ['wav', 'mp3', 'flac', 'aac'],
     images: ['jpg', 'png', 'gif', 'svg'],
     videos: ['mp4', 'mkv', 'webm', 'avi'],
-    // documents: ['pdf', 'docx', 'xlsx', 'pptx'],
     all: [],
   };
 
   const filteredMessages = messages.filter((message) => {
     if (filter === 'messages') return message.type === 'message';
+    return false;
+  });
 
+  const filteredResources = resources.filter((resource) => {
     if (filter === 'resources') {
-      // Extract the mime types from the attachments array
-      const mimeTypes = message.attachments?.map(
-        (attachment) => attachment.mimeType.split('/')[1]
-      );
-
-      if (fileTypeFilter === 'all') return message.type === 'resource';
-
-      // Check if any of the mime types match the selected fileTypeFilter
-      return (
-        message.type === 'resource' &&
-        mimeTypes?.some((mimeType) =>
-          fileTypeCategories[fileTypeFilter]?.includes(mimeType)
-        )
-      );
+      if (fileTypeFilter === 'all') return true;
+      return resource.type === fileTypeFilter;
     }
+    return false;
   });
 
   const apply = (i) => {
@@ -95,26 +90,32 @@ export default function ProfileDominion() {
   };
 
   if (user?.isDominion) {
-    // Fetch messages
+    // Fetch messages and resources
     useEffect(() => {
-      const action = async () => {
-        const data = await getDominionItemsSince(user);
+      const fetchItems = async () => {
+        const dataMessages = await getDominionItemsSince(user);
+        const dataResources = await getDominionResourcesSince(user);
 
-        console.log('data', data);
+        console.log('dataResources', dataResources);
 
-        if (data) {
-          setMessages(data);
-          setMessagesLength(data?.length);
+        if (dataMessages) {
+          setMessages(dataMessages);
+        }
+
+        if (dataResources) {
+          setResources(dataResources);
         }
       };
 
-      action();
-    }, []);
+      fetchItems();
+    }, [user]);
+
+    console.log('resources', resources);
 
     return (
       <>
         <section>
-          <div className="relative">
+          <div className="relative page--profile">
             <div
               className={`
               dominion-cards
@@ -157,7 +158,7 @@ export default function ProfileDominion() {
                             : 'white'
                         }`}
                       >
-                        Messages
+                        Newsletters
                       </button>
                       <button
                         onClick={() => setFilter('resources')}
@@ -235,51 +236,37 @@ export default function ProfileDominion() {
                       >
                         Videos
                       </button>
-                      {/* <button
-                        onClick={() => setFileTypeFilter('documents')}
-                        className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
-                          fileTypeFilter === 'documents'
-                            ? 'bg-white almost-black'
-                            : 'white'
-                        }`}
-                      >
-                        Documents
-                      </button> */}
                     </div>
                   )}
                 </div>
 
-                {filteredMessages.length && (
+                {filteredMessages.length ? (
                   <div className="flex flex-wrap pb5 pt2">
-                    {[...Array(filteredMessages.length)].map((_, i) => (
-                      <>
-                        {filter === 'messages' ? (
-                          <div
-                            key={filteredMessages[i]._id}
-                            className="col-24 col-8-md pa2"
-                          >
-                            <CardMessage
-                              i={i}
-                              post={filteredMessages[i]}
-                              handleClick={() => apply(filteredMessages[i]._id)}
-                            />
-                          </div>
-                        ) : (
-                          <div
-                            key={filteredMessages[i]._id}
-                            className="col-24 pa2"
-                          >
-                            <CardResource
-                              i={i}
-                              post={filteredMessages[i]}
-                              handleClick={() => apply(filteredMessages[i]._id)}
-                            />
-                          </div>
-                        )}
-                      </>
+                    {filteredMessages.map((item, i) => (
+                      <div key={item._id} className="col-24 col-8-md pa2">
+                        <CardMessage
+                          i={i}
+                          post={item}
+                          handleClick={() => apply(item._id)}
+                        />
+                      </div>
                     ))}
                   </div>
-                )}
+                ) : null}
+
+                {filteredResources.length ? (
+                  <div className="flex flex-wrap pb5 pt2">
+                    {filteredResources.map((item, i) => (
+                      <div key={item._id} className="col-24 pa2">
+                        <CardResource
+                          i={i}
+                          post={item}
+                          handleClick={() => apply(item._id)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             </div>
 
@@ -301,6 +288,28 @@ export default function ProfileDominion() {
                             message={item}
                             backButton={backButton}
                           />
+                        </>
+                      )}
+                    </div>
+                  ))
+                : ''}
+            </section>
+
+            <section className="">
+              {resources.length
+                ? resources.map((item) => (
+                    <div
+                      key={item._id}
+                      className={`
+            dominion-modal-wrapper
+            ${
+              articleActive === item._id ? 'dominion-modal-wrapper--active' : ''
+            }
+          `}
+                    >
+                      {articleActive === item._id && (
+                        <>
+                          <Resource message={item} backButton={backButton} />
                         </>
                       )}
                     </div>

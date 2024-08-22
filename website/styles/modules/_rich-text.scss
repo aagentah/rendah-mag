@@ -83,6 +83,23 @@
   display: none;
 }
 
+.richtext-image-caption {
+  @extend .ph2;
+}
+
+.richtext-image-caption p,
+.richtext-image-caption * {
+  @extend .f6;
+  @extend .f6-md;
+  @extend .f6-lg;
+}
+
+.rich-text .audio__title p {
+  @extend .f6;
+  @extend .f6-md;
+  @extend .f6-lg;
+}
+
 // p:has(> br:only-child) {
 //   display: none;
 // }

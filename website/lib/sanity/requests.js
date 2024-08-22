@@ -5,19 +5,30 @@ import client, { previewClient } from './config';
 import dateTodayISO from '~/functions/dateTodayISO';
 import dateTodayYyyyMmDd from '~/functions/dateTodayYyyyMmDd';
 
-const postFields = `
-  name,
-  title,
-  publishedAt,
-  body[]{
+const blockContent = `
+{
     ...,
     _type == "image" => {
       'url': asset->url,
       'caption': caption,
       'fullImage': fullImage,
       'dimensions': asset->metadata.dimensions
+    },
+    _type == "audioFileBlock" => {
+      title,
+      description,
+      "url": audioFile.asset->url,
+      "mimeType": audioFile.asset->mimeType,
+      "imageUrl": image.asset->url,
     }
-  },
+  }
+`;
+
+const postFields = `
+  name,
+  title,
+  publishedAt,
+  body[]${blockContent},
   introduction,
   socialHandles,
   socialTagline,
@@ -150,10 +161,20 @@ const getClient = (preview) => (preview ? previewClient : client);
 export const imageBuilder = sanityImage(client);
 
 export async function getFileUrl(fileRef) {
-  const query = `*[_id == $id][0] {url: asset->url}`;
+  const query = `*[_id == $id][0] { "url": asset->url }`;
   const params = { id: fileRef };
-  const result = await client.fetch(query, params);
-  return result.url;
+
+  console.log('query', query);
+  console.log('params', params);
+
+  try {
+    const result = await client.fetch(query, params);
+    console.log('result', result);
+    return result?.url || null;
+  } catch (error) {
+    console.error('Error fetching file URL:', error);
+    return null;
+  }
 }
 
 export async function getSiteConfig() {
@@ -634,19 +655,13 @@ export async function getLatestNewsletterCypher(preview) {
   return results;
 }
 
+// Fetch Dominion Items (Messages)
 export async function getDominionItemsSince(user, preview) {
   const curClient = getClient(preview);
-
   const dominionSinceDate = user.dominionSince;
-
-  // Extract the year from the dominionSinceDate and create the start of the year date
   const year = new Date(dominionSinceDate).getFullYear();
   const startOfYearDate = new Date(`${year}-01-01`).toISOString();
-
-  // Set the start date to January 1, 2024
   const startDate2024 = new Date('2024-01-01').toISOString();
-
-  console.log('startOfYearDate', startOfYearDate);
 
   const results = await curClient.fetch(
     `*[_type == "dominionItem" && activeFrom >= $startOfYearDate && activeFrom >= $startDate2024] | order(activeFrom desc) {
@@ -682,6 +697,37 @@ export async function getDominionItemsSince(user, preview) {
   return results;
 }
 
+// Fetch Dominion Resources
+export async function getDominionResourcesSince(user, preview) {
+  const curClient = getClient(preview);
+  const dominionSinceDate = user.dominionSince;
+  const year = new Date(dominionSinceDate).getFullYear();
+  const startOfYearDate = new Date(`${year}-01-01`).toISOString();
+  const startDate2024 = new Date('2024-01-01').toISOString();
+
+  const results = await curClient.fetch(
+    `*[_type == "dominionResource" && activeFrom >= $startOfYearDate && activeFrom >= $startDate2024] | order(activeFrom desc) {
+      ...,
+      "slug": slug.current,
+      "attachments": attachments[] {
+        title,
+        "file": file.asset->url,
+        "url": file.asset->url,
+        "mimeType": file.asset->mimeType,
+      },
+      'imageObject': {
+        'url': coverImage.asset->url,
+        'caption': coverImage.caption,
+        'fullImage': coverImage.fullImage,
+        'dimensions': coverImage.asset->metadata.dimensions
+      },
+      'description': description[]${blockContent}
+    }`,
+    { startOfYearDate, startDate2024 }
+  );
+
+  return results;
+}
 export async function getSmartLink(slug, preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "smartLink" && slug.current == $slug] | order(activeFrom desc) [0] {

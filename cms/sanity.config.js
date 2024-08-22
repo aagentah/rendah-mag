@@ -9,6 +9,7 @@ import UsersOverview from "./components/previews/UsersOverview";
 import UsersAddress from "./components/previews/UsersAddress";
 import StripeMetrics from "./components/previews/StripeMetrics";
 import RecentOrders from "./components/previews/RecentOrders";
+import FailedPayments from "./components/previews/FailedPayments";
 
 import sanityClient from "@sanity/client";
 
@@ -83,6 +84,8 @@ const deskStructure = async (S) => {
                 .items([
                   S.documentTypeListItem("user").title("User"),
                   S.documentTypeListItem("print").title("Prints"),
+                  S.documentTypeListItem("dominionResource").title("Resource"),
+                  S.divider(),
                   S.listItem()
                     .title("UsersOverview")
                     .child(S.component(UsersOverview).title("UsersOverview")),
@@ -95,6 +98,9 @@ const deskStructure = async (S) => {
                   S.listItem()
                     .title("RecentOrders")
                     .child(S.component(RecentOrders).title("RecentOrders")),
+                  S.listItem()
+                    .title("FailedPayments")
+                    .child(S.component(FailedPayments).title("FailedPayments")),
                 ])
             ),
         admin &&

@@ -34,7 +34,7 @@ function myPortableTextComponents() {
         }
 
         return (
-          <div className="bg-darker-grey pa4 pa5-md w-100 mv4 br3">
+          <div className="ph4 ph5-md w-100 mv4 pv3-md br3">
             <div className="w-100 mla mra mw6">
               <ImageNew imageObject={value?.node?.imageObject} />
             </div>
@@ -76,7 +76,7 @@ export default function CarouselItemSection({ message, backButton }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [downloadButtonLoading, setDownloadButtonLoading] = useState(false);
 
-  const buttonIconArrowLeft = <IconArrowLeft color="white" size={16} />;
+  const buttonIconArrowLeft = <IconArrowLeft color="rendah-red" size={16} />;
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   // const handleDownloadAll = async () => {
@@ -101,147 +101,61 @@ export default function CarouselItemSection({ message, backButton }) {
   // };
 
   return (
-    <section className="pb6">
-      <div className="container mla mra">
-        <div className="flex flex-wrap pb4 mb4 bb bc-white">
-          <div className="col-12 pb1">
-            <Button
-              /* Options */
-              type="secondary"
-              size="small"
-              text="Back"
-              color="white"
-              fluid={false}
-              icon={buttonIconArrowLeft}
-              iconFloat="left"
-              inverted={true}
-              loading={false}
-              disabled={false}
-              skeleton={false}
-              onClick={backButton}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-          <div className="col-12 flex align-center justify-end pb1 rendah-red f6">
-            {message?.attachments?.length && (
-              <div className="cp flex" onClick={toggleModal}>
-                <div className="pr1">{'['}</div>
-                <div className="flex align-center pr1">Attachments</div>
-
-                <div className="flex align-center">
-                  {groupAttachmentsByMimeType(message.attachments).map(
-                    ({ icon, count }, index) => (
-                      <span
-                        key={index}
-                        className="pa2 pa0-md ph1-md bg-transparent-md flex"
-                      >
-                        <span className="pr2">{count}x</span> {icon}
-                      </span>
-                    )
-                  )}
-                  {']'}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className="col-24 col-12-md mla mra ph4 ph0-md">
-        <div className="pv3">
-          <Heading
-            /* Options */
-            htmlEntity="h1"
-            text={message.title}
-            color="white"
-            size="large"
-            truncate={null}
-            /* Children */
-            withLinkProps={null}
-          />
-        </div>
-
-        <p className="grey pb4 f6">
-          Written by {message.from} on {message.activeFrom}
-        </p>
-
-        <div className="rich-text">
-          <BlockContent
-            blocks={message.description}
-            serializers={{
-              ...SANITY_BLOCK_SERIALIZERS,
-              ...myPortableTextComponents(),
-            }}
-          />
-        </div>
-      </div>
-
-      {isModalOpen && (
-        <Modal size="medium" active={isModalOpen} closeIcon={toggleModal}>
-          <div className="pv3 white f5">
-            <p className="t-title f5 pb4">
-              This message features {message.attachments.length} exclusive
-              Dominion attachments:
-            </p>
-            <div className="">
-              <ul className="ls-none">
-                {message.attachments.map((attachment, index) => (
-                  <li className="pv2" key={index}>
-                    {attachment.file ? (
-                      <a
-                        href={`${attachment.file}?dl=`}
-                        className="white align-center pb3 dif w-100 flex justify-between bb bc-mid-grey ph2"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <div className="dif align-center">
-                          <span className="pr2 mid-grey">
-                            {getIconByMimeType(attachment.mimeType)}
-                          </span>
-                          {attachment.title}
-                        </div>
-                        <div className="align-center">
-                          <FaDownload />
-                        </div>
-                      </a>
-                    ) : (
-                      <a
-                        href={attachment.url}
-                        className="white align-center pb2"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <span className="pr2">
-                          <FaFileAlt />
-                        </span>
-                        {attachment.title}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* <div className="mw4">
+    <section className="pb4 pb6-md ph4 ph0-md">
+      <div className="ph5-md">
+        <div className="pt4 pb5">
+          <div className="col-24 col-12-md mla mra">
+            <div className="col-12 pb1">
               <Button
-                type="primary"
+                /* Options */
+                type="secondary"
                 size="small"
-                text="Download All"
-                color="white"
-                fluid={true}
-                icon={null}
-                iconFloat={null}
+                text="Back"
+                color="rendah-red"
+                fluid={false}
+                icon={buttonIconArrowLeft}
+                iconFloat="left"
                 inverted={true}
-                loading={downloadButtonLoading}
-                disabled={!message.attachments?.length || downloadButtonLoading}
-                onClick={handleDownloadAll}
+                loading={false}
+                disabled={false}
+                skeleton={false}
+                onClick={backButton}
+                /* Children */
                 withLinkProps={null}
               />
-            </div> */}
+            </div>
+
+            <div className="pv3">
+              <Heading
+                /* Options */
+                htmlEntity="h1"
+                text={message.title}
+                color="white"
+                size="large"
+                truncate={null}
+                /* Children */
+                withLinkProps={null}
+              />
+            </div>
+
+            <p className="grey pb4 f6">
+              Written by {message.from} on {message.activeFrom}
+            </p>
+
+            <div className="creations">
+              <div className="rich-text">
+                <BlockContent
+                  blocks={message.description}
+                  serializers={{
+                    ...SANITY_BLOCK_SERIALIZERS,
+                    ...myPortableTextComponents(),
+                  }}
+                />
+              </div>
+            </div>
           </div>
-        </Modal>
-      )}
+        </div>
+      </div>
     </section>
   );
 }

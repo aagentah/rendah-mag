@@ -43,6 +43,7 @@ function groupAttachmentsByMimeType(attachments) {
 }
 
 export default function CardBlog({ post, handleClick, i }) {
+  console.log('post', post);
   const app = useApp();
   const height = app.deviceSize === 'md' ? 180 : 260;
   const width = 260;
@@ -85,42 +86,40 @@ export default function CardBlog({ post, handleClick, i }) {
   );
 
   return (
-    <LazyLoad once offset={250} height={height}>
-      <article
-        className="card  mb4  mb0-md  relative cp flex flex-wrap bg-darker-grey br3 shadow2"
-        onClick={() => handleClick && handleClick(i)}
-      >
-        {image && <div className="card__image col-24 col-3-md">{image}</div>}
+    <article
+      className="card  mb4  mb0-md  relative cp flex flex-wrap bg-darker-grey br3 shadow2"
+      onClick={() => handleClick && handleClick(i)}
+    >
+      {image && <div className="card__image col-24 col-3-md">{image}</div>}
 
-        <div className="col-24 col-11-md pa3">
-          {heading && <div className="card__title mb3">{heading}</div>}
+      <div className="col-24 col-11-md pa3">
+        {heading && <div className="card__title mb3">{heading}</div>}
 
-          {post?.subtitle && (
-            <p className="lh-copy f6 white mb2 mb3-md">{post?.subtitle}</p>
-          )}
+        {post?.subtitle && (
+          <p className="lh-copy f6 mb2 mb3-md silver">{post?.subtitle}</p>
+        )}
 
-          <div className="relative">
-            <span className="white">
-              {post.attachments.length && (
-                <div className="flex align-center relative">
-                  {'['}
-                  {groupAttachmentsByMimeType(post.attachments).map(
-                    ({ icon, count }, index) => (
-                      <span
-                        key={index}
-                        className="pa2 pa0-md ph1-md bg-transparent-md flex"
-                      >
-                        <span className="pr2">{count}x</span> {icon}
-                      </span>
-                    )
-                  )}
-                  {']'}
-                </div>
-              )}
-            </span>
-          </div>
+        <div className="relative f6">
+          <span className="white">
+            {post.attachments.length && (
+              <div className="flex align-center relative">
+                {'['}
+                {groupAttachmentsByMimeType(post.attachments).map(
+                  ({ icon, count }, index) => (
+                    <span
+                      key={index}
+                      className="pa2 pa0-md ph1-md bg-transparent-md flex"
+                    >
+                      <span className="pr2">{count}x</span> {icon}
+                    </span>
+                  )
+                )}
+                {']'}
+              </div>
+            )}
+          </span>
         </div>
-      </article>
-    </LazyLoad>
+      </div>
+    </article>
   );
 }

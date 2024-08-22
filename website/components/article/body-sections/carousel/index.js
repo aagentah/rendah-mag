@@ -31,6 +31,7 @@ function Arrow(props) {
 }
 
 export default function ImageSection({ section }) {
+  console.log('section', section);
   const [useKeenSliderHook, setUseKeenSliderHook] = useState(false);
 
   if (useFirstRender() || !useKeenSliderHook) {
@@ -45,27 +46,45 @@ export default function ImageSection({ section }) {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
-  const [sliderRef, instanceRef] = useKeenSliderHook.hook({
-    initial: 0,
-    slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel);
-    },
-    created() {
-      setLoaded(true);
-    }
-  });
 
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
   const imageUrlWidth = 500;
 
-  const handleCaption = () => {
-    let { caption, source } = section;
+  let slidersPerView;
+
+  if (app.deviceSize === 'md') {
+    slidersPerView = 1;
+  } else {
+    slidersPerView = section?.slidesPerViewDesktop || 1;
+  }
+
+  const height =
+    app.deviceSize === 'md'
+      ? section.carouselHeightMobile
+      : section.carouselHeightDesktop;
+
+  const [sliderRef, instanceRef] = useKeenSliderHook.hook({
+    initial: 0,
+    loop: false,
+    renderMode: 'performance',
+    drag: true,
+    slides: { perView: slidersPerView },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
+    created() {
+      setLoaded(true);
+    },
+  });
+
+  const handleCaption = (image) => {
+    let { caption, source } = image;
 
     // If blockContent
     if (isArray(caption)) {
       return (
-        <figcaption className="caption  pv2">
+        <figcaption className="richtext-image-caption tac mla mra pt3 o-50">
           <BlockContent
             blocks={caption}
             serializers={SANITY_BLOCK_SERIALIZERS}
@@ -94,65 +113,72 @@ export default function ImageSection({ section }) {
   };
 
   return (
-    <LazyLoad once offset={250} height={section?.carouselHeight}>
-      <div ref={sliderRef} className="keen-slider">
-        {section?.images?.length &&
-          section.images.map((p, i) => (
-            <div className="keen-slider__slide">
-              <img
-                className="w-100  shadow2"
-                style={{
-                  height: section?.carouselHeight,
-                  objectFit: 'cover'
-                }}
-                src={imageBuilder
-                  .image(p)
-                  .width(imageUrlWidth * scale)
-                  .auto('format')
-                  .fit('clip')
-                  .url()}
-              />
+    <LazyLoad once offset={250} height={height || section?.carouselHeight}>
+      <div className="col-24  col-12-md mla mra relative">
+        <div ref={sliderRef} className="keen-slider">
+          {section?.images?.length &&
+            section.images.map((p, i) => (
+              <div className="keen-slider__slide ph2">
+                <img
+                  className="w-100  shadow2 br3"
+                  style={{
+                    height: height || section?.carouselHeight,
+                    objectFit: 'cover',
+                  }}
+                  src={imageBuilder
+                    .image(p)
+                    .width(imageUrlWidth * scale)
+                    .auto('format')
+                    .fit('clip')
+                    .url()}
+                />
 
-              {handleCaption()}
-            </div>
-          ))}
+                {handleCaption(p)}
+              </div>
+            ))}
+        </div>
 
         {loaded && instanceRef.current && (
           <>
             <Arrow
               left
-              onClick={e => e.stopPropagation() || instanceRef.current?.prev()}
+              onClick={(e) =>
+                e.stopPropagation() || instanceRef.current?.prev()
+              }
               disabled={currentSlide === 0}
             />
 
             <Arrow
-              onClick={e => e.stopPropagation() || instanceRef.current?.next()}
+              onClick={(e) =>
+                e.stopPropagation() || instanceRef.current?.next()
+              }
               disabled={
-                currentSlide ===
-                instanceRef.current.track.details.slides.length - 1
+                currentSlide >=
+                instanceRef.current.track.details.slides.length -
+                  instanceRef.current.options.slides.perView
               }
             />
           </>
         )}
-      </div>
 
-      {loaded && instanceRef.current && (
-        <div className="dots">
-          {[
-            ...Array(instanceRef.current.track.details.slides.length).keys()
-          ].map(idx => {
-            return (
-              <button
-                key={idx}
-                onClick={() => {
-                  instanceRef.current?.moveToIdx(idx);
-                }}
-                className={`dot${currentSlide === idx ? ' active' : ''}`}
-              />
-            );
-          })}
-        </div>
-      )}
+        {/* {loaded && instanceRef.current && (
+          <div className="dots">
+            {[
+              ...Array(instanceRef.current.track.details.slides.length).keys(),
+            ].map((idx) => {
+              return (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    instanceRef.current?.moveToIdx(idx);
+                  }}
+                  className={`dot${currentSlide === idx ? ' active' : ''}`}
+                />
+              );
+            })}
+          </div>
+        )} */}
+      </div>
     </LazyLoad>
   );
 }

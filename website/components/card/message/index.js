@@ -59,25 +59,23 @@ export default function CardBlog({ post, handleClick, i }) {
   );
 
   return (
-    <LazyLoad once offset={250} height={height}>
-      <article
-        className="card  card--post  card--scroll  mb4  mb0-md  relative cp"
-        onClick={() => handleClick && handleClick(i)}
-      >
-        {image && <div className="card__image">{image}</div>}
+    <article
+      className="card  card--post  card--scroll  mb4  mb0-md  relative cp"
+      onClick={() => handleClick && handleClick(i)}
+    >
+      {image && <div className="card__image">{image}</div>}
 
-        <div className="card__dialog">
-          {heading && (
-            <div className="card__title mb3">
-              {heading}
+      <div className="card__dialog">
+        {heading && (
+          <div className="card__title mb3">
+            {heading}
 
-              {post?.subtitle && (
-                <p className="lh-copy f6 white pt2">{post?.subtitle}</p>
-              )}
-            </div>
-          )}
-        </div>
-      </article>
-    </LazyLoad>
+            {post?.subtitle && (
+              <p className="lh-copy f6 white pt2">{post?.subtitle}</p>
+            )}
+          </div>
+        )}
+      </div>
+    </article>
   );
 }

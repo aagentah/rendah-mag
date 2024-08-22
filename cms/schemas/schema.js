@@ -11,6 +11,7 @@ import storeCollection from "./documents/storeCollection";
 import storeItem from "./documents/storeItem";
 import cypher from "./documents/cypher";
 import dominionItem from "./documents/dominionItem";
+import dominionResource from "./documents/dominionResource";
 import user from "./documents/user";
 // import dominionPipeline from "./objects/dominionPipeline";
 import creations from "./documents/creations";
@@ -39,6 +40,7 @@ export default [
   storeItem,
   cypher,
   dominionItem,
+  dominionResource,
   user,
   // dominionPipeline,
   creations,

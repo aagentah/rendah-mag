@@ -89,10 +89,22 @@ export default defineType({
           ],
         },
         {
-          name: "carouselHeight",
-          title: "Carousel Height (px)",
+          name: "carouselHeightDesktop",
+          title: "Carousel Height (Desktop)",
           type: "number",
           validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "carouselHeightMobile",
+          title: "Carousel Height (Mobile)",
+          type: "number",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "slidesPerViewDesktop",
+          title: "Number of Slides per View (Desktop)",
+          type: "number",
+          validation: (Rule) => Rule.min(1).required(),
         },
       ],
     }),
@@ -218,38 +230,38 @@ export default defineType({
         },
       ],
     }),
-    defineArrayMember({
-      name: "audioEmbedBlock",
-      title: "Audio Embed (via URL)",
-      type: "object",
-      fields: [
-        {
-          name: "title",
-          title: "Title",
-          type: "string",
-          validation: (Rule) => Rule.required(),
-        },
-        {
-          name: "description",
-          title: "Description",
-          type: "array",
-          of: [{ type: "block" }],
-        },
-        {
-          name: "audioEmbed",
-          title: "Audio Embed",
-          type: "string",
-          description:
-            "For example: https://res.cloudinary.com/dzz8ji5lj/video/upload/v1611694553/evidence.wav",
-          validation: (Rule) => Rule.required(),
-        },
-        {
-          name: "allowDownload",
-          title: "Allow Download",
-          type: "boolean",
-        },
-      ],
-    }),
+    // defineArrayMember({
+    //   name: "audioEmbedBlock",
+    //   title: "Audio Embed (via URL)",
+    //   type: "object",
+    //   fields: [
+    //     {
+    //       name: "title",
+    //       title: "Title",
+    //       type: "string",
+    //       validation: (Rule) => Rule.required(),
+    //     },
+    //     {
+    //       name: "description",
+    //       title: "Description",
+    //       type: "array",
+    //       of: [{ type: "block" }],
+    //     },
+    //     {
+    //       name: "audioEmbed",
+    //       title: "Audio Embed",
+    //       type: "string",
+    //       description:
+    //         "For example: https://res.cloudinary.com/dzz8ji5lj/video/upload/v1611694553/evidence.wav",
+    //       validation: (Rule) => Rule.required(),
+    //     },
+    //     {
+    //       name: "allowDownload",
+    //       title: "Allow Download",
+    //       type: "boolean",
+    //     },
+    //   ],
+    // }),
     defineArrayMember({
       name: "codeBlock",
       title: "Code Block",
@@ -265,6 +277,39 @@ export default defineType({
           name: "code",
           title: "Code",
           type: "text",
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+    }),
+    defineArrayMember({
+      name: "audioFileBlock",
+      title: "Audio File",
+      type: "object",
+      fields: [
+        {
+          name: "image",
+          title: "Image",
+          type: "image",
+        },
+        {
+          name: "title",
+          title: "Title",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "array",
+          of: [{ type: "block" }],
+        },
+        {
+          name: "audioFile",
+          title: "Audio File",
+          type: "file",
+          options: {
+            accept: "audio/*",
+          },
           validation: (Rule) => Rule.required(),
         },
       ],
