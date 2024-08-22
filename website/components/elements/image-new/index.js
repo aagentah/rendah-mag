@@ -7,8 +7,7 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
 const ImageNew = React.memo((props) => {
-  const { imageObject, placeholder, height, width, className, objectFit } =
-    props;
+  const { imageObject, placeholder, height, className, objectFit } = props;
   const [loaded, setLoaded] = useState(false);
 
   const handleLoad = useCallback(() => {
@@ -33,7 +32,7 @@ const ImageNew = React.memo((props) => {
     if (!url) return '';
     return imageBuilder
       .image(url)
-      .width(height ? height * 2 : 1920)
+      .height(typeof height === 'number' ? height * 2 : 1920)
       .auto('format')
       .fit('clip')
       .url();
@@ -51,13 +50,13 @@ const ImageNew = React.memo((props) => {
 
   return (
     <div
-      className="imageNew"
+      className="imageNew over-hidden"
       style={{
         height: '100%',
       }}
     >
       <div
-        className={`imageObject over-hidden ${className || ''}`}
+        className={`imageObject  ${className || ''}`}
         style={{
           height: '100%',
           paddingTop,
@@ -67,7 +66,7 @@ const ImageNew = React.memo((props) => {
           className={`skeletonNew ${loaded && 'skeletonNew--fade'}`}
           style={{
             height: '100%',
-            paddingTop,
+            // paddingTop,
           }}
         />
 
