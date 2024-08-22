@@ -20,6 +20,16 @@ const blockContent = `
       "url": audioFile.asset->url,
       "mimeType": audioFile.asset->mimeType,
       "imageUrl": image.asset->url,
+    },
+    _type == "carousel" => {
+       'images': images[] {
+        'imageObject': {
+          'url': asset->url,
+          'caption': caption,
+          'fullImage': fullImage,
+          'dimensions': asset->metadata.dimensions
+        },
+      },
     }
   }
 `;

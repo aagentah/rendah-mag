@@ -64,6 +64,7 @@
 
 .imageObject {
   position: relative;
+  width: 100%;
   // height: 100%;
   // width: 100%;
 
@@ -112,7 +113,7 @@
     display: none;
   }
 
-  .skeleton--fade {
+  .skeletonNew--fade {
     opacity: 0; /* Fade out when the image is loaded */
   }
 
@@ -145,4 +146,15 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 0.25rem;
   }
+}
+
+.imageNew {
+  width: 100%;
+  height: auto; /* Let height be auto */
+}
+
+.imageObject {
+  position: relative;
+  width: 100%;
+  height: auto; /* Let height be auto */
 }

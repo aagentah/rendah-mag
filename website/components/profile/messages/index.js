@@ -319,32 +319,30 @@ export default function ProfileDominion() {
           </div>
         </section>
 
-        <div className="creations">
-          <Modal
-            /* Options */
-            size="large"
-            active={modalActive}
-            closeIcon={setModalActive}
-          >
-            <div className="z9 relative">
-              <ProfileEdit />
-            </div>
-            <div className="z9 relative">
-              <ProfileBilling />
-            </div>
-          </Modal>
+        <Modal
+          /* Options */
+          size="large"
+          active={modalActive}
+          closeIcon={setModalActive}
+        >
+          <div className="z9 relative">
+            <ProfileEdit />
+          </div>
+          <div className="z9 relative">
+            <ProfileBilling />
+          </div>
+        </Modal>
 
-          <Modal
-            /* Options */
-            size="large"
-            active={modalPrintsActive}
-            closeIcon={setModalPrintsActive}
-          >
-            <div className="pb4 z9 relative">
-              <ProfilePrints />
-            </div>
-          </Modal>
-        </div>
+        <Modal
+          /* Options */
+          size="large"
+          active={modalPrintsActive}
+          closeIcon={setModalPrintsActive}
+        >
+          <div className="pb4 z9 relative">
+            <ProfilePrints />
+          </div>
+        </Modal>
       </>
     );
   }

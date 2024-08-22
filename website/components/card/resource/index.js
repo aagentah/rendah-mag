@@ -45,16 +45,11 @@ function groupAttachmentsByMimeType(attachments) {
 export default function CardBlog({ post, handleClick, i }) {
   console.log('post', post);
   const app = useApp();
-  const height = app.deviceSize === 'md' ? 180 : 260;
+  const height = app.deviceSize === 'md' ? 180 : 100;
   const width = 260;
 
   const image = (
-    <ImageNew
-      imageObject={post?.imageObject}
-      height={height}
-      width={width}
-      className="br3"
-    />
+    <ImageNew imageObject={post?.imageObject} height={height} className="br3" />
   );
 
   const labels = (

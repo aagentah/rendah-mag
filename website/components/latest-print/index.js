@@ -76,6 +76,7 @@ export default function LatestPrint({ showDominionButton }) {
                   <ImageNew
                     imageObject={image.imageObject}
                     alt={`Latest Print Image ${index + 1}`}
+                    height={550}
                     className="bg-white w-100"
                   />
                 </div>
@@ -90,6 +91,7 @@ export default function LatestPrint({ showDominionButton }) {
                   <ImageNew
                     imageObject={image.imageObject}
                     alt={`Latest Print Image ${index + 1}`}
+                    height={400}
                     className="bg-white shadow1 br3 w-100"
                   />
                 </div>

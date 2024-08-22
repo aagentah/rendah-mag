@@ -414,7 +414,6 @@ export default function Dominion({ siteConfig }) {
                     >
                       <ImageNew
                         imageObject={teamMember.imageObject}
-                        width={80}
                         height={80}
                         className="br3 shadow2"
                       />

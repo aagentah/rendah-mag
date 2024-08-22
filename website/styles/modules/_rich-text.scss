@@ -83,12 +83,12 @@
   display: none;
 }
 
-.richtext-image-caption {
+.imageNew__captions {
   @extend .ph2;
 }
 
-.richtext-image-caption p,
-.richtext-image-caption * {
+.imageNew__captions p,
+.imageNew__captions * {
   @extend .f6;
   @extend .f6-md;
   @extend .f6-lg;

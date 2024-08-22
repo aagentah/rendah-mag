@@ -4,6 +4,8 @@ import isArray from 'lodash/isArray';
 import 'keen-slider/keen-slider.min.css';
 import LazyLoad from 'react-lazyload';
 
+import ImageNew from '~/components/elements/image-new';
+
 import { imageBuilder } from '~/lib/sanity/requests';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 import { useApp } from '~/context-provider/app';
@@ -81,6 +83,8 @@ export default function ImageSection({ section }) {
   const handleCaption = (image) => {
     let { caption, source } = image;
 
+    console.log('caption', caption);
+
     // If blockContent
     if (isArray(caption)) {
       return (
@@ -112,14 +116,16 @@ export default function ImageSection({ section }) {
     }
   };
 
+  console.log('section', section);
+
   return (
     <LazyLoad once offset={250} height={height || section?.carouselHeight}>
       <div className="col-24  col-12-md mla mra relative">
         <div ref={sliderRef} className="keen-slider">
           {section?.images?.length &&
             section.images.map((p, i) => (
-              <div className="keen-slider__slide ph2">
-                <img
+              <div className="keen-slider__slide ph2 pb4">
+                {/* <img
                   className="w-100  shadow2 br3"
                   style={{
                     height: height || section?.carouselHeight,
@@ -131,9 +137,16 @@ export default function ImageSection({ section }) {
                     .auto('format')
                     .fit('clip')
                     .url()}
+                /> */}
+
+                <ImageNew
+                  imageObject={p?.imageObject}
+                  height={height || section?.carouselHeight}
+                  // width={height || section?.carouselHeight}
+                  className="w-100  shadow2 br3"
                 />
 
-                {handleCaption(p)}
+                {/* {handleCaption(p?.imageObject)} */}
               </div>
             ))}
         </div>

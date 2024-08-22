@@ -77,9 +77,7 @@ export default function HeroDefault({
 
   console.log('imageObject', imageObject);
 
-  const heroImage = (
-    <ImageNew imageObject={imageObject} width={imageUrlWidth} height="100vh" />
-  );
+  const heroImage = <ImageNew imageObject={imageObject} />;
 
   if (title) {
     heroTitle = (

@@ -17,7 +17,6 @@ export default function CardBlog({ post, columnCount, inverted }) {
     <ImageNew
       imageObject={post?.imageObject}
       height={height}
-      width={width}
       className="br3 shadow2"
     />
   );

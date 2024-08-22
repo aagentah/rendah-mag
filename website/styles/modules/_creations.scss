@@ -39,13 +39,15 @@ $creations-black: #1c1c1c;
     }
   }
 
-  .button {
+  .button--black,
+  .button--white {
     color: $creations-white !important;
     border-color: $creations-white !important;
     background: transparent !important;
   }
 
-  .button.primary {
+  .button--black,
+  .button--white.primary {
     &:hover {
       color: var(--almost-black) !important;
       border-color: $creations-white !important;

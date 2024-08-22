@@ -148,72 +148,27 @@ export default function CarouselItemSection({ message, backButton }) {
           </div>
         </div>
 
-        <div className="creations">
-          <div className="rich-text">
-            <Sections body={message.description} />
-          </div>
+        <div className="rich-text">
+          <Sections body={message.description} />
         </div>
 
         {message?.attachments?.length && (
           <div className="col-24 col-12-md mla mra ph4 ph0-md">
-            <div className="creations">
-              <div className="bg-darker-grey pa4 br3 white f5 mt4">
-                <p className="t-primary f6 pb4">Attachement(s)</p>
-                <div className="">
-                  <ul className="ls-none">
-                    {message.attachments.map((attachment, index) => (
-                      <li className="pv2" key={index}>
-                        {attachment.mimeType.startsWith('audio/') ? (
-                          <div className="pb3 bb bc-grey">
-                            <a
-                              href={`${attachment.file}?dl=`}
-                              className="white align-center pb3 dif w-100 flex justify-between  ph2"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <div className="flex flex-wrap align-center">
-                                <span className="pr2 grey">
-                                  {getIconByMimeType(attachment.mimeType)}
-                                </span>
-                                {attachment.title}
-                              </div>
-                              <div className="align-center">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="20"
-                                  height="20"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    fill="currentColor"
-                                    d="M12.553 16.506a.75.75 0 0 1-1.107 0l-4-4.375a.75.75 0 0 1 1.108-1.012l2.696 2.95V3a.75.75 0 0 1 1.5 0v11.068l2.697-2.95a.75.75 0 1 1 1.107 1.013l-4 4.375Z"
-                                  />
-                                  <path
-                                    fill="currentColor"
-                                    d="M3.75 15a.75.75 0 0 0-1.5 0v.055c0 1.367 0 2.47.117 3.337.12.9.38 1.658.981 2.26.602.602 1.36.86 2.26.982.867.116 1.97.116 3.337.116h6.11c1.367 0 2.47 0 3.337-.116.9-.122 1.658-.38 2.26-.982.602-.602.86-1.36.982-2.26.116-.867.116-1.97.116-3.337V15a.75.75 0 0 0-1.5 0c0 1.435-.002 2.436-.103 3.192-.099.734-.28 1.122-.556 1.399-.277.277-.665.457-1.4.556-.755.101-1.756.103-3.191.103H9c-1.435 0-2.437-.002-3.192-.103-.734-.099-1.122-.28-1.399-.556-.277-.277-.457-.665-.556-1.4-.101-.755-.103-1.756-.103-3.191Z"
-                                  />
-                                </svg>
-                              </div>
-                            </a>
-                            <div>
-                              <div className="w-100 align-center">
-                                <Audio
-                                  url={attachment.url}
-                                  // title={attachment.title}
-                                  // allowDownload={true} // Set to true if you want to allow download
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        ) : (
+            <div className="bg-darker-grey pa4 br3 white f5 mt4">
+              <p className="t-primary f6 pb4">Attachement(s)</p>
+              <div className="">
+                <ul className="ls-none">
+                  {message.attachments.map((attachment, index) => (
+                    <li className="pv2" key={index}>
+                      {attachment.mimeType.startsWith('audio/') ? (
+                        <div className="pb3 bb bc-grey">
                           <a
                             href={`${attachment.file}?dl=`}
-                            className="white align-center pb3 dif w-100 flex justify-between bb bc-grey ph2"
+                            className="white align-center pb3 dif w-100 flex justify-between  ph2"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <div className="flex align-center">
+                            <div className="flex flex-wrap align-center">
                               <span className="pr2 grey">
                                 {getIconByMimeType(attachment.mimeType)}
                               </span>
@@ -238,11 +193,52 @@ export default function CarouselItemSection({ message, backButton }) {
                               </svg>
                             </div>
                           </a>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                          <div>
+                            <div className="w-100 align-center">
+                              <Audio
+                                url={attachment.url}
+                                // title={attachment.title}
+                                // allowDownload={true} // Set to true if you want to allow download
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <a
+                          href={`${attachment.file}?dl=`}
+                          className="white align-center pb3 dif w-100 flex justify-between bb bc-grey ph2"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <div className="flex align-center">
+                            <span className="pr2 grey">
+                              {getIconByMimeType(attachment.mimeType)}
+                            </span>
+                            {attachment.title}
+                          </div>
+                          <div className="align-center">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M12.553 16.506a.75.75 0 0 1-1.107 0l-4-4.375a.75.75 0 0 1 1.108-1.012l2.696 2.95V3a.75.75 0 0 1 1.5 0v11.068l2.697-2.95a.75.75 0 1 1 1.107 1.013l-4 4.375Z"
+                              />
+                              <path
+                                fill="currentColor"
+                                d="M3.75 15a.75.75 0 0 0-1.5 0v.055c0 1.367 0 2.47.117 3.337.12.9.38 1.658.981 2.26.602.602 1.36.86 2.26.982.867.116 1.97.116 3.337.116h6.11c1.367 0 2.47 0 3.337-.116.9-.122 1.658-.38 2.26-.982.602-.602.86-1.36.982-2.26.116-.867.116-1.97.116-3.337V15a.75.75 0 0 0-1.5 0c0 1.435-.002 2.436-.103 3.192-.099.734-.28 1.122-.556 1.399-.277.277-.665.457-1.4.556-.755.101-1.756.103-3.191.103H9c-1.435 0-2.437-.002-3.192-.103-.734-.099-1.122-.28-1.399-.556-.277-.277-.457-.665-.556-1.4-.101-.755-.103-1.756-.103-3.191Z"
+                              />
+                            </svg>
+                          </div>
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>

@@ -104,7 +104,7 @@ export default function Profile({ siteConfig }) {
   if (user) {
     return (
       <Elements stripe={stripePromise}>
-        <div className="bg-creations-black">
+        <div className="creations">
           <Layout
             title="profile"
             navOffset="top"

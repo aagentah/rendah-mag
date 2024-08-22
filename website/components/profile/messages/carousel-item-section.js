@@ -36,7 +36,11 @@ function myPortableTextComponents() {
         return (
           <div className="ph4 ph5-md w-100 mv4 pv3-md br3">
             <div className="w-100 mla mra mw6">
-              <ImageNew imageObject={value?.node?.imageObject} />
+              <ImageNew
+                imageObject={value?.node?.imageObject}
+                objectFit="contain"
+                className="shadow2 br3"
+              />
             </div>
           </div>
         );
@@ -142,16 +146,14 @@ export default function CarouselItemSection({ message, backButton }) {
               Written by {message.from} on {message.activeFrom}
             </p>
 
-            <div className="creations">
-              <div className="rich-text">
-                <BlockContent
-                  blocks={message.description}
-                  serializers={{
-                    ...SANITY_BLOCK_SERIALIZERS,
-                    ...myPortableTextComponents(),
-                  }}
-                />
-              </div>
+            <div className="rich-text">
+              <BlockContent
+                blocks={message.description}
+                serializers={{
+                  ...SANITY_BLOCK_SERIALIZERS,
+                  ...myPortableTextComponents(),
+                }}
+              />
             </div>
           </div>
         </div>

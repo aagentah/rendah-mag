@@ -25,7 +25,6 @@ export default function CardBlog({ post, handleClick, i }) {
     <ImageNew
       imageObject={post?.imageObject}
       height={height}
-      width={width}
       className="br3 shadow2"
     />
   );
