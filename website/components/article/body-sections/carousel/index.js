@@ -143,6 +143,7 @@ export default function ImageSection({ section }) {
                   imageObject={p?.imageObject}
                   height={height || section?.carouselHeight}
                   // width={height || section?.carouselHeight}
+                  isExpandable
                   className="w-100  shadow2 br3"
                 />
 

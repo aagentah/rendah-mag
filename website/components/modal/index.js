@@ -1,9 +1,6 @@
-import React from 'react';
-import { FaTimes } from 'react-icons/fa'; // Import the close icon
-
-/**
- * A card displays site content in a manner similar to a playing card.
- */
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { FaTimes } from 'react-icons/fa';
 
 export default function Modal(props) {
   const {
@@ -11,25 +8,38 @@ export default function Modal(props) {
     size,
     active,
     closeIcon,
+    portalTarget, // New prop for specifying portal target
     /* Children */
     children,
   } = props;
 
-  return (
-    <section
-      className={`modal relative  modal--${size}  ${active && 'active'}`}
-    >
-      <div className="modal__dialog">
-        {closeIcon && (
-          <div
-            className="absolute top right white mt3 mr3 cp z9 pa2"
-            onClick={() => closeIcon(false)}
-          >
-            <FaTimes />
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  const targetElement = document.getElementById('portal-root') || document.body;
+
+  return mounted && active
+    ? createPortal(
+        <section
+          className={`modal relative modal--${size} ${active && 'active'}`}
+        >
+          <div className="modal__dialog">
+            {closeIcon && (
+              <div
+                className="absolute top right white mt3 mr3 cp z9 pa2"
+                onClick={() => closeIcon(false)}
+              >
+                <FaTimes />
+              </div>
+            )}
+            <div className="z1 relative">{children}</div>
           </div>
-        )}
-        <div className="z1 relative">{children}</div>
-      </div>
-    </section>
-  );
+        </section>,
+        targetElement // Use custom portal target if provided
+      )
+    : null;
 }

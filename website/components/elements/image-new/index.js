@@ -2,17 +2,34 @@ import React, { useState, useCallback, useMemo } from 'react';
 import NextImage from 'next/image';
 import toMarkdown from '@sanity/block-content-to-markdown';
 import BlockContent from '@sanity/block-content-to-react';
+import dynamic from 'next/dynamic';
 
 import { imageBuilder } from '~/lib/sanity/requests';
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
+const Modal = dynamic(() => import('~/components/modal'));
+
 const ImageNew = React.memo((props) => {
-  const { imageObject, placeholder, height, className, objectFit } = props;
+  const {
+    imageObject,
+    placeholder,
+    height,
+    className,
+    objectFit,
+    isExpandable,
+  } = props;
   const [loaded, setLoaded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLoad = useCallback(() => {
     setLoaded(true);
   }, []);
+
+  const handleImageClick = () => {
+    if (isExpandable) {
+      setIsModalOpen(true);
+    }
+  };
 
   if (!imageObject) return null;
 
@@ -49,53 +66,77 @@ const ImageNew = React.memo((props) => {
   // }
 
   return (
-    <div
-      className="imageNew over-hidden"
-      style={{
-        height: '100%',
-      }}
-    >
+    <>
       <div
-        className={`imageObject  ${className || ''}`}
+        className="imageNew over-hidden"
         style={{
           height: '100%',
-          paddingTop,
         }}
       >
         <div
-          className={`skeletonNew ${loaded && 'skeletonNew--fade'}`}
+          className={`imageObject  ${className || ''} ${
+            isExpandable ? 'cp' : ''
+          }`}
           style={{
             height: '100%',
-            // paddingTop,
+            paddingTop,
           }}
-        />
-
-        <div
-          style={{
-            height: height || '100%',
-          }}
+          onClick={handleImageClick}
         >
-          <NextImage
-            src={imageUrl}
-            alt={altText}
-            layout="fill"
-            objectFit={objectFit || 'cover'}
-            onLoadingComplete={handleLoad}
-            className={`image ${loaded ? 'image--loaded' : ''}`}
-            placeholder={placeholder || 'empty'}
+          <div
+            className={`skeletonNew ${loaded && 'skeletonNew--fade'}`}
+            style={{
+              height: '100%',
+              // paddingTop,
+            }}
           />
+
+          <div
+            style={{
+              height: height || '100%',
+            }}
+          >
+            <NextImage
+              src={imageUrl}
+              alt={altText}
+              layout="fill"
+              objectFit={objectFit || 'cover'}
+              onLoadingComplete={handleLoad}
+              className={`image ${loaded ? 'image--loaded' : ''}`}
+              placeholder={placeholder || 'empty'}
+            />
+          </div>
         </div>
+
+        {caption && (
+          <figcaption className="imageNew__captions tac mt2 pt1 f6 ph3 o-50">
+            <BlockContent
+              blocks={caption}
+              serializers={SANITY_BLOCK_SERIALIZERS}
+            />
+          </figcaption>
+        )}
       </div>
 
-      {caption && (
-        <figcaption className="imageNew__captions tac mt2 pt1 f6 ph3 o-50">
-          <BlockContent
-            blocks={caption}
-            serializers={SANITY_BLOCK_SERIALIZERS}
+      {isModalOpen && (
+        <Modal
+          active={isModalOpen}
+          size="gallery"
+          onClose={() => setIsModalOpen(false)}
+          closeIcon={setIsModalOpen}
+        >
+          <img
+            src={imageObject.url}
+            alt={altText}
+            style={{
+              maxHeight: '80vh',
+              width: 'auto',
+              maxWidth: '100%',
+            }}
           />
-        </figcaption>
+        </Modal>
       )}
-    </div>
+    </>
   );
 });
 

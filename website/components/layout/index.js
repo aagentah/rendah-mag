@@ -17,7 +17,7 @@ export default function Layout({
   darkMode,
   meta,
   preview,
-  children
+  children,
 }) {
   // set device type in context API
   deviceSize();
@@ -48,6 +48,7 @@ export default function Layout({
       {!preview && !hideNav && <Header navOnWhite={navOnWhite} meta={meta} />}
       <main className={`page  page--${title} ${navOffsetType} ${isDarkMode}`}>
         {children}
+        <div id="portal-root" />
       </main>
       {!preview && title === 'login' && <CookieBanner />}
       {!hideFooter && <Footer />}

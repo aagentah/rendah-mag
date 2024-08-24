@@ -46,8 +46,19 @@
 }
 
 .modal--gallery .modal__dialog {
-  max-width: fit-content;
+  max-width: 90vw;
+  max-height: 90vh;
   width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal--gallery .modal__dialog img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .modal__dialog {
