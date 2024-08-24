@@ -6,6 +6,7 @@ import { FaCog, FaBook } from 'react-icons/fa';
 import zenscroll from 'zenscroll';
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
+import { useRouter } from 'next/router';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -44,6 +45,7 @@ export default function ProfileDominion() {
   const [cardsShow, setCardsShow] = useState(true);
   const [filter, setFilter] = useState('messages'); // 'messages', 'resources'
   const [fileTypeFilter, setFileTypeFilter] = useState('all');
+  const router = useRouter();
 
   zenscroll.setup(300, 15);
 
@@ -68,10 +70,21 @@ export default function ProfileDominion() {
     return false;
   });
 
-  const apply = (i) => {
-    setArticleActive(i);
+  const apply = (id) => {
+    setArticleActive(id);
     setCardsShow(false);
 
+    // Use router.replace with shallow: true to update the URL without reloading the page
+    router.replace(
+      {
+        pathname: router.pathname,
+        query: { articleId: id },
+      },
+      undefined,
+      { shallow: true }
+    );
+
+    // Optional: Add NProgress if needed
     NProgress.start();
     setTimeout(() => NProgress.done(), 300);
 
@@ -79,6 +92,18 @@ export default function ProfileDominion() {
       zenscroll.toY(0);
     }, 100);
   };
+
+  useEffect(() => {
+    console.log('Query params changed:', router.query.articleId);
+
+    if (router.query.articleId) {
+      setArticleActive(router.query.articleId);
+      setCardsShow(false);
+    } else {
+      setArticleActive(null);
+      setCardsShow(true);
+    }
+  }, [router.query.articleId]);
 
   const backButton = () => {
     setArticleActive(null);
