@@ -70,44 +70,56 @@ export default function ProfileDominion() {
     return false;
   });
 
+  useEffect(() => {
+    const handlePopState = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const articleId = urlParams.get('articleId');
+
+      if (articleId) {
+        setArticleActive(articleId);
+        setCardsShow(false);
+      } else {
+        setArticleActive(null);
+        setCardsShow(true);
+      }
+    };
+
+    // Listen to popstate event
+    window.addEventListener('popstate', handlePopState);
+
+    // Call handlePopState once on mount to sync state with URL
+    handlePopState();
+
+    // Clean up the event listener on unmount
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
+
+  // Example apply function
   const apply = (id) => {
     setArticleActive(id);
     setCardsShow(false);
 
-    // Use router.replace with shallow: true to update the URL without reloading the page
-    router.replace(
-      {
-        pathname: router.pathname,
-        query: { articleId: id },
-      },
-      undefined,
-      { shallow: true }
+    // Use pushState to update the URL without reloading the page
+    window.history.pushState(
+      null,
+      '', // Title (can be ignored)
+      `${router.pathname}?articleId=${id}`
     );
-
-    // Optional: Add NProgress if needed
-    NProgress.start();
-    setTimeout(() => NProgress.done(), 300);
 
     setTimeout(() => {
       zenscroll.toY(0);
     }, 100);
   };
 
-  useEffect(() => {
-    console.log('Query params changed:', router.query.articleId);
-
-    if (router.query.articleId) {
-      setArticleActive(router.query.articleId);
-      setCardsShow(false);
-    } else {
-      setArticleActive(null);
-      setCardsShow(true);
-    }
-  }, [router.query.articleId]);
-
+  // Example backButton function
   const backButton = () => {
     setArticleActive(null);
     setCardsShow(true);
+
+    // Update the URL to remove the query parameter
+    window.history.pushState(null, '', router.pathname);
 
     setTimeout(() => {
       zenscroll.toY(0);
