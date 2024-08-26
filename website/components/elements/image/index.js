@@ -49,7 +49,7 @@ const ImageComponent = (props) => {
     <figure className="image__figure">
       <WithLink
         style={dimensions}
-        className={`image__wrapper`}
+        className="image__wrapper"
         {...(withLinkProps && { withLinkProps })}
         {...(onClick && { onClick })}
       >
@@ -57,7 +57,7 @@ const ImageComponent = (props) => {
           <Image
             alt={alt || ''}
             src={src}
-            className={`image image--loaded`}
+            className="image image--loaded"
             fill
             layout="fill"
             priority={priority}
