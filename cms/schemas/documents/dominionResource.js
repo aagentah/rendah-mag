@@ -82,7 +82,7 @@ export default {
               type: "file",
               options: {
                 accept:
-                  ".jpg,.jpeg,.png,.gif,.webp,.bmp,.tiff,.svg,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.wav,.mp3,.mp4,.avi,.mov,.mkv,.flv,.webm",
+                  ".jpg,.jpeg,.png,.gif,.webp,.bmp,.tiff,.svg,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.wav,.mp3,.mp4,.avi,.mov,.mkv,.flv,.webm,.zip",
               },
               hidden: ({ parent }) => !!parent?.url,
             },

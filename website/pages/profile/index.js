@@ -118,6 +118,17 @@ export default function Profile({ siteConfig }) {
   const [filter, setFilter] = useState('messages'); // 'messages', 'resources'
   const [fileTypeFilter, setFileTypeFilter] = useState('all');
   const router = useRouter();
+  const app = useApp();
+
+  useEffect(() => {
+    const { tab } = router.query;
+
+    if (tab === 'messages' || tab === 'newsletters') {
+      setFilter('messages');
+    } else if (tab === 'resources') {
+      setFilter('resources');
+    }
+  }, [router.query]);
 
   useEffect(() => {
     // redirect user to login if not authenticated
@@ -277,7 +288,12 @@ export default function Profile({ siteConfig }) {
                           <div className="flex flex-wrap">
                             <div className="col-12 flex align-center justify-start white pb3">
                               <button
-                                onClick={() => setFilter('messages')}
+                                onClick={() =>
+                                  router.push({
+                                    pathname: router.pathname,
+                                    query: { tab: 'newsletters' },
+                                  })
+                                }
                                 className={`pv2 ph3 ba bc-white cp mr2 f7 ${
                                   filter === 'messages'
                                     ? 'bg-white almost-black'
@@ -286,8 +302,14 @@ export default function Profile({ siteConfig }) {
                               >
                                 Newsletters
                               </button>
+
                               <button
-                                onClick={() => setFilter('resources')}
+                                onClick={() =>
+                                  router.push({
+                                    pathname: router.pathname,
+                                    query: { tab: 'resources' },
+                                  })
+                                }
                                 className={`pv2 ph3 ba bc-white cp mr2 f7 ${
                                   filter === 'resources'
                                     ? 'bg-white almost-black'
@@ -366,40 +388,64 @@ export default function Profile({ siteConfig }) {
                           )}
                         </div>
 
-                        {filteredMessages.length ? (
-                          <div className="flex flex-wrap pb5 pt2">
-                            {filteredMessages.map((item, i) => (
-                              <div
-                                key={item._id}
-                                className="col-24 col-8-md pa2"
-                              >
-                                <CardMessage
-                                  i={i}
-                                  post={item}
-                                  // handleClick={() =>
-                                  //   apply(item._id, item.slug, item.type)
-                                  // }
-                                />
+                        {filter === 'messages' && (
+                          <>
+                            {filteredMessages.length ? (
+                              <div className="flex flex-wrap pb5 pt2">
+                                {filteredMessages.map((item, i) => (
+                                  <div
+                                    key={item._id}
+                                    className="col-24 col-8-md pa2"
+                                  >
+                                    <CardMessage i={i} post={item} />
+                                  </div>
+                                ))}
                               </div>
-                            ))}
-                          </div>
-                        ) : null}
+                            ) : (
+                              <div className="flex flex-wrap pb5 pt2">
+                                {[...Array(9)].map((_, i) => (
+                                  <div key={i} className="col-24 col-8-md pa2">
+                                    <div
+                                      className={`skeletonNew`}
+                                      style={{
+                                        height:
+                                          app.deviceSize === 'md' ? 258 : 260,
+                                      }}
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </>
+                        )}
 
-                        {filteredResources.length ? (
-                          <div className="flex flex-wrap pb5 pt2">
-                            {filteredResources.map((item, i) => (
-                              <div key={item._id} className="col-24 pa2">
-                                <CardResource
-                                  i={i}
-                                  post={item}
-                                  // handleClick={() =>
-                                  //   apply(item._id, item.slug, item.type)
-                                  // }
-                                />
+                        {filter === 'resources' && (
+                          <>
+                            {filteredResources.length ? (
+                              <div className="flex flex-wrap pb5 pt2">
+                                {filteredResources.map((item, i) => (
+                                  <div key={item._id} className="col-24 pa2">
+                                    <CardResource i={i} post={item} />
+                                  </div>
+                                ))}
                               </div>
-                            ))}
-                          </div>
-                        ) : null}
+                            ) : (
+                              <div className="flex flex-wrap pb5 pt2">
+                                {[...Array(6)].map((_, i) => (
+                                  <div key={i} className="col-24 pa2">
+                                    <div
+                                      className={`skeletonNew`}
+                                      style={{
+                                        height:
+                                          app.deviceSize === 'md' ? 290 : 110,
+                                      }}
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </>
+                        )}
                       </div>
                     </div>
 

@@ -105,7 +105,7 @@ export default function CarouselItemSection({ message, backButton }) {
   // };
 
   return (
-    <section className="pb4 pb6-md">
+    <section className="pb4 pb6-md pt4 pt0-md">
       <div className="ph5-md">
         {/* bg-darker-grey pt4 pt5-md pb5 */}
         <div className="col-24 col-12-md mla mra">
@@ -115,7 +115,7 @@ export default function CarouselItemSection({ message, backButton }) {
                 /* Options */
                 type="secondary"
                 size="small"
-                text="Back"
+                text="Back to resources"
                 color="rendah-red"
                 fluid={false}
                 icon={buttonIconArrowLeft}
@@ -128,13 +128,10 @@ export default function CarouselItemSection({ message, backButton }) {
                 /* Children */
                 withLinkProps={{
                   type: 'next',
-                  href: '/profile',
+                  href: '/profile?tab=resources',
                   target: null,
                   routerLink: Link,
-                  routerLinkProps: {
-                    as: `/profile`,
-                    scroll: false,
-                  },
+                  routerLinkProps: null,
                 }}
               />
             </div>

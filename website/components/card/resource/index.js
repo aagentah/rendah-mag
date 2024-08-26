@@ -17,25 +17,29 @@ import Label from '~/components/elements/label';
 import { useApp } from '~/context-provider/app';
 
 function getIconByMimeType(mimeType) {
-  if (!mimeType) return <FaFile />;
-  if (mimeType.startsWith('audio/')) return <FaMusic />;
-  if (mimeType.startsWith('video/')) return <FaVideo />;
-  if (mimeType.startsWith('image/')) return <FaFileImage />;
-  if (mimeType === 'application/pdf') return <FaFilePdf />;
-  return <FaFileAlt />;
+  if (!mimeType) return { icon: <FaFile />, label: 'File' };
+  const extension = mimeType.split('/').pop().toUpperCase(); // Extract the file extension
+  if (mimeType.startsWith('audio/'))
+    return { icon: <FaMusic />, label: extension };
+  if (mimeType.startsWith('video/'))
+    return { icon: <FaVideo />, label: extension };
+  if (mimeType.startsWith('image/'))
+    return { icon: <FaFileImage />, label: extension };
+  if (mimeType === 'application/pdf')
+    return { icon: <FaFilePdf />, label: 'PDF' };
+  return { icon: <FaFileAlt />, label: extension }; // Use the extension as the label
 }
 
 function groupAttachmentsByMimeType(attachments) {
   const grouped = {};
 
   attachments.forEach((attachment) => {
-    const icon = getIconByMimeType(attachment.mimeType);
-    const iconKey = icon.type.displayName || icon.type.name;
+    const { icon, label } = getIconByMimeType(attachment.mimeType);
 
-    if (grouped[iconKey]) {
-      grouped[iconKey].count += 1;
+    if (grouped[label]) {
+      grouped[label].count += 1;
     } else {
-      grouped[iconKey] = { icon, count: 1 };
+      grouped[label] = { icon, label, count: 1 };
     }
   });
 
@@ -43,7 +47,6 @@ function groupAttachmentsByMimeType(attachments) {
 }
 
 export default function CardBlog({ post, handleClick, i }) {
-  console.log('rec', post);
   const app = useApp();
   const height = app.deviceSize === 'md' ? 180 : 100;
   const width = 260;
@@ -55,29 +58,23 @@ export default function CardBlog({ post, handleClick, i }) {
 
   const labels = (
     <Label
-      /* Options */
       customClass=""
       text="Blog"
       color="white"
       backgroundColor="black"
       skeleton={!post}
       onClick={null}
-      /* Children */
-      withLinkProps={null}
     />
   );
 
   const heading = (
     <Heading
-      /* Options */
       htmlEntity="h2"
       text={post?.title}
       color="white"
       size={app?.deviceSize === 'md' ? 'medium' : 'medium'}
       truncate={null}
       skeleton={!post}
-      /* Children */
-      withLinkProps={null}
     />
   );
 
@@ -93,26 +90,30 @@ export default function CardBlog({ post, handleClick, i }) {
           {heading && <div className="card__title mb3">{heading}</div>}
 
           {post?.subtitle && (
-            <p className="lh-copy f6 mb2 mb3-md silver">{post?.subtitle}</p>
+            <p className="lh-copy f6 mb2 silver">{post?.subtitle}</p>
           )}
 
-          {post?.attachments?.length && (
+          {post?.attachments?.length > 0 && (
             <div className="relative f6">
-              <span className="white">
-                {post.attachments.length && (
+              <span className="rendah-red">
+                {post.attachments.length > 0 && (
                   <div className="flex align-center relative">
-                    {'['}
+                    <span className="f7">
+                      {post.attachments.length}x attachment
+                      {post.attachments.length > 1 ? 's' : ''} [
+                    </span>
                     {groupAttachmentsByMimeType(post.attachments).map(
-                      ({ icon, count }, index) => (
-                        <span
-                          key={index}
-                          className="pa2 pa0-md ph1-md bg-transparent-md flex"
-                        >
-                          <span className="pr2">{count}x</span> {icon}
+                      ({ label }, index) => (
+                        <span key={index} className="">
+                          {label}
+                          {index <
+                            groupAttachmentsByMimeType(post.attachments)
+                              .length -
+                              1 && ','}
                         </span>
                       )
                     )}
-                    {']'}
+                    <span>]</span>
                   </div>
                 )}
               </span>
