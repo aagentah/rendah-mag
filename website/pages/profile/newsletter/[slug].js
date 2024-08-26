@@ -1,6 +1,7 @@
 // pages/newsletter/[slug].js
 
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
+
 import { useEffect, useState } from 'react';
 
 import { getSiteConfig, getDominionItemsSince } from '~/lib/sanity/requests';
@@ -13,7 +14,12 @@ export default function NewsletterPage({ siteConfig }) {
   const router = useRouter();
   const { slug } = router.query;
   const [message, setMessage] = useState(null);
-  const [user] = useUser();
+  const [user, { loading, mutate, error }] = useUser();
+
+  useEffect(() => {
+    // redirect user to login if not authenticated
+    if ((!loading && !user) || error) Router.replace('/login');
+  }, [user, loading, error]);
 
   useEffect(() => {
     if (user) {

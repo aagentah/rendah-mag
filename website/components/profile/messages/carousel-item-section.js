@@ -108,63 +108,61 @@ export default function CarouselItemSection({ message, backButton }) {
   return (
     <section className="pb4 pb6-md ph4 ph0-md">
       <div className="ph5-md">
-        <div className="pt4 pb5">
-          <div className="col-24 col-12-md mla mra">
-            <div className="col-12 pb1">
-              <Button
-                /* Options */
-                type="secondary"
-                size="small"
-                text="Back"
-                color="rendah-red"
-                fluid={false}
-                icon={buttonIconArrowLeft}
-                iconFloat="left"
-                inverted={true}
-                loading={false}
-                disabled={false}
-                skeleton={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={{
-                  type: 'next',
-                  href: '/profile',
-                  target: null,
-                  routerLink: Link,
-                  routerLinkProps: {
-                    as: `/profile`,
-                    scroll: false,
-                  },
-                }}
-              />
-            </div>
+        <div className="col-24 col-12-md mla mra">
+          <div className="col-12 pb1">
+            <Button
+              /* Options */
+              type="secondary"
+              size="small"
+              text="Back"
+              color="rendah-red"
+              fluid={false}
+              icon={buttonIconArrowLeft}
+              iconFloat="left"
+              inverted={true}
+              loading={false}
+              disabled={false}
+              skeleton={false}
+              onClick={null}
+              /* Children */
+              withLinkProps={{
+                type: 'next',
+                href: '/profile',
+                target: null,
+                routerLink: Link,
+                routerLinkProps: {
+                  as: `/profile`,
+                  scroll: false,
+                },
+              }}
+            />
+          </div>
 
-            <div className="pv3">
-              <Heading
-                /* Options */
-                htmlEntity="h1"
-                text={message.title}
-                color="white"
-                size="large"
-                truncate={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
+          <div className="pv3">
+            <Heading
+              /* Options */
+              htmlEntity="h1"
+              text={message.title}
+              color="white"
+              size="large"
+              truncate={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
 
-            <p className="grey pb4 f6">
-              Written by {message.from} on {message.activeFrom}
-            </p>
+          <p className="grey pb4 f6">
+            Written by {message.from} on {message.activeFrom}
+          </p>
 
-            <div className="rich-text">
-              <BlockContent
-                blocks={message.description}
-                serializers={{
-                  ...SANITY_BLOCK_SERIALIZERS,
-                  ...myPortableTextComponents(),
-                }}
-              />
-            </div>
+          <div className="rich-text">
+            <BlockContent
+              blocks={message.description}
+              serializers={{
+                ...SANITY_BLOCK_SERIALIZERS,
+                ...myPortableTextComponents(),
+              }}
+            />
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 // pages/resource/[slug].js
 
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
+
 import { useEffect, useState } from 'react';
 
 import {
@@ -15,7 +16,12 @@ export default function ResourcePage({ siteConfig }) {
   const router = useRouter();
   const { slug } = router.query;
   const [resource, setResource] = useState(null);
-  const [user] = useUser();
+  const [user, { loading, mutate, error }] = useUser();
+
+  useEffect(() => {
+    // redirect user to login if not authenticated
+    if ((!loading && !user) || error) Router.replace('/login');
+  }, [user, loading, error]);
 
   useEffect(() => {
     if (user) {
