@@ -110,7 +110,7 @@ export default function CarouselItemSection({ message, backButton }) {
         {/* bg-darker-grey pt4 pt5-md pb5 */}
         <div className="col-24 col-12-md mla mra">
           <div className="ph4 ph0-md">
-            <div className="col-12 pb1">
+            <div className="w-100 pb1">
               <Button
                 /* Options */
                 type="secondary"

@@ -109,7 +109,7 @@ export default function CarouselItemSection({ message, backButton }) {
     <section className="pb4 pb6-md ph4 ph0-md pt4 pt0-md">
       <div className="ph5-md">
         <div className="col-24 col-12-md mla mra">
-          <div className="col-12 pb1">
+          <div className="w-100 pb1">
             <Button
               /* Options */
               type="secondary"
