@@ -86,7 +86,7 @@ export default function LatestPrint({ showDominionButton }) {
         ) : (
           <div className="flex flex-wrap justify-between">
             {latestIssue.images.map((image, index) => (
-              <div key={index} className="col-24 col-12-md col-6-lg mb4 pa3">
+              <div key={index} className="col-24 col-12-md col-6-lg pa3">
                 <div className="flex flex-column">
                   <ImageNew
                     imageObject={image.imageObject}

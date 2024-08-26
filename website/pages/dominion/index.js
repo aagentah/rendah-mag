@@ -307,7 +307,7 @@ export default function Dominion({ siteConfig }) {
                         type: 'external',
                         href: isTrial
                           ? 'https://buy.stripe.com/00g6rH85LceZ3cc5kq'
-                          : 'https://buy.stripe.com/6oE2br5XDdj3144eUZ',
+                          : 'https://buy.stripe.com/cN29DT2Lr6UFcMM8wG',
                         target: '_blank',
                         routerLink: null,
                         routerLinkProps: null,

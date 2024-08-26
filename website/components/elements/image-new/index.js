@@ -68,13 +68,13 @@ const ImageNew = React.memo((props) => {
   return (
     <>
       <div
-        className="imageNew over-hidden"
+        className="imageNew relative"
         style={{
           height: '100%',
         }}
       >
         <div
-          className={`imageObject  ${className || ''} ${
+          className={`imageObject over-hidden  ${className || ''} ${
             isExpandable ? 'cp' : ''
           }`}
           style={{
