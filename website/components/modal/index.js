@@ -15,31 +15,31 @@ export default function Modal(props) {
 
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-    return () => setMounted(false);
-  }, []);
+  // useEffect(() => {
+  //   setMounted(true);
+  //   return () => setMounted(false);
+  // }, []);
 
-  const targetElement = document.getElementById('portal-root') || document.body;
+  // const targetElement = document.getElementById('portal-root') || document.body;
 
-  return mounted && active
-    ? createPortal(
-        <section
-          className={`modal relative modal--${size} ${active && 'active'}`}
-        >
-          <div className="modal__dialog">
-            {closeIcon && (
-              <div
-                className="absolute top right white mt3 mr3 cp z9 pa2"
-                onClick={() => closeIcon(false)}
-              >
-                <FaTimes />
-              </div>
-            )}
-            <div className="z1 relative">{children}</div>
-          </div>
-        </section>,
-        targetElement // Use custom portal target if provided
-      )
-    : null;
+  // return mounted && active
+  //   ? createPortal(
+  //       <section
+  //         className={`modal relative modal--${size} ${active && 'active'}`}
+  //       >
+  //         <div className="modal__dialog">
+  //           {closeIcon && (
+  //             <div
+  //               className="absolute top right white mt3 mr3 cp z9 pa2"
+  //               onClick={() => closeIcon(false)}
+  //             >
+  //               <FaTimes />
+  //             </div>
+  //           )}
+  //           <div className="z1 relative">{children}</div>
+  //         </div>
+  //       </section>,
+  //       targetElement // Use custom portal target if provided
+  //     )
+  //   : null;
 }
