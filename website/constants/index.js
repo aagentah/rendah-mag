@@ -10,18 +10,20 @@ function urlFor(source) {
 export const SANITY_BLOCK_SERIALIZERS = {
   types: {
     block: (props) => {
-      console.log('props', props);
-      // Check for the condition where a single child exists and it contains only a newline character
-      const hasOnlyNewline =
+      const isEmpty =
         props.node.children.length === 1 &&
-        props.node.children[0].text === '\n';
+        (props.node.children[0].text.trim() === '' ||
+          props.node.children[0].text.match(/^\n+$/));
 
-      if (hasOnlyNewline) {
-        // Do not render anything
+      // Check if the children array is essentially empty or contains only break elements
+      const hasOnlyBreaks = props.children.every(
+        (child) => typeof child === 'string' && child.trim() === ''
+      );
+
+      if (isEmpty || hasOnlyBreaks) {
         return null;
       }
 
-      // Otherwise, render the paragraph as usual
       return <p>{props.children}</p>;
     },
   },

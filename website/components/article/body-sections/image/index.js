@@ -70,8 +70,8 @@ export default function ImageSection({ section, imageCount }) {
       >
         <LazyLoad once offset={250} height={360}>
           <figure>
-            <ImageNew imageObject={section} />
-            {handleCaption()}
+            <ImageNew imageObject={section} isExpandable />
+            {/* {handleCaption()} */}
           </figure>
         </LazyLoad>
       </div>

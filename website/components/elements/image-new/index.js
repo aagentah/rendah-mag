@@ -130,7 +130,7 @@ const ImageNew = React.memo((props) => {
             alt={altText}
             style={{
               maxHeight: '80vh',
-              width: 'auto',
+              width: '100%',
               maxWidth: '100%',
             }}
           />

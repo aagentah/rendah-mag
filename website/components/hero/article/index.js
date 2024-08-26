@@ -69,7 +69,7 @@ export default function HeroDefault({
     >
       {heroImage && <div className="hero__image">{heroImage}</div>}
 
-      {imageObject?.caption && (
+      {/* {imageObject?.caption && (
         <div className="relative">
           <figcaption className="absolute  bg-white  black  f7  lh-copy  pv2  ph3  bottom  right  mr3  nb3  shadow1  br3">
             <BlockContent
@@ -78,7 +78,7 @@ export default function HeroDefault({
             />
           </figcaption>
         </div>
-      )}
+      )} */}
     </article>
   );
 }

@@ -121,6 +121,20 @@ const deskStructure = async (S) => {
                   ),
                 ])
             ),
+        S.divider(),
+        admin &&
+          S.listItem()
+            .title("Archived")
+            .child(
+              S.list()
+                .title("Archived")
+                .items([
+                  S.documentTypeListItem("creations").title("creations"),
+                  S.documentTypeListItem("offering").title("offering"),
+                  S.documentTypeListItem("pack").title("pack"),
+                  S.documentTypeListItem("track").title("track"),
+                ])
+            ),
       ].filter(Boolean)
     ); // Filter out false values
 };

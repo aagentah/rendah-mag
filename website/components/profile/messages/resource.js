@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import dynamic from 'next/dynamic';
@@ -123,9 +124,18 @@ export default function CarouselItemSection({ message, backButton }) {
                 loading={false}
                 disabled={false}
                 skeleton={false}
-                onClick={backButton}
+                onClick={null}
                 /* Children */
-                withLinkProps={null}
+                withLinkProps={{
+                  type: 'next',
+                  href: '/profile',
+                  target: null,
+                  routerLink: Link,
+                  routerLinkProps: {
+                    as: `/profile`,
+                    scroll: false,
+                  },
+                }}
               />
             </div>
 

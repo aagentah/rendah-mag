@@ -738,6 +738,7 @@ export async function getDominionResourcesSince(user, preview) {
 
   return results;
 }
+
 export async function getSmartLink(slug, preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "smartLink" && slug.current == $slug] | order(activeFrom desc) [0] {

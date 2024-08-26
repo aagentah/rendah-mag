@@ -43,10 +43,11 @@ function groupAttachmentsByMimeType(attachments) {
 }
 
 export default function CardBlog({ post, handleClick, i }) {
-  console.log('post', post);
+  console.log('rec', post);
   const app = useApp();
   const height = app.deviceSize === 'md' ? 180 : 100;
   const width = 260;
+  const _id = post?.slug; // Assuming `_id` is available in the `post` object
 
   const image = (
     <ImageNew imageObject={post?.imageObject} height={height} className="br3" />
@@ -81,40 +82,44 @@ export default function CardBlog({ post, handleClick, i }) {
   );
 
   return (
-    <article
-      className="card  mb4  mb0-md  relative cp flex flex-wrap bg-darker-grey br3 shadow2"
-      onClick={() => handleClick && handleClick(i)}
-    >
-      {image && <div className="card__image col-24 col-3-md">{image}</div>}
+    <Link href={`/profile/resource/${_id}`}>
+      <article
+        className="card  mb4  mb0-md  relative cp flex flex-wrap bg-darker-grey br3 shadow2"
+        onClick={() => handleClick && handleClick(i)}
+      >
+        {image && <div className="card__image col-24 col-3-md">{image}</div>}
 
-      <div className="col-24 col-11-md pa3">
-        {heading && <div className="card__title mb3">{heading}</div>}
+        <div className="col-24 col-11-md pa3">
+          {heading && <div className="card__title mb3">{heading}</div>}
 
-        {post?.subtitle && (
-          <p className="lh-copy f6 mb2 mb3-md silver">{post?.subtitle}</p>
-        )}
+          {post?.subtitle && (
+            <p className="lh-copy f6 mb2 mb3-md silver">{post?.subtitle}</p>
+          )}
 
-        <div className="relative f6">
-          <span className="white">
-            {post.attachments.length && (
-              <div className="flex align-center relative">
-                {'['}
-                {groupAttachmentsByMimeType(post.attachments).map(
-                  ({ icon, count }, index) => (
-                    <span
-                      key={index}
-                      className="pa2 pa0-md ph1-md bg-transparent-md flex"
-                    >
-                      <span className="pr2">{count}x</span> {icon}
-                    </span>
-                  )
+          {post?.attachments?.length && (
+            <div className="relative f6">
+              <span className="white">
+                {post.attachments.length && (
+                  <div className="flex align-center relative">
+                    {'['}
+                    {groupAttachmentsByMimeType(post.attachments).map(
+                      ({ icon, count }, index) => (
+                        <span
+                          key={index}
+                          className="pa2 pa0-md ph1-md bg-transparent-md flex"
+                        >
+                          <span className="pr2">{count}x</span> {icon}
+                        </span>
+                      )
+                    )}
+                    {']'}
+                  </div>
                 )}
-                {']'}
-              </div>
-            )}
-          </span>
+              </span>
+            </div>
+          )}
         </div>
-      </div>
-    </article>
+      </article>
+    </Link>
   );
 }

@@ -20,6 +20,7 @@ export default function CardBlog({ post, handleClick, i }) {
   const app = useApp();
   const height = app.deviceSize === 'md' ? 180 : 260;
   const width = 260;
+  const _id = post?.slug; // Assuming `_id` is available in the `post` object
 
   const image = (
     <ImageNew
@@ -58,23 +59,25 @@ export default function CardBlog({ post, handleClick, i }) {
   );
 
   return (
-    <article
-      className="card  card--post  card--scroll  mb4  mb0-md  relative cp"
-      onClick={() => handleClick && handleClick(i)}
-    >
-      {image && <div className="card__image">{image}</div>}
+    <Link href={`/profile/newsletter/${_id}`}>
+      <article
+        className="card  card--post  card--scroll  mb4  mb0-md  relative cp"
+        onClick={() => handleClick && handleClick(i)}
+      >
+        {image && <div className="card__image">{image}</div>}
 
-      <div className="card__dialog">
-        {heading && (
-          <div className="card__title mb3">
-            {heading}
+        <div className="card__dialog">
+          {heading && (
+            <div className="card__title mb3">
+              {heading}
 
-            {post?.subtitle && (
-              <p className="lh-copy f6 white pt2">{post?.subtitle}</p>
-            )}
-          </div>
-        )}
-      </div>
-    </article>
+              {post?.subtitle && (
+                <p className="lh-copy f6 white pt2">{post?.subtitle}</p>
+              )}
+            </div>
+          )}
+        </div>
+      </article>
+    </Link>
   );
 }

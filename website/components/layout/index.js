@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import Alert from './alert';
@@ -7,6 +8,7 @@ import Header from './header';
 import CookieBanner from './cookie-banner';
 
 import deviceSize from '~/lib/device-size';
+import { useDarkMode } from '~/context-provider/dark-mode-context';
 
 export default function Layout({
   title,
@@ -14,22 +16,29 @@ export default function Layout({
   navOnWhite,
   hasNav,
   hasFooter,
-  darkMode,
+  darkMode, // Receives darkMode from the page
   meta,
   preview,
   children,
 }) {
-  // set device type in context API
+  // Set device type in context API
   deviceSize();
+
+  const { setDarkMode } = useDarkMode();
+
+  // Apply dark mode based on the darkMode prop
+  useEffect(() => {
+    setDarkMode(!!darkMode);
+  }, [darkMode, setDarkMode]);
 
   let navOffsetType;
 
   switch (navOffset) {
     case 'top':
-      navOffsetType = 'pt5  pt6-md';
+      navOffsetType = 'pt5 pt6-md';
       break;
     case 'center':
-      navOffsetType = 'flex  align-center';
+      navOffsetType = 'flex align-center';
       break;
     default:
       navOffsetType = '';
@@ -38,7 +47,6 @@ export default function Layout({
 
   const hideNav = typeof hasNav !== 'undefined' && !hasNav;
   const hideFooter = typeof hasFooter !== 'undefined' && !hasFooter;
-  const isDarkMode = darkMode ? 'creations' : '';
 
   return (
     <>
@@ -46,7 +54,7 @@ export default function Layout({
       <ToastContainer />
       {preview && <Alert preview={preview} />}
       {!preview && !hideNav && <Header navOnWhite={navOnWhite} meta={meta} />}
-      <main className={`page  page--${title} ${navOffsetType} ${isDarkMode}`}>
+      <main className={`page page--${title} ${navOffsetType}`}>
         {children}
         <div id="portal-root" />
       </main>
