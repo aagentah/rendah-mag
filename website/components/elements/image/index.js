@@ -4,7 +4,7 @@ import WithLink from '../../utils/with-link';
 
 const ImageComponent = (props) => {
   const [loaded, setLoaded] = useState(false);
-  const [placeholderLoaded, setPlaceholderLoaded] = useState(false);
+  const [placeholderLoaded, setPlaceholderLoaded] = useState(true);
 
   const {
     /* Options */
@@ -42,30 +42,29 @@ const ImageComponent = (props) => {
     ? 'skeleton skeleton-active'
     : 'skeleton';
 
-  const handleLoad = () => setLoaded(true);
-  const handlePlaceholderLoad = () => setPlaceholderLoaded(true);
+  // const handleLoad = () => setLoaded(true);
+  // const handlePlaceholderLoad = () => setPlaceholderLoaded(true);
 
   return (
     <figure className="image__figure">
       <WithLink
         style={dimensions}
-        className={`image__wrapper  ${skeletonClass} ${customClass || ''} `}
+        className={`image__wrapper`}
         {...(withLinkProps && { withLinkProps })}
         {...(onClick && { onClick })}
       >
         {src && (
           <Image
-            onLoadingComplete={handleLoad}
             alt={alt || ''}
             src={src}
-            className={`image ${loaded ? 'image--loaded' : ''}`}
+            className={`image image--loaded`}
             fill
             layout="fill"
             priority={priority}
           />
         )}
 
-        {placeholder && (
+        {/* {placeholder && (
           <Image
             onLoadingComplete={handlePlaceholderLoad}
             alt={alt || 'placeholder'}
@@ -76,7 +75,7 @@ const ImageComponent = (props) => {
               loaded ? 'image--loaded' : ''
             }`}
           />
-        )}
+        )} */}
       </WithLink>
 
       {figcaption && (
