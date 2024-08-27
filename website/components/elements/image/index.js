@@ -54,7 +54,7 @@ const ImageComponent = (props) => {
         {...(onClick && { onClick })}
       >
         {src && (
-          <Image
+          <img
             alt={alt || ''}
             src={src}
             className="image image--loaded"
