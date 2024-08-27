@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Image from 'next/future/image';
 import WithLink from '../../utils/with-link';
 
 const ImageComponent = (props) => {
