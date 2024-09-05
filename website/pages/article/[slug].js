@@ -9,6 +9,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import toMarkdown from '@sanity/block-content-to-markdown';
 import markdownToTxt from 'markdown-to-txt';
 import dynamic from 'next/dynamic';
+import LazyLoad from 'react-lazyload';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -20,6 +21,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';
 import SubscriptionBanner from '~/components/subscription-banner';
+import LatestPrint from '~/components/latest-print';
 
 import Date from '~/components/date';
 import useWindowDimensions from '~/functions/useWindowDimensions';
@@ -119,8 +121,8 @@ export default function Post({ siteConfig, post, preview }) {
 
     return (
       <Layout
-        navOffset={null}
-        navOnWhite={false}
+        navOffset={'top'}
+        navOnWhite={true}
         hasNav
         hasFooter
         meta={{
@@ -189,22 +191,6 @@ export default function Post({ siteConfig, post, preview }) {
           </div>
         </Modal>
 
-        <div className="mb4">
-          <Hero
-            image={post?.coverImage}
-            title={post.title}
-            description={null}
-            heroButtonText={null}
-            link={null}
-            marginTop={0}
-            marginBottom={0}
-            modifier="article"
-            skeleton={!post}
-            caption={post?.coverImageCaption}
-            fullImage={post?.coverImageFullImage}
-          />
-        </div>
-
         <article className="pt4  pb4">
           {post.tag && (
             <>
@@ -272,13 +258,30 @@ export default function Post({ siteConfig, post, preview }) {
           <div className="flex  flex-wrap  ph4  ph0-md">
             <div className="col-6" />
             <div className="col-24  col-12-md">
-              <div className="mb4">
+              <div className="mb5">
+                <Hero
+                  image={post?.coverImage}
+                  imageObject={post?.imageObject}
+                  title={post.title}
+                  description={null}
+                  heroButtonText={null}
+                  link={null}
+                  marginTop={0}
+                  marginBottom={0}
+                  modifier="article"
+                  skeleton={!post}
+                  caption={post?.coverImageCaption}
+                  fullImage={post?.coverImageFullImage}
+                />
+              </div>
+
+              <div className="mb4 pb2">
                 <Heading
                   /* Options */
                   htmlEntity="h1"
                   text={post.title}
                   color="rendah-red"
-                  size={app.deviceSize === 'md' ? 'large' : 'x-large'}
+                  size={app.deviceSize === 'md' ? 'large' : 'large'}
                   truncate={null}
                   onClick={null}
                   /* Children */
@@ -433,6 +436,12 @@ export default function Post({ siteConfig, post, preview }) {
             </section>
           )}
         </Container>
+
+        <div className="bg-light-grey">
+          <LazyLoad once offset={800} height={800}>
+            <LatestPrint showDominionButton={true} />
+          </LazyLoad>
+        </div>
       </Layout>
     );
   }

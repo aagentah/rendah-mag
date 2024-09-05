@@ -1,14 +1,44 @@
 import sanityImage from '@sanity/image-url';
+import { subMonths } from 'date-fns';
 
 import client, { previewClient } from './config';
 import dateTodayISO from '~/functions/dateTodayISO';
 import dateTodayYyyyMmDd from '~/functions/dateTodayYyyyMmDd';
 
+const blockContent = `
+{
+    ...,
+    _type == "image" => {
+      'url': asset->url,
+      'caption': caption,
+      'fullImage': fullImage,
+      'dimensions': asset->metadata.dimensions
+    },
+    _type == "audioFileBlock" => {
+      title,
+      description,
+      "url": audioFile.asset->url,
+      "mimeType": audioFile.asset->mimeType,
+      "imageUrl": image.asset->url,
+    },
+    _type == "carousel" => {
+       'images': images[] {
+        'imageObject': {
+          'url': asset->url,
+          'caption': caption,
+          'fullImage': fullImage,
+          'dimensions': asset->metadata.dimensions
+        },
+      },
+    }
+  }
+`;
+
 const postFields = `
   name,
   title,
   publishedAt,
-  body,
+  body[]${blockContent},
   introduction,
   socialHandles,
   socialTagline,
@@ -16,8 +46,12 @@ const postFields = `
   'tag': tag->{...},
   'slug': slug.current,
   'coverImage': image.asset->url,
-  'coverImageCaption': image.caption,
-  'coverImageFullImage': image.fullImage,
+  'imageObject': {
+    'url': image.asset->url,
+    'caption': image.caption,
+    'fullImage': image.fullImage,
+    'dimensions': image.asset->metadata.dimensions
+  },
   'authors': authors[] {
     'author': *[_id == ^._ref] [0] {
       ...,
@@ -33,6 +67,12 @@ const postFieldsCard = `
   publishedAt,
   'slug': slug.current,
   'coverImage': image.asset->url,
+  'imageObject': {
+    'url': image.asset->url,
+    'caption': image.caption,
+    'fullImage': image.fullImage,
+    'dimensions': image.asset->metadata.dimensions
+  },
   'authors': authors[] {
     'author': *[_id == ^._ref] [0] {
       ...,
@@ -52,6 +92,12 @@ const creationsFields = `
   socialTagline,
   'slug': slug.current,
   'coverImage': image.asset->url,
+  'imageObject': {
+    'url': image.asset->url,
+    'caption': image.caption,
+    'fullImage': image.fullImage,
+    'dimensions': image.asset->metadata.dimensions
+  },
   categories,
   'authors': authors[] {
     'author': *[_id == ^._ref] [0] {
@@ -68,20 +114,45 @@ const creationsFieldsCard = `
   'slug': slug.current,
   categories,
   'coverImage': image.asset->url,
+  'imageObject': {
+    'url': image.asset->url,
+    'caption': image.caption,
+    'fullImage': image.fullImage,
+    'dimensions': image.asset->metadata.dimensions
+  },
 `;
 
 const productFields = `
   ...,
+   'imageObject': {
+    'url': image1.asset->url,
+    'caption': image1.caption,
+    'fullImage': image1.fullImage,
+    'dimensions': image1.asset->metadata.dimensions
+  },
   'category': category->title,
   'collection': collection->title,
   'slug': slug.current,
-  'images': images[].asset->url,
+  'images': images[] {
+    'imageObject': {
+      'url': asset->url,
+      'caption': caption,
+      'fullImage': fullImage,
+      'dimensions': asset->metadata.dimensions
+    }
+  },
   credits,
   stripeCheckoutUrl,
 `;
 
 const teamFields = `
   image,
+  'imageObject': {
+    'url': image.asset->url,
+    'caption': image.caption,
+    'fullImage': image.fullImage,
+    'dimensions': image.asset->metadata.dimensions
+  },
   name,
   alias,
   description,
@@ -98,6 +169,23 @@ const tagFields = `
 const getClient = (preview) => (preview ? previewClient : client);
 
 export const imageBuilder = sanityImage(client);
+
+export async function getFileUrl(fileRef) {
+  const query = `*[_id == $id][0] { "url": asset->url }`;
+  const params = { id: fileRef };
+
+  console.log('query', query);
+  console.log('params', params);
+
+  try {
+    const result = await client.fetch(query, params);
+    console.log('result', result);
+    return result?.url || null;
+  } catch (error) {
+    console.error('Error fetching file URL:', error);
+    return null;
+  }
+}
 
 export async function getSiteConfig() {
   const data = await client.fetch('*[_type == "siteSettings"] [0] { ..., }');
@@ -306,6 +394,12 @@ export async function getDivision(
         publishedAt,
         'slug': slug.current,
         'coverImage': image.asset->url,
+        'imageObject': {
+          'url': image.asset->url,
+          'caption': image.caption,
+          'fullImage': image.fullImage,
+          'dimensions': image.asset->metadata.dimensions
+        },
         'authors': authors[] {
           'author': *[_id == ^._ref][0] {
             ...,
@@ -413,6 +507,15 @@ export async function getAllProducts(preview) {
     .fetch(`*[_type == "storeItem"] | order(publishedAt desc) {
       ${productFields}
     }`);
+  return results;
+}
+
+export async function getLatestPrintedIssue(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "storeItem" && category->title == "Printed Issues"] | order(publishedAt desc) [0] {
+       ${productFields}
+    }`
+  );
   return results;
 }
 
@@ -530,6 +633,12 @@ export async function getLatestDominionItem(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "dominionItem"] | order(activeFrom desc) [0] {
       ...,
+      'imageObject': {
+        'url': coverImage.asset->url,
+        'caption': coverImage.caption,
+        'fullImage': coverImage.fullImage,
+        'dimensions': coverImage.asset->metadata.dimensions
+      },
     }`
   );
 
@@ -556,14 +665,75 @@ export async function getLatestNewsletterCypher(preview) {
   return results;
 }
 
-export async function getLastThreeDominionItems(preview) {
+// Fetch Dominion Items (Messages)
+export async function getDominionItemsSince(user, preview) {
   const curClient = getClient(preview);
+  const dominionSinceDate = user.dominionSince;
+  const year = new Date(dominionSinceDate).getFullYear();
+  const startOfYearDate = new Date(`${year}-01-01`).toISOString();
+  const startDate2024 = new Date('2020-01-01').toISOString();
 
   const results = await curClient.fetch(
-    `*[_type == "dominionItem"] | order(activeFrom desc) [0...9] {
+    `*[_type == "dominionItem" && activeFrom >= $startOfYearDate && activeFrom >= $startDate2024] | order(activeFrom desc) {
       ...,
       "slug": slug.current,
-    }`
+      "attachments": attachments[] {
+        title,
+        "file": file.asset->url,
+        "url": file.asset->url,
+        "mimeType": file.asset->mimeType,
+      },
+      'imageObject': {
+        'url': coverImage.asset->url,
+        'caption': coverImage.caption,
+        'fullImage': coverImage.fullImage,
+        'dimensions': coverImage.asset->metadata.dimensions
+      },
+      'description': description[]{
+        ...,
+        _type == 'image' => {
+          'imageObject': {
+            'url': asset->url,
+            'caption': caption,
+            'fullImage': fullImage,
+            'dimensions': asset->metadata.dimensions
+          }
+        }
+      }
+    }`,
+    { startOfYearDate, startDate2024 }
+  );
+
+  return results;
+}
+
+// Fetch Dominion Resources
+export async function getDominionResourcesSince(user, preview) {
+  const curClient = getClient(preview);
+  const dominionSinceDate = user.dominionSince;
+  const year = new Date(dominionSinceDate).getFullYear();
+  const startOfYearDate = new Date(`${year}-01-01`).toISOString();
+  const startDate2024 = new Date('2020-01-01').toISOString();
+
+  const results = await curClient.fetch(
+    `*[_type == "dominionResource" && activeFrom >= $startOfYearDate && activeFrom >= $startDate2024] | order(activeFrom desc) {
+      ...,
+      "slug": slug.current,
+      "attachments": attachments[] {
+        title,
+        "file": file.asset->url,
+        "url": file.asset->url,
+        "mimeType": file.asset->mimeType,
+      },
+      'imageObject': {
+        'url': coverImage.asset->url,
+        'caption': coverImage.caption,
+        'fullImage': coverImage.fullImage,
+        'dimensions': coverImage.asset->metadata.dimensions
+      },
+      'description': description[]${blockContent}
+    }`,
+    { startOfYearDate, startDate2024 }
   );
 
   return results;
@@ -664,6 +834,12 @@ export async function getHomePage() {
   const data = await client.fetch(`*[_type == "homePage"] [0] {
     ...,
     'heroImage': heroImage.asset->url,
+    'imageObject': {
+      'url': heroImage.asset->url,
+      'caption': heroImage.caption,
+      'fullImage': heroImage.fullImage,
+      'dimensions': heroImage.asset->metadata.dimensions
+    },
    }`);
   return data;
 }

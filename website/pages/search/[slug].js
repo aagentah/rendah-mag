@@ -58,10 +58,8 @@ export default function Post({ siteConfig, allPosts, params }) {
           <section className="pb6">
             <div className="flex  flex-wrap">
               {allPosts.map((post, i) => (
-                <div key={post.slug} className="col-24  col-6-md">
-                  <div className="ph3 pv2">
-                    <CardBlog i={i} post={post} />
-                  </div>
+                <div key={post.slug} className="col-24  col-6-md pa2">
+                  <CardBlog i={i} post={post} />
                 </div>
               ))}
             </div>

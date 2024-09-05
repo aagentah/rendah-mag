@@ -83,6 +83,23 @@
   display: none;
 }
 
+.imageNew__captions {
+  @extend .ph2;
+}
+
+.imageNew__captions p,
+.imageNew__captions * {
+  @extend .f6;
+  @extend .f6-md;
+  @extend .f6-lg;
+}
+
+.rich-text .audio__title p {
+  @extend .f6;
+  @extend .f6-md;
+  @extend .f6-lg;
+}
+
 // p:has(> br:only-child) {
 //   display: none;
 // }

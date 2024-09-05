@@ -70,7 +70,6 @@
   width: 100%;
   display: none;
   opacity: 0;
-  @extend .mt4;
 }
 
 .dominion-modal-wrapper--active {
@@ -92,12 +91,12 @@
 
 .dot {
   border: none;
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   background: #c5c5c5;
   border-radius: 50%;
   margin: 0 5px;
-  padding: 5px;
+  padding: 3px;
   cursor: pointer;
 }
 
@@ -110,8 +109,8 @@
 }
 
 .arrow {
-  width: 30px;
-  height: 30px;
+  width: 18px;
+  height: 18px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -121,14 +120,56 @@
 }
 
 .arrow--left {
-  left: 5px;
+  left: -24px;
+  right: auto;
 }
 
 .arrow--right {
   left: auto;
-  right: 5px;
+  right: -24px;
+}
+
+@include breakpoint-up(md) {
+  .arrow {
+    width: 24px;
+    height: 24px;
+  }
+
+  .arrow--left {
+    left: -38px;
+    right: auto;
+  }
+
+  .arrow--right {
+    left: auto;
+    right: -38px;
+  }
 }
 
 .arrow--disabled {
   fill: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
 }
+
+// .keen-slider__slide {
+//   transform: none !important;
+// }
+
+html,
+body {
+  transition: background-color 0.3s ease;
+  background-color: #f5f5f5; /* Default light mode color */
+}
+
+html.dark-mode,
+body.dark-mode {
+  background-color: #1c1c1c; /* Dark mode color */
+}
+
+// .dark-mode {
+//   .header * {
+//     color: red !important;
+//     background-color: red !important;
+//     fill: red !important;
+//   }
+// }

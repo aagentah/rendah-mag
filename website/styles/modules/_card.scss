@@ -1,5 +1,9 @@
 .card {
-  //
+  .imageNew {
+    .imageNew__captions {
+      display: none;
+    }
+  }
 }
 
 .card--default {
@@ -7,7 +11,7 @@
 }
 
 .card__image {
-  @extend .mb3;
+  // @extend .mb3;
 }
 
 .card__dialog {
@@ -16,6 +20,7 @@
 
 .card__labels {
   @extend .mb2;
+  z-index: 1;
 
   .label__wrapper {
     display: table-cell;
@@ -25,14 +30,15 @@
 
 .card__title {
   @extend .mb2;
+  z-index: 1;
 }
 
 .card__description {
-  //
+  z-index: 1;
 }
 
 .card__button {
-  //
+  z-index: 1;
 }
 
 // Custom
@@ -43,9 +49,9 @@
   .card__title {
     transition: all 0.2s ease-in-out;
     position: relative;
-    @extend .ph3;
+    @extend .pr3;
     @extend .ph2-md;
-    @extend .pt2;
+    @extend .pt3;
     @extend .pt0-md;
   }
 
@@ -64,9 +70,13 @@
       top: 10px;
       left: 5px;
       right: 0;
+
+      * {
+        text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+      }
     }
     .image {
-      filter: brightness(70%);
+      filter: brightness(45%);
     }
   }
 }
@@ -77,7 +87,6 @@
   @extend .h4;
   @extend .ba;
   @extend .bw1;
-  @extend .br4;
   @extend .bc-white;
   @extend .tac;
   @extend .flex;

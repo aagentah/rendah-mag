@@ -1,18 +1,15 @@
-import sanityClient from '@sanity/client';
+import { createClient } from '@sanity/client';
 
 const options = {
-  // Find your project ID and dataset in `sanity.json` in your studio project
   dataset: 'production',
   projectId: process.env.SANITY_PROJECT_ID,
-  useCdn: false,
+  useCdn: process.env.NODE_ENV === 'production',
   token: process.env.SANITY_API_TOKEN_WRITE,
-  apiVersion: '2021-03-25',
-  // useCdn == true gives fast, cheap responses using a globally distributed cache.
-  // Set this to false if your application require the freshest possible
-  // data always (potentially slightly slower and a bit more expensive).
+  apiVersion: '2023-05-03',
 };
 
-export default sanityClient(options);
-export const previewClient = sanityClient({
+export default createClient(options);
+
+export const previewClient = createClient({
   ...options,
 });

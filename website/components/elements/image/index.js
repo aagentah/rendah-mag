@@ -6,21 +6,26 @@ const ImageComponent = (props) => {
   const [placeholderLoaded, setPlaceholderLoaded] = useState(true);
 
   const {
-    /* Options */
     src,
-    placeholder,
     alt,
-    figcaption,
     height,
     width,
     customClass,
     priority,
     onClick,
-    /* Children */
+    //
+    figcaption,
+    placeholder,
     withLinkProps,
   } = props;
 
-  const dimensions = {
+  const [loaded, setLoaded] = useState(false);
+
+  const handleLoad = () => setLoaded(true);
+
+  const [placeholderLoaded, setPlaceholderLoaded] = useState(false);
+
+  const dimensionsStyle = {
     minHeight: height ? `${height}px` : '100%',
     height: height ? `${height}px` : '100%',
     width: width ? `${width}px` : '100%',
@@ -45,7 +50,7 @@ const ImageComponent = (props) => {
   // const handlePlaceholderLoad = () => setPlaceholderLoaded(true);
 
   return (
-    <figure className="image__figure">
+    <figure className="coverImageOld image__figure">
       <WithLink
         style={dimensions}
         className="image__wrapper"
@@ -70,7 +75,7 @@ const ImageComponent = (props) => {
             src={placeholder}
             fill
             layout="fill"
-            className={`image  image--placeholder ${
+            className={`image image--placeholder ${
               loaded ? 'image--loaded' : ''
             }`}
           />

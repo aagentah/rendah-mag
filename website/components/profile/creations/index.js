@@ -114,7 +114,7 @@ export default function ProfileCreations() {
         <div className="flex  flex-wrap  pb3">
           {[...Array(postsLength)].map((iteration, i) => (
             <div key={iteration} className="col-24  col-6-md">
-              <div className="ph3  pv2">
+              <div className="ph3 pv2">
                 <CardBlog i={i} post={posts?.length && posts[i]} />
               </div>
             </div>

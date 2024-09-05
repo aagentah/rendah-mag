@@ -46,8 +46,19 @@
 }
 
 .modal--gallery .modal__dialog {
-  max-width: fit-content;
+  max-width: 90vw;
+  max-height: 90vh;
   width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal--gallery .modal__dialog img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .modal__dialog {
@@ -58,9 +69,13 @@
   transform: translateY(-50%);
   background: var(--white);
   margin: 0 auto;
-  padding: 40px;
+  overflow: auto;
+  max-height: 70vh;
+
   @extend .br4;
   @extend .shadow2;
+  @extend .pa4;
+  padding-top: 40px;
 }
 
 .modal__close {

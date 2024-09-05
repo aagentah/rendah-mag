@@ -150,6 +150,7 @@ $type-scale: (
 :root {
   --black: #000000;
   --almost-black: #111111;
+  --darker-grey: #222222;
   --dark-grey: #343434;
   --mid-grey: #555555;
   --grey: #777777;
@@ -181,6 +182,7 @@ $type-scale: (
 $colors: (
   black: --black,
   almost-black: --almost-black,
+  darker-grey: --darker-grey,
   dark-grey: --dark-grey,
   mid-grey: --mid-grey,
   grey: --grey,

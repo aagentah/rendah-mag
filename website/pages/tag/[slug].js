@@ -18,7 +18,7 @@ import {
   getSiteConfig,
   getTagAndPosts,
   getTags,
-  imageBuilder
+  imageBuilder,
 } from '~/lib/sanity/requests';
 
 const ImageModal = dynamic(() => import('~/components/gallery/image-modal'));
@@ -45,7 +45,7 @@ export default function Post({ siteConfig, tag }) {
           component = galleryPosts[i].components[ii];
           allGalleryImages.push({
             ...component,
-            postTitle: galleryPosts[i].title
+            postTitle: galleryPosts[i].title,
           });
         }
       }
@@ -54,7 +54,7 @@ export default function Post({ siteConfig, tag }) {
     }
   }, []);
 
-  const renderImage = item => {
+  const renderImage = (item) => {
     let src;
 
     if (item.image?.dominionExclusive && !user?.isDominion) {
@@ -125,7 +125,7 @@ export default function Post({ siteConfig, tag }) {
         darkMode
         meta={{
           siteConfig,
-          title: tag.name
+          title: tag.name,
         }}
         preview={null}
       >
@@ -213,7 +213,7 @@ export default function Post({ siteConfig, tag }) {
                 <div className="flex  flex-wrap">
                   {tag?.posts.map((post, i) => (
                     <div key={post.slug} className="col-24  col-6-md">
-                      <div className="ph3  pv2">
+                      <div className="ph3 pv2">
                         <CardBlog i={i} post={post} columnCount={4} />
                       </div>
                     </div>
@@ -244,9 +244,9 @@ export async function getStaticProps({ req, params, preview = false }) {
   return {
     props: {
       siteConfig,
-      tag
+      tag,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }
 
@@ -255,11 +255,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      tags.map(tag => ({
+      tags.map((tag) => ({
         params: {
-          slug: tag.slug
-        }
+          slug: tag.slug,
+        },
       })) || [],
-    fallback: 'blocking'
+    fallback: 'blocking',
   };
 }

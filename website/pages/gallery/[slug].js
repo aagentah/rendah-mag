@@ -92,16 +92,13 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
             <div className="flex  flex-wrap">
               <div className="db w-100">
                 <img
-                  className="db  mla  mra"
                   src={imageBuilder
                     .image(selectedImage.asset)
-                    .width(1080)
                     .auto('format')
                     .url()}
                   style={{
-                    height: 'auto',
-                    width: 'auto',
                     maxHeight: '80vh',
+                    width: 'auto',
                     maxWidth: '100%',
                   }}
                 />
@@ -375,8 +372,8 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
                             .url()}
                           alt={image.alt || ''}
                           figcaption={null}
-                          height={null}
-                          width={null}
+                          height={300}
+                          width={800}
                           customClass="cp"
                           skeleton={false}
                           onClick={() => {

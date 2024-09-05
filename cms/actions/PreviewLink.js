@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import MDWeb from "react-icons/lib/md/web";
-
+// PreviewLink.js
+import React, { useState } from "react";
+// import MDWeb from "react-icons/lib/md/web";
 import resolveProductionUrl from "../resolveProductionUrl";
 
 function copyToClipboard(text) {
@@ -25,9 +25,8 @@ export function PreviewLink(props) {
 
     return {
       label: "Preview link",
-      icon: MDWeb,
+      icon: null,
       onHandle: () => {
-        // Here you can perform your actions
         setDialogOpen(true);
         copyToClipboard(previewLink);
 

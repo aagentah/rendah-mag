@@ -17,7 +17,7 @@ export default function Heading(props) {
     skeleton,
     onClick,
     /* Children */
-    withLinkProps
+    withLinkProps,
   } = props;
 
   const ElementType = htmlEntity || 'h1';
@@ -49,7 +49,7 @@ export default function Heading(props) {
 
   const styles = {
     lineHeight: `${lineHeight}px`,
-    height: truncate ? `${lineHeight * (truncate || 1)}px` : 'auto'
+    height: truncate ? `${lineHeight * (truncate || 1)}px` : 'auto',
   };
 
   const skeletonClass = skeleton ? 'skeleton  skeleton-active' : 'skeleton';

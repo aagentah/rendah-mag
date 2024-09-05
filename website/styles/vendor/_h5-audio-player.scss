@@ -15,6 +15,7 @@ $rhap_font-family: inherit !default;
   padding-left: 3px;
   padding-right: 10px;
   background-color: $rhap_background-color;
+  @extend .br3;
 
   &:focus:not(:focus-visible) {
     outline: 0;
@@ -79,6 +80,7 @@ $rhap_font-family: inherit !default;
   display: flex;
   flex: 3 1 auto;
   align-items: center;
+  width: 100%;
 }
 
 .rhap_progress-container {
@@ -204,10 +206,11 @@ $rhap_font-family: inherit !default;
 }
 
 .rhap_volume-controls {
-  display: flex;
-  flex: 1 0 auto;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // flex: 1 0 auto;
+  // justify-content: center;
+  // align-items: center;
+  display: none;
 }
 
 .rhap_volume-button {

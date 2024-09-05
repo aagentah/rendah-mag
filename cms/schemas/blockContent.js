@@ -1,20 +1,11 @@
-import iconPaperclip from "react-icons/lib/fa/paperclip";
-import iconImage from "react-icons/lib/fa/image";
-import iconQuote from "react-icons/lib/fa/quote-left";
-import iconSpotify from "react-icons/lib/fa/spotify";
-import iconSoundcloud from "react-icons/lib/fa/soundcloud";
-import iconYoutube from "react-icons/lib/fa/youtube";
-import iconFacebook from "react-icons/lib/fa/facebook";
-import iconButton from "react-icons/lib/md/touch-app";
-import iconAudioTrack from "react-icons/lib/md/audiotrack";
+import { defineType, defineField, defineArrayMember } from "sanity";
 
-export default {
+export default defineType({
   title: "Block Content",
   name: "blockContent",
   type: "array",
-  // validation: (Rule) => Rule.required(),
   of: [
-    {
+    defineArrayMember({
       title: "Block",
       type: "block",
       styles: [{ title: "Normal", value: "normal" }],
@@ -29,11 +20,10 @@ export default {
           { title: "Code", value: "code" },
         ],
         annotations: [
-          {
+          defineField({
             name: "inlineLink",
             title: "Inline Link",
             type: "object",
-            icon: iconPaperclip,
             fields: [
               {
                 name: "url",
@@ -42,15 +32,14 @@ export default {
                 validation: (Rule) => Rule.required(),
               },
             ],
-          },
+          }),
         ],
       },
-    },
-    {
+    }),
+    defineArrayMember({
       name: "subtitleBlock",
       title: "Sub Title",
       type: "object",
-      icon: iconFacebook,
       fields: [
         {
           name: "subtitle",
@@ -59,28 +48,14 @@ export default {
           validation: (Rule) => Rule.required(),
         },
       ],
-    },
-    {
+    }),
+    defineArrayMember({
       type: "image",
-      icon: iconImage,
       fields: [
         {
           name: "fullImage",
           title: "Full Image",
           type: "boolean",
-        },
-        {
-          name: "resize",
-          title: "Resize",
-          type: "string",
-          options: {
-            list: [
-              { title: "None", value: "none" },
-              { title: "1080px", value: "1080" },
-              { title: "1920px", value: "1920" },
-            ],
-            layout: "radio",
-          },
         },
         {
           name: "caption",
@@ -89,35 +64,20 @@ export default {
         },
       ],
       validation: (Rule) => Rule.required(),
-    },
-    {
+    }),
+    defineArrayMember({
       name: "carousel",
       title: "Carousel",
       type: "object",
-      icon: iconImage,
       fields: [
         {
           title: "Images",
           name: "images",
           type: "array",
           of: [
-            {
+            defineArrayMember({
               type: "image",
-              icon: iconImage,
               fields: [
-                {
-                  name: "resize",
-                  title: "Resize",
-                  type: "string",
-                  options: {
-                    list: [
-                      { title: "None", value: "none" },
-                      { title: "1080px", value: "1080" },
-                      { title: "1920px", value: "1920" },
-                    ],
-                    layout: "radio",
-                  },
-                },
                 {
                   name: "caption",
                   title: "Source / Caption",
@@ -125,22 +85,33 @@ export default {
                 },
               ],
               validation: (Rule) => Rule.required(),
-            },
+            }),
           ],
         },
         {
-          name: "carouselHeight",
-          title: "Carousel Height (px)",
+          name: "carouselHeightDesktop",
+          title: "Carousel Height (Desktop)",
           type: "number",
           validation: (Rule) => Rule.required(),
         },
+        {
+          name: "carouselHeightMobile",
+          title: "Carousel Height (Mobile)",
+          type: "number",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "slidesPerViewDesktop",
+          title: "Number of Slides per View (Desktop)",
+          type: "number",
+          validation: (Rule) => Rule.min(1).required(),
+        },
       ],
-    },
-    {
+    }),
+    defineArrayMember({
       name: "quoteBlock",
       title: "Quote",
       type: "object",
-      icon: iconQuote,
       fields: [
         {
           name: "quote",
@@ -157,12 +128,11 @@ export default {
           validation: (Rule) => Rule.required(),
         },
       ],
-    },
-    {
+    }),
+    defineArrayMember({
       name: "linkBlock",
       title: "Block Button Link",
       type: "object",
-      icon: iconButton,
       fields: [
         {
           name: "text",
@@ -177,8 +147,8 @@ export default {
           validation: (Rule) => Rule.required(),
         },
       ],
-    },
-    {
+    }),
+    defineArrayMember({
       name: "iframeEmbedBlock",
       title: "Iframe Embed",
       type: "object",
@@ -187,30 +157,26 @@ export default {
           name: "iframeUrl",
           title: "Iframe URL",
           type: "string",
-          description: "",
           validation: (Rule) => Rule.required(),
         },
         {
           name: "iframeHeightDesktop",
           title: "Iframe Height (Desktop) [px]",
           type: "string",
-          description: "",
           validation: (Rule) => Rule.required(),
         },
         {
           name: "iframeHeightMobile",
           title: "Iframe Height (Mobile) [px]",
           type: "string",
-          description: "",
           validation: (Rule) => Rule.required(),
         },
       ],
-    },
-    {
+    }),
+    defineArrayMember({
       name: "spotifyEmbedBlock",
       title: "Spotify Embed",
       type: "object",
-      icon: iconSpotify,
       fields: [
         {
           name: "spotifyEmbed",
@@ -220,12 +186,11 @@ export default {
           validation: (Rule) => Rule.required(),
         },
       ],
-    },
-    {
+    }),
+    defineArrayMember({
       name: "soundCloudEmbedBlock",
       title: "SoundCloud Embed",
       type: "object",
-      icon: iconSoundcloud,
       fields: [
         {
           name: "soundCloudEmbed",
@@ -235,12 +200,11 @@ export default {
           validation: (Rule) => Rule.required(),
         },
       ],
-    },
-    {
+    }),
+    defineArrayMember({
       name: "youTubeEmbedBlock",
       title: "YouTube Embed",
       type: "object",
-      icon: iconYoutube,
       fields: [
         {
           name: "youTubeEmbed",
@@ -250,12 +214,11 @@ export default {
           validation: (Rule) => Rule.required(),
         },
       ],
-    },
-    {
+    }),
+    defineArrayMember({
       name: "facebookVideoEmbedBlock",
       title: "Facebook Video Embed",
       type: "object",
-      icon: iconFacebook,
       fields: [
         {
           name: "facebookVideoEmbed",
@@ -266,13 +229,68 @@ export default {
           validation: (Rule) => Rule.required(),
         },
       ],
-    },
-    {
-      name: "audioEmbedBlock",
-      title: "Audio Embed (via URL)",
+    }),
+    // defineArrayMember({
+    //   name: "audioEmbedBlock",
+    //   title: "Audio Embed (via URL)",
+    //   type: "object",
+    //   fields: [
+    //     {
+    //       name: "title",
+    //       title: "Title",
+    //       type: "string",
+    //       validation: (Rule) => Rule.required(),
+    //     },
+    //     {
+    //       name: "description",
+    //       title: "Description",
+    //       type: "array",
+    //       of: [{ type: "block" }],
+    //     },
+    //     {
+    //       name: "audioEmbed",
+    //       title: "Audio Embed",
+    //       type: "string",
+    //       description:
+    //         "For example: https://res.cloudinary.com/dzz8ji5lj/video/upload/v1611694553/evidence.wav",
+    //       validation: (Rule) => Rule.required(),
+    //     },
+    //     {
+    //       name: "allowDownload",
+    //       title: "Allow Download",
+    //       type: "boolean",
+    //     },
+    //   ],
+    // }),
+    defineArrayMember({
+      name: "codeBlock",
+      title: "Code Block",
       type: "object",
-      icon: iconAudioTrack,
       fields: [
+        {
+          name: "language",
+          title: "Language",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "code",
+          title: "Code",
+          type: "text",
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+    }),
+    defineArrayMember({
+      name: "audioFileBlock",
+      title: "Audio File",
+      type: "object",
+      fields: [
+        {
+          name: "image",
+          title: "Image",
+          type: "image",
+        },
         {
           name: "title",
           title: "Title",
@@ -286,40 +304,15 @@ export default {
           of: [{ type: "block" }],
         },
         {
-          name: "audioEmbed",
-          title: "Facebook Video Embed",
-          type: "string",
-          description:
-            "For example: https://res.cloudinary.com/dzz8ji5lj/video/upload/v1611694553/evidence.wav",
-          validation: (Rule) => Rule.required(),
-        },
-        {
-          name: "allowDownload",
-          title: "Allow Download",
-          type: "boolean",
-        },
-      ],
-    },
-    {
-      name: "codeBlock",
-      title: "Code Block",
-      type: "object",
-      fields: [
-        {
-          name: "language",
-          title: "Language",
-          type: "string",
-          description: "",
-          validation: (Rule) => Rule.required(),
-        },
-        {
-          name: "code",
-          title: "code",
-          type: "text",
-          description: "",
+          name: "audioFile",
+          title: "Audio File",
+          type: "file",
+          options: {
+            accept: "audio/*",
+          },
           validation: (Rule) => Rule.required(),
         },
       ],
-    },
+    }),
   ],
-};
+});

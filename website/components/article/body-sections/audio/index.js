@@ -1,12 +1,8 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
-
 import BlockContent from '@sanity/block-content-to-react';
 import { usePlausible } from 'next-plausible';
 import Image from '~/components/elements/image';
-
-import { useUser } from '~/lib/hooks';
-import { useApp } from '~/context-provider/app';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useFirstRender } from '~/lib/useFirstRender';
 
@@ -19,7 +15,7 @@ const IconDownload = dynamic(() =>
 );
 
 export default function Audio({
-  url,
+  url, // Directly passing the resolved URL
   title,
   image,
   description,
@@ -30,8 +26,6 @@ export default function Audio({
   const [RHAP_UIHook, setRHAP_UIHook] = useState(false);
   const plausible = usePlausible();
   const PlayerRef = useRef(null);
-  const app = useApp();
-  const [user, { loading, mutate, error }] = useUser();
   const { currentAudioSelected, handleAudioPlay } = { ...props };
 
   if (useFirstRender() || !AudioPlayerHook || !RHAP_UIHook) {
@@ -48,7 +42,10 @@ export default function Audio({
   }
 
   useEffect(() => {
-    if (currentAudioSelected !== PlayerRef) {
+    if (
+      PlayerRef.current?.audio?.current &&
+      currentAudioSelected !== PlayerRef
+    ) {
       PlayerRef.current.audio.current.pause();
     }
   }, [currentAudioSelected]);
@@ -71,107 +68,35 @@ export default function Audio({
     });
   };
 
+  console.log('props', props);
+
+  if (!url) return null; // Optionally render nothing until the URL is resolved
+
   return (
-    <div className="flex  flex-wrap  pb4">
-      <div className="col-6" />
-      <div className="col-24  col-12-md  flex  justify-center">
-        <div className="audio__wrapper">
-          <div className="audio__icon">
-            <IconMusic color="black" size={16} />;
-          </div>
-
-          {title ? (
-            <p className="audio__title  db  t-secondary  lh-copy  f6  dark-grey  pb2  pr4  pr0-md  bold">
-              {title}
-            </p>
-          ) : null}
-
-          {description ? (
-            <div className="pb2  rich-text">
-              <BlockContent blocks={description} />
-            </div>
-          ) : null}
-
-          <div className="flex  flex-wrap  pt2">
-            <div className="flex  col-5  col-3-md  justify-center  align-center">
-              {image ? (
-                <Image
-                  /* Options */
-                  src={imageBuilder
-                    .image(image)
-                    .auto('format')
-                    .fit('clip')
-                    .url()}
-                  placeholder={null}
-                  alt="This is the alt text."
-                  figcaption={null}
-                  height={80}
-                  width={80}
-                  customClass="shadow2"
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              ) : (
-                <Image
-                  /* Options */
-                  src="https://cdn.sanity.io/images/q8z2vf2k/production/78e9b8033c9b75038ae1e5ef047110fd78b7372a-1080x816.png?rect=132,0,816,816&w=75&h=75&blur=20&fit=clip&auto=format"
-                  placeholder={null}
-                  alt="This is the alt text."
-                  figcaption={null}
-                  height={80}
-                  width={80}
-                  customClass="shadow2"
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              )}
-            </div>
-            <div
-              className={
-                allowDownload
-                  ? 'col-19  col-17-md  pr0  pr2-md  flex  align-center  justify-center'
-                  : 'col-24'
-              }
-            >
-              <AudioPlayerHook.Hook
-                ref={PlayerRef}
-                showSkipControls={false}
-                showJumpControls={false}
-                src={url}
-                customProgressBarSection={[
-                  RHAP_UIHook.Hook.PROGRESS_BAR,
-                  RHAP_UIHook.Hook.CURRENT_TIME,
-                ]}
-                layout="horizontal-reverse"
-                onPlay={() => {
-                  if (handleAudioPlay) handleAudioPlay(PlayerRef);
-                  triggerOnPlayEvt();
-                }}
-              />
-            </div>
-
-            {allowDownload && (
-              <div className="col-4  dn  df-md  justify-start  align-center  ph2">
-                <a
-                  href={`${url}?dl=`}
-                  target="_external"
-                  className="cp  ph2"
-                  onClick={() => {
-                    triggerOnDownloadEvt();
-                  }}
-                >
-                  <IconDownload color="white" />
-                </a>
-              </div>
-            )}
-          </div>
+    <div className="flex flex-wrap">
+      {title && (
+        <div className="col-24 audio__title tac o-50">
+          <p className="db t-primary lh-copy f6">{title}</p>
         </div>
-      </div>
-      <div className="col-6" />
+      )}
+
+      {url && (
+        <AudioPlayerHook.Hook
+          ref={PlayerRef}
+          showSkipControls={false}
+          showJumpControls={false}
+          src={url}
+          customProgressBarSection={[
+            RHAP_UIHook.Hook.PROGRESS_BAR,
+            RHAP_UIHook.Hook.CURRENT_TIME,
+          ]}
+          layout="horizontal-reverse"
+          onPlay={() => {
+            if (handleAudioPlay) handleAudioPlay(PlayerRef);
+            triggerOnPlayEvt();
+          }}
+        />
+      )}
     </div>
   );
 }

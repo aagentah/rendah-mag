@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import Observer from '@researchgate/react-intersection-observer';
+import LatestPrint from '~/components/latest-print';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -94,7 +95,7 @@ export default function Home() {
         <div className="flex  flex-wrap  relative">
           <div className="col-24  hero--home__col-18">
             <Hero
-              image={homePage?.heroImage}
+              imageObject={homePage?.imageObject}
               title={homePage?.heroTitle || 'Loading...'}
               description={homePage?.heroDescription || 'Loading...'}
               heroButtonText={homePage?.heroLabel || 'Loading...'}
@@ -156,6 +157,10 @@ export default function Home() {
           <RenderCards />
         </LazyLoad>
 
+        <LazyLoad once offset={800} height={800}>
+          <LatestPrint showDominionButton={true} />
+        </LazyLoad>
+
         <Observer {...observer}>
           <div className="" />
         </Observer>
@@ -203,7 +208,7 @@ export default function Home() {
     <div className="flex  flex-wrap">
       {[...Array(creationsLength)].map((iteration, i) => (
         <div key={iteration} className="col-24  col-6-md">
-          <div className="ph3  pv2">
+          <div className="ph3 pv2">
             <CardCreations
               i={i}
               post={creations && creations[i]}

@@ -21,7 +21,7 @@ export default function Button(props) {
     onClick,
     skeleton,
     /* Children */
-    withLinkProps
+    withLinkProps,
   } = props;
 
   const isFluid = fluid && 'fluid';
@@ -51,7 +51,15 @@ export default function Button(props) {
       if (iconFloat === 'left') {
         return (
           <div className="button__icon__wrapper">
-            <div className="button__icon  button__icon--left">{icon}</div>
+            <div className="button__icon  button__icon--left">
+              {Array.isArray(icon)
+                ? icon.map((iconItem, index) => (
+                    <span key={index} className="pr1">
+                      {iconItem}
+                    </span>
+                  ))
+                : icon}
+            </div>
             <span>
               {text || <div dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />}
             </span>
@@ -63,7 +71,19 @@ export default function Button(props) {
           <span>
             {text || <div dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />}
           </span>
-          <div className="button__icon  button__icon--right">{icon}</div>
+          <div
+            className={`${
+              Array.isArray(icon) ? 'button__icons' : 'button__icon'
+            }  button__icon--right flex align-center`}
+          >
+            {Array.isArray(icon)
+              ? icon.map((iconItem, index) => (
+                  <span key={index} className="pr2">
+                    {iconItem}
+                  </span>
+                ))
+              : icon}
+          </div>
         </div>
       );
     }

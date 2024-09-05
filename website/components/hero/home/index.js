@@ -7,7 +7,7 @@ import { Parallax } from 'react-scroll-parallax';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
-import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
@@ -29,7 +29,7 @@ const IconArrowRight = dynamic(() =>
  * */
 
 export default function HeroDefault({
-  image,
+  imageObject,
   title,
   description,
   heroButtonText,
@@ -75,40 +75,9 @@ export default function HeroDefault({
     };
   }
 
-  const heroImage = (
-    <Image
-      /* Options */
-      src={
-        image &&
-        imageBuilder
-          .image(image)
-          .width(imageUrlWidth * scale)
-          .auto('format')
-          .fit('clip')
-          .url()
-      }
-      placeholder={
-        image &&
-        imageBuilder
-          .image(image)
-          .width(imageUrlWidth / 10)
-          .auto('format')
-          .fit('clip')
-          .blur('20')
-          .url()
-      }
-      alt={title}
-      figcaption={null}
-      height={imageHeight}
-      width={null}
-      customClass={null}
-      priority={true}
-      skeleton={skeleton}
-      onClick={null}
-      /* Children */
-      withLinkProps={linkProps}
-    />
-  );
+  console.log('imageObject', imageObject);
+
+  const heroImage = <ImageNew imageObject={imageObject} height="100vh" />;
 
   if (title) {
     heroTitle = (

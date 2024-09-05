@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useState, useRef } from 'react';
+import { FaCog, FaBook } from 'react-icons/fa';
 
 import Button from '~/components/elements/button';
 import SearchBar from '~/components/search-bar';
@@ -9,6 +10,14 @@ import { useUser } from '~/lib/hooks';
 const IconSearch = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconSearch)
 );
+
+const Modal = dynamic(() => import('~/components/modal'));
+
+const ProfileEdit = dynamic(() => import('~/components/profile/edit'));
+
+const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
+
+const ProfilePrints = dynamic(() => import('~/components/profile/prints'));
 
 export default function HeaderDestop({
   meta,
@@ -21,6 +30,8 @@ export default function HeaderDestop({
 }) {
   const [user] = useUser();
   const [searchActive, setSearchActive] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
+  const [modalPrintsActive, setModalPrintsActive] = useState(false);
 
   const searchBarRef = useRef(null);
 
@@ -31,6 +42,77 @@ export default function HeaderDestop({
   const toggleSearchActive = () => {
     setSearchActive(!searchActive);
     focus();
+  };
+
+  const dominion = () => {
+    return (
+      <>
+        {/* <li className="nav__item  dib  flex  align-center  pr3">
+          <Button
+            type="secondary"
+            size="medium"
+            text="Prints"
+            color={navColour}
+            fluid={false}
+            icon={<FaBook />}
+            iconFloat={null}
+            inverted
+            loading={false}
+            disabled={false}
+            skeleton={false}
+            onClick={() => setModalPrintsActive(true)}
+            withLinkProps={null}
+          />
+        </li>
+        <li className="nav__item  dib  flex  align-center  pr3">
+          <Button
+            type="secondary"
+            size="medium"
+            text="Settings"
+            color={navColour}
+            fluid={false}
+            icon={<FaCog />}
+            iconFloat={null}
+            inverted
+            loading={false}
+            disabled={false}
+            skeleton={false}
+            onClick={() => setModalActive(true)}
+            withLinkProps={null}
+          />
+        </li> */}
+        <li className="nav__item  dib  flex  align-center  pr3">
+          <Button
+            type="secondary"
+            size="medium"
+            text="Log Out"
+            color={navColour}
+            fluid={false}
+            icon={buttonIcons.signOut}
+            iconFloat={null}
+            inverted
+            loading={false}
+            disabled={false}
+            skeleton={false}
+            onClick={handleLogout}
+            withLinkProps={null}
+          />
+        </li>
+
+        <Modal size="large" active={modalActive} closeIcon={setModalActive}>
+          <ProfileEdit />
+          <ProfileBilling />
+        </Modal>
+
+        <Modal
+          size="large"
+          active={modalPrintsActive}
+          closeIcon={setModalPrintsActive}
+        >
+          <ProfilePrints />
+        </Modal>
+      </>
+    );
   };
 
   return (
@@ -69,274 +151,70 @@ export default function HeaderDestop({
           //    </Link>
           //  </div>
         }
+
         <div className="col-24">
           <nav className="nav  w-100  flex  justify-end">
             <ul className="flex  flex-wrap">
-              <li
-                className={`nav__item  nav__item--search-bar  dib  flex  align-center   ${
-                  searchActive ? 'active' : ''
-                }`}
-              >
-                <div className="cp  mr3" onClick={toggleSearchActive}>
-                  <IconSearch
-                    color={navOnWhite ? 'black' : 'white'}
-                    size={16}
-                  />
-                </div>
-                <SearchBar ref={searchBarRef} />
-              </li>
-              <li
-                className={`nav__item  nav__item--divider  dib  flex  align-center  pr3  ${
-                  navOnWhite ? 'black' : 'white'
-                }`}
-              />
-              <li className="nav__item  dib  flex  align-center  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Home"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false,
-                    },
-                  }}
-                />
-              </li>
-
-              <li className="nav__item  dib  flex  align-center  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Cyphers"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/cyphers',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false,
-                    },
-                  }}
-                />
-              </li>
-              <li className="nav__item  dib  flex  align-center  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Gallery"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/gallery',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false,
-                    },
-                  }}
-                />
-              </li>
-              <li className="nav__item  dib  flex  align-center  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Team"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/team',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false,
-                    },
-                  }}
-                />
-              </li>
-              <li className="nav__item  dib  flex  align-center  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Store"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'next',
-                    href: '/store',
-                    target: null,
-                    routerLink: Link,
-                    routerLinkProps: {
-                      scroll: false,
-                    },
-                  }}
-                />
-              </li>
-              <li className="nav__item  dib  flex  align-center  pr3">
-                <Button
-                  /* Options */
-                  type="secondary"
-                  size="medium"
-                  text="Contact"
-                  color={navColour}
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'external',
-                    href: 'https://forms.gle/xpPtVhUiuzZzehdy8',
-                    target: '_blank',
-                    routerLink: null,
-                    routerLinkProps: null,
-                  }}
-                />
-              </li>
-
-              {user && meta.title !== 'Profile' && (
-                <li className="nav__item  dib  flex  align-center  pr3">
-                  <Button
-                    /* Options */
-                    type="secondary"
-                    size="medium"
-                    text="Dominion Dashboard"
-                    color={navColour}
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'next',
-                      href: '/profile',
-                      target: null,
-                      routerLink: Link,
-                      routerLinkProps: {
-                        scroll: false,
-                      },
-                    }}
-                  />
-                </li>
-              )}
-              {user ? (
-                <li className="nav__item  dib  flex  align-center  pr3">
-                  <Button
-                    /* Options */
-                    type="secondary"
-                    size="medium"
-                    text="Log Out"
-                    color={navColour}
-                    fluid={false}
-                    icon={buttonIcons.signOut}
-                    iconFloat={null}
-                    inverted
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={handleLogout}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </li>
+              {user && meta.title === 'Profile' ? (
+                dominion()
               ) : (
                 <>
-                  <li className="nav__item  dib  flex  align-center  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Subscription"
-                      color="rendah-red"
-                      fluid={false}
-                      icon={buttonIcons.store}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      skeleton={false}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={{
-                        type: 'next',
-                        href: '/dominion',
-                        target: null,
-                        routerLink: Link,
-                        routerLinkProps: {
-                          scroll: false,
-                        },
-                      }}
-                    />
+                  <li
+                    className={`nav__item  nav__item--search-bar  dib  flex  align-center   ${
+                      searchActive ? 'active' : ''
+                    }`}
+                  >
+                    <div className="cp  mr3" onClick={toggleSearchActive}>
+                      <IconSearch
+                        color={navOnWhite ? 'black' : 'white'}
+                        size={16}
+                      />
+                    </div>
+                    <SearchBar ref={searchBarRef} />
                   </li>
+                  <li
+                    className={`nav__item  nav__item--divider  dib  flex  align-center  pr3  ${
+                      navOnWhite ? 'black' : 'white'
+                    }`}
+                  />
                   <li className="nav__item  dib  flex  align-center  pr3">
                     <Button
                       /* Options */
                       type="secondary"
                       size="medium"
-                      text="Login Dominion"
+                      text="Home"
                       color={navColour}
                       fluid={false}
-                      icon={buttonIcons.signIn}
+                      icon={null}
+                      iconFloat={null}
+                      inverted
+                      loading={false}
+                      disabled={false}
+                      skeleton={false}
+                      skeleton={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'next',
+                        href: '/',
+                        target: null,
+                        routerLink: Link,
+                        routerLinkProps: {
+                          scroll: false,
+                        },
+                      }}
+                    />
+                  </li>
+
+                  <li className="nav__item  dib  flex  align-center  pr3">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Cyphers"
+                      color={navColour}
+                      fluid={false}
+                      icon={null}
                       iconFloat={null}
                       inverted
                       loading={false}
@@ -346,7 +224,7 @@ export default function HeaderDestop({
                       /* Children */
                       withLinkProps={{
                         type: 'next',
-                        href: '/login',
+                        href: '/cyphers',
                         target: null,
                         routerLink: Link,
                         routerLinkProps: {
@@ -355,6 +233,198 @@ export default function HeaderDestop({
                       }}
                     />
                   </li>
+                  <li className="nav__item  dib  flex  align-center  pr3">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Gallery"
+                      color={navColour}
+                      fluid={false}
+                      icon={null}
+                      iconFloat={null}
+                      inverted
+                      loading={false}
+                      disabled={false}
+                      skeleton={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'next',
+                        href: '/gallery',
+                        target: null,
+                        routerLink: Link,
+                        routerLinkProps: {
+                          scroll: false,
+                        },
+                      }}
+                    />
+                  </li>
+                  <li className="nav__item  dib  flex  align-center  pr3">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Team"
+                      color={navColour}
+                      fluid={false}
+                      icon={null}
+                      iconFloat={null}
+                      inverted
+                      loading={false}
+                      disabled={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'next',
+                        href: '/team',
+                        target: null,
+                        routerLink: Link,
+                        routerLinkProps: {
+                          scroll: false,
+                        },
+                      }}
+                    />
+                  </li>
+                  <li className="nav__item  dib  flex  align-center  pr3">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Store"
+                      color={navColour}
+                      fluid={false}
+                      icon={null}
+                      iconFloat={null}
+                      inverted
+                      loading={false}
+                      disabled={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'next',
+                        href: '/store',
+                        target: null,
+                        routerLink: Link,
+                        routerLinkProps: {
+                          scroll: false,
+                        },
+                      }}
+                    />
+                  </li>
+                  <li className="nav__item  dib  flex  align-center  pr3">
+                    <Button
+                      /* Options */
+                      type="secondary"
+                      size="medium"
+                      text="Contact"
+                      color={navColour}
+                      fluid={false}
+                      icon={null}
+                      iconFloat={null}
+                      inverted
+                      loading={false}
+                      disabled={false}
+                      onClick={null}
+                      /* Children */
+                      withLinkProps={{
+                        type: 'external',
+                        href: 'https://forms.gle/xpPtVhUiuzZzehdy8',
+                        target: '_blank',
+                        routerLink: null,
+                        routerLinkProps: null,
+                      }}
+                    />
+                  </li>
+
+                  {user && meta.title !== 'Profile' && (
+                    <li className="nav__item  dib  flex  align-center  pr3">
+                      <Button
+                        /* Options */
+                        type="secondary"
+                        size="medium"
+                        text="Dominion Dashboard"
+                        color={navColour}
+                        fluid={false}
+                        icon={null}
+                        iconFloat={null}
+                        inverted
+                        loading={false}
+                        disabled={false}
+                        skeleton={false}
+                        onClick={null}
+                        /* Children */
+                        withLinkProps={{
+                          type: 'next',
+                          href: '/profile',
+                          target: null,
+                          routerLink: Link,
+                          routerLinkProps: {
+                            scroll: false,
+                          },
+                        }}
+                      />
+                    </li>
+                  )}
+
+                  {!user && (
+                    <>
+                      <li className="nav__item  dib  flex  align-center  pr3">
+                        <Button
+                          /* Options */
+                          type="secondary"
+                          size="medium"
+                          text="Subscription"
+                          color="rendah-red"
+                          fluid={false}
+                          icon={buttonIcons.store}
+                          iconFloat={null}
+                          inverted
+                          loading={false}
+                          disabled={false}
+                          skeleton={false}
+                          onClick={null}
+                          /* Children */
+                          withLinkProps={{
+                            type: 'next',
+                            href: '/dominion',
+                            target: null,
+                            routerLink: Link,
+                            routerLinkProps: {
+                              scroll: false,
+                            },
+                          }}
+                        />
+                      </li>
+                      <li className="nav__item  dib  flex  align-center  pr3">
+                        <Button
+                          /* Options */
+                          type="secondary"
+                          size="medium"
+                          text="Login Dominion"
+                          color={navColour}
+                          fluid={false}
+                          icon={buttonIcons.signIn}
+                          iconFloat={null}
+                          inverted
+                          loading={false}
+                          disabled={false}
+                          skeleton={false}
+                          onClick={null}
+                          /* Children */
+                          withLinkProps={{
+                            type: 'next',
+                            href: '/login',
+                            target: null,
+                            routerLink: Link,
+                            routerLinkProps: {
+                              scroll: false,
+                            },
+                          }}
+                        />
+                      </li>
+                    </>
+                  )}
                 </>
               )}
             </ul>

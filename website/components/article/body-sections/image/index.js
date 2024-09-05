@@ -3,6 +3,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import isArray from 'lodash/isArray';
 import includes from 'lodash/includes';
 import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 import { useApp } from '~/context-provider/app';
 
 import { imageBuilder } from '~/lib/sanity/requests';
@@ -11,12 +12,8 @@ import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 export default function ImageSection({ section, imageCount }) {
   const app = useApp();
 
-  const isEven = (number) => {
-    return number % 2 === 0;
-  };
-
   const handleCaption = () => {
-    let { source, fullImage } = section;
+    let { source } = section;
 
     // If blockContent
     if (isArray(section?.caption)) {
@@ -73,25 +70,8 @@ export default function ImageSection({ section, imageCount }) {
       >
         <LazyLoad once offset={250} height={360}>
           <figure>
-            <Image
-              /* Options */
-              src={imageBuilder
-                .image(section.asset)
-                .auto('format')
-                .fit('clip')
-                .url()}
-              placeholder={placeholder}
-              alt="This is the alt text."
-              figcaption={null}
-              height={null}
-              width={null}
-              customClass=""
-              skeleton={false}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-            {handleCaption()}
+            <ImageNew imageObject={section} isExpandable />
+            {/* {handleCaption()} */}
           </figure>
         </LazyLoad>
       </div>

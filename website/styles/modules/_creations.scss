@@ -1,9 +1,25 @@
 $creations-white: #d9d9d9;
 $creations-black: #1c1c1c;
 
+.creations.bg-darker-grey {
+  background-color: #222222;
+}
+
 .creations {
   background-color: $creations-black;
   --white: #d9d9d9;
+
+  .skeletonNew {
+    --base-color: #222222;
+    --highlight-color: #343434;
+
+    background-image: linear-gradient(
+      90deg,
+      var(--base-color),
+      var(--highlight-color),
+      var(--base-color)
+    );
+  }
 
   .white,
   .white {
@@ -27,13 +43,15 @@ $creations-black: #1c1c1c;
     }
   }
 
-  .button {
+  .button--black,
+  .button--white {
     color: $creations-white !important;
     border-color: $creations-white !important;
     background: transparent !important;
   }
 
-  .button.primary {
+  .button--black,
+  .button--white.primary {
     &:hover {
       color: var(--almost-black) !important;
       border-color: $creations-white !important;

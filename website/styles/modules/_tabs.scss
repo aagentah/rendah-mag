@@ -227,7 +227,6 @@
     // @extend .col-24;
     @extend .ba;
     @extend .bg-light-grey;
-    @extend .br-pill;
     @extend .mb3;
     @extend .flex;
     @extend .flex-wrap;
@@ -240,9 +239,7 @@
 
   .tabs__body {
     background-color: var(--creations-black);
-    @extend .col-19-md;
-    @extend .mla;
-    @extend .mra;
+    @extend .col-15-md;
   }
 
   @include breakpoint-up(md) {

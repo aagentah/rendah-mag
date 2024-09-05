@@ -12,7 +12,7 @@ import Soundcloud from './soundcloud';
 import Spotify from './spotify';
 import Youtube from './youtube';
 import FacebookVideo from './facebook-video';
-import AudioEmbed from './audio';
+import Audio from './audio';
 import ArticleLink from './article-link';
 import CodeBlock from './code-block';
 
@@ -127,16 +127,33 @@ export default function Sections({ body, ...props }) {
     }
 
     // audio embed
-    if (section._type === 'audioEmbedBlock') {
+    // if (section._type === 'audioEmbedBlock') {
+    //   return (
+    //     <div key={i} className="pv3">
+    //       <AudioEmbed
+    //         {...props}
+    //         i={i}
+    //         title={section?.title}
+    //         description={section?.description}
+    //         image={section?.image}
+    //         url={section?.audioEmbed}
+    //         allowDownload={section?.allowDownload}
+    //       />
+    //     </div>
+    //   );
+    // }
+
+    if (section._type === 'audioFileBlock') {
+      console.log('aaa', section);
       return (
         <div key={i} className="pv3">
-          <AudioEmbed
+          <Audio
             {...props}
             i={i}
             title={section?.title}
             description={section?.description}
             image={section?.image}
-            url={section?.audioEmbed}
+            url={section?.url}
             allowDownload={section?.allowDownload}
           />
         </div>

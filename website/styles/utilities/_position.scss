@@ -65,6 +65,18 @@
   transform: translate(-50%, -50%);
 }
 
+.center-left {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.center-right {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
 // .center-x {
 //   left: 50%;
 //   transform: translateX(-50%);

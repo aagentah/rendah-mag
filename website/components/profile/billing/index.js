@@ -107,8 +107,8 @@ export default function ProfileOrders() {
   if (user) {
     return (
       <section>
-        <div className="ph3">
-          <div className="profile_heading">
+        <div className="">
+          <div className="pb4">
             <Heading
               /* Options */
               htmlEntity="h1"
@@ -121,13 +121,13 @@ export default function ProfileOrders() {
             />
           </div>
 
-          {customer ? (
-            <div className="w-100  mb4  pt3  pt0-md">
+          <div className="bg-darker-grey pa4 br3 mb4">
+            <form className="w-100" onSubmit={handleEditProfile}>
               <div className="pb3">
                 <Heading
                   /* Options */
                   htmlEntity="h2"
-                  text="Payment Method & Invoices"
+                  text="Shipping Address"
                   color="white"
                   size="small"
                   truncate={null}
@@ -136,34 +136,7 @@ export default function ProfileOrders() {
                 />
               </div>
 
-              <div className="pa3  pa4-md  mb4  ba  bc-white  br4  flex  flex-wrap">
-                <a
-                  className="underline  f6  white"
-                  target="_blank"
-                  href={customer?.billingPortal?.url}
-                >
-                  Update Payment Method & View Invoices
-                </a>
-              </div>
-            </div>
-          ) : null}
-
-          <form className="w-100  mb4" onSubmit={handleEditProfile}>
-            <div className="pb3">
-              <Heading
-                /* Options */
-                htmlEntity="h2"
-                text="Shipping & Billing Address"
-                color="white"
-                size="small"
-                truncate={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-
-            <div className="pa3  pa4-md  mb4  ba  bc-white  br4">
-              <div className="flex  flex-wrap">
+              <div className="flex  flex-wrap mb4">
                 <div className="col-24  col-12-md  pr0  pr4-md  pb3  pb0-md">
                   <div className="pv2">
                     <Input
@@ -255,60 +228,91 @@ export default function ProfileOrders() {
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="flex  justify-end-md">
-              <Button
-                /* Options */
-                type="primary"
-                size="small"
-                text="Update Address"
-                color="white"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted={true}
-                loading={updateButtonLoading}
-                disabled={null}
-                disabled={!stripe}
-                skeleton={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={{
-                  type: 'form',
-                }}
-              />
-            </div>
-          </form>
+              <div className="flex">
+                <Button
+                  /* Options */
+                  type="primary"
+                  size="small"
+                  text="Update Address"
+                  color="white"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted={true}
+                  loading={updateButtonLoading}
+                  disabled={null}
+                  disabled={!stripe}
+                  skeleton={false}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={{
+                    type: 'form',
+                  }}
+                />
+              </div>
+            </form>
+          </div>
 
-          <section className="w-100  mb4">
-            <div className="pb3">
-              <Heading
-                /* Options */
-                htmlEntity="h2"
-                text="Pause/Cancel Subscription"
-                color="white"
-                size="small"
-                truncate={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
+          {customer ? (
+            <div className="bg-darker-grey pa4 br3 mb4">
+              <div className="w-100  pt3  pt0-md">
+                <div className="profile_heading">
+                  <Heading
+                    /* Options */
+                    htmlEntity="h2"
+                    text="Payment Method & Invoices"
+                    color="white"
+                    size="small"
+                    truncate={null}
+                    /* Children */
+                    withLinkProps={null}
+                  />
+                </div>
 
-            <div className="pa3  pa4-md  mb4  ba  bc-white  br4">
-              <p className="t-secondary  f6  lh-copy  white">
-                If you'd like to pause or cancel your Dominion Subscription,
-                please email us at{' '}
-                <a
-                  className="white  underline"
-                  href="mailto:info@rendahmag.com"
-                >
-                  info@rendahmag.com
-                </a>
-                .
-              </p>
+                <div className="pa3  pa4-md  ba  bc-white  br4  flex  flex-wrap">
+                  <a
+                    className="underline  f6  white"
+                    target="_blank"
+                    href={customer?.billingPortal?.url}
+                  >
+                    Update Payment Method & View Invoices
+                  </a>
+                </div>
+              </div>
             </div>
-          </section>
+          ) : null}
+
+          <div className="bg-darker-grey pa4 br3 mb4">
+            <section className="w-100">
+              <div className="pb3">
+                <Heading
+                  /* Options */
+                  htmlEntity="h2"
+                  text="Pause/Cancel Subscription"
+                  color="white"
+                  size="small"
+                  truncate={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
+
+              <div className="pa3  pa4-md  ba  bc-white  br4">
+                <p className="t-secondary  f6  lh-copy  white">
+                  If you'd like to pause or cancel your Dominion Subscription,
+                  please email us at{' '}
+                  <a
+                    className="white  underline"
+                    href="mailto:info@rendahmag.com"
+                  >
+                    info@rendahmag.com
+                  </a>
+                  .
+                </p>
+              </div>
+            </section>
+          </div>
         </div>
       </section>
     );

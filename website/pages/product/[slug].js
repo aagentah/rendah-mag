@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 import Label from '~/components/elements/label';
 import { useApp } from '~/context-provider/app';
 
@@ -144,11 +145,11 @@ export default function Product({ siteConfig, product }) {
               size="medium"
               active={modalActive}
             >
-              <div className="pb2  mb2">
+              <div className="pb2">
                 <Heading
                   /* Options */
                   htmlEntity="p"
-                  text="Subscribe instead for £9.00 + Free Global Shipping?"
+                  text="Subscribe instead for £11?"
                   color="black"
                   size="medium"
                   truncate={0}
@@ -157,36 +158,47 @@ export default function Product({ siteConfig, product }) {
                   withLinkProps={null}
                 />
               </div>
+              <div className="pb2  mb2">
+                <Heading
+                  /* Options */
+                  htmlEntity="p"
+                  text="+ free global shipping"
+                  color="rendah-red"
+                  size="small"
+                  truncate={0}
+                  onClick={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
 
               <div className="pb4  pb3-md">
-                <div className="pb3">
-                  <p className="t-secondary  taj  f6  pb3  lh-copy">
-                    Joining our Dominion Subscription is cheaper than individual
-                    prints, and will give access to a great deal of additional
-                    features.
-                  </p>
-                </div>
+                <p className="t-secondary  taj  f6  pb3  lh-copy">
+                  Joining our subscription is cheaper than individual prints,
+                  and will give access to a great deal of additional features.
+                </p>
 
-                <div className="measure-wide">
+                <div className="measure-wide page--dominion">
                   <p className="t-secondary  taj  f6  pb3  lh-copy">
                     <strong>We offer the following:</strong>
                   </p>
 
                   <ul className="pl3">
-                    <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      3 x Printed magazines per year (Free Global Shipping)
+                    <li className="t-primary  tal  f6  pb2  lh-copy">
+                      3x Printed magazines per year (free global shipping).
                     </li>
-                    <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      A Welcome package
+                    <li className="t-primary  tal  f6  pb2  lh-copy">
+                      Welcome pack with stickers and membership card.
                     </li>
-                    <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      Access to subscriber-only articles
+                    <li className="t-primary  tal  f6  pb2  lh-copy">
+                      Subscriber-dashboard; crafted for both artists &
+                      enthusiasts.
                     </li>
-                    <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      Digital access to ALL previous prints
+                    <li className="t-primary  tal  f6  pb2  lh-copy">
+                      Exlusive music, art, samples, resources, and insights.
                     </li>
-                    <li className="t-secondary  tal  f6  pb2  lh-copy">
-                      Discount on all upcoming merch
+                    <li className="t-primary  tal  f6  pb2  lh-copy">
+                      Digital access to previous prints.
                     </li>
                   </ul>
                 </div>
@@ -197,7 +209,7 @@ export default function Product({ siteConfig, product }) {
                   <Button
                     /* Options */
                     type="primary"
-                    size="medium"
+                    size="small"
                     text="Subscribe"
                     color="black"
                     fluid={true}
@@ -225,7 +237,7 @@ export default function Product({ siteConfig, product }) {
                   <Button
                     /* Options */
                     type="primary"
-                    size="medium"
+                    size="small"
                     text="Single purchase"
                     color="black"
                     fluid={true}
@@ -375,32 +387,9 @@ export default function Product({ siteConfig, product }) {
                 )}
 
                 <div className="col-24  col-12-md  ph2  pb4  pb3-md">
-                  <Image
-                    /* Options */
-                    src={imageBuilder
-                      .image(product?.image1)
-                      .width(1000)
-                      .auto('format')
-                      .fit('clip')
-                      .url()}
-                    placeholder={imageBuilder
-                      .image(product?.image1)
-                      .height(25)
-                      .width(25)
-                      .auto('format')
-                      .fit('clip')
-                      .blur('20')
-                      .url()}
-                    alt={product?.title}
-                    figcaption={null}
-                    height={imageHeight}
-                    width={500}
-                    customClass="shadow2  br3"
-                    priority={true}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={null}
+                  <ImageNew
+                    imageObject={product?.imageObject}
+                    className="br3 shadow2"
                   />
                 </div>
                 <div className="col-24  col-12-md  pl4-md">
@@ -483,42 +472,33 @@ export default function Product({ siteConfig, product }) {
                 </div>
               </div>
 
-              <div className="flex flex-wrap mb4">
-                {product.images?.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`col-24 col-${columns}-md ph2 pb4 pb3-md`}
-                  >
-                    <Image
+              {product.images?.length && (
+                <>
+                  <div className="pb4">
+                    <Heading
                       /* Options */
-                      src={imageBuilder
-                        .image(image)
-                        .width(1000)
-                        .auto('format')
-                        .fit('clip')
-                        .url()}
-                      placeholder={imageBuilder
-                        .image(image)
-                        .height(25)
-                        .width(25)
-                        .auto('format')
-                        .fit('clip')
-                        .blur('20')
-                        .url()}
-                      alt={product?.title}
-                      figcaption={null}
-                      height={330}
-                      width={null}
-                      customClass="shadow2 br3"
-                      priority={true}
-                      skeleton={false}
-                      onClick={null}
+                      htmlEntity="h1"
+                      text="Additional shots"
+                      color="black"
+                      size="medium"
+                      truncate={null}
                       /* Children */
                       withLinkProps={null}
                     />
                   </div>
-                ))}
-              </div>
+
+                  <div className="flex flex-wrap mb4">
+                    {product.images?.map((image, index) => (
+                      <div
+                        key={index}
+                        className={`col-24 col-${columns}-md ph2 pb4 pb3-md`}
+                      >
+                        <ImageNew imageObject={image.imageObject} />
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </Container>
           </div>
         </Layout>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import dynamic from 'next/dynamic';
 import { usePlausible } from 'next-plausible';
+import LazyLoad from 'react-lazyload';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -12,6 +13,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Hero from '~/components/hero/cypher';
 import CardCypher from '~/components/card/cypher';
+import LatestPrint from '~/components/latest-print';
 
 import {
   getSiteConfig,
@@ -295,7 +297,7 @@ export default function Cyphers({ siteConfig }) {
                 <div className="flex  flex-wrap">
                   {[...Array(cyphersLength)].map((iteration, i) => (
                     <div key={iteration} className="col-24  col-6-md">
-                      <div className="ph3  pv2">
+                      <div className="ph3 pv2">
                         <CardCypher
                           i={i}
                           post={cyphers?.previous && cyphers.previous[i]}
@@ -307,6 +309,12 @@ export default function Cyphers({ siteConfig }) {
                 </div>
               </section>
             </Container>
+
+            <div className="bg-light-grey">
+              <LazyLoad once offset={800} height={800}>
+                <LatestPrint showDominionButton={true} />
+              </LazyLoad>
+            </div>
           </div>
         </>
       </Layout>

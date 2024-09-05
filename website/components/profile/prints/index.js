@@ -87,7 +87,7 @@ export default function ProfilePrints() {
             >
               <div className="flex  flex-wrap  pb3">
                 {[...Array(samplesLength)].map((iteration, i) => (
-                  <div key={iteration} className="col-24  col-6-md  ph3  pv2">
+                  <div key={iteration} className="col-24  col-6-md ph3 pv2">
                     <CardPrint
                       i={i}
                       post={samples?.length && samples[i]}

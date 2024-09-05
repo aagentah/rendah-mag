@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import LazyLoad from 'react-lazyload';
 
 import filter from 'lodash/filter';
 import Heading from '~/components/elements/heading';
@@ -6,6 +7,7 @@ import Heading from '~/components/elements/heading';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import CardTeam from '~/components/card/team';
+import LatestPrint from '~/components/latest-print';
 
 import { getSiteConfig, getTeamMembers } from '~/lib/sanity/requests';
 
@@ -19,7 +21,7 @@ export default function Post({ siteConfig }) {
     const action = async () => {
       const teamRes = await getTeamMembers();
       const core = filter(teamRes, { coreTeam: true });
-      const featured = filter(teamRes, t => !t.coreTeam);
+      const featured = filter(teamRes, (t) => !t.coreTeam);
 
       setCore(core);
       setCoreLength(core.length);
@@ -40,13 +42,13 @@ export default function Post({ siteConfig }) {
         siteConfig,
         title: 'Team',
         description: null,
-        image: null
+        image: null,
       }}
       preview={null}
     >
       <Container>
         <section className="pb5  pb6-md">
-          <div className="pt4  pb2">
+          <div className="pt4  pb4">
             <Heading
               /* Options */
               htmlEntity="h1"
@@ -62,15 +64,13 @@ export default function Post({ siteConfig }) {
 
           <div className="flex  flex-wrap">
             {[...Array(coreLength)].map((iteration, i) => (
-              <div key={iteration} className="col-24  col-6-md">
-                <div className="pa3">
-                  <CardTeam i={i} member={core && core[i]} columnCount="4" />
-                </div>
+              <div key={iteration} className="col-24  col-6-md pa2">
+                <CardTeam i={i} member={core && core[i]} />
               </div>
             ))}
           </div>
 
-          <div className="pt4  pb2">
+          <div className="pt4  pb4">
             <Heading
               /* Options */
               htmlEntity="h1"
@@ -86,20 +86,19 @@ export default function Post({ siteConfig }) {
 
           <div className="flex  flex-wrap">
             {[...Array(featuredLength)].map((iteration, i) => (
-              <div key={iteration} className="col-24  col-4-md">
-                <div className="pa3">
-                  <CardTeam
-                    i={i}
-                    member={featured && featured[i]}
-                    columnCount="4"
-                    featured
-                  />
-                </div>
+              <div key={iteration} className="col-24  col-4-md pa2">
+                <CardTeam i={i} member={featured && featured[i]} featured />
               </div>
             ))}
           </div>
         </section>
       </Container>
+
+      <div className="bg-light-grey">
+        <LazyLoad once offset={800} height={800}>
+          <LatestPrint showDominionButton={true} />
+        </LazyLoad>
+      </div>
     </Layout>
   );
 }
@@ -109,7 +108,7 @@ export async function getStaticProps({ req }) {
 
   return {
     props: {
-      siteConfig
-    }
+      siteConfig,
+    },
   };
 }

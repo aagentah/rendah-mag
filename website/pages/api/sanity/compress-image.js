@@ -19,9 +19,9 @@ const handler = async (req, res) => {
 
     tinify.key = process.env.TINIFY_KEY;
 
-    const { imageUrl, size } = req.body;
+    const { imageUrl } = req.body;
     const source = await tinify.fromUrl(imageUrl);
-    const resized = await source.resize({ method: 'scale', width: size });
+    const resized = await source.resize({ method: 'scale', width: 1920 });
 
     // Compress image
     await resized.toFile(`/tmp/optimized.png`);
