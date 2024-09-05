@@ -4,7 +4,6 @@ import { PageTransition } from 'next-page-transitions';
 import NProgress from 'nprogress';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import PlausibleProvider from 'next-plausible';
-import Script from 'next/script';
 
 import { AppProvider } from '~/context-provider/app';
 import {
@@ -79,21 +78,8 @@ function MyApp({ Component, pageProps }) {
       <AppProvider>
         <ParallaxProvider>
           <DarkModeProvider>
+            {/* Apply the dark mode class to html/body */}
             <ApplyDarkMode />
-            {process.env.NODE_ENV === 'production' && (
-              <Script id="hotjar" strategy="afterInteractive">
-                {`
-                (function(h,o,t,j,a,r){
-                    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                    h._hjSettings={hjid:837317,hjsv:6};
-                    a=o.getElementsByTagName('head')[0];
-                    r=o.createElement('script');r.async=1;
-                    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                    a.appendChild(r);
-                })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-              `}
-              </Script>
-            )}
             {/* <PageTransition
               timeout={transitionTimeout}
               classNames="page-transition"
