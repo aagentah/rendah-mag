@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { PageTransition } from 'next-page-transitions';
 import NProgress from 'nprogress';
 import { ParallaxProvider } from 'react-scroll-parallax';
@@ -12,6 +12,23 @@ import {
 } from '~/context-provider/dark-mode-context';
 
 import '~/styles/index.scss';
+
+// Custom hook to scroll to top on route change
+const useScrollToTop = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      window.scrollTo(0, 0);
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router]);
+};
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -52,6 +69,9 @@ function MyApp({ Component, pageProps }) {
 
   // Ensure the same `Layout` is used across all pages with persistent dark mode
   const getLayout = Component.getLayout || ((page) => page);
+
+  // Use scroll to top hook
+  useScrollToTop();
 
   return (
     <PlausibleProvider domain="rendahmag.com">
