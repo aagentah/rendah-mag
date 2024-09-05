@@ -3,7 +3,7 @@ import WithLink from '../../utils/with-link';
 
 const ImageComponent = (props) => {
   const [loaded, setLoaded] = useState(false);
-  const [placeholderLoaded, setPlaceholderLoaded] = useState(true);
+  const [placeholderLoaded, setPlaceholderLoaded] = useState(false);
 
   const {
     src,
@@ -13,17 +13,13 @@ const ImageComponent = (props) => {
     customClass,
     priority,
     onClick,
-    //
     figcaption,
     placeholder,
     withLinkProps,
   } = props;
 
-  const [loaded, setLoaded] = useState(false);
-
   const handleLoad = () => setLoaded(true);
-
-  const [placeholderLoaded, setPlaceholderLoaded] = useState(false);
+  const handlePlaceholderLoad = () => setPlaceholderLoaded(true);
 
   const dimensionsStyle = {
     minHeight: height ? `${height}px` : '100%',
@@ -46,13 +42,10 @@ const ImageComponent = (props) => {
     ? 'skeleton skeleton-active'
     : 'skeleton';
 
-  // const handleLoad = () => setLoaded(true);
-  // const handlePlaceholderLoad = () => setPlaceholderLoaded(true);
-
   return (
     <figure className="coverImageOld image__figure">
       <WithLink
-        style={dimensions}
+        style={dimensionsStyle}
         className="image__wrapper"
         {...(withLinkProps && { withLinkProps })}
         {...(onClick && { onClick })}
@@ -62,24 +55,25 @@ const ImageComponent = (props) => {
             alt={alt || ''}
             src={src}
             className="image image--loaded"
+            onLoad={handleLoad}
             fill
             layout="fill"
             priority={priority}
           />
         )}
 
-        {/* {placeholder && (
-          <Image
-            onLoadingComplete={handlePlaceholderLoad}
+        {placeholder && (
+          <img
+            onLoad={handlePlaceholderLoad}
             alt={alt || 'placeholder'}
             src={placeholder}
-            fill
-            layout="fill"
             className={`image image--placeholder ${
               loaded ? 'image--loaded' : ''
             }`}
+            fill
+            layout="fill"
           />
-        )} */}
+        )}
       </WithLink>
 
       {figcaption && (
