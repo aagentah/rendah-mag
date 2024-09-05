@@ -44,18 +44,6 @@ export default {
       type: "image",
     },
     {
-      name: "type",
-      title: "Type",
-      type: "string",
-      options: {
-        list: [
-          { title: "Message", value: "message" },
-          { title: "Resource", value: "resource" },
-        ],
-      },
-      validation: (Rule) => Rule.required(),
-    },
-    {
       name: "description",
       title: "Description",
       type: "array",
@@ -63,61 +51,6 @@ export default {
         { type: "block" },
         {
           type: "image",
-        },
-      ],
-    },
-    {
-      name: "attachments",
-      title: "Attachments",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "title",
-              title: "Title",
-              type: "string",
-              validation: (Rule) => Rule.required(),
-            },
-            {
-              name: "file",
-              title: "File",
-              type: "file",
-              options: {
-                accept:
-                  ".jpg,.jpeg,.png,.gif,.webp,.bmp,.tiff,.svg,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.wav,.mp3,.mp4,.avi,.mov,.mkv,.flv,.webm",
-              },
-              hidden: ({ parent }) => !!parent?.url,
-            },
-            {
-              name: "url",
-              title: "URL",
-              type: "url",
-              validation: (Rule) =>
-                Rule.uri({
-                  scheme: ["http", "https"],
-                }),
-              hidden: ({ parent }) => !!parent?.file,
-            },
-          ],
-          preview: {
-            select: {
-              title: "title",
-              file: "file",
-              url: "url",
-            },
-            prepare(selection) {
-              const { title, file, url } = selection;
-              const subtitle = file
-                ? `File: ${file.asset.mimeType}`
-                : `URL: ${url}`;
-              return {
-                title,
-                subtitle,
-              };
-            },
-          },
         },
       ],
     },

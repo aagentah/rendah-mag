@@ -49,14 +49,6 @@ export default function ProfileDominion() {
 
   zenscroll.setup(300, 15);
 
-  // Define file type categories
-  const fileTypeCategories = {
-    audio: ['wav', 'mp3', 'flac', 'aac'],
-    images: ['jpg', 'png', 'gif', 'svg'],
-    videos: ['mp4', 'mkv', 'webm', 'avi'],
-    all: [],
-  };
-
   const filteredMessages = messages.filter((message) => {
     if (filter === 'messages') return message.type === 'message';
     return false;

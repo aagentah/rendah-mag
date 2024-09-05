@@ -374,7 +374,7 @@ export default function Profile({ siteConfig }) {
                               >
                                 Images
                               </button>
-                              <button
+                              {/* <button
                                 onClick={() => setFileTypeFilter('videos')}
                                 className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
                                   fileTypeFilter === 'videos'
@@ -383,7 +383,7 @@ export default function Profile({ siteConfig }) {
                                 }`}
                               >
                                 Videos
-                              </button>
+                              </button> */}
                             </div>
                           )}
                         </div>
