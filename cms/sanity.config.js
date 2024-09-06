@@ -11,10 +11,10 @@ import StripeMetrics from "./components/previews/StripeMetrics";
 import RecentOrders from "./components/previews/RecentOrders";
 import FailedPayments from "./components/previews/FailedPayments";
 
-import sanityClient from "@sanity/client";
+import { createClient } from "@sanity/client";
 
 // Create a Sanity client instance
-const client = sanityClient({
+const client = createClient({
   projectId: "q8z2vf2k",
   dataset: "production",
   useCdn: false, // `false` if you want to ensure fresh data
