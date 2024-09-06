@@ -29,26 +29,6 @@ const IconArrowLeft = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowLeft)
 );
 
-function myPortableTextComponents() {
-  return {
-    types: {
-      image: (value) => {
-        if (!value?.node?.asset) {
-          return null;
-        }
-
-        return (
-          <div className="bg-darker-grey pa4 pa5-md w-100 mv4 br3">
-            <div className="w-100 mla mra mw6">
-              <ImageNew imageObject={value?.node?.imageObject} />
-            </div>
-          </div>
-        );
-      },
-    },
-  };
-}
-
 function getIconByMimeType(mimeType) {
   if (!mimeType) return <FaFile />;
   if (mimeType.startsWith('audio/')) return null;
@@ -58,51 +38,10 @@ function getIconByMimeType(mimeType) {
   return <FaFileAlt />;
 }
 
-function groupAttachmentsByMimeType(attachments) {
-  const grouped = {};
-
-  attachments.forEach((attachment) => {
-    const icon = getIconByMimeType(attachment.mimeType);
-    const iconKey = icon.type.displayName || icon.type.name;
-
-    if (grouped[iconKey]) {
-      grouped[iconKey].count += 1;
-    } else {
-      grouped[iconKey] = { icon, count: 1 };
-    }
-  });
-
-  return Object.values(grouped);
-}
-
 export default function CarouselItemSection({ message, backButton }) {
   console.log('message', message);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [downloadButtonLoading, setDownloadButtonLoading] = useState(false);
 
   const buttonIconArrowLeft = <IconArrowLeft color="rendah-red" size={16} />;
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
-
-  // const handleDownloadAll = async () => {
-  //   setDownloadButtonLoading(true);
-
-  //   const response = await fetch('/api/download-attachments', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ attachments: message.attachments }),
-  //   });
-
-  //   if (response.ok) {
-  //     const blob = await response.blob();
-  //     saveAs(blob, `rendah-mag-dominion-${message.activeFrom}.zip`);
-  //   } else {
-  //     console.error('Failed to download attachments');
-  //   }
-
-  //   setDownloadButtonLoading(false);
-  // };
 
   return (
     <section className="pb4 pb6-md pt4 pt0-md">
@@ -155,9 +94,11 @@ export default function CarouselItemSection({ message, backButton }) {
           </div>
         </div>
 
-        <div className="rich-text">
-          <Sections body={message.description} />
-        </div>
+        {message?.body && (
+          <div className="rich-text">
+            <Sections body={message.description} />
+          </div>
+        )}
 
         {message?.attachments?.length && (
           <div className="col-24 col-12-md mla mra ph4 ph0-md">

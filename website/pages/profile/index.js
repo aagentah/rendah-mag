@@ -16,7 +16,8 @@ import 'react-tooltip/dist/react-tooltip.css';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import CardMessage from '~/components/card/message';
-import CardResource from '~/components/card/resource'; // Assuming you have a CardResource component
+import CardResource from '~/components/card/resource';
+import CardBlog from '~/components/card/blog';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
@@ -24,6 +25,7 @@ import { useUser } from '~/lib/hooks';
 import {
   getDominionItemsSince,
   getDominionResourcesSince,
+  getCategory,
 } from '~/lib/sanity/requests';
 
 const CarouselItemSection = dynamic(() =>
@@ -121,13 +123,10 @@ export default function Profile({ siteConfig }) {
   const app = useApp();
 
   useEffect(() => {
+    const validTabs = ['messages', 'resources', 'articles'];
     const { tab } = router.query;
 
-    if (tab === 'messages' || tab === 'newsletters') {
-      setFilter('messages');
-    } else if (tab === 'resources') {
-      setFilter('resources');
-    }
+    setFilter(validTabs.includes(tab) ? tab : 'messages');
   }, [router.query]);
 
   useEffect(() => {
@@ -159,6 +158,12 @@ export default function Profile({ siteConfig }) {
     }
     return false;
   });
+
+  // Define a new state for articles
+  const [articles, setArticles] = useState([]);
+
+  // Filtered articles
+  const filteredArticles = articles.filter((article) => filter === 'articles');
 
   useEffect(() => {
     const handlePopState = () => {
@@ -226,6 +231,20 @@ export default function Profile({ siteConfig }) {
       };
 
       fetchItems();
+    }, [user]);
+
+    useEffect(() => {
+      if (user?.isDominion) {
+        const fetchArticles = async () => {
+          const dataArticles = await getCategory('dominion-exclusive', [1, 10]);
+
+          if (dataArticles?.posts) {
+            setArticles(dataArticles.posts);
+          }
+        };
+
+        fetchArticles();
+      }
     }, [user]);
 
     console.log('resources', resources);
@@ -317,6 +336,22 @@ export default function Profile({ siteConfig }) {
                                 }`}
                               >
                                 Resources
+                              </button>
+
+                              <button
+                                onClick={() =>
+                                  router.push({
+                                    pathname: router.pathname,
+                                    query: { tab: 'articles' },
+                                  })
+                                }
+                                className={`pv2 ph3 ba bc-white cp mr2 f7 ${
+                                  filter === 'articles'
+                                    ? 'bg-white almost-black'
+                                    : 'white'
+                                }`}
+                              >
+                                Articles
                               </button>
                             </div>
                             <div className="col-12 flex align-center justify-end white pb4">
@@ -439,6 +474,34 @@ export default function Profile({ siteConfig }) {
                                         height:
                                           app.deviceSize === 'md' ? 290 : 110,
                                       }}
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </>
+                        )}
+
+                        {filter === 'articles' && (
+                          <>
+                            {filteredArticles.length ? (
+                              <div className="flex flex-wrap pb5 pt2">
+                                {filteredArticles.map((item, i) => (
+                                  <div
+                                    key={item._id}
+                                    className="col-24 col-8-md pa2"
+                                  >
+                                    <CardBlog post={item} />
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <div className="flex flex-wrap pb5 pt2">
+                                {[...Array(6)].map((_, i) => (
+                                  <div key={i} className="col-24 col-8-md pa2">
+                                    <div
+                                      className={`skeletonNew`}
+                                      style={{ height: 290 }}
                                     />
                                   </div>
                                 ))}
