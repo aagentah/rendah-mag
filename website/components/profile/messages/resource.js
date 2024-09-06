@@ -75,7 +75,7 @@ export default function CarouselItemSection({ message, backButton }) {
               />
             </div>
 
-            <div className="pv3">
+            <div className="pt3 pb4">
               <Heading
                 /* Options */
                 htmlEntity="h1"
@@ -87,14 +87,10 @@ export default function CarouselItemSection({ message, backButton }) {
                 withLinkProps={null}
               />
             </div>
-
-            <p className="grey pb4 f6">
-              Written by {message.from} on {message.activeFrom}
-            </p>
           </div>
         </div>
 
-        {message?.body && (
+        {message?.description && (
           <div className="rich-text">
             <Sections body={message.description} />
           </div>
