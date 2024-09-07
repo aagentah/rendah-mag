@@ -73,7 +73,7 @@ export default function Audio({
   if (!url) return null; // Optionally render nothing until the URL is resolved
 
   return (
-    <div className="flex flex-wrap">
+    <>
       {title && (
         <div className="col-24 audio__title tac o-50">
           <p className="db t-primary lh-copy f6">{title}</p>
@@ -92,11 +92,11 @@ export default function Audio({
           ]}
           layout="horizontal-reverse"
           onPlay={() => {
-            if (handleAudioPlay) handleAudioPlay(PlayerRef);
+            handleAudioPlay(PlayerRef);
             triggerOnPlayEvt();
           }}
         />
       )}
-    </div>
+    </>
   );
 }

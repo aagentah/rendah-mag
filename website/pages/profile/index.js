@@ -304,8 +304,8 @@ export default function Profile({ siteConfig }) {
                             </div>
                           </div>
 
-                          <div className="flex flex-wrap">
-                            <div className="col-12 flex align-center justify-start white pb3">
+                          <div className="flex flex-wrap justify-between align-center pb3">
+                            <div className="">
                               <button
                                 onClick={() =>
                                   router.push({
@@ -354,7 +354,7 @@ export default function Profile({ siteConfig }) {
                                 Articles
                               </button>
                             </div>
-                            <div className="col-12 flex align-center justify-end white pb4">
+                            <div className="flex white">
                               <div
                                 data-tooltip-id="my-tooltip"
                                 data-tooltip-content="Prints"
