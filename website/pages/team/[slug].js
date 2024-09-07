@@ -2,7 +2,7 @@ import Router, { useRouter } from 'next/router';
 
 import Heading from '~/components/elements/heading';
 import Copy from '~/components/elements/copy';
-import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 import Label from '~/components/elements/label';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -21,6 +21,7 @@ export default function Post({ siteConfig, member }) {
   const router = useRouter();
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
+  const height = app?.deviceSize === 'md' ? null : 300;
 
   if (!router.isFallback && !member?.slug) {
     Router.push('/404');
@@ -44,32 +45,10 @@ export default function Post({ siteConfig, member }) {
         <Container>
           <div className="flex  flex-wrap  pt4  pb5">
             <div className="col-24  col-8-md  pb4  pb3-md">
-              <Image
-                /* Options */
-                src={imageBuilder
-                  .image(member.image)
-                  .width(300 * scale)
-                  .height(300 * scale)
-                  .auto('format')
-                  .fit('clip')
-                  .url()}
-                placeholder={imageBuilder
-                  .image(member.image)
-                  .height(25)
-                  .width(25)
-                  .auto('format')
-                  .fit('clip')
-                  .blur('20')
-                  .url()}
-                alt={member.name}
-                figcaption={null}
-                height={250}
-                width={null}
-                customClass={null}
-                skeleton={false}
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
+              <ImageNew
+                imageObject={member?.imageObject}
+                height={height}
+                className="w-100  shadow2 br3"
               />
             </div>
             <div className="measure-wide  ph3-md">

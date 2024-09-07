@@ -16,17 +16,20 @@ const IconArrowRight = dynamic(() =>
 export default function CardBlog({ member, featured }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  const height = app?.deviceSize === 'md' ? 420 : 230;
+  const height = app?.deviceSize === 'md' ? null : 230;
 
   const buttonIcon = <IconArrowRight color="black" size={16} />;
 
   const image = (
-    <ImageNew
-      imageObject={member?.imageObject}
-      isExpandable
-      height={height}
-      className="w-100  shadow2 br3"
-    />
+    <Link href={`/team/${member?.slug}`} scroll={false} passHref>
+      <a>
+        <ImageNew
+          imageObject={member?.imageObject}
+          height={height}
+          className="w-100  shadow2 br3"
+        />
+      </a>
+    </Link>
   );
 
   const labels = (
@@ -48,7 +51,7 @@ export default function CardBlog({ member, featured }) {
       /* Options */
       htmlEntity="h2"
       text={member?.name}
-      color="white"
+      color={app?.deviceSize === 'md' ? 'black' : 'white'}
       size="small"
       truncate={1}
       skeleton={!member}

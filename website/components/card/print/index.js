@@ -6,13 +6,12 @@ import { useApp } from '~/context-provider/app';
 export default function CardPrint({ post, handleClick, i }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  const height = app?.deviceSize === 'md' ? 200 : 200;
+  const height = app?.deviceSize === 'md' ? null : 200;
 
   const image = (
     <ImageNew
       imageObject={post?.imageObject}
       height={height}
-      isExpandable
       className="w-100  shadow2 br3"
     />
   );

@@ -27,64 +27,6 @@ export default function HeaderMobile({
   const [modalActive, setModalActive] = useState(false);
   const [modalPrintsActive, setModalPrintsActive] = useState(false);
 
-  const dominion = () => {
-    return (
-      <>
-        {/* <li className="nav__item  db  pl4  pb3">
-          <button
-            className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-            onClick={() => {
-              // toggleNav();
-              setModalPrintsActive(true);
-            }}
-            type="button"
-          >
-            Prints
-          </button>
-        </li>
-        <li className="nav__item  db  pl4  pb3">
-          <button
-            className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-            onClick={() => {
-              // toggleNav();
-              setModalActive(true);
-            }}
-            type="button"
-          >
-            Settings
-          </button>
-        </li> */}
-        <li className="nav__item  db  pl4  pb3">
-          <Link href="#" legacyBehavior>
-            <button
-              className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-              onClick={() => {
-                toggleNav();
-                handleLogout();
-              }}
-              type="button"
-            >
-              Log Out
-            </button>
-          </Link>
-        </li>
-
-        <Modal size="large" active={modalActive} closeIcon={setModalActive}>
-          <ProfileEdit />
-          <ProfileBilling />
-        </Modal>
-
-        <Modal
-          size="large"
-          active={modalPrintsActive}
-          closeIcon={setModalPrintsActive}
-        >
-          <ProfilePrints />
-        </Modal>
-      </>
-    );
-  };
-
   return (
     <div
       className={`header  header--mobile  ${
@@ -154,44 +96,41 @@ export default function HeaderMobile({
           </button>
         </div>
         <ul className="w-100  pt4">
-          {user && meta.title === 'Profile' ? (
-            dominion()
-          ) : (
-            <>
-              <li className="nav__item  db  pl4  pb3">
-                <Link href="/" legacyBehavior>
-                  <button
-                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                    onClick={toggleNav}
-                    type="button"
-                  >
-                    Home
-                  </button>
-                </Link>
-              </li>
-              <li className="nav__item  db  pl4  pb3">
-                <Link href="/cyphers" legacyBehavior>
-                  <button
-                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                    onClick={toggleNav}
-                    type="button"
-                  >
-                    Cyphers
-                  </button>
-                </Link>
-              </li>
-              <li className="nav__item  db  pl4  pb3">
-                <Link href="/gallery" legacyBehavior>
-                  <button
-                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                    onClick={toggleNav}
-                    type="button"
-                  >
-                    Gallery
-                  </button>
-                </Link>
-              </li>
-              {/* <li className="nav__item  db  pl4  pb3">
+          <>
+            <li className="nav__item  db  pl4  pb3">
+              <Link href="/" legacyBehavior>
+                <button
+                  className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                  onClick={toggleNav}
+                  type="button"
+                >
+                  Home
+                </button>
+              </Link>
+            </li>
+            <li className="nav__item  db  pl4  pb3">
+              <Link href="/cyphers" legacyBehavior>
+                <button
+                  className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                  onClick={toggleNav}
+                  type="button"
+                >
+                  Cyphers
+                </button>
+              </Link>
+            </li>
+            <li className="nav__item  db  pl4  pb3">
+              <Link href="/gallery" legacyBehavior>
+                <button
+                  className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                  onClick={toggleNav}
+                  type="button"
+                >
+                  Gallery
+                </button>
+              </Link>
+            </li>
+            {/* <li className="nav__item  db  pl4  pb3">
                 <Link href="/team" legacyBehavior>
                   <button
                     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
@@ -202,71 +141,85 @@ export default function HeaderMobile({
                   </button>
                 </Link>
               </li> */}
-              <li className="nav__item  db  pl4  pb3">
-                <Link href="/store" legacyBehavior>
-                  <button
-                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                    onClick={toggleNav}
-                    type="button"
-                  >
-                    Store
-                  </button>
-                </Link>
-              </li>
-              <li className="nav__item  db  pl4  pb3">
-                <Link
-                  href="https://forms.gle/xpPtVhUiuzZzehdy8"
-                  legacyBehavior
-                  target="_blank"
+            <li className="nav__item  db  pl4  pb3">
+              <Link href="/store" legacyBehavior>
+                <button
+                  className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                  onClick={toggleNav}
+                  type="button"
                 >
+                  Store
+                </button>
+              </Link>
+            </li>
+            <li className="nav__item  db  pl4  pb3">
+              <Link
+                href="https://forms.gle/xpPtVhUiuzZzehdy8"
+                legacyBehavior
+                target="_blank"
+              >
+                <button
+                  className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                  onClick={toggleNav}
+                  type="button"
+                >
+                  Contact
+                </button>
+              </Link>
+            </li>
+          </>
+          {user ? (
+            <>
+              <li className="nav__item  db  pl4  pb3">
+                <Link href="/profile" legacyBehavior>
                   <button
                     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
                     onClick={toggleNav}
                     type="button"
                   >
-                    Contact
+                    Dominion Dashboard
                   </button>
                 </Link>
               </li>
-              {user && meta.title !== 'Profile' && (
-                <li className="nav__item  db  pl4  pb3">
-                  <Link href="/profile" legacyBehavior>
-                    <button
-                      className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                      onClick={toggleNav}
-                      type="button"
-                    >
-                      Dominion Dashboard
-                    </button>
-                  </Link>
-                </li>
-              )}
-              {!user && (
-                <>
-                  <li className="nav__item  db  pl4  pb3">
-                    <Link href="/dominion" legacyBehavior>
-                      <button
-                        className="t-primary  rendah-red  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                        onClick={toggleNav}
-                        type="button"
-                      >
-                        Subscription
-                      </button>
-                    </Link>
-                  </li>
-                  <li className="nav__item  db  pl4  pb3">
-                    <Link href="/login" legacyBehavior>
-                      <button
-                        className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
-                        onClick={toggleNav}
-                        type="button"
-                      >
-                        Login Dominion
-                      </button>
-                    </Link>
-                  </li>
-                </>
-              )}
+              <li className="nav__item  db  pl4  pb3">
+                <Link href="#" legacyBehavior>
+                  <button
+                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                    onClick={() => {
+                      toggleNav();
+                      handleLogout();
+                    }}
+                    type="button"
+                  >
+                    Log Out
+                  </button>
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="nav__item  db  pl4  pb3">
+                <Link href="/dominion" legacyBehavior>
+                  <button
+                    className="t-primary  rendah-red  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                    onClick={toggleNav}
+                    type="button"
+                  >
+                    Subscription
+                  </button>
+                </Link>
+              </li>
+              <li className="nav__item  db  pl4  pb3">
+                <Link href="/login" legacyBehavior>
+                  <button
+                    className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
+                    onClick={toggleNav}
+                    type="button"
+                  >
+                    Login Dominion
+                  </button>
+                </Link>
+              </li>
             </>
           )}
         </ul>

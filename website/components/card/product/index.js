@@ -16,16 +16,19 @@ const IconArrowRight = dynamic(() =>
 export default function CardProduct({ product }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  const height = app?.deviceSize === 'md' ? 420 : 230;
+  const height = app?.deviceSize === 'md' ? null : 230;
   const buttonIcon = <IconArrowRight color="black" size={16} />;
 
   const image = (
-    <ImageNew
-      imageObject={product?.imageObject}
-      height={height}
-      isExpandable
-      className="w-100  shadow2 br3"
-    />
+    <Link href={`/product/${product?.slug}`} scroll={false} passHref>
+      <a>
+        <ImageNew
+          imageObject={product?.imageObject}
+          height={height}
+          className="w-100  shadow2 br3"
+        />
+      </a>
+    </Link>
   );
 
   const labels = [];
