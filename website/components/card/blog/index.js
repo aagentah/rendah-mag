@@ -8,7 +8,7 @@ import WithLink from '../../utils/with-link';
 
 import { useApp } from '~/context-provider/app';
 
-export default function CardBlog({ post, columnCount, inverted }) {
+export default function CardBlog({ post, columnCount, inverted, target }) {
   const app = useApp();
   const height = app.deviceSize === 'md' ? 180 : 260;
   const width = 260;
@@ -51,7 +51,7 @@ export default function CardBlog({ post, columnCount, inverted }) {
             post?.slug && {
               type: 'next',
               href: '/article/[slug]',
-              target: null,
+              target: target || null,
               routerLink: Link,
               routerLinkProps: {
                 as: `/article/${post?.slug}`,

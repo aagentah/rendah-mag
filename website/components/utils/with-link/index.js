@@ -18,7 +18,9 @@ export default function WithLink(props) {
     case 'next':
       return (
         <Link href={href} {...routerLinkProps} {...newProps}>
-          <a {...newProps}>{children}</a>
+          <a {...newProps} target={target || '_self'}>
+            {children}
+          </a>
         </Link>
       );
     case 'external':

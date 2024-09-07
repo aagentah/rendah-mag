@@ -3,7 +3,7 @@ import LazyLoad from 'react-lazyload';
 import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
-import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 import Label from '~/components/elements/label';
 
 import { imageBuilder } from '~/lib/sanity/requests';
@@ -16,50 +16,16 @@ const IconArrowRight = dynamic(() =>
 export default function CardBlog({ member, featured }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  let imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  let imageHeight = app?.deviceSize === 'md' ? 260 : 180;
-
-  if (featured) {
-    imageUrlWidth = app?.deviceSize === 'md' ? 260 : 180;
-    imageHeight = app?.deviceSize === 'md' ? 260 : 180;
-  }
+  const height = app?.deviceSize === 'md' ? 420 : 230;
 
   const buttonIcon = <IconArrowRight color="black" size={16} />;
 
   const image = (
-    <Image
-      /* Options */
-      src={
-        member &&
-        imageBuilder
-          .image(member?.image)
-          .width(imageUrlWidth * scale)
-          .height(imageHeight * scale)
-          .auto('format')
-          .fit('clip')
-          .url()
-      }
-      placeholder={null}
-      alt={member?.name}
-      figcaption={null}
-      height={imageHeight}
-      width={null}
-      customClass="br3 shadow2"
-      skeleton={!member}
-      onClick={null}
-      /* Children */
-      withLinkProps={
-        member?.slug && {
-          type: 'next',
-          href: '/team/[slug]',
-          target: null,
-          routerLink: Link,
-          routerLinkProps: {
-            as: `/team/${member?.slug}`,
-            scroll: false,
-          },
-        }
-      }
+    <ImageNew
+      imageObject={member?.imageObject}
+      isExpandable
+      height={height}
+      className="w-100  shadow2 br3"
     />
   );
 
@@ -143,7 +109,7 @@ export default function CardBlog({ member, featured }) {
   // );
 
   return (
-    <LazyLoad once offset={250} height={imageHeight}>
+    <LazyLoad once offset={250} height={height}>
       <team className="card  card--member  card--scroll">
         {image && <div className="card__image">{image}</div>}
 

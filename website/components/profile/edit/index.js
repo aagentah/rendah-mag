@@ -455,32 +455,24 @@ export default function ProfileEdit() {
               </div>
             </div>
 
-            <div className="pb3">
-              <Heading
-                htmlEntity="h1"
-                text="Change Avatar"
-                color="white"
-                size="small"
-                truncate={0}
-                onClick={null}
-                withLinkProps={null}
-              />
+            <div className="pb3 measure-wide">
+              <p className="f6 white o-50">
+                Change profile image. Recomended square & at least 720px & under
+                1MB.
+              </p>
             </div>
-            <div className="pb3">
-              <Copy
-                text="Recomended square & at least 720px & under 1 MB."
-                color="white"
-                size="medium"
-                truncate={null}
-              />
-            </div>
-            <div className="pb4">
+            <div className="pb4 measure-wide">
               <div className="react-dropzone__wrapper" {...getRootProps()}>
                 <input {...getInputProps()} />
                 {isDragActive ? (
                   <p>Drop the file here...</p>
                 ) : (
-                  <p>Drag & drop your image here, or click to select file</p>
+                  <p>
+                    {app.deviceSize === 'md'
+                      ? ''
+                      : 'Drag & drop your image here, or, '}
+                    click to upload file
+                  </p>
                 )}
               </div>
             </div>

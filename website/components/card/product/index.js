@@ -4,10 +4,9 @@ import dynamic from 'next/dynamic';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
-import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 import Label from '~/components/elements/label';
 
-import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 
 const IconArrowRight = dynamic(() =>
@@ -17,44 +16,15 @@ const IconArrowRight = dynamic(() =>
 export default function CardProduct({ product }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 230;
-  const imageHeight = app?.deviceSize === 'md' ? 260 : 230;
+  const height = app?.deviceSize === 'md' ? 420 : 230;
   const buttonIcon = <IconArrowRight color="black" size={16} />;
 
   const image = (
-    <Image
-      /* Options */
-      src={
-        product &&
-        imageBuilder
-          .image(product?.image1)
-          .width(imageUrlWidth * scale)
-          .height(imageHeight * scale)
-          .auto('format')
-          .fit('clip')
-          .url()
-      }
-      placeholder={null}
-      alt={product?.title}
-      figcaption={null}
-      height={imageHeight}
-      width={imageUrlWidth}
-      customClass="br4  shadow2"
-      skeleton={!product}
-      onClick={null}
-      /* Children */
-      withLinkProps={
-        product?.slug && {
-          type: 'next',
-          href: '/product/[slug]',
-          target: null,
-          routerLink: Link,
-          routerLinkProps: {
-            as: `/product/${product?.slug}`,
-            scroll: false,
-          },
-        }
-      }
+    <ImageNew
+      imageObject={product?.imageObject}
+      height={height}
+      isExpandable
+      className="w-100  shadow2 br3"
     />
   );
 
@@ -160,7 +130,7 @@ export default function CardProduct({ product }) {
   );
 
   return (
-    <LazyLoad once offset={250} height={imageHeight}>
+    <LazyLoad once offset={250} height={height}>
       <article className="card  card--product">
         {image && <div className="card__image mb3">{image}</div>}
 

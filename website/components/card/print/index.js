@@ -1,40 +1,19 @@
 import Button from '~/components/elements/button';
 import Heading from '~/components/elements/heading';
-import Image from '~/components/elements/image';
-import { imageBuilder } from '~/lib/sanity/requests';
+import ImageNew from '~/components/elements/image-new';
 import { useApp } from '~/context-provider/app';
 
 export default function CardPrint({ post, handleClick, i }) {
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
-  const imageUrlWidth = app?.deviceSize === 'md' ? 200 : 200;
-  const imageHeight = app?.deviceSize === 'md' ? 200 : 200;
-  const imageUrlHeight = app?.deviceSize === 'md' ? 200 : 200;
+  const height = app?.deviceSize === 'md' ? 200 : 200;
 
   const image = (
-    <Image
-      /* Options */
-      src={
-        post?.image &&
-        imageBuilder
-          .image(post.image)
-          .width(imageUrlWidth * scale)
-          .height(imageUrlHeight * scale)
-          .auto('format')
-          .fit('crop')
-          .crop('center')
-          .url()
-      }
-      placeholder={null}
-      alt={post?.title}
-      figcaption={null}
-      height={imageHeight}
-      width={null}
-      customClass="shadow2"
-      skeleton={!post}
-      onClick={null}
-      /* Children */
-      withLinkProps={null}
+    <ImageNew
+      imageObject={post?.imageObject}
+      height={height}
+      isExpandable
+      className="w-100  shadow2 br3"
     />
   );
 

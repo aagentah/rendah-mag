@@ -491,7 +491,7 @@ export default function Profile({ siteConfig }) {
                                     key={item._id}
                                     className="col-24 col-8-md pa2"
                                   >
-                                    <CardBlog post={item} />
+                                    <CardBlog post={item} target="_blank" />
                                   </div>
                                 ))}
                               </div>

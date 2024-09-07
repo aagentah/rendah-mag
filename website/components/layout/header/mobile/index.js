@@ -191,7 +191,7 @@ export default function HeaderMobile({
                   </button>
                 </Link>
               </li>
-              <li className="nav__item  db  pl4  pb3">
+              {/* <li className="nav__item  db  pl4  pb3">
                 <Link href="/team" legacyBehavior>
                   <button
                     className="t-primary  black  f3  bb  bw1  bc-black  dib  mb2  pb2"
@@ -201,7 +201,7 @@ export default function HeaderMobile({
                     Team
                   </button>
                 </Link>
-              </li>
+              </li> */}
               <li className="nav__item  db  pl4  pb3">
                 <Link href="/store" legacyBehavior>
                   <button

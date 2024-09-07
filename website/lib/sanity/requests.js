@@ -779,8 +779,6 @@ export async function getDominionPipeline(preview) {
 export async function getDominionUsers(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "user" && publicProfile && isDominion] {
-      name,
-      handle,
       'avatar': avatar.asset->url,
     }`
   );
@@ -824,6 +822,12 @@ export async function getAllPrints(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "print"] | order(publishedAt desc) [0..99] {
       ...,
+      'imageObject': {
+        'url': image.asset->url,
+        'caption': image.caption,
+        'fullImage': image.fullImage,
+        'dimensions': image.asset->metadata.dimensions
+      },
       'file': file.asset->url,
     }`
   );

@@ -487,7 +487,7 @@ export default function Product({ siteConfig, product }) {
                     />
                   </div>
 
-                  <div className="flex flex-wrap mb4">
+                  <div className="flex flex-wrap mb6">
                     {product.images?.map((image, index) => (
                       <div
                         key={index}

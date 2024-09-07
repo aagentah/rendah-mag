@@ -260,9 +260,8 @@ export default function HeaderDestop({
                       }}
                     />
                   </li>
-                  <li className="nav__item  dib  flex  align-center  pr3">
+                  {/* <li className="nav__item  dib  flex  align-center  pr3">
                     <Button
-                      /* Options */
                       type="secondary"
                       size="medium"
                       text="Team"
@@ -274,7 +273,6 @@ export default function HeaderDestop({
                       loading={false}
                       disabled={false}
                       onClick={null}
-                      /* Children */
                       withLinkProps={{
                         type: 'next',
                         href: '/team',
@@ -285,7 +283,7 @@ export default function HeaderDestop({
                         },
                       }}
                     />
-                  </li>
+                  </li> */}
                   <li className="nav__item  dib  flex  align-center  pr3">
                     <Button
                       /* Options */
