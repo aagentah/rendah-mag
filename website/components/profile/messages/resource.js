@@ -91,7 +91,7 @@ export default function CarouselItemSection({ message, backButton }) {
 
             <div className="flex flex-wrap pv3">
               <div className="col-24 flex align-center">
-                <div className="" style={{ width: '50px' }}>
+                <div className="" style={{ width: '20%', maxWidth: '50px' }}>
                   {image}
                 </div>
 

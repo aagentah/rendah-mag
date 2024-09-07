@@ -105,11 +105,15 @@ export default function CarouselItemSection({ message, backButton }) {
   //   setDownloadButtonLoading(false);
   // };
 
+  const image = (
+    <ImageNew imageObject={message?.imageObject} height={50} className="br3" />
+  );
+
   return (
     <section className="pb4 pb6-md ph4 ph0-md pt4 pt0-md">
       <div className="ph5-md">
         <div className="col-24 col-12-md mla mra">
-          <div className="w-100 pb1">
+          <div className="w-100 pb3">
             <Button
               /* Options */
               type="secondary"
@@ -135,17 +139,25 @@ export default function CarouselItemSection({ message, backButton }) {
             />
           </div>
 
-          <div className="pv3">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text={message.title}
-              color="white"
-              size="large"
-              truncate={null}
-              /* Children */
-              withLinkProps={null}
-            />
+          <div className="flex flex-wrap pv3">
+            <div className="col-24 flex align-center">
+              <div className="" style={{ width: '20%', maxWidth: '50px' }}>
+                {image}
+              </div>
+
+              <div className="pl3">
+                <Heading
+                  /* Options */
+                  htmlEntity="h1"
+                  text={message.title}
+                  color="white"
+                  size="large"
+                  truncate={null}
+                  /* Children */
+                  withLinkProps={null}
+                />
+              </div>
+            </div>
           </div>
 
           <p className="grey pb4 f6">
