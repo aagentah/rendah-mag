@@ -377,7 +377,7 @@ export default function Profile({ siteConfig }) {
                             </div>
                           </div>
 
-                          {filter === 'resources' && (
+                          {/* {filter === 'resources' && (
                             <div className="col-12 flex align-center justify-start white pb3">
                               <button
                                 onClick={() => setFileTypeFilter('all')}
@@ -409,18 +409,8 @@ export default function Profile({ siteConfig }) {
                               >
                                 Images
                               </button>
-                              {/* <button
-                                onClick={() => setFileTypeFilter('videos')}
-                                className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
-                                  fileTypeFilter === 'videos'
-                                    ? 'bg-white almost-black'
-                                    : 'white'
-                                }`}
-                              >
-                                Videos
-                              </button> */}
                             </div>
-                          )}
+                          )} */}
                         </div>
 
                         {filter === 'messages' && (

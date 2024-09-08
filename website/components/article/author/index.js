@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import Heading from '~/components/elements/heading';
 import Copy from '~/components/elements/copy';
-import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 import Label from '~/components/elements/label';
 
 import { imageBuilder } from '~/lib/sanity/requests';
@@ -11,6 +11,7 @@ import { useApp } from '~/context-provider/app';
 export default function Author({ siteConfig, author }) {
   const app = useApp();
   const { posts } = author;
+  const imageHeight = app.deviceSize === 'md' ? null : 150;
 
   return (
     <div className="article__author  flex  flex-wrap  br4  bg-white  shadow2  relative  pa4">
@@ -31,42 +32,7 @@ export default function Author({ siteConfig, author }) {
 
       {author.image && (
         <div className="col-24  col-9-md  pb4  pb0-md">
-          <Image
-            /* Options */
-            src={imageBuilder
-              .image(author.image)
-              .height(500)
-              .width(500)
-              .auto('format')
-              .fit('clip')
-              .url()}
-            placeholder={imageBuilder
-              .image(author.image)
-              .height(25)
-              .width(25)
-              .auto('format')
-              .fit('clip')
-              .blur('20')
-              .url()}
-            alt={author.name}
-            figcaption={null}
-            height={app.deviceSize === 'md' ? null : 150}
-            width={null}
-            customClass="br4"
-            skeleton={false}
-            onClick={null}
-            /* Children */
-            withLinkProps={{
-              type: 'next',
-              href: '/team/[slug]',
-              target: null,
-              routerLink: Link,
-              routerLinkProps: {
-                as: `/team/${author.slug.current}`,
-                scroll: false,
-              },
-            }}
-          />
+          <ImageNew imageObject={author.imageObject} height={imageHeight} />
         </div>
       )}
 

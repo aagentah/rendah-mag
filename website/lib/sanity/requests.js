@@ -55,6 +55,12 @@ const postFields = `
   'authors': authors[] {
     'author': *[_id == ^._ref] [0] {
       ...,
+      'imageObject': {
+        'url': image.asset->url,
+        'caption': image.caption,
+        'fullImage': image.fullImage,
+        'dimensions': image.asset->metadata.dimensions
+      },
     },
   },
 `;
