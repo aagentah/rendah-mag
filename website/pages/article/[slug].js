@@ -402,9 +402,11 @@ export default function Post({ siteConfig, post, preview }) {
               </div>
             ))}
           </section>
+        </Container>
 
-          <SubscriptionBanner />
+        <SubscriptionBanner />
 
+        <Container>
           {morePosts.length > 0 && (
             <section className="pb6">
               <div className="pb3  ph3">
