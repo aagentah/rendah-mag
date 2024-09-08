@@ -314,7 +314,16 @@ export async function getAllGalleryTotal(preview) {
   const results = await getClient(preview)
     .fetch(`*[_type == "gallery"] | order(publishedAt desc) {
       ${postFieldsCard}
-      galleryImages
+      galleryImages[]{
+        "fileName": asset->originalFilename,
+        ...,
+        'imageObject': {
+          'url': asset->url,
+          'caption': caption,
+          'fullImage': fullImage,
+          'dimensions': asset->metadata.dimensions
+        },
+      }
     }`);
   return results;
 }
@@ -328,6 +337,12 @@ export async function getGallery(slug, preview) {
           galleryImages[]{
             "fileName": asset->originalFilename,
             ...,
+            'imageObject': {
+              'url': asset->url,
+              'caption': caption,
+              'fullImage': fullImage,
+              'dimensions': asset->metadata.dimensions
+            },
           }
         }
         `,

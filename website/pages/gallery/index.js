@@ -2,13 +2,14 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import LazyLoad from 'react-lazyload';
 import 'intersection-observer';
+import Link from 'next/link';
 
 import Copy from '~/components/elements/copy';
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
-import Image from '~/components/elements/image';
+import ImageNew from '~/components/elements/image-new';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
@@ -44,11 +45,13 @@ export default function Gallery({ siteConfig }) {
 
       let allFormattedData = [];
 
+      console.log('galleryData', galleryData);
+
       galleryData.forEach((gallery) => {
         gallery?.galleryImages?.length &&
           gallery.galleryImages.forEach((image) => {
             allFormattedData.push({
-              image: image.asset, // Or whatever field contains the image URL
+              imageObject: image.imageObject, // Or whatever field contains the image URL
               artist: {
                 ...gallery,
                 // Add more artist info fields here as needed
@@ -189,14 +192,14 @@ export default function Gallery({ siteConfig }) {
 
             <div className="flex flex-wrap  mb5  pb4">
               {formattedData?.length &&
-                formattedData.map(({ image, artist }, i) => (
+                formattedData.map(({ imageObject, artist }, i) => (
                   <div
                     className="card__gallery  col-12  col-6-md  pa2  relative  flex  align-center  jsutify-center"
                     key={i}
                   >
                     <div className="card__gallery__image  w-100  h-100">
                       <LazyLoad once offset={800} height={300}>
-                        <Image
+                        {/* <Image
                           src={imageBuilder
                             .image(image)
                             .height(800)
@@ -228,7 +231,20 @@ export default function Gallery({ siteConfig }) {
                               routerLinkProps: null,
                             }
                           }
-                        />
+                        /> */}
+
+                        <Link
+                          href={`/gallery/${artist?.slug}`}
+                          scroll={false}
+                          passHref
+                        >
+                          <a>
+                            <ImageNew
+                              imageObject={imageObject}
+                              height={app.deviceSize === 'md' ? 200 : 300}
+                            />
+                          </a>
+                        </Link>
                       </LazyLoad>
                     </div>
 
