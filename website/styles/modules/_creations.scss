@@ -158,6 +158,10 @@ $creations-black: #1c1c1c;
     background-color: #1c1c1c;
   }
 
+  .modal__close {
+    color: var(--white);
+  }
+
   .rhap_button-clear path {
     fill: var(--white);
   }

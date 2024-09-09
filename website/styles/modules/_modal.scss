@@ -79,6 +79,10 @@
 }
 
 .modal__close {
+  color: var(--grey);
+}
+
+.modal__close {
   position: absolute;
   top: 25px;
   right: 25px;

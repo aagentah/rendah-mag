@@ -31,7 +31,7 @@ export default function Modal(props) {
           <div className="modal__dialog">
             {closeIcon && (
               <div
-                className="absolute top right white mt2 mr2 cp z9 pa2"
+                className="modal__close absolute top right mt2 mr2 cp z9 pa2"
                 onClick={() => closeIcon(false)}
               >
                 <FaTimes />
