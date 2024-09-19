@@ -19,8 +19,8 @@
     "node": "20.x"
   },
   "dependencies": {
-    "@portabletext/editor": "^1.0.19",
-    "@sanity/cli": "3.57.0",
+    "@portabletext/editor": "^1.1.1",
+    "@sanity/cli": "3.57.4",
     "@sanity/client": "6.21.3",
     "@sanity/components": "2.14.0",
     "@sanity/dashboard": "4.0.0",
@@ -29,8 +29,8 @@
     "@sanity/image-url": "1.0.2",
     "@sanity/production-preview": "2.35.3",
     "@sanity/react-hooks": "2.36.2",
-    "@sanity/types": "3.57.0",
-    "@sanity/vision": "3.57.0",
+    "@sanity/types": "3.57.4",
+    "@sanity/vision": "3.57.4",
     "compressorjs": "1.2.1",
     "lodash": "4.17.21",
     "prop-types": "15.8.1",
@@ -38,7 +38,7 @@
     "react-chartjs-2": "5.2.0",
     "react-dom": "18.3.1",
     "react-icons": "5.3.0",
-    "sanity": "3.57.0",
+    "sanity": "3.38.0",
     "sanity-plugin-autocomplete-tags": "1.0.2",
     "sanity-plugin-graph-view": "2.0.1",
     "styled-components": "6.1.13"
