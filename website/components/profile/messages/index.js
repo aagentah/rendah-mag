@@ -49,10 +49,10 @@ export default function ProfileDominion() {
 
   zenscroll.setup(300, 15);
 
-  const filteredMessages = messages.filter((message) => {
-    if (filter === 'messages') return message.type === 'message';
-    return false;
-  });
+  // const filteredMessages = messages.filter((message) => {
+  //   if (filter === 'messages') return message.type === 'message';
+  //   return false;
+  // });
 
   const filteredResources = resources.filter((resource) => {
     if (filter === 'resources') {
@@ -269,9 +269,9 @@ export default function ProfileDominion() {
                   )}
                 </div>
 
-                {filteredMessages.length ? (
+                {messages.length ? (
                   <div className="flex flex-wrap pb5 pt2">
-                    {filteredMessages.map((item, i) => (
+                    {messages.map((item, i) => (
                       <div key={item._id} className="col-24 col-8-md pa2">
                         <CardMessage
                           i={i}

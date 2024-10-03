@@ -95,7 +95,7 @@ export default function CardBlog({ post, handleClick, i }) {
 
           {post?.attachments?.length > 0 && (
             <div className="relative f6">
-              <span className="rendah-red">
+              <span className="rendah-red o-50">
                 {post.attachments.length > 0 && (
                   <div className="flex align-center relative">
                     <span className="f7">

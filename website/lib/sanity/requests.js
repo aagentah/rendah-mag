@@ -692,7 +692,7 @@ export async function getDominionItemsSince(user, preview) {
   const dominionSinceDate = user.dominionSince;
   const year = new Date(dominionSinceDate).getFullYear();
   const startOfYearDate = new Date(`${year}-01-01`).toISOString();
-  const startDate2024 = new Date('2020-01-01').toISOString();
+  const startDate2024 = new Date('2024-01-01').toISOString();
 
   const results = await curClient.fetch(
     `*[_type == "dominionItem" && activeFrom >= $startOfYearDate && activeFrom >= $startDate2024] | order(activeFrom desc) {
