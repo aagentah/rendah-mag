@@ -1,3 +1,6 @@
+// Define your admin users
+const adminUsers = ["Dan Jones"]; // Ensure this matches the currentUser's name
+
 export default {
   name: "post",
   title: "Post",
@@ -159,6 +162,12 @@ export default {
       name: "hasPostedDiscord",
       title: "Has Posted in Discord",
       type: "boolean",
+    },
+    {
+      name: "hidePublic",
+      title: "Hide Public",
+      type: "boolean",
+      hidden: ({ currentUser }) => !adminUsers.includes(currentUser?.name),
     },
   ],
   initialValue: () => ({
