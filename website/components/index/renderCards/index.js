@@ -22,8 +22,6 @@ const IconLock = dynamic(() =>
 export default function Home({ siteConfig }) {
   const app = useApp();
 
-  const defaultLoad = app?.deviceSize === 'md' ? 4 : 12;
-
   const [music, setMusic] = useState(null);
   const [art, setArt] = useState(null);
   const [technology, setTechnology] = useState(null);
@@ -31,7 +29,7 @@ export default function Home({ siteConfig }) {
   //   const [premieres, setPremieres] = useState(null);
   //   const [guestMixes, setGuestMixes] = useState(null);
 
-  const [musicLength, setInterviewsLength] = useState(defaultLoad);
+  const [musicLength, setInterviewsLength] = useState(4);
   const [artLength, setNewsLength] = useState(4);
   const [technologyLength, setTechnologyLength] = useState(4);
   // const [insightsLength, setInsightsLength] = useState(6);
@@ -40,27 +38,25 @@ export default function Home({ siteConfig }) {
 
   useEffect(() => {
     const action = async () => {
-      const musicRes = await getDivision('music', [1, defaultLoad], null, [
-        'premieres',
-      ]);
-      const premiereRes = await getDivision('music', [1, 3], 'premieres');
+      const musicRes = await getDivision('music', [1, 4], null, ['premieres']);
+      // const premiereRes = await getDivision('music', [1, 3], 'premieres');
       // Assuming both `musicRes` and `premiereRes` have a "posts" array
-      console.log('musicRes', musicRes);
-      console.log('premiereRes', premiereRes);
-      const combinedPosts = {
-        posts: musicRes.posts
-          .concat(premiereRes.posts)
-          .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)),
-      }; // Concat and sort by publishedAt
+      // console.log('musicRes', musicRes);
+      // console.log('premiereRes', premiereRes);
+      // const combinedPosts = {
+      //   posts: musicRes.posts
+      //     .concat(premiereRes.posts)
+      //     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)),
+      // }; // Concat and sort by publishedAt
 
-      console.log('combinedPosts', combinedPosts);
-      const artRes = await getDivision('art', [1, defaultLoad]);
-      const technologyRes = await getDivision('technology', [1, defaultLoad]);
+      // console.log('combinedPosts', combinedPosts);
+      const artRes = await getDivision('art', [1, 4]);
+      const technologyRes = await getDivision('technology', [1, 4]);
       // const insightsRes = await getCategory('insights', [1, 6]);
       // const premieresRes = await getCategory('premieres', [1, 4]);
       // const guestMixesRes = await getCategory('guest-mix', [1, 4]);
 
-      setMusic(combinedPosts);
+      setMusic(musicRes);
       setArt(artRes);
       setTechnology(technologyRes);
       // setInsights(insightsRes);

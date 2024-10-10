@@ -407,7 +407,7 @@ export async function getDivision(
   const results = await getClient(null).fetch(
     `*[_type == "division" && slug.current == $division][0] {
       ...,
-      "posts": *[_type == "post" && references(^._id) ${categoryQuery} ${exclusionQuery} && publishedAt < $today] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
+      "posts": *[_type == "post" && references(^._id) ${categoryQuery} ${exclusionQuery} && publishedAt < $today && hidePublic != true] | order(publishedAt desc) [$rangeFrom..$rangeTo] {
         _id,
         hasPostedDiscord,
         name,
