@@ -158,3 +158,73 @@
   width: 100%;
   height: auto; /* Let height be auto */
 }
+
+// Carousel
+
+.dots {
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.dot {
+  border: none;
+  width: 5px;
+  height: 5px;
+  background: #c5c5c5;
+  border-radius: 50%;
+  margin: 0 5px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.dot:focus {
+  outline: none;
+}
+
+.dot.active {
+  background: #000;
+}
+
+.arrow {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  fill: var(--almost-black);
+  cursor: pointer;
+}
+
+.arrow--left {
+  left: -24px;
+  right: auto;
+}
+
+.arrow--right {
+  left: auto;
+  right: -24px;
+}
+
+@include breakpoint-up(md) {
+  .arrow {
+    width: 24px;
+    height: 24px;
+  }
+
+  .arrow--left {
+    left: -38px;
+    right: auto;
+  }
+
+  .arrow--right {
+    left: auto;
+    right: -38px;
+  }
+}
+
+.arrow--disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
