@@ -2,7 +2,7 @@
   "name": "rendah-mag-website",
   "version": "1.0.0",
   "engines": {
-    "node": "16.x"
+    "node": "^20.0.0"
   },
   "scripts": {
     "dev": "next",
@@ -44,6 +44,7 @@
     "file-saver": "^2.0.5",
     "generate-password": "1.5.1",
     "highlight.js": "^11.8.0",
+    "html-to-image": "^1.11.11",
     "intersection-observer": "0.11.0",
     "isomorphic-unfetch": "3.1.0",
     "js-cookie": "2.2.1",

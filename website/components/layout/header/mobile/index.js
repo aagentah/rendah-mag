@@ -18,7 +18,6 @@ export default function HeaderMobile({
   navHex,
   navOnWhite,
   handleLogout,
-  showBasket,
   buttonIcons,
 }) {
   const [user] = useUser();

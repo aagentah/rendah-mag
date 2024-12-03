@@ -1,6 +1,6 @@
 import React from 'react';
 
-const renderRobots = domainType => {
+const renderRobots = (domainType) => {
   let sitemapData;
 
   if (domainType === 'production') {
@@ -24,6 +24,7 @@ const renderRobots = domainType => {
     Disallow: /return-policy/
     Disallow: /cookie-policy/
     Disallow: /terms-conditions/
+    Disallow: /tool/
     SITEMAP: http://www.rendahmag.com/feeds/sitemap.xml
     `;
   } else {

@@ -15,38 +15,32 @@ export default function Header({ navOnWhite, meta }) {
   const [navHex, setNavHex] = useState(null);
 
   const IconStar = dynamic(() =>
-    import('~/components/elements/icon').then(m => m.IconStar)
+    import('~/components/elements/icon').then((m) => m.IconStar)
   );
 
   const IconStore = dynamic(() =>
-    import('~/components/elements/icon').then(m => m.IconStore)
+    import('~/components/elements/icon').then((m) => m.IconStore)
   );
 
   const IconSignIn = dynamic(() =>
-    import('~/components/elements/icon').then(m => m.IconSignIn)
+    import('~/components/elements/icon').then((m) => m.IconSignIn)
   );
 
   const IconSignOut = dynamic(() =>
-    import('~/components/elements/icon').then(m => m.IconSignOut)
+    import('~/components/elements/icon').then((m) => m.IconSignOut)
   );
 
   const buttonIcons = {
     signIn: <IconSignIn color={navColour} size={16} />,
     signOut: <IconSignOut color={navColour} size={16} />,
     store: <IconStar color="rendah-red" size={16} />,
-    shoppingCart: <IconStore color={navColour} size={16} />
+    shoppingCart: <IconStore color={navColour} size={16} />,
   };
 
   const handleLogout = async () => {
     await fetch(`${process.env.SITE_URL}/api/logout`);
     mutate({ user: null });
   };
-
-  const showBasket = !!(
-    meta.title === 'Store' ||
-    meta.title === 'Product' ||
-    meta.title === 'Dominion'
-  );
 
   useEffect(() => {
     if (app.isLoading) {
@@ -76,7 +70,6 @@ export default function Header({ navOnWhite, meta }) {
             navHex={navHex}
             navOnWhite={navOnWhite}
             handleLogout={handleLogout}
-            showBasket={showBasket}
             buttonIcons={buttonIcons}
           />
         )}
@@ -87,7 +80,6 @@ export default function Header({ navOnWhite, meta }) {
             navHex={navHex}
             navOnWhite={navOnWhite}
             handleLogout={handleLogout}
-            showBasket={showBasket}
             buttonIcons={buttonIcons}
           />
         )}

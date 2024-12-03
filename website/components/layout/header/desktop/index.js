@@ -25,7 +25,6 @@ export default function HeaderDestop({
   navHex,
   navOnWhite,
   handleLogout,
-  showBasket,
   buttonIcons,
 }) {
   const [user] = useUser();
