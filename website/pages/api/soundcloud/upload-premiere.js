@@ -13,53 +13,29 @@ const SOUNDCLOUD_CLIENT_ID = process.env.SOUNDCLOUD_CLIENT_ID;
 const SOUNDCLOUD_CLIENT_SECRET = process.env.SOUNDCLOUD_CLIENT_SECRET;
 const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
 
-const streamToBuffer = async (stream) => {
-  const chunks = [];
-  return new Promise((resolve, reject) => {
-    stream.on('data', (chunk) => chunks.push(chunk));
-    stream.on('error', reject);
-    stream.on('end', () => resolve(Buffer.concat(chunks)));
-  });
-};
-
 const getAccessToken = async () => {
   try {
     console.log('Starting auth request...');
-    console.log(
-      'Using client ID:',
-      SOUNDCLOUD_CLIENT_ID ? 'Present' : 'Missing'
-    );
-    console.log(
-      'Using client secret:',
-      SOUNDCLOUD_CLIENT_SECRET ? 'Present' : 'Missing'
-    );
 
-    // Create form data for token request
-    const formData = new URLSearchParams();
-    formData.append('client_id', SOUNDCLOUD_CLIENT_ID);
-    formData.append('client_secret', SOUNDCLOUD_CLIENT_SECRET);
-    formData.append('grant_type', 'client_credentials');
-
-    // Log the request body for debugging (excluding sensitive info)
-    console.log(
-      'Request body:',
-      formData
-        .toString()
-        .replace(/(client_id|client_secret)=[^&]+/g, '$1=[HIDDEN]')
-    );
+    // Create Basic auth header from client credentials
+    const credentials = Buffer.from(
+      `${SOUNDCLOUD_CLIENT_ID}:${SOUNDCLOUD_CLIENT_SECRET}`
+    ).toString('base64');
 
     const response = await fetch('https://api.soundcloud.com/oauth2/token', {
       method: 'POST',
       headers: {
+        Accept: 'application/json; charset=utf-8',
         'Content-Type': 'application/x-www-form-urlencoded',
-        Accept: 'application/json',
+        Authorization: `Basic ${credentials}`,
       },
-      body: formData.toString(),
+      body: new URLSearchParams({
+        grant_type: 'client_credentials',
+      }).toString(),
     });
 
     console.log('Auth response status:', response.status);
 
-    // Log the raw response for debugging
     const rawText = await response.text();
     console.log('Raw response:', rawText);
 
@@ -67,31 +43,38 @@ const getAccessToken = async () => {
     try {
       data = JSON.parse(rawText);
     } catch (e) {
-      console.error('Failed to parse response as JSON:', e);
       throw new Error(
         `Invalid JSON response from SoundCloud: ${rawText.substring(0, 200)}`
       );
     }
 
+    console.log('Auth response data:', {
+      ...data,
+      access_token: data.access_token ? '[PRESENT]' : '[MISSING]',
+    });
+
     if (!response.ok) {
-      const errorMessage =
+      throw new Error(
         data.error_description ||
-        data.message ||
-        data.error ||
-        `Authentication failed with status ${response.status}`;
-      throw new Error(errorMessage);
+          data.message ||
+          `Authentication failed with status ${response.status}`
+      );
     }
 
-    if (!data.access_token) {
-      throw new Error('No access token received from SoundCloud');
-    }
-
-    console.log('Successfully received access token');
     return data.access_token;
   } catch (error) {
     console.error('Error getting access token:', error);
-    throw new Error(`Authentication failed: ${error.message}`);
+    throw error;
   }
+};
+
+const streamToBuffer = async (stream) => {
+  const chunks = [];
+  return new Promise((resolve, reject) => {
+    stream.on('data', (chunk) => chunks.push(chunk));
+    stream.on('error', reject);
+    stream.on('end', () => resolve(Buffer.concat(chunks)));
+  });
 };
 
 const handler = async (req, res) => {
@@ -111,13 +94,6 @@ const handler = async (req, res) => {
       trackDescription,
     });
 
-    // Validate environment variables
-    if (!SOUNDCLOUD_CLIENT_ID || !SOUNDCLOUD_CLIENT_SECRET) {
-      throw new Error(
-        'Missing SoundCloud credentials in environment variables'
-      );
-    }
-
     if (!audioFileAssetId || !trackTitle) {
       return res.status(400).json({
         error: 'audioFileAssetId and trackTitle are required.',
@@ -134,12 +110,9 @@ const handler = async (req, res) => {
     const assetId = assetParts[1];
     const assetExtension = assetParts[2];
 
-    // Get access token
-    console.log('Requesting access token...');
     const accessToken = await getAccessToken();
     console.log('Access token received successfully');
 
-    // Fetch audio file
     const audioUrl = `https://cdn.sanity.io/files/${SANITY_PROJECT_ID}/production/${assetId}.${assetExtension}`;
     console.log('Fetching audio from:', audioUrl);
 
@@ -150,13 +123,11 @@ const handler = async (req, res) => {
       );
     }
 
-    // Convert stream to buffer
     const audioBuffer = await streamToBuffer(audioResponse.body);
     console.log('Audio file downloaded successfully');
 
-    // Prepare form data for upload
+    // Prepare multipart form data as per SoundCloud docs
     const formData = new FormData();
-    formData.append('oauth_token', accessToken);
     formData.append('track[title]', trackTitle);
     formData.append('track[description]', trackDescription || '');
     formData.append('track[sharing]', 'private');
@@ -166,57 +137,34 @@ const handler = async (req, res) => {
       contentType: `audio/${assetExtension}`,
     });
 
-    // Log headers being sent (excluding sensitive info)
-    const uploadHeaders = {
-      ...formData.getHeaders(),
-      Authorization: `Bearer ${accessToken}`,
-      Accept: 'application/json',
-    };
-
-    console.log('Upload headers:', {
-      ...uploadHeaders,
-      Authorization: '[HIDDEN]',
+    console.log('Starting SoundCloud upload...');
+    const uploadResponse = await fetch('https://api.soundcloud.com/tracks', {
+      method: 'POST',
+      headers: {
+        ...formData.getHeaders(),
+        Authorization: `Bearer ${accessToken}`,
+        Accept: 'application/json; charset=utf-8',
+      },
+      body: formData,
     });
 
-    // Upload to SoundCloud with timeout
-    console.log('Starting SoundCloud upload...');
-    const uploadResponse = await Promise.race([
-      fetch('https://api.soundcloud.com/tracks', {
-        method: 'POST',
-        headers: uploadHeaders,
-        body: formData,
-      }),
-      new Promise((_, reject) =>
-        setTimeout(
-          () => reject(new Error('Upload timeout after 55 seconds')),
-          55000
-        )
-      ),
-    ]);
-
     console.log('Upload response status:', uploadResponse.status);
-    console.log('Upload response headers:', uploadResponse.headers.raw());
 
-    // Log raw upload response for debugging
     const uploadResponseText = await uploadResponse.text();
     console.log('Raw upload response:', uploadResponseText);
 
     let uploadData;
     try {
       uploadData = JSON.parse(uploadResponseText);
-      console.log('Parsed upload response:', uploadData);
     } catch (e) {
-      console.error('Failed to parse upload response:', e);
       throw new Error('Invalid response from SoundCloud upload');
     }
 
     if (!uploadResponse.ok) {
-      const errorDetail = uploadData.errors
-        ? JSON.stringify(uploadData.errors)
-        : uploadData.message || 'Unknown error';
-
       throw new Error(
-        `Upload failed with status ${uploadResponse.status}: ${errorDetail}`
+        uploadData.error_description ||
+          uploadData.message ||
+          `Upload failed with status ${uploadResponse.status}`
       );
     }
 
@@ -228,7 +176,6 @@ const handler = async (req, res) => {
     console.error('Error in upload-premiere:', error);
     return res.status(500).json({
       error: error.message || 'Internal server error',
-      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
     });
   }
 };
