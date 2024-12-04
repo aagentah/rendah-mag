@@ -9,15 +9,14 @@ const cors = initMiddleware(
   })
 );
 
-const SOUNDCLOUD_CLIENT_ID = 'LxAfZAJupWmW6RKjGCSHc9vJWBmPJ3ri';
-const SOUNDCLOUD_CLIENT_SECRET = 'uWJviof4gBJQwQeY6q9IUyLnQcMspryl';
+const SOUNDCLOUD_CLIENT_ID = process.env.SOUNDCLOUD_CLIENT_ID;
+const SOUNDCLOUD_CLIENT_SECRET = process.env.SOUNDCLOUD_CLIENT_SECRET;
+const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
 
-// Updated to use basic auth as per API docs
 const getAccessToken = async () => {
   try {
     console.log('Starting auth request...');
 
-    // Create base64 encoded credentials
     const credentials = Buffer.from(
       `${SOUNDCLOUD_CLIENT_ID}:${SOUNDCLOUD_CLIENT_SECRET}`
     ).toString('base64');
@@ -31,11 +30,13 @@ const getAccessToken = async () => {
       },
       body: new URLSearchParams({
         grant_type: 'client_credentials',
+        scope: 'upload',
       }),
     });
 
     console.log('Auth response status:', response.status);
     const data = await response.json();
+    console.log('Auth response data:', data);
 
     if (!response.ok) {
       console.error('Auth Error Response:', data);
@@ -89,9 +90,9 @@ const handler = async (req, res) => {
 
     console.log('Getting access token...');
     const accessToken = await getAccessToken();
-    console.log('Access token received');
+    console.log('Access token received:', accessToken.slice(0, 10) + '...');
 
-    const audioUrl = `https://cdn.sanity.io/files/q8z2vf2k/production/${assetId}.${assetExtension}`;
+    const audioUrl = `https://cdn.sanity.io/files/${SANITY_PROJECT_ID}/production/${assetId}.${assetExtension}`;
     console.log('Fetching audio from:', audioUrl);
 
     const audioResponse = await fetch(audioUrl);
@@ -102,7 +103,7 @@ const handler = async (req, res) => {
       );
     }
 
-    const audioBuffer = await audioResponse.buffer();
+    const audioBuffer = Buffer.from(await audioResponse.arrayBuffer());
     if (!Buffer.isBuffer(audioBuffer)) {
       throw new Error('Invalid audio buffer received from Sanity');
     }
@@ -118,11 +119,18 @@ const handler = async (req, res) => {
       contentType: `audio/${assetExtension}`,
     });
 
+    const formHeaders = formData.getHeaders();
+
     console.log('Uploading to SoundCloud...');
+    console.log('Upload headers:', {
+      ...formHeaders,
+      Authorization: 'Bearer [HIDDEN]',
+    });
 
     const uploadResponse = await fetch('https://api.soundcloud.com/tracks', {
       method: 'POST',
       headers: {
+        ...formHeaders,
         Accept: 'application/json; charset=utf-8',
         Authorization: `Bearer ${accessToken}`,
       },
@@ -134,13 +142,13 @@ const handler = async (req, res) => {
     console.log('SoundCloud Response Data:', uploadData);
 
     if (!uploadResponse.ok) {
-      console.error('SoundCloud upload error:', uploadData);
-      throw new Error(
+      const errorMessage =
         uploadData.error_description ||
-          uploadData.error ||
-          uploadData.message ||
-          'Upload failed.'
-      );
+        uploadData.error ||
+        uploadData.message ||
+        'Upload failed';
+      console.error('SoundCloud upload error:', uploadData);
+      throw new Error(errorMessage);
     }
 
     return res.status(200).json({
@@ -159,7 +167,7 @@ const handler = async (req, res) => {
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: '10mb',
+      sizeLimit: '50mb',
     },
   },
 };
