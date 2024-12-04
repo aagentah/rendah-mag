@@ -63,7 +63,7 @@ const handler = async (req, res) => {
     console.log('Verifying SoundCloud token...');
     const verifyResponse = await fetch('https://api.soundcloud.com/me', {
       headers: {
-        Authorization: `OAuth ${SOUNDCLOUD_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${SOUNDCLOUD_ACCESS_TOKEN}`,
         Accept: 'application/json',
       },
     });
