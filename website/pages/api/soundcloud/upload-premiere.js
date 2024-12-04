@@ -16,33 +16,49 @@ const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
 
 // Updated to use new auth endpoint
 const getAccessToken = async () => {
-  //
   try {
+    console.log('Starting auth request...');
+
+    const params = new URLSearchParams({
+      grant_type: 'client_credentials',
+      client_id: SOUNDCLOUD_CLIENT_ID,
+      client_secret: SOUNDCLOUD_CLIENT_SECRET,
+      scope: 'upload',
+    });
+
+    console.log('Auth request params (excluding secret):', {
+      grant_type: 'client_credentials',
+      client_id: SOUNDCLOUD_CLIENT_ID,
+      scope: 'upload',
+    });
+
     const response = await fetch('https://secure.soundcloud.com/oauth/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: 'application/json',
+        'User-Agent': 'RendahMag/1.0.0',
       },
-      body: new URLSearchParams({
-        grant_type: 'client_credentials',
-        client_id: SOUNDCLOUD_CLIENT_ID,
-        client_secret: SOUNDCLOUD_CLIENT_SECRET,
-        scope: 'upload', // Add specific scope for upload permissions
-      }),
+      body: params,
     });
 
+    console.log('Auth response status:', response.status);
+    const data = await response.json();
+
     if (!response.ok) {
-      const data = await response.json();
-      console.error('Auth Error Response:', data);
+      console.error('Full auth error response:', data);
       throw new Error(
         data.error_description || data.error || 'Failed to get access token'
       );
     }
 
-    const data = await response.json();
     return data.access_token;
   } catch (error) {
-    console.error('Error getting access token:', error);
+    console.error('Detailed auth error:', {
+      message: error.message,
+      stack: error.stack,
+      cause: error.cause,
+    });
     throw error;
   }
 };
