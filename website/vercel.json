@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/soundcloud/upload-premiere.js": {
+      "maxDuration": 60
+    }
+  }
+}
