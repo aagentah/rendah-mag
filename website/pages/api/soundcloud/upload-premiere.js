@@ -25,12 +25,19 @@ const getAccessToken = async () => {
       SOUNDCLOUD_CLIENT_SECRET ? 'Present' : 'Missing'
     );
 
-    // Create form data for token request
+    // Create form data for token request - removed scope parameter
     const formData = new URLSearchParams();
     formData.append('client_id', SOUNDCLOUD_CLIENT_ID);
     formData.append('client_secret', SOUNDCLOUD_CLIENT_SECRET);
     formData.append('grant_type', 'client_credentials');
-    formData.append('scope', 'upload');
+
+    // Log the request body for debugging (excluding sensitive info)
+    console.log(
+      'Request body:',
+      formData
+        .toString()
+        .replace(/(client_id|client_secret)=[^&]+/g, '$1=[HIDDEN]')
+    );
 
     const response = await fetch('https://api.soundcloud.com/oauth2/token', {
       method: 'POST',
@@ -57,23 +64,20 @@ const getAccessToken = async () => {
       );
     }
 
-    console.log('Auth response data:', {
-      ...data,
-      access_token: data.access_token ? '[PRESENT]' : '[MISSING]',
-    });
-
     if (!response.ok) {
-      throw new Error(
+      const errorMessage =
         data.error_description ||
-          data.error ||
-          `Authentication failed with status ${response.status}`
-      );
+        data.message ||
+        data.error ||
+        `Authentication failed with status ${response.status}`;
+      throw new Error(errorMessage);
     }
 
     if (!data.access_token) {
       throw new Error('No access token received from SoundCloud');
     }
 
+    console.log('Successfully received access token');
     return data.access_token;
   } catch (error) {
     console.error('Error getting access token:', error);
