@@ -16,51 +16,66 @@ const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
 const getAccessToken = async () => {
   try {
     console.log('Starting auth request...');
+    console.log('Client ID length:', SOUNDCLOUD_CLIENT_ID?.length || 'missing');
+    console.log(
+      'Client Secret length:',
+      SOUNDCLOUD_CLIENT_SECRET?.length || 'missing'
+    );
 
-    // Create Basic auth header from client credentials
-    const credentials = Buffer.from(
-      `${SOUNDCLOUD_CLIENT_ID}:${SOUNDCLOUD_CLIENT_SECRET}`
-    ).toString('base64');
+    if (!SOUNDCLOUD_CLIENT_ID || !SOUNDCLOUD_CLIENT_SECRET) {
+      throw new Error('Missing SoundCloud credentials');
+    }
 
+    // Method 1: Using URLSearchParams
     const response = await fetch('https://api.soundcloud.com/oauth2/token', {
       method: 'POST',
       headers: {
-        Accept: 'application/json; charset=utf-8',
+        Accept: 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Basic ${credentials}`,
       },
       body: new URLSearchParams({
+        client_id: SOUNDCLOUD_CLIENT_ID,
+        client_secret: SOUNDCLOUD_CLIENT_SECRET,
         grant_type: 'client_credentials',
       }).toString(),
     });
 
-    console.log('Auth response status:', response.status);
-
-    const rawText = await response.text();
-    console.log('Raw response:', rawText);
-
-    let data;
-    try {
-      data = JSON.parse(rawText);
-    } catch (e) {
-      throw new Error(
-        `Invalid JSON response from SoundCloud: ${rawText.substring(0, 200)}`
-      );
-    }
-
-    console.log('Auth response data:', {
-      ...data,
-      access_token: data.access_token ? '[PRESENT]' : '[MISSING]',
-    });
-
+    // If Method 1 fails, try Method 2
     if (!response.ok) {
-      throw new Error(
-        data.error_description ||
-          data.message ||
-          `Authentication failed with status ${response.status}`
+      console.log('First method failed, trying alternative...');
+
+      const credentials = Buffer.from(
+        `${SOUNDCLOUD_CLIENT_ID}:${SOUNDCLOUD_CLIENT_SECRET}`
+      ).toString('base64');
+
+      const altResponse = await fetch(
+        'https://api.soundcloud.com/oauth2/token',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: `Basic ${credentials}`,
+          },
+          body: new URLSearchParams({
+            grant_type: 'client_credentials',
+          }).toString(),
+        }
       );
+
+      if (!altResponse.ok) {
+        const altText = await altResponse.text();
+        console.log('Alternative method failed. Response:', altText);
+        throw new Error(
+          `Auth failed with both methods. Status: ${altResponse.status}`
+        );
+      }
+
+      const altData = await altResponse.json();
+      return altData.access_token;
     }
 
+    const data = await response.json();
     return data.access_token;
   } catch (error) {
     console.error('Error getting access token:', error);
