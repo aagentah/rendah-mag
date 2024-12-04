@@ -16,6 +16,7 @@ const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
 
 // Updated to use new auth endpoint
 const getAccessToken = async () => {
+  //
   try {
     const response = await fetch('https://secure.soundcloud.com/oauth/token', {
       method: 'POST',
