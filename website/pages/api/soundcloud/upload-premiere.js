@@ -9,9 +9,46 @@ const cors = initMiddleware(
   })
 );
 
-// Add your personal token here
-const SOUNDCLOUD_ACCESS_TOKEN = process.env.SOUNDCLOUD_ACCESS_TOKEN;
+const SOUNDCLOUD_CLIENT_ID = process.env.SOUNDCLOUD_CLIENT_ID;
+const SOUNDCLOUD_CLIENT_SECRET = process.env.SOUNDCLOUD_CLIENT_SECRET;
 const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
+
+const getAccessToken = async () => {
+  try {
+    console.log('Getting new access token...');
+    const response = await fetch('https://api.soundcloud.com/oauth2/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: 'application/json',
+      },
+      body: new URLSearchParams({
+        grant_type: 'client_credentials',
+        client_id: SOUNDCLOUD_CLIENT_ID,
+        client_secret: SOUNDCLOUD_CLIENT_SECRET,
+      }).toString(),
+    });
+
+    const data = await response.json();
+    console.log('Token response:', {
+      access_token: data.access_token ? '[PRESENT]' : '[MISSING]',
+      expires_in: data.expires_in,
+      scope: data.scope,
+    });
+
+    if (!response.ok || !data.access_token) {
+      console.error('Token error response:', data);
+      throw new Error(
+        data.error_description || data.error || 'Failed to get access token'
+      );
+    }
+
+    return data.access_token;
+  } catch (error) {
+    console.error('Error getting access token:', error);
+    throw error;
+  }
+};
 
 const streamToBuffer = async (stream) => {
   const chunks = [];
@@ -39,8 +76,8 @@ const handler = async (req, res) => {
       trackDescription,
     });
 
-    if (!SOUNDCLOUD_ACCESS_TOKEN) {
-      throw new Error('Missing SoundCloud access token');
+    if (!SOUNDCLOUD_CLIENT_ID || !SOUNDCLOUD_CLIENT_SECRET) {
+      throw new Error('Missing SoundCloud credentials');
     }
 
     if (!audioFileAssetId || !trackTitle) {
@@ -59,18 +96,10 @@ const handler = async (req, res) => {
     const assetId = assetParts[1];
     const assetExtension = assetParts[2];
 
-    // First verify the token works by checking user profile
-    console.log('Verifying SoundCloud token...');
-    const verifyResponse = await fetch('https://api.soundcloud.com/me', {
-      headers: {
-        Authorization: `Bearer ${SOUNDCLOUD_ACCESS_TOKEN}`,
-        Accept: 'application/json',
-      },
-    });
-
-    if (!verifyResponse.ok) {
-      throw new Error('Invalid or expired SoundCloud token');
-    }
+    // Get fresh access token for this request
+    console.log('Requesting new access token...');
+    const accessToken = await getAccessToken();
+    console.log('Successfully obtained new access token');
 
     // Download audio from Sanity
     const audioUrl = `https://cdn.sanity.io/files/${SANITY_PROJECT_ID}/production/${assetId}.${assetExtension}`;
@@ -99,28 +128,48 @@ const handler = async (req, res) => {
 
     // Upload to SoundCloud
     console.log('Starting SoundCloud upload...');
+    console.log('Upload headers:', {
+      ...formData.getHeaders(),
+      Authorization: 'Bearer [HIDDEN]',
+      Accept: 'application/json',
+    });
+
     const uploadResponse = await fetch('https://api.soundcloud.com/tracks', {
       method: 'POST',
       headers: {
         ...formData.getHeaders(),
-        Authorization: `OAuth ${SOUNDCLOUD_ACCESS_TOKEN}`,
+        Authorization: `OAuth ${accessToken}`,
         Accept: 'application/json',
       },
       body: formData,
     });
 
-    const uploadResponseText = await uploadResponse.text();
-    console.log('Upload response status:', uploadResponse.status);
-    console.log('Raw upload response:', uploadResponseText);
+    let uploadData;
+    try {
+      const uploadResponseText = await uploadResponse.text();
+      console.log('Upload response status:', uploadResponse.status);
+      console.log('Raw upload response:', uploadResponseText);
+
+      uploadData = JSON.parse(uploadResponseText);
+    } catch (error) {
+      console.error('Failed to parse upload response:', error);
+      throw new Error('Invalid response from SoundCloud upload');
+    }
 
     if (!uploadResponse.ok) {
+      const errorDetail = uploadData.errors
+        ? JSON.stringify(uploadData.errors)
+        : uploadData.message || 'Unknown error';
+
       throw new Error(
-        `Upload failed with status ${uploadResponse.status}: ${uploadResponseText}`
+        `Upload failed with status ${uploadResponse.status}: ${errorDetail}`
       );
     }
 
-    const uploadData = JSON.parse(uploadResponseText);
-    console.log('Upload successful:', uploadData);
+    console.log('Upload successful:', {
+      id: uploadData.id,
+      url: uploadData.permalink_url,
+    });
 
     return res.status(200).json({
       soundcloudId: uploadData.id,
