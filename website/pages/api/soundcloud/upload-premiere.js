@@ -13,19 +13,31 @@ const SOUNDCLOUD_CLIENT_ID = process.env.SOUNDCLOUD_CLIENT_ID;
 const SOUNDCLOUD_CLIENT_SECRET = process.env.SOUNDCLOUD_CLIENT_SECRET;
 const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
 
+// Token caching variables
+let cachedToken = null;
+let tokenExpiration = null;
+
 const getAccessToken = async () => {
+  if (cachedToken && tokenExpiration && Date.now() < tokenExpiration) {
+    console.log('Using cached access token');
+    return cachedToken;
+  }
+
   try {
     console.log('Getting new access token...');
-    const response = await fetch('https://api.soundcloud.com/oauth2/token', {
+    const response = await fetch('https://secure.soundcloud.com/oauth/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         Accept: 'application/json',
+        Authorization:
+          'Basic ' +
+          Buffer.from(
+            `${SOUNDCLOUD_CLIENT_ID}:${SOUNDCLOUD_CLIENT_SECRET}`
+          ).toString('base64'),
       },
       body: new URLSearchParams({
         grant_type: 'client_credentials',
-        client_id: SOUNDCLOUD_CLIENT_ID,
-        client_secret: SOUNDCLOUD_CLIENT_SECRET,
       }).toString(),
     });
 
@@ -43,20 +55,15 @@ const getAccessToken = async () => {
       );
     }
 
-    return data.access_token;
+    // Cache the token and its expiration time
+    cachedToken = data.access_token;
+    tokenExpiration = Date.now() + data.expires_in * 1000 - 60000; // Expires 1 minute early to account for latency
+
+    return cachedToken;
   } catch (error) {
     console.error('Error getting access token:', error);
     throw error;
   }
-};
-
-const streamToBuffer = async (stream) => {
-  const chunks = [];
-  return new Promise((resolve, reject) => {
-    stream.on('data', (chunk) => chunks.push(chunk));
-    stream.on('error', reject);
-    stream.on('end', () => resolve(Buffer.concat(chunks)));
-  });
 };
 
 const handler = async (req, res) => {
@@ -130,7 +137,7 @@ const handler = async (req, res) => {
     console.log('Starting SoundCloud upload...');
     console.log('Upload headers:', {
       ...formData.getHeaders(),
-      Authorization: 'Bearer [HIDDEN]',
+      Authorization: 'OAuth [HIDDEN]',
       Accept: 'application/json',
     });
 
