@@ -1,4 +1,7 @@
+// pages/_document.js
+
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Script from 'next/script';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -13,13 +16,15 @@ export default class MyDocument extends Document {
         enhanceComponent: (Component) => Component,
       });
 
-    // Run the parent `getInitialProps`, it now includes the custom `renderPage`
+    // Run the parent getInitialProps, it now includes the custom renderPage
     const initialProps = await Document.getInitialProps(ctx);
 
     return initialProps;
   }
 
   render() {
+    const isProduction = process.env.NODE_ENV === 'production';
+
     return (
       <Html lang="en">
         <Head>
@@ -69,18 +74,51 @@ export default class MyDocument extends Document {
 
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
+          {isProduction && (
+            <>
+              {/* --- GA snippet --- */}
+              <Script
+                strategy="afterInteractive"
+                src="https://www.googletagmanager.com/gtag/js?id=G-73XW97XVPY"
+              />
+              <Script
+                id="ga-script"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                  __html: `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-73XW97XVPY', {
+                      page_path: window.location.pathname,
+                    });
+                  `,
+                }}
+              />
+              {/* --- End GA snippet --- */}
+            </>
+          )}
+
           {process.env.NODE_ENV === 'production' && (
             <script id="hotjar" strategy="afterInteractive">
-              {`
-                (function(h,o,t,j,a,r){
-                    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                    h._hjSettings={hjid:837317,hjsv:6};
-                    a=o.getElementsByTagName('head')[0];
-                    r=o.createElement('script');r.async=1;
-                    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                    a.appendChild(r);
-                })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-              `}
+              {(function (h, o, t, j, a, r) {
+                h.hj =
+                  h.hj ||
+                  function () {
+                    (h.hj.q = h.hj.q || []).push(arguments);
+                  };
+                h._hjSettings = { hjid: 837317, hjsv: 6 };
+                a = o.getElementsByTagName('head')[0];
+                r = o.createElement('script');
+                r.async = 1;
+                r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+                a.appendChild(r);
+              })(
+                window,
+                document,
+                'https://static.hotjar.com/c/hotjar-',
+                '.js?sv='
+              )}
             </script>
           )}
         </Head>

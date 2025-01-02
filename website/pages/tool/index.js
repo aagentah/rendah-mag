@@ -7,7 +7,7 @@ const Tool = () => {
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
   const [output, setOutput] = useState('Square');
-  const [backgroundImage, setBackgroundImage] = useState(null);
+  const [backgroundImage, setBackgroundImage] = useState('/images/bg-grey.png');
   const [loading, setLoading] = useState(false);
   const [backgroundPositionX, setBackgroundPositionX] = useState(50);
   const [backgroundPositionY, setBackgroundPositionY] = useState(50);
@@ -86,7 +86,7 @@ const Tool = () => {
       quality: 1.0,
       width: parseInt(canvas.dataset.exportWidth),
       height: parseInt(canvas.dataset.exportHeight),
-      pixelRatio: 1,
+      pixelRatio: 2,
     })
       .then((dataUrl) => {
         const link = document.createElement('a');
