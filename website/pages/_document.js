@@ -66,30 +66,6 @@ export default class MyDocument extends Document {
           />
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
-          {/* Google Analytics (only in Production) */}
-          {isProduction && (
-            <>
-              <Script
-                strategy="afterInteractive"
-                src="https://www.googletagmanager.com/gtag/js?id=G-73XW97XVPY"
-              />
-              <Script
-                id="ga-script"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                  __html: `
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', 'G-73XW97XVPY', {
-                      page_path: window.location.pathname,
-                    });
-                  `,
-                }}
-              />
-            </>
-          )}
-
           {/* Hotjar (only in Production) */}
           {isProduction && (
             <Script

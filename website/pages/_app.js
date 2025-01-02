@@ -4,6 +4,7 @@ import { PageTransition } from 'next-page-transitions';
 import NProgress from 'nprogress';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import PlausibleProvider from 'next-plausible';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import { AppProvider } from '~/context-provider/app';
 import {
@@ -75,6 +76,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <PlausibleProvider domain="rendahmag.com">
+      <GoogleAnalytics gaId="G-73XW97XVPY" />
       <AppProvider>
         <ParallaxProvider>
           <DarkModeProvider>
