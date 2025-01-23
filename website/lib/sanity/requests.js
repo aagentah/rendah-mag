@@ -434,6 +434,39 @@ export async function getDivision(
   return results;
 }
 
+export async function getFeatured(range) {
+  const today = dateTodayISO();
+
+  const rangeFrom = range[0] - 1;
+  const rangeTo = range[1] - 1;
+
+  const results = await getClient(null).fetch(
+    `*[_type == "post" && publishedAt < $today && isFeatured] | order(publishedAt desc)[$rangeFrom..$rangeTo] {
+      _id,
+      hasPostedDiscord,
+      name,
+      title,
+      publishedAt,
+      'slug': slug.current,
+      'coverImage': image.asset->url,
+      'imageObject': {
+        'url': image.asset->url,
+        'caption': image.caption,
+        'fullImage': image.fullImage,
+        'dimensions': image.asset->metadata.dimensions
+      },
+      'authors': authors[] {
+        'author': *[_id == ^._ref][0] {
+          ...,
+        },
+      },
+    }`,
+    { rangeFrom, rangeTo, today }
+  );
+
+  return results;
+}
+
 export async function getAllCategoriesTotal(preview) {
   const results = await getClient(preview).fetch(`*[_type == "category"] {
       ...,

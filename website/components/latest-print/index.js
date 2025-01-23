@@ -102,12 +102,12 @@ export default function LatestPrint({ showDominionButton }) {
       </div>
 
       {!user && showDominionButton && (
-        <div className="flex justify-center">
+        <div className="flex justify-center mt5 mt3-md">
           <Button
             /* Options */
             type="primary"
             size="small"
-            text="Subscribe to Rendah Mag"
+            text="Become a reader"
             color="black"
             fluid={false}
             icon={null}

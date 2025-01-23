@@ -205,9 +205,8 @@ export default function HeaderDestop({
                     />
                   </li>
 
-                  <li className="nav__item  dib  flex  align-center  pr3">
+                  {/* <li className="nav__item  dib  flex  align-center  pr3">
                     <Button
-                      /* Options */
                       type="secondary"
                       size="medium"
                       text="Cyphers"
@@ -220,7 +219,6 @@ export default function HeaderDestop({
                       disabled={false}
                       skeleton={false}
                       onClick={null}
-                      /* Children */
                       withLinkProps={{
                         type: 'next',
                         href: '/cyphers',
@@ -231,7 +229,7 @@ export default function HeaderDestop({
                         },
                       }}
                     />
-                  </li>
+                  </li> */}
                   <li className="nav__item  dib  flex  align-center  pr3">
                     <Button
                       /* Options */
@@ -309,30 +307,6 @@ export default function HeaderDestop({
                       }}
                     />
                   </li>
-                  <li className="nav__item  dib  flex  align-center  pr3">
-                    <Button
-                      /* Options */
-                      type="secondary"
-                      size="medium"
-                      text="Contact"
-                      color={navColour}
-                      fluid={false}
-                      icon={null}
-                      iconFloat={null}
-                      inverted
-                      loading={false}
-                      disabled={false}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={{
-                        type: 'external',
-                        href: 'https://forms.gle/xpPtVhUiuzZzehdy8',
-                        target: '_blank',
-                        routerLink: null,
-                        routerLinkProps: null,
-                      }}
-                    />
-                  </li>
 
                   {user && meta.title !== 'Profile' && (
                     <li className="nav__item  dib  flex  align-center  pr3">
@@ -371,7 +345,7 @@ export default function HeaderDestop({
                           /* Options */
                           type="secondary"
                           size="medium"
-                          text="Subscription"
+                          text="Become a reader"
                           color="rendah-red"
                           fluid={false}
                           icon={buttonIcons.store}
