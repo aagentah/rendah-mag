@@ -162,10 +162,11 @@ export default {
       name: "hasPostedDiscord",
       title: "Has Posted in Discord",
       type: "boolean",
+      hidden: ({ currentUser }) => !adminUsers.includes(currentUser?.name),
     },
     {
-      name: "hidePublic",
-      title: "Hide Public",
+      name: "isFeatured",
+      title: "Featured",
       type: "boolean",
       hidden: ({ currentUser }) => !adminUsers.includes(currentUser?.name),
     },
