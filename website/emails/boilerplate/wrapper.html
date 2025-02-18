@@ -8,15 +8,14 @@
     <style type="text/css">
       u + #body a {
         color: inherit;
-        text-decoration: none;
         font-size: inherit;
         font-family: inherit;
         font-weight: inherit;
         line-height: inherit;
       }
 
-      body, .bg, td, p, span, strong, em, strong, ul, li, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn), a[href]:not(.btn) {
-        font-family: Arial, Helvetica, sans-serif;
+      body, .bg, td, p, span, strong, em, strong, ul, ol, li, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn), a[href]:not(.btn) {
+        font-family: monospace, Arial, Helvetica, sans-serif;
         background: #ffffff !important;
         color: #111111 !important;
       }
@@ -29,7 +28,7 @@
       }
 
       @media (prefers-color-scheme: dark) {
-        body, .bg, td, p, span, strong, em, strong, ul, li, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn), a[href]:not(.btn) {
+        body, .bg, td, p, span, strong, em, strong, ul, ol, li, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn), a[href]:not(.btn) {
           background: #111111 !important;
           color: #ffffff !important;
         }
@@ -70,10 +69,17 @@
         line-height: 100%;
       }
 
-      td, p, a, a[href], span, strong, em, h2, h3, h4, h5, h6 {
-        text-align: justify;
+      td, p, a, a[href], span, strong, em, h2, h3, h4, h5, h6, ul, ol, li {
         font-size: 16px;
         line-height: 22px;
+      }
+      
+      p, p:empty {
+      	min-height: 10px !important;
+      }
+
+      ul, ol {
+        padding-left: 15px;
       }
 
       ul, li {
@@ -92,7 +98,7 @@
 
       @media only screen and (max-width:768px) {
         /* For mobile phones: */
-        td, p, a, a[href], span, strong, em, h2, h3, h4, h5, h6 {
+        td, p, a, a[href], span, strong, em, h2, h3, h4, h5, h6, ul, ol, li {
           font-size: 26px !important;
           line-height: 38px !important;
         }
@@ -134,14 +140,14 @@
         border: none;
       }
 
-      a {
-        text-decoration: none;
-      }
-
       a.phone {
         text-decoration: none;
         pointer-events: auto;
         cursor: default;
+      }
+
+      a {
+        text-decoration: underline !important;
       }
 
       .showy {
@@ -151,6 +157,13 @@
 
       .mcnPreviewText{
         display: none !important;
+      }
+
+      blockquote {
+        opacity: 0.5;
+        border-left: 5px solid red;
+        padding-left: 15px;
+        margin-left: 15px;
       }
     </style>
 

@@ -18,6 +18,9 @@
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@ffmpeg/util": "^0.12.1",
     "@hapi/iron": "6.0.0",
     "@next/bundle-analyzer": "12.3.0",
     "@next/third-parties": "^15.1.3",
@@ -43,8 +46,10 @@
     "date-fns": "2.10.0",
     "dotenv": "8.2.0",
     "file-saver": "^2.0.5",
+    "fluent-ffmpeg": "^2.1.3",
     "form-data": "^4.0.1",
     "generate-password": "1.5.1",
+    "gifler": "^0.1.0",
     "highlight.js": "^11.8.0",
     "html-to-image": "^1.11.11",
     "intersection-observer": "0.11.0",
@@ -54,6 +59,7 @@
     "jsdom": "16.6.0",
     "jszip": "^3.10.1",
     "keen-slider": "6.6.3",
+    "libgif": "^0.0.3",
     "lodash": "4.17.21",
     "markdown-to-txt": "2.0.0",
     "micro": "9.3.4",
