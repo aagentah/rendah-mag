@@ -251,7 +251,7 @@ export default function Profile({ siteConfig }) {
 
     return (
       <Elements stripe={stripePromise}>
-        <div className={`creations`}>
+        <div className="bg-neutral-800">
           <Layout
             title="profile"
             navOffset="top"
@@ -267,6 +267,45 @@ export default function Profile({ siteConfig }) {
             }}
             preview={null}
           >
+            <div className="w-screen px-12 mx-auto py-12 text-neutral-300 text-sm">
+              <div className="flex flex-wrap pb-12 border-b border-neutral-700">
+                <div className="w-3/4 flex flex-col">
+                  <div className="max-w-md">
+                    <p className="mb-4">
+                      <strong>[Members dashboard]</strong>
+                    </p>
+                    <p className="">
+                      Here you can access all exclusive content available on
+                      your Dominion subscription. We add content here
+                      frequently, month-to-month, make sure to keep an eye here
+                      for cool stuff.
+                    </p>
+                  </div>
+                </div>
+                <div className="w-1/4 grid gap-y-2">
+                  <p className="flex flex-wrap justify-between border-b border-neutral-700 pb-1">
+                    <strong>User</strong> <p>{user?.name}</p>
+                  </p>
+                  <p className="flex flex-wrap justify-between border-b border-neutral-700 pb-1">
+                    <strong>Email</strong> <p>{user?.username}</p>
+                  </p>
+                  <p className="flex flex-wrap justify-between border-b border-neutral-700 pb-1">
+                    <strong>Discount 20%</strong> <p>X1A25</p>
+                  </p>
+                  <p className="flex flex-wrap justify-between border-b border-neutral-700 pb-1">
+                    <strong>Next Print</strong> <p>June/May 2024</p>
+                  </p>
+                  <p className="flex flex-wrap justify-between border-b border-neutral-700 pb-1">
+                    <strong>Dark Mode</strong>{' '}
+                    <p>
+                      <span className="">TRUE</span>/
+                      <span className="o-50">FALSE</span>
+                    </p>
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div className="pt4  pt0-md  pb4  pb0-md">
               <>
                 <section>
@@ -277,82 +316,57 @@ export default function Profile({ siteConfig }) {
               ${cardsShow && 'dominion-cards--active'}
           `}
                     >
-                      <div className="container mla mra">
+                      <div className="w-screen px-12">
                         <div className="relative">
-                          <div className="pb3 pb4-md tac mla mra">
-                            <div className="pb4 mb4 bb bc-white tac mla mra">
-                              <Heading
-                                /* Options */
-                                htmlEntity="h1"
-                                text="Dominion Dashboard"
-                                color="white"
-                                size="medium"
-                                truncate={null}
-                                /* Children */
-                                withLinkProps={null}
-                              />
-                            </div>
-
-                            <div className="pb4 mb4">
-                              <p className="white  f6  lh-copy  measure-wide tac mla mra">
-                                Welcome, {user?.name}. Here you can access all
-                                exclusive content available on your Dominion
-                                subscription. We add content here frequently,
-                                month-to-month, make sure to keep an eye here
-                                for cool stuff.
-                              </p>
-                            </div>
-                          </div>
-
-                          <div className="flex flex-wrap justify-between align-center pb3">
-                            <div className="">
-                              <button
+                          <div className="flex flex-wrap justify-between align-center pb-12">
+                            <div className="flex flex-wrap">
+                              <div
                                 onClick={() =>
                                   router.push({
                                     pathname: router.pathname,
                                     query: { tab: 'newsletters' },
                                   })
                                 }
-                                className={`pv2 ph3 ba bc-white cp mr2 f7 ${
+                                className={`pv2 ph3 border-b border-neutral-300 cp f7 ${
                                   filter === 'messages'
-                                    ? 'bg-white almost-black'
-                                    : 'white'
+                                    ? 'bg-neutral-300 text-neutral-800'
+                                    : 'text-neutral-300'
                                 }`}
                               >
                                 Newsletters
-                              </button>
+                              </div>
 
-                              <button
+                              <div
                                 onClick={() =>
                                   router.push({
                                     pathname: router.pathname,
                                     query: { tab: 'resources' },
                                   })
                                 }
-                                className={`pv2 ph3 ba bc-white cp mr2 f7 ${
+                                className={`pv2 ph3 border-b border-neutral-300 cp f7 ${
                                   filter === 'resources'
-                                    ? 'bg-white almost-black'
-                                    : 'white'
+                                    ? 'bg-neutral-300 text-neutral-800'
+                                    : 'text-neutral-300'
                                 }`}
                               >
                                 Resources
-                              </button>
+                              </div>
 
-                              <button
+                              <div
                                 onClick={() =>
                                   router.push({
                                     pathname: router.pathname,
                                     query: { tab: 'articles' },
                                   })
                                 }
-                                className={`pv2 ph3 ba bc-white cp mr2 f7 ${
+                                className={`pv2 ph3 border-b border-neutral-300 cp f7 ${
                                   filter === 'articles'
-                                    ? 'bg-white almost-black'
-                                    : 'white'
+                                    ? 'bg-neutral-300 text-neutral-800'
+                                    : 'text-neutral-300'
                                 }`}
                               >
                                 Articles
-                              </button>
+                              </div>
                             </div>
                             <div className="flex white">
                               <div
@@ -416,12 +430,9 @@ export default function Profile({ siteConfig }) {
                         {filter === 'messages' && (
                           <>
                             {messages.length ? (
-                              <div className="flex flex-wrap pb5 pt2">
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 {messages.map((item, i) => (
-                                  <div
-                                    key={item._id}
-                                    className="col-24 col-8-md pa2"
-                                  >
+                                  <div key={item._id}>
                                     <CardMessage i={i} post={item} />
                                   </div>
                                 ))}
@@ -429,7 +440,7 @@ export default function Profile({ siteConfig }) {
                             ) : (
                               <div className="flex flex-wrap pb5 pt2">
                                 {[...Array(9)].map((_, i) => (
-                                  <div key={i} className="col-24 col-8-md pa2">
+                                  <div key={i} className="col-24 col-8-md">
                                     <div
                                       className={`skeletonNew`}
                                       style={{
@@ -449,7 +460,7 @@ export default function Profile({ siteConfig }) {
                             {filteredResources.length ? (
                               <div className="flex flex-wrap pb5 pt2">
                                 {filteredResources.map((item, i) => (
-                                  <div key={item._id} className="col-24 pa2">
+                                  <div key={item._id} className="col-24">
                                     <CardResource i={i} post={item} />
                                   </div>
                                 ))}

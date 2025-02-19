@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import LazyLoad from 'react-lazyload';
 import {
   FaPaperclip,
   FaMusic,
@@ -8,7 +7,8 @@ import {
   FaFilePdf,
   FaFileImage,
   FaFile,
-} from 'react-icons/fa'; // Import necessary icons
+} from 'react-icons/fa';
+import LazyLoad from 'react-lazyload';
 
 import Heading from '~/components/elements/heading';
 import ImageNew from '~/components/elements/image-new';
@@ -18,64 +18,54 @@ import { useApp } from '~/context-provider/app';
 
 export default function CardBlog({ post, handleClick, i }) {
   const app = useApp();
-  const height = app.deviceSize === 'md' ? 180 : 260;
+  const height = app.deviceSize === 'md' ? 240 : 240;
   const width = 260;
-  const _id = post?.slug; // Assuming `_id` is available in the `post` object
-
-  const image = (
-    <ImageNew
-      imageObject={post?.imageObject}
-      height={height}
-      className="br3 shadow2"
-    />
-  );
-
-  const labels = (
-    <Label
-      /* Options */
-      customClass=""
-      text="Blog"
-      color="white"
-      backgroundColor="black"
-      skeleton={!post}
-      onClick={null}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
-
-  const heading = (
-    <Heading
-      /* Options */
-      htmlEntity="h2"
-      text={post?.title}
-      color="white"
-      size={app?.deviceSize === 'md' ? 'small' : 'small'}
-      truncate={null}
-      skeleton={!post}
-      /* Children */
-      withLinkProps={null}
-    />
-  );
+  const _id = post?.slug;
 
   return (
     <Link href={`/profile/newsletter/${_id}`}>
       <article
-        className="card  card--post  card--scroll  mb4  mb0-md  relative cp"
         onClick={() => handleClick && handleClick(i)}
+        className="
+          grid grid-cols-1 md:grid-cols-12 gap-y-4
+          text-white
+          overflow-hidden
+          cursor-pointer
+          border-b-4 border-neutral-700
+        "
       >
-        {image && <div className="card__image">{image}</div>}
+        {/* Left Column: Image */}
+        <div className="relative col-span-6">
+          <ImageNew
+            imageObject={post?.imageObject}
+            height={height}
+            width={width}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-        <div className="card__dialog">
-          {heading && (
-            <div className="card__title mb3">
-              {heading}
-
-              {post?.subtitle && (
-                <p className="lh-copy f6 white pt2">{post?.subtitle}</p>
-              )}
+        {/* Right Column: Content */}
+        <div className="flex flex-col justify-between p-4 col-span-6">
+          <div>
+            <div className="inline text-xs px-2 py-1 border border-neutral-300 text-neutral-300 mb-2">
+              Newsletter
             </div>
-          )}
+          </div>
+
+          <div>
+            <Heading
+              htmlEntity="h2"
+              text={post?.title}
+              color="text-neutral-300"
+              size={app?.deviceSize === 'md' ? 'small' : 'small'}
+              truncate={null}
+              skeleton={!post}
+            />
+
+            {post?.subtitle && (
+              <p className="text-sm text-gray-300 mt-2">{post?.subtitle}</p>
+            )}
+          </div>
         </div>
       </article>
     </Link>
