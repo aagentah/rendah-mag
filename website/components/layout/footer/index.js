@@ -60,7 +60,7 @@ export default function Footer() {
                   type="secondary"
                   size="small"
                   text="Privacy Policy"
-                  color="white"
+                  color="neutral-400"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
@@ -83,7 +83,7 @@ export default function Footer() {
                   type="secondary"
                   size="small"
                   text="Cookie Policy"
-                  color="white"
+                  color="neutral-400"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
@@ -131,7 +131,7 @@ export default function Footer() {
                   type="secondary"
                   size="small"
                   text="Terms & Conditions"
-                  color="white"
+                  color="neutral-400"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
@@ -154,7 +154,7 @@ export default function Footer() {
                   type="secondary"
                   size="small"
                   text="Contact"
-                  color="white"
+                  color="neutral-400"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
@@ -177,7 +177,7 @@ export default function Footer() {
                   type="secondary"
                   size="small"
                   text="Join our mailout"
-                  color="white"
+                  color="neutral-400"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
@@ -196,7 +196,7 @@ export default function Footer() {
                 />
               </li>
               <li className="block pb-3 text-center md:text-left">
-                <h3 className="text-white text-lg font-bold">
+                <h3 className="text-neutral-500 text-lg font-bold">
                   {`Rendah Mag ${new Date().getFullYear()}`}
                 </h3>
               </li>

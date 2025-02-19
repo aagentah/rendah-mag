@@ -48,8 +48,8 @@ export default function LatestPrint({ showDominionButton }) {
   return (
     <div className="container py-6">
       <div className="mb-12">
-        <h3 className="text-neutral-300 mb-2">Latest print highlights</h3>
-        <p className="text-neutral-400 text-sm">{`${latestIssue.title}`}</p>
+        <h3 className="text-neutral-400 mb-2">Latest print highlights</h3>
+        <p className="text-neutral-500 text-sm">{`${latestIssue.title}`}</p>
       </div>
 
       <div className="mb-16">

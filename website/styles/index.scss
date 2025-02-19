@@ -1,111 +1,182 @@
-// Vendor before config
-@import 'vendor/normalize';
+// // Vendor before config
+// @import 'vendor/normalize';
 
-// Config
-@import 'functions';
-@import 'mixins';
-@import 'vars';
-@import 'utilities';
+// // Config
+// @import 'functions';
+// @import 'mixins';
+// @import 'vars';
+// @import 'utilities';
 
-// Vendor after config
-// @import 'vendor/next-pattern-library';
-@import 'vendor/nprogress';
-@import 'vendor/react-dropzone';
-@import 'vendor/h5-audio-player';
-@import 'vendor/toast';
-// @import 'vendor/fontawesome';
+// // Vendor after config
+// // @import 'vendor/next-pattern-library';
+// @import 'vendor/nprogress';
+// @import 'vendor/react-dropzone';
+// @import 'vendor/h5-audio-player';
+// @import 'vendor/toast';
+// // @import 'vendor/fontawesome';
 
-// Elements
-@import 'elements/button';
-@import 'elements/copy';
-@import 'elements/heading';
-@import 'elements/image';
-@import 'elements/label';
-@import 'elements/input';
-@import 'elements/checkbox';
-@import 'elements/radio';
-@import 'elements/icon';
-@import 'elements/search-bar';
+// // Elements
+// @import 'elements/button';
+// @import 'elements/copy';
+// @import 'elements/heading';
+// @import 'elements/image';
+// @import 'elements/label';
+// @import 'elements/input';
+// @import 'elements/checkbox';
+// @import 'elements/radio';
+// @import 'elements/icon';
+// @import 'elements/search-bar';
 
-// Modules
-@import 'modules/accordion';
-@import 'modules/avatar';
-@import 'modules/card';
-@import 'modules/hero';
-@import 'modules/modal';
-@import 'modules/tabs';
-@import 'modules/audio';
-@import 'modules/article';
-@import 'modules/cookie-banner';
-@import 'modules/rich-text';
-@import 'modules/theme';
-@import 'modules/subscribe-banner';
-@import 'modules/header';
-@import 'modules/footer';
-@import 'modules/layout';
-@import 'modules/form';
-@import 'modules/profile';
-@import 'modules/product';
-@import 'modules/dominion';
-@import 'modules/timeline';
-@import 'modules/creations';
-@import 'modules/link-in-bio';
+// // Modules
+// @import 'modules/accordion';
+// @import 'modules/avatar';
+// @import 'modules/card';
+// @import 'modules/hero';
+// @import 'modules/modal';
+// @import 'modules/tabs';
+// @import 'modules/audio';
+// @import 'modules/article';
+// @import 'modules/cookie-banner';
+// @import 'modules/rich-text';
+// @import 'modules/theme';
+// @import 'modules/subscribe-banner';
+// @import 'modules/header';
+// @import 'modules/footer';
+// @import 'modules/layout';
+// @import 'modules/form';
+// @import 'modules/profile';
+// @import 'modules/product';
+// @import 'modules/dominion';
+// @import 'modules/timeline';
+// @import 'modules/creations';
+// @import 'modules/link-in-bio';
 
-.dominion-cards {
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: none;
-  opacity: 0;
-}
-
-.dominion-cards--active {
-  display: block;
-  opacity: 1;
-}
-
-.dominion-modal-wrapper {
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: none;
-  opacity: 0;
-}
-
-.dominion-modal-wrapper--active {
-  display: block;
-  opacity: 1;
-}
-
-//
-
-.navigation-wrapper {
-  position: relative;
-}
-
-// .keen-slider__slide {
-//   transform: none !important;
+// .dominion-cards {
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   display: none;
+//   opacity: 0;
 // }
 
-html,
-body {
-  transition: background-color 0.3s ease;
-  background-color: #f5f5f5; /* Default light mode color */
-}
-
-html.dark-mode,
-body.dark-mode {
-  background-color: #1c1c1c; /* Dark mode color */
-}
-
-// .dark-mode {
-//   .header * {
-//     color: red !important;
-//     background-color: red !important;
-//     fill: red !important;
-//   }
+// .dominion-cards--active {
+//   display: block;
+//   opacity: 1;
 // }
+
+// .dominion-modal-wrapper {
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   display: none;
+//   opacity: 0;
+// }
+
+// .dominion-modal-wrapper--active {
+//   display: block;
+//   opacity: 1;
+// }
+
+// //
+
+// .navigation-wrapper {
+//   position: relative;
+// }
+
+// // .keen-slider__slide {
+// //   transform: none !important;
+// // }
+
+// html,
+// body {
+//   transition: background-color 0.3s ease;
+//   background-color: #f5f5f5; /* Default light mode color */
+// }
+
+// html.dark-mode,
+// body.dark-mode {
+//   background-color: #1c1c1c; /* Dark mode color */
+// }
+
+// // .dark-mode {
+// //   .header * {
+// //     color: red !important;
+// //     background-color: red !important;
+// //     fill: red !important;
+// //   }
+// // }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* roboto-mono-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/roboto-mono-v23-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* roboto-mono-italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Roboto Mono';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/roboto-mono-v23-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* roboto-mono-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/roboto-mono-v23-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* roboto-mono-700italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Roboto Mono';
+  font-style: italic;
+  font-weight: 600;
+  src: url('/fonts/roboto-mono-v23-latin-600italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+* {
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* Define default neutral palette as CSS variables */
+:root {
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #212121;
+  --neutral-900: #171717;
+}
+
+/* Inverse palette applied when .inverse is on a high-level element */
+html.inverse,
+body.inverse,
+.inverse {
+  --neutral-50: #171717;
+  --neutral-100: #171717;
+  --neutral-200: #262626;
+  --neutral-300: #404040;
+  --neutral-400: #525252;
+  --neutral-500: #737373;
+  --neutral-600: #737373;
+  --neutral-700: #a3a3a3;
+  --neutral-800: #d4d4d4;
+  --neutral-900: #fafafa;
+
+  .brightness-50 {
+    filter: brightness(1);
+  }
+}

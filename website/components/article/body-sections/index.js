@@ -35,13 +35,14 @@ function Heading({ text }) {
 function Quote({ quote, source }) {
   return (
     <div className="flex flex-wrap py-3">
-      <div className="w-full flex justify-center">
-        <blockquote className="text-center">
-          <p className="leading-relaxed text-lg italic">
-            “{quote}”<cite className="block text-sm pt-1">~ {source}</cite>
-          </p>
-        </blockquote>
-      </div>
+      <blockquote className="border-l-4 border-rendah-red pl-4">
+        <p className="leading-relaxed text-md">
+          “{quote}”
+          <cite className="block text-sm pt-2 text-neutral-400">
+            / {source}
+          </cite>
+        </p>
+      </blockquote>
     </div>
   );
 }

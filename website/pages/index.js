@@ -132,7 +132,7 @@ export default function Home() {
 
       {/* Recent Features Section */}
       <div className="container py-6">
-        <h3 className="text-neutral-300 mb-12">Recent features</h3>
+        <h3 className="text-neutral-400 mb-12">Recent features</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
           {[...Array(musicLength)].map((_, i) => (
@@ -143,12 +143,12 @@ export default function Home() {
         </div>
 
         <div className="flex justify-start">
-          <p className="font-bold text-sm text-neutral-300">Explore more</p>
+          <p className="font-bold text-sm text-neutral-400">Explore more</p>
         </div>
 
         <div className="flex space-x-3 mt-3 text-sm">
           {categories.map((category) => (
-            <div className="text-neutral-400" key={category.slug}>
+            <div className="text-neutral-500" key={category.slug}>
               <Link href={`/division/${category.slug}`}>
                 <a>/{category.slug}</a>
               </Link>

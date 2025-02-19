@@ -14,7 +14,7 @@ const ImageNew = React.memo((props) => {
     imageObject,
     placeholder,
     height,
-    className,
+    className = '',
     objectFit,
     isExpandable,
     type,
@@ -35,7 +35,6 @@ const ImageNew = React.memo((props) => {
   if (!imageObject) return null;
 
   const { url, caption, dimensions } = imageObject;
-
   const altText = toMarkdown(caption) || '';
 
   const aspectRatio = useMemo(
@@ -56,61 +55,41 @@ const ImageNew = React.memo((props) => {
       .url();
   }, [url, height]);
 
-  let paddingTop = `${100 / aspectRatio}%`;
-
-  if (height) {
-    paddingTop = null;
-  }
-
-  // if (height && height === '100vh') {
-  //   paddingTop = `${window.innerHeight}px`;
-  // }
+  // Only add padding-top if height is not specified
+  const paddingTop = height ? undefined : `${100 / aspectRatio}%`;
 
   return (
     <>
-      <div
-        className="imageNew relative"
-        style={{
-          height: '100%',
-        }}
-      >
+      <div className="relative w-full h-full">
         <div
-          className={`imageObject over-hidden  ${className || ''} ${
-            isExpandable ? 'cp' : ''
+          className={`relative overflow-hidden ${className} ${
+            isExpandable ? 'cursor-pointer' : ''
           }`}
-          style={{
-            height: '100%',
-            paddingTop,
-          }}
+          style={{ height: '100%', paddingTop }}
           onClick={handleImageClick}
         >
+          {/* Skeleton overlay */}
           <div
-            className={`skeletonNew ${loaded && 'skeletonNew--fade'}`}
-            style={{
-              height: '100%',
-              // paddingTop,
-            }}
+            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-300 ease-in-out ${
+              loaded ? 'opacity-0' : 'opacity-100'
+            } bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] animate-[shimmer_1.5s_infinite]`}
           />
-
-          <div
-            style={{
-              height: height || '100%',
-            }}
-          >
+          <div style={{ height: height || '100%' }}>
             <NextImage
               src={imageUrl}
               alt={altText}
               layout="fill"
               objectFit={objectFit || 'cover'}
               onLoadingComplete={handleLoad}
-              className={`image ${loaded ? 'image--loaded' : ''}`}
+              className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 ease-in-out ${
+                loaded ? 'opacity-100' : 'opacity-0'
+              }`}
               placeholder={placeholder || 'empty'}
             />
           </div>
         </div>
-
         {caption && type !== 'blog' && (
-          <figcaption className="tal mt2 pt1 f6 pr3 o-50 text-neutral-400">
+          <figcaption className="relative mt-2 pt-1 text-sm pr-3 opacity-50 text-neutral-400">
             <BlockContent
               blocks={caption}
               serializers={SANITY_BLOCK_SERIALIZERS}
@@ -129,11 +108,7 @@ const ImageNew = React.memo((props) => {
           <img
             src={imageObject.url}
             alt={altText}
-            style={{
-              maxHeight: '80vh',
-              width: '100%',
-              maxWidth: '100%',
-            }}
+            className="max-h-[80vh] w-full max-w-full"
           />
         </Modal>
       )}

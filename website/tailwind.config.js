@@ -10,16 +10,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        neutral: {
+          50: 'var(--neutral-50)',
+          100: 'var(--neutral-100)',
+          200: 'var(--neutral-200)',
+          300: 'var(--neutral-300)',
+          400: 'var(--neutral-400)',
+          500: 'var(--neutral-500)',
+          600: 'var(--neutral-600)',
+          700: 'var(--neutral-700)',
+          800: 'var(--neutral-800)',
+          900: 'var(--neutral-900)',
+        },
         'rendah-red': '#e9393f',
         'rendah-yellow': '#fab658',
-        'neutral-800': '#212121',
-        // 'neutral-750': '#292929',
       },
       fontSize: {
-        xxs: ['0.625rem', { lineHeight: '1rem' }], // Adjust size and line-height as desired
+        xxs: ['0.625rem', { lineHeight: '1rem' }],
       },
       container: {
-        center: false, // Ensures Tailwind doesn't auto-center it
+        center: false,
         screens: {
           sm: '100%',
           md: '100%',
@@ -31,7 +41,7 @@ module.exports = {
     },
   },
   plugins: [
-    function ({ addComponents }) {
+    function ({ addBase, addComponents }) {
       addComponents({
         '.container': {
           width: '100%',

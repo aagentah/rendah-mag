@@ -58,16 +58,13 @@ export default function SubscribeForm({ type, onSuccess }) {
     );
 
     if (response.ok) {
-      // Success
       log();
       toast.success('Welcome to the newsletter');
       Cookies.set('rndh-newsletter-set', true, { expires: 365 });
       if (onSuccess) onSuccess();
     } else if (response.status === 400) {
-      // Already subscribed
       toast.info('You are already added to our newsletter.');
     } else {
-      // Error
       toast.error('There was an issue adding you.');
     }
 
@@ -82,42 +79,29 @@ export default function SubscribeForm({ type, onSuccess }) {
   return (
     <form
       noValidate
-      className={`subscribe-banner  subscribe-banner--${type}  w-100  flex  flex-wrap  justify-center  align-center`}
       onSubmit={subscribe}
+      className="w-full flex flex-wrap justify-center items-center"
     >
-      <div className="flex  flex-wrap  mt2  w-100">
+      <div className="flex flex-wrap mt-2 w-full">
         <input
-          className="subscribe-banner__input  col-17  col-16-md  flex  justify-center"
           id="email-input"
           name="email"
           placeholder="Your email"
           ref={inputEl}
           type="email"
+          className={`flex justify-center shadow-none outline-none rounded-none bg-transparent text-sm md:text-base p-2 border border-r-0 placeholder:opacity-100 w-full md:w-2/3 ${
+            type === 'footer'
+              ? 'text-neutral-400 border-neutral-400 placeholder:text-neutral-400'
+              : 'text-black border-black placeholder:text-black'
+          }`}
         />
-
-        <div className="subscribe-banner__submit  col-7  col-8-md  flex  justify-center  justify-start-md  pr2  pr0-md">
-          <Button
-            /* Options */
-            type="primary"
-            size="medium"
-            text="Join"
-            color={type === 'footer' ? 'white' : 'black'}
-            fluid={false}
-            icon={buttonIconArrowRight}
-            iconFloat={null}
-            inverted={false}
-            loading={buttonLoading}
-            disabled={false}
-            skeleton={false}
-            onClick={null}
-            /* Children */
-            withLinkProps={{
-              type: 'form',
-              url: null,
-              target: null,
-              routerLink: null,
-            }}
-          />
+        <div className="flex justify-center md:justify-start pr-2 md:pr-0 w-full md:w-1/3">
+          <button
+            type="submit"
+            className="border text-neutral-400 bg-transparent px-3 py-2 cursor-pointer"
+          >
+            Join
+          </button>
         </div>
       </div>
     </form>

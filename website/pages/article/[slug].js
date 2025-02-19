@@ -248,18 +248,19 @@ export default function Post({ siteConfig, post, preview }) {
 
           <div className="container py-12 text-neutral-300 text-sm">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
-              <div className="md:col-span-3 max-w-xl">
-                <div className="mb-4 pb-2">
+              <div className="md:col-span-3">
+                <div className="mb-4 pb-2 max-w-xl">
                   <h1 className="text-neutral-300 text-2xl">{post.title}</h1>
                 </div>
 
-                <div className="text-base px-4 md:px-0 text-neutral-400">
+                <div className="text-neutral-400 max-w-2xl">
                   <BlockContent
                     blocks={post.introduction}
                     serializers={SANITY_BLOCK_SERIALIZERS}
                   />
                 </div>
               </div>
+
               <div className="md:col-span-1 grid gap-y-2">
                 <p className="flex justify-between border-b border-neutral-700 pb-1">
                   <strong>authors.list</strong>
