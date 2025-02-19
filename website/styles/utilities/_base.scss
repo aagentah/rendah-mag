@@ -1,120 +1,120 @@
-html {
-  box-sizing: border-box;
-  overflow-x: hidden;
-  max-width: 100vw;
-}
+// html {
+//   box-sizing: border-box;
+//   overflow-x: hidden;
+//   max-width: 100vw;
+// }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
+// *,
+// *::before,
+// *::after {
+//   box-sizing: inherit;
+// }
 
-body {
-  font-family: $typography-body;
-  font-size: $typography-base-size;
-  font-weight: $typography-base-weight;
-  color: $body-color;
-  background-color: $body-background-color;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  max-width: 100vw;
-}
+// body {
+//   font-family: $typography-body;
+//   font-size: $typography-base-size;
+//   font-weight: $typography-base-weight;
+//   color: $body-color;
+//   background-color: $body-background-color;
+//   -webkit-font-smoothing: antialiased;
+//   overflow-x: hidden;
+//   max-width: 100vw;
+// }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   font-weight: 400;
+//   margin: 0;
+//   padding: 0;
+// }
 
-p {
-  margin: 0;
-}
+// p {
+//   margin: 0;
+// }
 
-a {
-  text-decoration: none;
-  color: var(--black);
-}
+// a {
+//   text-decoration: none;
+//   color: var(--black);
+// }
 
-ul {
-  margin: 0;
-  padding: 0;
-}
+// ul {
+//   margin: 0;
+//   padding: 0;
+// }
 
-img,
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
+// img,
+// svg {
+//   display: block;
+//   max-width: 100%;
+//   height: auto;
+// }
 
-button,
-input,
-select,
-textarea {
-  font-family: $typography-input;
-}
+// button,
+// input,
+// select,
+// textarea {
+//   font-family: $typography-input;
+// }
 
-button {
-  box-shadow: 0;
-  outline: 0;
-  border: 0;
-  background: transparent;
-}
+// button {
+//   box-shadow: 0;
+//   outline: 0;
+//   border: 0;
+//   background: transparent;
+// }
 
-iframe {
-  border: 0;
-}
+// iframe {
+//   border: 0;
+// }
 
-select,
-textarea,
-input[type='text'],
-input[type='password'],
-input[type='datetime'],
-input[type='datetime-local'],
-input[type='date'],
-input[type='month'],
-input[type='time'],
-input[type='week'],
-input[type='number'],
-input[type='email'],
-input[type='url'],
-input[type='search'],
-input[type='tel'],
-input[type='color'] {
-  font-size: 16px;
-}
+// select,
+// textarea,
+// input[type='text'],
+// input[type='password'],
+// input[type='datetime'],
+// input[type='datetime-local'],
+// input[type='date'],
+// input[type='month'],
+// input[type='time'],
+// input[type='week'],
+// input[type='number'],
+// input[type='email'],
+// input[type='url'],
+// input[type='search'],
+// input[type='tel'],
+// input[type='color'] {
+//   font-size: 16px;
+// }
 
-pre {
-  overflow: auto;
-  border: 1px solid var(--black);
-  @extend .ph3;
-  @extend .pv4;
-  @extend .br3;
-  @extend .mb4;
+// pre {
+//   overflow: auto;
+//   border: 1px solid var(--black);
+//   @extend .ph3;
+//   @extend .pv4;
+//   @extend .br3;
+//   @extend .mb4;
 
-  * {
-    font-size: 14px !important;
-    // background-color: var(--light-grey);
-  }
-}
+//   * {
+//     font-size: 14px !important;
+//     // background-color: var(--light-grey);
+//   }
+// }
 
-p > code {
-  border: 1px solid var(--black);
-  // background-color: var(--light-grey);
-  @extend .ph1;
-  @extend .br3;
-}
+// p > code {
+//   border: 1px solid var(--black);
+//   // background-color: var(--light-grey);
+//   @extend .ph1;
+//   @extend .br3;
+// }
 
-cite {
-  font-style: normal;
-}
+// cite {
+//   font-style: normal;
+// }
 
-blockquote {
-  margin: 0;
-}
+// blockquote {
+//   margin: 0;
+// }

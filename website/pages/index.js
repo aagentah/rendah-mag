@@ -1,58 +1,50 @@
-import { Parallax } from 'react-scroll-parallax';
+// import { Parallax } from 'react-scroll-parallax';
 import { useEffect, useState } from 'react';
 import LazyLoad from 'react-lazyload';
 import dynamic from 'next/dynamic';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import Observer from '@researchgate/react-intersection-observer';
-import LatestPrint from '~/components/latest-print';
+import Link from 'next/link';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
 import Copy from '~/components/elements/copy';
 
-import 'intersection-observer';
-
 import Layout from '~/components/layout';
 import Hero from '~/components/hero/home';
 import SubscriptionBanner from '~/components/subscription-banner';
+import LatestPrint from '~/components/latest-print';
+import Container from '~/components/layout/container';
 
-import { getHomePage } from '~/lib/sanity/requests';
-
+import { getHomePage, getFeatured } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 
-const CardCreations = dynamic(() => import('~/components/card/creations'));
-const RenderCards = dynamic(() => import('~/components/index/renderCards'));
 const Modal = dynamic(() => import('~/components/modal'));
 const SubscribeForm = dynamic(() => import('~/components/subscribe-form'));
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
+const CardBlog = dynamic(() => import('~/components/card/blog'));
 
 export default function Home() {
   const app = useApp();
   const router = useRouter();
   const [user] = useUser();
-  // const [featuredPosts, setFeaturedPosts] = useState(null);
   const [homePage, setHomePage] = useState(null);
-  const [creations, setCreations] = useState(null);
+  const [music, setMusic] = useState(null);
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
-  const [creationsLength, setCreationsLength] = useState(4);
-  const [featuredPostsLength, setFeaturedPostsLength] = useState(3);
+  const musicLength = 12;
 
   useEffect(() => {
     const action = async () => {
-      // const featuredPostsRes = await getFeaturedPosts();
-      const homePage = await getHomePage();
-      // const creationsRes = await getAllCreationsTotal();
-
-      // setFeaturedPosts(featuredPostsRes);
-      setHomePage(homePage);
-      // setCreations(creationsRes);
+      const homePageData = await getHomePage();
+      setHomePage(homePageData);
+      const musicRes = await getFeatured([1, 12]);
+      setMusic(musicRes);
     };
-
     action();
   }, []);
 
@@ -71,185 +63,134 @@ export default function Home() {
 
   const observer = { onChange: handleIntersect, rootMargin: '0% 0% -30% 0%' };
 
-  const buttonIcon = <IconArrowRight color="black" size={16} />;
-  const buttonIconWhite = <IconArrowRight color="white" size={16} />;
-  const buttonIconRed = <IconArrowRight color="#e9393f" size={16} />;
+  // Use Parallax if not on medium device; otherwise just a div.
+  // const ParallaxDiv = app.deviceSize === 'md' ? 'div' : Parallax;
 
-  const ParallaxDiv = app.deviceSize === 'md' ? 'div' : Parallax;
+  const categories = [
+    { title: 'Music', slug: 'music' },
+    { title: 'Art', slug: 'art' },
+    { title: 'Technology', slug: 'technology' },
+  ];
 
   return (
-    <>
-      <Layout
-        navOffset=""
-        navOnWhite={false}
-        hasNav
-        hasFooter
-        meta={{
-          siteConfig: null,
-          title: 'Home',
-          description: null,
-          image: null,
-        }}
-        preview={null}
-      >
-        <div className="flex  flex-wrap  relative">
-          <div className="col-24  hero--home__col-18">
-            <Hero
-              imageObject={homePage?.imageObject}
-              title={homePage?.heroTitle || 'Loading...'}
-              description={homePage?.heroDescription || 'Loading...'}
-              heroButtonText={homePage?.heroLabel || 'Loading...'}
-              link={null}
-              marginTop={0}
-              marginBottom={0}
-              modifier="home"
-              skeleton={!homePage}
-            />
-          </div>
+    <Layout
+      navOffset=""
+      navOnWhite={false}
+      hasNav
+      hasFooter
+      meta={{
+        siteConfig: null,
+        title: 'Home',
+        description: null,
+        image: null,
+      }}
+      preview={null}
+    >
+      {/* Hero Section */}
+      {/* <div className="container grid grid-cols-2">
+        <div className="">
+          <Hero
+            imageObject={homePage?.imageObject}
+            title={homePage?.heroTitle || 'Loading...'}
+            description={homePage?.heroDescription || 'Loading...'}
+            heroButtonText={homePage?.heroLabel || 'Loading...'}
+            link={null}
+            marginTop={0}
+            marginBottom={0}
+            modifier="home"
+            skeleton={!homePage}
+          />
+        </div>
+      </div> */}
+
+      {/* Subscription Banner */}
+      <SubscriptionBanner />
+
+      {/* Optional Parallax Graphic */}
+      {/* <div className="absolute top-0 left-0 hidden md:block -ml-6">
+        <ParallaxDiv translateY={[750, 880]}>
+          <img
+            className="w-20 opacity-50"
+            src="/images/vector-red.png"
+            alt="Vector"
+          />
+        </ParallaxDiv>
+      </div> */}
+
+      <div className="container">
+        <hr className="my-12 border border-neutral-700" />
+      </div>
+
+      {/* Latest Print Section */}
+      <LazyLoad once offset={800} height={800}>
+        <LatestPrint showDominionButton={true} />
+      </LazyLoad>
+
+      <div className="container">
+        <hr className="my-12 border border-neutral-700" />
+      </div>
+
+      {/* Recent Features Section */}
+      <div className="container py-6">
+        <h3 className="text-neutral-300 mb-12">Recent features</h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
+          {[...Array(musicLength)].map((_, i) => (
+            <div key={i}>
+              <CardBlog i={i} post={music && music[i]} columnCount={4} />
+            </div>
+          ))}
         </div>
 
-        {
-          //    <ParallaxDiv speed={-3}>
-          //    <div className="lines" />
-          //  </ParallaxDiv>
-        }
-        <SubscriptionBanner />
-
-        {
-          //    <div className="pb5">
-          //    <Container>
-          //      <div className="bb  bc-rendah-red  pa2  ml3  dib  mb4">
-          //        <Heading
-          //          /* Options */
-          //          htmlEntity="h2"
-          //          text="Recent Featured"
-          //          color="rendah-red"
-          //          size="medium"
-          //          truncate={null}
-          //          /* Children */
-          //          withLinkProps={null}
-          //        />
-          //      </div>
-          //      <div className="flex  flex-wrap  justify-center  pt4  pt2-md">
-          //        {[...Array(featuredPostsLength)].map((iteration, i) => (
-          //          <div key={iteration} className="col-24  col-8-md">
-          //            <div className="ph2  pb3">
-          //              <CardBlog
-          //                i={i}
-          //                post={featuredPosts && featuredPosts[i]}
-          //                columnCount={2}
-          //              />
-          //            </div>
-          //          </div>
-          //        ))}
-          //      </div>
-          //    </Container>
-          //  </div>
-        }
-
-        <div className="absolute  top  left  nl6  dn  db-md">
-          <ParallaxDiv translateY={[750, 880]}>
-            <img className="w5  o-50" src="/images/vector-red.png" />
-          </ParallaxDiv>
+        <div className="flex justify-start">
+          <p className="font-bold text-sm text-neutral-300">Explore more</p>
         </div>
 
-        <LazyLoad once offset={800} height={800}>
-          <RenderCards />
-        </LazyLoad>
+        <div className="flex space-x-3 mt-3 text-sm">
+          {categories.map((category) => (
+            <div className="text-neutral-400" key={category.slug}>
+              <Link href={`/division/${category.slug}`}>
+                <a>/{category.slug}</a>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
 
-        <LazyLoad once offset={800} height={800}>
-          <LatestPrint showDominionButton={true} />
-        </LazyLoad>
+      {/* Intersection Observer to trigger subscribe modal */}
+      <Observer {...observer}>
+        <div />
+      </Observer>
 
-        <Observer {...observer}>
-          <div className="" />
-        </Observer>
-
-        {/* <div className="creations  bg-black  relative">
-<Container>
-  <section className="pv5  creations  bg-black">
-    <div className="flex  flex-wrap  pb4  ph3">
-      <div className="col-12-md  flex  justify-start">
-        <div className="bg-white  pa2  dib">
+      {/* Subscribe Modal */}
+      <Modal size="small" active={modalActive}>
+        <div className="mb-2 pb-2">
           <Heading
-            htmlEntity="h2"
-            text="Creations"
+            htmlEntity="h3"
+            text="Join our Newsletter?"
             color="black"
-            size="small"
-            truncate={null}
+            size="medium"
+            truncate={0}
+            onClick={null}
             withLinkProps={null}
           />
         </div>
-      </div>
-      <div className="col-12-md  flex  justify-end">
-        <div className="pa2  dn  dib-md">
-          <Heading
-            htmlEntity="h2"
-            text="(Exclusive to the Dominion Subscription)"
-            color="white"
-            size="small"
+        <div className="mb-2 pb-2">
+          <Copy
+            text="We usually only send a few emails each month, and keep the content relevant as ever."
+            color="black"
+            size="medium"
             truncate={null}
-            withLinkProps={null}
           />
         </div>
-        <div className="pa2  dib  dn-md">
-          <Heading
-            htmlEntity="h2"
-            text="Dominion Exclusives"
-            color="white"
-            size="small"
-            truncate={null}
-            withLinkProps={null}
-          />
+        <div className="mb-2 pb-3">
+          <SubscribeForm type="modal" onSuccess={() => setModalActive(false)} />
         </div>
-      </div>
-    </div>
-
-    <div className="flex  flex-wrap">
-      {[...Array(creationsLength)].map((iteration, i) => (
-        <div key={iteration} className="col-24  col-6-md">
-          <div className="ph3 pv2">
-            <CardCreations
-              i={i}
-              post={creations && creations[i]}
-              columnCount={2}
-            />
-          </div>
-        </div>
-      ))}
-    </div>
-
-    {user ? (
-      <div className="flex  justify-end  pr2">
-        <Button
-          type="secondary"
-          size="medium"
-          text="All Creations"
-          color="black"
-          fluid={false}
-          icon={buttonIconWhite}
-          iconFloat={null}
-          inverted={false}
-          loading={false}
-          disabled={false}
-          skeleton={false}
-          onClick={null}
-          withLinkProps={{
-            type: 'next',
-            href: '/profile?tab=creations',
-            target: null,
-            routerLink: Link,
-            routerLinkProps: null,
-          }}
-        />
-      </div>
-    ) : (
-      <div className="flex  justify-end  pr2">
-        <div className="underline">
+        <div className="flex justify-center items-center">
           <Button
             type="secondary"
             size="medium"
-            text="Log in"
+            text="No thanks"
             color="black"
             fluid={false}
             icon={null}
@@ -258,106 +199,11 @@ export default function Home() {
             loading={false}
             disabled={false}
             skeleton={false}
-            onClick={null}
-            withLinkProps={{
-              type: 'next',
-              href: '/login',
-              target: null,
-              routerLink: Link,
-              routerLinkProps: null,
-            }}
+            onClick={() => setModalActive(false)}
+            withLinkProps={null}
           />
         </div>
-
-        <span className="pl1  pr2  white">or</span>
-
-        <div className="underline">
-          <Button
-            type="secondary"
-            size="medium"
-            text="Sign up"
-            color="black"
-            fluid={false}
-            icon={buttonIconWhite}
-            iconFloat={null}
-            inverted={false}
-            loading={false}
-            disabled={false}
-            skeleton={false}
-            onClick={null}
-            withLinkProps={{
-              type: 'next',
-              href: '/dominion',
-              target: null,
-              routerLink: Link,
-              routerLinkProps: null,
-            }}
-          />
-        </div>
-      </div>
-    )}
-  </section>
-</Container>
-</div> */}
-
-        <Modal
-          /* Options */
-          size="small"
-          active={modalActive}
-        >
-          <div className="pb2  mb2">
-            <Heading
-              /* Options */
-              htmlEntity="h3"
-              text="Join our Newsletter?"
-              color="black"
-              size="medium"
-              truncate={0}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-          <div className="pb2">
-            <Copy
-              /* Options */
-              text="We usually only send a few emails each month, and keep the content relevant as ever."
-              color="black"
-              size="medium"
-              truncate={null}
-            />
-          </div>
-          <div className="pb3  mb2">
-            <SubscribeForm
-              type="modal"
-              onSuccess={() => setModalActive(false)}
-            />
-          </div>
-          <div className="flex  flex-wrap  pb2">
-            <div className="col-24  flex  justify-center  align-center">
-              <Button
-                /* Options */
-                type="secondary"
-                size="medium"
-                text="No thanks"
-                color="black"
-                fluid={false}
-                icon={null}
-                iconFloat={null}
-                inverted={false}
-                loading={false}
-                disabled={false}
-                skeleton={false}
-                onClick={() => {
-                  setModalActive(false);
-                }}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-          </div>
-        </Modal>
-      </Layout>
-    </>
+      </Modal>
+    </Layout>
   );
 }

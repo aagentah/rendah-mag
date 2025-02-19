@@ -1,51 +1,31 @@
-import dynamic from 'next/dynamic';
-
-const IconInstagram = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconInstagram)
-);
-
-const IconFacebook = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconFacebook)
-);
-
-const IconTwitter = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconTwitter)
-);
-
-const IconSoundcloud = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconSoundcloud)
-);
-
-const IconYoutube = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconYoutube)
-);
-
-const IconDiscord = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconDiscord)
-);
-
-const IconSpotify = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconSpotify)
-);
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faInstagram,
+  faFacebook,
+  faTwitter,
+  faSoundcloud,
+  faYoutube,
+  faDiscord,
+  faSpotify,
+} from '@fortawesome/free-brands-svg-icons';
 
 export default function SocialLinks({ article }) {
   if (article.socialHandles) {
-    let links = [];
-    let tags = [];
+    const links = [];
 
     if (article.socialHandles.soundcloud) {
       article.socialHandles.soundcloud.split(/\s*,\s*/).forEach((e, i) => {
         links.push(
           <a
             key={`soundcloud-${e}-${i}`}
-            className="justify-center  pr3  pr4-md  df  align-center  lh-copy  pv2  link  f6  black  t-secondary"
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
             title="soundcloud"
             href={`https://soundcloud.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
-            <IconSoundcloud color="black" size={16} />
-            <span className="pl2">{e}</span>
+            <FontAwesomeIcon icon={faSoundcloud} style={{ fontSize: '16px' }} />
+            <span className="pl-2">{e}</span>
           </a>
         );
       });
@@ -56,14 +36,14 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`facebook-${e}-${i}`}
-            className="justify-center  pr3  pr4-md  df  align-center  lh-copy  pv2  link  f6  black  t-secondary"
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
             title="facebook"
             href={`https://facebook.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
-            <IconFacebook color="black" size={16} />
-            <span className="pl2">{e}</span>
+            <FontAwesomeIcon icon={faFacebook} style={{ fontSize: '16px' }} />
+            <span className="pl-2">{e}</span>
           </a>
         );
       });
@@ -74,14 +54,14 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`twitter-${e}-${i}`}
-            className="justify-center  pr3  pr4-md  df  align-center  lh-copy  pv2  link  f6  black  t-secondary"
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
             title="twitter"
             href={`https://twitter.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
-            <IconTwitter color="black" size={16} />
-            <span className="pl2">{e}</span>
+            <FontAwesomeIcon icon={faTwitter} style={{ fontSize: '16px' }} />
+            <span className="pl-2">{e}</span>
           </a>
         );
       });
@@ -92,22 +72,76 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`instagram-${e}-${i}`}
-            className="justify-center  pr3  pr4-md  df  align-center  lh-copy  pv2  link  f6  black  t-secondary"
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
             title="instagram"
             href={`https://instagram.com/${e}`}
             rel="noopener noreferrer"
             target="_blank"
           >
-            <IconInstagram color="black" size={16} />
-            <span className="pl2">{e}</span>
+            <FontAwesomeIcon icon={faInstagram} style={{ fontSize: '16px' }} />
+            <span className="pl-2">{e}</span>
+          </a>
+        );
+      });
+    }
+
+    if (article.socialHandles.youtube) {
+      article.socialHandles.youtube.split(/\s*,\s*/).forEach((e, i) => {
+        links.push(
+          <a
+            key={`youtube-${e}-${i}`}
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
+            title="youtube"
+            href={`https://youtube.com/${e}`}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <FontAwesomeIcon icon={faYoutube} style={{ fontSize: '16px' }} />
+            <span className="pl-2">{e}</span>
+          </a>
+        );
+      });
+    }
+
+    if (article.socialHandles.discord) {
+      article.socialHandles.discord.split(/\s*,\s*/).forEach((e, i) => {
+        links.push(
+          <a
+            key={`discord-${e}-${i}`}
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
+            title="discord"
+            href={`https://discord.com/users/${e}`}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <FontAwesomeIcon icon={faDiscord} style={{ fontSize: '16px' }} />
+            <span className="pl-2">{e}</span>
+          </a>
+        );
+      });
+    }
+
+    if (article.socialHandles.spotify) {
+      article.socialHandles.spotify.split(/\s*,\s*/).forEach((e, i) => {
+        links.push(
+          <a
+            key={`spotify-${e}-${i}`}
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
+            title="spotify"
+            href={`https://open.spotify.com/user/${e}`}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <FontAwesomeIcon icon={faSpotify} style={{ fontSize: '16px' }} />
+            <span className="pl-2">{e}</span>
           </a>
         );
       });
     }
 
     return (
-      <div className="article__social-links  flex  flex-wrap  justify-center  measure-wide  mla  mra">
-        {links?.length ? links : ''}
+      <div className="container flex flex-wrap justify-start">
+        {links.length ? links : null}
       </div>
     );
   }

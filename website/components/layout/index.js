@@ -5,7 +5,7 @@ import Alert from './alert';
 import Footer from './footer';
 import Meta from './meta';
 import Header from './header';
-import CookieBanner from './cookie-banner';
+// import CookieBanner from './cookie-banner';
 
 import deviceSize from '~/lib/device-size';
 import { useDarkMode } from '~/context-provider/dark-mode-context';
@@ -49,17 +49,17 @@ export default function Layout({
   const hideFooter = typeof hasFooter !== 'undefined' && !hasFooter;
 
   return (
-    <>
+    <div className="bg-neutral-800">
       <Meta {...meta} />
       <ToastContainer />
       {preview && <Alert preview={preview} />}
       {!preview && !hideNav && <Header navOnWhite={navOnWhite} meta={meta} />}
-      <main className={`page page--${title} ${navOffsetType}`}>
+      <main className={`page page--${title}`}>
         {children}
         <div id="portal-root" />
       </main>
-      {!preview && title === 'login' && <CookieBanner />}
+      {/* {!preview && title === 'login' && <CookieBanner />} */}
       {!hideFooter && <Footer />}
-    </>
+    </div>
   );
 }

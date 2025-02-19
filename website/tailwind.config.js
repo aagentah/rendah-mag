@@ -15,6 +15,19 @@ module.exports = {
         'neutral-800': '#212121',
         // 'neutral-750': '#292929',
       },
+      fontSize: {
+        xxs: ['0.625rem', { lineHeight: '1rem' }], // Adjust size and line-height as desired
+      },
+      container: {
+        center: false, // Ensures Tailwind doesn't auto-center it
+        screens: {
+          sm: '100%',
+          md: '100%',
+          lg: '100%',
+          xl: '100%',
+          '2xl': '100%',
+        },
+      },
     },
   },
   plugins: [
@@ -22,8 +35,8 @@ module.exports = {
       addComponents({
         '.container': {
           width: '100%',
-          paddingLeft: '15px',
-          paddingRight: '15px',
+          paddingLeft: '3rem',
+          paddingRight: '3rem',
           marginLeft: 'auto',
           marginRight: 'auto',
         },

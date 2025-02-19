@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import dynamic from 'next/dynamic';
-import Heading from '~/components/elements/heading';
-import Copy from '~/components/elements/copy';
 import Button from '~/components/elements/button';
 import Container from '../container';
 import { useUser } from '~/lib/hooks';
@@ -34,48 +32,81 @@ export default function Footer() {
 
   return (
     <LazyLoad once offset={300} height={300}>
-      <footer className="footer  pv5">
-        <Container>
-          <div className="flex  flex-wrap">
-            <div className="col-24  col-14-md">
-              {!user && (
-                <>
-                  <div className="pb2  mb2">
-                    <Heading
-                      /* Options */
-                      htmlEntity="h3"
-                      text="Join our Newsletter?"
-                      color="white"
-                      size="small"
-                      truncate={0}
-                      onClick={null}
-                      /* Children */
-                      withLinkProps={null}
-                    />
-                  </div>
-                  <div className="pb2">
-                    <Copy
-                      /* Options */
-                      text="We usually only send a few emails each month, and keep the content relevant as ever."
-                      color="white"
-                      size="medium"
-                      truncate={null}
-                    />
-                  </div>
+      <footer className="bg-neutral-900 container py-12 mt-12">
+        <div className="flex flex-wrap">
+          <div className="w-full md:w-7/12">
+            {!user && (
+              <>
+                <div className="pb-2 mb-2">
+                  <h3 className="text-neutral-400 text-lg font-bold">
+                    Join our Newsletter?
+                  </h3>
+                </div>
+                <div className="pb-2">
+                  <p className="text-neutral-400 text-base">
+                    We usually only send a few emails each month, and keep the
+                    content relevant as ever.
+                  </p>
+                </div>
+                <div className="pb-5 text-center md:text-left">
+                  <SubscribeForm type="footer" />
+                </div>
+              </>
+            )}
 
-                  <div className="pb5  tac  tal-md">
-                    <SubscribeForm type="footer" />
-                  </div>
-                </>
-              )}
-
-              <ul className="pb3  pb0-md">
-                <li className="db  pb3  tac  tal-md">
+            <ul>
+              <li className="block pb-3 text-center md:text-left">
+                <Button
+                  type="secondary"
+                  size="small"
+                  text="Privacy Policy"
+                  color="white"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  withLinkProps={{
+                    type: 'next',
+                    href: '/privacy-policy',
+                    target: null,
+                    routerLink: Link,
+                    routerLinkProps: { scroll: false },
+                  }}
+                />
+              </li>
+              <li className="block pb-3 text-center md:text-left">
+                <Button
+                  type="secondary"
+                  size="small"
+                  text="Cookie Policy"
+                  color="white"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  withLinkProps={{
+                    type: 'next',
+                    href: '/cookie-policy',
+                    target: null,
+                    routerLink: Link,
+                    routerLinkProps: { scroll: false },
+                  }}
+                />
+              </li>
+              {/*
+                <li className="block pb-3 text-center md:text-left">
                   <Button
-                    /* Options */
                     type="secondary"
                     size="small"
-                    text="Privacy Policy"
+                    text="Return Policy"
                     color="white"
                     fluid={false}
                     icon={null}
@@ -85,229 +116,150 @@ export default function Footer() {
                     disabled={false}
                     skeleton={false}
                     onClick={null}
-                    /* Children */
                     withLinkProps={{
                       type: 'next',
-                      href: '/privacy-policy',
+                      href: '/return-policy',
                       target: null,
                       routerLink: Link,
-                      routerLinkProps: {
-                        scroll: false,
-                      },
+                      routerLinkProps: { scroll: false },
                     }}
                   />
                 </li>
-                <li className="db  pb3  tac  tal-md">
-                  <Button
-                    /* Options */
-                    type="secondary"
-                    size="small"
-                    text="Cookie Policy"
-                    color="white"
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'next',
-                      href: '/cookie-policy',
-                      target: null,
-                      routerLink: Link,
-                      routerLinkProps: {
-                        scroll: false,
-                      },
-                    }}
-                  />
-                </li>
-                {
-                  // <li className="db  pb3  tac  tal-md">
-                  //   <Button
-                  //     /* Options */
-                  //     type="secondary"
-                  //     size="small"
-                  //     text="Return Policy"
-                  //     color="white"
-                  //     fluid={false}
-                  //     icon={null}
-                  //     iconFloat={null}
-                  //     inverted
-                  //     loading={false}
-                  //     disabled={false}
-                  //     skeleton={false}
-                  //     onClick={null}
-                  //     /* Children */
-                  //     withLinkProps={{
-                  //       type: 'next',
-                  //       href: '/return-policy',
-                  //       target: null,
-                  //       routerLink: Link,
-                  //       routerLinkProps: {
-                  //         scroll: false,
-                  //       },
-                  //     }}
-                  //   />
-                  // </li>
-                }
-                <li className="db  pb3  tac  tal-md">
-                  <Button
-                    /* Options */
-                    type="secondary"
-                    size="small"
-                    text="Terms & Conditions"
-                    color="white"
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'next',
-                      href: '/terms-conditions',
-                      target: null,
-                      routerLink: Link,
-                      routerLinkProps: {
-                        scroll: false,
-                      },
-                    }}
-                  />
-                </li>
-                <li className="db  pb3  tac  tal-md">
-                  <Button
-                    /* Options */
-                    type="secondary"
-                    size="small"
-                    text="Contact"
-                    color="white"
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'external',
-                      href: 'https://forms.gle/xpPtVhUiuzZzehdy8',
-                      target: '_blank',
-                      routerLink: null,
-                      routerLinkProps: null,
-                    }}
-                  />
-                </li>
-                <li className="db  pb3  tac  tal-md">
-                  <Button
-                    /* Options */
-                    type="secondary"
-                    size="small"
-                    text="Join our mailout"
-                    color="white"
-                    fluid={false}
-                    icon={null}
-                    iconFloat={null}
-                    inverted
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={null}
-                    /* Children */
-                    withLinkProps={{
-                      type: 'next',
-                      href: '/mailout',
-                      target: null,
-                      routerLink: Link,
-                      routerLinkProps: {
-                        scroll: false,
-                      },
-                    }}
-                  />
-                </li>
-
-                <li className="db  pb3  tac  tal-md">
-                  <Heading
-                    /* Options */
-                    htmlEntity="h3"
-                    text={`Rendah Mag ${new Date().getFullYear()}`}
-                    color="white"
-                    size="small"
-                    truncate={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </li>
-              </ul>
+                */}
+              <li className="block pb-3 text-center md:text-left">
+                <Button
+                  type="secondary"
+                  size="small"
+                  text="Terms & Conditions"
+                  color="white"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  withLinkProps={{
+                    type: 'next',
+                    href: '/terms-conditions',
+                    target: null,
+                    routerLink: Link,
+                    routerLinkProps: { scroll: false },
+                  }}
+                />
+              </li>
+              <li className="block pb-3 text-center md:text-left">
+                <Button
+                  type="secondary"
+                  size="small"
+                  text="Contact"
+                  color="white"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  withLinkProps={{
+                    type: 'external',
+                    href: 'https://forms.gle/xpPtVhUiuzZzehdy8',
+                    target: '_blank',
+                    routerLink: null,
+                    routerLinkProps: null,
+                  }}
+                />
+              </li>
+              <li className="block pb-3 text-center md:text-left">
+                <Button
+                  type="secondary"
+                  size="small"
+                  text="Join our mailout"
+                  color="white"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  withLinkProps={{
+                    type: 'next',
+                    href: '/mailout',
+                    target: null,
+                    routerLink: Link,
+                    routerLinkProps: { scroll: false },
+                  }}
+                />
+              </li>
+              <li className="block pb-3 text-center md:text-left">
+                <h3 className="text-white text-lg font-bold">
+                  {`Rendah Mag ${new Date().getFullYear()}`}
+                </h3>
+              </li>
+            </ul>
+          </div>
+          <div className="w-full md:w-5/12 flex flex-wrap justify-center md:justify-end md:items-end pb-3">
+            <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
+              <a
+                aria-label="Instagram"
+                href="https://www.instagram.com/rendahmag/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white"
+              >
+                <IconInstagram color="white" size={30} />
+              </a>
             </div>
-            <div className="col-24  col-10-md  flex  flex-wrap  justify-center  justify-end-md  align-end-md  pb3">
-              <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
-                <a
-                  aria-label="Instagram"
-                  href="https://www.instagram.com/rendahmag/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="white"
-                >
-                  <IconInstagram color="white" size={30} />
-                </a>
-              </div>
-              <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
-                <a
-                  aria-label="Facebook"
-                  href="https://www.facebook.com/rendahmag/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="white"
-                >
-                  <IconFacebook color="white" size={30} />
-                </a>
-              </div>
-              <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
-                <a
-                  aria-label="Twitter"
-                  href="https://twitter.com/RendahMag"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="white"
-                >
-                  <IconTwitter color="white" size={30} />
-                </a>
-              </div>
-
-              <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
-                <a
-                  aria-label="Soundcloud"
-                  href="https://soundcloud.com/rendahmag"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="white"
-                >
-                  <IconSoundcloud color="white" size={30} />
-                </a>
-              </div>
-
-              <div className="col-8  col-3-md  flex  justify-center  justify-end-md  pt4  pt0-md">
-                <a
-                  aria-label="Discord"
-                  href="https://discord.com/invite/ev2Q22C"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="white"
-                >
-                  <IconDiscord color="white" size={30} />
-                </a>
-              </div>
+            <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
+              <a
+                aria-label="Facebook"
+                href="https://www.facebook.com/rendahmag/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white"
+              >
+                <IconFacebook color="white" size={30} />
+              </a>
+            </div>
+            <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
+              <a
+                aria-label="Twitter"
+                href="https://twitter.com/RendahMag"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white"
+              >
+                <IconTwitter color="white" size={30} />
+              </a>
+            </div>
+            <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
+              <a
+                aria-label="Soundcloud"
+                href="https://soundcloud.com/rendahmag"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white"
+              >
+                <IconSoundcloud color="white" size={30} />
+              </a>
+            </div>
+            <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
+              <a
+                aria-label="Discord"
+                href="https://discord.com/invite/ev2Q22C"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white"
+              >
+                <IconDiscord color="white" size={30} />
+              </a>
             </div>
           </div>
-        </Container>
+        </div>
       </footer>
     </LazyLoad>
   );

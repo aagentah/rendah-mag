@@ -449,6 +449,8 @@ export async function getFeatured(range) {
       publishedAt,
       'slug': slug.current,
       'coverImage': image.asset->url,
+      'categories': categories[]->title,
+      'divisions': divisions[]->title,
       'imageObject': {
         'url': image.asset->url,
         'caption': image.caption,

@@ -59,7 +59,6 @@ export default function Post({ siteConfig, post, preview }) {
   useEffect(() => {
     const action = async () => {
       const morePostsRes = await getMorePosts(post?.slug);
-
       setMorePosts(morePostsRes);
     };
 
@@ -78,7 +77,7 @@ export default function Post({ siteConfig, post, preview }) {
   const renderCaption = () => {
     if (isArray(post?.image?.caption)) {
       return (
-        <figcaption className="absolute  bottom  right  caption  caption--hero  bg-black  ph2  ph3-md  pv2  mr3  nb2">
+        <figcaption className="absolute bottom-0 right-0 bg-black px-2 md:px-3 py-2 mr-3 mb-2">
           <BlockContent
             blocks={post.image.caption}
             serializers={SANITY_BLOCK_SERIALIZERS}
@@ -121,8 +120,8 @@ export default function Post({ siteConfig, post, preview }) {
 
     return (
       <Layout
-        navOffset={'top'}
-        navOnWhite={true}
+        navOffset="top"
+        navOnWhite={false}
         hasNav
         hasFooter
         meta={{
@@ -133,43 +132,35 @@ export default function Post({ siteConfig, post, preview }) {
         }}
         preview={preview}
       >
-        <Modal
-          /* Options */
-          size="small"
-          active={modalActive}
-        >
-          <div className="pb2  mb2">
+        <Modal size="small" active={modalActive}>
+          <div className="pb-2 mb-2">
             <Heading
-              /* Options */
               htmlEntity="p"
               text="You made it to the bottom"
               color="black"
               size="medium"
               truncate={0}
               onClick={null}
-              /* Children */
               withLinkProps={null}
             />
           </div>
-          <div className="pb2">
+          <div className="pb-2">
             <Copy
-              /* Options */
               text="Can we add you to our Newsletter? We usually only send a few emails each month, and keep the content relevant as ever."
               color="black"
               size="medium"
               truncate={null}
             />
           </div>
-          <div className="pb3  mb2">
+          <div className="pb-3 mb-2">
             <SubscribeForm
               type="modal"
               onSuccess={() => setModalActive(false)}
             />
           </div>
-          <div className="flex  flex-wrap  pb2">
-            <div className="col-24  flex  justify-center  align-center">
+          <div className="flex flex-wrap pb-2">
+            <div className="w-full flex justify-center items-center">
               <Button
-                /* Options */
                 type="secondary"
                 size="medium"
                 text="No thanks"
@@ -184,30 +175,30 @@ export default function Post({ siteConfig, post, preview }) {
                 onClick={() => {
                   setModalActive(false);
                 }}
-                /* Children */
                 withLinkProps={null}
               />
             </div>
           </div>
         </Modal>
 
-        <article className="pt4  pb4">
+        <article className="pt-4 pb-4">
           {post.tag && (
             <>
-              <div className="flex  flex-wrap  mb4  pb3  ph4  ph0-md">
-                <div className="col-6" />
-                <div className="col-24 col-12-md br4 shadow2 pa3 relative pt4">
-                  <div className="t-primary bg-white ba bc-black black absolute dib pa2 top left ml3 nt3">
+              <div className="flex flex-wrap mb-4 pb-3 px-4 md:px-0">
+                <div className="w-1/4" />
+                <div className="w-full md:w-1/2 rounded-lg shadow-md p-3 relative pt-4">
+                  <div className="text-blue-500 bg-white border border-black text-black absolute p-2 top-0 left-0 ml-3 -mt-3">
                     This article has a linked Gallery page
                   </div>
 
-                  <div className="flex  flex-wrap  pv2">
+                  <div className="flex flex-wrap py-2">
                     {post?.tag?.galleryImages.slice(0, 10).map((image, i) => {
-                      const opacityClass = `o-${100 - i * 10}`;
+                      // Tailwind opacity classes: opacity-100, opacity-90, etc.
+                      const opacityValue = 100 - i * 10;
                       return (
                         <div
-                          className={`col-2  ph1  br3 ${opacityClass}`}
                           key={i}
+                          className={`w-1/12 px-1 rounded-md opacity-${opacityValue}`}
                         >
                           <Image
                             src={imageBuilder
@@ -229,7 +220,7 @@ export default function Post({ siteConfig, post, preview }) {
                             figcaption={null}
                             height={null}
                             width={null}
-                            customClass="br3"
+                            customClass="rounded-md"
                             skeleton={false}
                             onClick={null}
                           />
@@ -238,13 +229,13 @@ export default function Post({ siteConfig, post, preview }) {
                     })}
                   </div>
 
-                  <div className="absolute top right pt2  mt3  mt4-md nr3">
-                    <div className="cp pa1 bw1 ba br-100 bg-white  bc-rendah-red">
+                  <div className="absolute top-0 right-0 pt-2 mt-3 md:mt-4 -mr-3">
+                    <div className="cursor-pointer p-1 border rounded-full bg-white border-red-500">
                       <Link
                         href={`/gallery/${post.tag.slug.current}`}
                         legacyBehavior
                       >
-                        <span className="cp rendah-red">
+                        <span className="cursor-pointer text-red-500">
                           <IconArrowRight color="#e9393f" />
                         </span>
                       </Link>
@@ -255,10 +246,52 @@ export default function Post({ siteConfig, post, preview }) {
             </>
           )}
 
-          <div className="flex  flex-wrap  ph4  ph0-md">
-            <div className="col-6" />
-            <div className="col-24  col-12-md">
-              <div className="mb5">
+          <div className="container py-12 text-neutral-300 text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+              <div className="md:col-span-3 max-w-xl">
+                <div className="mb-4 pb-2">
+                  <h1 className="text-neutral-300 text-2xl">{post.title}</h1>
+                </div>
+
+                <div className="text-base px-4 md:px-0 text-neutral-400">
+                  <BlockContent
+                    blocks={post.introduction}
+                    serializers={SANITY_BLOCK_SERIALIZERS}
+                  />
+                </div>
+              </div>
+              <div className="md:col-span-1 grid gap-y-2">
+                <p className="flex justify-between border-b border-neutral-700 pb-1">
+                  <strong>authors.list</strong>
+                  <span>
+                    {post.authors.map((i, index, array) => i.author.name)}
+                  </span>
+                </p>
+                <p className="flex justify-between border-b border-neutral-700 pb-1">
+                  <strong>published.date</strong>
+                  <span>
+                    <Date dateString={post.publishedAt} />
+                  </span>
+                </p>
+                <p className="flex justify-between border-b border-neutral-700 pb-1">
+                  <strong>categories.list</strong>
+                  <span>
+                    {post?.categories?.length && post?.categories.map((i) => i)}
+                  </span>
+                </p>
+                <p className="flex justify-between border-b border-neutral-700 pb-1">
+                  <strong>isMemberExclusive</strong>
+                  <div>
+                    <span>TRUE</span>/<span className="opacity-50">FALSE</span>
+                  </div>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="container py-12 text-neutral-300 text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4">
+              <div className="md:col-span-3">
                 <Hero
                   image={post?.coverImage}
                   imageObject={post?.imageObject}
@@ -274,105 +307,37 @@ export default function Post({ siteConfig, post, preview }) {
                   fullImage={post?.coverImageFullImage}
                 />
               </div>
-
-              <div className="mb4 pb2">
-                <Heading
-                  /* Options */
-                  htmlEntity="h1"
-                  text={post.title}
-                  color="rendah-red"
-                  size={app.deviceSize === 'md' ? 'large' : 'large'}
-                  truncate={null}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={null}
-                />
-              </div>
-
-              <p className="t-secondary  f5  almost-black  lh-copy  pb4">
-                {post?.categories?.length &&
-                  post?.categories.map((i) => (
-                    <span className="t-secondary  f5  almost-black  lh-copy  dib  ba  bc-black  pa2  mr3  mb3  mb0-md">
-                      {i}
-                    </span>
-                  ))}
-
-                <span className="db  dib-md">
-                  Written by{' '}
-                  {post.authors.map((i, index, array) => {
-                    let separator = '';
-                    if (index > 0) {
-                      if (index === array.length - 1) {
-                        separator = ' & ';
-                      } else {
-                        separator = ', ';
-                      }
-                    }
-                    return (
-                      <>
-                        {separator}
-                        <Link
-                          href={`/team/${i.author.slug.current}`}
-                          legacyBehavior
-                        >
-                          <span className="cp  black  fw7">
-                            {i.author.name}
-                          </span>
-                        </Link>
-                      </>
-                    );
-                  })}
-                  {' on'}
-                </span>
-
-                <span className="pl0  pl1-md">
-                  {post?.publishedAt && <Date dateString={post.publishedAt} />}
-                </span>
-              </p>
             </div>
-            <div className="col-6" />
           </div>
 
-          <div className="flex  flex-wrap">
-            <div className="col-6" />
-            <div className="col-24  col-12-md">
-              <div className="f5  f4-md  lh-copy  pb3  mb4  bb  bw1  bc-rendah-red  rich-text  ph4  ph0-md">
-                <BlockContent
-                  blocks={post.introduction}
-                  serializers={SANITY_BLOCK_SERIALIZERS}
-                />
-              </div>
-            </div>
-            <div className="col-6" />
+          <div className="container">
+            <hr className="my-12 border border-neutral-700" />
           </div>
 
           {canShowBody ? (
             <Sections body={post.body} />
           ) : (
-            <div className="relative  br4  shadow2  bg-light-grey  pa3  pa4-md  mt4  mb4  col-20  col-12-md  mla  mra">
-              <div className="absolute  pa2  w4  top  left  right  mla  mra  nt3  bg-light-grey  br4  shadow2">
+            <div className="relative rounded-lg shadow-md bg-gray-200 p-3 md:p-4 mt-4 mb-4 w-5/6 md:w-1/2 mx-auto">
+              <div className="absolute p-2 w-16 top-0 left-0 right-0 mx-auto -mt-3 bg-gray-200 rounded-lg shadow-md">
                 <img
-                  /* Options */
                   src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1617575443/dominion/dominion-logo-transparent.png"
                   alt="Dominion"
                 />
               </div>
 
-              <div className="pb2">
+              <div className="pb-2">
                 <Heading
-                  /* Options */
                   htmlEntity="h1"
                   text="Hold up!"
                   color="black"
                   size="medium"
                   truncate={null}
                   onClick={null}
-                  /* Children */
                   withLinkProps={null}
                 />
               </div>
 
-              <p className="t-secondary  f6  lh-copy  taj  black">
+              <p className="text-gray-700 text-sm leading-relaxed text-justify text-black">
                 This article is exclusive to the Dominion. To read the full
                 article, please{' '}
                 <a className="underline" href="/login">
@@ -388,62 +353,45 @@ export default function Post({ siteConfig, post, preview }) {
           )}
         </article>
 
-        <div className="mla  mra  pt5  pb6  bg-light-grey  ph4  ph0-md  nb6">
-          <div className="pb6  nb4">
+        <div className="mx-auto pt-5 px-4 md:px-0 mb-6">
+          <div className="pb-6 mb-4">
             <SocialLinks article={post} />
           </div>
         </div>
 
-        <Container>
-          <section className="flex  flex-wrap  justify-center  align-center">
-            {post.authors.map((i) => (
-              <div className="col-24  col-12-md  pb4  pb3-md  ph3">
-                <Author author={i.author} />
-              </div>
-            ))}
-          </section>
-        </Container>
+        <div className="container">
+          <hr className="my-12 border border-neutral-700" />
+        </div>
 
         <SubscriptionBanner />
 
-        <Container>
-          {morePosts.length > 0 && (
-            <section className="pb6">
-              <div className="pb3  ph3">
-                <div className="bg-black  pa2  dib">
-                  <Heading
-                    /* Options */
-                    htmlEntity="p"
-                    text="More Posts"
-                    color="white"
-                    size="small"
-                    truncate={null}
-                    /* Children */
-                    withLinkProps={null}
-                  />
-                </div>
-              </div>
-
-              <div className="flex  flex-wrap">
-                {morePosts.map((p, i) => (
-                  <Observer {...observer}>
-                    <div key={p.slug} className="col-24  col-6-md">
-                      <div className="pa3">
-                        <CardBlog i={i} post={p} />
-                      </div>
-                    </div>
-                  </Observer>
-                ))}
-              </div>
-            </section>
-          )}
-        </Container>
-
-        <div className="bg-light-grey">
-          <LazyLoad once offset={800} height={800}>
-            <LatestPrint showDominionButton={true} />
-          </LazyLoad>
+        <div className="container">
+          <hr className="my-12 border border-neutral-700" />
         </div>
+
+        {morePosts.length > 0 && (
+          <section className="container pb-6">
+            <h3 className="text-neutral-400 mb-12">Other features</h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              {morePosts.map((p, i) => (
+                <Observer {...observer} key={p.slug}>
+                  <div key={i}>
+                    <CardBlog i={i} post={p} />
+                  </div>
+                </Observer>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <div className="container">
+          <hr className="my-12 border border-neutral-700" />
+        </div>
+
+        <LazyLoad once offset={800} height={800}>
+          <LatestPrint showDominionButton={true} />
+        </LazyLoad>
       </Layout>
     );
   }
@@ -454,13 +402,6 @@ export default function Post({ siteConfig, post, preview }) {
 export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const data = await getPost(params.slug, preview);
-
-  // if (!data?.post?.slug) {
-  //   return {
-  //     notFound: true,
-  //     revalidate: 10,
-  //   };
-  // }
 
   return {
     props: {

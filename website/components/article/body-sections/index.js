@@ -1,54 +1,540 @@
-import includes from 'lodash/includes';
+import { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
+import Script from 'next/script';
+import Iframe from 'react-iframe';
+import LazyLoad from 'react-lazyload';
 import BlockContent from '@sanity/block-content-to-react';
+import YouTube from 'react-youtube';
+import SpotifyPlayer from 'react-spotify-player';
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+import includes from 'lodash/includes';
+import isArray from 'lodash/isArray';
+import find from 'lodash/find';
+import { usePlausible } from 'next-plausible';
 
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
+import { imageBuilder } from '~/lib/sanity/requests';
+import { useApp } from '~/context-provider/app';
+import { useFirstRender } from '~/lib/useFirstRender';
 
-import Heading from './heading';
-import Quote from './quote';
-import Image from './image';
-import Carousel from './carousel';
-import IframeBlock from './iframe';
-import Soundcloud from './soundcloud';
-import Spotify from './spotify';
-import Youtube from './youtube';
-import FacebookVideo from './facebook-video';
-import Audio from './audio';
-import ArticleLink from './article-link';
-import CodeBlock from './code-block';
+hljs.registerLanguage('javascript', javascript);
+
+function Heading({ text }) {
+  return (
+    <div className="flex flex-wrap pb-3">
+      <div className="w-full">
+        <h2 className="leading-tight text-2xl md:text-3xl">
+          {'> '} {text}
+        </h2>
+      </div>
+    </div>
+  );
+}
+
+function Quote({ quote, source }) {
+  return (
+    <div className="flex flex-wrap py-3">
+      <div className="w-full flex justify-center">
+        <blockquote className="text-center">
+          <p className="leading-relaxed text-lg italic">
+            “{quote}”<cite className="block text-sm pt-1">~ {source}</cite>
+          </p>
+        </blockquote>
+      </div>
+    </div>
+  );
+}
+
+function Paragraph({ text, markDefs }) {
+  const renderChildren = (child, i) => {
+    if (child.marks) {
+      const currentMark =
+        child.marks.length && find(markDefs, { _key: child.marks[0] });
+      if (currentMark && currentMark.url) {
+        return (
+          <a
+            key={i}
+            rel="noopener noreferrer"
+            target="_blank"
+            href={currentMark.url}
+            className="underline"
+          >
+            {child.text}
+          </a>
+        );
+      }
+      if (child.marks.includes('strong') && child.marks.includes('em')) {
+        return (
+          <strong key={i}>
+            <em>{child.text}</em>
+          </strong>
+        );
+      }
+      if (child.marks.includes('strong')) {
+        return <strong key={i}>{child.text}</strong>;
+      }
+      if (child.marks.includes('em')) {
+        return <em key={i}>{child.text}</em>;
+      }
+    }
+    return child.text;
+  };
+
+  if (text[0]?.text?.trim()) {
+    return (
+      <div className="flex flex-wrap py-4">
+        <div className="w-full flex justify-center">
+          <p className="leading-relaxed text-sm md:text-base py-3">
+            {text.map((child, i) => renderChildren(child, i))}
+          </p>
+        </div>
+      </div>
+    );
+  }
+  return null;
+}
+
+function ListItem({ text }) {
+  const renderChildren = (child, i) => {
+    if (child.marks) {
+      if (child.marks.includes('strong') && child.marks.includes('em')) {
+        return (
+          <strong key={i}>
+            <em>{child.text}</em>
+          </strong>
+        );
+      }
+      if (child.marks.includes('strong')) {
+        return <strong key={i}>{child.text}</strong>;
+      }
+      if (child.marks.includes('em')) {
+        return <em key={i}>{child.text}</em>;
+      }
+    }
+    return child.text;
+  };
+
+  if (text[0]?.text) {
+    return (
+      <div className="flex flex-wrap py-4">
+        <div className="w-full flex justify-center">
+          <li className="leading-relaxed text-sm md:text-base pl-3">
+            - {text.map((child, i) => renderChildren(child, i))}
+          </li>
+        </div>
+      </div>
+    );
+  }
+  return null;
+}
+
+function CodeBlock({ language, code }) {
+  const highlighted = hljs.highlight(code, { language }).value;
+  return (
+    <LazyLoad once offset={250} height={360}>
+      <div className="flex flex-wrap py-4">
+        <div className="w-full flex justify-center">
+          <pre className="w-full p-4 rounded">
+            <code dangerouslySetInnerHTML={{ __html: highlighted }} />
+          </pre>
+        </div>
+      </div>
+    </LazyLoad>
+  );
+}
+
+function IframeBlock({ url, heightDesktop, heightMobile }) {
+  const app = useApp();
+  const frameHeight =
+    heightMobile && app.deviceSize === 'md' ? heightMobile : heightDesktop;
+
+  if (url.includes('vimeo')) {
+    return (
+      <div className="py-12">
+        <div className="relative" style={{ paddingTop: '56.25%' }}>
+          <iframe
+            src={url}
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            title={url}
+            className="absolute inset-0 w-full h-full"
+          />
+        </div>
+        <Script src="https://player.vimeo.com/api/player.js" />
+      </div>
+    );
+  }
+
+  return (
+    <LazyLoad once offset={250} height={frameHeight}>
+      <div className="flex flex-wrap py-4">
+        <div className="w-full flex justify-center">
+          <div className="w-11/12">
+            <Iframe
+              url={url}
+              width="100%"
+              height={frameHeight}
+              display="initial"
+              position="relative"
+            />
+          </div>
+        </div>
+      </div>
+    </LazyLoad>
+  );
+}
+
+function FacebookVideo({ url }) {
+  const app = useApp();
+  const [FBProvider, setFBProvider] = useState(null);
+  const [EmbeddedVideo, setEmbeddedVideo] = useState(null);
+
+  useEffect(() => {
+    if (!FBProvider || !EmbeddedVideo) {
+      import('react-facebook').then((mod) => {
+        setFBProvider(() => mod.FacebookProvider);
+        setEmbeddedVideo(() => mod.EmbeddedVideo);
+      });
+    }
+  }, [FBProvider, EmbeddedVideo]);
+
+  if (!FBProvider || !EmbeddedVideo) return null;
+
+  return (
+    <LazyLoad once offset={250} height={app.deviceSize === 'md' ? 266 : 490}>
+      <div className="flex flex-wrap py-4">
+        <div className="w-full flex justify-center">
+          <div className="w-11/12 text-center">
+            <FBProvider appId="154881868603516">
+              <EmbeddedVideo href={url} />
+            </FBProvider>
+          </div>
+        </div>
+      </div>
+    </LazyLoad>
+  );
+}
+
+function Spotify({ uri }) {
+  const size = { width: '100%', height: 80 };
+  const view = 'list';
+  const theme = 'black';
+  return (
+    <div className="flex flex-wrap py-4">
+      <div className="w-full flex justify-center">
+        <div className="w-full md:px-4">
+          <LazyLoad once offset={250} height={100}>
+            <SpotifyPlayer uri={uri} size={size} view={view} theme={theme} />
+          </LazyLoad>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Youtube({ videoId }) {
+  return (
+    <LazyLoad once offset={300} height={360}>
+      <div className="flex flex-wrap py-4">
+        <div className="w-full flex justify-center">
+          <YouTube className="w-11/12 mx-auto" videoId={videoId} />
+        </div>
+      </div>
+    </LazyLoad>
+  );
+}
+
+function Carousel({ section }) {
+  const [useKeenSliderHook, setUseKeenSliderHook] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+  const app = useApp();
+  const scale = app?.isRetina ? 2 : 1;
+  const imageUrlWidth = 500;
+  let slidesPerView =
+    app.deviceSize === 'md' ? 1 : section?.slidesPerViewDesktop || 1;
+  const height =
+    app.deviceSize === 'md'
+      ? section.carouselHeightMobile
+      : section.carouselHeightDesktop;
+
+  useEffect(() => {
+    if (!useKeenSliderHook) {
+      import('keen-slider/react').then((mod) => {
+        setUseKeenSliderHook(mod.useKeenSlider);
+      });
+    }
+  }, [useKeenSliderHook]);
+
+  if (!useKeenSliderHook) return null;
+
+  const [sliderRef, instanceRef] = useKeenSliderHook({
+    initial: 0,
+    loop: false,
+    renderMode: 'performance',
+    drag: true,
+    slides: { perView: slidesPerView },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
+    created() {
+      setLoaded(true);
+    },
+  });
+
+  const Arrow = ({ left, onClick, disabled }) => (
+    <svg
+      onClick={onClick}
+      className={`w-6 h-6 cursor-pointer ${left ? 'mr-2' : 'ml-2'} ${
+        disabled ? 'opacity-50' : ''
+      }`}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      {left ? (
+        <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+      ) : (
+        <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+      )}
+    </svg>
+  );
+
+  return (
+    <LazyLoad once offset={250} height={height || section.carouselHeight}>
+      <div className="relative w-full">
+        <div ref={sliderRef} className="keen-slider">
+          {section?.images?.map((p, i) => (
+            <div key={i} className="keen-slider__slide px-2 pb-4">
+              <img
+                className="w-full rounded shadow"
+                style={{
+                  height: height || section.carouselHeight,
+                  objectFit: 'cover',
+                }}
+                src={imageBuilder
+                  .image(p)
+                  .width(imageUrlWidth * scale)
+                  .auto('format')
+                  .fit('clip')
+                  .url()}
+                alt=""
+              />
+            </div>
+          ))}
+        </div>
+        {loaded && instanceRef.current && (
+          <div className="absolute inset-0 flex items-center justify-between px-4">
+            <Arrow
+              left
+              onClick={(e) => {
+                e.stopPropagation();
+                instanceRef.current?.prev();
+              }}
+              disabled={currentSlide === 0}
+            />
+            <Arrow
+              onClick={(e) => {
+                e.stopPropagation();
+                instanceRef.current?.next();
+              }}
+              disabled={
+                currentSlide >=
+                instanceRef.current.track.details.slides.length -
+                  instanceRef.current.options.slides.perView
+              }
+            />
+          </div>
+        )}
+      </div>
+    </LazyLoad>
+  );
+}
+
+function ImageSection({ section }) {
+  console.log('section', section);
+  const handleCaption = () => {
+    if (isArray(section?.caption)) {
+      return (
+        <figcaption className="text-center text-sm py-2">
+          <BlockContent
+            blocks={section.caption}
+            serializers={SANITY_BLOCK_SERIALIZERS}
+          />
+        </figcaption>
+      );
+    }
+    if (section?.caption) {
+      if (section.source) {
+        return (
+          <a
+            href={section.source}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center py-2 underline"
+          >
+            {section.caption}
+          </a>
+        );
+      }
+      return <span className="block text-center py-2">{section.caption}</span>;
+    }
+    return null;
+  };
+
+  const placeholder = includes(section.asset._ref, '-gif')
+    ? null
+    : imageBuilder
+        .image(section.asset)
+        .height(25)
+        .width(25)
+        .auto('format')
+        .fit('clip')
+        .blur('20')
+        .url();
+
+  console.log('section.fullImage', section.fullImage);
+
+  return (
+    <div className="grid grid-cols-12">
+      <div className={`${section.fullImage ? 'col-span-9' : 'col-span-6'}`}>
+        <LazyLoad once offset={250} height={360}>
+          <figure>
+            <img
+              className="w-full"
+              src={imageBuilder.image(section).auto('format').fit('clip').url()}
+              alt=""
+            />
+            {handleCaption()}
+          </figure>
+        </LazyLoad>
+      </div>
+    </div>
+  );
+}
+
+function Soundcloud({ url }) {
+  const scUrl = `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/${url}&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false`;
+  return (
+    <LazyLoad once offset={250} height={166}>
+      <div className="flex flex-wrap py-3">
+        <div className="w-full flex justify-center">
+          <div className="w-11/12">
+            <Iframe
+              url={scUrl}
+              width="100%"
+              height="166"
+              display="initial"
+              position="relative"
+            />
+          </div>
+        </div>
+      </div>
+    </LazyLoad>
+  );
+}
+
+function Audio({ url, title, image, description, allowDownload, ...props }) {
+  const [AudioPlayer, setAudioPlayer] = useState(null);
+  const [RHAP_UI, setRHAP_UI] = useState(null);
+  const plausible = usePlausible();
+  const playerRef = useRef(null);
+  const { currentAudioSelected, handleAudioPlay } = props;
+
+  useEffect(() => {
+    if (!AudioPlayer || !RHAP_UI) {
+      import('react-h5-audio-player').then((mod) => {
+        setAudioPlayer(() => mod.default);
+        setRHAP_UI(() => mod.RHAP_UI);
+      });
+    }
+  }, [AudioPlayer, RHAP_UI]);
+
+  useEffect(() => {
+    if (
+      playerRef.current?.audio?.current &&
+      currentAudioSelected !== playerRef
+    ) {
+      playerRef.current.audio.current.pause();
+    }
+  }, [currentAudioSelected]);
+
+  const triggerOnPlayEvt = () => {
+    plausible('Audio Play', {
+      props: {
+        action: 'play',
+        label: title,
+      },
+    });
+  };
+
+  if (!url || !AudioPlayer || !RHAP_UI) return null;
+
+  return (
+    <>
+      {title && (
+        <div className="w-full text-center py-2">
+          <p className="leading-relaxed text-sm">{title}</p>
+        </div>
+      )}
+      <AudioPlayer
+        ref={playerRef}
+        showSkipControls={false}
+        showJumpControls={false}
+        src={url}
+        customProgressBarSection={[RHAP_UI.PROGRESS_BAR, RHAP_UI.CURRENT_TIME]}
+        layout="horizontal-reverse"
+        onPlay={() => {
+          handleAudioPlay && handleAudioPlay(playerRef);
+          triggerOnPlayEvt();
+        }}
+      />
+    </>
+  );
+}
+
+function ArticleLink({ text, url }) {
+  return (
+    <div className="flex flex-wrap py-3">
+      <div className="w-full py-3 text-center">
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block text-sm px-4 py-2 rounded hover:underline"
+        >
+          {text}
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export default function Sections({ body, ...props }) {
   let imageCount = 0;
 
   const renderSections = (section, i) => {
-    // Remove stray breaks
     if (section?.children?.length) {
       if (
-        section?.children[0]?.text === '\n' ||
-        section?.children[0]?.text === ''
+        section.children[0]?.text === '\n' ||
+        section.children[0]?.text === ''
       ) {
-        return false;
+        return null;
       }
     }
-
-    // para
     if (section._type === 'block') {
       return (
-        <>
-          <div className="flex  flex-wrap  ph4  ph0-md">
-            <div className="col-6" />
-            <div className="col-24  col-12-md  rich-text">
-              <BlockContent
-                blocks={section}
-                serializers={SANITY_BLOCK_SERIALIZERS}
-              />
-            </div>
-            <div className="col-6" />
+        <div key={i} className="col-span-12 grid grid-cols-12">
+          <div key={i} className="col-span-6 grid gap-12 text-justify">
+            <BlockContent
+              blocks={section}
+              serializers={SANITY_BLOCK_SERIALIZERS}
+            />
           </div>
-        </>
+        </div>
       );
     }
-
-    // image
     if (
       section._type === 'image' &&
       (includes(section.asset._ref, '-jpg') ||
@@ -56,151 +542,106 @@ export default function Sections({ body, ...props }) {
         includes(section.asset._ref, '-gif'))
     ) {
       imageCount++;
-
       return (
-        <div key={i}>
-          <Image section={section} imageCount={imageCount} />
+        <div className="col-span-12" key={i}>
+          <ImageSection section={section} imageCount={imageCount} />
         </div>
       );
     }
-
-    // carousel
     if (section._type === 'carousel') {
       return (
-        <div key={i} className="pv4  ph4  ph0-md">
+        <div key={i} className="col-span-6 py-4">
           <Carousel section={section} />
         </div>
       );
     }
-
-    // soundcloud embed
     if (section._type === 'iframeEmbedBlock') {
       return (
-        <div key={i} className="pv4">
+        <div key={i} className="col-span-6 py-4">
           <IframeBlock
             url={section.iframeUrl}
-            heightDesktop={
-              section.iframeHeightDesktop
-                ? section.iframeHeightDesktop
-                : section.iframeHeight
-            }
+            heightDesktop={section.iframeHeightDesktop || section.iframeHeight}
             heightMobile={section.iframeHeightMobile}
           />
         </div>
       );
     }
-
-    // soundcloud embed
     if (section._type === 'soundCloudEmbedBlock') {
       return (
-        <div key={i} className="pv4">
+        <div key={i} className="col-span-6 py-4">
           <Soundcloud url={section.soundCloudEmbed} />
         </div>
       );
     }
-
-    // spotify embed
     if (section._type === 'spotifyEmbedBlock') {
       return (
-        <div key={i} className="pv4">
+        <div key={i} className="col-span-6 py-4">
           <Spotify uri={section.spotifyEmbed} />
         </div>
       );
     }
-
-    // soundcloud embed
     if (section._type === 'youTubeEmbedBlock') {
       return (
-        <div key={i} className="pv4">
+        <div key={i} className="col-span-6 py-4">
           <Youtube videoId={section.youTubeEmbed} />
         </div>
       );
     }
-
-    // facebook video embed
     if (section._type === 'facebookVideoEmbedBlock') {
       return (
-        <div key={i} className="pv4">
+        <div key={i} className="col-span-6 py-4">
           <FacebookVideo url={section.facebookVideoEmbed} />
         </div>
       );
     }
-
-    // audio embed
-    // if (section._type === 'audioEmbedBlock') {
-    //   return (
-    //     <div key={i} className="pv3">
-    //       <AudioEmbed
-    //         {...props}
-    //         i={i}
-    //         title={section?.title}
-    //         description={section?.description}
-    //         image={section?.image}
-    //         url={section?.audioEmbed}
-    //         allowDownload={section?.allowDownload}
-    //       />
-    //     </div>
-    //   );
-    // }
-
     if (section._type === 'audioFileBlock') {
-      console.log('aaa', section);
       return (
-        <div key={i} className="pv3">
+        <div key={i} className="col-span-6 py-3">
           <Audio
             {...props}
-            i={i}
-            title={section?.title}
-            description={section?.description}
-            image={section?.image}
-            url={section?.url}
-            allowDownload={section?.allowDownload}
+            title={section.title}
+            description={section.description}
+            image={section.image}
+            url={section.url}
+            allowDownload={section.allowDownload}
           />
         </div>
       );
     }
-
-    // codeBlock
     if (section._type === 'codeBlock') {
       return (
-        <CodeBlock
-          {...props}
-          i={i}
-          language={section.language}
-          code={section.code}
-        />
+        <CodeBlock key={i} language={section.language} code={section.code} />
       );
     }
-
-    // subtitleBlock
     if (section._type === 'subtitleBlock') {
       return (
-        <div key={i} className="pv2  mb2  ph4  ph0-md">
+        <div key={i} className="col-span-6 py-2 mb-2 px-4 md:px-0">
           <Heading text={section.subtitle} />
         </div>
       );
     }
-
-    // quoteBlock
     if (section._type === 'quoteBlock') {
       return (
-        <div key={i} className="pv2  mb2  ph4  ph0-md">
+        <div key={i} className="col-span-6 py-2 mb-2 px-4 md:px-0">
           <Quote quote={section.quote} source={section.source} />
         </div>
       );
     }
-
-    // linkBlock
     if (section._type === 'linkBlock') {
       return (
-        <div key={i} className="pv2  mb2  ph4  ph0-md">
+        <div key={i} className="col-span-6 py-2 mb-2 px-4 md:px-0">
           <ArticleLink text={section.text} url={section.url} />
         </div>
       );
     }
-
-    return false;
+    return null;
   };
 
-  return <>{body.map((section, i) => renderSections(section, i))}</>;
+  return (
+    <div className="container">
+      <div className="grid grid-cols-12 text-neutral-300 text-sm gap-y-4">
+        {body.map((section, i) => renderSections(section, i))}
+      </div>
+    </div>
+  );
 }

@@ -133,7 +133,7 @@ export default function Login({ siteConfig }) {
       <Layout
         title="login"
         navOffset="center"
-        navOnWhite
+        navOnWhite={false}
         hasNav
         hasFooter
         meta={{

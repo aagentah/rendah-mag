@@ -39,18 +39,13 @@ const IconArrowLeft = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowLeft)
 );
 
-const Modal = dynamic(() => import('~/components/modal'));
-
 const ProfileEdit = dynamic(() => import('~/components/profile/edit'));
-
 const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
-
 const ProfilePrints = dynamic(() => import('~/components/profile/prints'));
 
 import { getSiteConfig } from '~/lib/sanity/requests';
 
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
+// Initialize Stripe outside render.
 const stripePromise = loadStripe(
   'pk_live_51DvkhrKb3SeE1fXfAwS5aNbDhvI4t4cCbHvsVjk5bfmBvSF5tc2mEYHAVIMQCgcXBsKjo5AvaT48k39sbx3UKUu400TFSGqiL4'
 );
@@ -58,79 +53,71 @@ const stripePromise = loadStripe(
 const ProfileDashboard = dynamic(() =>
   import('~/components/profile/dashboard')
 );
-
 const ProfileOfferings = dynamic(() =>
   import('~/components/profile/offerings')
 );
-
 const ProfileCreations = dynamic(() =>
   import('~/components/profile/creations')
 );
-
 const ProfileMessages = dynamic(() => import('~/components/profile/messages'));
-
 const ProfilePacks = dynamic(() => import('~/components/profile/packs'));
-
 const ProfileGallery = dynamic(() => import('~/components/profile/gallery'));
 
 const IconHouse = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconHouse)
 );
-
 const IconUser = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconUser)
 );
-
 const IconEnvelope = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconEnvelope)
 );
-
 const IconHeadphones = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconHeadphones)
 );
-
 const IconAudio = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconAudio)
 );
-
 const IconNewspaper = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconNewspaper)
 );
-
 const IconList = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconList)
 );
-
 const IconMoney = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconMoney)
 );
-
 const IconStore = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconStore)
 );
 
 export default function Profile({ siteConfig }) {
-  const [user, { loading, mutate, error }] = useUser();
+  const [user, { loading, error }] = useUser();
   const [messages, setMessages] = useState([]);
   const [resources, setResources] = useState([]);
-  const [articleActive, setArticleActive] = useState(false);
-  const [modalActive, setModalActive] = useState(false);
-  const [modalPrintsActive, setModalPrintsActive] = useState(false);
+  const [articles, setArticles] = useState([]);
+  // When a card is clicked, we set articleActive to that card's _id.
+  const [articleActive, setArticleActive] = useState(null);
   const [cardsShow, setCardsShow] = useState(true);
-  const [filter, setFilter] = useState('messages'); // 'messages', 'resources'
+  // Define filter state; valid tabs: messages, resources, articles, profile, prints.
+  const [filter, setFilter] = useState('messages');
   const [fileTypeFilter, setFileTypeFilter] = useState('all');
   const router = useRouter();
   const app = useApp();
 
   useEffect(() => {
-    const validTabs = ['messages', 'resources', 'articles'];
+    const validTabs = [
+      'messages',
+      'resources',
+      'articles',
+      'profile',
+      'prints',
+    ];
     const { tab } = router.query;
-
     setFilter(validTabs.includes(tab) ? tab : 'messages');
   }, [router.query]);
 
   useEffect(() => {
-    // redirect user to login if not authenticated
     if ((!loading && !user) || error) Router.replace('/login');
   }, [user, loading, error]);
 
@@ -138,20 +125,12 @@ export default function Profile({ siteConfig }) {
     zenscroll.setup(300, 15);
   }, []);
 
-  // Define file type categories
-  const fileTypeCategories = {
-    audio: ['wav', 'mp3', 'flac', 'aac'],
-    images: ['jpg', 'png', 'gif', 'svg'],
-    videos: ['mp4', 'mkv', 'webm', 'avi'],
-    all: [],
-  };
+  // Ensure resources and articles are arrays.
+  const safeArticles = articles || [];
+  const safeResources = resources || [];
 
-  // const filteredMessages = messages.filter((message) => {
-  //   if (filter === 'messages') return message.type === 'message';
-  //   return false;
-  // });
-
-  const filteredResources = resources.filter((resource) => {
+  // For resources, filter by fileTypeFilter if applicable.
+  const filteredResources = safeResources.filter((resource) => {
     if (filter === 'resources') {
       if (fileTypeFilter === 'all') return true;
       return resource.type === fileTypeFilter;
@@ -159,17 +138,13 @@ export default function Profile({ siteConfig }) {
     return false;
   });
 
-  // Define a new state for articles
-  const [articles, setArticles] = useState([]);
-
-  // Filtered articles
-  const filteredArticles = articles.filter((article) => filter === 'articles');
+  // When showing articles, use the safe array.
+  const filteredArticles = filter === 'articles' ? safeArticles : [];
 
   useEffect(() => {
     const handlePopState = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const articleId = urlParams.get('articleId');
-
       if (articleId) {
         setArticleActive(articleId);
         setCardsShow(false);
@@ -178,80 +153,74 @@ export default function Profile({ siteConfig }) {
         setCardsShow(true);
       }
     };
-
-    // Listen to popstate event
     window.addEventListener('popstate', handlePopState);
-
-    // Call handlePopState once on mount to sync state with URL
     handlePopState();
-
-    // Clean up the event listener on unmount
     return () => {
       window.removeEventListener('popstate', handlePopState);
     };
   }, []);
 
-  const apply = (id, slug, type) => {
-    router.push(
-      type === 'message'
-        ? `/profile/newsletter/${slug}`
-        : `/profile/resource/${slug}`
-    );
-  };
-
-  // Example backButton function
   const backButton = () => {
     setArticleActive(null);
     setCardsShow(true);
-
-    // Update the URL to remove the query parameter
     window.history.pushState(null, '', router.pathname);
-
     setTimeout(() => {
       zenscroll.toY(0);
     }, 100);
   };
 
-  if (user?.isDominion) {
-    // Fetch messages and resources
-    useEffect(() => {
+  // Fetch messages and resources.
+  useEffect(() => {
+    if (user?.isDominion) {
       const fetchItems = async () => {
         const dataMessages = await getDominionItemsSince(user);
         const dataResources = await getDominionResourcesSince(user);
-
-        console.log('dataResources', dataResources);
-
         if (dataMessages) {
           setMessages(dataMessages);
         }
-
         if (dataResources) {
           setResources(dataResources);
         }
       };
-
       fetchItems();
-    }, [user]);
+    }
+  }, [user]);
 
-    useEffect(() => {
-      if (user?.isDominion) {
-        const fetchArticles = async () => {
-          const dataArticles = await getCategory('dominion-exclusive', [1, 10]);
+  useEffect(() => {
+    if (user?.isDominion) {
+      const fetchArticles = async () => {
+        const dataArticles = await getCategory('dominion-exclusive', [1, 10]);
+        if (dataArticles?.posts) {
+          setArticles(dataArticles.posts);
+        }
+      };
+      fetchArticles();
+    }
+  }, [user]);
 
-          if (dataArticles?.posts) {
-            setArticles(dataArticles.posts);
-          }
-        };
+  // Clean up card detail overlay: if an active card is clicked.
+  const renderDetailOverlay = () => {
+    const messageItem = messages.find((item) => item._id === articleActive);
+    const resourceItem = resources.find((item) => item._id === articleActive);
+    const articleItem = safeArticles.find((item) => item._id === articleActive);
+    if (!articleActive) return null;
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center transition-opacity duration-300 z-50">
+        {messageItem ? (
+          <CarouselItemSection message={messageItem} backButton={backButton} />
+        ) : resourceItem ? (
+          <Resource message={resourceItem} backButton={backButton} />
+        ) : articleItem ? (
+          <CardBlog post={articleItem} target="_blank" />
+        ) : null}
+      </div>
+    );
+  };
 
-        fetchArticles();
-      }
-    }, [user]);
-
-    console.log('resources', resources);
-
+  if (user?.isDominion) {
     return (
       <Elements stripe={stripePromise}>
-        <div className="bg-neutral-800">
+        <div>
           <Layout
             title="profile"
             navOffset="top"
@@ -267,340 +236,272 @@ export default function Profile({ siteConfig }) {
             }}
             preview={null}
           >
-            <div className="w-screen px-12 mx-auto py-12 text-neutral-300 text-sm">
-              <div className="flex flex-wrap pb-12 border-b border-neutral-700">
-                <div className="w-3/4 flex flex-col">
+            {/* User Info */}
+            <div className="container py-12 text-sm">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+                <div className="md:col-span-3">
                   <div className="max-w-md">
-                    <p className="mb-4">
-                      <strong>[Members dashboard]</strong>
+                    <p className="mb-4 text-neutral-300">
+                      <strong>Members dashboard</strong>
                     </p>
-                    <p className="">
+                    <p className="text-neutral-400">
                       Here you can access all exclusive content available on
                       your Dominion subscription. We add content here
-                      frequently, month-to-month, make sure to keep an eye here
-                      for cool stuff.
+                      frequently—so keep an eye out for cool stuff.
                     </p>
                   </div>
                 </div>
-                <div className="w-1/4 grid gap-y-2">
-                  <p className="flex flex-wrap justify-between border-b border-neutral-700 pb-1">
-                    <strong>User</strong> <p>{user?.name}</p>
+                <div className="md:col-span-1 grid gap-y-2 text-neutral-300">
+                  <p className="flex justify-between border-b border-neutral-700 pb-1">
+                    <strong>User</strong>
+                    <span>{user?.name}</span>
                   </p>
-                  <p className="flex flex-wrap justify-between border-b border-neutral-700 pb-1">
-                    <strong>Email</strong> <p>{user?.username}</p>
+                  <p className="flex justify-between border-b border-neutral-700 pb-1">
+                    <strong>Email</strong>
+                    <span>{user?.username}</span>
                   </p>
-                  <p className="flex flex-wrap justify-between border-b border-neutral-700 pb-1">
-                    <strong>Discount 20%</strong> <p>X1A25</p>
+                  <p className="flex justify-between border-b border-neutral-700 pb-1">
+                    <strong>Discount 20%</strong>
+                    <span>X1A25</span>
                   </p>
-                  <p className="flex flex-wrap justify-between border-b border-neutral-700 pb-1">
-                    <strong>Next Print</strong> <p>June/May 2024</p>
+                  <p className="flex justify-between border-b border-neutral-700 pb-1">
+                    <strong>Next Print</strong>
+                    <span>June/May 2024</span>
                   </p>
-                  <p className="flex flex-wrap justify-between border-b border-neutral-700 pb-1">
-                    <strong>Dark Mode</strong>{' '}
-                    <p>
-                      <span className="">TRUE</span>/
-                      <span className="o-50">FALSE</span>
-                    </p>
+                  <p className="flex justify-between border-b border-neutral-700 pb-1">
+                    <strong>Dark Mode</strong>
+                    <span>
+                      <span>TRUE</span>/
+                      <span className="opacity-50">FALSE</span>
+                    </span>
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="pt4  pt0-md  pb4  pb0-md">
-              <>
-                <section>
-                  <div className="relative page--profile">
-                    <div
-                      className={`
-              dominion-cards
-              ${cardsShow && 'dominion-cards--active'}
-          `}
-                    >
-                      <div className="w-screen px-12">
-                        <div className="relative">
-                          <div className="flex flex-wrap justify-between align-center pb-12">
-                            <div className="flex flex-wrap">
-                              <div
-                                onClick={() =>
-                                  router.push({
-                                    pathname: router.pathname,
-                                    query: { tab: 'newsletters' },
-                                  })
-                                }
-                                className={`pv2 ph3 border-b border-neutral-300 cp f7 ${
-                                  filter === 'messages'
-                                    ? 'bg-neutral-300 text-neutral-800'
-                                    : 'text-neutral-300'
-                                }`}
-                              >
-                                Newsletters
-                              </div>
+            <div className="container">
+              <hr className="my-12 border border-neutral-700" />
+            </div>
 
-                              <div
-                                onClick={() =>
-                                  router.push({
-                                    pathname: router.pathname,
-                                    query: { tab: 'resources' },
-                                  })
-                                }
-                                className={`pv2 ph3 border-b border-neutral-300 cp f7 ${
-                                  filter === 'resources'
-                                    ? 'bg-neutral-300 text-neutral-800'
-                                    : 'text-neutral-300'
-                                }`}
-                              >
-                                Resources
-                              </div>
+            {/* Dashboard Tabs & Content */}
+            <div className="pt-4 pb-4">
+              <section className="container">
+                <div className="relative">
+                  {/* Tab Headers */}
+                  <div className="flex justify-between items-center pb-16">
+                    <div className="flex">
+                      <button
+                        onClick={() =>
+                          router.push({
+                            pathname: router.pathname,
+                            query: { tab: 'messages' },
+                          })
+                        }
+                        className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                          filter === 'messages'
+                            ? 'bg-neutral-300 text-neutral-800'
+                            : 'text-neutral-300'
+                        }`}
+                      >
+                        Newsletters
+                      </button>
+                      <button
+                        onClick={() =>
+                          router.push({
+                            pathname: router.pathname,
+                            query: { tab: 'resources' },
+                          })
+                        }
+                        className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                          filter === 'resources'
+                            ? 'bg-neutral-300 text-neutral-800'
+                            : 'text-neutral-300'
+                        }`}
+                      >
+                        Exclusive Resources
+                      </button>
+                      <button
+                        onClick={() =>
+                          router.push({
+                            pathname: router.pathname,
+                            query: { tab: 'articles' },
+                          })
+                        }
+                        className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                          filter === 'articles'
+                            ? 'bg-neutral-300 text-neutral-800'
+                            : 'text-neutral-300'
+                        }`}
+                      >
+                        Articles
+                      </button>
+                      <button
+                        onClick={() =>
+                          router.push({
+                            pathname: router.pathname,
+                            query: { tab: 'prints' },
+                          })
+                        }
+                        className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                          filter === 'prints'
+                            ? 'bg-neutral-300 text-neutral-800'
+                            : 'text-neutral-300'
+                        }`}
+                      >
+                        Prints
+                      </button>
+                      <button
+                        onClick={() =>
+                          router.push({
+                            pathname: router.pathname,
+                            query: { tab: 'profile' },
+                          })
+                        }
+                        className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                          filter === 'profile'
+                            ? 'bg-neutral-300 text-neutral-800'
+                            : 'text-neutral-300'
+                        }`}
+                      >
+                        Profile & Settings
+                      </button>
+                    </div>
+                  </div>
 
-                              <div
-                                onClick={() =>
-                                  router.push({
-                                    pathname: router.pathname,
-                                    query: { tab: 'articles' },
-                                  })
-                                }
-                                className={`pv2 ph3 border-b border-neutral-300 cp f7 ${
-                                  filter === 'articles'
-                                    ? 'bg-neutral-300 text-neutral-800'
-                                    : 'text-neutral-300'
-                                }`}
-                              >
-                                Articles
-                              </div>
+                  {/* Tab Content */}
+                  {filter === 'messages' && (
+                    <>
+                      {messages.length ? (
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                          {messages.map((item, i) => (
+                            <div
+                              key={item._id}
+                              onClick={() => setArticleActive(item._id)}
+                            >
+                              <CardMessage i={i} post={item} />
                             </div>
-                            <div className="flex white">
-                              <div
-                                data-tooltip-id="my-tooltip"
-                                data-tooltip-content="Prints"
-                                onClick={() => setModalPrintsActive(true)}
-                                className="cp mr2 pr1"
-                              >
-                                <FaBook />
-                              </div>
-
-                              <div
-                                data-tooltip-id="my-tooltip"
-                                data-tooltip-content="Profile & Settings"
-                                onClick={() => setModalActive(true)}
-                                className="cp"
-                              >
-                                <FaCog />
-                              </div>
-
-                              <Tooltip id="my-tooltip" />
-                            </div>
-                          </div>
-
-                          {/* {filter === 'resources' && (
-                            <div className="col-12 flex align-center justify-start white pb3">
-                              <button
-                                onClick={() => setFileTypeFilter('all')}
-                                className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
-                                  fileTypeFilter === 'all'
-                                    ? 'bg-white almost-black'
-                                    : 'white'
-                                }`}
-                              >
-                                All
-                              </button>
-                              <button
-                                onClick={() => setFileTypeFilter('audio')}
-                                className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
-                                  fileTypeFilter === 'audio'
-                                    ? 'bg-white almost-black'
-                                    : 'white'
-                                }`}
-                              >
-                                Audio
-                              </button>
-                              <button
-                                onClick={() => setFileTypeFilter('images')}
-                                className={`br-pill pv2 ph3 ba bc-white cp mr2 f7 ${
-                                  fileTypeFilter === 'images'
-                                    ? 'bg-white almost-black'
-                                    : 'white'
-                                }`}
-                              >
-                                Images
-                              </button>
-                            </div>
-                          )} */}
+                          ))}
                         </div>
+                      ) : (
+                        <div className="flex flex-wrap pb-5 pt-2">
+                          {[...Array(9)].map((_, i) => (
+                            <div key={i} className="w-full md:w-1/3">
+                              <div
+                                className="skeletonNew"
+                                style={{
+                                  height: app.deviceSize === 'md' ? 258 : 260,
+                                }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  )}
 
-                        {filter === 'messages' && (
-                          <>
-                            {messages.length ? (
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                {messages.map((item, i) => (
-                                  <div key={item._id}>
-                                    <CardMessage i={i} post={item} />
-                                  </div>
-                                ))}
-                              </div>
-                            ) : (
-                              <div className="flex flex-wrap pb5 pt2">
-                                {[...Array(9)].map((_, i) => (
-                                  <div key={i} className="col-24 col-8-md">
-                                    <div
-                                      className={`skeletonNew`}
-                                      style={{
-                                        height:
-                                          app.deviceSize === 'md' ? 258 : 260,
-                                      }}
-                                    />
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </>
-                        )}
+                  {filter === 'resources' && (
+                    <>
+                      {filteredResources.length ? (
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                          {filteredResources.map((item, i) => (
+                            <div
+                              key={item._id}
+                              onClick={() => setArticleActive(item._id)}
+                            >
+                              <CardResource i={i} post={item} />
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="flex flex-wrap pb-5 pt-2">
+                          {[...Array(6)].map((_, i) => (
+                            <div key={i} className="w-full p-2">
+                              <div
+                                className="skeletonNew"
+                                style={{
+                                  height: app.deviceSize === 'md' ? 290 : 110,
+                                }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  )}
 
-                        {filter === 'resources' && (
-                          <>
-                            {filteredResources.length ? (
-                              <div className="flex flex-wrap pb5 pt2">
-                                {filteredResources.map((item, i) => (
-                                  <div key={item._id} className="col-24">
-                                    <CardResource i={i} post={item} />
-                                  </div>
-                                ))}
-                              </div>
-                            ) : (
-                              <div className="flex flex-wrap pb5 pt2">
-                                {[...Array(6)].map((_, i) => (
-                                  <div key={i} className="col-24 pa2">
-                                    <div
-                                      className={`skeletonNew`}
-                                      style={{
-                                        height:
-                                          app.deviceSize === 'md' ? 290 : 110,
-                                      }}
-                                    />
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </>
-                        )}
+                  {filter === 'articles' && (
+                    <>
+                      {filteredArticles.length ? (
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                          {filteredArticles.map((item, i) => (
+                            <div
+                              key={item._id}
+                              onClick={() => setArticleActive(item._id)}
+                              className="p-2"
+                            >
+                              <CardBlog post={item} target="_blank" />
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="flex flex-wrap pb-5 pt-2">
+                          {[...Array(6)].map((_, i) => (
+                            <div key={i} className="w-full p-2">
+                              <div
+                                className="skeletonNew"
+                                style={{ height: 290 }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  )}
 
-                        {filter === 'articles' && (
-                          <>
-                            {filteredArticles.length ? (
-                              <div className="flex flex-wrap pb5 pt2">
-                                {filteredArticles.map((item, i) => (
-                                  <div
-                                    key={item._id}
-                                    className="col-24 col-8-md pa2"
-                                  >
-                                    <CardBlog post={item} target="_blank" />
-                                  </div>
-                                ))}
-                              </div>
-                            ) : (
-                              <div className="flex flex-wrap pb5 pt2">
-                                {[...Array(6)].map((_, i) => (
-                                  <div key={i} className="col-24 col-8-md pa2">
-                                    <div
-                                      className={`skeletonNew`}
-                                      style={{ height: 290 }}
-                                    />
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </>
-                        )}
+                  {filter === 'profile' && (
+                    <div className="p-4">
+                      {/* Profile & Settings content */}
+                      <div className="mb-4">
+                        <Heading
+                          htmlEntity="h2"
+                          text="Profile & Settings"
+                          color="neutral-800"
+                          size="large"
+                        />
+                      </div>
+                      <ProfileEdit />
+                      <div className="mt-8">
+                        <ProfileBilling />
                       </div>
                     </div>
+                  )}
 
-                    <section className="">
-                      {messages.length
-                        ? messages.map((item) => (
-                            <div
-                              key={item._id}
-                              className={`
-            dominion-modal-wrapper
-            ${
-              articleActive === item._id ? 'dominion-modal-wrapper--active' : ''
-            }
-          `}
-                            >
-                              {articleActive === item._id && (
-                                <>
-                                  <CarouselItemSection
-                                    message={item}
-                                    backButton={backButton}
-                                  />
-                                </>
-                              )}
-                            </div>
-                          ))
-                        : ''}
-                    </section>
-
-                    <section className="">
-                      {resources.length
-                        ? resources.map((item) => (
-                            <div
-                              key={item._id}
-                              className={`
-            dominion-modal-wrapper
-            ${
-              articleActive === item._id ? 'dominion-modal-wrapper--active' : ''
-            }
-          `}
-                            >
-                              {articleActive === item._id && (
-                                <>
-                                  <Resource
-                                    message={item}
-                                    backButton={backButton}
-                                  />
-                                </>
-                              )}
-                            </div>
-                          ))
-                        : ''}
-                    </section>
-                  </div>
-                </section>
-
-                <Modal
-                  /* Options */
-                  size="large"
-                  active={modalActive}
-                  closeIcon={setModalActive}
-                >
-                  <div className="z9 relative">
-                    <ProfileEdit />
-                  </div>
-                  <div className="z9 relative">
-                    <ProfileBilling />
-                  </div>
-                </Modal>
-
-                <Modal
-                  /* Options */
-                  size="large"
-                  active={modalPrintsActive}
-                  closeIcon={setModalPrintsActive}
-                >
-                  <div className="pb4 z9 relative">
-                    <ProfilePrints />
-                  </div>
-                </Modal>
-              </>
+                  {filter === 'prints' && (
+                    <div className="p-4">
+                      <Heading
+                        htmlEntity="h2"
+                        text="Prints"
+                        color="neutral-800"
+                        size="large"
+                      />
+                      <ProfilePrints />
+                    </div>
+                  )}
+                </div>
+              </section>
             </div>
+            {renderDetailOverlay()}
           </Layout>
         </div>
       </Elements>
     );
   }
+
+  return null;
 }
 
 export async function getServerSideProps({ req }) {
   const siteConfig = await getSiteConfig();
-
   return {
     props: { siteConfig },
   };

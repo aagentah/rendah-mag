@@ -5,6 +5,7 @@ import NProgress from 'nprogress';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import PlausibleProvider from 'next-plausible';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { config } from '@fortawesome/fontawesome-svg-core';
 
 import { AppProvider } from '~/context-provider/app';
 import {
@@ -13,6 +14,10 @@ import {
 } from '~/context-provider/dark-mode-context';
 
 import '~/styles/index.scss';
+
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
+config.autoAddCss = false;
 
 // Custom hook to scroll to top on route change
 const useScrollToTop = () => {

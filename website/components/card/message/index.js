@@ -46,8 +46,8 @@ export default function CardBlog({ post, handleClick, i }) {
 
         {/* Right Column: Content */}
         <div className="flex flex-col justify-between p-4 col-span-6">
-          <div>
-            <div className="inline text-xs px-2 py-1 border border-neutral-300 text-neutral-300 mb-2">
+          <div className="flex flex-wrap gap-x-2">
+            <div className="inline text-xxs px-2 py-0.5 border border-neutral-400 text-neutral-400">
               Newsletter
             </div>
           </div>

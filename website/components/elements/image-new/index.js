@@ -17,6 +17,7 @@ const ImageNew = React.memo((props) => {
     className,
     objectFit,
     isExpandable,
+    type,
   } = props;
   const [loaded, setLoaded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -108,8 +109,8 @@ const ImageNew = React.memo((props) => {
           </div>
         </div>
 
-        {caption && (
-          <figcaption className="imageNew__captions tac mt2 pt1 f6 ph3 o-50">
+        {caption && type !== 'blog' && (
+          <figcaption className="tal mt2 pt1 f6 pr3 o-50 text-neutral-400">
             <BlockContent
               blocks={caption}
               serializers={SANITY_BLOCK_SERIALIZERS}

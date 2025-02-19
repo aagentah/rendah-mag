@@ -15,7 +15,7 @@ import { useUser } from '~/lib/hooks';
 
 export default function LatestPrint({ showDominionButton }) {
   const app = useApp();
-  const [user, { loading, mutate, error }] = useUser();
+  const [user] = useUser();
   const [latestIssue, setLatestIssue] = useState(null);
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
@@ -38,7 +38,6 @@ export default function LatestPrint({ showDominionButton }) {
     const interval = setInterval(() => {
       instanceRef.current?.moveToIdx(instanceRef.current.track.details.abs + 1);
     }, 7500);
-
     return () => clearInterval(interval);
   }, [instanceRef]);
 
@@ -47,27 +46,13 @@ export default function LatestPrint({ showDominionButton }) {
   }
 
   return (
-    <div className="pv6">
-      <Container>
-        <div className="pb2 mb1 flex justify-center">
-          <Heading
-            htmlEntity="h3"
-            text="Latest print highlights"
-            color="black"
-            size="medium"
-          />
-        </div>
-        <div className="pb4 flex justify-center">
-          <Heading
-            htmlEntity="h4"
-            text={`A look at ${latestIssue.title}`}
-            color="silver"
-            size="small"
-          />
-        </div>
-      </Container>
+    <div className="container py-6">
+      <div className="mb-12">
+        <h3 className="text-neutral-300 mb-2">Latest print highlights</h3>
+        <p className="text-neutral-400 text-sm">{`${latestIssue.title}`}</p>
+      </div>
 
-      <div className="ph6-md">
+      <div className="mb-16">
         {isMobile ? (
           <div className="relative">
             <div ref={sliderRef} className="keen-slider">
@@ -77,58 +62,35 @@ export default function LatestPrint({ showDominionButton }) {
                     imageObject={image.imageObject}
                     alt={`Latest Print Image ${index + 1}`}
                     height={550}
-                    className="bg-white w-100"
+                    className="bg-white w-full"
                   />
                 </div>
               ))}
             </div>
           </div>
         ) : (
-          <div className="flex flex-wrap justify-between">
+          <div className="grid grid-cols-4 gap-4">
             {latestIssue.images.map((image, index) => (
-              <div key={index} className="col-24 col-12-md col-6-lg pa3">
-                <div className="flex flex-column">
-                  <ImageNew
-                    imageObject={image.imageObject}
-                    alt={`Latest Print Image ${index + 1}`}
-                    height={400}
-                    className="bg-white shadow1 br3 w-100"
-                  />
-                </div>
-              </div>
+              <ImageNew
+                imageObject={image.imageObject}
+                alt={`Latest Print Image ${index + 1}`}
+                height={400}
+                className=""
+              />
             ))}
           </div>
         )}
       </div>
 
       {!user && showDominionButton && (
-        <div className="flex justify-center mt5 mt3-md">
-          <Button
-            /* Options */
-            type="primary"
-            size="small"
-            text="Become a reader"
-            color="black"
-            fluid={false}
-            icon={null}
-            iconFloat={null}
-            inverted={false}
-            loading={false}
-            disabled={false}
-            skeleton={false}
-            onClick={null}
-            /* Children */
-            withLinkProps={{
-              type: 'next',
-              href: '/dominion',
-              target: null,
-              routerLink: Link,
-              routerLinkProps: {
-                as: `/dominion`,
-                scroll: false,
-              },
-            }}
-          />
+        <div className="mb-12">
+          <Link href="/dominion" legacyBehavior>
+            <a className="text-sm border-b border-neutral-300 pb-1">
+              <span className="text-neutral-300">
+                Join Membership [includes latest print]
+              </span>
+            </a>
+          </Link>
         </div>
       )}
     </div>
