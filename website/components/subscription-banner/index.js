@@ -68,27 +68,27 @@ export default function SubscriptionBanner(props) {
         <div className="md:col-span-1 flex flex-col justify-between gap-y-2">
           <div className="text-neutral-300 text-sm grid gap-y-2">
             <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>established.date</strong>
+              <strong>Established</strong>
               <span>2018</span>
             </p>
             <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>articles.count</strong>
+              <strong>Articles</strong>
               <span>320</span>
             </p>
             <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>prints.count</strong>
+              <strong>Prints</strong>
               <span>11</span>
             </p>
             <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>nextPrint.date</strong>
+              <strong>Next Print</strong>
               <span>June/May 2024</span>
             </p>
             <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>activeMembers.count</strong>
+              <strong>Active Members</strong>
               <span>150</span>
             </p>
             <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>advertisements.ever</strong>
+              <strong>Advertisements (ever)</strong>
               <span>0</span>
             </p>
           </div>

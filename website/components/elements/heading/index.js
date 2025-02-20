@@ -57,7 +57,7 @@ export default function Heading(props) {
   return (
     <WithLink {...(withLinkProps && { withLinkProps })}>
       <ElementType
-        className={`heading ${size} ${color} ${skeletonClass}`}
+        className={`heading ${size} text-${color} ${skeletonClass}`}
         style={styles}
         {...(onClick && { onClick })}
       >

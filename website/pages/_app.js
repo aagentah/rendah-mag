@@ -17,6 +17,8 @@ import '~/styles/index.scss';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
+import { useUser } from '~/lib/hooks';
+
 config.autoAddCss = false;
 
 // Custom hook to scroll to top on route change
@@ -42,6 +44,14 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   const transitionTimeout = 300;
+  const [user] = useUser();
+  const GA_ID = 'G-73XW97XVPY';
+
+  useEffect(() => {
+    if (user?.email && typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', GA_ID, { user_id: user._id });
+    }
+  }, [user]);
 
   // ApplyDarkMode component with initial check
   const ApplyDarkMode = () => {
@@ -81,25 +91,12 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <PlausibleProvider domain="rendahmag.com">
-      <GoogleAnalytics gaId="G-73XW97XVPY" />
+      <GoogleAnalytics gaId={GA_ID} />
       <AppProvider>
         <ParallaxProvider>
           <DarkModeProvider>
-            {/* Apply the dark mode class to html/body */}
             <ApplyDarkMode />
-            {/* <PageTransition
-              timeout={transitionTimeout}
-              classNames="page-transition"
-              loadingComponent={null}
-              loadingDelay={transitionTimeout}
-              loadingTimeout={{
-                enter: transitionTimeout,
-                exit: transitionTimeout,
-              }}
-              loadingClassNames="loading-indicator"
-            > */}
             {getLayout(<Component {...pageProps} />)}
-            {/* </PageTransition> */}
           </DarkModeProvider>
         </ParallaxProvider>
       </AppProvider>

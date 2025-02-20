@@ -458,23 +458,7 @@ export default function Profile({ siteConfig }) {
                     </>
                   )}
 
-                  {filter === 'profile' && (
-                    <div className="p-4">
-                      {/* Profile & Settings content */}
-                      <div className="mb-4">
-                        <Heading
-                          htmlEntity="h2"
-                          text="Profile & Settings"
-                          color="neutral-800"
-                          size="large"
-                        />
-                      </div>
-                      <ProfileEdit />
-                      <div className="mt-8">
-                        <ProfileBilling />
-                      </div>
-                    </div>
-                  )}
+                  {filter === 'profile' && <ProfileEdit />}
 
                   {filter === 'prints' && (
                     <div className="p-4">

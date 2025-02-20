@@ -115,7 +115,7 @@ export default function Dominion({ siteConfig }) {
       icon: IconMagazine, // Newspaper icon
     },
     {
-      title: 'Access the subscriber-dashboard',
+      title: 'Access the member dashboard',
       description:
         'In the meantime, explore our exclusive platform’s resources.',
       icon: IconWebsite,
@@ -253,7 +253,7 @@ export default function Dominion({ siteConfig }) {
                 <p className="flex justify-between border-b border-neutral-700 pb-1">
                   <strong>Dashboard Access</strong>
                   <span className="text-right leading-6">
-                    Membership login
+                    Membership dashboard
                     <br />
                     Monthly exclusive insights
                     <br />
@@ -381,14 +381,14 @@ export default function Dominion({ siteConfig }) {
           <div className="container">
             <div className="flex flex-wrap mb-4 px-4 md:px-0">
               <div className="max-w-prose">
-                <div className="pb-4">
+                <div className="pb-8">
                   <h2 className="text-neutral-400">
-                    Some words on our subscriber-dashboard
+                    Some words on our membership dashboard
                   </h2>
                 </div>
                 <div className="mb-8">
                   <p className="border-l-4 border-rendah-red pl-4 text-neutral-300 leading-relaxed text-sm pb-4 text-left relative">
-                    In addition to our prints, the subscriber-dashboard is where
+                    In addition to our prints, the membership dashboard is where
                     we tell the stories of the many artists and creatives we
                     collaborate with daily.
                     <br />
@@ -435,9 +435,9 @@ export default function Dominion({ siteConfig }) {
         {/* Active Subscribers Section */}
         <div className="py-12">
           <div className="container">
-            <div className="pb-4">
+            <div className="pb-8">
               <h2 className="text-neutral-400">
-                Active subscribers in {new Date().getFullYear()}
+                Active members in {new Date().getFullYear()}
               </h2>
             </div>
 

@@ -191,8 +191,7 @@ export default function Product({ siteConfig, product }) {
                       Welcome pack with stickers and membership card.
                     </li>
                     <li className="t-primary  tal  f6  pb2  lh-copy">
-                      Subscriber-dashboard; crafted for both artists &
-                      enthusiasts.
+                      Member dashboard; crafted for both artists & enthusiasts.
                     </li>
                     <li className="t-primary  tal  f6  pb2  lh-copy">
                       Exlusive music, art, samples, resources, and insights.
