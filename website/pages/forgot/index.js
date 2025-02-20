@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import dynamic from 'next/dynamic';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -13,16 +14,7 @@ import { useApp, useDispatchApp } from '~/context-provider/app';
 import { getSiteConfig } from '~/lib/sanity/requests';
 import validEmail from '~/lib/valid-email';
 
-const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconArrowRight)
-);
-
-const IconEnvelope = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconEnvelope)
-);
-
 export default function Forgot({ siteConfig }) {
-  const app = useApp();
   const dispatch = useDispatchApp();
   const [submitButtonLoading, setSubmitButtonLoading] = useState(false);
 
@@ -65,47 +57,45 @@ export default function Forgot({ siteConfig }) {
     return true;
   }
 
-  const buttonIconArrowRight = <IconArrowRight color="white" size={16} />;
-  const inputIconEnvelope = <IconEnvelope color="black" size={16} />;
+  // Match the Login page icons and styling.
+  const buttonIconArrowRight = (
+    <FontAwesomeIcon
+      icon={faArrowRight}
+      className="text-neutral-400"
+      style={{ fontSize: '16px' }}
+    />
+  );
+  const inputIconEnvelope = (
+    <FontAwesomeIcon
+      icon={faEnvelope}
+      className="text-neutral-400"
+      style={{ fontSize: '16px' }}
+    />
+  );
 
   return (
-    <>
-      <Layout
-        navOffset="center"
-        navOnWhite
-        hasNav
-        hasFooter
-        meta={{
-          siteConfig,
-          title: 'Forgot Password',
-          description: 'Forgot your password?.',
-          image: null,
-        }}
-        preview={null}
-      >
-        <Container>
-          <div className="pt4  pb2  tac">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text="Forgot Password"
-              color="black"
-              size="large"
-              truncate={0}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
+    <Layout
+      navOffset="center"
+      navOnWhite={false}
+      hasNav
+      hasFooter
+      meta={{
+        siteConfig,
+        title: 'Forgot Password',
+        description: 'Forgot your password?',
+        image: null,
+      }}
+      preview={null}
+    >
+      <div className="container py-24">
+        <div className="max-w-xl">
+          <div className="pb-12">
+            <h1 className="text-neutral-300">Forgot Password</h1>
           </div>
 
-          <form
-            noValidate
-            className="form  form--default  mla  mra  ph3  ph0-md"
-            onSubmit={onSubmit}
-          >
-            <div className="pv2">
+          <form noValidate className="px-3 md:px-0" onSubmit={onSubmit}>
+            <div className="py-2">
               <Input
-                /* Options */
                 type="email"
                 label="Email"
                 name="username"
@@ -117,14 +107,13 @@ export default function Forgot({ siteConfig }) {
               />
             </div>
 
-            <div className="db  df-md  flex-wrap  align-center  pt3">
-              <div className="df  db-md  di-md  pb3  pb0-md  pr3-md">
+            <div className="block md:flex flex-wrap items-center pt-10">
+              <div className="flex items-center pb-3 md:pb-0 md:pr-3">
                 <Button
-                  /* Options */
                   type="primary"
-                  size="medium"
+                  size="small"
                   text="Reset"
-                  color="black"
+                  color="neutral-400"
                   fluid={false}
                   icon={buttonIconArrowRight}
                   iconFloat={null}
@@ -133,7 +122,6 @@ export default function Forgot({ siteConfig }) {
                   disabled={false}
                   skeleton={false}
                   onClick={null}
-                  /* Children */
                   withLinkProps={{
                     type: 'form',
                     href: null,
@@ -143,24 +131,23 @@ export default function Forgot({ siteConfig }) {
                   }}
                 />
               </div>
-              <div className="df  db-md  di-md  pb3  pb0-md  pr3-md">
+              <div className="text-neutral-400 text-sm flex items-center pb-3 md:pb-0 md:pr-3">
                 <Link href="/dominion" legacyBehavior>
-                  <div className="flex  justify-start  underline  cp">
+                  <div className="flex justify-start underline cursor-pointer">
                     Don't have an account
                   </div>
                 </Link>
               </div>
             </div>
           </form>
-        </Container>
-      </Layout>
-    </>
+        </div>
+      </div>
+    </Layout>
   );
 }
 
 export async function getServerSideProps() {
   const siteConfig = await getSiteConfig();
-
   return {
     props: { siteConfig },
   };

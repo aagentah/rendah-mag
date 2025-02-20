@@ -114,7 +114,7 @@ export default function Gallery({ siteConfig }) {
               /* Options */
               htmlEntity="p"
               text="You made it to the bottom"
-              color="white"
+              color="neutral-300"
               size="medium"
               truncate={0}
               onClick={null}
@@ -126,7 +126,7 @@ export default function Gallery({ siteConfig }) {
             <Copy
               /* Options */
               text="Can we add you to our Newsletter? We usually only send a few emails each month, and keep the content relevant as ever."
-              color="white"
+              color="neutral-400"
               size="medium"
               truncate={null}
             />
@@ -144,7 +144,7 @@ export default function Gallery({ siteConfig }) {
                 type="secondary"
                 size="medium"
                 text="No thanks"
-                color="black"
+                color="neutral-400"
                 fluid={false}
                 icon={null}
                 iconFloat={null}

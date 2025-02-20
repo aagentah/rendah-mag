@@ -187,7 +187,7 @@ export default function SmartLink({ siteConfig, post, preview }) {
                 type="secondary"
                 size="medium"
                 text="No thanks"
-                color="black"
+                color="neutral-400"
                 fluid={false}
                 icon={null}
                 iconFloat={null}

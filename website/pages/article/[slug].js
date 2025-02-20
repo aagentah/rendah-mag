@@ -107,7 +107,6 @@ export default function Post({ siteConfig, post, preview }) {
   }
 
   if (!router.isFallback && post?.slug) {
-    console.log('post', post);
     let canShowBody = true;
 
     if (
@@ -137,7 +136,7 @@ export default function Post({ siteConfig, post, preview }) {
             <Heading
               htmlEntity="p"
               text="You made it to the bottom"
-              color="black"
+              color="neutral-300"
               size="medium"
               truncate={0}
               onClick={null}
@@ -147,7 +146,7 @@ export default function Post({ siteConfig, post, preview }) {
           <div className="pb-2">
             <Copy
               text="Can we add you to our Newsletter? We usually only send a few emails each month, and keep the content relevant as ever."
-              color="black"
+              color="neutral-400"
               size="medium"
               truncate={null}
             />
@@ -164,7 +163,7 @@ export default function Post({ siteConfig, post, preview }) {
                 type="secondary"
                 size="medium"
                 text="No thanks"
-                color="black"
+                color="text-neutral-400"
                 fluid={false}
                 icon={null}
                 iconFloat={null}

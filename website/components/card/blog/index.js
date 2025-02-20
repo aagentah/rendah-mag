@@ -22,8 +22,6 @@ export default function CardBlog({ post, handleClick, i }) {
   const width = 240;
   const slug = post?.slug;
 
-  console.log('post', post);
-
   return (
     <Link href={`/article/${slug}`}>
       <article

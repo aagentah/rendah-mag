@@ -48,8 +48,6 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
   const observer = { onChange: () => null, rootMargin: '0% 0% -30% 0%' };
   const plausible = usePlausible();
 
-  console.log('post', post);
-
   if (!router.isFallback && !post?.slug) {
     Router.push('/404');
   }

@@ -437,7 +437,7 @@ export default function Dominion({ siteConfig }) {
           <div className="container">
             <div className="pb-4">
               <h2 className="text-neutral-400">
-                Active subscribers in ${new Date().getFullYear()}
+                Active subscribers in {new Date().getFullYear()}
               </h2>
             </div>
 

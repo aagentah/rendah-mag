@@ -165,23 +165,13 @@ export default function Home() {
       {/* Subscribe Modal */}
       <Modal size="small" active={modalActive}>
         <div className="mb-2 pb-2">
-          <Heading
-            htmlEntity="h3"
-            text="Join our Newsletter?"
-            color="black"
-            size="medium"
-            truncate={0}
-            onClick={null}
-            withLinkProps={null}
-          />
+          <h3 className="text-neutral-300">Join our Newsletter?</h3>
         </div>
         <div className="mb-2 pb-2">
-          <Copy
-            text="We usually only send a few emails each month, and keep the content relevant as ever."
-            color="black"
-            size="medium"
-            truncate={null}
-          />
+          <p className="text-neutral-400">
+            We usually only send a few emails each month, and keep the content
+            relevant as ever.
+          </p>
         </div>
         <div className="mb-2 pb-3">
           <SubscribeForm type="modal" onSuccess={() => setModalActive(false)} />
@@ -191,7 +181,7 @@ export default function Home() {
             type="secondary"
             size="medium"
             text="No thanks"
-            color="black"
+            color="neutral-400"
             fluid={false}
             icon={null}
             iconFloat={null}

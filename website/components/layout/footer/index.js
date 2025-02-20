@@ -38,7 +38,7 @@ export default function Footer() {
             {!user && (
               <>
                 <div className="pb-2 mb-2">
-                  <h3 className="text-neutral-400 text-lg font-bold">
+                  <h3 className="text-neutral-300 text-lg font-bold">
                     Join our Newsletter?
                   </h3>
                 </div>

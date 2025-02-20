@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import dynamic from 'next/dynamic';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faArrowRight,
+  faEnvelope,
+  faLock,
+} from '@fortawesome/free-solid-svg-icons';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -14,18 +19,6 @@ import { useApp, useDispatchApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 import { getSiteConfig } from '~/lib/sanity/requests';
 import validEmail from '~/lib/valid-email';
-
-const IconArrowRight = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconArrowRight)
-);
-
-const IconEnvelope = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconEnvelope)
-);
-
-const IconLock = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconLock)
-);
 
 export default function Login({ siteConfig }) {
   const app = useApp();
@@ -123,10 +116,35 @@ export default function Login({ siteConfig }) {
     if (user) Router.push(`${fwdRoute ? `/${fwdRoute}` : '/profile'}`);
   }, [user, fwdRoute]);
 
-  const buttonIconArrowRightWhite = <IconArrowRight color="white" size={16} />;
-  const buttonIconArrowRightBlack = <IconArrowRight color="black" size={16} />;
-  const inputIconEnvelope = <IconEnvelope color="black" size={16} />;
-  const inputIconLock = <IconLock color="black" size={16} />;
+  // Use Font Awesome icons with Tailwind styling.
+  const buttonIconArrowRightWhite = (
+    <FontAwesomeIcon
+      icon={faArrowRight}
+      className="text-neutral-400"
+      style={{ fontSize: '16px' }}
+    />
+  );
+  const buttonIconArrowRightBlack = (
+    <FontAwesomeIcon
+      icon={faArrowRight}
+      className="text-black"
+      style={{ fontSize: '16px' }}
+    />
+  );
+  const inputIconEnvelope = (
+    <FontAwesomeIcon
+      icon={faEnvelope}
+      className="text-neutral-400"
+      style={{ fontSize: '16px' }}
+    />
+  );
+  const inputIconLock = (
+    <FontAwesomeIcon
+      icon={faLock}
+      className="text-neutral-400"
+      style={{ fontSize: '16px' }}
+    />
+  );
 
   return (
     <>
@@ -144,96 +162,81 @@ export default function Login({ siteConfig }) {
         }}
         preview={null}
       >
-        <Container>
-          <div className="pt4  pb2  tac">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text="Login"
-              color="black"
-              size="large"
-              truncate={0}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-
-          <form
-            noValidate
-            className="form  form--default  mla  mra  ph3  ph0-md"
-            onSubmit={onSubmit}
-          >
-            <div className="pv2">
-              <Input
-                /* Options */
-                type="email"
-                label="Email"
-                name="username"
-                value={prefillEmail}
-                icon={inputIconEnvelope}
-                required
-                disabled={false}
-                readOnly={false}
-              />
-            </div>
-            <div className="pv2">
-              <Input
-                /* Options */
-                type="password"
-                label="Password"
-                name="password"
-                value=""
-                icon={inputIconLock}
-                required
-                disabled={false}
-                readOnly={false}
-              />
+        <div className="container py-24">
+          <div className="max-w-xl">
+            <div className="pb-12">
+              <h1 className="text-neutral-300">Login</h1>
             </div>
 
-            <div className="db  df-md flex-wrap  align-center  pt3">
-              <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
-                <Button
-                  /* Options */
-                  type="primary"
-                  size="medium"
-                  text="Login"
-                  color="black"
-                  fluid={false}
-                  icon={buttonIconArrowRightWhite}
-                  iconFloat={null}
-                  inverted={false}
-                  loading={submitButtonLoading}
+            <form noValidate className="px-3 md:px-0" onSubmit={onSubmit}>
+              <div className="py-2">
+                <Input
+                  type="email"
+                  label="Email"
+                  name="username"
+                  value={prefillEmail}
+                  icon={inputIconEnvelope}
+                  required
                   disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  /* Children */
-                  withLinkProps={{
-                    type: 'form',
-                    href: null,
-                    target: null,
-                    routerLink: null,
-                    routerLinkProps: null,
-                  }}
+                  readOnly={false}
                 />
               </div>
-              <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
-                <Link href="/dominion" legacyBehavior>
-                  <div className="flex  justify-start  underline  cp">
-                    Don't have an account
-                  </div>
-                </Link>
+              <div className="py-2">
+                <Input
+                  type="password"
+                  label="Password"
+                  name="password"
+                  value=""
+                  icon={inputIconLock}
+                  required
+                  disabled={false}
+                  readOnly={false}
+                />
               </div>
-              <div className="df  db-md  align-center  pb3  pb0-md  pr3-md">
-                <Link href="/forgot" legacyBehavior>
-                  <div className="flex  justify-start  underline  cp">
-                    Forgot Password
-                  </div>
-                </Link>
+
+              <div className="block md:flex flex-wrap items-center pt-10">
+                <div className="flex items-center pb-3 md:pb-0 md:pr-3">
+                  <Button
+                    type="primary"
+                    size="small"
+                    text="Login"
+                    color="neutral-400"
+                    fluid={false}
+                    icon={buttonIconArrowRightWhite}
+                    iconFloat={null}
+                    inverted={false}
+                    loading={submitButtonLoading}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    withLinkProps={{
+                      type: 'form',
+                      href: null,
+                      target: null,
+                      routerLink: null,
+                      routerLinkProps: null,
+                    }}
+                  />
+                </div>
+
+                <div className="text-neutral-400 text-sm flex items-center pb-3 md:pb-0 md:pr-3">
+                  <Link href="/dominion" legacyBehavior>
+                    <div className="flex justify-start underline cursor-pointer">
+                      Don't have an account
+                    </div>
+                  </Link>
+                </div>
+                <div className="text-neutral-400 text-sm flex items-center pb-3 md:pb-0 md:pr-3">
+                  <Link href="/forgot" legacyBehavior>
+                    <div className="flex justify-start underline cursor-pointer">
+                      Forgot Password
+                    </div>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </form>
-        </Container>
+            </form>
+          </div>
+        </div>
       </Layout>
     </>
   );

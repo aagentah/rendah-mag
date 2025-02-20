@@ -50,6 +50,10 @@ export default function SubscribeForm({ type, onSuccess }) {
           data: {
             email_address: inputEl.current.value,
             status: 'subscribed',
+            merge_fields: {
+              SOURCEPAGE: fullPath,
+              SOURCECOMPONENT: type || '',
+            },
           },
         }),
         headers: { 'Content-Type': 'application/json' },
@@ -89,11 +93,7 @@ export default function SubscribeForm({ type, onSuccess }) {
           placeholder="Your email"
           ref={inputEl}
           type="email"
-          className={`flex justify-center shadow-none outline-none rounded-none bg-transparent text-sm md:text-base p-2 border border-r-0 placeholder:opacity-100 w-full md:w-2/3 ${
-            type === 'footer'
-              ? 'text-neutral-400 border-neutral-400 placeholder:text-neutral-400'
-              : 'text-black border-black placeholder:text-black'
-          }`}
+          className={`flex justify-center shadow-none outline-none rounded-none bg-transparent text-sm md:text-base p-2 border border-r-0 placeholder:opacity-100 w-full md:w-2/3 text-neutral-400 border-neutral-400 placeholder:text-neutral-400`}
         />
         <div className="flex justify-center md:justify-start pr-2 md:pr-0 w-full md:w-1/3">
           <button
