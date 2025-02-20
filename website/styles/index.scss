@@ -12,7 +12,6 @@
 // @import 'vendor/nprogress';
 // @import 'vendor/react-dropzone';
 // @import 'vendor/h5-audio-player';
-// @import 'vendor/toast';
 // // @import 'vendor/fontawesome';
 
 // // Elements
@@ -105,6 +104,8 @@
 // //     fill: red !important;
 // //   }
 // // }
+
+@import 'vendor/toast';
 
 @tailwind base;
 @tailwind components;

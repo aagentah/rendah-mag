@@ -7,6 +7,8 @@ export default async (req, res) => {
     const { data } = req.body;
     const DATACENTER = process.env.MAILCHIMP_API_KEY.split('-')[1];
 
+    console.log('data', data);
+
     // Add member to list
     const response = await fetch(
       `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members`,

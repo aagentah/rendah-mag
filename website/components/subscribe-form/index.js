@@ -51,8 +51,8 @@ export default function SubscribeForm({ type, onSuccess }) {
             email_address: inputEl.current.value,
             status: 'subscribed',
             merge_fields: {
-              SOURCEPAGE: fullPath,
-              SOURCECOMPONENT: type || '',
+              PAGE: fullPath,
+              COMPONENT: type || '',
             },
           },
         }),
