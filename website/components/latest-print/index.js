@@ -75,7 +75,7 @@ export default function LatestPrint({ showDominionButton }) {
                 imageObject={image.imageObject}
                 alt={`Latest Print Image ${index + 1}`}
                 height={400}
-                className=""
+                className="brightness-75"
               />
             ))}
           </div>

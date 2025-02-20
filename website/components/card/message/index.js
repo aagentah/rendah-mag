@@ -40,7 +40,8 @@ export default function CardBlog({ post, handleClick, i }) {
             imageObject={post?.imageObject}
             height={height}
             width={width}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover brightness-75"
+            type="blog"
           />
         </div>
 

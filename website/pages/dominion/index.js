@@ -247,15 +247,13 @@ export default function Dominion({ siteConfig }) {
                     <br />
                     Free Global Shipping
                     <br />
-                    Welcome Pack + Stickers
-                    <br />
-                    Membership Card
+                    Member Card + Stickers
                   </span>
                 </p>
                 <p className="flex justify-between border-b border-neutral-700 pb-1">
                   <strong>Dashboard Access</strong>
                   <span className="text-right leading-6">
-                    Membership profile
+                    Membership login
                     <br />
                     Monthly exclusive insights
                     <br />
@@ -325,7 +323,7 @@ export default function Dominion({ siteConfig }) {
 
           <div className="md:col-span-2">
             <img
-              className="mt-4 brightness-50"
+              className="mt-4 brightness-75"
               src="https://i.ibb.co/whB1MgH0/Rendah-Cover-Full-1.png"
               alt="Welcome Pack"
             />
@@ -409,7 +407,7 @@ export default function Dominion({ siteConfig }) {
                 {teamMember && (
                   <div className="flex flex-wrap items-center">
                     <div
-                      className="mb-3 md:mb-0 brightness-50"
+                      className="mb-3 md:mb-0 brightness-75"
                       style={{ width: '80px', height: '80px' }}
                     >
                       <ImageNew
@@ -445,7 +443,7 @@ export default function Dominion({ siteConfig }) {
 
             <div className="flex flex-wrap gap-4">
               {dominion?.map((i, o) => (
-                <div key={o} className="w-12 h-12 brightness-50">
+                <div key={o} className="w-12 h-12 brightness-75">
                   <Image
                     src={
                       i?.avatar
