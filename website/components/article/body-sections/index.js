@@ -358,7 +358,7 @@ function ImageSection({ section }) {
   const handleCaption = () => {
     if (isArray(section?.caption)) {
       return (
-        <figcaption className="text-center text-sm py-2">
+        <figcaption className="text-xxs py-2 opacity-50">
           <BlockContent
             blocks={section.caption}
             serializers={SANITY_BLOCK_SERIALIZERS}
@@ -497,17 +497,15 @@ function Audio({ url, title, image, description, allowDownload, ...props }) {
 
 function ArticleLink({ text, url }) {
   return (
-    <div className="flex flex-wrap py-3">
-      <div className="w-full py-3 text-center">
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block text-sm px-4 py-2 rounded hover:underline"
-        >
-          {text}
-        </a>
-      </div>
+    <div className="w-full py-3 text-rendah-red">
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block text-sm py-2 rounded underline"
+      >
+        {text}
+      </a>
     </div>
   );
 }
@@ -544,7 +542,7 @@ export default function Sections({ body, ...props }) {
     ) {
       imageCount++;
       return (
-        <div className="col-span-12" key={i}>
+        <div className="col-span-12 py-4" key={i}>
           <ImageSection section={section} imageCount={imageCount} />
         </div>
       );
@@ -639,7 +637,7 @@ export default function Sections({ body, ...props }) {
   };
 
   return (
-    <div className="container">
+    <div className="rich-text container">
       <div className="grid grid-cols-12 text-neutral-300 text-sm gap-y-4">
         {body.map((section, i) => renderSections(section, i))}
       </div>
