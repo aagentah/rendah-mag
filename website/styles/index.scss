@@ -9,7 +9,6 @@
 
 // // Vendor after config
 // // @import 'vendor/next-pattern-library';
-// @import 'vendor/nprogress';
 // @import 'vendor/react-dropzone';
 // @import 'vendor/h5-audio-player';
 // // @import 'vendor/fontawesome';
@@ -105,7 +104,13 @@
 // //   }
 // // }
 
+:root {
+  --rendah-red: #e9393f;
+  --rendah-yellow: #fab658;
+}
+
 @import 'vendor/toast';
+@import 'vendor/nprogress';
 
 @tailwind base;
 @tailwind components;
