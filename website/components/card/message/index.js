@@ -54,17 +54,10 @@ export default function CardBlog({ post, handleClick, i }) {
           </div>
 
           <div>
-            <Heading
-              htmlEntity="h2"
-              text={post?.title}
-              color="text-neutral-300"
-              size={app?.deviceSize === 'md' ? 'small' : 'small'}
-              truncate={null}
-              skeleton={!post}
-            />
+            <h3 className="text-sm text-neutral-300">{post?.title}</h3>
 
             {post?.subtitle && (
-              <p className="text-sm text-gray-300 mt-2">{post?.subtitle}</p>
+              <p className="text-sm text-neutral-400 mt-2">{post.subtitle}</p>
             )}
           </div>
         </div>

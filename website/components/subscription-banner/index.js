@@ -24,29 +24,10 @@ export default function SubscriptionBanner(props) {
             <br />
           </p>
           <p className="text-xs md:text-sm text-neutral-300 leading-relaxed text-left">
-            This project is crafted to be open and collaborative. Through this,
-            we seek to explore core themes within a structured framework:
-            <br />
-            <br />
-            <ul className="pl-3 list-disc">
-              <li className="pb-2">
-                <strong>Symbiosis</strong>: Can artists and communities have
-                better relations?
-              </li>
-              <li className="pb-2">
-                <strong>Meaning</strong>: What matters in pursuing and
-                preserving artistic influences?
-              </li>
-              <li className="pb-2">
-                <strong>Intersectivity</strong>: Are there chartable
-                commonalities within art and technology?
-              </li>
-            </ul>
-            <br />
-            By asking questions, we hope to observe something new; and with
-            that, offer our own perspective.
-            <br />
-            <br />
+            This project exists to research the topic of creative context within
+            underground & experimental arts. Through the lens of
+            creative-journalism, we explore the life-cycle of artists and their
+            projects, in an otherwise undocumented space.
           </p>
 
           {/* {!user && (

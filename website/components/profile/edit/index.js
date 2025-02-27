@@ -271,63 +271,10 @@ export default function ProfileEdit() {
   if (user) {
     return (
       <>
-        {/*
-        <Modal size="small" active={passwordModalActive}>
-          <div className="pb-2">
-            <Heading htmlEntity="h1" text="Change your password" color="white" size="large" truncate={0} withLinkProps={null} />
-          </div>
-          <div className="pb-3">
-            <Copy text="Enter your new password." color="white" size="medium" truncate={null} />
-          </div>
-          <form noValidate autoComplete="off" name="lastpass-disable-search" className="w-full" onSubmit={handleUpdatePassword}>
-            <div className="flex flex-wrap">
-              <div className="w-full pb-3">
-                <div className="py-2">
-                  <Input type="password" label="Change Password" name="password" value="" icon={inputIconLock} required disabled={false} readOnly={false} />
-                </div>
-                <div className="py-2 mb-3">
-                  <Input type="password" label="Repeat Change Password" name="rpassword" value="" icon={inputIconLock} required disabled={false} readOnly={false} />
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-wrap pb-2">
-              <div className="w-1/2 flex justify-center md:justify-start items-center">
-                <Button type="primary" size="medium" text="Update" color="white" fluid={false} icon={null} iconFloat={null} inverted={false} loading={updatePasswordButtonLoading} disabled={false} skeleton={false} onClick={null} withLinkProps={{ type: "form", url: null, target: null, routerLink: null }} />
-              </div>
-              <div className="w-1/2 flex justify-center md:justify-start items-center">
-                <Button type="secondary" size="medium" text="Cancel" color="white" fluid={false} icon={null} iconFloat={null} inverted={false} loading={false} disabled={false} skeleton={false} onClick={() => setPasswordModalActive(false)} withLinkProps={null} />
-              </div>
-            </div>
-          </form>
-        </Modal>
-        */}
-
-        {/*
-        <Modal size="medium" active={avatarModalActive}>
-          <div className="pb-3">
-            <Heading htmlEntity="h1" text="Change Avatar" color="white" size="large" truncate={null} withLinkProps={null} />
-          </div>
-          <div className="pb-4">
-            <Copy text="Recomended square & at least 720px & under 1 MB." color="white" size="medium" truncate={null} />
-          </div>
-          <div className="pb-4">
-            <div className="react-dropzone__wrapper" {...getRootProps()}>
-              <input {...getInputProps()} />
-              {isDragActive ? <p>Drop the file here...</p> : <p>Drag & drop your image here, or click to select file</p>}
-            </div>
-          </div>
-          <div className="flex flex-wrap pb-2">
-            <div className="w-full md:w-1/2 flex justify-center md:justify-start items-center">
-              <Button type="secondary" size="medium" text="Cancel" color="white" fluid={false} icon={null} iconFloat={null} inverted={false} loading={false} disabled={false} skeleton={false} onClick={() => setAvatarModalActive(!avatarModalActive)} withLinkProps={null} />
-            </div>
-          </div>
-        </Modal>
-        */}
-
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-4 items-stretch">
           <div className="w-full md:w-1/2 md:pr-2">
             <div className="p-4 rounded-md mb-4 border border-neutral-700">
-              <div className="profile_heading">
+              <div className="profile_heading pb-8">
                 <Heading
                   htmlEntity="h1"
                   text="Edit Profile"
@@ -339,7 +286,7 @@ export default function ProfileEdit() {
               </div>
               <div className="flex flex-wrap pt-4 md:pt-0">
                 <div className="w-full pb-4">
-                  <div className="w-16 relative">
+                  <div className="size-[120px] relative">
                     <div className="opacity-50">
                       <Image
                         src={avatarImage || '/images/avatar-placeholder.png'}
@@ -463,7 +410,7 @@ export default function ProfileEdit() {
                 </div>
               </form>
             </div>
-            <div className="p-4 rounded-md mb-4 border border-neutral-700">
+            <div className="p-4 rounded-md border border-neutral-700">
               <div className="profile_heading">
                 <Heading
                   htmlEntity="h1"
@@ -537,7 +484,7 @@ export default function ProfileEdit() {
             </div>
           </div>
           <div className="w-full md:w-1/2 md:pl-2">
-            <div className="p-4 rounded-md mb-4 border border-neutral-700">
+            <div className="p-4 rounded-md mb-4 border border-neutral-700 h-full">
               <div className="pb-4">
                 <Heading
                   htmlEntity="h1"
@@ -693,33 +640,35 @@ export default function ProfileEdit() {
                 </div>
               ) : null}
             </div>
-            <div className="p-4 rounded-md mb-4 border border-neutral-700">
-              <section className="w-full">
-                <div className="pb-3">
-                  <Heading
-                    htmlEntity="h2"
-                    text="Pause/Cancel Subscription"
-                    color="white"
-                    size="small"
-                    truncate={null}
-                    withLinkProps={null}
-                  />
-                </div>
-                <div className="p-4 rounded-md">
-                  <p className="text-sm text-white">
-                    If you'd like to pause or cancel your Dominion Subscription,
-                    please email us at{' '}
-                    <a
-                      className="underline text-white"
-                      href="mailto:info@rendahmag.com"
-                    >
-                      info@rendahmag.com
-                    </a>
-                    .
-                  </p>
-                </div>
-              </section>
-            </div>
+          </div>
+        </div>
+        <div className="mt-4">
+          <div className="p-4 rounded-md border border-neutral-700">
+            <section className="w-full">
+              <div className="pb-3">
+                <Heading
+                  htmlEntity="h2"
+                  text="Pause/Cancel Subscription"
+                  color="white"
+                  size="small"
+                  truncate={null}
+                  withLinkProps={null}
+                />
+              </div>
+              <div className="p-4 rounded-md">
+                <p className="text-sm text-white">
+                  If you'd like to pause or cancel your Dominion Subscription,
+                  please email us at{' '}
+                  <a
+                    className="underline text-white"
+                    href="mailto:info@rendahmag.com"
+                  >
+                    info@rendahmag.com
+                  </a>
+                  .
+                </p>
+              </div>
+            </section>
           </div>
         </div>
       </>

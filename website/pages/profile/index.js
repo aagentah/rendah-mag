@@ -18,6 +18,7 @@ import Button from '~/components/elements/button';
 import CardMessage from '~/components/card/message';
 import CardResource from '~/components/card/resource';
 import CardBlog from '~/components/card/blog';
+import CardPrint from '~/components/card/print';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
@@ -26,6 +27,8 @@ import {
   getDominionItemsSince,
   getDominionResourcesSince,
   getCategory,
+  getAllPrints,
+  getSiteConfig,
 } from '~/lib/sanity/requests';
 
 const CarouselItemSection = dynamic(() =>
@@ -41,15 +44,6 @@ const IconArrowLeft = dynamic(() =>
 
 const ProfileEdit = dynamic(() => import('~/components/profile/edit'));
 const ProfileBilling = dynamic(() => import('~/components/profile/billing'));
-const ProfilePrints = dynamic(() => import('~/components/profile/prints'));
-
-import { getSiteConfig } from '~/lib/sanity/requests';
-
-// Initialize Stripe outside render.
-const stripePromise = loadStripe(
-  'pk_live_51DvkhrKb3SeE1fXfAwS5aNbDhvI4t4cCbHvsVjk5bfmBvSF5tc2mEYHAVIMQCgcXBsKjo5AvaT48k39sbx3UKUu400TFSGqiL4'
-);
-
 const ProfileDashboard = dynamic(() =>
   import('~/components/profile/dashboard')
 );
@@ -91,15 +85,18 @@ const IconStore = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconStore)
 );
 
+const stripePromise = loadStripe(
+  'pk_live_51DvkhrKb3SeE1fXfAwS5aNbDhvI4t4cCbHvsVjk5bfmBvSF5tc2mEYHAVIMQCgcXBsKjo5AvaT48k39sbx3UKUu400TFSGqiL4'
+);
+
 export default function Profile({ siteConfig }) {
   const [user, { loading, error }] = useUser();
   const [messages, setMessages] = useState([]);
   const [resources, setResources] = useState([]);
   const [articles, setArticles] = useState([]);
-  // When a card is clicked, we set articleActive to that card's _id.
+  const [prints, setPrints] = useState([]);
   const [articleActive, setArticleActive] = useState(null);
   const [cardsShow, setCardsShow] = useState(true);
-  // Define filter state; valid tabs: messages, resources, articles, profile, prints.
   const [filter, setFilter] = useState('messages');
   const [fileTypeFilter, setFileTypeFilter] = useState('all');
   const router = useRouter();
@@ -125,11 +122,9 @@ export default function Profile({ siteConfig }) {
     zenscroll.setup(300, 15);
   }, []);
 
-  // Ensure resources and articles are arrays.
   const safeArticles = articles || [];
   const safeResources = resources || [];
 
-  // For resources, filter by fileTypeFilter if applicable.
   const filteredResources = safeResources.filter((resource) => {
     if (filter === 'resources') {
       if (fileTypeFilter === 'all') return true;
@@ -138,7 +133,6 @@ export default function Profile({ siteConfig }) {
     return false;
   });
 
-  // When showing articles, use the safe array.
   const filteredArticles = filter === 'articles' ? safeArticles : [];
 
   useEffect(() => {
@@ -169,7 +163,6 @@ export default function Profile({ siteConfig }) {
     }, 100);
   };
 
-  // Fetch messages and resources.
   useEffect(() => {
     if (user?.isDominion) {
       const fetchItems = async () => {
@@ -198,7 +191,18 @@ export default function Profile({ siteConfig }) {
     }
   }, [user]);
 
-  // Clean up card detail overlay: if an active card is clicked.
+  useEffect(() => {
+    if (user?.isDominion) {
+      const fetchPrints = async () => {
+        const data = await getAllPrints();
+        if (data) {
+          setPrints(data);
+        }
+      };
+      fetchPrints();
+    }
+  }, [user]);
+
   const renderDetailOverlay = () => {
     const messageItem = messages.find((item) => item._id === articleActive);
     const resourceItem = resources.find((item) => item._id === articleActive);
@@ -236,243 +240,259 @@ export default function Profile({ siteConfig }) {
             }}
             preview={null}
           >
-            {/* User Info */}
-            <div className="container py-12 text-sm">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
-                <div className="md:col-span-3">
-                  <div className="max-w-md">
-                    <p className="mb-4 text-neutral-300">
-                      <strong>Members dashboard</strong>
+            <div className="grid grid-cols-12">
+              <div className="col-span-9 pt-11 pb-4">
+                <section className="container">
+                  <div className="relative">
+                    <div className="flex justify-between items-center pb-16">
+                      <div className="flex">
+                        <button
+                          onClick={() =>
+                            router.push({
+                              pathname: router.pathname,
+                              query: { tab: 'messages' },
+                            })
+                          }
+                          className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                            filter === 'messages'
+                              ? 'bg-neutral-300 text-neutral-800'
+                              : 'text-neutral-300'
+                          }`}
+                        >
+                          Newsletters
+                        </button>
+                        <button
+                          onClick={() =>
+                            router.push({
+                              pathname: router.pathname,
+                              query: { tab: 'resources' },
+                            })
+                          }
+                          className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                            filter === 'resources'
+                              ? 'bg-neutral-300 text-neutral-800'
+                              : 'text-neutral-300'
+                          }`}
+                        >
+                          Exclusive Resources
+                        </button>
+                        <button
+                          onClick={() =>
+                            router.push({
+                              pathname: router.pathname,
+                              query: { tab: 'articles' },
+                            })
+                          }
+                          className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                            filter === 'articles'
+                              ? 'bg-neutral-300 text-neutral-800'
+                              : 'text-neutral-300'
+                          }`}
+                        >
+                          Articles
+                        </button>
+                        <button
+                          onClick={() =>
+                            router.push({
+                              pathname: router.pathname,
+                              query: { tab: 'prints' },
+                            })
+                          }
+                          className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                            filter === 'prints'
+                              ? 'bg-neutral-300 text-neutral-800'
+                              : 'text-neutral-300'
+                          }`}
+                        >
+                          Prints
+                        </button>
+                        <button
+                          onClick={() =>
+                            router.push({
+                              pathname: router.pathname,
+                              query: { tab: 'profile' },
+                            })
+                          }
+                          className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                            filter === 'profile'
+                              ? 'bg-neutral-300 text-neutral-800'
+                              : 'text-neutral-300'
+                          }`}
+                        >
+                          Profile & Settings
+                        </button>
+                      </div>
+                    </div>
+                    {filter === 'messages' && (
+                      <>
+                        {messages.length ? (
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {messages.map((item, i) => (
+                              <div
+                                key={item._id}
+                                onClick={() => setArticleActive(item._id)}
+                              >
+                                <CardMessage i={i} post={item} />
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="flex flex-wrap pb-5 pt-2">
+                            {[...Array(9)].map((_, i) => (
+                              <div key={i} className="w-full md:w-1/3">
+                                <div
+                                  className="skeletonNew"
+                                  style={{
+                                    height: app.deviceSize === 'md' ? 258 : 260,
+                                  }}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
+                    {filter === 'resources' && (
+                      <>
+                        {filteredResources.length ? (
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {filteredResources.map((item, i) => (
+                              <div
+                                key={item._id}
+                                onClick={() => setArticleActive(item._id)}
+                              >
+                                <CardResource i={i} post={item} />
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="flex flex-wrap pb-5 pt-2">
+                            {[...Array(6)].map((_, i) => (
+                              <div key={i} className="w-full p-2">
+                                <div
+                                  className="skeletonNew"
+                                  style={{
+                                    height: app.deviceSize === 'md' ? 290 : 110,
+                                  }}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
+                    {filter === 'articles' && (
+                      <>
+                        {filteredArticles.length ? (
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {filteredArticles.map((item, i) => (
+                              <div
+                                key={item._id}
+                                onClick={() => setArticleActive(item._id)}
+                                className="p-2"
+                              >
+                                <CardBlog post={item} target="_blank" />
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="flex flex-wrap pb-5 pt-2">
+                            {[...Array(6)].map((_, i) => (
+                              <div key={i} className="w-full p-2">
+                                <div
+                                  className="skeletonNew"
+                                  style={{ height: 290 }}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
+                    {filter === 'prints' && (
+                      <div className="p-4">
+                        <Heading
+                          htmlEntity="h2"
+                          text="Prints"
+                          color="neutral-800"
+                          size="large"
+                        />
+                        {prints?.length ? (
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {prints.map((item, i) => (
+                              <div
+                                key={item._id}
+                                onClick={() => setArticleActive(item._id)}
+                              >
+                                <CardPrint
+                                  i={i}
+                                  post={item}
+                                  handleClick={null}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="flex flex-wrap pb-5 pt-2">
+                            {[...Array(6)].map((_, i) => (
+                              <div key={i} className="w-full p-2">
+                                <div
+                                  className="skeletonNew"
+                                  style={{ height: 290 }}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {filter === 'profile' && <ProfileEdit />}
+                  </div>
+                </section>
+              </div>
+              <div className="col-span-3 container py-12 text-sm border-l border-neutral-700">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+                  <div className="md:col-span-4 pb-6">
+                    <div className="max-w-md">
+                      <h1 className="mb-4 text-neutral-300">
+                        Members dashboard
+                      </h1>
+                      <p className="text-neutral-400">
+                        Here you can access all exclusive content available on
+                        your Dominion subscription. We add content here
+                        frequently—so keep an eye out for cool stuff.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="md:col-span-4 grid gap-y-2 text-neutral-300">
+                    <p className="flex justify-between border-b border-neutral-700 pb-1">
+                      <strong>User</strong>
+                      <span>{user?.name}</span>
                     </p>
-                    <p className="text-neutral-400">
-                      Here you can access all exclusive content available on
-                      your Dominion subscription. We add content here
-                      frequently—so keep an eye out for cool stuff.
+                    <p className="flex justify-between border-b border-neutral-700 pb-1">
+                      <strong>Email</strong>
+                      <span className="break-all pl-6 text-right">
+                        {user?.username}
+                      </span>
+                    </p>
+                    <p className="flex justify-between border-b border-neutral-700 pb-1">
+                      <strong>Discount 20%</strong>
+                      <span>X1A25</span>
+                    </p>
+                    <p className="flex justify-between border-b border-neutral-700 pb-1">
+                      <strong>Next Print</strong>
+                      <span>June/May 2024</span>
+                    </p>
+                    <p className="flex justify-between border-b border-neutral-700 pb-1">
+                      <strong>Dark Mode</strong>
+                      <span>
+                        <span>TRUE</span>/
+                        <span className="opacity-50">FALSE</span>
+                      </span>
                     </p>
                   </div>
-                </div>
-                <div className="md:col-span-1 grid gap-y-2 text-neutral-300">
-                  <p className="flex justify-between border-b border-neutral-700 pb-1">
-                    <strong>User</strong>
-                    <span>{user?.name}</span>
-                  </p>
-                  <p className="flex justify-between border-b border-neutral-700 pb-1">
-                    <strong>Email</strong>
-                    <span>{user?.username}</span>
-                  </p>
-                  <p className="flex justify-between border-b border-neutral-700 pb-1">
-                    <strong>Discount 20%</strong>
-                    <span>X1A25</span>
-                  </p>
-                  <p className="flex justify-between border-b border-neutral-700 pb-1">
-                    <strong>Next Print</strong>
-                    <span>June/May 2024</span>
-                  </p>
-                  <p className="flex justify-between border-b border-neutral-700 pb-1">
-                    <strong>Dark Mode</strong>
-                    <span>
-                      <span>TRUE</span>/
-                      <span className="opacity-50">FALSE</span>
-                    </span>
-                  </p>
                 </div>
               </div>
-            </div>
-
-            <div className="container">
-              <hr className="my-12 border border-neutral-700" />
-            </div>
-
-            {/* Dashboard Tabs & Content */}
-            <div className="pt-4 pb-4">
-              <section className="container">
-                <div className="relative">
-                  {/* Tab Headers */}
-                  <div className="flex justify-between items-center pb-16">
-                    <div className="flex">
-                      <button
-                        onClick={() =>
-                          router.push({
-                            pathname: router.pathname,
-                            query: { tab: 'messages' },
-                          })
-                        }
-                        className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
-                          filter === 'messages'
-                            ? 'bg-neutral-300 text-neutral-800'
-                            : 'text-neutral-300'
-                        }`}
-                      >
-                        Newsletters
-                      </button>
-                      <button
-                        onClick={() =>
-                          router.push({
-                            pathname: router.pathname,
-                            query: { tab: 'resources' },
-                          })
-                        }
-                        className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
-                          filter === 'resources'
-                            ? 'bg-neutral-300 text-neutral-800'
-                            : 'text-neutral-300'
-                        }`}
-                      >
-                        Exclusive Resources
-                      </button>
-                      <button
-                        onClick={() =>
-                          router.push({
-                            pathname: router.pathname,
-                            query: { tab: 'articles' },
-                          })
-                        }
-                        className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
-                          filter === 'articles'
-                            ? 'bg-neutral-300 text-neutral-800'
-                            : 'text-neutral-300'
-                        }`}
-                      >
-                        Articles
-                      </button>
-                      <button
-                        onClick={() =>
-                          router.push({
-                            pathname: router.pathname,
-                            query: { tab: 'prints' },
-                          })
-                        }
-                        className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
-                          filter === 'prints'
-                            ? 'bg-neutral-300 text-neutral-800'
-                            : 'text-neutral-300'
-                        }`}
-                      >
-                        Prints
-                      </button>
-                      <button
-                        onClick={() =>
-                          router.push({
-                            pathname: router.pathname,
-                            query: { tab: 'profile' },
-                          })
-                        }
-                        className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
-                          filter === 'profile'
-                            ? 'bg-neutral-300 text-neutral-800'
-                            : 'text-neutral-300'
-                        }`}
-                      >
-                        Profile & Settings
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Tab Content */}
-                  {filter === 'messages' && (
-                    <>
-                      {messages.length ? (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                          {messages.map((item, i) => (
-                            <div
-                              key={item._id}
-                              onClick={() => setArticleActive(item._id)}
-                            >
-                              <CardMessage i={i} post={item} />
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="flex flex-wrap pb-5 pt-2">
-                          {[...Array(9)].map((_, i) => (
-                            <div key={i} className="w-full md:w-1/3">
-                              <div
-                                className="skeletonNew"
-                                style={{
-                                  height: app.deviceSize === 'md' ? 258 : 260,
-                                }}
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  )}
-
-                  {filter === 'resources' && (
-                    <>
-                      {filteredResources.length ? (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                          {filteredResources.map((item, i) => (
-                            <div
-                              key={item._id}
-                              onClick={() => setArticleActive(item._id)}
-                            >
-                              <CardResource i={i} post={item} />
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="flex flex-wrap pb-5 pt-2">
-                          {[...Array(6)].map((_, i) => (
-                            <div key={i} className="w-full p-2">
-                              <div
-                                className="skeletonNew"
-                                style={{
-                                  height: app.deviceSize === 'md' ? 290 : 110,
-                                }}
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  )}
-
-                  {filter === 'articles' && (
-                    <>
-                      {filteredArticles.length ? (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                          {filteredArticles.map((item, i) => (
-                            <div
-                              key={item._id}
-                              onClick={() => setArticleActive(item._id)}
-                              className="p-2"
-                            >
-                              <CardBlog post={item} target="_blank" />
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="flex flex-wrap pb-5 pt-2">
-                          {[...Array(6)].map((_, i) => (
-                            <div key={i} className="w-full p-2">
-                              <div
-                                className="skeletonNew"
-                                style={{ height: 290 }}
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  )}
-
-                  {filter === 'profile' && <ProfileEdit />}
-
-                  {filter === 'prints' && (
-                    <div className="p-4">
-                      <Heading
-                        htmlEntity="h2"
-                        text="Prints"
-                        color="neutral-800"
-                        size="large"
-                      />
-                      <ProfilePrints />
-                    </div>
-                  )}
-                </div>
-              </section>
             </div>
             {renderDetailOverlay()}
           </Layout>

@@ -60,10 +60,10 @@ export default (title, body, image, buttonText, buttonLink) => {
           <tr>
             <td width="50" valign="top">
             </td>
-            <td width="200" valign="top" style="text-align: justify; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 22px;">
+            <td width="200" valign="top" style="text-align: justify; font-family: monospace, Arial, Helvetica, sans-serif; font-size: 16px; line-height: 22px;">
               <div>
                 <a class="btn" href="${buttonLink}"
-                  style="border-radius:0px;display:inline-block;font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;"
+                  style="border-radius:0px;display:inline-block;font-family: monospace, Arial, Helvetica, sans-serif;font-size:16px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;"
                   >
                   ${buttonText}
                 </a>
@@ -93,13 +93,13 @@ export default (title, body, image, buttonText, buttonLink) => {
         u + #body a {
           color: inherit;
           font-size: inherit;
-          font-family: inherit;
+          font-family: monospace, Arial, Helvetica, sans-serif;
           font-weight: inherit;
           line-height: inherit;
         }
   
         body, .bg, td, p, span, strong, em, strong, ul, ol, li, h1, h2, h3, h4, h5 ,h6, h7, a:not(.btn), a[href]:not(.btn) {
-          font-family: Arial, Helvetica, sans-serif;
+          font-family: monospace, Arial, Helvetica, sans-serif;
           background: #ffffff !important;
           color: #111111 !important;
         }

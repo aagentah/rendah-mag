@@ -336,7 +336,7 @@ export default function ProfileEdit() {
             />
           </div>
           <div className="p-4 rounded-md mb-4">
-            <div className="profile_heading">
+            <div className="profile_heading pb-4">
               <Heading
                 htmlEntity="h1"
                 text="Edit Profile"
