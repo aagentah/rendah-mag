@@ -469,6 +469,22 @@ export async function getFeatured(range) {
   return results;
 }
 
+export async function getBlueprints(range) {
+  const today = dateTodayISO();
+
+  const rangeFrom = range[0] - 1;
+  const rangeTo = range[1] - 1;
+
+  const results = await getClient(null).fetch(
+    `*[_type == "post" && publishedAt < $today && isFeatured] | order(publishedAt desc)[$rangeFrom..$rangeTo] {
+      ${postFields}
+    }`,
+    { rangeFrom, rangeTo, today }
+  );
+
+  return results;
+}
+
 export async function getAllCategoriesTotal(preview) {
   const results = await getClient(preview).fetch(`*[_type == "category"] {
       ...,

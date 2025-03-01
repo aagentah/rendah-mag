@@ -85,6 +85,8 @@ const IconStore = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconStore)
 );
 
+const Blueprints = dynamic(() => import('~/components/blueprints'));
+
 const stripePromise = loadStripe(
   'pk_live_51DvkhrKb3SeE1fXfAwS5aNbDhvI4t4cCbHvsVjk5bfmBvSF5tc2mEYHAVIMQCgcXBsKjo5AvaT48k39sbx3UKUu400TFSGqiL4'
 );
@@ -274,7 +276,7 @@ export default function Profile({ siteConfig }) {
                               : 'text-neutral-300'
                           }`}
                         >
-                          Exclusive Resources
+                          Blueprints
                         </button>
                         <button
                           onClick={() =>
@@ -354,31 +356,7 @@ export default function Profile({ siteConfig }) {
                     )}
                     {filter === 'resources' && (
                       <>
-                        {filteredResources.length ? (
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {filteredResources.map((item, i) => (
-                              <div
-                                key={item._id}
-                                onClick={() => setArticleActive(item._id)}
-                              >
-                                <CardResource i={i} post={item} />
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="flex flex-wrap pb-5 pt-2">
-                            {[...Array(6)].map((_, i) => (
-                              <div key={i} className="w-full p-2">
-                                <div
-                                  className="skeletonNew"
-                                  style={{
-                                    height: app.deviceSize === 'md' ? 290 : 110,
-                                  }}
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        )}
+                        <Blueprints />
                       </>
                     )}
                     {filter === 'articles' && (

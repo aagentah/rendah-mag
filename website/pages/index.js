@@ -23,6 +23,7 @@ import { useUser } from '~/lib/hooks';
 
 const Modal = dynamic(() => import('~/components/modal'));
 const SubscribeForm = dynamic(() => import('~/components/subscribe-form'));
+const Blueprints = dynamic(() => import('~/components/blueprints'));
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
@@ -125,6 +126,19 @@ export default function Home() {
       <LazyLoad once offset={800} height={800}>
         <LatestPrint showDominionButton={true} />
       </LazyLoad>
+
+      <div className="container">
+        <hr className="my-12 border border-neutral-700" />
+      </div>
+
+      <div className="container">
+        <div className="mb-12">
+          <h3 className="text-neutral-400 mb-2">Blueprints</h3>
+          <p className="text-neutral-500 text-sm">Member-only resource</p>
+        </div>
+      </div>
+
+      <Blueprints />
 
       <div className="container">
         <hr className="my-12 border border-neutral-700" />
