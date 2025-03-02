@@ -7,6 +7,7 @@ import formatHttpError from '~/functions/formatHttpError';
 import orderCompleted from '~/lib/stripe/order-completed';
 import subscriptionCreated from '~/lib/stripe/subscription-created';
 import subscriptionCancelled from '~/lib/stripe/subscription-cancelled';
+import receiptEmail from '~/lib/emails/order-receipt';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2020-08-27',
@@ -92,7 +93,12 @@ export default async (req, res) => {
             },
           });
         }
-
+        await receiptEmail({
+          email: customer_details.email,
+          name: shipping.name,
+          products,
+          session,
+        });
         break;
       case 'subscription_schedule.canceled':
       case 'customer.subscription.deleted':
