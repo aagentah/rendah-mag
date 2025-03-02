@@ -3,7 +3,7 @@ import Router, { useRouter } from 'next/router';
 import toMarkdown from '@sanity/block-content-to-markdown';
 import dynamic from 'next/dynamic';
 import 'intersection-observer';
-import Observer from '@researchgate/react-intersection-observer';
+// import Observer from '@researchgate/react-intersection-observer';
 import BlockContent from '@sanity/block-content-to-react';
 import { usePlausible } from 'next-plausible';
 import Link from 'next/link';
@@ -188,13 +188,13 @@ export default function Gallery({ siteConfig, post, morePosts, preview }) {
 
                   <div className="flex  flex-wrap">
                     {morePosts.map((p, i) => (
-                      <Observer {...observer}>
-                        <div key={p.slug} className="col-24  col-8-md">
-                          <div className="pa3">
-                            <CardBlog i={i} post={p} />
-                          </div>
+                      // <Observer {...observer}>
+                      <div key={p.slug} className="col-24  col-8-md">
+                        <div className="pa3">
+                          <CardBlog i={i} post={p} />
                         </div>
-                      </Observer>
+                      </div>
+                      // </Observer>
                     ))}
                   </div>
                 </section>

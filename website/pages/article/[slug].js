@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import 'intersection-observer';
-import Observer from '@researchgate/react-intersection-observer';
+// import Observer from '@researchgate/react-intersection-observer';
 import isArray from 'lodash/isArray';
 import Cookies from 'js-cookie';
 import BlockContent from '@sanity/block-content-to-react';
@@ -375,11 +375,11 @@ export default function Post({ siteConfig, post, preview }) {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {morePosts.map((p, i) => (
-                <Observer {...observer} key={p.slug}>
-                  <div key={i}>
-                    <CardBlog i={i} post={p} />
-                  </div>
-                </Observer>
+                // <Observer {...observer} key={p.slug}>
+                <div key={i}>
+                  <CardBlog i={i} post={p} />
+                </div>
+                // </Observer>
               ))}
             </div>
           </section>

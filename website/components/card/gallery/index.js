@@ -4,7 +4,7 @@ import LazyLoad from 'react-lazyload';
 import dynamic from 'next/dynamic';
 import 'intersection-observer';
 
-import Observer from '@researchgate/react-intersection-observer';
+// import Observer from '@researchgate/react-intersection-observer';
 import Heading from '~/components/elements/heading';
 import Image from '~/components/elements/image';
 
@@ -89,57 +89,57 @@ export default function CardGallery({ post }) {
   // );
 
   return (
-    <Observer {...observer}>
-      <LazyLoad once offset={250} height={imageHeight}>
-        <article className={`${inView && 'in-view'}`}>
-          <div className="flex flex-wrap">
-            <div className="dib  pa2  ba  bc-white  mb4">{heading}</div>
-          </div>
-          <div className="flex flex-wrap  mb5">
-            {(() => {
-              return post?.galleryImages.slice(0, 7).map((image, i) => (
-                <div className="col-6  col-3-md  pa2" key={i}>
-                  <Link href={`/gallery/${post?.slug}`} legacyBehavior>
-                    <Image
-                      src={imageBuilder
-                        .image(image.asset)
-                        .height(500)
-                        .width(500)
-                        .auto('format')
-                        .fit('clip')
-                        .url()}
-                      placeholder={imageBuilder
-                        .image(image.asset)
-                        .height(25)
-                        .width(25)
-                        .auto('format')
-                        .fit('clip')
-                        .blur('20')
-                        .url()}
-                      alt={image.alt || ''}
-                      figcaption={null}
-                      height={imageHeight}
-                      width={null}
-                      customClass="br3  shadow3  cp"
-                      skeleton={!post}
-                      onClick={null}
-                      withLinkProps={null}
-                    />
-                  </Link>
-                </div>
-              ));
-            })()}
+    // <Observer {...observer}>
+    <LazyLoad once offset={250} height={imageHeight}>
+      <article className={`${inView && 'in-view'}`}>
+        <div className="flex flex-wrap">
+          <div className="dib  pa2  ba  bc-white  mb4">{heading}</div>
+        </div>
+        <div className="flex flex-wrap  mb5">
+          {(() => {
+            return post?.galleryImages.slice(0, 7).map((image, i) => (
+              <div className="col-6  col-3-md  pa2" key={i}>
+                <Link href={`/gallery/${post?.slug}`} legacyBehavior>
+                  <Image
+                    src={imageBuilder
+                      .image(image.asset)
+                      .height(500)
+                      .width(500)
+                      .auto('format')
+                      .fit('clip')
+                      .url()}
+                    placeholder={imageBuilder
+                      .image(image.asset)
+                      .height(25)
+                      .width(25)
+                      .auto('format')
+                      .fit('clip')
+                      .blur('20')
+                      .url()}
+                    alt={image.alt || ''}
+                    figcaption={null}
+                    height={imageHeight}
+                    width={null}
+                    customClass="br3  shadow3  cp"
+                    skeleton={!post}
+                    onClick={null}
+                    withLinkProps={null}
+                  />
+                </Link>
+              </div>
+            ));
+          })()}
 
-            <div className="col-6  col-3-md  pa2  flex  align-center  justify-center">
-              <Link href={`/gallery/${post?.slug}`} legacyBehavior>
-                <span className="ba  bc-white  br-100  pa2  cp">
-                  <IconArrowRight color="white" size={24} />
-                </span>
-              </Link>
-            </div>
+          <div className="col-6  col-3-md  pa2  flex  align-center  justify-center">
+            <Link href={`/gallery/${post?.slug}`} legacyBehavior>
+              <span className="ba  bc-white  br-100  pa2  cp">
+                <IconArrowRight color="white" size={24} />
+              </span>
+            </Link>
           </div>
-        </article>
-      </LazyLoad>
-    </Observer>
+        </div>
+      </article>
+    </LazyLoad>
+    // </Observer>
   );
 }

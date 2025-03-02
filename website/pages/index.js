@@ -4,7 +4,7 @@ import LazyLoad from 'react-lazyload';
 import dynamic from 'next/dynamic';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
-import Observer from '@researchgate/react-intersection-observer';
+// import Observer from '@researchgate/react-intersection-observer';
 import Link from 'next/link';
 
 import Heading from '~/components/elements/heading';
@@ -172,9 +172,9 @@ export default function Home() {
       </div>
 
       {/* Intersection Observer to trigger subscribe modal */}
-      <Observer {...observer}>
+      {/* <Observer {...observer}>
         <div />
-      </Observer>
+      </Observer> */}
 
       {/* Subscribe Modal */}
       <Modal size="small" active={modalActive}>
