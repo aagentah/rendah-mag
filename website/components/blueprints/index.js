@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import * as d3 from 'd3';
 import random from 'lodash/random';
+import sample from 'lodash/sample';
 import ImageNew from '~/components/elements/image-new';
 import { getBlueprints } from '~/lib/sanity/requests';
 
@@ -16,6 +17,11 @@ export default function Blueprints() {
   const zoomBehaviorRef = useRef(null);
   const nodesDataRef = useRef({});
   const componentHeight = 450;
+  const zoomedArticleRef = useRef(null);
+
+  useEffect(() => {
+    zoomedArticleRef.current = zoomedArticle;
+  }, [zoomedArticle]);
 
   useEffect(() => {
     async function fetchFeaturedArticles() {
@@ -30,15 +36,15 @@ export default function Blueprints() {
     const g = groupRef.current;
     const width = d3Container.current.clientWidth;
     const height = componentHeight;
-    const scale = 3.5;
-    const tx = width / 2 - scale * position.x + 100;
+    const scale = 1.2;
+    const tx = width / 2 - scale * position.x;
     const ty = height / 2 - scale * position.y;
     svg
       .transition()
       .duration(500)
       .call(
         zoomBehaviorRef.current.transform,
-        d3.zoomIdentity.translate(tx, ty).scale(scale)
+        d3.zoomIdentity.translate(tx / 2, ty / 2).scale(scale)
       );
     setAnimateArticle(false);
     setZoomedArticle(nodeId);
@@ -51,7 +57,6 @@ export default function Blueprints() {
       .transition()
       .duration(500)
       .call(zoomBehaviorRef.current.transform, d3.zoomIdentity);
-    // No delay on exit transition: unmount the article after the 0.2s transition.
     setTimeout(() => {
       setZoomedArticle(null);
     }, 200);
@@ -87,9 +92,11 @@ export default function Blueprints() {
       const edges = [];
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
-          edges.push({ source: nodes[i], target: nodes[j] });
+          const offset = 20;
+          edges.push({ source: nodes[i], target: nodes[j], offset });
         }
       }
+
       const edgeElements = edgeGroup
         .selectAll('path')
         .data(edges)
@@ -129,11 +136,11 @@ export default function Blueprints() {
             const dx = x2 - x1;
             const dy = y2 - y1;
             const norm = Math.sqrt(dx * dx + dy * dy) || 1;
-            const offset = 20;
-            const ox = (-dy / norm) * offset;
-            const oy = (dx / norm) * offset;
+            const ox = (-dy / norm) * d.offset;
+            const oy = (dx / norm) * d.offset;
             return `M ${x1},${y1} Q ${mx + ox},${my + oy} ${x2},${y2}`;
           });
+
           nodeGroups.attr('transform', (d) => {
             d.x = Math.max(10, Math.min(width - 10, d.x));
             d.y = Math.max(10, Math.min(height - 10, d.y));
@@ -163,6 +170,7 @@ export default function Blueprints() {
         .on('mouseover', (event, d) => setHoveredGraph(d.id))
         .on('mouseout', () => setHoveredGraph(null))
         .on('click', (event, d) => {
+          if (zoomedArticleRef.current) return;
           event.stopPropagation();
           zoomToNode(d.id, { x: d.x, y: d.y });
         });
@@ -190,6 +198,7 @@ export default function Blueprints() {
         .on('mouseover', (event, d) => setHoveredGraph(d.id))
         .on('mouseout', () => setHoveredGraph(null))
         .on('click', (event, d) => {
+          if (zoomedArticleRef.current) return;
           event.stopPropagation();
           zoomToNode(d.id, { x: d.x, y: d.y });
         });
@@ -221,7 +230,15 @@ export default function Blueprints() {
     }
   }, [zoomedArticle]);
 
-  // Include animateArticle so that the D3 updates occur during the zoom transition.
+  useEffect(() => {
+    if (d3Container.current) {
+      const svg = d3.select(d3Container.current).select('svg');
+      svg
+        .selectAll('.node-group, .text-group')
+        .style('cursor', zoomedArticle ? 'default' : 'pointer');
+    }
+  }, [zoomedArticle]);
+
   useEffect(() => {
     if (d3Container.current) {
       const svg = d3.select(d3Container.current).select('svg');
@@ -282,6 +299,7 @@ export default function Blueprints() {
                       onMouseEnter={() => setHoveredRow(article.slug)}
                       onMouseLeave={() => setHoveredRow(null)}
                       onClick={() => {
+                        if (zoomedArticle) return;
                         const pos = nodesDataRef.current[article.slug];
                         if (pos) {
                           zoomToNode(article.slug, pos);
@@ -320,6 +338,7 @@ export default function Blueprints() {
                     onMouseEnter={() => setHoveredRow(article.slug)}
                     onMouseLeave={() => setHoveredRow(null)}
                     onClick={() => {
+                      if (zoomedArticle) return;
                       const pos = nodesDataRef.current[article.slug];
                       if (pos) {
                         zoomToNode(article.slug, pos);
@@ -355,7 +374,6 @@ export default function Blueprints() {
               <article
                 className="absolute top-0 -left-36 z-10 w-3/12 h-full"
                 style={{
-                  // When transitioning in, apply a 0.5s delay; no delay on exit
                   transition: animateArticle
                     ? 'opacity 0.2s 0s ease, transform 0.2s 0s ease'
                     : 'opacity 0.2s ease, transform 0.2s ease',
