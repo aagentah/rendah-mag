@@ -10,8 +10,9 @@ import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 const Modal = dynamic(() => import('~/components/modal'));
 
 const ImageNew = React.memo((props) => {
+  const { imageObject } = props;
+  if (!imageObject) return null;
   const {
-    imageObject,
     placeholder,
     height,
     className = '',
@@ -31,8 +32,6 @@ const ImageNew = React.memo((props) => {
       setIsModalOpen(true);
     }
   };
-
-  if (!imageObject) return null;
 
   const { url, caption, dimensions } = imageObject;
   const altText = toMarkdown(caption) || '';
