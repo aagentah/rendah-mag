@@ -39,6 +39,7 @@ export default function Author({ siteConfig, author }) {
               href="/team/[slug]"
               as={`/team/${author.slug.current}`}
               scroll={false}
+              legacyBehavior
             >
               <a>
                 <h1 className="text-black text-sm truncate">{author.name}</h1>

@@ -102,7 +102,7 @@ export default function HeroDefault({
   // Render the hero button if text and linkProps are provided.
   if (heroButtonText && linkProps) {
     heroButton = (
-      <Link {...linkProps}>
+      <Link {...linkProps} legacyBehavior>
         <a
           className={`inline-flex items-center mt-6 px-6 py-3 border border-red-600 text-red-600 font-medium hover:bg-red-600 hover:text-white transition-colors ${
             skeleton ? 'bg-gray-200 animate-pulse' : ''

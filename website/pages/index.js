@@ -163,7 +163,7 @@ export default function Home() {
         <div className="flex space-x-3 mt-3 text-sm">
           {categories.map((category) => (
             <div className="text-neutral-500" key={category.slug}>
-              <Link href={`/division/${category.slug}`}>
+              <Link href={`/division/${category.slug}`} legacyBehavior>
                 <a>/{category.slug}</a>
               </Link>
             </div>

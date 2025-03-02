@@ -106,7 +106,7 @@ export default function ProfileGallery() {
                 Here is the curated catalogue of artworks available for high-res
                 downloads—approved by the artist for the Dominion. To see the
                 public gallery, check out the{' '}
-                <Link legacyBehavior href="/gallery">
+                <Link legacyBehavior href="/gallery" legacyBehavior>
                   <a className="white  underline">Gallery page</a>
                 </Link>
                 .

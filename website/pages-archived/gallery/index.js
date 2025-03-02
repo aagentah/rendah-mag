@@ -237,6 +237,7 @@ export default function Gallery({ siteConfig }) {
                           href={`/gallery/${artist?.slug}`}
                           scroll={false}
                           passHref
+                          legacyBehavior
                         >
                           <a>
                             <ImageNew

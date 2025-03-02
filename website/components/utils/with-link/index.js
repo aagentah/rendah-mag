@@ -17,7 +17,7 @@ export default function WithLink(props) {
   switch (type) {
     case 'next':
       return (
-        <Link href={href} {...routerLinkProps} {...newProps}>
+        <Link href={href} {...routerLinkProps} {...newProps} legacyBehavior>
           <a {...newProps} target={target || '_self'}>
             {children}
           </a>

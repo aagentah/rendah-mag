@@ -21,7 +21,7 @@ export default function CardBlog({ member, featured }) {
   const buttonIcon = <IconArrowRight color="black" size={16} />;
 
   const image = (
-    <Link href={`/team/${member?.slug}`} scroll={false} passHref>
+    <Link href={`/team/${member?.slug}`} scroll={false} passHref legacyBehavior>
       <a>
         <ImageNew
           imageObject={member?.imageObject}
