@@ -163,10 +163,10 @@ export default function Product({ siteConfig, product }) {
                     onClick={null}
                     withLinkProps={{
                       type: 'next',
-                      href: '/dominion',
+                      href: '/membership',
                       target: null,
                       routerLink: Link,
-                      routerLinkProps: { as: `/dominion`, scroll: false },
+                      routerLinkProps: { as: `/membership`, scroll: false },
                     }}
                   />
                 </div>
@@ -273,10 +273,10 @@ export default function Product({ siteConfig, product }) {
                       onClick={null}
                       withLinkProps={{
                         type: 'next',
-                        href: '/dominion',
+                        href: '/membership',
                         target: null,
                         routerLink: Link,
-                        routerLinkProps: { as: `/dominion`, scroll: false },
+                        routerLinkProps: { as: `/membership`, scroll: false },
                       }}
                     />
                   </div>

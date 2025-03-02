@@ -220,7 +220,7 @@ export default function Login({ siteConfig }) {
                 </div>
 
                 <div className="text-neutral-400 text-sm flex items-center pb-3 md:pb-0 md:pr-3">
-                  <Link href="/dominion" legacyBehavior>
+                  <Link href="/membership" legacyBehavior>
                     <div className="flex justify-start underline cursor-pointer">
                       Don't have an account
                     </div>

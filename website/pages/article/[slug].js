@@ -344,7 +344,7 @@ export default function Post({ siteConfig, post, preview }) {
                   log in
                 </a>{' '}
                 or{' '}
-                <a className="underline" href="/dominion">
+                <a className="underline" href="/membership">
                   sign up
                 </a>
                 .

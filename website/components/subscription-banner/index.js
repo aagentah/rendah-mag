@@ -31,7 +31,7 @@ export default function SubscriptionBanner(props) {
           </p>
 
           {/* {!user && (
-            <Link href="/dominion" legacyBehavior>
+            <Link href="/membership" legacyBehavior>
               <a className="flex justify-start">
                 <p className="flex flex-wrap items-center text-base text-red-600 leading-tight text-left cursor-pointer">
                   <span className="pr-2">
@@ -76,7 +76,7 @@ export default function SubscriptionBanner(props) {
 
           {!user && (
             <div className="text-neutral-300 text-sm grid gap-y-2">
-              <Link href="/dominion" legacyBehavior>
+              <Link href="/membership" legacyBehavior>
                 <a className="flex justify-between border-b border-rendah-red pb-1">
                   <span className="text-rendah-red">
                     Join Membership [includes latest print]

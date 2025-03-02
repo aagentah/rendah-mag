@@ -190,7 +190,7 @@ export default function HeaderMobile({
           ) : (
             <>
               <li className="block pl-4 pb-3">
-                <Link href="/dominion" legacyBehavior>
+                <Link href="/membership" legacyBehavior>
                   <button
                     onClick={toggleNav}
                     type="button"

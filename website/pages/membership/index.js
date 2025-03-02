@@ -306,7 +306,7 @@ export default function Dominion({ siteConfig }) {
             </div>
 
             {/* {!user && (
-            <Link href="/dominion" legacyBehavior>
+            <Link href="/membership" legacyBehavior>
               <a className="flex justify-start">
                 <p className="flex flex-wrap items-center text-base text-red-600 leading-tight text-left cursor-pointer">
                   <span className="pr-2">

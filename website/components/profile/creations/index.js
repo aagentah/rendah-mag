@@ -157,7 +157,7 @@ export default function ProfileCreations() {
             /* Children */
             withLinkProps={{
               type: 'next',
-              href: '/dominion',
+              href: '/membership',
               target: null,
               routerLink: Link,
               routerLinkProps: {

@@ -118,7 +118,7 @@ export default function ProfileCreations({ handleToggle }) {
             /* Children */
             withLinkProps={{
               type: 'next',
-              href: '/dominion',
+              href: '/membership',
               target: null,
               routerLink: Link,
               routerLinkProps: {

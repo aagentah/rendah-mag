@@ -84,7 +84,7 @@ export default function LatestPrint({ showDominionButton }) {
 
       {!user && showDominionButton && (
         <div className="mb-12">
-          <Link href="/dominion" legacyBehavior>
+          <Link href="/membership" legacyBehavior>
             <a className="text-sm border-b border-neutral-300 pb-1">
               <span className="text-neutral-300">
                 Join Membership [includes latest print]

@@ -6,14 +6,6 @@ import Image from '~/components/elements/image';
 import { imageBuilder } from '~/lib/sanity/requests';
 import { useFirstRender } from '~/lib/useFirstRender';
 
-const IconMusic = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconMusic)
-);
-
-const IconDownload = dynamic(() =>
-  import('~/components/elements/icon').then((m) => m.IconDownload)
-);
-
 export default function Audio({
   url, // Directly passing the resolved URL
   title,

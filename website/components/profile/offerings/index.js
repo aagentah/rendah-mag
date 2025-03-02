@@ -248,7 +248,7 @@ export default function ProfileDominion() {
             /* Children */
             withLinkProps={{
               type: 'next',
-              href: '/dominion',
+              href: '/membership',
               target: null,
               routerLink: Link,
               routerLinkProps: {
