@@ -76,18 +76,20 @@ export default function Store({ siteConfig }) {
       preview={null}
     >
       <div className="">
-        <Container>
-          <Heading
-            /* Options */
-            htmlEntity="h1"
-            text="Store"
-            color="black"
-            size="large"
-            truncate={0}
-            onClick={null}
-            /* Children */
-            withLinkProps={null}
-          />
+        <div className="container">
+          <div className="my-12">
+            <Heading
+              /* Options */
+              htmlEntity="h1"
+              text="Store"
+              color="neutral-400"
+              size="large"
+              truncate={0}
+              onClick={null}
+              /* Children */
+              withLinkProps={null}
+            />
+          </div>
 
           <section className="pb3  pt5">
             <div className="flex flex-wrap">
@@ -102,10 +104,10 @@ export default function Store({ siteConfig }) {
                           </h2>
                         </div>
                       </div>
-                      <div className="flex flex-wrap pb3">
+                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
                         {[...Array(categorys[i].productsLength)].map(
                           (productIteration, ii) => (
-                            <div key={ii} className="col-24 col-6-md pa3">
+                            <div key={i}>
                               <CardProduct
                                 i={ii}
                                 product={
@@ -123,7 +125,7 @@ export default function Store({ siteConfig }) {
               })}
             </div>
           </section>
-        </Container>
+        </div>
       </div>
     </Layout>
   );

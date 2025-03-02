@@ -195,7 +195,7 @@ export default function Footer() {
                   }}
                 />
               </li>
-              <li className="block pb-3 text-center md:text-left">
+              <li className="block pb-3 text-center md:text-left pt-4">
                 <h3 className="text-neutral-500 text-lg font-bold">
                   {`Rendah Mag ${new Date().getFullYear()}`}
                 </h3>
