@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import * as d3 from 'd3';
+import random from 'lodash/random';
 import ImageNew from '~/components/elements/image-new';
 import { getBlueprints } from '~/lib/sanity/requests';
 
@@ -8,6 +9,7 @@ export default function Blueprints() {
   const [hoveredGraph, setHoveredGraph] = useState(null);
   const [hoveredRow, setHoveredRow] = useState(null);
   const [zoomedArticle, setZoomedArticle] = useState(null);
+  const [animateArticle, setAnimateArticle] = useState(false);
   const d3Container = useRef(null);
   const simulationRef = useRef(null);
   const groupRef = useRef(null);
@@ -28,7 +30,7 @@ export default function Blueprints() {
     const g = groupRef.current;
     const width = d3Container.current.clientWidth;
     const height = componentHeight;
-    const scale = 1.8;
+    const scale = 3.5;
     const tx = width / 2 - scale * position.x + 100;
     const ty = height / 2 - scale * position.y;
     svg
@@ -38,16 +40,21 @@ export default function Blueprints() {
         zoomBehaviorRef.current.transform,
         d3.zoomIdentity.translate(tx, ty).scale(scale)
       );
+    setAnimateArticle(false);
     setZoomedArticle(nodeId);
   }, []);
 
   const resetZoom = useCallback(() => {
+    setAnimateArticle(false);
     const svg = d3.select(d3Container.current).select('svg');
     svg
       .transition()
       .duration(500)
       .call(zoomBehaviorRef.current.transform, d3.zoomIdentity);
-    setZoomedArticle(null);
+    // No delay on exit transition: unmount the article after the 0.2s transition.
+    setTimeout(() => {
+      setZoomedArticle(null);
+    }, 200);
   }, []);
 
   useEffect(() => {
@@ -167,8 +174,11 @@ export default function Blueprints() {
       nodeGroups
         .append('circle')
         .attr('class', 'node')
-        .attr('r', 10)
-        .attr('fill', 'white')
+        .attr('r', 5)
+        .attr('fill', 'transparent')
+        .attr('stroke', 'white')
+        .attr('stroke-width', 1)
+        .attr('opacity', 0.5)
         .style('transition', 'opacity 0.1s ease-in-out');
       const textGroups = g
         .selectAll('.text-group')
@@ -194,6 +204,7 @@ export default function Blueprints() {
         .append('foreignObject')
         .attr('width', 100)
         .attr('height', 30)
+        .attr('opacity', 0.5)
         .style('transition', 'opacity 0.1s ease-in-out')
         .html(
           (d) =>
@@ -202,6 +213,15 @@ export default function Blueprints() {
     }
   }, [articles, zoomToNode]);
 
+  useEffect(() => {
+    if (zoomedArticle) {
+      setAnimateArticle(false);
+      const timer = setTimeout(() => setAnimateArticle(true), 10);
+      return () => clearTimeout(timer);
+    }
+  }, [zoomedArticle]);
+
+  // Include animateArticle so that the D3 updates occur during the zoom transition.
   useEffect(() => {
     if (d3Container.current) {
       const svg = d3.select(d3Container.current).select('svg');
@@ -226,87 +246,7 @@ export default function Blueprints() {
           isZoomed ? 0 : currentHover ? (d.id === currentHover ? 1 : 0.5) : 0.5
         );
     }
-  }, [hoveredGraph, hoveredRow, zoomedArticle]);
-
-  useEffect(() => {
-    let timeoutId;
-    if (zoomedArticle) {
-      timeoutId = setTimeout(() => {
-        const pos = nodesDataRef.current[zoomedArticle];
-        if (!pos) return;
-        const extraGroup = groupRef.current
-          .append('g')
-          .attr('class', 'extra-nodes-group');
-        const extraEdgeGroup = extraGroup
-          .append('g')
-          .attr('class', 'extra-edges');
-        const extraNodesData = [];
-        const padding = 60;
-        for (let i = 1; i <= 5; i++) {
-          const angle = (i - 1) * ((2 * Math.PI) / 5);
-          const offsetX = padding * Math.cos(angle);
-          const offsetY = padding * Math.sin(angle);
-          extraNodesData.push({
-            id: `extra-${zoomedArticle}-${i}`,
-            label: `${i} xyz`,
-            x: pos.x + offsetX,
-            y: pos.y + offsetY,
-          });
-        }
-        extraEdgeGroup
-          .selectAll('path')
-          .data(extraNodesData)
-          .enter()
-          .append('path')
-          .attr('fill', 'none')
-          .attr('stroke', 'red')
-          .attr('stroke-width', 0.2)
-          .attr('d', (d) => {
-            const x1 = pos.x;
-            const y1 = pos.y;
-            const x2 = d.x;
-            const y2 = d.y;
-            const mx = (x1 + x2) / 2;
-            const my = (y1 + y2) / 2;
-            const dx = x2 - x1;
-            const dy = y2 - y1;
-            const norm = Math.sqrt(dx * dx + dy * dy) || 1;
-            const offset = 10;
-            const ox = (-dy / norm) * offset;
-            const oy = (dx / norm) * offset;
-            return `M ${x1},${y1} Q ${mx + ox},${my + oy} ${x2},${y2}`;
-          });
-        const extraNodes = extraGroup
-          .selectAll('.extra-node')
-          .data(extraNodesData)
-          .enter()
-          .append('g')
-          .attr('class', 'extra-node')
-          .attr('transform', (d) => `translate(${d.x},${d.y})`)
-          .style('opacity', 0);
-        extraNodes
-          .append('text')
-          .text((d) => d.label)
-          .attr('text-anchor', 'middle')
-          .attr('dy', (d) => (d.y < pos.y ? -15 : 15))
-          .attr('fill', 'white')
-          .attr('opacity', '0.5')
-          .style('font-size', '10px');
-        extraNodes
-          .append('circle')
-          .attr('r', 2.5)
-          .attr('fill', 'red')
-          .attr('opacity', '0.5');
-        extraNodes.transition().duration(100).style('opacity', 1);
-      }, 100);
-    }
-    return () => {
-      clearTimeout(timeoutId);
-      if (groupRef.current) {
-        groupRef.current.selectAll('.extra-nodes-group').remove();
-      }
-    };
-  }, [zoomedArticle]);
+  }, [hoveredGraph, hoveredRow, zoomedArticle, animateArticle]);
 
   const currentHover = hoveredRow || hoveredGraph || zoomedArticle;
 
@@ -315,38 +255,7 @@ export default function Blueprints() {
   return (
     <>
       <section className="container flex flex-wrap relative">
-        <div className="w-10/12">
-          <div className="w-full h-full relative" ref={d3Container}>
-            {zoomedArticle && (
-              <article className="absolute top-2 left-0 z-10 w-3/12">
-                <div className="flex flex-col space-y-4">
-                  <div
-                    onClick={resetZoom}
-                    className="text-sm text-neutral-400 underline cursor-pointer"
-                  >
-                    Reset Zoom
-                  </div>
-                  <div>
-                    <div className="text-lg text-neutral-300 mb-2">
-                      {zoomedArticle}
-                    </div>
-                    <div className="text-sm text-neutral-400">10.02.25</div>
-                  </div>
-                  <div className="text-sm text-neutral-300">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </div>
-                  <div className="text-md text-rendah-red underline">
-                    Access Blueprint
-                  </div>
-                </div>
-              </article>
-            )}
-          </div>
-        </div>
-        <div className="w-2/12 pl-4">
+        <div className="w-2/12 pr-4">
           {articles.length &&
             articles.map((article) => {
               const images = [];
@@ -381,20 +290,20 @@ export default function Blueprints() {
                       style={{ transition: 'opacity 0.5s ease', opacity: 1 }}
                       className="cursor-pointer text-neutral-500"
                     >
-                      <div className="flex flex-col items-end space-y-4">
+                      <div className="flex flex-col items-start space-y-4">
                         {images.slice(0, 6).map((img, index) => (
                           <div
                             key={index}
                             style={{
-                              width: `${imgSize}px`,
+                              width: `50px`,
                               maxWidth: `100%`,
-                              height: `${imgSize}px`,
+                              height: `50px`,
                             }}
                           >
                             <ImageNew
                               imageObject={img}
-                              height={imgSize}
-                              width={imgSize}
+                              height={50}
+                              width={50}
                               className="object-cover brightness-75"
                               type="blog"
                             />
@@ -422,7 +331,7 @@ export default function Blueprints() {
                     }}
                     className="cursor-pointer text-neutral-500"
                   >
-                    <div className="flex justify-end mb-4 space-x-2">
+                    <div className="flex justify-start mb-4 space-x-2">
                       {images.slice(0, 6).map((img, index) => (
                         <div key={index} className="w-[20px] h-[20px]">
                           <ImageNew
@@ -439,6 +348,51 @@ export default function Blueprints() {
                 );
               }
             })}
+        </div>
+        <div className="w-10/12">
+          <div className="w-full h-full relative" ref={d3Container}>
+            {zoomedArticle && (
+              <article
+                className="absolute top-0 -left-36 z-10 w-3/12 h-full"
+                style={{
+                  // When transitioning in, apply a 0.5s delay; no delay on exit
+                  transition: animateArticle
+                    ? 'opacity 0.2s 0s ease, transform 0.2s 0s ease'
+                    : 'opacity 0.2s ease, transform 0.2s ease',
+                  opacity: animateArticle ? 1 : 0,
+                  transform: animateArticle
+                    ? 'translateX(0)'
+                    : 'translateX(-15px)',
+                }}
+              >
+                <div className="flex flex-col justify-start h-full space-y-4">
+                  <div className="flex flex-col space-y-4">
+                    <div
+                      onClick={resetZoom}
+                      className="text-sm text-neutral-400 underline cursor-pointer"
+                    >
+                      {'< '} Back
+                    </div>
+                    <div>
+                      <div className="text-lg text-neutral-300 mb-2">
+                        {zoomedArticle}
+                      </div>
+                      <div className="text-sm text-neutral-400">10.02.25</div>
+                    </div>
+                    <div className="text-sm text-neutral-300">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                  <div className="text-md text-rendah-red underline">
+                    Access Blueprint
+                  </div>
+                </div>
+              </article>
+            )}
+          </div>
         </div>
       </section>
     </>

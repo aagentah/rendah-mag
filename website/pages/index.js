@@ -132,7 +132,7 @@ export default function Home() {
       </div>
 
       <div className="container">
-        <div className="mb-12">
+        <div className="mb-12 flex justify-between items-center">
           <h3 className="text-neutral-400 mb-2">Blueprints</h3>
           <p className="text-neutral-500 text-sm">Member-only resource</p>
         </div>
