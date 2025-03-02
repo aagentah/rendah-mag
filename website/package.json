@@ -2,7 +2,7 @@
   "name": "rendah-mag-website",
   "version": "1.0.0",
   "engines": {
-    "node": "^16.0.0"
+    "node": "^18.20.6"
   },
   "scripts": {
     "dev": "next",
