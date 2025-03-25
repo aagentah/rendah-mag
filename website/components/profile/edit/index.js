@@ -363,7 +363,7 @@ export default function ProfileEdit() {
                         readOnly={false}
                       />
                     </div>
-                    <div className="py-2 relative">
+                    <div className="py-2 relative hidden">
                       <Input
                         type="text"
                         label="Discord Username"

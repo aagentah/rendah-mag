@@ -267,21 +267,6 @@ export default function Profile({ siteConfig }) {
                           onClick={() =>
                             router.push({
                               pathname: router.pathname,
-                              query: { tab: 'resources' },
-                            })
-                          }
-                          className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
-                            filter === 'resources'
-                              ? 'bg-neutral-300 text-neutral-800'
-                              : 'text-neutral-300'
-                          }`}
-                        >
-                          Blueprints
-                        </button>
-                        <button
-                          onClick={() =>
-                            router.push({
-                              pathname: router.pathname,
                               query: { tab: 'articles' },
                             })
                           }
@@ -307,6 +292,38 @@ export default function Profile({ siteConfig }) {
                           }`}
                         >
                           Prints
+                        </button>
+                        <button
+                          disabled
+                          // onClick={() =>
+                          //   router.push({
+                          //     pathname: router.pathname,
+                          //     query: { tab: 'resources' },
+                          //   })
+                          // }
+                          className={`py-2 px-4 border-b border-neutral-300 cursor-not-allowed text-sm transition-colors duration-300 opacity-30 ${
+                            filter === 'resources'
+                              ? 'bg-neutral-300 text-neutral-800'
+                              : 'text-neutral-300'
+                          }`}
+                        >
+                          Blueprints [WIP]
+                        </button>
+                        <button
+                          disabled
+                          // onClick={() =>
+                          //   router.push({
+                          //     pathname: router.pathname,
+                          //     query: { tab: 'resources' },
+                          //   })
+                          // }
+                          className={`py-2 px-4 border-b border-neutral-300 cursor-not-allowed text-sm transition-colors duration-300 opacity-30 ${
+                            filter === 'resources'
+                              ? 'bg-neutral-300 text-neutral-800'
+                              : 'text-neutral-300'
+                          }`}
+                        >
+                          Members [WIP]
                         </button>
                         <button
                           onClick={() =>
@@ -433,36 +450,35 @@ export default function Profile({ siteConfig }) {
                   <div className="md:col-span-4 pb-6">
                     <div className="max-w-md">
                       <h1 className="mb-4 text-neutral-300">
-                        Members dashboard
+                        Member Dashboard
                       </h1>
                       <p className="text-neutral-400">
                         Here you can access all exclusive content available on
-                        your Dominion subscription. We add content here
-                        frequently—so keep an eye out for cool stuff.
+                        your membership.
                       </p>
                     </div>
                   </div>
                   <div className="md:col-span-4 grid gap-y-2 text-neutral-300">
-                    <p className="flex justify-between border-b border-neutral-700 pb-1">
-                      <strong>User</strong>
+                    <p className="flex justify-between border-b border-neutral-700 pb-2">
+                      <span>User</span>
                       <span>{user?.name}</span>
                     </p>
-                    <p className="flex justify-between border-b border-neutral-700 pb-1">
-                      <strong>Email</strong>
+                    <p className="flex justify-between border-b border-neutral-700 pb-2">
+                      <span>Email</span>
                       <span className="break-all pl-6 text-right">
                         {user?.username}
                       </span>
                     </p>
-                    <p className="flex justify-between border-b border-neutral-700 pb-1">
-                      <strong>Discount 20%</strong>
-                      <span>X1A25</span>
+                    <p className="flex justify-between border-b border-neutral-700 pb-2">
+                      <span>Discount 20%</span>
+                      <span className="bg-neutral-900 px-2">RNDH20</span>
                     </p>
-                    <p className="flex justify-between border-b border-neutral-700 pb-1">
-                      <strong>Next Print</strong>
+                    <p className="flex justify-between border-b border-neutral-700 pb-2">
+                      <span>Next Print</span>
                       <span>June/May 2024</span>
                     </p>
-                    <p className="flex justify-between border-b border-neutral-700 pb-1">
-                      <strong>Dark Mode</strong>
+                    <p className="flex justify-between border-b border-neutral-700 pb-2">
+                      <span>Dark Mode</span>
                       <span>
                         <span>TRUE</span>/
                         <span className="opacity-50">FALSE</span>

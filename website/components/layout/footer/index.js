@@ -247,7 +247,7 @@ export default function Footer() {
                 <IconSoundcloud color="white" size={30} />
               </a>
             </div>
-            <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
+            {/* <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
               <a
                 aria-label="Discord"
                 href="https://discord.com/invite/ev2Q22C"
@@ -257,7 +257,7 @@ export default function Footer() {
               >
                 <IconDiscord color="white" size={30} />
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>

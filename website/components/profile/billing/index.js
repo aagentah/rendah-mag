@@ -428,7 +428,7 @@ export default function ProfileEdit() {
                       readOnly={false}
                     />
                   </div>
-                  <div className="py-2 relative">
+                  {/* <div className="py-2 relative">
                     <Input
                       type="text"
                       label="Discord Username"
@@ -446,7 +446,7 @@ export default function ProfileEdit() {
                     >
                       {iconDiscord}
                     </a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="md:flex flex-wrap md:items-end md:justify-between pt-4">

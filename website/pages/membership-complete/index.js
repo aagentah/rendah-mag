@@ -22,7 +22,7 @@ export default function DominionThankYou({ siteConfig }) {
           title: 'Thank you',
           description: null,
           image:
-            'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610196181/dominion/dominion-social-facebook-meta.png'
+            'https://res.cloudinary.com/dzz8ji5lj/image/upload/v1610196181/dominion/dominion-social-facebook-meta.png',
         }}
         preview={null}
       >
@@ -74,7 +74,7 @@ export default function DominionThankYou({ siteConfig }) {
                 /* Options */
                 text={`
                   Check your email! We've created your account and have sent
-                  login details to access your Dominion profile.
+                  login details to access your Membership Dashbaord.
                 `}
                 color="black"
                 size="large"
@@ -82,28 +82,14 @@ export default function DominionThankYou({ siteConfig }) {
               />
             </div>
 
-            <div className="pb3  tal">
-              <Heading
-                /* Options */
-                htmlEntity="h1"
-                text="My Dominion Profile?"
-                color="black"
-                size="medium"
-                truncate={null}
-                onClick={null}
-                /* Children */
-                withLinkProps={null}
-              />
-            </div>
-
             <div className="pb3  taj">
               <Copy
                 /* Options */
                 text={`
-                  Your Dominion Profile will allow you to keep on top of
-                  everything related to your Subscription, including access to
-                  Dominion content. We'll also send you Dominion updates via
-                  email, just to keep you in the loop.
+                  The Dashboard will allow you to keep on top of
+                  everything related to your membership, including access to
+                  any digital content. We'll also send you updates via
+                  email, to keep you in the loop.
                 `}
                 color="black"
                 size="large"
@@ -134,6 +120,6 @@ export async function getStaticProps() {
   const siteConfig = await getSiteConfig();
 
   return {
-    props: { siteConfig }
+    props: { siteConfig },
   };
 }

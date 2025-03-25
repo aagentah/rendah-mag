@@ -3,27 +3,27 @@ import emailCommon from '~/emails/component/common';
 
 export default async ({ email, temporaryPassword }) => {
   try {
-    const title = 'Welcome to the Dominion!';
+    const title = 'Welcome to the Membership!';
 
     const body = `
-    We can't thank you enough, and we're happy to have you on this journey with us.
+    We can't thank you enough.
     <br />
     <br />
-    <strong>So what's next?</strong>
+    <strong>What's next?</strong>
     <br />
     <br />
-    Please log into your Dominion profile. We've set up your account with a
+    Please log into the Dashboard and have a look around. We've set up your account with a
     temporary password, please change this when logging in.
     <br />
     <br />
-    <strong>My Dominion Profile?</strong>
+    <strong>When will I get my print?</strong>
     <br />
     <br />
-    This is where you'll access everything related to the Subscription; including 
-    all Dominion content, and keeping shipping/payment details up to date.
+    We usually fire our a copy of our latest print within 5-days of any new 
+    sign-ups, so keep an eye out for that coming.
     <br />
     <br />
-    We send out frequent emails with latest updates. We'll send out another update in a few days!
+    For everything else, we send out frequent emails with the latest updates.
     <br />
     <br />
     <strong>Login details:</strong>

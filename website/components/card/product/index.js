@@ -80,7 +80,7 @@ export default function CardProduct({ product }) {
               text={product?.title}
               color="neutral-400"
               size="small"
-              truncate={1}
+              truncate={null}
               skeleton={!product}
               withLinkProps={null} // Entire card is already linked
             />

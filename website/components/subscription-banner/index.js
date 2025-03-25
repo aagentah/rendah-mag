@@ -48,43 +48,35 @@ export default function SubscriptionBanner(props) {
 
         <div className="md:col-span-1 flex flex-col justify-between gap-y-2">
           <div className="text-neutral-300 text-sm grid gap-y-2">
-            <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>Established</strong>
+            <p className="flex justify-between border-b border-neutral-700 pb-2">
+              <span>Established</span>
               <span>2018</span>
             </p>
-            <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>Articles</strong>
-              <span>320</span>
+            <p className="flex justify-between border-b border-neutral-700 pb-2">
+              <span>Artists featured</span>
+              <span>~400</span>
             </p>
-            <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>Prints</strong>
+            <p className="flex justify-between border-b border-neutral-700 pb-2">
+              <span>Prints</span>
               <span>11</span>
             </p>
-            <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>Next Print</strong>
+            <p className="flex justify-between border-b border-neutral-700 pb-2">
+              <span>Next Print</span>
               <span>June/May 2024</span>
             </p>
-            <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>Active Members</strong>
-              <span>150</span>
-            </p>
-            <p className="flex justify-between border-b border-neutral-700 pb-1">
-              <strong>Advertisements (ever)</strong>
+            <p className="flex justify-between border-b border-neutral-700 pb-2">
+              <span>Advertisements (ever)</span>
               <span>0</span>
             </p>
-          </div>
-
-          {!user && (
-            <div className="text-neutral-300 text-sm grid gap-y-2">
+            {!user && (
               <Link href="/membership" legacyBehavior>
-                <a className="flex justify-between border-b border-rendah-red pb-1">
-                  <span className="text-rendah-red">
-                    Join Membership [includes latest print]
-                  </span>
+                <a className="flex justify-between border-b border-neutral-700 text-rendah-red pb-2">
+                  <span>Join Membership</span>
+                  <span>[includes latest print]</span>
                 </a>
               </Link>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>

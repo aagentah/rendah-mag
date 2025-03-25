@@ -237,11 +237,11 @@ export default function Dominion({ siteConfig }) {
 
               <div className="text-neutral-300 text-sm grid gap-y-2 py-8">
                 <p className="flex justify-between border-b border-neutral-700 pb-1">
-                  <strong>Price</strong>
+                  <span>Price</span>
                   <span className="text-right leading-6">£11/month</span>
                 </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-1">
-                  <strong>Magazine Delivery</strong>
+                <p className="flex justify-between border-b border-neutral-700 pb-2">
+                  <span>Magazine Delivery</span>
                   <span className="text-right leading-6">
                     3x prints yearly
                     <br />
@@ -250,8 +250,8 @@ export default function Dominion({ siteConfig }) {
                     Member Card + Stickers
                   </span>
                 </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-1">
-                  <strong>Dashboard Access</strong>
+                <p className="flex justify-between border-b border-neutral-700 pb-2">
+                  <span>Dashboard Access</span>
                   <span className="text-right leading-6">
                     Membership dashboard
                     <br />
@@ -260,8 +260,8 @@ export default function Dominion({ siteConfig }) {
                     20% additional discount
                   </span>
                 </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-1">
-                  <strong>Digital Archive</strong>
+                <p className="flex justify-between border-b border-neutral-700 pb-2">
+                  <span>Digital Archive</span>
                   <span className="text-right leading-6">
                     Print Archive Access
                   </span>

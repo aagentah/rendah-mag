@@ -243,7 +243,7 @@ export default function Product({ siteConfig, product }) {
             {isSoldOut && (
               <div className="mb-8">
                 <div className="relative">
-                  <div className="border border-neutral-400 rounded-lg p-4 md:px-6 relative">
+                  <div className="border-b border-neutral-400 p-4 md:px-6 relative pb-16 mb-16 max-w-lg">
                     <Heading
                       htmlEntity="h1"
                       text="Print sold out?"
@@ -252,7 +252,7 @@ export default function Product({ siteConfig, product }) {
                       truncate={null}
                       withLinkProps={null}
                     />
-                    <p className="text-neutral-400 text-sm leading-relaxed my-3">
+                    <p className="text-neutral-400 text-sm my-3">
                       We reserve some copies of our latest print for those
                       wishing to subscribe instead. Joining our Dominion
                       Subscription is cheaper than individual prints and gives
@@ -290,7 +290,7 @@ export default function Product({ siteConfig, product }) {
                   className="rounded-lg shadow-md"
                 />
               </div>
-              <div className="flex flex-col justify-center col-span-8 gap-y-4">
+              <div className="flex flex-col justify-center col-span-8 gap-y-4 max-w-lg">
                 <Heading
                   htmlEntity="h1"
                   text={product?.title}

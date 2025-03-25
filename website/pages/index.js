@@ -131,7 +131,7 @@ export default function Home() {
         <hr className="my-12 border border-neutral-700" />
       </div>
 
-      <div className="container">
+      {/* <div className="container">
         <div className="mb-12 flex justify-between items-center">
           <h3 className="text-neutral-400 mb-2">Blueprints</h3>
           <p className="text-neutral-500 text-sm">Member-only resource</p>
@@ -142,7 +142,7 @@ export default function Home() {
 
       <div className="container">
         <hr className="my-12 border border-neutral-700" />
-      </div>
+      </div> */}
 
       {/* Recent Features Section */}
       <div className="container py-6">
