@@ -97,8 +97,6 @@ export default function Profile({ siteConfig }) {
   const [resources, setResources] = useState([]);
   const [articles, setArticles] = useState([]);
   const [prints, setPrints] = useState([]);
-  const [articleActive, setArticleActive] = useState(null);
-  const [cardsShow, setCardsShow] = useState(true);
   const [filter, setFilter] = useState('messages');
   const [fileTypeFilter, setFileTypeFilter] = useState('all');
   const router = useRouter();
@@ -125,15 +123,6 @@ export default function Profile({ siteConfig }) {
   }, []);
 
   const safeArticles = articles || [];
-  const safeResources = resources || [];
-
-  const filteredResources = safeResources.filter((resource) => {
-    if (filter === 'resources') {
-      if (fileTypeFilter === 'all') return true;
-      return resource.type === fileTypeFilter;
-    }
-    return false;
-  });
 
   const filteredArticles = filter === 'articles' ? safeArticles : [];
 
@@ -141,13 +130,6 @@ export default function Profile({ siteConfig }) {
     const handlePopState = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const articleId = urlParams.get('articleId');
-      if (articleId) {
-        setArticleActive(articleId);
-        setCardsShow(false);
-      } else {
-        setArticleActive(null);
-        setCardsShow(true);
-      }
     };
     window.addEventListener('popstate', handlePopState);
     handlePopState();
@@ -155,15 +137,6 @@ export default function Profile({ siteConfig }) {
       window.removeEventListener('popstate', handlePopState);
     };
   }, []);
-
-  const backButton = () => {
-    setArticleActive(null);
-    setCardsShow(true);
-    window.history.pushState(null, '', router.pathname);
-    setTimeout(() => {
-      zenscroll.toY(0);
-    }, 100);
-  };
 
   useEffect(() => {
     if (user?.isDominion) {
@@ -204,24 +177,6 @@ export default function Profile({ siteConfig }) {
       fetchPrints();
     }
   }, [user]);
-
-  const renderDetailOverlay = () => {
-    const messageItem = messages.find((item) => item._id === articleActive);
-    const resourceItem = resources.find((item) => item._id === articleActive);
-    const articleItem = safeArticles.find((item) => item._id === articleActive);
-    if (!articleActive) return null;
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center transition-opacity duration-300 z-50">
-        {messageItem ? (
-          <CarouselItemSection message={messageItem} backButton={backButton} />
-        ) : resourceItem ? (
-          <Resource message={resourceItem} backButton={backButton} />
-        ) : articleItem ? (
-          <CardBlog post={articleItem} target="_blank" />
-        ) : null}
-      </div>
-    );
-  };
 
   if (user?.isDominion) {
     return (
@@ -347,10 +302,7 @@ export default function Profile({ siteConfig }) {
                         {messages.length ? (
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {messages.map((item, i) => (
-                              <div
-                                key={item._id}
-                                onClick={() => setArticleActive(item._id)}
-                              >
+                              <div key={item._id}>
                                 <CardMessage i={i} post={item} />
                               </div>
                             ))}
@@ -381,11 +333,7 @@ export default function Profile({ siteConfig }) {
                         {filteredArticles.length ? (
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {filteredArticles.map((item, i) => (
-                              <div
-                                key={item._id}
-                                onClick={() => setArticleActive(item._id)}
-                                className="p-2"
-                              >
+                              <div key={item._id} className="p-2">
                                 <CardBlog post={item} target="_blank" />
                               </div>
                             ))}
@@ -415,10 +363,7 @@ export default function Profile({ siteConfig }) {
                         {prints?.length ? (
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {prints.map((item, i) => (
-                              <div
-                                key={item._id}
-                                onClick={() => setArticleActive(item._id)}
-                              >
+                              <div key={item._id}>
                                 <CardPrint
                                   i={i}
                                   post={item}
@@ -475,7 +420,7 @@ export default function Profile({ siteConfig }) {
                     </p>
                     <p className="flex justify-between border-b border-neutral-700 pb-2">
                       <span>Next Print</span>
-                      <span>June/May 2024</span>
+                      <span>March/April 2025</span>
                     </p>
                     <p className="flex justify-between border-b border-neutral-700 pb-2">
                       <span>Dark Mode</span>
@@ -488,7 +433,6 @@ export default function Profile({ siteConfig }) {
                 </div>
               </div>
             </div>
-            {renderDetailOverlay()}
           </Layout>
         </div>
       </Elements>

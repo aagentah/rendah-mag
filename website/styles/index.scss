@@ -250,10 +250,20 @@ body.inverse,
   // }
 }
 
+.rich-text * {
+  color: var(--neutral-400);
+}
+
 .rich-text p strong {
   color: var(--neutral-300);
 }
 
-.rich-text p {
-  color: var(--neutral-400);
+.rich-text li {
+  margin-left: 10px;
+}
+
+.rich-text-spacing {
+  p {
+    margin-bottom: 14px;
+  }
 }

@@ -252,7 +252,7 @@ export default function Post({ siteConfig, post, preview }) {
                   <h1 className="text-neutral-300 text-2xl">{post.title}</h1>
                 </div>
 
-                <div className="text-neutral-400 max-w-2xl">
+                <div className="rich-text rich-text-spacing text-neutral-400 max-w-2xl">
                   <BlockContent
                     blocks={post.introduction}
                     serializers={SANITY_BLOCK_SERIALIZERS}
@@ -261,28 +261,28 @@ export default function Post({ siteConfig, post, preview }) {
               </div>
 
               <div className="md:col-span-1 grid gap-y-2">
-                <p className="flex justify-between border-b border-neutral-700 pb-1">
-                  <strong>authors.list</strong>
+                <p className="flex justify-between border-b border-neutral-700 pb-2">
+                  <strong>Author(s)</strong>
                   <span>
                     {post.authors.map((i, index, array) => i.author.name)}
                   </span>
                 </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-1">
-                  <strong>published.date</strong>
+                <p className="flex justify-between border-b border-neutral-700 pb-2">
+                  <strong>Published</strong>
                   <span>
                     <Date dateString={post.publishedAt} />
                   </span>
                 </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-1">
-                  <strong>categories.list</strong>
+                <p className="flex justify-between border-b border-neutral-700 pb-2">
+                  <strong>Categories</strong>
                   <span>
                     {post?.categories?.length && post?.categories.map((i) => i)}
                   </span>
                 </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-1">
-                  <strong>isMemberExclusive</strong>
+                <p className="flex justify-between border-b border-neutral-700 pb-2">
+                  <strong>Member Exclusive</strong>
                   <div>
-                    <span>TRUE</span>/<span className="opacity-50">FALSE</span>
+                    <span className="opacity-50">TRUE</span>/<span>FALSE</span>
                   </div>
                 </p>
               </div>

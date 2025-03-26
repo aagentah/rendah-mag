@@ -236,7 +236,7 @@ export default function Dominion({ siteConfig }) {
               </p>
 
               <div className="text-neutral-300 text-sm grid gap-y-2 py-8">
-                <p className="flex justify-between border-b border-neutral-700 pb-1">
+                <p className="flex justify-between border-b border-neutral-700 pb-2">
                   <span>Price</span>
                   <span className="text-right leading-6">£11/month</span>
                 </p>

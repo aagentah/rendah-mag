@@ -107,7 +107,7 @@ export default function Footer() {
                     type="secondary"
                     size="small"
                     text="Return Policy"
-                    color="white"
+                    color="neutral-300"
                     fluid={false}
                     icon={null}
                     iconFloat={null}
@@ -209,9 +209,9 @@ export default function Footer() {
                 href="https://www.instagram.com/rendahmag/"
                 target="_blank"
                 rel="noreferrer"
-                className="text-white"
+                className="text-neutral-300"
               >
-                <IconInstagram color="white" size={30} />
+                <IconInstagram color="neutral-300" size={30} />
               </a>
             </div>
             <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
@@ -220,9 +220,9 @@ export default function Footer() {
                 href="https://www.facebook.com/rendahmag/"
                 target="_blank"
                 rel="noreferrer"
-                className="text-white"
+                className="text-neutral-300"
               >
-                <IconFacebook color="white" size={30} />
+                <IconFacebook color="neutral-300" size={30} />
               </a>
             </div>
             <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
@@ -231,9 +231,9 @@ export default function Footer() {
                 href="https://twitter.com/RendahMag"
                 target="_blank"
                 rel="noreferrer"
-                className="text-white"
+                className="text-neutral-300"
               >
-                <IconTwitter color="white" size={30} />
+                <IconTwitter color="neutral-300" size={30} />
               </a>
             </div>
             <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
@@ -242,9 +242,9 @@ export default function Footer() {
                 href="https://soundcloud.com/rendahmag"
                 target="_blank"
                 rel="noreferrer"
-                className="text-white"
+                className="text-neutral-300"
               >
-                <IconSoundcloud color="white" size={30} />
+                <IconSoundcloud color="neutral-300" size={30} />
               </a>
             </div>
             {/* <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
@@ -253,9 +253,9 @@ export default function Footer() {
                 href="https://discord.com/invite/ev2Q22C"
                 target="_blank"
                 rel="noreferrer"
-                className="text-white"
+                className="text-neutral-300"
               >
-                <IconDiscord color="white" size={30} />
+                <IconDiscord color="neutral-300" size={30} />
               </a>
             </div> */}
           </div>

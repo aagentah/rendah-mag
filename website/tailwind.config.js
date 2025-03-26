@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './pages/**/*.{js,jsx,ts,tsx}',
@@ -6,6 +5,12 @@ module.exports = {
     './context-provider/**/*.{js,jsx,ts,tsx}',
     './lib/**/*.{js,jsx,ts,tsx}',
     './functions/**/*.{js,jsx,ts,tsx}',
+  ],
+  safelist: [
+    {
+      pattern:
+        /fill-(white|black|neutral-(50|100|200|300|400|500|600|700|800|900)|rendah-(red|yellow))/,
+    },
   ],
   theme: {
     extend: {

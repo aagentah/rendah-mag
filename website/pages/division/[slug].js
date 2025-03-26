@@ -28,29 +28,27 @@ export default function Division({ siteConfig, division }) {
         }}
         preview={null}
       >
-        <div className="pt6">
+        <div className="py-12">
           <Container>
             {division.posts.length > 0 && (
-              <section className="pb5  pb6-md">
-                <div className="pl3 pb4">
+              <section>
+                <div className="pb-8">
                   <Heading
                     /* Options */
-                    htmlEntity="h2"
+                    htmlEntity="h1"
                     text={`${division.title}`}
                     color="rendah-red"
-                    size="medium"
+                    size="large"
                     truncate={null}
                     /* Children */
                     withLinkProps={null}
                   />
                 </div>
 
-                <div className="flex  flex-wrap">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
                   {division.posts.map((post, i) => (
-                    <div key={post.slug} className="col-24  col-6-md">
-                      <div className="ph3 pv2">
-                        <CardBlog i={i} post={post} columnCount={4} />
-                      </div>
+                    <div key={i}>
+                      <CardBlog i={i} post={post} columnCount={4} />
                     </div>
                   ))}
                 </div>

@@ -239,8 +239,53 @@ export default function Product({ siteConfig, product }) {
           }}
           preview={null}
         >
+          <div className="container my-12">
+            <div className="grid grid-cols-4 mb-12">
+              <div className="md:col-span-3 max-w-md mb-12">
+                <p className="text-md md:text-lg text-neutral-500 leading-relaxed text-left mb-8">
+                  <strong>{product?.title}</strong>
+                </p>
+
+                <div className="max-w-md">
+                  <div className="rich-text rich-text-spacing text-sm">
+                    <BlockContent
+                      blocks={product?.description}
+                      serializers={SANITY_BLOCK_SERIALIZERS}
+                    />
+                  </div>
+
+                  <div className="text-neutral-300 text-sm grid gap-y-2 py-8">
+                    <p className="flex justify-between border-b border-neutral-700 pb-2">
+                      <span>Tag(s)</span>
+                      <span className="text-right">{product?.tag}</span>
+                    </p>
+
+                    <p className="flex justify-between border-b border-neutral-700 pb-2">
+                      <span>Price</span>
+                      <span className="text-right"> £{product?.price}</span>
+                    </p>
+
+                    <p className="flex justify-between border-b border-neutral-700 pb-2">
+                      <span>Available Shipping</span>
+                      <span className="text-right"> Globally</span>
+                    </p>
+                  </div>
+
+                  {renderPurchaseButton()}
+                </div>
+              </div>
+
+              <div className="md:col-span-1">
+                <ImageNew
+                  imageObject={product?.imageObject}
+                  className="brightness-75"
+                />
+              </div>
+            </div>
+          </div>
+
           <Container>
-            {isSoldOut && (
+            {/* {isSoldOut && (
               <div className="mb-8">
                 <div className="relative">
                   <div className="border-b border-neutral-400 p-4 md:px-6 relative pb-16 mb-16 max-w-lg">
@@ -282,46 +327,8 @@ export default function Product({ siteConfig, product }) {
                   </div>
                 </div>
               </div>
-            )}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
-              <div className="flex justify-center col-span-4">
-                <ImageNew
-                  imageObject={product?.imageObject}
-                  className="rounded-lg shadow-md"
-                />
-              </div>
-              <div className="flex flex-col justify-center col-span-8 gap-y-4 max-w-lg">
-                <Heading
-                  htmlEntity="h1"
-                  text={product?.title}
-                  color="neutral-400"
-                  size="large"
-                  truncate={null}
-                  withLinkProps={null}
-                  className="mb-4"
-                />
-                {product?.tag && product?.tag !== 'None' && (
-                  <Label
-                    customClass="inline text-xxs px-2 py-0.5 border border-neutral-400 text-neutral-400"
-                    text={product?.tag}
-                    color="neutral-400"
-                    backgroundColor=""
-                    onClick={null}
-                    withLinkProps={null}
-                  />
-                )}
-                <p className="text-neutral-400 text-2xl font-bold mb-6">
-                  £{product?.price}
-                </p>
-                <div className="rich-text mb-8 text-neutral-400">
-                  <BlockContent
-                    blocks={product?.description}
-                    serializers={SANITY_BLOCK_SERIALIZERS}
-                  />
-                </div>
-                <div className="mb-8">{renderPurchaseButton()}</div>
-              </div>
-            </div>
+            )} */}
+
             {product.images?.length && (
               <div className="mb-24">
                 <div className="mb-8">

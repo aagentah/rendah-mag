@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useUser } from '~/lib/hooks';
+import { getAllPostsTotal, getAllProductsTotal } from '~/lib/sanity/requests';
 
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
@@ -9,7 +10,40 @@ const IconArrowRight = dynamic(() =>
 
 export default function SubscriptionBanner(props) {
   const [user] = useUser();
+  const [postsCount, setPostsCount] = useState('~400');
+  const [printsCount, setPrintsCount] = useState('11');
+  const [loading, setLoading] = useState(true);
   const buttonIconRed = <IconArrowRight color="#e9393f" size={16} />;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch total posts count
+        const posts = await getAllPostsTotal();
+        if (posts && posts.length) {
+          setPostsCount(posts.length.toString());
+        }
+
+        // Fetch products with "print" tag
+        const products = await getAllProductsTotal();
+        if (products && products.length) {
+          const printProducts = products.filter(
+            (product) =>
+              product.category === 'Printed Issues' ||
+              (product.tags && product.tags.includes('print'))
+          );
+          setPrintsCount(printProducts.length.toString());
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data for subscription banner:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="container my-12">
@@ -53,16 +87,16 @@ export default function SubscriptionBanner(props) {
               <span>2018</span>
             </p>
             <p className="flex justify-between border-b border-neutral-700 pb-2">
-              <span>Artists featured</span>
-              <span>~400</span>
+              <span>Articles</span>
+              <span>{loading ? 'N/A' : postsCount}</span>
             </p>
             <p className="flex justify-between border-b border-neutral-700 pb-2">
               <span>Prints</span>
-              <span>11</span>
+              <span>{loading ? 'N/A' : printsCount}</span>
             </p>
             <p className="flex justify-between border-b border-neutral-700 pb-2">
               <span>Next Print</span>
-              <span>June/May 2024</span>
+              <span>March/April 2025</span>
             </p>
             <p className="flex justify-between border-b border-neutral-700 pb-2">
               <span>Advertisements (ever)</span>

@@ -85,7 +85,7 @@ export default function HeaderDesktop({
             type="secondary"
             size="medium"
             text="/logout"
-            color={navColour}
+            color="neutral-300"
             fluid={false}
             icon={buttonIcons.signOut}
             iconFloat={null}
