@@ -17,7 +17,7 @@ export default function ProfileCreations({ handleToggle }) {
             <Heading
               /* Options */
               htmlEntity="h1"
-              text="Dominion Dashboard"
+              text="Member Dashboard"
               color="white"
               size="medium"
               truncate={null}

@@ -45,7 +45,7 @@ function NewsletterArticle({ message }) {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 items-start">
           <div className="md:col-span-2">
             <div className="mb-4 pb-2 max-w-xl">
               <h1 className="text-neutral-300 text-2xl">{message.title}</h1>

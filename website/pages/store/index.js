@@ -104,7 +104,7 @@ export default function Store({ siteConfig }) {
                           </h2>
                         </div>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
+                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 mb-12">
                         {[...Array(categorys[i].productsLength)].map(
                           (productIteration, ii) => (
                             <div key={i}>

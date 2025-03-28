@@ -46,14 +46,18 @@ module.exports = {
     },
   },
   plugins: [
-    function ({ addBase, addComponents }) {
+    function ({ addComponents }) {
       addComponents({
         '.container': {
           width: '100%',
-          paddingLeft: '3rem',
-          paddingRight: '3rem',
+          paddingLeft: '2rem',
+          paddingRight: '2rem',
           marginLeft: 'auto',
           marginRight: 'auto',
+          '@screen md': {
+            paddingLeft: '3rem',
+            paddingRight: '3rem',
+          },
         },
       });
     },

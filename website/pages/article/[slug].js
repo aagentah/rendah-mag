@@ -246,7 +246,7 @@ export default function Post({ siteConfig, post, preview }) {
           )}
 
           <div className="container py-12 text-neutral-300 text-sm">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 items-start">
               <div className="md:col-span-3">
                 <div className="mb-4 pb-2 max-w-xl">
                   <h1 className="text-neutral-300 text-2xl">{post.title}</h1>
@@ -373,7 +373,7 @@ export default function Post({ siteConfig, post, preview }) {
           <section className="container pb-6">
             <h3 className="text-neutral-400 mb-12">Other features</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12">
               {morePosts.map((p, i) => (
                 // <Observer {...observer} key={p.slug}>
                 <div key={i}>

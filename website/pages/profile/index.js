@@ -198,11 +198,11 @@ export default function Profile({ siteConfig }) {
             preview={null}
           >
             <div className="grid grid-cols-12">
-              <div className="col-span-9 pt-11 pb-4">
+              <div className="col-span-12 md:col-span-9 order-2 md:order-1 pt-6 md:pt-11 pb-4">
                 <section className="container">
                   <div className="relative">
                     <div className="flex justify-between items-center pb-16">
-                      <div className="flex">
+                      <div className="grid grid-cols-12 md:flex">
                         <button
                           onClick={() =>
                             router.push({
@@ -210,13 +210,13 @@ export default function Profile({ siteConfig }) {
                               query: { tab: 'messages' },
                             })
                           }
-                          className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                          className={`text-left md:text-center col-span-12 py-2 px-4 border-l md:border-b md:border-t-0 md:border-r-0 md:border-l-0 border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
                             filter === 'messages'
                               ? 'bg-neutral-300 text-neutral-800'
                               : 'text-neutral-300'
                           }`}
                         >
-                          Newsletters
+                          <span>Newsletters</span>
                         </button>
                         <button
                           onClick={() =>
@@ -225,13 +225,13 @@ export default function Profile({ siteConfig }) {
                               query: { tab: 'articles' },
                             })
                           }
-                          className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                          className={`text-left md:text-center col-span-12 py-2 px-4 border-l md:border-b md:border-t-0 md:border-r-0 md:border-l-0 border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
                             filter === 'articles'
                               ? 'bg-neutral-300 text-neutral-800'
                               : 'text-neutral-300'
                           }`}
                         >
-                          Articles
+                          <span>Articles</span>
                         </button>
                         <button
                           onClick={() =>
@@ -240,13 +240,13 @@ export default function Profile({ siteConfig }) {
                               query: { tab: 'prints' },
                             })
                           }
-                          className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                          className={`text-left md:text-center col-span-12 py-2 px-4 border-l md:border-b md:border-t-0 md:border-r-0 md:border-l-0 border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
                             filter === 'prints'
                               ? 'bg-neutral-300 text-neutral-800'
                               : 'text-neutral-300'
                           }`}
                         >
-                          Prints
+                          <span>Prints</span>
                         </button>
                         <button
                           disabled
@@ -256,13 +256,13 @@ export default function Profile({ siteConfig }) {
                           //     query: { tab: 'resources' },
                           //   })
                           // }
-                          className={`py-2 px-4 border-b border-neutral-300 cursor-not-allowed text-sm transition-colors duration-300 opacity-30 ${
+                          className={`text-left md:text-center col-span-12 py-2 px-4 border-l md:border-b md:border-t-0 md:border-r-0 md:border-l-0 border-neutral-300 cursor-not-allowed text-sm transition-colors duration-300 ${
                             filter === 'resources'
                               ? 'bg-neutral-300 text-neutral-800'
                               : 'text-neutral-300'
                           }`}
                         >
-                          Blueprints [WIP]
+                          <span className="opacity-30">Blueprints [WIP]</span>
                         </button>
                         <button
                           disabled
@@ -272,13 +272,13 @@ export default function Profile({ siteConfig }) {
                           //     query: { tab: 'resources' },
                           //   })
                           // }
-                          className={`py-2 px-4 border-b border-neutral-300 cursor-not-allowed text-sm transition-colors duration-300 opacity-30 ${
+                          className={`text-left md:text-center col-span-12 py-2 px-4 border-l md:border-b md:border-t-0 md:border-r-0 md:border-l-0 border-neutral-300 cursor-not-allowed text-sm transition-colors duration-300 ${
                             filter === 'resources'
                               ? 'bg-neutral-300 text-neutral-800'
                               : 'text-neutral-300'
                           }`}
                         >
-                          Members [WIP]
+                          <span className="opacity-30">Members [WIP]</span>
                         </button>
                         <button
                           onClick={() =>
@@ -287,13 +287,13 @@ export default function Profile({ siteConfig }) {
                               query: { tab: 'profile' },
                             })
                           }
-                          className={`py-2 px-4 border-b border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                          className={`col-span-12 py-2 px-4 border-l md:border-b md:border-t-0 md:border-r-0 md:border-l-0 border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
                             filter === 'profile'
                               ? 'bg-neutral-300 text-neutral-800'
                               : 'text-neutral-300'
                           }`}
                         >
-                          Profile & Settings
+                          <span>Profile & Settings</span>
                         </button>
                       </div>
                     </div>
@@ -390,8 +390,8 @@ export default function Profile({ siteConfig }) {
                   </div>
                 </section>
               </div>
-              <div className="col-span-3 container py-12 text-sm border-l border-neutral-700">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+              <div className="col-span-12 md:col-span-3 order-1 md:order-2 container py-12 text-sm border-l border-neutral-700">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 items-start">
                   <div className="md:col-span-4 pb-6">
                     <div className="max-w-md">
                       <h1 className="mb-4 text-neutral-300">

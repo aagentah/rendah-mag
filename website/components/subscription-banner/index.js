@@ -47,7 +47,7 @@ export default function SubscriptionBanner(props) {
 
   return (
     <div className="container my-12">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 gap-y-12">
         <div className="md:col-span-3 max-w-md">
           <p className="text-xs md:text-sm text-neutral-500 leading-relaxed text-left">
             <strong>
@@ -81,7 +81,7 @@ export default function SubscriptionBanner(props) {
         </div>
 
         <div className="md:col-span-1 flex flex-col justify-between gap-y-2">
-          <div className="text-neutral-300 text-sm grid gap-y-2">
+          <div className="text-neutral-300 text-xs md:text-sm grid gap-y-2">
             <p className="flex justify-between border-b border-neutral-700 pb-2">
               <span>Established</span>
               <span>2018</span>

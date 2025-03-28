@@ -34,7 +34,7 @@ export default function Footer() {
     <LazyLoad once offset={300} height={300}>
       <footer className="bg-neutral-900 container py-12 mt-12">
         <div className="flex flex-wrap">
-          <div className="w-full md:w-7/12">
+          <div className="w-full md:w-8/12">
             {!user && (
               <>
                 <div className="pb-2 mb-2">
@@ -42,20 +42,20 @@ export default function Footer() {
                     Join our Newsletter?
                   </h3>
                 </div>
-                <div className="pb-2">
+                <div className="pb-6">
                   <p className="text-neutral-400 text-base">
                     We usually only send a few emails each month, and keep the
                     content relevant as ever.
                   </p>
                 </div>
-                <div className="pb-5 text-center md:text-left">
+                <div className="pb-5 text-left">
                   <SubscribeForm type="footer" />
                 </div>
               </>
             )}
 
             <ul>
-              <li className="block pb-3 text-center md:text-left">
+              <li className="block pb-3 text-left">
                 <Button
                   type="secondary"
                   size="small"
@@ -78,7 +78,7 @@ export default function Footer() {
                   }}
                 />
               </li>
-              <li className="block pb-3 text-center md:text-left">
+              <li className="block pb-3 text-left">
                 <Button
                   type="secondary"
                   size="small"
@@ -102,7 +102,7 @@ export default function Footer() {
                 />
               </li>
               {/*
-                <li className="block pb-3 text-center md:text-left">
+                <li className="block pb-3 text-left">
                   <Button
                     type="secondary"
                     size="small"
@@ -126,7 +126,7 @@ export default function Footer() {
                   />
                 </li>
                 */}
-              <li className="block pb-3 text-center md:text-left">
+              <li className="block pb-3 text-left">
                 <Button
                   type="secondary"
                   size="small"
@@ -149,7 +149,7 @@ export default function Footer() {
                   }}
                 />
               </li>
-              <li className="block pb-3 text-center md:text-left">
+              <li className="block pb-3 text-left">
                 <Button
                   type="secondary"
                   size="small"
@@ -172,7 +172,7 @@ export default function Footer() {
                   }}
                 />
               </li>
-              <li className="block pb-3 text-center md:text-left">
+              <li className="block pb-3 text-left">
                 <Button
                   type="secondary"
                   size="small"
@@ -195,15 +195,15 @@ export default function Footer() {
                   }}
                 />
               </li>
-              <li className="block pb-3 text-center md:text-left pt-4">
+              <li className="block pb-3 text-left pt-4">
                 <h3 className="text-neutral-500 text-lg font-bold">
                   {`Rendah Mag ${new Date().getFullYear()}`}
                 </h3>
               </li>
             </ul>
           </div>
-          <div className="w-full md:w-5/12 flex flex-wrap justify-center md:justify-end md:items-end pb-3">
-            <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
+          <div className="w-full md:w-4/12 flex flex-wrap justify-start md:justify-end md:items-end pb-3">
+            <div className="w-1/4 flex justify-start md:justify-end pt-4 md:pt-0">
               <a
                 aria-label="Instagram"
                 href="https://www.instagram.com/rendahmag/"
@@ -214,7 +214,7 @@ export default function Footer() {
                 <IconInstagram color="neutral-300" size={30} />
               </a>
             </div>
-            <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
+            <div className="w-1/4 flex justify-start md:justify-end pt-4 md:pt-0">
               <a
                 aria-label="Facebook"
                 href="https://www.facebook.com/rendahmag/"
@@ -225,7 +225,7 @@ export default function Footer() {
                 <IconFacebook color="neutral-300" size={30} />
               </a>
             </div>
-            <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
+            <div className="w-1/4 flex justify-start md:justify-end pt-4 md:pt-0">
               <a
                 aria-label="Twitter"
                 href="https://twitter.com/RendahMag"
@@ -236,7 +236,7 @@ export default function Footer() {
                 <IconTwitter color="neutral-300" size={30} />
               </a>
             </div>
-            <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
+            <div className="w-1/4 flex justify-start md:justify-end pt-4 md:pt-0">
               <a
                 aria-label="Soundcloud"
                 href="https://soundcloud.com/rendahmag"
@@ -247,7 +247,7 @@ export default function Footer() {
                 <IconSoundcloud color="neutral-300" size={30} />
               </a>
             </div>
-            {/* <div className="w-1/3 md:w-[12.5%] flex justify-center md:justify-end pt-4 md:pt-0">
+            {/* <div className="w-1/3 md:w-[12.5%] flex justify-start md:justify-end pt-4 md:pt-0">
               <a
                 aria-label="Discord"
                 href="https://discord.com/invite/ev2Q22C"

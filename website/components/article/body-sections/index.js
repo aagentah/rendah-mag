@@ -399,7 +399,11 @@ function ImageSection({ section }) {
 
   return (
     <div className="grid grid-cols-12">
-      <div className={`${section.fullImage ? 'col-span-9' : 'col-span-6'}`}>
+      <div
+        className={`col-span-12 ${
+          section.fullImage ? 'md:col-span-9' : 'md:col-span-6'
+        }`}
+      >
         <LazyLoad once offset={250} height={360}>
           <figure>
             <img
@@ -525,7 +529,10 @@ export default function Sections({ body, ...props }) {
     if (section._type === 'block') {
       return (
         <div key={i} className="col-span-12 grid grid-cols-12">
-          <div key={i} className="col-span-6 grid gap-12 text-justify">
+          <div
+            key={i}
+            className="col-span-12 md:col-span-6 grid gap-12 text-justify"
+          >
             <BlockContent
               blocks={section}
               serializers={SANITY_BLOCK_SERIALIZERS}
@@ -549,14 +556,14 @@ export default function Sections({ body, ...props }) {
     }
     if (section._type === 'carousel') {
       return (
-        <div key={i} className="col-span-6 py-4">
+        <div key={i} className="col-span-12 md:col-span-6 py-4">
           <Carousel section={section} />
         </div>
       );
     }
     if (section._type === 'iframeEmbedBlock') {
       return (
-        <div key={i} className="col-span-6 py-4">
+        <div key={i} className="col-span-12 md:col-span-6 py-4">
           <IframeBlock
             url={section.iframeUrl}
             heightDesktop={section.iframeHeightDesktop || section.iframeHeight}
@@ -567,35 +574,35 @@ export default function Sections({ body, ...props }) {
     }
     if (section._type === 'soundCloudEmbedBlock') {
       return (
-        <div key={i} className="col-span-6 py-4">
+        <div key={i} className="col-span-12 md:col-span-6 py-4">
           <Soundcloud url={section.soundCloudEmbed} />
         </div>
       );
     }
     if (section._type === 'spotifyEmbedBlock') {
       return (
-        <div key={i} className="col-span-6 py-4">
+        <div key={i} className="col-span-12 md:col-span-6 py-4">
           <Spotify uri={section.spotifyEmbed} />
         </div>
       );
     }
     if (section._type === 'youTubeEmbedBlock') {
       return (
-        <div key={i} className="col-span-6 py-4">
+        <div key={i} className="col-span-12 md:col-span-6 py-4">
           <Youtube videoId={section.youTubeEmbed} />
         </div>
       );
     }
     if (section._type === 'facebookVideoEmbedBlock') {
       return (
-        <div key={i} className="col-span-6 py-4">
+        <div key={i} className="col-span-12 md:col-span-6 py-4">
           <FacebookVideo url={section.facebookVideoEmbed} />
         </div>
       );
     }
     if (section._type === 'audioFileBlock') {
       return (
-        <div key={i} className="col-span-6 py-3">
+        <div key={i} className="col-span-12 md:col-span-6 py-3">
           <Audio
             {...props}
             title={section.title}
@@ -614,21 +621,30 @@ export default function Sections({ body, ...props }) {
     }
     if (section._type === 'subtitleBlock') {
       return (
-        <div key={i} className="col-span-6 py-2 mb-2 px-4 md:px-0">
+        <div
+          key={i}
+          className="col-span-12 md:col-span-6 py-2 mb-2 px-4 md:px-0"
+        >
           <Heading text={section.subtitle} />
         </div>
       );
     }
     if (section._type === 'quoteBlock') {
       return (
-        <div key={i} className="col-span-6 py-2 mb-2 px-4 md:px-0">
+        <div
+          key={i}
+          className="col-span-12 md:col-span-6 py-2 mb-2 px-4 md:px-0"
+        >
           <Quote quote={section.quote} source={section.source} />
         </div>
       );
     }
     if (section._type === 'linkBlock') {
       return (
-        <div key={i} className="col-span-6 py-2 mb-2 px-4 md:px-0">
+        <div
+          key={i}
+          className="col-span-12 md:col-span-6 py-2 mb-2 px-4 md:px-0"
+        >
           <ArticleLink text={section.text} url={section.url} />
         </div>
       );

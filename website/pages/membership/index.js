@@ -212,7 +212,7 @@ export default function Dominion({ siteConfig }) {
       preview={null}
     >
       <div className="container my-12">
-        <div className="grid grid-cols-4 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 mb-12">
           <div className="md:col-span-2 max-w-md mb-12">
             <p className="text-xs md:text-sm text-neutral-500 leading-relaxed text-left">
               <strong>
@@ -235,7 +235,7 @@ export default function Dominion({ siteConfig }) {
                 We invite you to explore this with us.
               </p>
 
-              <div className="text-neutral-300 text-sm grid gap-y-2 py-8">
+              <div className="text-neutral-300 text-xs md:text-sm grid gap-y-2 py-8">
                 <p className="flex justify-between border-b border-neutral-700 pb-2">
                   <span>Price</span>
                   <span className="text-right leading-6">£11/month</span>
@@ -268,7 +268,7 @@ export default function Dominion({ siteConfig }) {
                 </p>
               </div>
 
-              {/* <div className="text-neutral-300 text-sm grid gap-y-2">
+              {/* <div className="text-neutral-300 text-xs md:text-sm grid gap-y-2">
                 <a className="flex justify-between border-b border-rendah-red pb-1">
                   <span className="text-rendah-red">
                     Join Membership [includes latest print]
@@ -341,7 +341,7 @@ export default function Dominion({ siteConfig }) {
           <div className="pb-12">
             <h2 className="text-neutral-400">How it works</h2>
           </div>
-          <div className="grid grid-cols-4 gap-x-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-12">
             {steps.map((step, index) => (
               <div
                 key={index}

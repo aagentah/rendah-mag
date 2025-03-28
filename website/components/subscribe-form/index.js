@@ -81,28 +81,22 @@ export default function SubscribeForm({ type, onSuccess }) {
   const buttonIconArrowRight = <IconArrowRight color="white" size={16} />;
 
   return (
-    <form
-      noValidate
-      onSubmit={subscribe}
-      className="w-full flex flex-wrap justify-center items-center"
-    >
-      <div className="flex flex-wrap mt-2 w-full">
+    <form noValidate onSubmit={subscribe} className="w-full">
+      <div className="flex w-full max-w-md">
         <input
           id="email-input"
           name="email"
           placeholder="Your email"
           ref={inputEl}
           type="email"
-          className={`flex justify-center shadow-none outline-none rounded-none bg-transparent text-sm md:text-base p-2 border border-r-0 placeholder:opacity-100 w-full md:w-2/3 text-neutral-400 border-neutral-400 placeholder:text-neutral-400`}
+          className="shadow-none outline-none rounded-none bg-transparent text-sm md:text-base p-2 border border-r-0 placeholder:opacity-100 w-2/3 text-neutral-400 border-neutral-400 placeholder:text-neutral-400"
         />
-        <div className="flex justify-center md:justify-start pr-2 md:pr-0 w-full md:w-1/3">
-          <button
-            type="submit"
-            className="border text-neutral-400 bg-transparent px-3 py-2 cursor-pointer"
-          >
-            Join
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="border border-neutral-400 text-neutral-400 bg-transparent px-3 py-2 cursor-pointer w-1/3"
+        >
+          Join
+        </button>
       </div>
     </form>
   );

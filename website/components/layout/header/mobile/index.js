@@ -12,7 +12,7 @@ export default function HeaderMobile({
   meta,
   navColour,
   navHex,
-  navOnWhite,
+  navOnneutral,
   handleLogout,
   buttonIcons,
 }) {
@@ -23,18 +23,14 @@ export default function HeaderMobile({
   const [modalPrintsActive, setModalPrintsActive] = useState(false);
 
   return (
-    <div
-      className={`absolute top-0 left-0 w-full h-20 z-[9999] flex justify-center items-center bg-transparent ${
-        navOnWhite ? 'text-black' : ''
-      }`}
-    >
+    <div className={`h-20 ${navOnneutral - 300 ? 'text-neutral-800' : ''}`}>
       <div className="w-full flex flex-wrap">
         {/* Burger Button */}
         <button
           onClick={toggleNav}
           type="button"
           aria-label="Burger Menu"
-          className="absolute top-5 left-4 bg-transparent"
+          className="absolute top-7 left-5 bg-transparent"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -49,15 +45,16 @@ export default function HeaderMobile({
         </button>
 
         {/* Logo */}
-        <div className="absolute top-4 left-0 right-0 mx-auto w-8 cursor-pointer">
+        <div className="absolute top-4 left-0 right-0 mx-auto cursor-pointer size-12">
           <Link href="/" legacyBehavior>
-            <a>
+            <a className="">
               <svg
                 version="1.0"
                 xmlns="http://www.w3.org/2000/svg"
                 width="1440"
                 height="1440"
                 viewBox="0 0 1080 1080"
+                className="size-12"
               >
                 <g
                   fill={navHex}
@@ -74,13 +71,15 @@ export default function HeaderMobile({
 
       {/* Navigation Overlay */}
       <nav
-        className={`fixed top-0 left-0 w-screen h-screen bg-white transition-transform duration-500 ease-[cubic-bezier(0.985,0.33,0.155,0.87)] ${
+        className={`fixed top-0 left-0 w-screen h-screen bg-neutral-300 z-[9999] transition-transform duration-500 ease-[cubic-bezier(0.985,0.33,0.155,0.87)] ${
           navOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex flex-wrap">
           <div className="w-full flex items-center justify-start p-4">
-            <span className="bg-black text-white px-2 py-1 text-lg">Menu</span>
+            <span className="bg-neutral-800 text-neutral-300 px-2 py-1 text-lg">
+              Menu
+            </span>
           </div>
           <button
             onClick={toggleNav}
@@ -93,7 +92,7 @@ export default function HeaderMobile({
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              fill="black"
+              fill="neutral-800"
             >
               <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
             </svg>
@@ -105,7 +104,7 @@ export default function HeaderMobile({
               <button
                 onClick={toggleNav}
                 type="button"
-                className="text-black text-3xl border-b border-black inline-block mb-2 pb-2"
+                className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
               >
                 Home
               </button>
@@ -117,7 +116,7 @@ export default function HeaderMobile({
               <button
                 onClick={toggleNav}
                 type="button"
-                className="text-black text-3xl border-b border-black inline-block mb-2 pb-2"
+                className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
               >
                 Cyphers
               </button>
@@ -129,7 +128,7 @@ export default function HeaderMobile({
               <button
                 onClick={toggleNav}
                 type="button"
-                className="text-black text-3xl border-b border-black inline-block mb-2 pb-2"
+                className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
               >
                 Gallery
               </button>
@@ -141,7 +140,7 @@ export default function HeaderMobile({
               <button
                 onClick={toggleNav}
                 type="button"
-                className="text-black text-3xl border-b border-black inline-block mb-2 pb-2"
+                className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
               >
                 Team
               </button>
@@ -153,7 +152,7 @@ export default function HeaderMobile({
               <button
                 onClick={toggleNav}
                 type="button"
-                className="text-black text-3xl border-b border-black inline-block mb-2 pb-2"
+                className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
               >
                 Store
               </button>
@@ -166,9 +165,9 @@ export default function HeaderMobile({
                   <button
                     onClick={toggleNav}
                     type="button"
-                    className="text-black text-3xl border-b border-black inline-block mb-2 pb-2"
+                    className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
                   >
-                    Dominion Dashboard
+                    Member Dashboard
                   </button>
                 </Link>
               </li>
@@ -180,7 +179,7 @@ export default function HeaderMobile({
                       handleLogout();
                     }}
                     type="button"
-                    className="text-black text-3xl border-b border-black inline-block mb-2 pb-2"
+                    className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
                   >
                     Log Out
                   </button>
@@ -194,7 +193,7 @@ export default function HeaderMobile({
                   <button
                     onClick={toggleNav}
                     type="button"
-                    className="text-red-600 text-3xl border-b border-black inline-block mb-2 pb-2"
+                    className="text-red-600 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
                   >
                     Become a reader
                   </button>
@@ -205,7 +204,7 @@ export default function HeaderMobile({
                   <button
                     onClick={toggleNav}
                     type="button"
-                    className="text-black text-3xl border-b border-black inline-block mb-2 pb-2"
+                    className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
                   >
                     Login Dominion
                   </button>

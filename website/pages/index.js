@@ -148,7 +148,7 @@ export default function Home() {
       <div className="container py-6">
         <h3 className="text-neutral-400 mb-12">Recent features</h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 mb-12">
           {[...Array(musicLength)].map((_, i) => (
             <div key={i}>
               <CardBlog i={i} post={music && music[i]} columnCount={4} />

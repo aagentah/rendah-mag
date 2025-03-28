@@ -158,7 +158,7 @@ export default function ProfileDominion() {
                       <Heading
                         /* Options */
                         htmlEntity="h1"
-                        text="Dominion Dashboard"
+                        text="Member Dashboard"
                         color="white"
                         size="medium"
                         truncate={null}

@@ -240,7 +240,7 @@ export default function Product({ siteConfig, product }) {
           preview={null}
         >
           <div className="container my-12">
-            <div className="grid grid-cols-4 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 mb-12">
               <div className="md:col-span-3 max-w-md mb-12">
                 <p className="text-md md:text-lg text-neutral-500 leading-relaxed text-left mb-8">
                   <strong>{product?.title}</strong>
@@ -254,7 +254,7 @@ export default function Product({ siteConfig, product }) {
                     />
                   </div>
 
-                  <div className="text-neutral-300 text-sm grid gap-y-2 py-8">
+                  <div className="text-neutral-300 text-xs md:text-sm grid gap-y-2 py-8">
                     <p className="flex justify-between border-b border-neutral-700 pb-2">
                       <span>Tag(s)</span>
                       <span className="text-right">{product?.tag}</span>
@@ -342,7 +342,7 @@ export default function Product({ siteConfig, product }) {
                     className="mb-6"
                   />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12">
                   {product.images.map((image, index) => (
                     <div key={index}>
                       <ImageNew imageObject={image.imageObject} />
