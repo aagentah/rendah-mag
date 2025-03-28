@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useUser } from '~/lib/hooks';
 import { getAllPostsTotal, getAllProductsTotal } from '~/lib/sanity/requests';
 import Table from '~/components/table';
+import Button from '~/components/elements/button';
 
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
@@ -48,7 +49,7 @@ export default function SubscriptionBanner(props) {
 
   return (
     <div className="container my-12">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 gap-y-12">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 gap-y-12 mb-8">
         <div className="md:col-span-3 max-w-md">
           <p className="text-xs md:text-sm text-neutral-500 leading-relaxed text-left">
             <strong>
@@ -104,24 +105,38 @@ export default function SubscriptionBanner(props) {
                 left: 'Advertisements (ever)',
                 right: '0',
               },
-              ...(!user
-                ? [
-                    <Link
-                      href="/membership"
-                      legacyBehavior
-                      key="membership-link"
-                    >
-                      <a className="flex justify-between border-b border-neutral-700 text-rendah-red pb-2">
-                        <span>Join Membership</span>
-                        <span>[includes latest print]</span>
-                      </a>
-                    </Link>,
-                  ]
-                : []),
             ]}
           />
         </div>
       </div>
+
+      {!user && (
+        <div className="mb-12">
+          <Button
+            /* Options */
+            type="secondary"
+            size="small"
+            text="Join Membership"
+            color="rendah-red"
+            fluid={false}
+            icon={buttonIconRed}
+            iconFloat={null}
+            inverted={true}
+            loading={false}
+            disabled={false}
+            skeleton={false}
+            onClick={null}
+            /* Children */
+            withLinkProps={{
+              type: 'next',
+              href: '/membership',
+              target: null,
+              routerLink: null,
+              routerLinkProps: null,
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -2,9 +2,7 @@ import React from 'react';
 
 export default function Table({ rows, className = '' }) {
   return (
-    <div
-      className={`text-neutral-300 text-xs md:text-sm grid gap-y-2 ${className}`}
-    >
+    <div className={`text-xs md:text-sm grid gap-y-2 ${className}`}>
       {rows.map((row, index) => {
         // If row is already a React element, render it directly
         if (React.isValidElement(row)) {
@@ -19,8 +17,10 @@ export default function Table({ rows, className = '' }) {
               row.className || ''
             }`}
           >
-            <span>{row.left}</span>
-            <span className={row.rightClassName || ''}>{row.right}</span>
+            <span className="text-neutral-400">{row.left}</span>
+            <span className={`text-neutral-300 ${row.rightClassName || ''}`}>
+              {row.right}
+            </span>
           </p>
         );
       })}

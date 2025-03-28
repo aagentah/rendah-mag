@@ -50,7 +50,7 @@ export default function CardBlog({ post, handleClick, i }) {
           <div className="flex flex-wrap gap-x-2">
             {post?.divisions?.length &&
               post.divisions.map((division) => (
-                <div className="inline text-xxs px-2 py-0.5 border border-neutral-400 text-neutral-400">
+                <div className="inline text-xxs px-2 py-0.5 border border-neutral-400 text-neutral-400 mb-4">
                   {division}
                 </div>
               ))}

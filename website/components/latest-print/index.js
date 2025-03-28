@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { useKeenSlider } from 'keen-slider/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -13,18 +14,27 @@ import 'keen-slider/keen-slider.min.css';
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
 
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
+);
+
 export default function LatestPrint({ showDominionButton }) {
   const app = useApp();
   const [user] = useUser();
   const [latestIssue, setLatestIssue] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
     renderMode: 'performance',
     drag: true,
     slides: { perView: 1 },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
   });
   const router = useRouter();
   const isMobile = app.deviceSize === 'md';
+  const buttonIconRed = <IconArrowRight color="#e9393f" size={16} />;
 
   useEffect(() => {
     const fetchLatestIssue = async () => {
@@ -67,6 +77,19 @@ export default function LatestPrint({ showDominionButton }) {
                 </div>
               ))}
             </div>
+
+            {/* Pagination Dots */}
+            <div className="flex justify-center mt-4 space-x-2">
+              {latestIssue.images.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => instanceRef.current?.moveToIdx(idx)}
+                  className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+                    currentSlide === idx ? 'bg-neutral-300' : 'bg-neutral-700'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-4 gap-4">
@@ -84,13 +107,29 @@ export default function LatestPrint({ showDominionButton }) {
 
       {!user && showDominionButton && (
         <div className="mb-12">
-          <Link href="/membership" legacyBehavior>
-            <a className="text-sm border-b border-neutral-300 pb-1">
-              <span className="text-neutral-300">
-                Join Membership [includes latest print]
-              </span>
-            </a>
-          </Link>
+          <Button
+            /* Options */
+            type="secondary"
+            size="small"
+            text="Join Membership"
+            color="rendah-red"
+            fluid={false}
+            icon={buttonIconRed}
+            iconFloat={null}
+            inverted={true}
+            loading={false}
+            disabled={false}
+            skeleton={false}
+            onClick={null}
+            /* Children */
+            withLinkProps={{
+              type: 'next',
+              href: '/membership',
+              target: null,
+              routerLink: null,
+              routerLinkProps: null,
+            }}
+          />
         </div>
       )}
     </div>

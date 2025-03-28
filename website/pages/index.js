@@ -124,7 +124,7 @@ export default function Home() {
 
       {/* Latest Print Section */}
       <LazyLoad once offset={800} height={800}>
-        <LatestPrint showDominionButton={true} />
+        <LatestPrint showDominionButton={false} />
       </LazyLoad>
 
       <div className="container">

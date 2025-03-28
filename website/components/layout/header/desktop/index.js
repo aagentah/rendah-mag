@@ -116,7 +116,7 @@ export default function HeaderDesktop({
 
   return (
     <div
-      className={`container hidden md:flex justify-center items-center text-white h-24`}
+      className={`container hidden md:flex justify-center items-center text-neutral-200 h-24`}
     >
       <div className="flex items-center w-full">
         <Link href="/" legacyBehavior>
@@ -162,7 +162,7 @@ export default function HeaderDesktop({
                   </li> */}
                   <li
                     className={`inline-flex items-center ${
-                      navOnWhite ? 'text-black' : 'text-white'
+                      navOnWhite ? 'text-black' : 'text-neutral-200'
                     }`}
                   />
                   <li className="inline-flex items-center">

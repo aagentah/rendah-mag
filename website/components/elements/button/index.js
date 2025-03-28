@@ -21,7 +21,7 @@ export default function Button(props) {
 
   // Base Tailwind classes for the button
   const baseClasses =
-    'transition-all duration-300 ease-in-out inline-flex justify-center items-center bg-transparent shadow-none outline-none border-0 cursor-pointer relative no-underline px-3 min-w-[50px] font-secondary z-[4]';
+    'transition-all duration-300 ease-in-out inline-flex justify-center items-center bg-transparent shadow-none outline-none border-0 cursor-pointer relative no-underline min-w-[50px] font-secondary z-[4]';
 
   // Map size prop to font size
   const sizeClasses =

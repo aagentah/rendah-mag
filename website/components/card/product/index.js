@@ -25,7 +25,7 @@ export default function CardProduct({ product }) {
     labels.push(
       <Label
         key="sold-out"
-        customClass="inline text-xxs px-2 py-0.5 border border-neutral-400 text-neutral-400"
+        customClass="inline text-xxs px-2 py-0.5 border border-neutral-400 text-neutral-400 mb-4"
         text="Sold-out"
         color="white"
         backgroundColor=""
@@ -37,7 +37,7 @@ export default function CardProduct({ product }) {
     labels.push(
       <Label
         key="pre-order"
-        customClass="inline text-xxs px-2 py-0.5 border border-neutral-400 text-neutral-400"
+        customClass="inline text-xxs px-2 py-0.5 border border-neutral-400 text-neutral-400 mb-4"
         text="Pre-order"
         color="white"
         backgroundColor=""
