@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useUser } from '~/lib/hooks';
 import { getAllPostsTotal, getAllProductsTotal } from '~/lib/sanity/requests';
+import Table from '~/components/table';
 
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
@@ -81,36 +82,44 @@ export default function SubscriptionBanner(props) {
         </div>
 
         <div className="md:col-span-1 flex flex-col justify-between gap-y-2">
-          <div className="text-neutral-300 text-xs md:text-sm grid gap-y-2">
-            <p className="flex justify-between border-b border-neutral-700 pb-2">
-              <span>Established</span>
-              <span>2018</span>
-            </p>
-            <p className="flex justify-between border-b border-neutral-700 pb-2">
-              <span>Articles</span>
-              <span>{loading ? 'N/A' : postsCount}</span>
-            </p>
-            <p className="flex justify-between border-b border-neutral-700 pb-2">
-              <span>Prints</span>
-              <span>{loading ? 'N/A' : printsCount}</span>
-            </p>
-            <p className="flex justify-between border-b border-neutral-700 pb-2">
-              <span>Next Print</span>
-              <span>March/April 2025</span>
-            </p>
-            <p className="flex justify-between border-b border-neutral-700 pb-2">
-              <span>Advertisements (ever)</span>
-              <span>0</span>
-            </p>
-            {!user && (
-              <Link href="/membership" legacyBehavior>
-                <a className="flex justify-between border-b border-neutral-700 text-rendah-red pb-2">
-                  <span>Join Membership</span>
-                  <span>[includes latest print]</span>
-                </a>
-              </Link>
-            )}
-          </div>
+          <Table
+            rows={[
+              {
+                left: 'Established',
+                right: '2018',
+              },
+              {
+                left: 'Articles',
+                right: loading ? 'N/A' : postsCount,
+              },
+              {
+                left: 'Prints',
+                right: loading ? 'N/A' : printsCount,
+              },
+              {
+                left: 'Next Print',
+                right: 'March/April 2025',
+              },
+              {
+                left: 'Advertisements (ever)',
+                right: '0',
+              },
+              ...(!user
+                ? [
+                    <Link
+                      href="/membership"
+                      legacyBehavior
+                      key="membership-link"
+                    >
+                      <a className="flex justify-between border-b border-neutral-700 text-rendah-red pb-2">
+                        <span>Join Membership</span>
+                        <span>[includes latest print]</span>
+                      </a>
+                    </Link>,
+                  ]
+                : []),
+            ]}
+          />
         </div>
       </div>
     </div>

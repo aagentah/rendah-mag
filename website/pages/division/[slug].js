@@ -17,7 +17,6 @@ export default function Division({ siteConfig, division }) {
     <>
       <Layout
         navOffset={null}
-        navOnWhite
         hasNav
         hasFooter
         meta={{

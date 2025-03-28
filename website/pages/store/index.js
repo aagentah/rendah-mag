@@ -64,7 +64,6 @@ export default function Store({ siteConfig }) {
   return (
     <Layout
       navOffset="top"
-      navOnWhite
       hasNav
       hasFooter
       meta={{

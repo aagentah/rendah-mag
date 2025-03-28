@@ -22,6 +22,7 @@ import Container from '~/components/layout/container';
 import Sections from '~/components/article/body-sections';
 import SubscriptionBanner from '~/components/subscription-banner';
 import LatestPrint from '~/components/latest-print';
+import Table from '~/components/table';
 
 import Date from '~/components/date';
 import useWindowDimensions from '~/functions/useWindowDimensions';
@@ -260,31 +261,36 @@ export default function Post({ siteConfig, post, preview }) {
                 </div>
               </div>
 
-              <div className="md:col-span-1 grid gap-y-2">
-                <p className="flex justify-between border-b border-neutral-700 pb-2">
-                  <strong>Author(s)</strong>
-                  <span>
-                    {post.authors.map((i, index, array) => i.author.name)}
-                  </span>
-                </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-2">
-                  <strong>Published</strong>
-                  <span>
-                    <Date dateString={post.publishedAt} />
-                  </span>
-                </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-2">
-                  <strong>Categories</strong>
-                  <span>
-                    {post?.categories?.length && post?.categories.map((i) => i)}
-                  </span>
-                </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-2">
-                  <strong>Member Exclusive</strong>
-                  <div>
-                    <span className="opacity-50">TRUE</span>/<span>FALSE</span>
-                  </div>
-                </p>
+              <div className="md:col-span-1 grid">
+                <Table
+                  rows={[
+                    {
+                      left: <strong>Author(s)</strong>,
+                      right: post.authors.map(
+                        (i, index, array) => i.author.name
+                      ),
+                    },
+                    {
+                      left: <strong>Published</strong>,
+                      right: <Date dateString={post.publishedAt} />,
+                    },
+                    {
+                      left: <strong>Categories</strong>,
+                      right:
+                        post?.categories?.length &&
+                        post?.categories.map((i) => i),
+                    },
+                    {
+                      left: <strong>Member Exclusive</strong>,
+                      right: (
+                        <div>
+                          <span className="opacity-50">TRUE</span>/
+                          <span>FALSE</span>
+                        </div>
+                      ),
+                    },
+                  ]}
+                />
               </div>
             </div>
           </div>

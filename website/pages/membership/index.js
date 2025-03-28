@@ -15,6 +15,7 @@ import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Accordion from '~/components/accordion';
 import LatestPrint from '~/components/latest-print';
+import Table from '~/components/table';
 
 import {
   getSiteConfig,
@@ -235,38 +236,48 @@ export default function Dominion({ siteConfig }) {
                 We invite you to explore this with us.
               </p>
 
-              <div className="text-neutral-300 text-xs md:text-sm grid gap-y-2 py-8">
-                <p className="flex justify-between border-b border-neutral-700 pb-2">
-                  <span>Price</span>
-                  <span className="text-right leading-6">£11/month</span>
-                </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-2">
-                  <span>Magazine Delivery</span>
-                  <span className="text-right leading-6">
-                    3x prints yearly
-                    <br />
-                    Free Global Shipping
-                    <br />
-                    Member Card + Stickers
-                  </span>
-                </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-2">
-                  <span>Dashboard Access</span>
-                  <span className="text-right leading-6">
-                    Membership dashboard
-                    <br />
-                    Monthly exclusive insights
-                    <br />
-                    20% additional discount
-                  </span>
-                </p>
-                <p className="flex justify-between border-b border-neutral-700 pb-2">
-                  <span>Digital Archive</span>
-                  <span className="text-right leading-6">
-                    Print Archive Access
-                  </span>
-                </p>
-              </div>
+              <Table
+                className="text-xs md:text-sm py-8"
+                rows={[
+                  {
+                    left: 'Price',
+                    right: '£11/month',
+                    rightClassName: 'text-right leading-6',
+                  },
+                  {
+                    left: 'Magazine Delivery',
+                    right: (
+                      <span className="text-right leading-6">
+                        3x prints yearly
+                        <br />
+                        Free Global Shipping
+                        <br />
+                        Member Card + Stickers
+                      </span>
+                    ),
+                  },
+                  {
+                    left: 'Dashboard Access',
+                    right: (
+                      <span className="text-right leading-6">
+                        Membership dashboard
+                        <br />
+                        Monthly exclusive insights
+                        <br />
+                        20% additional discount
+                      </span>
+                    ),
+                  },
+                  {
+                    left: 'Digital Archive',
+                    right: (
+                      <span className="text-right leading-6">
+                        Print Archive Access
+                      </span>
+                    ),
+                  },
+                ]}
+              />
 
               {/* <div className="text-neutral-300 text-xs md:text-sm grid gap-y-2">
                 <a className="flex justify-between border-b border-rendah-red pb-1">

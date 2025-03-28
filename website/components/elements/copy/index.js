@@ -12,7 +12,7 @@ export default function Copy(props) {
     color,
     size,
     truncate,
-    skeleton
+    skeleton,
   } = props;
 
   const ElementType = truncate ? TruncateMarkup : React.Fragment;
@@ -37,13 +37,16 @@ export default function Copy(props) {
 
   const styles = {
     lineHeight: `${lineHeight}px`,
-    height: truncate ? `${lineHeight * (truncate || 1)}px` : 'auto'
+    height: truncate ? `${lineHeight * (truncate || 1)}px` : 'auto',
   };
 
   const skeletonClass = skeleton ? 'skeleton  skeleton-active' : 'skeleton';
 
   return (
-    <span className={`copy ${size} ${color} ${skeletonClass}`} style={styles}>
+    <span
+      className={`copy ${size} text-${color} ${skeletonClass}`}
+      style={styles}
+    >
       <ElementType {...(truncate && { lines: truncate })}>
         <span>
           {text || <div dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />}

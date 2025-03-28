@@ -19,6 +19,7 @@ import CardMessage from '~/components/card/message';
 import CardResource from '~/components/card/resource';
 import CardBlog from '~/components/card/blog';
 import CardPrint from '~/components/card/print';
+import Table from '~/components/table';
 
 import { useApp } from '~/context-provider/app';
 import { useUser } from '~/lib/hooks';
@@ -403,32 +404,39 @@ export default function Profile({ siteConfig }) {
                       </p>
                     </div>
                   </div>
-                  <div className="md:col-span-4 grid gap-y-2 text-neutral-300">
-                    <p className="flex justify-between border-b border-neutral-700 pb-2">
-                      <span>User</span>
-                      <span>{user?.name}</span>
-                    </p>
-                    <p className="flex justify-between border-b border-neutral-700 pb-2">
-                      <span>Email</span>
-                      <span className="break-all pl-6 text-right">
-                        {user?.username}
-                      </span>
-                    </p>
-                    <p className="flex justify-between border-b border-neutral-700 pb-2">
-                      <span>Discount 20%</span>
-                      <span className="bg-neutral-900 px-2">RNDH20</span>
-                    </p>
-                    <p className="flex justify-between border-b border-neutral-700 pb-2">
-                      <span>Next Print</span>
-                      <span>March/April 2025</span>
-                    </p>
-                    <p className="flex justify-between border-b border-neutral-700 pb-2">
-                      <span>Dark Mode</span>
-                      <span>
-                        <span>TRUE</span>/
-                        <span className="opacity-50">FALSE</span>
-                      </span>
-                    </p>
+                  <div className="md:col-span-4">
+                    <Table
+                      className="text-neutral-300"
+                      rows={[
+                        {
+                          left: 'User',
+                          right: user?.name,
+                        },
+                        {
+                          left: 'Email',
+                          right: user?.username,
+                          rightClassName: 'break-all pl-6 text-right',
+                        },
+                        {
+                          left: 'Discount 20%',
+                          right: 'RNDH20',
+                          rightClassName: 'bg-neutral-900 px-2',
+                        },
+                        {
+                          left: 'Next Print',
+                          right: 'March/April 2025',
+                        },
+                        {
+                          left: 'Dark Mode',
+                          right: (
+                            <>
+                              <span>TRUE</span>/
+                              <span className="opacity-50">FALSE</span>
+                            </>
+                          ),
+                        },
+                      ]}
+                    />
                   </div>
                 </div>
               </div>

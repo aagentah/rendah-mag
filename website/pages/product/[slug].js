@@ -9,6 +9,7 @@ import Button from '~/components/elements/button';
 import ImageNew from '~/components/elements/image-new';
 import Label from '~/components/elements/label';
 import { useApp } from '~/context-provider/app';
+import Table from '~/components/table';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -228,7 +229,6 @@ export default function Product({ siteConfig, product }) {
       <div className="bg-gray-50">
         <Layout
           navOffset="top"
-          navOnWhite
           hasNav
           hasFooter
           meta={{
@@ -254,22 +254,26 @@ export default function Product({ siteConfig, product }) {
                     />
                   </div>
 
-                  <div className="text-neutral-300 text-xs md:text-sm grid gap-y-2 py-8">
-                    <p className="flex justify-between border-b border-neutral-700 pb-2">
-                      <span>Tag(s)</span>
-                      <span className="text-right">{product?.tag}</span>
-                    </p>
-
-                    <p className="flex justify-between border-b border-neutral-700 pb-2">
-                      <span>Price</span>
-                      <span className="text-right"> £{product?.price}</span>
-                    </p>
-
-                    <p className="flex justify-between border-b border-neutral-700 pb-2">
-                      <span>Available Shipping</span>
-                      <span className="text-right"> Globally</span>
-                    </p>
-                  </div>
+                  <Table
+                    className="text-xs md:text-sm py-8"
+                    rows={[
+                      {
+                        left: 'Tag(s)',
+                        right: product?.tag,
+                        rightClassName: 'text-right',
+                      },
+                      {
+                        left: 'Price',
+                        right: `£${product?.price}`,
+                        rightClassName: 'text-right',
+                      },
+                      {
+                        left: 'Available Shipping',
+                        right: 'Globally',
+                        rightClassName: 'text-right',
+                      },
+                    ]}
+                  />
 
                   {renderPurchaseButton()}
                 </div>

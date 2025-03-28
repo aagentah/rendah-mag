@@ -18,8 +18,6 @@ export default function Mailout({ siteConfig, preview }) {
   if (!router.isFallback) {
     return (
       <Layout
-        navOffset="center"
-        navOnWhite
         hasNav
         hasFooter
         meta={{
@@ -31,30 +29,25 @@ export default function Mailout({ siteConfig, preview }) {
         preview={preview}
       >
         <Container>
-          <div className="measure-wide  mla  mra  ph3  ph0-md">
-            <div className="pb2  mb2">
+          <div className="max-w-2xl py-12">
+            <div className="pb-2 mb-2">
               <Heading
-                /* Options */
                 htmlEntity="h3"
                 text="Join our mailout"
-                color="black"
+                color="neutral-300"
                 size="medium"
                 truncate={0}
                 onClick={null}
-                /* Children */
                 withLinkProps={null}
               />
             </div>
-            <div className="pb2">
-              <Copy
-                /* Options */
-                text="We usually only send a few emails each month, and keep the content relevant as ever."
-                color="black"
-                size="medium"
-                truncate={null}
-              />
+            <div className="pb-4">
+              <p className="text-neutral-400">
+                We usually only send a few emails each month, and keep the
+                content relevant as ever.
+              </p>
             </div>
-            <div className="pb3  mb2">
+            <div className="pb-3 mb-2">
               <SubscribeForm type="mailout" />
             </div>
           </div>
@@ -76,30 +69,3 @@ export async function getServerSideProps({ req, preview = false }) {
     },
   };
 }
-
-// export async function getStaticProps({ req, params, preview = false }) {
-//   const siteConfig = await getSiteConfig();
-//   const data = await getSmartLink(params.slug, preview);
-//
-//   return {
-//     props: {
-//       siteConfig,
-//       post: data || null,
-//       preview,
-//     },
-//   };
-// }
-
-// export async function getStaticPaths() {
-//   const data = await getAllPostsTotal();
-//
-//   return {
-//     paths:
-//       data.map((article) => ({
-//         params: {
-//           slug: article.slug,
-//         },
-//       })) || [],
-//     fallback: true,
-//   };
-// }
