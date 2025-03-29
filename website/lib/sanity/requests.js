@@ -387,7 +387,7 @@ export async function getDivision(
   division,
   range,
   category = null,
-  exclude = null
+  exclude = []
 ) {
   const today = dateTodayISO();
 
@@ -639,8 +639,11 @@ export async function getMorePosts(slug, preview) {
   const curClient = getClient(preview);
   const today = dateTodayISO();
 
-  const morePosts = await getClient(preview).fetch(
-    `*[_type == "post" && slug.current != $slug] | order(publishedAt desc){
+  const morePosts = await curClient.fetch(
+    `*[_type == "post" 
+       && slug.current != $slug 
+       && !("premieres" in categories[]->slug.current)
+     ] | order(publishedAt desc){
       ${postFieldsCard}
       content,
     }[0...4]`,

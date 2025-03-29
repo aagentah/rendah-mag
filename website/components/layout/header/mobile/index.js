@@ -100,7 +100,7 @@ export default function HeaderMobile({
               <button
                 onClick={toggleNav}
                 type="button"
-                className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
+                className="text-neutral-800 text-2xl border-b border-neutral-800 inline-block mb-2 pb-2"
               >
                 Home
               </button>
@@ -112,7 +112,7 @@ export default function HeaderMobile({
               <button
                 onClick={toggleNav}
                 type="button"
-                className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
+                className="text-neutral-800 text-2xl border-b border-neutral-800 inline-block mb-2 pb-2"
               >
                 Cyphers
               </button>
@@ -124,7 +124,7 @@ export default function HeaderMobile({
               <button
                 onClick={toggleNav}
                 type="button"
-                className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
+                className="text-neutral-800 text-2xl border-b border-neutral-800 inline-block mb-2 pb-2"
               >
                 Gallery
               </button>
@@ -136,7 +136,7 @@ export default function HeaderMobile({
               <button
                 onClick={toggleNav}
                 type="button"
-                className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
+                className="text-neutral-800 text-2xl border-b border-neutral-800 inline-block mb-2 pb-2"
               >
                 Team
               </button>
@@ -148,7 +148,7 @@ export default function HeaderMobile({
               <button
                 onClick={toggleNav}
                 type="button"
-                className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
+                className="text-neutral-800 text-2xl border-b border-neutral-800 inline-block mb-2 pb-2"
               >
                 Store
               </button>
@@ -161,7 +161,7 @@ export default function HeaderMobile({
                   <button
                     onClick={toggleNav}
                     type="button"
-                    className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
+                    className="text-rendah-red text-2xl border-b border-rendah-red inline-block mb-2 pb-2"
                   >
                     Member Dashboard
                   </button>
@@ -175,7 +175,7 @@ export default function HeaderMobile({
                       handleLogout();
                     }}
                     type="button"
-                    className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
+                    className="text-neutral-800 text-2xl border-b border-neutral-800 inline-block mb-2 pb-2"
                   >
                     Logout
                   </button>
@@ -189,7 +189,7 @@ export default function HeaderMobile({
                   <button
                     onClick={toggleNav}
                     type="button"
-                    className="text-red-600 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
+                    className="text-red-600 text-2xl border-b border-neutral-800 inline-block mb-2 pb-2"
                   >
                     Membership
                   </button>
@@ -200,7 +200,7 @@ export default function HeaderMobile({
                   <button
                     onClick={toggleNav}
                     type="button"
-                    className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
+                    className="text-neutral-800 text-2xl border-b border-neutral-800 inline-block mb-2 pb-2"
                   >
                     Login
                   </button>

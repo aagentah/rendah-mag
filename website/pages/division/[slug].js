@@ -62,7 +62,9 @@ export default function Division({ siteConfig, division }) {
 
 export async function getServerSideProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
-  const division = await getDivision(params.slug, [1, 100]);
+  const division = await getDivision(params.slug, [1, 100], null, [
+    'premieres',
+  ]);
   console.log('division', division);
 
   return {

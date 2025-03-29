@@ -362,7 +362,7 @@ export default function Profile({ siteConfig }) {
                           size="large"
                         />
                         {prints?.length ? (
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
                             {prints.map((item, i) => (
                               <div key={item._id}>
                                 <CardPrint

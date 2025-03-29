@@ -91,38 +91,34 @@ export default function Store({ siteConfig }) {
           </div>
 
           <section className="pb3  pt5">
-            <div className="flex flex-wrap">
-              {[...Array(categorysLength)].map((categoryIteration, i) => {
-                if (categorys && products && categorys[i]?.name) {
-                  return (
-                    <div className="col-24 pb4" key={i}>
-                      <div className="flex flex-wrap relative bb bc-black mb4">
-                        <div className="absolute left bottom pa2 bg-black nb3">
-                          <h2 className="t-primary f5 white">
-                            {categorys && products && categorys[i]?.name}
-                          </h2>
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 mb-12">
-                        {[...Array(categorys[i].productsLength)].map(
-                          (productIteration, ii) => (
-                            <div key={i}>
-                              <CardProduct
-                                i={ii}
-                                product={
-                                  categorys && categorys[i]?.products[ii]
-                                }
-                              />
-                            </div>
-                          )
-                        )}
+            {[...Array(categorysLength)].map((categoryIteration, i) => {
+              if (categorys && products && categorys[i]?.name) {
+                return (
+                  <div className="w-full pb4" key={i}>
+                    <div className="flex flex-wrap relative bb bc-black mb4">
+                      <div className="absolute left bottom pa2 bg-black nb3">
+                        <h2 className="t-primary f5 white">
+                          {categorys && products && categorys[i]?.name}
+                        </h2>
                       </div>
                     </div>
-                  );
-                }
-                return null;
-              })}
-            </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 gap-y-12 mb-12">
+                      {[...Array(categorys[i].productsLength)].map(
+                        (productIteration, ii) => (
+                          <div key={i}>
+                            <CardProduct
+                              i={ii}
+                              product={categorys && categorys[i]?.products[ii]}
+                            />
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                );
+              }
+              return null;
+            })}
           </section>
         </div>
       </div>

@@ -289,7 +289,7 @@ export default function HeaderDesktop({
                         type="secondary"
                         size="medium"
                         text="Member Dashboard"
-                        color="neutral-300"
+                        color="rendah-red"
                         fluid={false}
                         icon={null}
                         iconFloat={null}
