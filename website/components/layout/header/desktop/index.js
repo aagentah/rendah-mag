@@ -84,7 +84,7 @@ export default function HeaderDesktop({
           <Button
             type="secondary"
             size="medium"
-            text="/logout"
+            text="Logout"
             color="neutral-300"
             fluid={false}
             icon={buttonIcons.signOut}
@@ -169,7 +169,7 @@ export default function HeaderDesktop({
                     <Button
                       type="secondary"
                       size="medium"
-                      text="/home"
+                      text="Home"
                       color="neutral-300"
                       fluid={false}
                       icon={null}
@@ -264,7 +264,7 @@ export default function HeaderDesktop({
                     <Button
                       type="secondary"
                       size="medium"
-                      text="/store"
+                      text="Store"
                       color="neutral-300"
                       fluid={false}
                       icon={null}
@@ -288,7 +288,7 @@ export default function HeaderDesktop({
                       <Button
                         type="secondary"
                         size="medium"
-                        text="/memberDashboard"
+                        text="Member Dashboard"
                         color="neutral-300"
                         fluid={false}
                         icon={null}
@@ -315,7 +315,7 @@ export default function HeaderDesktop({
                         <Button
                           type="secondary"
                           size="medium"
-                          text="/memberSignup"
+                          text="Membership"
                           color="rendah-red"
                           fluid={false}
                           // icon={buttonIcons.store}
@@ -338,7 +338,7 @@ export default function HeaderDesktop({
                         <Button
                           type="secondary"
                           size="medium"
-                          text="/memberLogin"
+                          text="Login"
                           color="neutral-300"
                           fluid={false}
                           // icon={buttonIcons.signIn}

@@ -18,7 +18,11 @@ export default function Table({ rows, className = '' }) {
             }`}
           >
             <span className="text-neutral-400">{row.left}</span>
-            <span className={`text-neutral-300 ${row.rightClassName || ''}`}>
+            <span
+              className={`text-neutral-300 text-right flex ${
+                row.rightClassName || ''
+              }`}
+            >
               {row.right}
             </span>
           </p>

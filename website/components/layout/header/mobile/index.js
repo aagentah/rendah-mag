@@ -177,7 +177,7 @@ export default function HeaderMobile({
                     type="button"
                     className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
                   >
-                    Log Out
+                    Logout
                   </button>
                 </Link>
               </li>
@@ -191,7 +191,7 @@ export default function HeaderMobile({
                     type="button"
                     className="text-red-600 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
                   >
-                    Become a reader
+                    Membership
                   </button>
                 </Link>
               </li>
@@ -202,7 +202,7 @@ export default function HeaderMobile({
                     type="button"
                     className="text-neutral-800 text-3xl border-b border-neutral-800 inline-block mb-2 pb-2"
                   >
-                    Login Dominion
+                    Login
                   </button>
                 </Link>
               </li>

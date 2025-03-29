@@ -30,11 +30,16 @@ const IconPlus = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconPlus)
 );
 
+const IconArrowRight = dynamic(() =>
+  import('~/components/elements/icon').then((m) => m.IconArrowRight)
+);
+
 export default function Dominion({ siteConfig }) {
   const [dominion, setDominion] = useState(null);
   const app = useApp();
   const [isTrial, setIsTrial] = useState(false);
   const router = useRouter();
+  const buttonIconRed = <IconArrowRight color="#e9393f" size={16} />;
 
   const isMobile = app.deviceSize === 'md';
 
@@ -290,13 +295,13 @@ export default function Dominion({ siteConfig }) {
               <div className="">
                 <Button
                   /* Options */
-                  type="primary"
+                  type="secondary"
                   size="small"
                   text="Join Membership [includes latest print]"
                   color="rendah-red"
                   fluid={false}
-                  icon={null}
-                  iconFloat="left"
+                  icon={buttonIconRed}
+                  iconFloat="right"
                   inverted={false}
                   loading={false}
                   disabled={false}

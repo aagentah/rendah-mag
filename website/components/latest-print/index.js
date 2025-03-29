@@ -111,7 +111,7 @@ export default function LatestPrint({ showDominionButton }) {
             /* Options */
             type="secondary"
             size="small"
-            text="Join Membership"
+            text="Join Membership [includes latest print]"
             color="rendah-red"
             fluid={false}
             icon={buttonIconRed}
