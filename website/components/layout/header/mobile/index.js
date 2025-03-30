@@ -71,9 +71,9 @@ export default function HeaderMobile({
           navOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="flex flex-wrap">
-          <div className="w-full flex items-center justify-start p-4">
-            <span className="bg-neutral-800 text-neutral-300 px-2 py-1 text-lg">
+        <div className="flex flex-wrap pt-1.5">
+          <div className="w-1/2 flex items-center justify-start p-4">
+            <span className="bg-neutral-700 text-neutral-300 px-2 py-1 text-lg">
               Menu
             </span>
           </div>
@@ -81,14 +81,14 @@ export default function HeaderMobile({
             onClick={toggleNav}
             type="button"
             aria-label="Toggle Menu"
-            className="w-full flex items-center justify-end p-4"
+            className="w-1/2 flex items-center justify-end p-4"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              fill="neutral-800"
+              className="fill-neutral-700"
             >
               <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
             </svg>

@@ -284,20 +284,12 @@ export default function Dominion({ siteConfig }) {
                 ]}
               />
 
-              {/* <div className="text-neutral-300 text-xs md:text-sm grid gap-y-2">
-                <a className="flex justify-between border-b border-rendah-red pb-1">
-                  <span className="text-rendah-red">
-                    Join Membership [includes latest print]
-                  </span>
-                </a>
-              </div> */}
-
               <div className="">
                 <Button
                   /* Options */
                   type="secondary"
                   size="small"
-                  text="Join Membership [includes latest print]"
+                  text="Join Membership"
                   color="rendah-red"
                   fluid={false}
                   icon={buttonIconRed}
@@ -318,6 +310,10 @@ export default function Dominion({ siteConfig }) {
                     routerLinkProps: null,
                   }}
                 />
+
+                <p className="text-xs text-neutral-500 pt-1.5">
+                  [Includes latest print]
+                </p>
               </div>
             </div>
 

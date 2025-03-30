@@ -71,7 +71,7 @@ export default function LatestPrint({ showDominionButton }) {
                   <ImageNew
                     imageObject={image.imageObject}
                     alt={`Latest Print Image ${index + 1}`}
-                    height={550}
+                    height={400}
                     className="bg-white w-full"
                   />
                 </div>
@@ -111,7 +111,7 @@ export default function LatestPrint({ showDominionButton }) {
             /* Options */
             type="secondary"
             size="small"
-            text="Join Membership [includes latest print]"
+            text="Explore Membership"
             color="rendah-red"
             fluid={false}
             icon={buttonIconRed}
@@ -130,6 +130,10 @@ export default function LatestPrint({ showDominionButton }) {
               routerLinkProps: null,
             }}
           />
+
+          <p className="text-xs text-neutral-500 pt-1.5">
+            [Includes latest print]
+          </p>
         </div>
       )}
     </div>

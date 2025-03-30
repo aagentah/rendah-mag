@@ -140,7 +140,7 @@ export default function SocialLinks({ article }) {
     }
 
     return (
-      <div className="container flex flex-wrap justify-start">
+      <div className="container flex flex-col">
         {links.length ? links : null}
       </div>
     );

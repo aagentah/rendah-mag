@@ -116,7 +116,7 @@ export default function SubscriptionBanner(props) {
             /* Options */
             type="secondary"
             size="small"
-            text="Join Membership [includes latest print]"
+            text="Explore Membership"
             color="rendah-red"
             fluid={false}
             icon={buttonIconRed}
@@ -135,6 +135,10 @@ export default function SubscriptionBanner(props) {
               routerLinkProps: null,
             }}
           />
+
+          <p className="text-xs text-neutral-500 pt-1.5">
+            [Includes latest print]
+          </p>
         </div>
       )}
     </div>

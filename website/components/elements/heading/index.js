@@ -29,21 +29,27 @@ export default function Heading(props) {
   const heightXLarge = 42;
 
   let lineHeight;
+  let fontSize;
 
   switch (size) {
     case 'small':
+      fontSize = 'text-sm';
       lineHeight = heightSmall;
       break;
     case 'medium':
+      fontSize = 'text-md';
       lineHeight = heightMedium;
       break;
     case 'large':
+      fontSize = 'text-lg';
       lineHeight = heightLarge;
       break;
     case 'x-large':
+      fontSize = 'text-xl';
       lineHeight = heightXLarge;
       break;
     default:
+      fontSize = 'text-md';
       lineHeight = heightSmall;
   }
 
@@ -57,7 +63,7 @@ export default function Heading(props) {
   return (
     <WithLink {...(withLinkProps && { withLinkProps })}>
       <ElementType
-        className={`heading ${size} text-${color} ${skeletonClass}`}
+        className={`heading ${fontSize} text-${color} ${skeletonClass}`}
         style={styles}
         {...(onClick && { onClick })}
       >

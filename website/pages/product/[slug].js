@@ -1,8 +1,10 @@
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import BlockContent from '@sanity/block-content-to-react';
+import { useKeenSlider } from 'keen-slider/react';
+import 'keen-slider/keen-slider.min.css';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -44,6 +46,30 @@ export default function Product({ siteConfig, product }) {
   const [modalActive, setModalActive] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [discount, setDiscount] = useState('');
+  const isMobile = app.deviceSize === 'md';
+
+  // Keen slider for Additional shots on mobile
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [sliderRef, instanceRef] = useKeenSlider({
+    loop: true,
+    renderMode: 'performance',
+    drag: true,
+    slides: { perView: 1 },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
+  });
+
+  useEffect(() => {
+    if (instanceRef.current) {
+      const interval = setInterval(() => {
+        instanceRef.current?.moveToIdx(
+          instanceRef.current.track.details.abs + 1
+        );
+      }, 7500);
+      return () => clearInterval(interval);
+    }
+  }, [instanceRef]);
 
   const isSoldOut = product?.tag === 'Sold-out';
 
@@ -242,7 +268,7 @@ export default function Product({ siteConfig, product }) {
           <div className="container my-12">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 mb-12">
               <div className="md:col-span-3 max-w-md mb-12">
-                <p className="text-md md:text-lg text-neutral-500 leading-relaxed text-left mb-8">
+                <p className="text-md md:text-lg text-neutral-400 leading-relaxed text-left mb-8">
                   <strong>{product?.title}</strong>
                 </p>
 
@@ -289,70 +315,54 @@ export default function Product({ siteConfig, product }) {
           </div>
 
           <Container>
-            {/* {isSoldOut && (
-              <div className="mb-8">
-                <div className="relative">
-                  <div className="border-b border-neutral-400 p-4 md:px-6 relative pb-16 mb-16 max-w-lg">
-                    <Heading
-                      htmlEntity="h1"
-                      text="Print sold out?"
-                      color="neutral-400"
-                      size="large"
-                      truncate={null}
-                      withLinkProps={null}
-                    />
-                    <p className="text-neutral-400 text-sm my-3">
-                      We reserve some copies of our latest print for those
-                      wishing to subscribe instead. Joining our Dominion
-                      Subscription is cheaper than individual prints and gives
-                      additional features.
-                    </p>
-                    <Button
-                      type="primary"
-                      size="small"
-                      text="Subscribe"
-                      color="neutral-400"
-                      fluid={false}
-                      icon={buttonIconPlusWhite}
-                      iconFloat="left"
-                      inverted={false}
-                      loading={false}
-                      disabled={false}
-                      skeleton={false}
-                      onClick={null}
-                      withLinkProps={{
-                        type: 'next',
-                        href: '/membership',
-                        target: null,
-                        routerLink: Link,
-                        routerLinkProps: { as: `/membership`, scroll: false },
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            )} */}
-
             {product.images?.length && (
               <div className="mb-24">
                 <div className="mb-8">
                   <Heading
                     htmlEntity="h1"
                     text="Additional shots"
-                    color="neutral-400"
+                    color="neutral-500"
                     size="medium"
                     truncate={null}
                     withLinkProps={null}
                     className="mb-6"
                   />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12">
-                  {product.images.map((image, index) => (
-                    <div key={index}>
-                      <ImageNew imageObject={image.imageObject} />
+                {isMobile ? (
+                  <div className="relative">
+                    <div ref={sliderRef} className="keen-slider">
+                      {product.images.map((image, index) => (
+                        <div key={index} className="keen-slider__slide">
+                          <ImageNew
+                            imageObject={image.imageObject}
+                            alt={`Additional shot ${index + 1}`}
+                          />
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                    <div className="flex justify-center mt-4 space-x-2">
+                      {product.images.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => instanceRef.current?.moveToIdx(idx)}
+                          className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+                            currentSlide === idx
+                              ? 'bg-neutral-300'
+                              : 'bg-neutral-700'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12">
+                    {product.images.map((image, index) => (
+                      <div key={index}>
+                        <ImageNew imageObject={image.imageObject} />
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </Container>

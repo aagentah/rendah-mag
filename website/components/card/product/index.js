@@ -15,7 +15,7 @@ const IconArrowRight = dynamic(() =>
 
 export default function CardProduct({ product }) {
   const app = useApp();
-  const height = 240;
+  const height = app?.deviceSize === 'md' ? 180 : 240;
   const width = 240;
   const slug = product?.slug;
 
@@ -89,7 +89,7 @@ export default function CardProduct({ product }) {
             <Button
               type="secondary"
               size="small"
-              text="View product"
+              text="View"
               color="neutral-400"
               fluid={false}
               icon={<IconArrowRight color="neutral-400" size={16} />}
