@@ -111,7 +111,7 @@ export default function Dominion({ siteConfig }) {
   const steps = [
     {
       title: 'Sign up',
-      description: 'Hit subscribe and we’ll get you up and running.',
+      description: 'Join the membership and we’ll get you up and running.',
       icon: IconWelcome, // Sign-up icon
     },
     {
@@ -453,24 +453,24 @@ export default function Dominion({ siteConfig }) {
               </h2>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-2 md:gap-4">
               {dominion?.map((i, o) => (
-                <div key={o} className="w-12 h-12 brightness-75">
+                <div key={o} className="w-10 h-10 brightness-75">
                   <Image
                     src={
                       i?.avatar
                         ? imageBuilder
                             .image(i?.avatar)
-                            .width(48)
-                            .height(48)
+                            .width(36)
+                            .height(36)
                             .auto('format')
                             .fit('clip')
                             .url()
                         : '/images/avatar-placeholder.png'
                     }
                     alt="User"
-                    width={48}
-                    height={48}
+                    width={36}
+                    height={36}
                     customClass="w-full"
                   />
                 </div>
