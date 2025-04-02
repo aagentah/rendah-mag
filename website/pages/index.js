@@ -119,7 +119,7 @@ export default function Home() {
       </div> */}
 
       <div className="container">
-        <hr className="my-12 border border-neutral-700" />
+        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
       </div>
 
       {/* Latest Print Section */}
@@ -128,7 +128,7 @@ export default function Home() {
       </LazyLoad>
 
       <div className="container">
-        <hr className="my-12 border border-neutral-700" />
+        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
       </div>
 
       {/* <div className="container">
@@ -141,7 +141,7 @@ export default function Home() {
       <Blueprints />
 
       <div className="container">
-        <hr className="my-12 border border-neutral-700" />
+        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
       </div> */}
 
       {/* Recent Features Section */}

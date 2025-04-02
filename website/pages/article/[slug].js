@@ -317,7 +317,7 @@ export default function Post({ siteConfig, post, preview }) {
           </div>
 
           <div className="container">
-            <hr className="my-12 border border-neutral-700" />
+            <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
           </div>
 
           {canShowBody ? (
@@ -366,13 +366,13 @@ export default function Post({ siteConfig, post, preview }) {
         </div>
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700" />
+          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
         </div>
 
         <SubscriptionBanner />
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700" />
+          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
         </div>
 
         {morePosts.length > 0 && (
@@ -392,7 +392,7 @@ export default function Post({ siteConfig, post, preview }) {
         )}
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700" />
+          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
         </div>
 
         <LazyLoad once offset={800} height={800}>

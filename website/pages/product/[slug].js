@@ -306,10 +306,13 @@ export default function Product({ siteConfig, product }) {
               </div>
 
               <div className="md:col-span-1">
-                <ImageNew
-                  imageObject={product?.imageObject}
-                  className="brightness-75"
-                />
+                <div className="h-[400px]">
+                  <ImageNew
+                    height={400}
+                    imageObject={product?.imageObject}
+                    className="brightness-75 h-[400px]"
+                  />
+                </div>
               </div>
             </div>
           </div>

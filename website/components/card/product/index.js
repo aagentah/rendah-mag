@@ -15,7 +15,7 @@ const IconArrowRight = dynamic(() =>
 
 export default function CardProduct({ product }) {
   const app = useApp();
-  const height = app?.deviceSize === 'md' ? 180 : 240;
+  const height = app?.deviceSize === 'md' ? 180 : 200;
   const width = 240;
   const slug = product?.slug;
 

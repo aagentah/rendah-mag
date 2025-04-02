@@ -231,7 +231,7 @@ export default function Dominion({ siteConfig }) {
 
             <div className="max-w-md">
               <p className="text-xs md:text-sm text-neutral-300 leading-relaxed text-left mb-4">
-                This subscription was created to push our platform into new
+                The membership was created to push our platform into new
                 territory, offering a way for people to explore the landscape of
                 underground music, art, and technology; away from noise and
                 distraction.
@@ -337,6 +337,7 @@ export default function Dominion({ siteConfig }) {
             <img
               className="mt-4 brightness-75"
               src="https://i.ibb.co/whB1MgH0/Rendah-Cover-Full-1.png"
+              // src="/images/_DSC4845.png"
               alt="Welcome Pack"
             />
           </div>
@@ -344,7 +345,7 @@ export default function Dominion({ siteConfig }) {
       </div>
 
       <div className="container">
-        <hr className="my-12 border border-neutral-700" />
+        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
       </div>
 
       {/* How it Works Section */}
@@ -375,7 +376,7 @@ export default function Dominion({ siteConfig }) {
       </div>
 
       <div className="container">
-        <hr className="my-12 border border-neutral-700" />
+        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
       </div>
 
       <div className="pt-4 md:pt-5 page--dominion">
@@ -385,7 +386,7 @@ export default function Dominion({ siteConfig }) {
         <LatestPrint showDominionButton={false} />
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700" />
+          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
         </div>
 
         {/* Subscriber Dashboard Section */}
@@ -441,7 +442,7 @@ export default function Dominion({ siteConfig }) {
         </div>
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700" />
+          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
         </div>
 
         {/* Active Subscribers Section */}
@@ -454,33 +455,36 @@ export default function Dominion({ siteConfig }) {
             </div>
 
             <div className="flex flex-wrap gap-2 md:gap-4">
-              {dominion?.map((i, o) => (
-                <div key={o} className="w-10 h-10 brightness-75">
-                  <Image
-                    src={
-                      i?.avatar
-                        ? imageBuilder
-                            .image(i?.avatar)
-                            .width(36)
-                            .height(36)
-                            .auto('format')
-                            .fit('clip')
-                            .url()
-                        : '/images/avatar-placeholder.png'
-                    }
-                    alt="User"
-                    width={36}
-                    height={36}
-                    customClass="w-full"
-                  />
-                </div>
-              ))}
+              {dominion?.map((i, o) => {
+                const fade = 1 - (o / dominion.length) * 1.05; // goes from 1 to ~0
+                return (
+                  <div key={o} className="w-10 h-10" style={{ opacity: fade }}>
+                    <Image
+                      src={
+                        i?.avatar
+                          ? imageBuilder
+                              .image(i?.avatar)
+                              .width(36)
+                              .height(36)
+                              .auto('format')
+                              .fit('clip')
+                              .url()
+                          : '/images/avatar-placeholder.png'
+                      }
+                      alt="User"
+                      width={36}
+                      height={36}
+                      customClass="w-full brightness-75"
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700" />
+          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
         </div>
 
         {/* FAQ Section */}
