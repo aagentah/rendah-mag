@@ -15,7 +15,7 @@ const IconArrowRight = dynamic(() =>
 
 export default function CardProduct({ product }) {
   const app = useApp();
-  const height = app?.deviceSize === 'md' ? 180 : 200;
+  const height = app.deviceSize === 'md' ? 200 : 200;
   const width = 240;
   const slug = product?.slug;
 
@@ -64,7 +64,7 @@ export default function CardProduct({ product }) {
               imageObject={product?.imageObject}
               height={height}
               width={width}
-              className="object-cover h-[240px] brightness-75 shadow2 br3"
+              className="object-cover brightness-75 shadow2 br3"
             />
           </LazyLoad>
         </div>

@@ -47,6 +47,7 @@ export default function Product({ siteConfig, product }) {
   const [quantity, setQuantity] = useState(1);
   const [discount, setDiscount] = useState('');
   const isMobile = app.deviceSize === 'md';
+  const height = app.deviceSize === 'md' ? 500 : 400;
 
   // Keen slider for Additional shots on mobile
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -306,11 +307,11 @@ export default function Product({ siteConfig, product }) {
               </div>
 
               <div className="md:col-span-1">
-                <div className="h-[400px]">
+                <div>
                   <ImageNew
-                    height={400}
+                    height={height}
                     imageObject={product?.imageObject}
-                    className="brightness-75 h-[400px]"
+                    className="brightness-75"
                   />
                 </div>
               </div>

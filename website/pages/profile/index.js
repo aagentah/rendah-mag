@@ -263,7 +263,7 @@ export default function Profile({ siteConfig }) {
                               : 'text-neutral-300'
                           }`}
                         >
-                          <span className="opacity-30">Blueprints [WIP]</span>
+                          <span className="opacity-30">Assembly [WIP]</span>
                         </button>
                         <button
                           disabled
@@ -354,7 +354,7 @@ export default function Profile({ siteConfig }) {
                       </>
                     )}
                     {filter === 'prints' && (
-                      <div className="p-4">
+                      <div className="md:p-4">
                         <Heading
                           htmlEntity="h2"
                           text="Prints"
