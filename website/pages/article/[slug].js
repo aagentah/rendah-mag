@@ -43,6 +43,7 @@ const SubscribeForm = dynamic(() => import('~/components/subscribe-form'));
 const Author = dynamic(() => import('~/components/article/author'));
 const SocialLinks = dynamic(() => import('~/components/article/social-links'));
 const CardBlog = dynamic(() => import('~/components/card/blog'));
+const Timeline = dynamic(() => import('~/components/timeline'));
 
 const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
@@ -398,6 +399,8 @@ export default function Post({ siteConfig, post, preview }) {
         <LazyLoad once offset={800} height={800}>
           <LatestPrint showDominionButton={true} />
         </LazyLoad>
+
+        <Timeline />
       </Layout>
     );
   }

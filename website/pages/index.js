@@ -28,6 +28,7 @@ const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 const CardBlog = dynamic(() => import('~/components/card/blog'));
+const Timeline = dynamic(() => import('~/components/timeline'));
 
 export default function Home() {
   const app = useApp();
@@ -175,6 +176,8 @@ export default function Home() {
       {/* <Observer {...observer}>
         <div />
       </Observer> */}
+
+      <Timeline />
 
       {/* Subscribe Modal */}
       <Modal size="small" active={modalActive}>

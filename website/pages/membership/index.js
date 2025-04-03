@@ -40,6 +40,7 @@ export default function Dominion({ siteConfig }) {
   const [isTrial, setIsTrial] = useState(false);
   const router = useRouter();
   const buttonIconRed = <IconArrowRight color="#e9393f" size={16} />;
+  const Timeline = dynamic(() => import('~/components/timeline'));
 
   const isMobile = app.deviceSize === 'md';
 
@@ -498,6 +499,8 @@ export default function Dominion({ siteConfig }) {
           </div>
         </div>
       </div>
+
+      <Timeline />
     </Layout>
   );
 }

@@ -88,6 +88,8 @@ const IconStore = dynamic(() =>
 
 const Blueprints = dynamic(() => import('~/components/blueprints'));
 
+const Timeline = dynamic(() => import('~/components/timeline'));
+
 const stripePromise = loadStripe(
   'pk_live_51DvkhrKb3SeE1fXfAwS5aNbDhvI4t4cCbHvsVjk5bfmBvSF5tc2mEYHAVIMQCgcXBsKjo5AvaT48k39sbx3UKUu400TFSGqiL4'
 );
@@ -265,7 +267,7 @@ export default function Profile({ siteConfig }) {
                         >
                           <span className="opacity-30">Assembly [WIP]</span>
                         </button>
-                        <button
+                        {/* <button
                           disabled
                           // onClick={() =>
                           //   router.push({
@@ -280,7 +282,7 @@ export default function Profile({ siteConfig }) {
                           }`}
                         >
                           <span className="opacity-30">Members [WIP]</span>
-                        </button>
+                        </button> */}
                         <button
                           onClick={() =>
                             router.push({
@@ -443,6 +445,8 @@ export default function Profile({ siteConfig }) {
             </div>
           </Layout>
         </div>
+
+        <Timeline />
       </Elements>
     );
   }
