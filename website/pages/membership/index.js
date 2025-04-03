@@ -19,7 +19,7 @@ import Table from '~/components/table';
 
 import {
   getSiteConfig,
-  getDominionUsers,
+  getDominionUsersAllTime,
   getTeamMemberAndPosts,
   imageBuilder,
 } from '~/lib/sanity/requests';
@@ -171,7 +171,7 @@ export default function Dominion({ siteConfig }) {
 
   useEffect(() => {
     const action = async () => {
-      let dominion = await getDominionUsers();
+      let dominion = await getDominionUsersAllTime();
 
       // Roun down to nearest multiple of 12
       const customFloor = (value, roundTo) =>

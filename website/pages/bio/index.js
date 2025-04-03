@@ -33,7 +33,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
   const renderItemType = (i, post) => {
     return (
       <Link key={i} href={`/article/${post.slug}`}>
-        <div className="flex items-center border-l-4 border-rendah-red pl-4 text-neutral-300">
+        <div className="flex items-center  text-neutral-300">
           <div className="w-[50px] h-[50px] flex-shrink-0">
             <ImageNew
               imageObject={post?.imageObject}
@@ -63,7 +63,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
         }}
         preview={preview}
       >
-        <Modal size="small" active={modalActive}>
+        {/* <Modal size="small" active={modalActive}>
           <div className="pb-2 mb-2">
             <Heading
               htmlEntity="h3"
@@ -107,15 +107,19 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
               />
             </div>
           </div>
-        </Modal>
+        </Modal> */}
 
-        <SubscriptionBanner />
+        <SubscriptionBanner showDominionButton={true} />
 
         <div className="container">
-          <div className="py-4">
+          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+        </div>
+
+        <div className="container">
+          <div className="py-4 mb-4">
             <Heading
               htmlEntity="h3"
-              text="Featured"
+              text="Quick Links"
               color="neutral-400"
               size="small"
               truncate={null}
@@ -125,8 +129,18 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
 
           <div className="w-full">
             <div className="flex flex-wrap mb-3 cursor-pointer">
+              <Link href="/login" legacyBehavior>
+                <div className=" text-neutral-300">
+                  <p className="">Login</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          <div className="w-full">
+            <div className="flex flex-wrap mb-3 cursor-pointer">
               <Link href="/store" legacyBehavior>
-                <div className="border-l-4 border-rendah-red pl-4 text-neutral-300">
+                <div className=" text-neutral-300">
                   <p className="">Store</p>
                 </div>
               </Link>
@@ -139,15 +153,21 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-l-4 border-rendah-red pl-4 text-neutral-300"
+                  className=" text-neutral-300"
                 >
                   <p className="">Soundcloud</p>
                 </a>
               </Link>
             </div>
           </div>
+        </div>
 
-          <div className="py-4">
+        <div className="container">
+          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+        </div>
+
+        <div className="container">
+          <div className="py-4 mb-4">
             <Heading
               htmlEntity="h3"
               text="Latest Posts"
@@ -163,7 +183,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
               {posts?.length && posts.map((post, i) => renderItemType(i, post))}
             </div>
           </div>
-
+          {/* 
           <div className="flex justify-center pt-3">
             <p
               className="text-neutral-300 text-base text-black leading-relaxed cursor-pointer underline"
@@ -176,7 +196,7 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
                 <IconHeart color="text-neutral-300" size={12} />
               </span>
             </p>
-          </div>
+          </div> */}
         </div>
       </Layout>
     );

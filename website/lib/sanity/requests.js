@@ -860,6 +860,15 @@ export async function getDominionUsers(preview) {
   return results;
 }
 
+export async function getDominionUsersAllTime(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "user"] {
+      'avatar': avatar.asset->url,
+    }`
+  );
+  return results;
+}
+
 export async function getAllOfferings(sinceStartOfMonth, showAll, preview) {
   const today = dateTodayYyyyMmDd();
   const show = showAll ? 250 : 8;

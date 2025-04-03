@@ -370,7 +370,7 @@ export default function Post({ siteConfig, post, preview }) {
           <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
         </div>
 
-        <SubscriptionBanner />
+        <SubscriptionBanner showDominionButton={true} />
 
         <div className="container">
           <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />

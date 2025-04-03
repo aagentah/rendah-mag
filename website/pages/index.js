@@ -106,7 +106,7 @@ export default function Home() {
       </div> */}
 
       {/* Subscription Banner */}
-      <SubscriptionBanner />
+      <SubscriptionBanner showDominionButton={false} />
 
       {/* Optional Parallax Graphic */}
       {/* <div className="absolute top-0 left-0 hidden md:block -ml-6">
@@ -125,7 +125,7 @@ export default function Home() {
 
       {/* Latest Print Section */}
       <LazyLoad once offset={800} height={800}>
-        <LatestPrint showDominionButton={false} />
+        <LatestPrint showDominionButton={true} />
       </LazyLoad>
 
       <div className="container">

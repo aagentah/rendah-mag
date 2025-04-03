@@ -75,8 +75,12 @@ const Timeline = () => {
   }, []);
 
   return (
-    <div className="w-full container mx-auto py-12">
-      <div className="bg-neutral-900 p-12">
+    <>
+      <div className="container">
+        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+      </div>
+
+      <div className="w-full container mx-auto py-12">
         <h2 className="text-lg mb-12 text-neutral-400">Print Timeline</h2>
 
         {/* Desktop Timeline (hidden on small screens) */}
@@ -111,7 +115,7 @@ const Timeline = () => {
                 >
                   {/* Year (only show if different from previous) */}
                   {month.isNewYear && (
-                    <span className="bg-neutral-900 text-neutral-400 border border-neutral-400 text-xs px-3 py-1">
+                    <span className="bg-neutral-800 text-neutral-400 border border-neutral-400 text-xs px-3 py-1">
                       {month.year}
                     </span>
                   )}
@@ -191,7 +195,7 @@ const Timeline = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

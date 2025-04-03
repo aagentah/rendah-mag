@@ -10,7 +10,7 @@ const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
-export default function SubscriptionBanner(props) {
+export default function SubscriptionBanner({ showDominionButton }) {
   const [user] = useUser();
   const [postsCount, setPostsCount] = useState('~400');
   const [printsCount, setPrintsCount] = useState('11');
@@ -110,7 +110,7 @@ export default function SubscriptionBanner(props) {
         </div>
       </div>
 
-      {!user && (
+      {showDominionButton && !user && (
         <div className="mb-12">
           <Button
             /* Options */
