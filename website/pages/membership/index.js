@@ -458,24 +458,31 @@ export default function Dominion({ siteConfig }) {
             <div className="flex flex-wrap gap-2 md:gap-4">
               {dominion?.map((i, o) => {
                 const fade = 1 - (o / dominion.length) * 1.05; // goes from 1 to ~0
+                const isPlaceholder = !i?.avatar;
+                const shouldInvert = isPlaceholder && Math.random() < 0.5;
+
                 return (
-                  <div key={o} className="w-10 h-10" style={{ opacity: fade }}>
+                  <div
+                    key={o}
+                    className={`w-10 h-10 ${shouldInvert ? 'invert' : ''}`}
+                    style={{ opacity: fade }}
+                  >
                     <Image
                       src={
-                        i?.avatar
-                          ? imageBuilder
+                        isPlaceholder
+                          ? '/images/avatar-placeholder.png'
+                          : imageBuilder
                               .image(i?.avatar)
                               .width(36)
                               .height(36)
                               .auto('format')
                               .fit('clip')
                               .url()
-                          : '/images/avatar-placeholder.png'
                       }
                       alt="User"
                       width={36}
                       height={36}
-                      customClass="w-full brightness-75"
+                      customClass={`w-full brightness-75`}
                     />
                   </div>
                 );
