@@ -3,7 +3,7 @@ import emailCommon from '~/emails/component/common';
 
 export default async ({ email }) => {
   try {
-    const title = 'Your Dominion Subscription has been cancelled!';
+    const title = 'Your Rendah Mag membership has been cancelled!';
 
     const body = `
       If you have any questions, feel free to reply to this email.
@@ -14,7 +14,7 @@ export default async ({ email }) => {
       to: [{ email }],
       bcc: [{ email: 'info@rendahmag.com' }],
       subject: 'Subscription cancelled',
-      htmlContent: emailCommon(title, body, null, null, null)
+      htmlContent: emailCommon(title, body, null, null, null),
     };
 
     const { error } = await sendinblue(sendSmtpEmail);
@@ -27,8 +27,9 @@ export default async ({ email }) => {
   } catch (error) {
     // Handle catch
     console.error(
-      `Error in welcome-dominion-subscription: ${error.message ||
-        error.toString()}`
+      `Error in welcome-dominion-subscription: ${
+        error.message || error.toString()
+      }`
     );
 
     return false;

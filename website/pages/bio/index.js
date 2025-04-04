@@ -24,6 +24,8 @@ const IconHeart = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconHeart)
 );
 
+const Timeline = dynamic(() => import('~/components/timeline'));
+
 export default function LinkInBio({ siteConfig, posts, preview }) {
   const app = useApp();
   const router = useRouter();
@@ -198,6 +200,8 @@ export default function LinkInBio({ siteConfig, posts, preview }) {
             </p>
           </div> */}
         </div>
+
+        <Timeline />
       </Layout>
     );
   }

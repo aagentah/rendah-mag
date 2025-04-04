@@ -40,6 +40,8 @@ const IconInfoCircle = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconInfoCircle)
 );
 
+const Timeline = dynamic(() => import('~/components/timeline'));
+
 export default function Product({ siteConfig, product }) {
   const app = useApp();
   const router = useRouter();
@@ -370,6 +372,8 @@ export default function Product({ siteConfig, product }) {
               </div>
             )}
           </Container>
+
+          <Timeline />
         </Layout>
       </div>
     );

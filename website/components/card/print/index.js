@@ -13,11 +13,16 @@ export default function CardPrint({ post, handleClick, i }) {
   return (
     <article
       onClick={() => handleClick && handleClick(i)}
+      // className="
+      //     grid grid-cols-1 md:grid-cols-12 gap-y-4
+      //     text-white
+      //     overflow-hidden
+      //     border-b-4 border-neutral-700
+      //   "
       className="
           grid grid-cols-1 md:grid-cols-12 gap-y-4
           text-white
           overflow-hidden
-          border-b-4 border-neutral-700
         "
     >
       {/* Left Column: Image */}

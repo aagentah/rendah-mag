@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { toast } from 'react-toastify';
 import dynamic from 'next/dynamic';
 import fetch from 'isomorphic-unfetch';
-import { useStripe, useElements } from '@stripe/react-stripe-js';
+// import { useStripe, useElements } from '@stripe/react-stripe-js';
 
 import Heading from '~/components/elements/heading';
 import Button from '~/components/elements/button';
@@ -56,10 +56,10 @@ export default function ProfileEdit() {
   const fileInputRef = useRef(null);
   const [updateAddressButtonLoading, setUpdateAddressButtonLoading] =
     useState(false);
-  const [customer, setCustomer] = useState(null);
+  // const [customer, setCustomer] = useState(null);
 
-  const stripe = useStripe();
-  const elements = useElements();
+  // const stripe = useStripe();
+  // const elements = useElements();
   const [user, { mutate }] = useUser();
 
   const userTags = [
@@ -200,21 +200,21 @@ export default function ProfileEdit() {
   const inputIconHash = <IconHashtag color="white" size={16} />;
   const iconDiscord = <IconDiscord color="white" size={16} />;
 
-  async function getCustomer() {
-    const response = await fetch(
-      `${process.env.SITE_URL}/api/stripe/get-customer`,
-      {
-        body: JSON.stringify({
-          stripeCustomerId: user.stripeCustomerId,
-        }),
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
-      }
-    );
-    if (response.ok) {
-      setCustomer(await response.json());
-    }
-  }
+  // async function getCustomer() {
+  //   const response = await fetch(
+  //     `${process.env.SITE_URL}/api/stripe/get-customer`,
+  //     {
+  //       body: JSON.stringify({
+  //         stripeCustomerId: user.stripeCustomerId,
+  //       }),
+  //       headers: { 'Content-Type': 'application/json' },
+  //       method: 'POST',
+  //     }
+  //   );
+  //   if (response.ok) {
+  //     setCustomer(await response.json());
+  //   }
+  // }
 
   async function handleUpdateAddress(e) {
     e.preventDefault();
@@ -262,11 +262,11 @@ export default function ProfileEdit() {
     return true;
   }
 
-  useEffect(() => {
-    if (user && !customer) {
-      getCustomer();
-    }
-  }, [user, customer]);
+  // useEffect(() => {
+  //   if (user && !customer) {
+  //     getCustomer();
+  //   }
+  // }, [user, customer]);
 
   if (user) {
     return (
@@ -604,7 +604,7 @@ export default function ProfileEdit() {
                       iconFloat={null}
                       inverted={true}
                       loading={updateAddressButtonLoading}
-                      disabled={!stripe}
+                      disabled={false}
                       skeleton={false}
                       onClick={null}
                       withLinkProps={{
@@ -614,31 +614,30 @@ export default function ProfileEdit() {
                   </div>
                 </form>
               </div>
-              {customer ? (
-                <div className="p-4 rounded-md mb-4 border border-neutral-700">
-                  <div className="pt-3">
-                    <div className="profile_heading">
-                      <Heading
-                        htmlEntity="h2"
-                        text="Payment Method & Invoices"
-                        color="white"
-                        size="small"
-                        truncate={null}
-                        withLinkProps={null}
-                      />
-                    </div>
-                    <div className="p-4 rounded-md flex flex-wrap">
-                      <a
-                        className="underline text-sm text-white"
-                        target="_blank"
-                        href={customer?.billingPortal?.url}
-                      >
-                        Update Payment Method & View Invoices
-                      </a>
-                    </div>
+
+              <div className="p-4 rounded-md mb-4 border border-neutral-700">
+                <div className="pt-3">
+                  <div className="profile_heading">
+                    <Heading
+                      htmlEntity="h2"
+                      text="Payment Method & Invoices"
+                      color="white"
+                      size="small"
+                      truncate={null}
+                      withLinkProps={null}
+                    />
+                  </div>
+                  <div className="p-4 rounded-md flex flex-wrap">
+                    <a
+                      className="underline text-sm text-white"
+                      target="_blank"
+                      href="https://billing.stripe.com/p/login/9AQaHtf4adFb99u288"
+                    >
+                      Update Payment Method
+                    </a>
                   </div>
                 </div>
-              ) : null}
+              </div>
             </div>
           </div>
         </div>

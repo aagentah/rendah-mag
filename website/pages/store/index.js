@@ -94,15 +94,13 @@ export default function Store({ siteConfig }) {
             {[...Array(categorysLength)].map((categoryIteration, i) => {
               if (categorys && products && categorys[i]?.name) {
                 return (
-                  <div className="w-full pb4" key={i}>
-                    <div className="flex flex-wrap relative bb bc-black mb4">
-                      <div className="absolute left bottom pa2 bg-black nb3">
-                        <h2 className="t-primary f5 white">
-                          {categorys && products && categorys[i]?.name}
-                        </h2>
-                      </div>
+                  <div className="w-full pb-12" key={i}>
+                    <div className="flex flex-wrap mb-8">
+                      <h2 className="text-sm text-neutral-500">
+                        {categorys[i]?.name}
+                      </h2>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 gap-y-12 mb-12">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 gap-y-12 mb-8">
                       {[...Array(categorys[i].productsLength)].map(
                         (productIteration, ii) => (
                           <div key={i}>

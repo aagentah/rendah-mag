@@ -23,7 +23,7 @@ export default async ({ email, temporaryPassword }) => {
     sign-ups, so keep an eye out for that coming.
     <br />
     <br />
-    For everything else, we send out frequent emails with the latest updates.
+    We send out emails with all new updates, so don't feel you have to constantly be logging in to "keep up to date".
     <br />
     <br />
     <strong>Login details:</strong>
