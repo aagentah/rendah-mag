@@ -18,7 +18,7 @@ import { useApp } from '~/context-provider/app';
 
 export default function CardBlog({ post, handleClick, i }) {
   const app = useApp();
-  const height = app.deviceSize === 'md' ? 240 : 240;
+  const height = app.deviceSize === 'md' ? 240 : 200;
   const width = 260;
   const _id = post?.slug;
 

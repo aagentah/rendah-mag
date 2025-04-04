@@ -78,6 +78,13 @@ export default async (req, res) => {
 
         await orderCompleted({ session, products });
 
+        await receiptEmail({
+          email: customer_details.email,
+          name: shipping.name,
+          products,
+          session,
+        });
+
         if (session.mode === 'subscription') {
           await subscriptionCreated({
             username: customer_details.email,
@@ -93,12 +100,7 @@ export default async (req, res) => {
             },
           });
         }
-        await receiptEmail({
-          email: customer_details.email,
-          name: shipping.name,
-          products,
-          session,
-        });
+
         break;
       case 'subscription_schedule.canceled':
       case 'customer.subscription.deleted':

@@ -18,23 +18,27 @@ export default async ({ email, name, products, session }) => {
     const shippingAddressTable = `
       <table>
         <tr>
-          <th>Shipping Address</th>
+          <th style="text-align: left; padding-right: 15px;">Shipping Address</th>
         </tr>
         <tr>
-          <td>${shippingAddress.line1}</td>
+          <td style="text-align: left; padding-right: 15px;">${
+            shippingAddress.line1
+          }</td>
         </tr>
         ${
           shippingAddress.line2
-            ? `<tr><td>${shippingAddress.line2}</td></tr>`
+            ? `<tr><td style="text-align: left; padding-right: 15px;">${shippingAddress.line2}</td></tr>`
             : ''
         }
         <tr>
-          <td>${shippingAddress.city}, ${shippingAddress.state || ''} ${
-      shippingAddress.postal_code
-    }</td>
+          <td style="text-align: left; padding-right: 15px;">${
+            shippingAddress.city
+          }, ${shippingAddress.state || ''} ${shippingAddress.postal_code}</td>
         </tr>
         <tr>
-          <td>${shippingAddress.country}</td>
+          <td style="text-align: left; padding-right: 15px;">${
+            shippingAddress.country
+          }</td>
         </tr>
       </table>
     `;
@@ -45,23 +49,27 @@ export default async ({ email, name, products, session }) => {
       billingAddressTable = `
       <table>
         <tr>
-          <th>Billing Address</th>
+          <th style="text-align: left; padding-right: 15px;">Billing Address</th>
         </tr>
         <tr>
-          <td>${billingAddress.line1}</td>
+          <td style="text-align: left; padding-right: 15px;">${
+            billingAddress.line1
+          }</td>
         </tr>
         ${
           billingAddress.line2
-            ? `<tr><td>${billingAddress.line2}</td></tr>`
+            ? `<tr><td style="text-align: left; padding-right: 15px;">${billingAddress.line2}</td></tr>`
             : ''
         }
         <tr>
-          <td>${billingAddress.city}, ${billingAddress.state || ''} ${
-        billingAddress.postal_code
-      }</td>
+          <td style="text-align: left; padding-right: 15px;">${
+            billingAddress.city
+          }, ${billingAddress.state || ''} ${billingAddress.postal_code}</td>
         </tr>
         <tr>
-          <td>${billingAddress.country}</td>
+          <td style="text-align: left; padding-right: 15px;">${
+            billingAddress.country
+          }</td>
         </tr>
       </table>
       `;
@@ -70,8 +78,8 @@ export default async ({ email, name, products, session }) => {
     const orderDetails = `
       <table>
         <tr>
-          <th>Product Name</th>
-          <th>Quantity</th>
+          <th style="text-align: left; padding-right: 15px;">Product Name</th>
+          <th style="text-align: left; padding-right: 15px;">Quantity</th>
         </tr>
         ${productDetails}
       </table>
