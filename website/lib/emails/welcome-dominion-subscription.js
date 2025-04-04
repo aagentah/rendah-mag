@@ -19,11 +19,10 @@ export default async ({ email, temporaryPassword }) => {
     <strong>When will I get my print?</strong>
     <br />
     <br />
-    We usually fire our a copy of our latest print within 5-days of any new 
-    sign-ups, so keep an eye out for that coming.
+    We usually fire our a copy of our latest print within 5-days of any new sign-ups, so keep an eye out for that coming.
     <br />
     <br />
-    We send out emails with all new updates, so don't feel you have to constantly be logging in to "keep up to date".
+    For everything else, we send out frequent emails with the latest updates. Keep an eye on your inbox!
     <br />
     <br />
     <strong>Login details:</strong>
