@@ -27,13 +27,13 @@ export default function DominionThankYou({ siteConfig }) {
         preview={null}
       >
         <Container>
-          <div className="measure-wide  mla  mra  pv3  pv0-md  ph3  ph4-md">
-            <div className="pb3  tal">
+          <div className="max-w-lg py-16">
+            <div className="pb-4 text-left">
               <Heading
                 /* Options */
                 htmlEntity="h1"
-                text="Welcome to the Dominion!"
-                color="black"
+                text="Welcome to the Membership!"
+                color="neutral-400"
                 size="large"
                 truncate={null}
                 onClick={null}
@@ -42,25 +42,25 @@ export default function DominionThankYou({ siteConfig }) {
               />
             </div>
 
-            <div className="pb3  taj">
+            <div className="pb-4">
               <Copy
                 /* Options */
                 text={`
                   We can't thank you enough, and we're happy to have you on
                   this journey with us.
                 `}
-                color="black"
+                color="neutral-500"
                 size="large"
                 truncate={null}
               />
             </div>
 
-            <div className="pb3  tal">
+            <div className="pb-4 text-left">
               <Heading
                 /* Options */
                 htmlEntity="h1"
-                text="So what's next?"
-                color="black"
+                text="What's next?"
+                color="neutral-400"
                 size="medium"
                 truncate={null}
                 onClick={null}
@@ -69,42 +69,40 @@ export default function DominionThankYou({ siteConfig }) {
               />
             </div>
 
-            <div className="pb3  taj">
+            <div className="pb-4">
               <Copy
                 /* Options */
                 text={`
-                  Check your email! We've created your account and have sent
-                  login details to access your Membership Dashbaord.
+                  Check your email. We've created your account and have sent
+                  login details to access your Membership Dashboard.
                 `}
-                color="black"
+                color="neutral-500"
                 size="large"
                 truncate={null}
               />
             </div>
 
-            <div className="pb3  taj">
+            <div className="pb-4">
               <Copy
                 /* Options */
                 text={`
-                  The Dashboard will allow you to keep on top of
-                  everything related to your membership, including access to
-                  any digital content. We'll also send you updates via
+                  In addition to the Membership Dashboard, we also send any updates via
                   email, to keep you in the loop.
                 `}
-                color="black"
+                color="neutral-500"
                 size="large"
                 truncate={null}
               />
             </div>
 
-            <div className="pb5  mb4-md  taj">
+            <div className="pb-8 md:mb-4">
               <Copy
                 /* Options */
                 text={`
                   If you have any questions at all, please don't hesitate to
                   contact the team at info@rendahmag.com.
                 `}
-                color="black"
+                color="neutral-500"
                 size="large"
                 truncate={null}
               />
