@@ -62,6 +62,9 @@ export default function ProfileEdit() {
   // const elements = useElements();
   const [user, { mutate }] = useUser();
 
+  console.log('avatarBlob', avatarBlob);
+  console.log('avatarImage', avatarImage);
+
   const userTags = [
     'Producer',
     'DJ',
@@ -199,6 +202,7 @@ export default function ProfileEdit() {
   const inputIconAt = <IconAt color="white" size={16} />;
   const inputIconHash = <IconHashtag color="white" size={16} />;
   const iconDiscord = <IconDiscord color="white" size={16} />;
+  const iconPencil = <IconPencil color="white" size={16} />;
 
   // async function getCustomer() {
   //   const response = await fetch(
@@ -287,7 +291,7 @@ export default function ProfileEdit() {
               <div className="flex flex-wrap pt-4 md:pt-0">
                 <div className="w-full pb-4">
                   <div className="size-[120px] relative">
-                    <div className="opacity-50">
+                    <div className="opacity-50 overflow-hidden">
                       <Image
                         src={avatarImage || '/images/avatar-placeholder.png'}
                         placeholder={null}
@@ -305,12 +309,12 @@ export default function ProfileEdit() {
                 </div>
               </div>
               <div className="pb-3 max-w-prose">
-                <p className="text-xs text-white opacity-50">
+                <p className="text-xs text-white opacity-50 max-w-72">
                   Change profile image. Recomended square &amp; at least 720px
                   &amp; under 1MB.
                 </p>
               </div>
-              <div className="pb-4 max-w-prose">
+              <div className="pb-8 max-w-prose">
                 <input
                   type="file"
                   accept="image/*"
@@ -319,12 +323,12 @@ export default function ProfileEdit() {
                   style={{ display: 'none' }}
                 />
                 <Button
-                  type="primary"
+                  type="secondary"
                   size="small"
-                  text="Upload Image"
+                  text={avatarBlob ? 'Change image' : 'Upload image'}
                   color="white"
                   fluid={false}
-                  icon={null}
+                  icon={iconPencil}
                   iconFloat={null}
                   inverted={false}
                   loading={false}
