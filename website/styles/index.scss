@@ -250,6 +250,11 @@ body.inverse,
   // }
 }
 
+html,
+body {
+  background-color: var(--neutral-800);
+}
+
 .rich-text * {
   color: var(--neutral-400);
 }
