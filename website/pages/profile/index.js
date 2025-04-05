@@ -219,7 +219,7 @@ export default function Profile({ siteConfig }) {
                     >
                       <span>Newsletters</span>
                     </button>
-                    <button
+                    {/* <button
                       onClick={() =>
                         router.push({
                           pathname: router.pathname,
@@ -233,7 +233,7 @@ export default function Profile({ siteConfig }) {
                       }`}
                     >
                       <span>Articles</span>
-                    </button>
+                    </button> */}
                     <button
                       onClick={() =>
                         router.push({
