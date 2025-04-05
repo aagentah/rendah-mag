@@ -263,7 +263,7 @@ export default function Profile({ siteConfig }) {
                           : 'text-neutral-300'
                       }`}
                     >
-                      <span className="opacity-30">Assembly [WIP]</span>
+                      <span className="opacity-30">Coming Soon</span>
                     </button>
                     {/* <button
                           disabled
