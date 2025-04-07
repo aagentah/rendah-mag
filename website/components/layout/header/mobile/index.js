@@ -25,6 +25,17 @@ export default function HeaderMobile({
   return (
     <div className={`h-20 ${navOnneutral - 300 ? 'text-neutral-800' : ''}`}>
       <div className="w-full flex flex-wrap">
+        <div className="absolute top-7 right-16 bg-transparent">
+          <Link href="/membership" legacyBehavior>
+            <button
+              type="button"
+              className="text-rendah-red text-xs py-1 px-2 border border-rendah-red"
+            >
+              Membership
+            </button>
+          </Link>
+        </div>
+
         {/* Burger Button */}
         <button
           onClick={toggleNav}
@@ -73,7 +84,7 @@ export default function HeaderMobile({
       >
         <div className="flex flex-wrap pt-1.5">
           <div className="w-1/2 flex items-center justify-start p-4">
-            <span className="bg-neutral-700 text-neutral-300 px-2 py-1 text-lg">
+            <span className="bg-neutral-800 text-neutral-300 px-2 py-1 text-lg">
               Menu
             </span>
           </div>

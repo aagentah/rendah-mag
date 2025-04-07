@@ -33,7 +33,7 @@ export default function DominionThankYou({ siteConfig }) {
                 /* Options */
                 htmlEntity="h1"
                 text="Welcome to the Membership!"
-                color="neutral-400"
+                color="neutral-300"
                 size="large"
                 truncate={null}
                 onClick={null}
@@ -49,7 +49,7 @@ export default function DominionThankYou({ siteConfig }) {
                   We can't thank you enough, and we're happy to have you on
                   this journey with us.
                 `}
-                color="neutral-500"
+                color="neutral-400"
                 size="large"
                 truncate={null}
               />
@@ -60,7 +60,7 @@ export default function DominionThankYou({ siteConfig }) {
                 /* Options */
                 htmlEntity="h1"
                 text="What's next?"
-                color="neutral-400"
+                color="neutral-300"
                 size="medium"
                 truncate={null}
                 onClick={null}
@@ -76,7 +76,7 @@ export default function DominionThankYou({ siteConfig }) {
                   Check your email. We've created your account and have sent
                   login details to access your Membership Dashboard.
                 `}
-                color="neutral-500"
+                color="neutral-400"
                 size="large"
                 truncate={null}
               />
@@ -89,7 +89,7 @@ export default function DominionThankYou({ siteConfig }) {
                   In addition to the Membership Dashboard, we also send any updates via
                   email, to keep you in the loop.
                 `}
-                color="neutral-500"
+                color="neutral-400"
                 size="large"
                 truncate={null}
               />
@@ -102,7 +102,7 @@ export default function DominionThankYou({ siteConfig }) {
                   If you have any questions at all, please don't hesitate to
                   contact the team at info@rendahmag.com.
                 `}
-                color="neutral-500"
+                color="neutral-400"
                 size="large"
                 truncate={null}
               />
