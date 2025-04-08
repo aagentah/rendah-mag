@@ -3,17 +3,17 @@ import emailCommon from '~/emails/component/common';
 
 export default async ({ email }) => {
   try {
-    const title = 'Your Rendah Mag membership has been cancelled!';
+    const title = 'Your Rendah Mag membership has been cancelled <3';
 
     const body = `
-      If you have any questions, feel free to reply to this email.
+      If you have any questions at all, feel free to reply to this email.
     `;
 
     const sendSmtpEmail = {
       sender: { name: 'Rendah Mag', email: 'info@rendahmag.com' },
       to: [{ email }],
       bcc: [{ email: 'info@rendahmag.com' }],
-      subject: 'Subscription cancelled',
+      subject: 'Membership cancelled',
       htmlContent: emailCommon(title, body, null, null, null),
     };
 
