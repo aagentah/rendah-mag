@@ -311,7 +311,7 @@ export default function Product({ siteConfig, product }) {
               <div className="md:col-span-1">
                 <div>
                   <ImageNew
-                    height={height}
+                    height={null}
                     imageObject={product?.imageObject}
                     className="brightness-75"
                   />
@@ -322,7 +322,7 @@ export default function Product({ siteConfig, product }) {
 
           <Container>
             {product.images?.length && (
-              <div className="mb-24">
+              <div className="py-12">
                 <div className="mb-8">
                   <Heading
                     htmlEntity="h1"

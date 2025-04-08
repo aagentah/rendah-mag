@@ -25,7 +25,7 @@ export default function CardProduct({ product }) {
     labels.push(
       <Label
         key="sold-out"
-        customClass="inline text-xxs px-2 py-0.5 border border-neutral-400 text-neutral-400 mb-4"
+        customClass="inline text-xxs px-2 py-0.5 border border-neutral-500 text-neutral-500 mb-4"
         text="Sold-out"
         color="white"
         backgroundColor=""
@@ -37,7 +37,7 @@ export default function CardProduct({ product }) {
     labels.push(
       <Label
         key="pre-order"
-        customClass="inline text-xxs px-2 py-0.5 border border-neutral-400 text-neutral-400 mb-4"
+        customClass="inline text-xxs px-2 py-0.5 border border-rendah-red text-rendah-red mb-4"
         text="Pre-order"
         color="white"
         backgroundColor=""
@@ -56,21 +56,22 @@ export default function CardProduct({ product }) {
         //   cursor-pointer
         //   border-b-4 border-neutral-700
         // "
-        className="
+        className={`
         grid grid-cols-1 md:grid-cols-12 gap-y-4
         text-white
         overflow-hidden
         cursor-pointer
-      "
+        ${product?.tag === 'Sold-out' ? 'opacity-50' : 'opacity-100'}
+      `}
       >
         {/* Left Column: Image */}
         <div className="relative col-span-6">
-          <LazyLoad once offset={250} height={height}>
+          <LazyLoad once offset={250} height={null}>
             <ImageNew
               imageObject={product?.imageObject}
-              height={height}
-              width={width}
-              className="object-cover brightness-75 shadow2 br3"
+              height={null}
+              width={null}
+              className="object-cover brightness-75 br3"
             />
           </LazyLoad>
         </div>

@@ -29,8 +29,8 @@ export default function CardPrint({ post, handleClick, i }) {
       <div className="relative col-span-6">
         <ImageNew
           imageObject={post?.imageObject}
-          height={height}
-          width={width}
+          height={null}
+          width={null}
           className="w-full h-full object-cover brightness-75"
           type="print"
         />

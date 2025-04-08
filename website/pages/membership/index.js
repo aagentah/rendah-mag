@@ -111,24 +111,24 @@ export default function Dominion({ siteConfig }) {
 
   const steps = [
     {
-      title: 'Sign up',
+      title: '1) Sign up',
       description: 'Join the membership and we’ll get you up and running.',
       icon: IconWelcome, // Sign-up icon
     },
     {
-      title: 'Receive our latest magazine',
+      title: '2) Receive our latest magazine',
       description:
         'We ship our latest print to you. Future issues are sent automatically as they’re released.',
       icon: IconMagazine, // Newspaper icon
     },
     {
-      title: 'Access the member dashboard',
+      title: '3) Access the member dashboard',
       description:
         'In the meantime, explore our exclusive platform’s resources.',
       icon: IconWebsite,
     },
     {
-      title: 'Keep it locked',
+      title: '4) Keep it locked',
       description:
         'Keep an eye out for new content & updates throughout each month.',
       icon: <FaEye size={38} color="#525252" />, // Notification icon
@@ -357,10 +357,7 @@ export default function Dominion({ siteConfig }) {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-12">
             {steps.map((step, index) => (
-              <div
-                key={index}
-                className="border-l-4 border-neutral-500 pl-4 flex flex-col p-3 h-32 md:h-40"
-              >
+              <div key={index} className="flex flex-col p-3 h-32 md:h-40">
                 <div className="mb-3">{step.icon}</div>
                 <div>
                   <h3 className="text-neutral-300 text-sm leading-tight mb-3">
@@ -391,9 +388,9 @@ export default function Dominion({ siteConfig }) {
         </div>
 
         {/* Subscriber Dashboard Section */}
-        <div className="text-white py-6 px-3">
+        <div className="text-white py-6">
           <div className="container">
-            <div className="flex flex-wrap mb-4 px-4 md:px-0">
+            <div className="flex flex-wrap mb-4">
               <div className="max-w-prose">
                 <div className="pb-8">
                   <h2 className="text-neutral-400">
