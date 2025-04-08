@@ -129,29 +129,22 @@ export default function Product({ siteConfig, product }) {
               <div className="pb-1">
                 <Heading
                   htmlEntity="p"
-                  text="Join our membership instead for £11?"
+                  text="Join membership instead for £11?"
                   color="neutral-300"
-                  size="medium"
-                  truncate={0}
-                  onClick={null}
-                  withLinkProps={null}
-                />
-              </div>
-              <div className="pb-2 mb-3">
-                <Heading
-                  htmlEntity="p"
-                  text="+ free global shipping"
-                  color="neutral-500"
                   size="small"
                   truncate={0}
                   onClick={null}
                   withLinkProps={null}
                 />
               </div>
+
+              <p className="text-neutral-500 text-xs mb-4">
+                + free global shipping
+              </p>
+
               <div className="pb-3">
-                <p className="text-neutral-400 text-xs leading-relaxed pb-2">
-                  It's cheaper than individual prints and gives access to
-                  additional features:
+                <p className="text-neutral-400 text-xs pb-2">
+                  It's cheaper than individual prints and offers:
                 </p>
                 <div className="max-w-prose">
                   <Table
@@ -287,7 +280,7 @@ export default function Product({ siteConfig, product }) {
           preview={null}
         >
           <div className="container my-12">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
               <div className="md:col-span-3 max-w-md mb-12">
                 <p className="text-md md:text-lg text-neutral-400 leading-relaxed text-left mb-8">
                   <strong>{product?.title}</strong>

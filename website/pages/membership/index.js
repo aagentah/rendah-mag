@@ -219,8 +219,8 @@ export default function Dominion({ siteConfig }) {
       preview={null}
     >
       <div className="container my-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 mb-12">
-          <div className="md:col-span-2 max-w-md mb-12">
+        <div className="flex flex-col md:grid md:grid-cols-4 gap-4 gap-y-12 mb-12">
+          <div className="order-2 md:order-1 md:col-span-2 max-w-md md:mb-12">
             <p className="text-xs md:text-sm text-neutral-500 leading-relaxed text-left">
               <strong>
                 <span className="text-neutral-400">Rendah Mag</span> /
@@ -332,7 +332,7 @@ export default function Dominion({ siteConfig }) {
           )} */}
           </div>
 
-          <div className="md:col-span-2">
+          <div className="order-1 md:order-2 md:col-span-2">
             <img
               className="mt-4 brightness-75"
               src="https://i.ibb.co/whB1MgH0/Rendah-Cover-Full-1.png"
