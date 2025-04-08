@@ -248,12 +248,12 @@ export default function Dominion({ siteConfig }) {
                   {
                     left: 'Price',
                     right: '£11/month',
-                    rightClassName: 'text-right leading-6',
+                    rightClassName: 'text-right',
                   },
                   {
                     left: 'Magazine Delivery',
                     right: (
-                      <span className="text-right leading-6">
+                      <span className="text-right">
                         3x prints yearly
                         <br />
                         Free Global Shipping
@@ -265,7 +265,7 @@ export default function Dominion({ siteConfig }) {
                   {
                     left: 'Dashboard Access',
                     right: (
-                      <span className="text-right leading-6">
+                      <span className="text-right">
                         Membership dashboard
                         <br />
                         Monthly exclusive insights
@@ -277,9 +277,7 @@ export default function Dominion({ siteConfig }) {
                   {
                     left: 'Digital Archive',
                     right: (
-                      <span className="text-right leading-6">
-                        Print Archive Access
-                      </span>
+                      <span className="text-right">Print Archive Access</span>
                     ),
                   },
                 ]}

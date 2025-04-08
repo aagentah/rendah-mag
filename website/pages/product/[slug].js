@@ -125,89 +125,83 @@ export default function Product({ siteConfig, product }) {
               onClick={() => setModalActive(true)}
               withLinkProps={null}
             />
-            <Modal size="medium" active={modalActive}>
-              <div className="pb-2">
+            <Modal size="large" active={modalActive}>
+              <div className="pb-1">
                 <Heading
                   htmlEntity="p"
-                  text="Subscribe instead for £11?"
-                  color="neutral-400"
+                  text="Join our membership instead for £11?"
+                  color="neutral-300"
                   size="medium"
                   truncate={0}
                   onClick={null}
                   withLinkProps={null}
                 />
               </div>
-              <div className="pb-2 mb-2">
+              <div className="pb-2 mb-3">
                 <Heading
                   htmlEntity="p"
                   text="+ free global shipping"
-                  color="red-600"
+                  color="neutral-500"
                   size="small"
                   truncate={0}
                   onClick={null}
                   withLinkProps={null}
                 />
               </div>
-              <div className="pb-4">
-                <p className="text-neutral-600 text-sm leading-relaxed">
-                  Joining our subscription is cheaper than individual prints and
-                  gives access to additional features.
+              <div className="pb-3">
+                <p className="text-neutral-400 text-xs leading-relaxed pb-2">
+                  It's cheaper than individual prints and gives access to
+                  additional features:
                 </p>
                 <div className="max-w-prose">
-                  <p className="text-neutral-600 text-sm leading-relaxed pb-3">
-                    <strong>We offer the following:</strong>
-                  </p>
-                  <ul className="pl-3">
-                    <li className="text-neutral-800 text-sm leading-relaxed pb-2">
-                      3x Printed magazines per year (free global shipping).
-                    </li>
-                    <li className="text-neutral-800 text-sm leading-relaxed pb-2">
-                      Welcome pack with stickers and membership card.
-                    </li>
-                    <li className="text-neutral-800 text-sm leading-relaxed pb-2">
-                      Member dashboard; crafted for both artists & enthusiasts.
-                    </li>
-                    <li className="text-neutral-800 text-sm leading-relaxed pb-2">
-                      Exclusive music, art, samples, resources, and insights.
-                    </li>
-                    <li className="text-neutral-800 text-sm leading-relaxed pb-2">
-                      Digital access to previous prints.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="flex flex-wrap">
-                <div className="w-full md:w-1/2 flex justify-center md:justify-start items-center pb-3 md:pb-0">
-                  <Button
-                    type="primary"
-                    size="small"
-                    text="Subscribe"
-                    color="neutral-400"
-                    fluid={true}
-                    icon={buttonIconPlusWhite}
-                    iconFloat="left"
-                    inverted={false}
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={null}
-                    withLinkProps={{
-                      type: 'next',
-                      href: '/membership',
-                      target: null,
-                      routerLink: Link,
-                      routerLinkProps: { as: `/membership`, scroll: false },
-                    }}
+                  <Table
+                    className="text-xxs md:text-sm py-8"
+                    rows={[
+                      {
+                        left: 'Magazine Delivery',
+                        right: (
+                          <span className="text-right">
+                            3x prints yearly
+                            <br />
+                            Free Global Shipping
+                            <br />
+                            Member Card + Stickers
+                          </span>
+                        ),
+                      },
+                      {
+                        left: 'Dashboard Access',
+                        right: (
+                          <span className="text-right">
+                            Membership dashboard
+                            <br />
+                            Monthly exclusive insights
+                            <br />
+                            20% additional discount
+                          </span>
+                        ),
+                      },
+                      {
+                        left: 'Digital Archive',
+                        right: (
+                          <span className="text-right">
+                            Print Archive Access
+                          </span>
+                        ),
+                      },
+                    ]}
                   />
                 </div>
-                <div className="w-full md:w-1/2 flex justify-center md:justify-end items-center">
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="w-full flex justify-center md:justify-end items-center">
                   <Button
                     type="primary"
                     size="small"
-                    text="Single purchase"
+                    text="Single purchase only"
                     color="neutral-400"
                     fluid={true}
-                    icon={buttonIconPlus}
+                    icon={null}
                     iconFloat="left"
                     inverted={true}
                     loading={false}
@@ -220,6 +214,30 @@ export default function Product({ siteConfig, product }) {
                       target: '_blank',
                       routerLink: null,
                       routerLinkProps: null,
+                    }}
+                  />
+                </div>
+
+                <div className="w-full flex justify-center md:justify-start items-center pb-3 md:pb-0">
+                  <Button
+                    type="primary"
+                    size="small"
+                    text="Explore membership"
+                    color="rendah-red"
+                    fluid={true}
+                    icon={null}
+                    iconFloat="left"
+                    inverted={false}
+                    loading={false}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    withLinkProps={{
+                      type: 'next',
+                      href: '/membership',
+                      target: null,
+                      routerLink: Link,
+                      routerLinkProps: { as: `/membership`, scroll: false },
                     }}
                   />
                 </div>
