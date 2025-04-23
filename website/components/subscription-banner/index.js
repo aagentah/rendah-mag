@@ -48,18 +48,11 @@ export default function SubscriptionBanner({ showDominionButton }) {
   }, []);
 
   return (
-    <div className="container my-12">
+    <div className="container my-12 md:my-16">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 gap-y-12 mb-8">
         <div className="md:col-span-3 max-w-md">
-          <p className="text-xs md:text-sm text-neutral-500 leading-relaxed text-left">
-            <strong>
-              <span className="text-neutral-400">Rendah Mag</span> / Mission
-              Statement
-            </strong>
-            <br />
-            <br />
-          </p>
-          <p className="text-xs md:text-sm text-neutral-300 leading-relaxed text-left">
+          <h1 className="text-neutral-300 text-left mb-4">Rendah Mag</h1>
+          <p className="text-xs md:text-sm text-neutral-400  text-left">
             This project exists to research the topic of creative context within
             underground & experimental arts. Through the lens of
             creative-journalism, we explore the life-cycle of artists and their
@@ -69,7 +62,7 @@ export default function SubscriptionBanner({ showDominionButton }) {
           {/* {!user && (
             <Link href="/membership" legacyBehavior>
               <a className="flex justify-start">
-                <p className="flex flex-wrap items-center text-base text-red-600 leading-tight text-left cursor-pointer">
+                <p className="flex flex-wrap items-center text-base text-red-600  text-left cursor-pointer">
                   <span className="pr-2">
                     Explore{' '}
                     <span className="hidden md:inline">what we offer via</span>{' '}
@@ -136,7 +129,7 @@ export default function SubscriptionBanner({ showDominionButton }) {
             }}
           />
 
-          <p className="text-xs text-neutral-500 pt-1.5">
+          <p className="text-xs text-neutral-500 pt-2">
             [Includes latest print]
           </p>
         </div>

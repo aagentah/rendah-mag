@@ -17,7 +17,7 @@ const Accordion = ({ data }) => {
             onClick={() => toggleAccordion(index)}
             className="mb-2 transition-colors border-b border-neutral-700"
           >
-            <div className="relative font-bold text-sm leading-tight py-4 cursor-pointer">
+            <div className="relative font-bold text-sm  py-4 cursor-pointer">
               {item.question}
               <span
                 className={`absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-no-repeat bg-center ${
@@ -31,7 +31,7 @@ const Accordion = ({ data }) => {
               />
             </div>
             {isActive && (
-              <div className="text-neutral-500 text-sm leading-relaxed pb-4 mb-4 pt-4">
+              <div className="text-neutral-500 text-sm  pb-4 mb-4 pt-4">
                 {item.answer}
               </div>
             )}

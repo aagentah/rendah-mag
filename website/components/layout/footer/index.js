@@ -32,11 +32,11 @@ export default function Footer() {
 
   return (
     <LazyLoad once offset={300} height={300}>
-      <footer className="bg-neutral-900 container py-12 mt-12">
+      <footer className="bg-neutral-900 container py-12 mt-24">
         <div className="flex flex-wrap">
-          <div className="w-full md:w-8/12">
+          <div className="w-full md:w-8/12 md:pb-0 pb-4">
             {!user && (
-              <>
+              <div className="pb-4 md:pb-0">
                 <div className="pb-2 mb-2">
                   <h3 className="text-neutral-300 text-lg font-bold">
                     Join our Newsletter?
@@ -51,16 +51,40 @@ export default function Footer() {
                 <div className="pb-5 text-left">
                   <SubscribeForm type="footer" />
                 </div>
-              </>
+              </div>
             )}
 
             <ul>
-              <li className="block pb-3 text-left">
+              <li className="block pb-2 text-left">
                 <Button
                   type="secondary"
                   size="small"
-                  text="Privacy Policy"
+                  text="Contact"
                   color="neutral-400"
+                  fluid={false}
+                  icon={null}
+                  iconFloat={null}
+                  inverted
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  withLinkProps={{
+                    type: 'external',
+                    href: 'https://forms.gle/xpPtVhUiuzZzehdy8',
+                    target: '_blank',
+                    routerLink: null,
+                    routerLinkProps: null,
+                  }}
+                />
+              </li>
+
+              <li className="block pb-2 text-left">
+                <Button
+                  type="secondary"
+                  size="x-small"
+                  text="Privacy Policy"
+                  color="neutral-500"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
@@ -78,12 +102,12 @@ export default function Footer() {
                   }}
                 />
               </li>
-              <li className="block pb-3 text-left">
+              <li className="block pb-2 text-left">
                 <Button
                   type="secondary"
-                  size="small"
+                  size="x-small"
                   text="Cookie Policy"
-                  color="neutral-400"
+                  color="neutral-500"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
@@ -126,12 +150,12 @@ export default function Footer() {
                   />
                 </li>
                 */}
-              <li className="block pb-3 text-left">
+              <li className="block pb-2 text-left">
                 <Button
                   type="secondary"
-                  size="small"
+                  size="x-small"
                   text="Terms & Conditions"
-                  color="neutral-400"
+                  color="neutral-500"
                   fluid={false}
                   icon={null}
                   iconFloat={null}
@@ -149,30 +173,8 @@ export default function Footer() {
                   }}
                 />
               </li>
-              <li className="block pb-3 text-left">
-                <Button
-                  type="secondary"
-                  size="small"
-                  text="Contact"
-                  color="neutral-400"
-                  fluid={false}
-                  icon={null}
-                  iconFloat={null}
-                  inverted
-                  loading={false}
-                  disabled={false}
-                  skeleton={false}
-                  onClick={null}
-                  withLinkProps={{
-                    type: 'external',
-                    href: 'https://forms.gle/xpPtVhUiuzZzehdy8',
-                    target: '_blank',
-                    routerLink: null,
-                    routerLinkProps: null,
-                  }}
-                />
-              </li>
-              <li className="block pb-3 text-left">
+
+              {/* <li className="block pb-3 text-left">
                 <Button
                   type="secondary"
                   size="small"
@@ -194,7 +196,7 @@ export default function Footer() {
                     routerLinkProps: { scroll: false },
                   }}
                 />
-              </li>
+              </li> */}
               <li className="block pb-3 text-left pt-4">
                 <h3 className="text-neutral-500 text-lg font-bold">
                   {`Rendah Mag ${new Date().getFullYear()}`}

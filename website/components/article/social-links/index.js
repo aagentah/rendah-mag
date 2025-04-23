@@ -18,7 +18,7 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`soundcloud-${e}-${i}`}
-            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 underline"
             title="soundcloud"
             href={`https://soundcloud.com/${e}`}
             rel="noopener noreferrer"
@@ -36,7 +36,7 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`facebook-${e}-${i}`}
-            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 underline"
             title="facebook"
             href={`https://facebook.com/${e}`}
             rel="noopener noreferrer"
@@ -54,7 +54,7 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`twitter-${e}-${i}`}
-            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 underline"
             title="twitter"
             href={`https://twitter.com/${e}`}
             rel="noopener noreferrer"
@@ -72,7 +72,7 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`instagram-${e}-${i}`}
-            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 underline"
             title="instagram"
             href={`https://instagram.com/${e}`}
             rel="noopener noreferrer"
@@ -90,7 +90,7 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`youtube-${e}-${i}`}
-            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 her:underline"
             title="youtube"
             href={`https://youtube.com/${e}`}
             rel="noopener noreferrer"
@@ -108,7 +108,7 @@ export default function SocialLinks({ article }) {
         links.push(
           <a
             key={`discord-${e}-${i}`}
-            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 hover:underline"
+            className="flex items-center py-2 pr-3 md:pr-4 text-sm text-neutral-400 underline"
             title="discord"
             href={`https://discord.com/users/${e}`}
             rel="noopener noreferrer"

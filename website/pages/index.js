@@ -16,6 +16,7 @@ import Hero from '~/components/hero/home';
 import SubscriptionBanner from '~/components/subscription-banner';
 import LatestPrint from '~/components/latest-print';
 import Container from '~/components/layout/container';
+import Map from '~/components/map';
 
 import { getHomePage, getFeatured } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
@@ -38,13 +39,13 @@ export default function Home() {
   const [music, setMusic] = useState(null);
   const [hasShownModal, setHasShownModal] = useState(false);
   const [modalActive, setModalActive] = useState(false);
-  const musicLength = 12;
+  const musicLength = app.deviceSize === 'md' ? 6 : 12;
 
   useEffect(() => {
     const action = async () => {
       const homePageData = await getHomePage();
       setHomePage(homePageData);
-      const musicRes = await getFeatured([1, 12]);
+      const musicRes = await getFeatured([1, app.deviceSize === 'md' ? 6 : 12]);
       setMusic(musicRes);
     };
     action();
@@ -120,7 +121,7 @@ export default function Home() {
       </div> */}
 
       <div className="container">
-        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+        <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
       </div>
 
       {/* Latest Print Section */}
@@ -129,7 +130,7 @@ export default function Home() {
       </LazyLoad>
 
       <div className="container">
-        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+        <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
       </div>
 
       {/* <div className="container">
@@ -142,12 +143,12 @@ export default function Home() {
       <Blueprints />
 
       <div className="container">
-        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+        <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
       </div> */}
 
       {/* Recent Features Section */}
-      <div className="container py-6">
-        <h3 className="text-neutral-400 mb-12">Recent features</h3>
+      <div className="container my-12 md:my-16">
+        <h2 className="text-neutral-300 mb-12">Recent features</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12 mb-12">
           {[...Array(musicLength)].map((_, i) => (
@@ -158,12 +159,12 @@ export default function Home() {
         </div>
 
         <div className="flex justify-start">
-          <p className="font-bold text-sm text-neutral-400">Explore more</p>
+          <h3 className="text-neutral-300">Explore more</h3>
         </div>
 
         <div className="flex space-x-3 mt-3 text-sm">
           {categories.map((category) => (
-            <div className="text-neutral-500" key={category.slug}>
+            <div className="underline text-neutral-400" key={category.slug}>
               <Link href={`/division/${category.slug}`} legacyBehavior>
                 <a>/{category.slug}</a>
               </Link>
@@ -177,7 +178,21 @@ export default function Home() {
         <div />
       </Observer> */}
 
-      <Timeline />
+      <div className="container">
+        <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
+      </div>
+
+      <div className="container my-12 md:my-16">
+        <Timeline />
+      </div>
+
+      <div className="container">
+        <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
+      </div>
+
+      <div className="container my-12 md:my-16">
+        <Map />
+      </div>
 
       {/* Subscribe Modal */}
       <Modal size="small" active={modalActive}>

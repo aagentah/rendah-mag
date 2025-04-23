@@ -155,7 +155,7 @@ export default function HeroDefault({
       {/* Footer Text Block */}
       {/* <div className="w-full md:w-1/2 p-4 md:p-5 rounded mx-auto">
         <div>
-          <p className="text-base md:text-xl text-gray-200 leading-tight text-center mb-4">
+          <p className="text-base md:text-xl text-gray-200  text-center mb-4">
             Rendah Mag is a creative UK-based outlet, primarily focused on
             exploring the nexus of experimental music, art, and technology.
           </p>

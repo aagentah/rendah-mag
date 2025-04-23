@@ -7,7 +7,7 @@ export default async ({ email, name, products, session }) => {
 
     let productDetails = '';
     if (session.mode === 'subscription') {
-      productDetails = `<tr><td>Dominion Subscription</td><td>1</td></tr>`;
+      productDetails = `<tr><td>Membership</td><td>1</td></tr>`;
     } else {
       products.forEach((product) => {
         productDetails += `<tr><td>${product.name}</td><td>${product.quantity}</td></tr>`;

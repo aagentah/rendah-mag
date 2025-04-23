@@ -863,9 +863,14 @@ export async function getDominionUsers(preview) {
 export async function getDominionUsersAllTime(preview) {
   const results = await getClient(preview).fetch(
     `*[_type == "user"] {
-      'avatar': avatar.asset->url,
+      name,
+      "quote": cityContext.quote,
+      "avatar": avatar.asset->url,
+      "city": coalesce(cityContext.city, address.city),
+      "country": coalesce(cityContext.country, address.country)
     }`
   );
+
   return results;
 }
 

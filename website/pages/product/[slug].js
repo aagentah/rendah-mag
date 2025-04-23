@@ -54,7 +54,7 @@ export default function Product({ siteConfig, product }) {
   // Keen slider for Additional shots on mobile
   const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, instanceRef] = useKeenSlider({
-    loop: true,
+    loop: false,
     renderMode: 'performance',
     drag: true,
     slides: { perView: 1 },
@@ -114,7 +114,7 @@ export default function Product({ siteConfig, product }) {
               type="primary"
               size="medium"
               text="Purchase"
-              color="neutral-400"
+              color="rendah-red"
               fluid={false}
               icon={buttonIconPlusWhite}
               iconFloat="left"
@@ -126,7 +126,7 @@ export default function Product({ siteConfig, product }) {
               withLinkProps={null}
             />
             <Modal size="large" active={modalActive}>
-              <div className="pb-1">
+              <div className="pb-2">
                 <Heading
                   htmlEntity="p"
                   text="Join membership instead for £11?"
@@ -138,15 +138,11 @@ export default function Product({ siteConfig, product }) {
                 />
               </div>
 
-              <p className="text-neutral-500 text-xs mb-4">
-                + free global shipping
-              </p>
-
               <div className="pb-3">
                 <p className="text-neutral-400 text-xs pb-2">
                   It's cheaper than individual prints and offers:
                 </p>
-                <div className="max-w-prose">
+                <div className="w-full">
                   <Table
                     className="text-xxs md:text-sm py-8"
                     rows={[
@@ -158,7 +154,7 @@ export default function Product({ siteConfig, product }) {
                             <br />
                             Free Global Shipping
                             <br />
-                            Member Card + Stickers
+                            Welcome Pack
                           </span>
                         ),
                       },
@@ -186,54 +182,50 @@ export default function Product({ siteConfig, product }) {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="w-full flex justify-center md:justify-end items-center">
-                  <Button
-                    type="primary"
-                    size="small"
-                    text="Single purchase only"
-                    color="neutral-400"
-                    fluid={true}
-                    icon={null}
-                    iconFloat="left"
-                    inverted={true}
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={null}
-                    withLinkProps={{
-                      type: 'external',
-                      href: product?.stripeCheckoutUrl,
-                      target: '_blank',
-                      routerLink: null,
-                      routerLinkProps: null,
-                    }}
-                  />
-                </div>
+              <div className="gap-4 flex flex-col md:flex-row justify-center md:justify-between">
+                <Button
+                  type="primary"
+                  size="small"
+                  text="Single purchase only"
+                  color="neutral-400"
+                  fluid={true}
+                  icon={null}
+                  iconFloat="left"
+                  inverted={true}
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  withLinkProps={{
+                    type: 'external',
+                    href: product?.stripeCheckoutUrl,
+                    target: '_blank',
+                    routerLink: null,
+                    routerLinkProps: null,
+                  }}
+                />
 
-                <div className="w-full flex justify-center md:justify-start items-center pb-3 md:pb-0">
-                  <Button
-                    type="primary"
-                    size="small"
-                    text="Explore membership"
-                    color="rendah-red"
-                    fluid={true}
-                    icon={null}
-                    iconFloat="left"
-                    inverted={false}
-                    loading={false}
-                    disabled={false}
-                    skeleton={false}
-                    onClick={null}
-                    withLinkProps={{
-                      type: 'next',
-                      href: '/membership',
-                      target: null,
-                      routerLink: Link,
-                      routerLinkProps: { as: `/membership`, scroll: false },
-                    }}
-                  />
-                </div>
+                <Button
+                  type="primary"
+                  size="small"
+                  text="Explore membership"
+                  color="rendah-red"
+                  fluid={true}
+                  icon={null}
+                  iconFloat="left"
+                  inverted={false}
+                  loading={false}
+                  disabled={false}
+                  skeleton={false}
+                  onClick={null}
+                  withLinkProps={{
+                    type: 'next',
+                    href: '/membership',
+                    target: null,
+                    routerLink: Link,
+                    routerLinkProps: { as: `/membership`, scroll: false },
+                  }}
+                />
               </div>
             </Modal>
           </>
@@ -279,112 +271,116 @@ export default function Product({ siteConfig, product }) {
           }}
           preview={null}
         >
-          <div className="container my-12">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
-              <div className="md:col-span-3 max-w-md mb-12">
-                <p className="text-md md:text-lg text-neutral-400 leading-relaxed text-left mb-8">
-                  <strong>{product?.title}</strong>
-                </p>
+          <article className="pb-12">
+            <div className="container my-12 md:my-16">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
+                <div className="md:col-span-3 max-w-md mb-12">
+                  <h1 className="text-neutral-300 text-left mb-8">
+                    {product?.title}
+                  </h1>
 
-                <div className="max-w-md">
-                  <div className="rich-text rich-text-spacing text-sm">
-                    <BlockContent
-                      blocks={product?.description}
-                      serializers={SANITY_BLOCK_SERIALIZERS}
+                  <div className="max-w-md">
+                    <div className="rich-text rich-text-spacing text-sm">
+                      <BlockContent
+                        blocks={product?.description}
+                        serializers={SANITY_BLOCK_SERIALIZERS}
+                      />
+                    </div>
+
+                    <Table
+                      className="text-xs md:text-sm py-8"
+                      rows={[
+                        {
+                          left: 'Tag(s)',
+                          right: product?.tag,
+                          rightClassName: 'text-right',
+                        },
+                        {
+                          left: 'Price',
+                          right: `£${product?.price}`,
+                          rightClassName: 'text-right',
+                        },
+                        {
+                          left: 'Available Shipping',
+                          right: 'Globally',
+                          rightClassName: 'text-right',
+                        },
+                      ]}
+                    />
+
+                    {renderPurchaseButton()}
+                  </div>
+                </div>
+
+                <div className="md:col-span-1">
+                  <div>
+                    <ImageNew
+                      height={null}
+                      imageObject={product?.imageObject}
+                      className="brightness-75"
                     />
                   </div>
-
-                  <Table
-                    className="text-xs md:text-sm py-8"
-                    rows={[
-                      {
-                        left: 'Tag(s)',
-                        right: product?.tag,
-                        rightClassName: 'text-right',
-                      },
-                      {
-                        left: 'Price',
-                        right: `£${product?.price}`,
-                        rightClassName: 'text-right',
-                      },
-                      {
-                        left: 'Available Shipping',
-                        right: 'Globally',
-                        rightClassName: 'text-right',
-                      },
-                    ]}
-                  />
-
-                  {renderPurchaseButton()}
-                </div>
-              </div>
-
-              <div className="md:col-span-1">
-                <div>
-                  <ImageNew
-                    height={null}
-                    imageObject={product?.imageObject}
-                    className="brightness-75"
-                  />
                 </div>
               </div>
             </div>
-          </div>
 
-          <Container>
-            {product.images?.length && (
-              <div className="py-12">
-                <div className="mb-8">
-                  <Heading
-                    htmlEntity="h1"
-                    text="Additional shots"
-                    color="neutral-500"
-                    size="medium"
-                    truncate={null}
-                    withLinkProps={null}
-                    className="mb-6"
-                  />
-                </div>
-                {isMobile ? (
-                  <div className="relative">
-                    <div ref={sliderRef} className="keen-slider">
-                      {product.images.map((image, index) => (
-                        <div key={index} className="keen-slider__slide">
-                          <ImageNew
-                            imageObject={image.imageObject}
-                            alt={`Additional shot ${index + 1}`}
+            <Container>
+              {product.images?.length && (
+                <div className="py-12">
+                  <div className="mb-8">
+                    <Heading
+                      htmlEntity="h2"
+                      text="Additional shots"
+                      color="neutral-400"
+                      size="medium"
+                      truncate={null}
+                      withLinkProps={null}
+                      className="mb-6"
+                    />
+                  </div>
+                  {isMobile ? (
+                    <div className="relative">
+                      <div ref={sliderRef} className="keen-slider">
+                        {product.images.map((image, index) => (
+                          <div key={index} className="keen-slider__slide">
+                            <ImageNew
+                              imageObject={image.imageObject}
+                              alt={`Additional shot ${index + 1}`}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex justify-center mt-4 space-x-2">
+                        {product.images.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => instanceRef.current?.moveToIdx(idx)}
+                            className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+                              currentSlide === idx
+                                ? 'bg-neutral-300'
+                                : 'bg-neutral-700'
+                            }`}
                           />
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12">
+                      {product.images.map((image, index) => (
+                        <div key={index}>
+                          <ImageNew imageObject={image.imageObject} />
                         </div>
                       ))}
                     </div>
-                    <div className="flex justify-center mt-4 space-x-2">
-                      {product.images.map((_, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => instanceRef.current?.moveToIdx(idx)}
-                          className={`h-2 w-2 rounded-full transition-colors duration-300 ${
-                            currentSlide === idx
-                              ? 'bg-neutral-300'
-                              : 'bg-neutral-700'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12">
-                    {product.images.map((image, index) => (
-                      <div key={index}>
-                        <ImageNew imageObject={image.imageObject} />
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-          </Container>
+                  )}
+                </div>
+              )}
+            </Container>
 
-          <Timeline />
+            <div className="container my-12 md:my-16">
+              <Timeline />
+            </div>
+          </article>
         </Layout>
       </div>
     );

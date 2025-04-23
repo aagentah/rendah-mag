@@ -16,6 +16,7 @@ import Container from '~/components/layout/container';
 import Accordion from '~/components/accordion';
 import LatestPrint from '~/components/latest-print';
 import Table from '~/components/table';
+import Map from '~/components/map';
 
 import {
   getSiteConfig,
@@ -45,7 +46,7 @@ export default function Dominion({ siteConfig }) {
   const isMobile = app.deviceSize === 'md';
 
   const [sliderRef, instanceRef] = useKeenSlider({
-    loop: true,
+    loop: false,
     renderMode: 'performance',
     drag: true,
     slides: { perView: 1 },
@@ -118,7 +119,7 @@ export default function Dominion({ siteConfig }) {
     {
       title: '2) Receive our latest magazine',
       description:
-        'We ship our latest print to you. Future issues are sent automatically as they’re released.',
+        'We ship our latest print to you. Future issues are sent automatically on release.',
       icon: IconMagazine, // Newspaper icon
     },
     {
@@ -218,27 +219,19 @@ export default function Dominion({ siteConfig }) {
       }}
       preview={null}
     >
-      <div className="container my-12">
+      <div className="container my-12 md:my-16">
         <div className="flex flex-col md:grid md:grid-cols-4 gap-4 gap-y-12 mb-12">
           <div className="order-2 md:order-1 md:col-span-2 max-w-md md:mb-12">
-            <p className="text-xs md:text-sm text-neutral-500 leading-relaxed text-left">
-              <strong>
-                <span className="text-neutral-400">Rendah Mag</span> /
-                Membership
-              </strong>
-              <br />
-              <br />
+            <h1 className="text-neutral-300 text-left mb-4">Membership</h1>
+            <p className="text-xs md:text-sm text-neutral-400  text-left">
+              The membership was created to push our platform into new
+              territory, offering a way for people to explore the landscape of
+              underground music, art, and technology; away from noise and
+              distraction.
             </p>
 
-            <div className="max-w-md">
-              <p className="text-xs md:text-sm text-neutral-300 leading-relaxed text-left mb-4">
-                The membership was created to push our platform into new
-                territory, offering a way for people to explore the landscape of
-                underground music, art, and technology; away from noise and
-                distraction.
-              </p>
-
-              <p className="text-xs md:text-sm text-neutral-300 leading-relaxed text-left">
+            <div className="max-w-md pt-8">
+              <p className="text-xs md:text-sm text-neutral-400  text-left">
                 We invite you to explore this with us.
               </p>
 
@@ -258,7 +251,7 @@ export default function Dominion({ siteConfig }) {
                         <br />
                         Free Global Shipping
                         <br />
-                        Member Card + Stickers
+                        Welcome Pack
                       </span>
                     ),
                   },
@@ -310,7 +303,7 @@ export default function Dominion({ siteConfig }) {
                   }}
                 />
 
-                <p className="text-xs text-neutral-500 pt-1.5">
+                <p className="text-xs text-neutral-500 pt-2">
                   [Includes latest print]
                 </p>
               </div>
@@ -319,7 +312,7 @@ export default function Dominion({ siteConfig }) {
             {/* {!user && (
             <Link href="/membership" legacyBehavior>
               <a className="flex justify-start">
-                <p className="flex flex-wrap items-center text-base text-red-600 leading-tight text-left cursor-pointer">
+                <p className="flex flex-wrap items-center text-base text-red-600  text-left cursor-pointer">
                   <span className="pr-2">
                     Explore{' '}
                     <span className="hidden md:inline">what we offer via</span>{' '}
@@ -344,7 +337,7 @@ export default function Dominion({ siteConfig }) {
       </div>
 
       <div className="container">
-        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+        <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
       </div>
 
       {/* How it Works Section */}
@@ -353,15 +346,15 @@ export default function Dominion({ siteConfig }) {
           <div className="pb-12">
             <h2 className="text-neutral-400">How it works</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-6">
             {steps.map((step, index) => (
-              <div key={index} className="flex flex-col p-3 h-32 md:h-40">
+              <div key={index} className="flex flex-col h-32 md:h-40">
                 <div className="mb-3">{step.icon}</div>
-                <div>
-                  <h3 className="text-neutral-300 text-sm leading-tight mb-3">
+                <div className="lg:pr-4">
+                  <h3 className="text-neutral-300 text-sm mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-neutral-400 text-xs leading-relaxed">
+                  <p className="text-neutral-400 text-xs md:text-sm">
                     {step.description}
                   </p>
                 </div>
@@ -372,7 +365,7 @@ export default function Dominion({ siteConfig }) {
       </div>
 
       <div className="container">
-        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+        <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
       </div>
 
       <div className="pt-4 md:pt-5 page--dominion">
@@ -382,7 +375,7 @@ export default function Dominion({ siteConfig }) {
         <LatestPrint showDominionButton={false} />
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+          <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
         </div>
 
         {/* Subscriber Dashboard Section */}
@@ -395,8 +388,8 @@ export default function Dominion({ siteConfig }) {
                     Some words on our membership dashboard
                   </h2>
                 </div>
-                <div className="mb-8">
-                  <p className="border-l-4 border-rendah-red pl-4 text-neutral-300 leading-relaxed text-sm pb-4 text-left relative">
+                <div className="mb-12">
+                  <p className="border-l-4 border-rendah-red pl-4 text-neutral-300 text-sm text-left relative">
                     In addition to our prints, the membership dashboard is where
                     we tell the stories of the many artists and creatives we
                     collaborate with daily.
@@ -425,7 +418,7 @@ export default function Dominion({ siteConfig }) {
                         className=""
                       />
                     </div>
-                    <p className="text-neutral-300 leading-relaxed text-sm md:text-base pl-4">
+                    <p className="text-neutral-300  text-sm md:text-base pl-4">
                       <span className="text-neutral-400">
                         ~ Dan from the Rendah Mag team
                       </span>
@@ -438,19 +431,15 @@ export default function Dominion({ siteConfig }) {
         </div>
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+          <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
         </div>
 
         {/* Active Subscribers Section */}
-        <div className="py-12">
+        <div className="pt-12">
           <div className="container">
-            <div className="pb-8">
-              <h2 className="text-neutral-400">
-                Active members in {new Date().getFullYear()}
-              </h2>
-            </div>
+            <Map />
 
-            <div className="flex flex-wrap gap-2 md:gap-4">
+            {/* <div className="flex flex-wrap gap-1 md:gap-2">
               {dominion?.map((i, o) => {
                 const fade = 1 - (o / dominion.length) * 1.05; // goes from 1 to ~0
                 const isPlaceholder = !i?.avatar;
@@ -468,26 +457,26 @@ export default function Dominion({ siteConfig }) {
                           ? '/images/avatar-placeholder.png'
                           : imageBuilder
                               .image(i?.avatar)
-                              .width(36)
-                              .height(36)
+                              .width(32)
+                              .height(32)
                               .auto('format')
                               .fit('clip')
                               .url()
                       }
                       alt="User"
-                      width={36}
-                      height={36}
+                      width={32}
+                      height={32}
                       customClass={`w-full brightness-75`}
                     />
                   </div>
                 );
               })}
-            </div>
+            </div> */}
           </div>
         </div>
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+          <hr className="mb-12 border border-neutral-700 opacity-25 md:opacity-50" />
         </div>
 
         {/* FAQ Section */}
@@ -502,7 +491,9 @@ export default function Dominion({ siteConfig }) {
         </div>
       </div>
 
-      <Timeline />
+      <div className="container my-12 md:my-16">
+        <Timeline />
+      </div>
     </Layout>
   );
 }

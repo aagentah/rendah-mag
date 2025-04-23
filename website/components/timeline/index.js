@@ -76,12 +76,8 @@ const Timeline = () => {
 
   return (
     <>
-      <div className="container">
-        <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
-      </div>
-
-      <div className="w-full container mx-auto py-12">
-        <h2 className="text-lg mb-12 text-neutral-400">Print Timeline</h2>
+      <div className="w-full">
+        <h2 className="mb-12 text-neutral-300">Print Timeline</h2>
 
         {/* Desktop Timeline (hidden on small screens) */}
         <div className="relative hidden md:block">
@@ -147,7 +143,7 @@ const Timeline = () => {
               {months.map((month, index) => (
                 <div
                   key={index}
-                  className="flex items-start mb-6 pl-12 relative min-h-12"
+                  className="flex items-start mb-6 pl-12 relative min-h-6"
                 >
                   {/* Month dot/indicator */}
                   <div
@@ -181,7 +177,7 @@ const Timeline = () => {
                     {/* Event */}
                     {month.event && (
                       <div
-                        className={`mt-1 text-xs text-neutral-400 ${
+                        className={`mt-1 text-xxs text-neutral-400 ${
                           month.index < 0 ? 'opacity-50' : ''
                         }`}
                       >

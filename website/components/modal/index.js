@@ -42,9 +42,7 @@ export default function Modal({ size, active, closeIcon, children }) {
   return createPortal(
     <section className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-200 z-[1080] pointer-events-auto">
       <div
-        className={`border-l-4 border-rendah-red absolute left-0 right-0 top-1/2 transform -translate-y-1/2 bg-neutral-800 mx-auto overflow-auto ${sizeClasses} shadow-md p-10 md:p-12 md:pt-10 ${
-          size === 'gallery' ? '' : 'max-h-[70vh]'
-        }`}
+        className={`border-l-4 border-rendah-red absolute left-0 right-0 top-1/2 transform -translate-y-1/2 bg-neutral-800 mx-auto overflow-auto ${sizeClasses} shadow-md p-6 sm:p-8 md:p-10 md:p-12 md:pt-10 max-h-[90vh] sm:max-h-[80vh] md:max-h-[70vh]`}
       >
         {closeIcon && (
           <div

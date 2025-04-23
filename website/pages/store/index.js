@@ -81,7 +81,7 @@ export default function Store({ siteConfig }) {
               /* Options */
               htmlEntity="h1"
               text="Store"
-              color="neutral-400"
+              color="neutral-300"
               size="large"
               truncate={0}
               onClick={null}
@@ -90,11 +90,13 @@ export default function Store({ siteConfig }) {
             />
           </div>
 
-          <section className="pb3  pt5">
+          <section className="pb-12">
             {[...Array(categorysLength)].map((categoryIteration, i) => {
               if (categorys && products && categorys[i]?.name) {
                 return (
-                  <div className="w-full pb-12" key={i}>
+                  <div className="w-full" key={i}>
+                    <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
+
                     <div className="flex flex-wrap mb-8">
                       <h2 className="text-sm text-neutral-500">
                         {categorys[i]?.name}

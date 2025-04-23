@@ -119,6 +119,8 @@ export default function Post({ siteConfig, post, preview }) {
       canShowBody = false;
     }
 
+    console.log('post', post);
+
     return (
       <Layout
         navOffset="top"
@@ -266,23 +268,23 @@ export default function Post({ siteConfig, post, preview }) {
                 <Table
                   rows={[
                     {
-                      left: <strong>Author(s)</strong>,
+                      left: <span>Author(s)</span>,
                       right: post.authors.map(
                         (i, index, array) => i.author.name
                       ),
                     },
                     {
-                      left: <strong>Published</strong>,
+                      left: <span>Published</span>,
                       right: <Date dateString={post.publishedAt} />,
                     },
                     {
-                      left: <strong>Categories</strong>,
+                      left: <span>Categories</span>,
                       right:
                         post?.categories?.length &&
                         post?.categories.map((i) => i),
                     },
                     {
-                      left: <strong>Member Exclusive</strong>,
+                      left: <span>Member Exclusive</span>,
                       right: (
                         <div>
                           <span className="opacity-50">TRUE</span>/
@@ -318,7 +320,7 @@ export default function Post({ siteConfig, post, preview }) {
           </div>
 
           <div className="container">
-            <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+            <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
           </div>
 
           {canShowBody ? (
@@ -344,7 +346,7 @@ export default function Post({ siteConfig, post, preview }) {
                 />
               </div>
 
-              <p className="text-gray-700 text-sm leading-relaxed text-justify text-black">
+              <p className="text-gray-700 text-sm  text-justify text-black">
                 This article is exclusive to the Dominion. To read the full
                 article, please{' '}
                 <a className="underline" href="/login">
@@ -367,18 +369,18 @@ export default function Post({ siteConfig, post, preview }) {
         </div>
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+          <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
         </div>
 
         <SubscriptionBanner showDominionButton={true} />
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+          <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
         </div>
 
         {morePosts.length > 0 && (
           <section className="container pb-6">
-            <h3 className="text-neutral-400 mb-12">Other features</h3>
+            <h2 className="text-neutral-400 mb-12">Other features</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 gap-y-12">
               {morePosts.map((p, i) => (
@@ -393,14 +395,16 @@ export default function Post({ siteConfig, post, preview }) {
         )}
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+          <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
         </div>
 
         <LazyLoad once offset={800} height={800}>
           <LatestPrint showDominionButton={true} />
         </LazyLoad>
 
-        <Timeline />
+        <div className="container my-12 md:my-16">
+          <Timeline />
+        </div>
       </Layout>
     );
   }

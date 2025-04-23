@@ -18,13 +18,18 @@ import { imageBuilder } from '~/lib/sanity/requests';
 import { useApp } from '~/context-provider/app';
 import { useFirstRender } from '~/lib/useFirstRender';
 
+const Carousel = dynamic(() => import('./carousel'), {
+  ssr: false,
+  loading: () => null,
+});
+
 hljs.registerLanguage('javascript', javascript);
 
 function Heading({ text }) {
   return (
     <div className="flex flex-wrap pb-3">
       <div className="w-full">
-        <h2 className="leading-tight text-2xl md:text-3xl">
+        <h2 className=" text-2xl md:text-3xl">
           {'> '} {text}
         </h2>
       </div>
@@ -36,7 +41,7 @@ function Quote({ quote, source }) {
   return (
     <div className="flex flex-wrap py-3">
       <blockquote className="border-l-4 border-rendah-red pl-4">
-        <p className="leading-relaxed text-md">
+        <p className=" text-md">
           “{quote}”
           <cite className="block text-sm pt-2 text-neutral-400">
             / {source}
@@ -86,7 +91,7 @@ function Paragraph({ text, markDefs }) {
     return (
       <div className="flex flex-wrap py-4">
         <div className="w-full flex justify-center">
-          <p className="leading-relaxed text-sm md:text-base py-3">
+          <p className=" text-sm md:text-base py-3">
             {text.map((child, i) => renderChildren(child, i))}
           </p>
         </div>
@@ -120,7 +125,7 @@ function ListItem({ text }) {
     return (
       <div className="flex flex-wrap py-4">
         <div className="w-full flex justify-center">
-          <li className="leading-relaxed text-sm md:text-base pl-3">
+          <li className=" text-sm md:text-base pl-3">
             - {text.map((child, i) => renderChildren(child, i))}
           </li>
         </div>
@@ -247,113 +252,7 @@ function Youtube({ videoId }) {
   );
 }
 
-function Carousel({ section }) {
-  const [useKeenSliderHook, setUseKeenSliderHook] = useState(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [loaded, setLoaded] = useState(false);
-  const app = useApp();
-  const scale = app?.isRetina ? 2 : 1;
-  const imageUrlWidth = 500;
-  let slidesPerView =
-    app.deviceSize === 'md' ? 1 : section?.slidesPerViewDesktop || 1;
-  const height =
-    app.deviceSize === 'md'
-      ? section.carouselHeightMobile
-      : section.carouselHeightDesktop;
-
-  useEffect(() => {
-    if (!useKeenSliderHook) {
-      import('keen-slider/react').then((mod) => {
-        setUseKeenSliderHook(mod.useKeenSlider);
-      });
-    }
-  }, [useKeenSliderHook]);
-
-  if (!useKeenSliderHook) return null;
-
-  const [sliderRef, instanceRef] = useKeenSliderHook({
-    initial: 0,
-    loop: false,
-    renderMode: 'performance',
-    drag: true,
-    slides: { perView: slidesPerView },
-    slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel);
-    },
-    created() {
-      setLoaded(true);
-    },
-  });
-
-  const Arrow = ({ left, onClick, disabled }) => (
-    <svg
-      onClick={onClick}
-      className={`w-6 h-6 cursor-pointer ${left ? 'mr-2' : 'ml-2'} ${
-        disabled ? 'opacity-50' : ''
-      }`}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
-      {left ? (
-        <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
-      ) : (
-        <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
-      )}
-    </svg>
-  );
-
-  return (
-    <LazyLoad once offset={250} height={height || section.carouselHeight}>
-      <div className="relative w-full">
-        <div ref={sliderRef} className="keen-slider">
-          {section?.images?.map((p, i) => (
-            <div key={i} className="keen-slider__slide px-2 pb-4">
-              <img
-                className="w-full rounded shadow"
-                style={{
-                  height: height || section.carouselHeight,
-                  objectFit: 'cover',
-                }}
-                src={imageBuilder
-                  .image(p)
-                  .width(imageUrlWidth * scale)
-                  .auto('format')
-                  .fit('clip')
-                  .url()}
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
-        {loaded && instanceRef.current && (
-          <div className="absolute inset-0 flex items-center justify-between px-4">
-            <Arrow
-              left
-              onClick={(e) => {
-                e.stopPropagation();
-                instanceRef.current?.prev();
-              }}
-              disabled={currentSlide === 0}
-            />
-            <Arrow
-              onClick={(e) => {
-                e.stopPropagation();
-                instanceRef.current?.next();
-              }}
-              disabled={
-                currentSlide >=
-                instanceRef.current.track.details.slides.length -
-                  instanceRef.current.options.slides.perView
-              }
-            />
-          </div>
-        )}
-      </div>
-    </LazyLoad>
-  );
-}
-
-function ImageSection({ section }) {
+function ImageSection({ section, imageCount, fullWidth }) {
   console.log('section', section);
   const handleCaption = () => {
     if (isArray(section?.caption)) {
@@ -394,8 +293,6 @@ function ImageSection({ section }) {
         .fit('clip')
         .blur('20')
         .url();
-
-  console.log('section.fullImage', section.fullImage);
 
   return (
     <div className="grid grid-cols-12">
@@ -480,7 +377,7 @@ function Audio({ url, title, image, description, allowDownload, ...props }) {
     <>
       {title && (
         <div className="w-full text-center py-2">
-          <p className="leading-relaxed text-sm">{title}</p>
+          <p className=" text-sm">{title}</p>
         </div>
       )}
       <AudioPlayer
@@ -514,8 +411,9 @@ function ArticleLink({ text, url }) {
   );
 }
 
-export default function Sections({ body, ...props }) {
+export default function Sections({ body, fullWidth = false, ...props }) {
   let imageCount = 0;
+  const columnClass = fullWidth ? 'col-span-12' : 'col-span-12 md:col-span-6';
 
   const renderSections = (section, i) => {
     if (section?.children?.length) {
@@ -529,10 +427,7 @@ export default function Sections({ body, ...props }) {
     if (section._type === 'block') {
       return (
         <div key={i} className="col-span-12 grid grid-cols-12">
-          <div
-            key={i}
-            className="col-span-12 md:col-span-6 grid gap-12 text-justify"
-          >
+          <div key={i} className={`${columnClass} grid gap-12 text-justify`}>
             <BlockContent
               blocks={section}
               serializers={SANITY_BLOCK_SERIALIZERS}
@@ -550,20 +445,24 @@ export default function Sections({ body, ...props }) {
       imageCount++;
       return (
         <div className="col-span-12 py-4" key={i}>
-          <ImageSection section={section} imageCount={imageCount} />
+          <ImageSection
+            section={section}
+            imageCount={imageCount}
+            fullWidth={fullWidth}
+          />
         </div>
       );
     }
     if (section._type === 'carousel') {
       return (
-        <div key={i} className="col-span-12 md:col-span-6 py-4">
+        <div key={i} className={`${columnClass} py-4`}>
           <Carousel section={section} />
         </div>
       );
     }
     if (section._type === 'iframeEmbedBlock') {
       return (
-        <div key={i} className="col-span-12 md:col-span-6 py-4">
+        <div key={i} className={`${columnClass} py-4`}>
           <IframeBlock
             url={section.iframeUrl}
             heightDesktop={section.iframeHeightDesktop || section.iframeHeight}
@@ -574,35 +473,35 @@ export default function Sections({ body, ...props }) {
     }
     if (section._type === 'soundCloudEmbedBlock') {
       return (
-        <div key={i} className="col-span-12 md:col-span-6 py-4">
+        <div key={i} className={`${columnClass} py-4`}>
           <Soundcloud url={section.soundCloudEmbed} />
         </div>
       );
     }
     if (section._type === 'spotifyEmbedBlock') {
       return (
-        <div key={i} className="col-span-12 md:col-span-6 py-4">
+        <div key={i} className={`${columnClass} py-4`}>
           <Spotify uri={section.spotifyEmbed} />
         </div>
       );
     }
     if (section._type === 'youTubeEmbedBlock') {
       return (
-        <div key={i} className="col-span-12 md:col-span-6 py-4">
+        <div key={i} className={`${columnClass} py-4`}>
           <Youtube videoId={section.youTubeEmbed} />
         </div>
       );
     }
     if (section._type === 'facebookVideoEmbedBlock') {
       return (
-        <div key={i} className="col-span-12 md:col-span-6 py-4">
+        <div key={i} className={`${columnClass} py-4`}>
           <FacebookVideo url={section.facebookVideoEmbed} />
         </div>
       );
     }
     if (section._type === 'audioFileBlock') {
       return (
-        <div key={i} className="col-span-12 md:col-span-6 py-3">
+        <div key={i} className={`${columnClass} py-3`}>
           <Audio
             {...props}
             title={section.title}
@@ -621,30 +520,21 @@ export default function Sections({ body, ...props }) {
     }
     if (section._type === 'subtitleBlock') {
       return (
-        <div
-          key={i}
-          className="col-span-12 md:col-span-6 py-2 mb-2 px-4 md:px-0"
-        >
+        <div key={i} className={`${columnClass} py-2 mb-2 px-4 md:px-0`}>
           <Heading text={section.subtitle} />
         </div>
       );
     }
     if (section._type === 'quoteBlock') {
       return (
-        <div
-          key={i}
-          className="col-span-12 md:col-span-6 py-2 mb-2 px-4 md:px-0"
-        >
+        <div key={i} className={`${columnClass} py-2 mb-2 px-4 md:px-0`}>
           <Quote quote={section.quote} source={section.source} />
         </div>
       );
     }
     if (section._type === 'linkBlock') {
       return (
-        <div
-          key={i}
-          className="col-span-12 md:col-span-6 py-2 mb-2 px-4 md:px-0"
-        >
+        <div key={i} className={`${columnClass} py-2 mb-2 px-4 md:px-0`}>
           <ArticleLink text={section.text} url={section.url} />
         </div>
       );
@@ -653,7 +543,7 @@ export default function Sections({ body, ...props }) {
   };
 
   return (
-    <div className="rich-text container">
+    <div className={`"rich-text ${fullWidth ? '' : 'container'}"`}>
       <div className="grid grid-cols-12 text-neutral-300 text-sm gap-y-4">
         {body.map((section, i) => renderSections(section, i))}
       </div>

@@ -54,7 +54,7 @@ function NewsletterArticle({ message }) {
         </div>
       </div>
 
-      <div className="rich-text text-neutral-300 text-base leading-relaxed">
+      <div className="rich-text text-neutral-300 text-base ">
         <Sections body={message.description} />
       </div>
     </article>

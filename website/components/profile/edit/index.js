@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { toast } from 'react-toastify';
 import dynamic from 'next/dynamic';
 import fetch from 'isomorphic-unfetch';
+import imageCompression from 'browser-image-compression';
+
 // import { useStripe, useElements } from '@stripe/react-stripe-js';
 
 import Heading from '~/components/elements/heading';
@@ -76,15 +78,35 @@ export default function ProfileEdit() {
   ];
 
   const handleFileChange = useCallback(
-    (e) => {
+    async (e) => {
       setAvatarModalActive(false);
       toast.info('To save your image, make sure to hit Update Profile.');
       if (e.target.files && e.target.files.length > 0) {
         const file = e.target.files[0];
-        const reader = new FileReader();
-        setAvatarImage(URL.createObjectURL(file));
-        reader.readAsDataURL(file);
-        reader.onload = () => setAvatarBlob(reader.result);
+        if (file.size > 10 * 1024 * 1024) {
+          return toast.error('File exceeds maximum size of 10MB');
+        }
+        if (!file.type.startsWith('image/')) {
+          return toast.error('Invalid file format');
+        }
+        try {
+          const options = { maxWidthOrHeight: 1080, useWebWorker: true };
+          const compressedFile = await imageCompression(file, options);
+          const img = new window.Image();
+          img.src = URL.createObjectURL(compressedFile);
+          await new Promise((resolve, reject) => {
+            img.onload = resolve;
+            img.onerror = reject;
+          });
+          // Note: Dimension check removed as long as file is under 10MB
+          setAvatarImage(URL.createObjectURL(compressedFile));
+          const reader = new FileReader();
+          reader.readAsDataURL(compressedFile);
+          reader.onload = () => setAvatarBlob(reader.result);
+        } catch (error) {
+          console.error('Image compression failed', error);
+          toast.error('Image compression failed, please try another image.');
+        }
       }
     },
     [setAvatarModalActive]
@@ -195,14 +217,14 @@ export default function ProfileEdit() {
     return true;
   }
 
-  const inputIconEnvelope = <IconEnvelope color="white" size={16} />;
-  const inputIconUser = <IconUser color="white" size={16} />;
-  const inputIconLock = <IconLock color="white" size={16} />;
-  const inputIconReceipt = <IconReceipt color="white" size={16} />;
-  const inputIconAt = <IconAt color="white" size={16} />;
-  const inputIconHash = <IconHashtag color="white" size={16} />;
-  const iconDiscord = <IconDiscord color="white" size={16} />;
-  const iconPencil = <IconPencil color="white" size={16} />;
+  const inputIconEnvelope = <IconEnvelope color="neutral-300" size={16} />;
+  const inputIconUser = <IconUser color="neutral-300" size={16} />;
+  const inputIconLock = <IconLock color="neutral-300" size={16} />;
+  const inputIconReceipt = <IconReceipt color="neutral-300" size={16} />;
+  const inputIconAt = <IconAt color="neutral-300" size={16} />;
+  const inputIconHash = <IconHashtag color="neutral-300" size={16} />;
+  const iconDiscord = <IconDiscord color="neutral-300" size={16} />;
+  const iconPencil = <IconPencil color="neutral-300" size={16} />;
 
   // async function getCustomer() {
   //   const response = await fetch(
@@ -275,21 +297,21 @@ export default function ProfileEdit() {
   if (user) {
     return (
       <>
-        <div className="flex flex-col md:flex-row gap-4 items-stretch">
-          <div className="w-full md:w-1/2 md:pr-2">
-            <div className="p-4 rounded-md mb-4 border border-neutral-700">
-              <div className="profile_heading pb-8">
+        <div className="grid gap-4">
+          <div className="w-full md:w-1/2 border border-neutral-700 p-8">
+            <div>
+              <div className="profile_heading mb-6">
                 <Heading
-                  htmlEntity="h1"
+                  htmlEntity="h2"
                   text="Edit Profile"
-                  color="white"
-                  size="small"
+                  color="neutral-300"
+                  size="medium"
                   truncate={null}
                   withLinkProps={null}
                 />
               </div>
-              <div className="flex flex-wrap pt-4 md:pt-0">
-                <div className="w-full pb-4">
+              <div className="flex flex-wrap mt-6 md:mt-0">
+                <div className="w-full mb-6">
                   <div className="size-[120px] relative">
                     <div className="opacity-50 overflow-hidden">
                       <Image
@@ -308,13 +330,13 @@ export default function ProfileEdit() {
                   </div>
                 </div>
               </div>
-              <div className="pb-3 max-w-prose">
-                <p className="text-xs text-white opacity-50 max-w-72">
+              <div className="mb-4 max-w-prose">
+                <p className="text-xs text-neutral-300 opacity-50 max-w-72">
                   Change profile image. Recomended square &amp; at least 720px
                   &amp; under 1MB.
                 </p>
               </div>
-              <div className="pb-8 max-w-prose">
+              <div className="mb-6 max-w-prose">
                 <input
                   type="file"
                   accept="image/*"
@@ -326,7 +348,7 @@ export default function ProfileEdit() {
                   type="secondary"
                   size="small"
                   text={avatarBlob ? 'Change image' : 'Upload image'}
-                  color="white"
+                  color="neutral-300"
                   fluid={false}
                   icon={iconPencil}
                   iconFloat={null}
@@ -388,13 +410,13 @@ export default function ProfileEdit() {
                     </div>
                   </div>
                 </div>
-                <div className="md:flex flex-wrap md:items-end md:justify-between pt-4">
-                  <div className="w-full md:w-1/2 pr-3 pb-4 md:pb-0">
+                <div className="md:flex flex-wrap md:items-end md:justify-between mt-6">
+                  <div className="w-full md:w-1/2 pr-3 mb-6 md:mb-0">
                     <Button
                       type="primary"
                       size="small"
                       text="Update profile"
-                      color="white"
+                      color="neutral-300"
                       fluid={false}
                       icon={null}
                       iconFloat={null}
@@ -414,264 +436,267 @@ export default function ProfileEdit() {
                 </div>
               </form>
             </div>
-            <div className="p-4 rounded-md border border-neutral-700">
-              <div className="profile_heading">
-                <Heading
-                  htmlEntity="h1"
-                  text="Change your password"
-                  color="white"
-                  size="small"
-                  truncate={null}
-                  withLinkProps={null}
-                />
-              </div>
-              <form
-                noValidate
-                autoComplete="off"
-                name="lastpass-disable-search"
-                className="w-full"
-                onSubmit={handleUpdatePassword}
-              >
-                <div className="flex flex-wrap">
-                  <div className="w-full md:w-1/2">
-                    <div className="py-2">
-                      <Input
-                        type="password"
-                        label="New Password"
-                        name="password"
-                        value=""
-                        icon={inputIconLock}
-                        required
-                        disabled={false}
-                        readOnly={false}
-                      />
-                    </div>
-                    <div className="py-2 mb-3">
-                      <Input
-                        type="password"
-                        label="Repeat New Password"
-                        name="rpassword"
-                        value=""
-                        icon={inputIconLock}
-                        required
-                        disabled={false}
-                        readOnly={false}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-wrap pb-2">
-                  <div className="w-1/2 flex justify-center md:justify-start items-center">
-                    <Button
-                      type="primary"
-                      size="small"
-                      text="Update password"
-                      color="white"
-                      fluid={false}
-                      icon={null}
-                      iconFloat={null}
-                      inverted={false}
-                      loading={updatePasswordButtonLoading}
+          </div>
+
+          <div className="w-full md:w-1/2 border border-neutral-700 p-8">
+            <div className="profile_heading mb-6">
+              <Heading
+                htmlEntity="h2"
+                text="Change your password"
+                color="neutral-300"
+                size="medium"
+                truncate={null}
+                withLinkProps={null}
+              />
+            </div>
+            <form
+              noValidate
+              autoComplete="off"
+              name="lastpass-disable-search"
+              className="w-full"
+              onSubmit={handleUpdatePassword}
+            >
+              <div className="flex flex-wrap">
+                <div className="w-full md:w-1/2">
+                  <div className="py-2">
+                    <Input
+                      type="password"
+                      label="New Password"
+                      name="password"
+                      value=""
+                      icon={inputIconLock}
+                      required
                       disabled={false}
-                      skeleton={false}
-                      onClick={null}
-                      withLinkProps={{
-                        type: 'form',
-                        url: null,
-                        target: null,
-                        routerLink: null,
-                      }}
+                      readOnly={false}
+                    />
+                  </div>
+                  <div className="py-2 mb-4">
+                    <Input
+                      type="password"
+                      label="Repeat New Password"
+                      name="rpassword"
+                      value=""
+                      icon={inputIconLock}
+                      required
+                      disabled={false}
+                      readOnly={false}
                     />
                   </div>
                 </div>
-              </form>
-            </div>
+              </div>
+              <div className="flex flex-wrap mb-4">
+                <div className="w-1/2 flex justify-center md:justify-start items-center">
+                  <Button
+                    type="primary"
+                    size="small"
+                    text="Update password"
+                    color="neutral-300"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted={false}
+                    loading={updatePasswordButtonLoading}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    withLinkProps={{
+                      type: 'form',
+                      url: null,
+                      target: null,
+                      routerLink: null,
+                    }}
+                  />
+                </div>
+              </div>
+            </form>
           </div>
-          <div className="w-full md:w-1/2 md:pl-2">
-            <div className="p-4 rounded-md mb-4 border border-neutral-700 h-full">
-              <div className="pb-4">
+
+          <div className="w-full md:w-1/2 border border-neutral-700 p-8">
+            <div>
+              <div className="mb-6">
                 <Heading
-                  htmlEntity="h1"
-                  text="Billing"
-                  color="white"
+                  htmlEntity="h2"
+                  text="Shipping Address"
+                  color="neutral-300"
                   size="medium"
                   truncate={null}
                   withLinkProps={null}
                 />
               </div>
-              <div className="p-4 rounded-md mb-4">
-                <form className="w-full" onSubmit={handleUpdateAddress}>
-                  <div className="pb-3">
-                    <Heading
-                      htmlEntity="h2"
-                      text="Shipping Address"
-                      color="white"
-                      size="small"
-                      truncate={null}
-                      withLinkProps={null}
-                    />
-                  </div>
-                  <div className="flex flex-wrap pb-4 gap-4">
-                    <div className="w-full md:w-1/2">
-                      <div className="py-2">
-                        <Input
-                          type="text"
-                          label="Address Line 1"
-                          name="line1"
-                          value={user?.address?.line1 || ''}
-                          icon={null}
-                          required
-                          disabled={false}
-                          readOnly={false}
-                        />
-                      </div>
-                    </div>
-                    <div className="w-full md:w-1/2">
-                      <div className="py-2">
-                        <Input
-                          type="text"
-                          label="Address Line 2"
-                          name="line2"
-                          value={user?.address?.line2 || ''}
-                          icon={null}
-                          required={false}
-                          disabled={false}
-                          readOnly={false}
-                        />
-                      </div>
-                    </div>
-                    <div className="w-full md:w-1/2">
-                      <div className="py-2">
-                        <Input
-                          type="text"
-                          label="City"
-                          name="city"
-                          value={user?.address?.city || ''}
-                          icon={null}
-                          required
-                          disabled={false}
-                          readOnly={false}
-                        />
-                      </div>
-                    </div>
-                    <div className="w-full md:w-1/2">
-                      <div className="py-2">
-                        <Input
-                          type="text"
-                          label="Postal Code"
-                          name="postal_code"
-                          value={user?.address?.postal_code || ''}
-                          icon={null}
-                          required
-                          disabled={false}
-                          readOnly={false}
-                        />
-                      </div>
-                    </div>
-                    <div className="w-full md:w-1/2">
-                      <div className="py-2">
-                        <Input
-                          type="text"
-                          label="State/County"
-                          name="state"
-                          value={user?.address?.state || ''}
-                          icon={null}
-                          required
-                          disabled={false}
-                          readOnly={false}
-                        />
-                      </div>
-                    </div>
-                    <div className="w-full md:w-1/2">
-                      <div className="py-2">
-                        <Input
-                          type="text"
-                          label="Country"
-                          name="country"
-                          value={user?.address?.country || ''}
-                          icon={null}
-                          required
-                          disabled={false}
-                          readOnly={false}
-                        />
-                      </div>
+              <form className="w-full" onSubmit={handleUpdateAddress}>
+                <div className="flex flex-wrap mb-6 gap-4">
+                  <div className="w-full md:w-1/2">
+                    <div className="py-2">
+                      <Input
+                        type="text"
+                        label="Address Line 1"
+                        name="line1"
+                        value={user?.address?.line1 || ''}
+                        icon={null}
+                        required
+                        disabled={false}
+                        readOnly={false}
+                      />
                     </div>
                   </div>
-                  <div className="flex">
-                    <Button
-                      type="primary"
-                      size="small"
-                      text="Update Address"
-                      color="white"
-                      fluid={false}
-                      icon={null}
-                      iconFloat={null}
-                      inverted={true}
-                      loading={updateAddressButtonLoading}
-                      disabled={false}
-                      skeleton={false}
-                      onClick={null}
-                      withLinkProps={{
-                        type: 'form',
-                      }}
-                    />
+                  <div className="w-full md:w-1/2">
+                    <div className="py-2">
+                      <Input
+                        type="text"
+                        label="Address Line 2"
+                        name="line2"
+                        value={user?.address?.line2 || ''}
+                        icon={null}
+                        required={false}
+                        disabled={false}
+                        readOnly={false}
+                      />
+                    </div>
                   </div>
-                </form>
-              </div>
-
-              <div className="p-4 rounded-md mb-4 border border-neutral-700">
-                <div className="pt-3">
-                  <div className="profile_heading">
-                    <Heading
-                      htmlEntity="h2"
-                      text="Payment Method & Invoices"
-                      color="white"
-                      size="small"
-                      truncate={null}
-                      withLinkProps={null}
-                    />
+                  <div className="w-full md:w-1/2">
+                    <div className="py-2">
+                      <Input
+                        type="text"
+                        label="City"
+                        name="city"
+                        value={user?.address?.city || ''}
+                        icon={null}
+                        required
+                        disabled={false}
+                        readOnly={false}
+                      />
+                    </div>
                   </div>
-                  <div className="p-4 rounded-md flex flex-wrap">
-                    <a
-                      className="underline text-sm text-white"
-                      target="_blank"
-                      href="https://billing.stripe.com/p/login/9AQaHtf4adFb99u288"
-                    >
-                      Update Payment Method
-                    </a>
+                  <div className="w-full md:w-1/2">
+                    <div className="py-2">
+                      <Input
+                        type="text"
+                        label="Postal Code"
+                        name="postal_code"
+                        value={user?.address?.postal_code || ''}
+                        icon={null}
+                        required
+                        disabled={false}
+                        readOnly={false}
+                      />
+                    </div>
+                  </div>
+                  <div className="w-full md:w-1/2">
+                    <div className="py-2">
+                      <Input
+                        type="text"
+                        label="State/County"
+                        name="state"
+                        value={user?.address?.state || ''}
+                        icon={null}
+                        required
+                        disabled={false}
+                        readOnly={false}
+                      />
+                    </div>
+                  </div>
+                  <div className="w-full md:w-1/2">
+                    <div className="py-2">
+                      <Input
+                        type="text"
+                        label="Country"
+                        name="country"
+                        value={user?.address?.country || ''}
+                        icon={null}
+                        required
+                        disabled={false}
+                        readOnly={false}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
+                <div className="flex">
+                  <Button
+                    type="primary"
+                    size="small"
+                    text="Update Address"
+                    color="neutral-300"
+                    fluid={false}
+                    icon={null}
+                    iconFloat={null}
+                    inverted={true}
+                    loading={updateAddressButtonLoading}
+                    disabled={false}
+                    skeleton={false}
+                    onClick={null}
+                    withLinkProps={{
+                      type: 'form',
+                    }}
+                  />
+                </div>
+              </form>
             </div>
           </div>
-        </div>
-        <div className="mt-4">
-          <div className="p-4 rounded-md border border-neutral-700">
-            <section className="w-full">
-              <div className="pb-3">
-                <Heading
-                  htmlEntity="h2"
-                  text="Pause/Cancel Subscription"
-                  color="white"
-                  size="small"
-                  truncate={null}
-                  withLinkProps={null}
-                />
-              </div>
-              <div className="p-4 rounded-md">
-                <p className="text-sm text-white">
-                  If you'd like to pause or cancel your Dominion Subscription,
-                  please email us at{' '}
-                  <a
-                    className="underline text-white"
-                    href="mailto:info@rendahmag.com"
-                  >
-                    info@rendahmag.com
-                  </a>
-                  .
-                </p>
-              </div>
-            </section>
+
+          <div className="w-full md:w-1/2 border border-neutral-700 p-8">
+            <div className="mb-6">
+              <Heading
+                htmlEntity="h2"
+                text="Billing"
+                color="neutral-300"
+                size="medium"
+                truncate={null}
+                withLinkProps={null}
+              />
+            </div>
+
+            <Button
+              type="primary"
+              size="small"
+              text="Update Payment Method"
+              color="neutral-300"
+              fluid={false}
+              icon={null}
+              iconFloat={null}
+              inverted={true}
+              loading={updateAddressButtonLoading}
+              disabled={false}
+              skeleton={false}
+              onClick={null}
+              withLinkProps={{
+                type: 'external',
+                href: `https://billing.stripe.com/p/login/9AQaHtf4adFb99u288`,
+                target: '_blank',
+                routerLink: null,
+                routerLinkProps: null,
+              }}
+            />
+          </div>
+
+          <div className="w-full md:w-1/2 border border-neutral-700 p-8">
+            <div>
+              <section className="w-full">
+                <div className="mb-6">
+                  <Heading
+                    htmlEntity="h2"
+                    text="Pause/Cancel Membership"
+                    color="neutral-300"
+                    size="medium"
+                    truncate={null}
+                    withLinkProps={null}
+                  />
+                </div>
+
+                <div>
+                  <p className="text-sm text-neutral-300">
+                    If you'd like to pause or cancel your membership, please
+                    email us at{' '}
+                    <a
+                      className="underline text-neutral-300"
+                      href="mailto:info@rendahmag.com"
+                    >
+                      info@rendahmag.com
+                    </a>
+                    .
+                  </p>
+                </div>
+              </section>
+            </div>
           </div>
         </div>
       </>

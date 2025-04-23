@@ -120,7 +120,7 @@ export default function Login({ siteConfig }) {
   const buttonIconArrowRightWhite = (
     <FontAwesomeIcon
       icon={faArrowRight}
-      className="text-neutral-400"
+      className="rendah-red"
       style={{ fontSize: '16px' }}
     />
   );
@@ -194,13 +194,13 @@ export default function Login({ siteConfig }) {
                 />
               </div>
 
-              <div className="block md:flex flex-wrap items-center pt-10">
+              <div className="flex flex-col items-start gap-y-6 pt-10">
                 <div className="flex items-center pb-3 md:pb-0 md:pr-3">
                   <Button
                     type="primary"
                     size="small"
                     text="Login"
-                    color="neutral-400"
+                    color="rendah-red"
                     fluid={false}
                     icon={buttonIconArrowRightWhite}
                     iconFloat={null}

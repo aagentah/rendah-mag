@@ -12,9 +12,11 @@ const Tool = () => {
   const [loading, setLoading] = useState(false);
   const [backgroundPositionX, setBackgroundPositionX] = useState(50);
   const [backgroundPositionY, setBackgroundPositionY] = useState(50);
+  const [zoomLevel, setZoomLevel] = useState(1);
   const [isPortrait, setIsPortrait] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
   const [isSquare, setIsSquare] = useState(false);
+  const [textAlign, setTextAlign] = useState('right');
 
   const canvasRef = useRef(null);
 
@@ -24,6 +26,7 @@ const Tool = () => {
       setBackgroundImage(imageUrl);
       setBackgroundPositionX(50);
       setBackgroundPositionY(50);
+      setZoomLevel(1);
 
       const img = new Image();
       img.src = imageUrl;
@@ -101,6 +104,7 @@ const Tool = () => {
         setLoading(false);
       });
   };
+
   const handleBackgroundPositionXChange = (e) => {
     setBackgroundPositionX(Number(e.target.value));
   };
@@ -109,8 +113,39 @@ const Tool = () => {
     setBackgroundPositionY(Number(e.target.value));
   };
 
-  const isXDisabled = isPortrait || isSquare;
-  const isYDisabled = isLandscape || isSquare;
+  const handleZoomChange = (e) => {
+    setZoomLevel(Number(e.target.value));
+  };
+
+  const getTextAlignmentClasses = () => {
+    let alignClass = '';
+    let paddingClass = '';
+
+    switch (textAlign) {
+      case 'left':
+        alignClass = 'text-start justify-start';
+        paddingClass = 'pr-8';
+        break;
+      case 'center':
+        alignClass = 'text-center justify-center';
+        paddingClass = 'px-8';
+        break;
+      case 'right':
+        alignClass = 'text-end justify-end';
+        paddingClass = 'pl-8';
+        break;
+      default:
+        alignClass = 'text-end justify-end';
+        paddingClass = 'pl-8';
+    }
+
+    return { alignClass, paddingClass };
+  };
+
+  const { alignClass, paddingClass } = getTextAlignmentClasses();
+
+  const isXDisabled = (isPortrait || isSquare) && zoomLevel === 1;
+  const isYDisabled = (isLandscape || isSquare) && zoomLevel === 1;
 
   return (
     <Layout navOffset="center" navOnWhite={true}>
@@ -149,6 +184,46 @@ const Tool = () => {
               className="w-full p-2 bg-transparent border border-neutral-500 text-neutral-500"
             />
           </div>
+          <div className="mb-4 flex flex-wrap">
+            <label className="block text-xs text-neutral-400 mb-2 w-full">
+              Text Alignment
+            </label>
+            <div className="flex space-x-4 w-full">
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="textAlign"
+                  value="left"
+                  checked={textAlign === 'left'}
+                  onChange={() => setTextAlign('left')}
+                  className="mr-1"
+                />
+                <span className="text-neutral-500 text-sm">Left</span>
+              </label>
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="textAlign"
+                  value="center"
+                  checked={textAlign === 'center'}
+                  onChange={() => setTextAlign('center')}
+                  className="mr-1"
+                />
+                <span className="text-neutral-500 text-sm">Center</span>
+              </label>
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="textAlign"
+                  value="right"
+                  checked={textAlign === 'right'}
+                  onChange={() => setTextAlign('right')}
+                  className="mr-1"
+                />
+                <span className="text-neutral-500 text-sm">Right</span>
+              </label>
+            </div>
+          </div>
           <div className="mb-2 flex flex-wrap">
             <label className="block text-xs text-neutral-400 mb-2 w-full">
               Output
@@ -178,6 +253,23 @@ const Tool = () => {
 
           {backgroundImage && (
             <div className="mb-4">
+              <div className="mb-2 flex flex-wrap">
+                <label className="inline-block text-xs text-neutral-400 mb-1">
+                  Zoom
+                </label>
+                <input
+                  type="range"
+                  min="1"
+                  max="3"
+                  step="0.1"
+                  value={zoomLevel}
+                  onChange={handleZoomChange}
+                  className="w-full slider"
+                />
+                <span className="text-xs text-neutral-400 w-full text-right">
+                  {zoomLevel.toFixed(1)}x
+                </span>
+              </div>
               <div className="mb-2 flex flex-wrap">
                 <label className="inline-block text-xs text-neutral-400 mb-1">
                   Move X
@@ -241,7 +333,7 @@ const Tool = () => {
               backgroundImage: backgroundImage
                 ? `url(${backgroundImage})`
                 : 'none',
-              backgroundSize: 'cover',
+              backgroundSize: `${zoomLevel * 100}%`,
               backgroundPosition: `${backgroundPositionX}% ${backgroundPositionY}%`,
             }}
           >
@@ -257,11 +349,15 @@ const Tool = () => {
             >
               <div className="absolute bottom-0 left-0 right-0 mx-auto w-full p-3">
                 <div className="flex flex-wrap px-4 pb-4">
-                  <div className="flex flex-wrap justify-center text-center w-full pb-4">
-                    <div className="w-full text-2xl mb-2 px-4 justify-center text-balance text-neutral-300">
+                  <div className={`flex flex-wrap ${alignClass} w-full pb-4`}>
+                    <div
+                      className={`w-full text-2xl mb-2 ${paddingClass} font-bold text-balance text-neutral-200`}
+                    >
                       {title}
                     </div>
-                    <div className="w-full text-sm px-6 justify-center text-balance text-neutral-400">
+                    <div
+                      className={`w-full text-sm ${paddingClass} text-balance text-neutral-300`}
+                    >
                       {subtitle}
                     </div>
                   </div>

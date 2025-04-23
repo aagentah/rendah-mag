@@ -114,7 +114,7 @@ export default function Connect({ siteConfig, posts, preview }) {
         <SubscriptionBanner showDominionButton={true} />
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+          <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
         </div>
 
         <div className="container">
@@ -165,7 +165,7 @@ export default function Connect({ siteConfig, posts, preview }) {
         </div>
 
         <div className="container">
-          <hr className="my-12 border border-neutral-700 opacity-25 md:opacity-100" />
+          <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
         </div>
 
         <div className="container">
@@ -188,7 +188,7 @@ export default function Connect({ siteConfig, posts, preview }) {
           {/* 
           <div className="flex justify-center pt-3">
             <p
-              className="text-neutral-300 text-base text-black leading-relaxed cursor-pointer underline"
+              className="text-neutral-300 text-base text-black  cursor-pointer underline"
               onClick={() => {
                 setModalActive(true);
               }}
@@ -201,7 +201,9 @@ export default function Connect({ siteConfig, posts, preview }) {
           </div> */}
         </div>
 
-        <Timeline />
+        <div className="container my-12 md:my-16">
+          <Timeline />
+        </div>
       </Layout>
     );
   }

@@ -34,7 +34,7 @@ export default function CookieBanner() {
             <a className="underline" href="/cookie-policy" target="_blank">
               cookies
             </a>{' '}
-            to keep you logged in to the Dominion.
+            to keep you logged in to the Membership.
           </div>
         </div>
       </div>

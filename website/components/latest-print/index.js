@@ -24,7 +24,7 @@ export default function LatestPrint({ showDominionButton }) {
   const [latestIssue, setLatestIssue] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, instanceRef] = useKeenSlider({
-    loop: true,
+    loop: false,
     renderMode: 'performance',
     drag: true,
     slides: { perView: 1 },
@@ -58,11 +58,13 @@ export default function LatestPrint({ showDominionButton }) {
   return (
     <div className="container py-6">
       <div className="mb-12">
-        <h3 className="text-neutral-400 mb-2">Latest print</h3>
-        <p className="text-neutral-500 text-sm">{`${latestIssue.title}`}</p>
+        <h2 className="text-neutral-300 mb-2">
+          Latest print{' '}
+          <span className="text-neutral-500">[{`${latestIssue.title}`}]</span>
+        </h2>
       </div>
 
-      <div className="mb-16">
+      <div className="mb-12">
         {isMobile ? (
           <div className="relative">
             <div ref={sliderRef} className="keen-slider">
@@ -71,8 +73,8 @@ export default function LatestPrint({ showDominionButton }) {
                   <ImageNew
                     imageObject={image.imageObject}
                     alt={`Latest Print Image ${index + 1}`}
-                    height={400}
-                    className="bg-white w-full"
+                    height={350}
+                    className="brightness-75 w-full"
                   />
                 </div>
               ))}
@@ -97,7 +99,7 @@ export default function LatestPrint({ showDominionButton }) {
               <ImageNew
                 imageObject={image.imageObject}
                 alt={`Latest Print Image ${index + 1}`}
-                height={400}
+                height={350}
                 className="brightness-75"
               />
             ))}
@@ -131,7 +133,7 @@ export default function LatestPrint({ showDominionButton }) {
             }}
           />
 
-          <p className="text-xs text-neutral-500 pt-1.5">
+          <p className="text-xs text-neutral-500 pt-2">
             [Includes latest print]
           </p>
         </div>

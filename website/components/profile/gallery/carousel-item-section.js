@@ -1,100 +1,141 @@
-import { useState } from 'react';
-
-import BlockContent from '@sanity/block-content-to-react';
-import Heading from '~/components/elements/heading';
-import Button from '~/components/elements/button';
-import Image from '~/components/elements/image';
-
-import { useApp } from '~/context-provider/app';
-import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
+import React, { useState, useEffect } from 'react';
+import { useKeenSlider } from 'keen-slider/react';
+import LazyLoad from 'react-lazyload';
+import 'keen-slider/keen-slider.min.css';
 
 import { imageBuilder } from '~/lib/sanity/requests';
+import { useApp } from '~/context-provider/app';
 
-export default function CarouselItemSection({ pack }) {
+function Arrow({ left, onClick, disabled }) {
+  const disabledClass = disabled ? ' opacity-50' : '';
+  return (
+    <svg
+      onClick={onClick}
+      className={`w-6 h-6 cursor-pointer ${
+        left ? 'mr-2' : 'ml-2'
+      }${disabledClass}`}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      {left ? (
+        <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+      ) : (
+        <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+      )}
+    </svg>
+  );
+}
+
+export default function Carousel({ section }) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const app = useApp();
   const scale = app?.isRetina ? 2 : 1;
+  const imageUrlWidth = 500;
+  const slidesPerView =
+    app.deviceSize === 'md' ? 1 : section?.slidesPerViewDesktop || 1;
+  const height =
+    app.deviceSize === 'md'
+      ? section?.carouselHeight || section.carouselHeightMobile
+      : section?.carouselHeight || section.carouselHeightDesktop;
 
-  const [currentAudioSelected, setCurrentAudioSelected] = useState(false);
-  const handleAudioPlay = playerRef => setCurrentAudioSelected(playerRef);
-  const imageUrlWidth = app?.deviceSize === 'md' ? 260 : 400;
-  const imageUrlHeight = app?.deviceSize === 'md' ? 260 : 400;
+  const [sliderRef, instanceRef] = useKeenSlider({
+    initial: 0,
+    loop: false,
+    renderMode: 'performance',
+    drag: true,
+    slides: { perView: slidesPerView },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
+    created() {
+      setLoaded(true);
+    },
+  });
+
+  // Safety check
+  if (!section?.images?.length) {
+    return null;
+  }
+
+  // Create an array of valid images with URLs
+  const validImages = section.images
+    .map((image, i) => {
+      try {
+        // Fall back to a static placeholder URL if we can't build the image URL
+        let imgSrc = 'https://via.placeholder.com/500';
+
+        try {
+          if (image.asset) {
+            imgSrc = imageBuilder
+              .image(image.asset)
+              .width(imageUrlWidth * scale)
+              .auto('format')
+              .fit('clip')
+              .url();
+          } else if (image.imageObject && image.imageObject.url) {
+            // Try direct URL if available
+            imgSrc = image.imageObject.url;
+          }
+        } catch (error) {
+          console.error('Error building image URL:', error);
+        }
+
+        return {
+          id: image._key || `img-${i}`,
+          src: imgSrc,
+        };
+      } catch (e) {
+        console.error('Error processing image:', e);
+        return null;
+      }
+    })
+    .filter(Boolean); // Remove any nulls
+
+  // If no valid images, don't render
+  if (!validImages.length) {
+    return null;
+  }
 
   return (
-    <section>
-      <div className="flex  flex-wrap  pt0  pt3-md">
-        <div className="col-24  col-12-md  ph3  pr4-md  ph0-md">
-          <div className="col-24  pb3">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text={pack.title}
-              color="white"
-              size="medium"
-              truncate={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-
-          <div className="col-24  pb3  rich-text">
-            <BlockContent
-              blocks={pack.description}
-              serializers={SANITY_BLOCK_SERIALIZERS}
-            />
-          </div>
-
-          <div className="col-24  pb4  pb0-md">
-            <Button
-              /* Options */
-              type="primary"
-              size={app?.deviceSize === 'md' ? 'small' : 'medium'}
-              text="Download"
-              color="white"
-              fluid={false}
-              icon={null}
-              iconFloat={null}
-              inverted={true}
-              loading={false}
-              disabled={false}
-              skeleton={false}
-              onClick={null}
-              /* Children */
-              withLinkProps={{
-                type: 'external',
-                href: `${pack.folder}?dl=`,
-                target: '_blank',
-                routerLink: null,
-                routerLinkProps: null
+    <LazyLoad once offset={250} height={height}>
+      <div className="relative w-full">
+        <div ref={sliderRef} className="keen-slider">
+          {validImages.map((image) => (
+            <div key={image.id} className="keen-slider__slide px-2 pb-4">
+              <img
+                className="w-full rounded shadow"
+                style={{ height, objectFit: 'cover' }}
+                src={image.src}
+                alt=""
+              />
+            </div>
+          ))}
+        </div>
+        {loaded && instanceRef.current && (
+          <div className="absolute inset-0 flex items-center justify-between px-4">
+            <Arrow
+              left
+              onClick={(e) => {
+                e.stopPropagation();
+                instanceRef.current.prev();
               }}
+              disabled={currentSlide === 0}
+            />
+            <Arrow
+              onClick={(e) => {
+                e.stopPropagation();
+                instanceRef.current.next();
+              }}
+              disabled={
+                currentSlide >=
+                instanceRef.current.track.details.slides.length -
+                  instanceRef.current.options.slides.perView
+              }
             />
           </div>
-        </div>
-        <div className="col-24  col-12-md  ph3">
-          <Image
-            /* Options */
-            src={
-              pack &&
-              imageBuilder
-                .image(pack.image)
-                .width(imageUrlWidth * scale)
-                .height(imageUrlHeight * scale)
-                .auto('format')
-                .fit('scale')
-                .url()
-            }
-            placeholder={null}
-            alt={pack?.title}
-            figcaption={null}
-            height={imageUrlHeight}
-            width={imageUrlWidth}
-            customClass="br4  shadow2"
-            skeleton={false}
-            onClick={null}
-            /* Children */
-            withLinkProps={null}
-          />
-        </div>
+        )}
       </div>
-    </section>
+    </LazyLoad>
   );
 }
