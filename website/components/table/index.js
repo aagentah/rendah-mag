@@ -15,7 +15,7 @@ export default function Table({ rows, className = '' }) {
               row.className || ''
             }`}
           >
-            <div className="text-neutral-500">{row.left}</div>
+            <div className="text-neutral-500 pr-3 md:pr-4">{row.left}</div>
             <div
               className={`text-neutral-500 text-right flex ${
                 row.rightClassName || ''

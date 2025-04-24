@@ -126,25 +126,22 @@ export default function Product({ siteConfig, product }) {
               withLinkProps={null}
             />
             <Modal size="large" active={modalActive}>
-              <div className="pb-2">
-                <Heading
-                  htmlEntity="p"
-                  text="Join membership instead for £11?"
-                  color="neutral-300"
-                  size="small"
-                  truncate={0}
-                  onClick={null}
-                  withLinkProps={null}
-                />
+              <div className="pb-3 md:pb-4">
+                <h2 className="text-balance">
+                  Join membership <i>instead</i> for{' '}
+                  <Link href={`/membership`}>
+                    <span className="text-rendah-red underline">£11?</span>
+                  </Link>
+                </h2>
               </div>
 
-              <div className="pb-3">
-                <p className="text-neutral-400 text-xs pb-2">
-                  It's cheaper than individual prints and offers:
+              <div className="pb-3 md:pb-4">
+                <p className="text-neutral-500 text-xs md:text-sm pb-2">
+                  Free Global Shipping and includes:
                 </p>
                 <div className="w-full">
                   <Table
-                    className="text-xxs md:text-sm py-8"
+                    className="text-xs sm:text-sm py-8"
                     rows={[
                       {
                         left: 'Magazine Delivery',
@@ -152,9 +149,7 @@ export default function Product({ siteConfig, product }) {
                           <span className="text-right">
                             3x prints yearly
                             <br />
-                            Free Global Shipping
-                            <br />
-                            Welcome Pack
+                            Membership Pack
                           </span>
                         ),
                       },
@@ -163,8 +158,6 @@ export default function Product({ siteConfig, product }) {
                         right: (
                           <span className="text-right">
                             Membership dashboard
-                            <br />
-                            Monthly exclusive insights
                             <br />
                             20% additional discount
                           </span>

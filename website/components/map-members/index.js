@@ -98,10 +98,8 @@ const WorldMapWithUsers = () => {
 
   useEffect(() => {
     if (selectedCity) {
-      // Trigger the fade-in effect after the component mounts
       setFadeIn(true);
     } else {
-      // Reset if the city is deselected
       setFadeIn(false);
     }
   }, [selectedCity]);
@@ -290,7 +288,10 @@ const WorldMapWithUsers = () => {
 
   const applyInteractivity = (bubble, cityInfo, scaleValue) => {
     bubble
-      .style('pointer-events', selectedCountry ? 'auto' : 'none')
+      .style(
+        'pointer-events',
+        selectedCountry && cityInfo.context ? 'auto' : 'none'
+      )
       .style(
         'cursor',
         selectedCountry && cityInfo.context ? 'pointer' : 'default'
@@ -415,20 +416,16 @@ const WorldMapWithUsers = () => {
 
   const handlePrevUser = () => {
     if (!selectedCity || !selectedCity.users) return;
-    const filteredUsers = selectedCity.users.filter((user) => user.quote);
-    if (filteredUsers.length <= 1) return;
-    setCurrentUserIndex((prev) =>
-      prev > 0 ? prev - 1 : filteredUsers.length - 1
-    );
+    const filtered = selectedCity.users.filter((u) => u.quote);
+    if (filtered.length <= 1) return;
+    setCurrentUserIndex((prev) => (prev > 0 ? prev - 1 : filtered.length - 1));
   };
 
   const handleNextUser = () => {
     if (!selectedCity || !selectedCity.users) return;
-    const filteredUsers = selectedCity.users.filter((user) => user.quote);
-    if (filteredUsers.length <= 1) return;
-    setCurrentUserIndex((prev) =>
-      prev < filteredUsers.length - 1 ? prev + 1 : 0
-    );
+    const filtered = selectedCity.users.filter((u) => u.quote);
+    if (filtered.length <= 1) return;
+    setCurrentUserIndex((prev) => (prev < filtered.length - 1 ? prev + 1 : 0));
   };
 
   useEffect(() => {
@@ -440,17 +437,48 @@ const WorldMapWithUsers = () => {
     )
       return;
     d3.select(mapRef.current).select('svg').remove();
+
+    const projection = d3
+      .geoEquirectangular()
+      .fitSize(
+        [dimensions.width, dimensions.height],
+        topojson.feature(mapData, mapData.objects.countries)
+      );
+    const path = d3.geoPath().projection(projection);
+
+    const countries = topojson.feature(
+      mapData,
+      mapData.objects.countries
+    ).features;
+    const filteredCountries = countries.filter((country) => {
+      const centroid = d3.geoCentroid(country);
+      return centroid[1] < 80 && centroid[1] > -80;
+    });
+
+    const featureCollection = {
+      type: 'FeatureCollection',
+      features: filteredCountries,
+    };
+    const [[x0, y0], [x1, y1]] = path.bounds(featureCollection);
+    const boxWidth = x1 - x0;
+    const boxHeight = y1 - y0;
+
     const svg = d3
       .select(mapRef.current)
       .append('svg')
-      .attr('width', dimensions.width)
-      .attr('height', dimensions.height);
+      .attr('viewBox', `${x0} ${y0} ${boxWidth} ${boxHeight}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet')
+      .style('width', '100%')
+      .style('height', 'auto');
+
     const gCountries = svg.append('g');
     const gBubbles = svg.append('g');
+
     if (currentTransform.current) {
       gCountries.attr('transform', currentTransform.current);
       gBubbles.attr('transform', currentTransform.current);
     }
+
     let tooltip = d3.select(mapRef.current).select('.tooltip');
     if (tooltip.empty()) {
       tooltip = d3
@@ -466,34 +494,7 @@ const WorldMapWithUsers = () => {
         .style('font-size', '12px')
         .style('pointer-events', 'none');
     }
-    const projection = d3
-      .geoEquirectangular()
-      .fitSize(
-        [dimensions.width, dimensions.height],
-        topojson.feature(mapData, mapData.objects.countries)
-      );
-    const path = d3.geoPath().projection(projection);
-    const countries = topojson.feature(
-      mapData,
-      mapData.objects.countries
-    ).features;
-    const filteredCountries = countries.filter((country) => {
-      const centroid = d3.geoCentroid(country);
-      return centroid[1] < 80 && centroid[1] > -80;
-    });
-    const getCountryFeatureById = (id) => {
-      return filteredCountries.find((country) => country.id === id);
-    };
-    const getCountryFeature = (codeOrName) => {
-      const countryCode = findCountryCode(codeOrName);
-      if (countryCode && countryCodeMap[countryCode.toUpperCase()]) {
-        return getCountryFeatureById(
-          countryCodeMap[countryCode.toUpperCase()].id
-        );
-      }
-      console.log(`Country not found in mapping: ${codeOrName}`);
-      return null;
-    };
+
     const memberCountryIds = new Set();
     users.forEach((user) => {
       if (!user.country) return;
@@ -506,6 +507,57 @@ const WorldMapWithUsers = () => {
         memberCountryIds.add(countryCodeMap[code.toUpperCase()].id);
       }
     });
+
+    gCountries
+      .selectAll('path.country')
+      .data(filteredCountries)
+      .enter()
+      .append('path')
+      .attr('class', 'country')
+      .attr('d', path)
+      .attr('fill', (d) => (memberCountryIds.has(d.id) ? '#525252' : '#404040'))
+      .attr('opacity', '1')
+      .attr('cursor', (d) =>
+        memberCountryIds.has(d.id) ? 'pointer' : 'not-allowed'
+      )
+      .attr('stroke', '#212121')
+      .attr('stroke-width', 0.5)
+      .on('click', function (event, d) {
+        if (!memberCountryIds.has(d.id)) return;
+        let countryName = 'Selected Country';
+        for (const [code, data] of Object.entries(countryCodeMap)) {
+          if (data.id === d.id) {
+            countryName = Array.isArray(data.name) ? data.name[0] : data.name;
+            break;
+          }
+        }
+        const [[cx0, cy0], [cx1, cy1]] = path.bounds(d);
+        const dx = cx1 - cx0;
+        const dy = cy1 - cy0;
+        const x = (cx0 + cx1) / 2;
+        const y = (cy0 + cy1) / 2;
+        const scale = Math.max(
+          1,
+          Math.min(
+            12,
+            0.9 / Math.max(dx / dimensions.width, dy / dimensions.height)
+          )
+        );
+        const translate = [
+          dimensions.width / 2 - scale * x,
+          dimensions.height / 2 - scale * y,
+        ];
+        const transformString = `translate(${translate}) scale(${scale})`;
+        currentTransform.current = transformString;
+        gCountries
+          .transition()
+          .duration(750)
+          .attr('transform', transformString);
+        gBubbles.transition().duration(750).attr('transform', transformString);
+        setSelectedCountryId(d.id);
+        setSelectedCountry(countryName);
+      });
+
     const createCityBubbles = () => {
       gBubbles.selectAll('circle').remove();
       const globalUsersByCity = {};
@@ -533,9 +585,6 @@ const WorldMapWithUsers = () => {
         }
       );
       if (globalCityGroups.length) {
-        const counts = globalCityGroups.map((cityInfo) => cityInfo.count);
-        const maxCount = Math.max(...counts);
-        const minCount = Math.min(...counts);
         const fixedRadius = 1;
         const fixedRadiusContext = 2;
 
@@ -563,63 +612,19 @@ const WorldMapWithUsers = () => {
         });
       }
     };
+
     const updateCityBubbleInteractivity = () => {
       gBubbles.selectAll('circle').each(function (cityInfo) {
         const bubble = d3.select(this);
         applyInteractivity(bubble, cityInfo, 6);
       });
     };
+
     createCityBubbles();
     updateCityBubbleInteractivity();
-    gCountries
-      .selectAll('path.country')
-      .data(filteredCountries)
-      .enter()
-      .append('path')
-      .attr('class', 'country')
-      .attr('d', path)
-      .attr('fill', (d) => (memberCountryIds.has(d.id) ? '#525252' : '#404040'))
-      .attr('opacity', '1')
-      .attr('cursor', (d) =>
-        memberCountryIds.has(d.id) ? 'pointer' : 'not-allowed'
-      )
-      .attr('stroke', '#212121')
-      .attr('stroke-width', 0.5)
-      .on('click', function (event, d) {
-        if (!memberCountryIds.has(d.id)) return;
-        let countryName = 'Selected Country';
-        for (const [code, data] of Object.entries(countryCodeMap)) {
-          if (data.id === d.id) {
-            countryName = Array.isArray(data.name) ? data.name[0] : data.name;
-            break;
-          }
-        }
-        const [[x0, y0], [x1, y1]] = path.bounds(d);
-        const dx = x1 - x0;
-        const dy = y1 - y0;
-        const x = (x0 + x1) / 2;
-        const y = (y0 + y1) / 2;
-        const scale = Math.max(
-          1,
-          Math.min(
-            12,
-            0.9 / Math.max(dx / dimensions.width, dy / dimensions.height)
-          )
-        );
-        const translate = [
-          dimensions.width / 2 - scale * x,
-          dimensions.height / 2 - scale * y,
-        ];
-        const transformString = `translate(${translate}) scale(${scale})`;
-        currentTransform.current = transformString;
-        gCountries
-          .transition()
-          .duration(750)
-          .attr('transform', transformString);
-        gBubbles.transition().duration(750).attr('transform', transformString);
-        setSelectedCountryId(d.id);
-        setSelectedCountry(countryName);
-      });
+    gBubbles
+      .selectAll('circle')
+      .sort((a, b) => d3.ascending(a.context ? 1 : 0, b.context ? 1 : 0));
   }, [mapData, users, dimensions, cityData, cityCoords]);
 
   useEffect(() => {
@@ -808,7 +813,7 @@ const WorldMapWithUsers = () => {
             <div
               ref={mapRef}
               className="flex items-center justify-center"
-              style={{ width: '100%', height: 'auto' }}
+              style={{ width: '100%', height: `${dimensions.height}px` }}
             />
 
             {isLoading && (
@@ -820,7 +825,6 @@ const WorldMapWithUsers = () => {
                   left: 0,
                   width: '100%',
                   height: '100%',
-                  background: 'rgba(0, 0, 0, 0.5)',
                   zIndex: 10,
                   display: 'flex',
                   alignItems: 'center',
