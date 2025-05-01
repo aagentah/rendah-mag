@@ -543,7 +543,7 @@ export default function Sections({ body, fullWidth = false, ...props }) {
   };
 
   return (
-    <div className={`"rich-text ${fullWidth ? '' : 'container'}"`}>
+    <div className={`rich-text ${fullWidth ? '' : 'container'}`}>
       <div className="grid grid-cols-12 text-neutral-300 text-sm gap-y-4">
         {body.map((section, i) => renderSections(section, i))}
       </div>
