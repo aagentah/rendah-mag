@@ -74,6 +74,7 @@ export default async (req, res) => {
 
   try {
     const payload = req.body;
+    console.log('Received Kommo payload:', JSON.stringify(payload, null, 2)); // Debug: log full Kommo payload
 
     // Extract messages from the Kommo webhook payload
     let email = null;
