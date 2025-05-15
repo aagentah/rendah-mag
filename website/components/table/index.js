@@ -11,9 +11,9 @@ export default function Table({ rows, className = '' }) {
         return (
           <div
             key={index}
-            className={`flex justify-between border-b border-neutral-700 pb-2 ${
-              row.className || ''
-            }`}
+            className={`flex justify-between pb-2 ${
+              index !== rows.length - 1 ? 'border-b border-neutral-700' : ''
+            } ${row.className || ''}`}
           >
             <div className="text-neutral-500 pr-3 md:pr-4">{row.left}</div>
             <div

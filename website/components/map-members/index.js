@@ -728,9 +728,9 @@ const WorldMapWithUsers = () => {
           {!selectedCountry && (
             <div className="flex flex-col gap-y-4">
               <h1 className="text-neutral-300">Member Map</h1>
-              <p className="text-neutral-400 text-sm mb-4">
+              <p className="text-neutral-400 text-sm">
                 Explore creative context in each city; as presented from the
-                Rendah Mag members
+                Rendah Mag members.
               </p>
               <div className="map-key flex flex-col gap-1.5 min-w-[120px] border border-neutral-800 text-[11.5px] text-neutral-200 mt-0.5 mb-0.5 w-fit self-start">
                 <div className="flex items-center gap-1.5">
@@ -764,6 +764,15 @@ const WorldMapWithUsers = () => {
                   </span>
                 </div>
               </div>
+
+              <p className="text-neutral-500 text-xxs md:text-xs">
+                * Context is provided by members who have shared. If you would
+                like to add your city and country, feel free to email{' '}
+                <a href="mailto:dan@rendah.com" className="underline">
+                  dan@rendah.com
+                </a>
+                .
+              </p>
             </div>
           )}
           {(selectedCountry || selectedCity) && (
@@ -791,7 +800,7 @@ const WorldMapWithUsers = () => {
                   setCurrentUserIndex(0);
                 }
               }}
-              className={`text-sm text-rendah-red underline flex items-center gap-x-2 mb-4  ${
+              className={`text-sm text-rendah-red underline flex items-center gap-x-2  ${
                 selectedCountry || selectedCity ? 'opacity-100' : 'opacity-50'
               }`}
             >
@@ -810,6 +819,119 @@ const WorldMapWithUsers = () => {
             membersCount={membersCount}
             quoteMembersCount={quoteMembersCount}
           />
+          {/* Country select: only show when no country/city is selected, and only countries with context (red dots) */}
+          {!selectedCountry && !selectedCity && (
+            <div className="flex flex-col md:hidden">
+              <hr className="mb-8 border border-neutral-700 opacity-25 md:opacity-50" />
+
+              {/* why: allow mobile/desktop users to select a country with context directly */}
+              <label
+                htmlFor="country-select"
+                className="block text-xs text-neutral-400 mb-4"
+              >
+                Jump to country with context
+              </label>
+              <select
+                id="country-select"
+                className="bg-transparent text-neutral-300 border border-neutral-700 rounded px-2 py-1 text-sm"
+                defaultValue=""
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (!val) return;
+                  const countryId = Number(val);
+                  if (isNaN(countryId)) return;
+                  // find the country feature by numeric ID
+                  const country = filteredCountriesMemo.find(
+                    (c) => c.id === countryId
+                  );
+                  if (country) {
+                    handleCountryClick(country);
+                    zoomToCountryById(countryId);
+                  }
+                }}
+              >
+                <option value="">Select a country...</option>
+                {/** why: only show countries with at least one context city (red dot) */}
+                {Array.from(
+                  new Set(
+                    globalCityGroupsMemo
+                      .filter((ci) => ci.context)
+                      .map((ci) => ci.country)
+                  )
+                ).map((countryCode) => {
+                  const countryData = countryCodeMap[countryCode];
+                  if (!countryData) return null;
+                  const countryId = countryData.id;
+                  const countryName = Array.isArray(countryData.name)
+                    ? countryData.name[0]
+                    : countryData.name;
+                  return (
+                    <option key={countryId} value={countryId}>
+                      {countryName}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          )}
+          {/* City select: only show when a country is selected but not a city, and only cities with context (red dots) in that country */}
+          {selectedCountry && !selectedCity && (
+            <div className="flex flex-col md:hidden">
+              <hr className="mb-8 border border-neutral-700 opacity-25 md:opacity-50" />
+
+              {/* why: allow users to jump directly to a city with context in the selected country */}
+              <label
+                htmlFor="city-select"
+                className="block text-xs text-neutral-400 mb-4"
+              >
+                Jump to city with context
+              </label>
+              <select
+                id="city-select"
+                className="bg-transparent text-neutral-300 border border-neutral-700 rounded px-2 py-1 text-sm"
+                defaultValue=""
+                onChange={(e) => {
+                  const cityKey = e.target.value;
+                  if (!cityKey) return;
+                  // why: find the cityInfo object for handleCityClick
+                  const cityInfo = globalCityGroupsMemo.find(
+                    (ci) =>
+                      ci.context &&
+                      ci.city.toLowerCase().trim() +
+                        '|' +
+                        ci.country.toUpperCase().trim() ===
+                        cityKey
+                  );
+                  if (cityInfo) handleCityClick(cityInfo);
+                }}
+              >
+                <option value="">Select a city...</option>
+                {globalCityGroupsMemo
+                  .filter(
+                    (ci) =>
+                      ci.context &&
+                      countryCodeMap[ci.country] &&
+                      countryCodeMap[ci.country].id === selectedCountryId
+                  )
+                  .map((ci) => (
+                    <option
+                      key={
+                        ci.city.toLowerCase().trim() +
+                        '|' +
+                        ci.country.toUpperCase().trim()
+                      }
+                      value={
+                        ci.city.toLowerCase().trim() +
+                        '|' +
+                        ci.country.toUpperCase().trim()
+                      }
+                    >
+                      {ci.city}
+                    </option>
+                  ))}
+              </select>
+            </div>
+          )}
           <div className="block">
             {selectedCity && (
               <div className={` ${fadeIn ? 'opacity-90' : 'opacity-0'}`}>
@@ -1080,7 +1202,8 @@ const WorldMapWithUsers = () => {
               </g>
             </svg>
             {/* Tooltip as React element */}
-            {tooltip.visible && (
+            {tooltip.visible && app.deviceSize !== 'md' && (
+              // why: Hide tooltip on mobile (deviceSize === 'md') for better UX
               <div
                 className="tooltip"
                 style={{
