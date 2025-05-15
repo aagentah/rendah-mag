@@ -232,14 +232,19 @@ export default function Profile({ siteConfig }) {
                     <span>Prints</span>
                   </button>
                   <button
-                    disabled
-                    className={`text-left md:text-center col-span-12 py-2 px-4 border-l md:border-b md:border-t-0 md:border-r-0 md:border-l-0 border-neutral-300 cursor-not-allowed text-sm transition-colors duration-300 ${
+                    onClick={() =>
+                      router.push({
+                        pathname: router.pathname,
+                        query: { tab: 'map' },
+                      })
+                    }
+                    className={`text-left md:text-center col-span-12 py-2 px-4 border-l md:border-b md:border-t-0 md:border-r-0 md:border-l-0 border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
                       filter === 'map'
                         ? 'bg-neutral-300 text-neutral-800'
-                        : 'text-neutral-500'
+                        : 'text-neutral-300'
                     }`}
                   >
-                    <span>[Coming Soon]</span>
+                    <span>Member Map</span>
                   </button>
                   <button
                     onClick={() =>

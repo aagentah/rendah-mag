@@ -21,6 +21,8 @@ import Table from '~/components/table';
 
 import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
+import { useApp } from '~/context-provider/app';
+
 const countryNameToCodeMap = {};
 Object.entries(countryCodeMap).forEach(([code, data]) => {
   if (Array.isArray(data.name)) {
@@ -35,8 +37,8 @@ Object.entries(countryCodeMap).forEach(([code, data]) => {
 const BUBBLE_STYLES = {
   context: { fill: 'rgba(255, 0, 0, 0.9)', stroke: 'rgba(255, 0, 0, 1)' },
   default: {
-    fill: 'rgb(170, 170, 170, 0.7)',
-    stroke: 'rgb(170, 170, 170, 8)',
+    fill: 'rgb(170, 170, 170, 0.25)',
+    stroke: 'rgb(170, 170, 170, 5)',
   },
 };
 
@@ -82,10 +84,6 @@ const StatsTable = memo(
 
 const WorldMapWithUsers = () => {
   const mapRef = useRef(null);
-  const svgRef = useRef(null);
-  const gCountriesRef = useRef(null);
-  const gBubblesRef = useRef(null);
-  const currentTransform = useRef('translate(0,0) scale(1)');
   const cityCoordsRef = useRef({});
   const [users, setUsers] = useState([]);
   const [mapData, setMapData] = useState(null);
@@ -99,6 +97,24 @@ const WorldMapWithUsers = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isCityCoordsFetched, setIsCityCoordsFetched] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
+  const [showFade, setShowFade] = useState(false);
+  const quoteBoxRef = useRef(null);
+  const app = useApp();
+  const [cityCoordsCache, setCityCoordsCache] = useState(null); // cache from city-coords.json
+  const [visibleCityCount, setVisibleCityCount] = useState(0); // why: controls how many city bubbles are visible for animated reveal
+
+  // Tooltip state for React tooltip
+  const [tooltip, setTooltip] = useState({
+    visible: false,
+    x: 0,
+    y: 0,
+    content: '',
+  });
+
+  // Add refs for <g> groups to enable D3 transitions for zoom/fade
+  const countriesGroupRef = useRef(null); // why: needed for D3 zoom transitions
+  const bubblesGroupRef = useRef(null); // why: needed for D3 zoom transitions
+  const currentTransform = useRef('translate(0,0) scale(1)'); // why: preserve transform state for transitions
 
   const projectionMemo = useMemo(() => {
     if (!mapData || dimensions.width === 0) return null;
@@ -162,33 +178,54 @@ const WorldMapWithUsers = () => {
     setFadeIn(!!selectedCity);
   }, [selectedCity]);
 
+  const getCityCoords = useCallback(
+    (city, country) => {
+      if (!city || !country) return null;
+      const key = `${city.toLowerCase().trim()}|${country
+        .toUpperCase()
+        .trim()}`;
+      if (cityCoords[key]) return cityCoords[key];
+      // fallback: try city only (legacy)
+      const legacyKey = city.toLowerCase().trim();
+      if (cityCoords[legacyKey]) return cityCoords[legacyKey];
+      return null;
+    },
+    [cityCoords]
+  );
+
   const getCityPointInCountry = useCallback(
-    (key) => {
+    (city, country) => {
       const projection = projectionMemo;
       if (!projection) return null;
-      const lowerKey = key.toLowerCase();
-      if (cityCoords[lowerKey]) {
-        return projection(cityCoords[lowerKey]);
+      const coords = getCityCoords(city, country);
+      if (coords) {
+        return projection(coords);
       }
-      let country = lookupCaseInsensitive(cityData, key);
-      if (!country) {
+      // fallback: try old cityData logic
+      const lowerKey = city && city.toLowerCase();
+      let countryObj = lookupCaseInsensitive(cityData, city);
+      if (!countryObj) {
         const code = countryNameToCodeMap[lowerKey];
         if (code) {
-          country = lookupCaseInsensitive(cityData, code);
+          countryObj = lookupCaseInsensitive(cityData, code);
         }
-        if (!country) {
-          const matchingCode = findCountryCode(key);
+        if (!countryObj) {
+          const matchingCode = findCountryCode(city);
           if (matchingCode) {
-            country = lookupCaseInsensitive(cityData, matchingCode);
+            countryObj = lookupCaseInsensitive(cityData, matchingCode);
           }
         }
       }
-      if (!country || !country.coordinates || !country.coordinates.length) {
+      if (
+        !countryObj ||
+        !countryObj.coordinates ||
+        !countryObj.coordinates.length
+      ) {
         return null;
       }
-      return projection([country.coordinates[1], country.coordinates[0]]);
+      return projection([countryObj.coordinates[1], countryObj.coordinates[0]]);
     },
-    [cityCoords, cityData, projectionMemo]
+    [cityCoords, cityData, projectionMemo, getCityCoords]
   );
 
   const applyInteractivity = useCallback(
@@ -243,7 +280,10 @@ const WorldMapWithUsers = () => {
           bubble.on('click', function () {
             setSelectedCity(cityInfo);
             setCurrentUserIndex(0);
-            const point = getCityPointInCountry(cityInfo.city);
+            const point = getCityPointInCountry(
+              cityInfo.city,
+              cityInfo.country
+            );
             if (point) {
               const scale = scaleValue;
               const translate = [
@@ -251,12 +291,11 @@ const WorldMapWithUsers = () => {
                 dimensions.height / 2 - scale * point[1],
               ];
               const transformString = `translate(${translate}) scale(${scale})`;
-              currentTransform.current = transformString;
-              gCountriesRef.current
+              d3.select(countriesGroupRef.current)
                 .transition()
                 .duration(750)
                 .attr('transform', transformString);
-              gBubblesRef.current
+              d3.select(bubblesGroupRef.current)
                 .transition()
                 .duration(750)
                 .attr('transform', transformString);
@@ -266,6 +305,43 @@ const WorldMapWithUsers = () => {
       }
     },
     [selectedCountry, dimensions, getCityPointInCountry]
+  );
+
+  const zoomToCountryById = useCallback(
+    (countryId) => {
+      // Helper to zoom to a country by its id (used for both country click and city->country back)
+      if (!pathMemo || !dimensions.width || !dimensions.height) return;
+      const countryFeature = filteredCountriesMemo.find(
+        (c) => c.id === countryId
+      );
+      if (!countryFeature) return;
+      const [[cx0, cy0], [cx1, cy1]] = pathMemo.bounds(countryFeature);
+      const dx = cx1 - cx0;
+      const dy = cy1 - cy0;
+      const x = (cx0 + cx1) / 2;
+      const y = (cy0 + cy1) / 2;
+      const scale = Math.max(
+        1,
+        Math.min(
+          12,
+          0.9 / Math.max(dx / dimensions.width, dy / dimensions.height)
+        )
+      );
+      const translate = [
+        dimensions.width / 2 - scale * x,
+        dimensions.height / 2 - scale * y,
+      ];
+      const transformString = `translate(${translate}) scale(${scale})`;
+      d3.select(countriesGroupRef.current)
+        .transition()
+        .duration(750)
+        .attr('transform', transformString);
+      d3.select(bubblesGroupRef.current)
+        .transition()
+        .duration(750)
+        .attr('transform', transformString);
+    },
+    [pathMemo, filteredCountriesMemo, dimensions]
   );
 
   useEffect(() => {
@@ -348,118 +424,215 @@ const WorldMapWithUsers = () => {
   }, []);
 
   useEffect(() => {
-    if (users.length === 0) return;
-    const uniqueCities = Array.from(
+    // Load city-coords.json cache on mount for fast city coordinate lookup
+    fetch('/map/city-coords.json')
+      .then((res) => res.json())
+      .then((data) => setCityCoordsCache(data))
+      .catch((err) => {
+        console.error('Failed to load city-coords.json', err);
+        setCityCoordsCache({});
+      });
+  }, []);
+
+  useEffect(() => {
+    if (users.length === 0 || !cityCoordsCache) return;
+    // why: Use city+country as key to disambiguate cities with same name in different countries
+    const uniqueCityCountryPairs = Array.from(
       new Set(
-        users.map((u) => u.city && u.city.toLowerCase().trim()).filter(Boolean)
+        users
+          .filter((u) => u.city && u.country)
+          .map(
+            (u) =>
+              `${u.city.toLowerCase().trim()}|${u.country.toUpperCase().trim()}`
+          )
       )
     );
-    const citiesToFetch = uniqueCities.filter(
-      (city) => !(city in cityCoordsRef.current)
+    // Use cache for all city-country pairs we can
+    uniqueCityCountryPairs.forEach((cityCountryKey) => {
+      if (cityCoordsCache[cityCountryKey]) {
+        cityCoordsRef.current[cityCountryKey] = cityCoordsCache[cityCountryKey];
+      }
+    });
+    // Only fetch coords for city-country pairs not in cache
+    const pairsToFetch = uniqueCityCountryPairs.filter(
+      (key) => !(key in cityCoordsRef.current)
     );
-    if (citiesToFetch.length === 0) {
+    if (pairsToFetch.length === 0) {
+      setCityCoords({ ...cityCoordsRef.current });
       setIsCityCoordsFetched(true);
       return;
     }
+    // Fallback: fetch missing city-country pairs from API, log for future cache update
     Promise.all(
-      citiesToFetch.map(async (city) => {
+      pairsToFetch.map(async (cityCountryKey) => {
+        const [city, country] = cityCountryKey.split('|');
         try {
           const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(
             city
-          )}&count=1&language=en&format=json`;
+          )}&count=5&language=en&format=json`;
           const response = await fetch(url);
           const data = await response.json();
           if (data.results && data.results.length > 0) {
-            const result = data.results[0];
-            return { city, coords: [result.longitude, result.latitude] };
+            // Try to find the result matching the country code
+            const match = data.results.find(
+              (r) => r.country_code && r.country_code.toUpperCase() === country
+            );
+            const result = match || data.results[0];
+            // why: Log for future cache update with city+country key
+            console.warn(
+              'City-country missing from cache, add to city-coords.json:',
+              cityCountryKey,
+              [result.longitude, result.latitude]
+            );
+            return {
+              cityCountryKey,
+              coords: [result.longitude, result.latitude],
+            };
           }
         } catch {
-          return { city, coords: null };
+          return { cityCountryKey, coords: null };
         }
-        return { city, coords: null };
+        return { cityCountryKey, coords: null };
       })
     ).then((results) => {
-      results.forEach(({ city, coords }) => {
+      results.forEach(({ cityCountryKey, coords }) => {
         if (coords) {
-          cityCoordsRef.current[city] = coords;
+          cityCoordsRef.current[cityCountryKey] = coords;
         }
       });
       setCityCoords({ ...cityCoordsRef.current });
       setIsCityCoordsFetched(true);
     });
-  }, [users]);
+  }, [users, cityCoordsCache]);
 
-  useEffect(() => {
-    if (
-      !mapData ||
-      !projectionMemo ||
-      !pathMemo ||
-      !filteredCountriesMemo.length
-    )
-      return;
-    if (!svgRef.current) {
-      svgRef.current = d3
-        .select(mapRef.current)
-        .append('svg')
-        .style('width', '100%')
-        .style('height', 'auto');
-      gCountriesRef.current = svgRef.current.append('g');
-      gBubblesRef.current = svgRef.current.append('g');
-      svgRef.current
-        .append('div')
-        .attr('class', 'tooltip')
-        .style('position', 'absolute')
-        .style('visibility', 'hidden')
-        .style('background-color', 'rgba(0,0,0,0.7)')
-        .style('color', '#d4d4d4')
-        .style('padding', '8px')
-        .style('border-radius', '4px')
-        .style('font-size', '12px')
-        .style('pointer-events', 'none');
-    }
-    const featureCollection = {
-      type: 'FeatureCollection',
-      features: filteredCountriesMemo,
-    };
-    const [[x0, y0], [x1, y1]] = pathMemo.bounds(featureCollection);
-    const boxWidth = x1 - x0;
-    const boxHeight = y1 - y0;
-    svgRef.current.attr('viewBox', `${x0} ${y0} ${boxWidth} ${boxHeight}`);
-
-    const memberCountryIds = new Set();
+  // Calculate memberCountryIds for fill/click logic
+  const memberCountryIds = useMemo(() => {
+    const ids = new Set();
     normalizedUsers.forEach((u) => {
       if (u.countryCode && countryCodeMap[u.countryCode]) {
-        memberCountryIds.add(countryCodeMap[u.countryCode].id);
+        ids.add(countryCodeMap[u.countryCode].id);
       }
     });
+    return ids;
+  }, [normalizedUsers]);
 
-    const countriesSel = gCountriesRef.current
-      .selectAll('path.country')
-      .data(filteredCountriesMemo, (d) => d.id);
-
-    countriesSel
-      .enter()
-      .append('path')
-      .attr('class', 'country')
-      .merge(countriesSel)
-      .attr('d', pathMemo)
-      .attr('fill', (d) => (memberCountryIds.has(d.id) ? '#525252' : '#404040'))
-      .attr('opacity', '1')
-      .attr('cursor', (d) =>
-        memberCountryIds.has(d.id) ? 'pointer' : 'not-allowed'
-      )
-      .attr('stroke', '#212121')
-      .attr('stroke-width', 0.5)
-      .on('click', function (event, d) {
-        if (!memberCountryIds.has(d.id)) return;
-        let countryName = 'Selected Country';
-        for (const [code, data] of Object.entries(countryCodeMap)) {
-          if (data.id === d.id) {
-            countryName = Array.isArray(data.name) ? data.name[0] : data.name;
-            break;
-          }
+  // Helper for country click
+  const handleCountryClick = useCallback(
+    (d) => {
+      if (!memberCountryIds.has(d.id)) return;
+      let countryName = 'Selected Country';
+      for (const [code, data] of Object.entries(countryCodeMap)) {
+        if (data.id === d.id) {
+          countryName = Array.isArray(data.name) ? data.name[0] : data.name;
+          break;
         }
-        const [[cx0, cy0], [cx1, cy1]] = pathMemo.bounds(d);
+      }
+      // Zoom logic: for now, just set selected
+      setSelectedCountryId(d.id);
+      setSelectedCountry(countryName);
+      setSelectedCity(null);
+    },
+    [memberCountryIds]
+  );
+
+  // Helper for city bubble click
+  const handleCityClick = useCallback((cityInfo) => {
+    setSelectedCity(cityInfo);
+    setCurrentUserIndex(0);
+    // Zoom logic can be added here if needed
+  }, []);
+
+  // Mouse events for tooltip
+  const handleBubbleMouseOver = (event, cityInfo) => {
+    setTooltip({
+      visible: true,
+      x: event.clientX,
+      y: event.clientY,
+      content: `${cityInfo.city}: ${cityInfo.count} members`,
+    });
+  };
+  const handleBubbleMouseOut = () => {
+    setTooltip({ visible: false, x: 0, y: 0, content: '' });
+  };
+
+  const globalCityGroupsMemo = useMemo(() => {
+    const byCity = {};
+    normalizedUsers.forEach((u) => {
+      if (!u.city || !u.countryCode) return;
+      const key = u.city.toLowerCase().trim();
+      if (!byCity[key]) {
+        byCity[key] = {
+          city: u.city,
+          country: u.countryCode,
+          count: 0,
+          context: false,
+          users: [],
+        };
+      }
+      byCity[key].count++;
+      if (u.quote) byCity[key].context = true;
+      byCity[key].users.push(u);
+    });
+    // Only include cities with valid coordinates
+    return Object.values(byCity).filter((ci) =>
+      getCityPointInCountry(ci.city, ci.country)
+    );
+  }, [normalizedUsers, getCityPointInCountry]);
+
+  const filteredUsers = useMemo(
+    () =>
+      selectedCity && selectedCity.users
+        ? selectedCity.users.filter((u) => u.quote)
+        : [],
+    [selectedCity]
+  );
+
+  const currentUser = filteredUsers[currentUserIndex] || null;
+
+  useEffect(() => {
+    const el = quoteBoxRef.current;
+    if (!el) return;
+    const checkFade = () => {
+      setShowFade(
+        el.scrollHeight > el.clientHeight &&
+          el.scrollTop + el.clientHeight < el.scrollHeight - 2
+      );
+    };
+    checkFade();
+    el.addEventListener('scroll', checkFade);
+    window.addEventListener('resize', checkFade);
+    return () => {
+      el.removeEventListener('scroll', checkFade);
+      window.removeEventListener('resize', checkFade);
+    };
+  }, [currentUser, dimensions.height]);
+
+  // D3 transition for zoom/fade on country/city selection
+  useEffect(() => {
+    if (
+      !pathMemo ||
+      !filteredCountriesMemo.length ||
+      !dimensions.width ||
+      !dimensions.height
+    )
+      return;
+    // Helper to get transform for a country or reset
+    const getTransform = (countryId, cityPoint, scaleOverride) => {
+      if (cityPoint) {
+        // Zoom to city
+        const scale = scaleOverride || 6;
+        const translate = [
+          dimensions.width / 2 - scale * cityPoint[0],
+          dimensions.height / 2 - scale * cityPoint[1],
+        ];
+        return `translate(${translate}) scale(${scale})`;
+      }
+      if (countryId) {
+        const countryFeature = filteredCountriesMemo.find(
+          (c) => c.id === countryId
+        );
+        if (!countryFeature) return 'translate(0,0) scale(1)';
+        const [[cx0, cy0], [cx1, cy1]] = pathMemo.bounds(countryFeature);
         const dx = cx1 - cx0;
         const dy = cy1 - cy0;
         const x = (cx0 + cx1) / 2;
@@ -475,144 +648,78 @@ const WorldMapWithUsers = () => {
           dimensions.width / 2 - scale * x,
           dimensions.height / 2 - scale * y,
         ];
-        const transformString = `translate(${translate}) scale(${scale})`;
-        currentTransform.current = transformString;
-        gCountriesRef.current
+        return `translate(${translate}) scale(${scale})`;
+      }
+      return 'translate(0,0) scale(1)';
+    };
+    let targetTransform = 'translate(0,0) scale(1)';
+    if (
+      selectedCity &&
+      getCityPointInCountry(selectedCity.city, selectedCity.country)
+    ) {
+      targetTransform = getTransform(
+        null,
+        getCityPointInCountry(selectedCity.city, selectedCity.country),
+        6
+      );
+    } else if (selectedCountryId) {
+      targetTransform = getTransform(selectedCountryId);
+    }
+    // Only animate if transform changes
+    if (currentTransform.current !== targetTransform) {
+      if (countriesGroupRef.current && bubblesGroupRef.current) {
+        d3.select(countriesGroupRef.current)
           .transition()
           .duration(750)
-          .attr('transform', transformString);
-        gBubblesRef.current
+          .attr('transform', targetTransform);
+        d3.select(bubblesGroupRef.current)
           .transition()
           .duration(750)
-          .attr('transform', transformString);
-        setSelectedCountryId(d.id);
-        setSelectedCountry(countryName);
-        setSelectedCity(null);
-      });
-
-    countriesSel.exit().remove();
+          .attr('transform', targetTransform);
+      }
+      currentTransform.current = targetTransform;
+    }
   }, [
-    mapData,
-    projectionMemo,
+    selectedCountryId,
+    selectedCity,
     pathMemo,
     filteredCountriesMemo,
     dimensions,
-    normalizedUsers,
+    getCityPointInCountry,
   ]);
 
-  const globalCityGroupsMemo = useMemo(() => {
-    const byCity = {};
-    normalizedUsers.forEach((u) => {
-      if (!u.city) return;
-      const key = u.city.toLowerCase().trim();
-      if (!byCity[key]) {
-        byCity[key] = {
-          city: u.city,
-          count: 0,
-          country: u.countryCode,
-          context: false,
-          users: [],
-        };
-      }
-      byCity[key].count++;
-      if (u.quote) byCity[key].context = true;
-      byCity[key].users.push(u);
-    });
-    return Object.values(byCity).filter((ci) => getCityPointInCountry(ci.city));
-  }, [normalizedUsers, getCityPointInCountry]);
-
+  // Animated reveal of city bubbles (why: visually engaging, zero regression to interactivity)
   useEffect(() => {
-    if (!gBubblesRef.current) return;
-    const fixedRadius = 1;
-    const fixedRadiusContext = 2;
-
-    const bubbles = gBubblesRef.current
-      .selectAll('circle')
-      .data(globalCityGroupsMemo, (d) => d.city);
-
-    bubbles
-      .enter()
-      .append('circle')
-      .merge(bubbles)
-      .attr('cx', (d) => getCityPointInCountry(d.city)[0])
-      .attr('cy', (d) => getCityPointInCountry(d.city)[1])
-      .attr('r', (d) => (d.context ? fixedRadiusContext : fixedRadius))
-      .attr(
-        'fill',
-        (d) => BUBBLE_STYLES[d.context ? 'context' : 'default'].fill
-      )
-      .attr(
-        'stroke',
-        (d) => BUBBLE_STYLES[d.context ? 'context' : 'default'].stroke
-      )
-      .attr('stroke-width', 0.1)
-      .each(function (d) {
-        applyInteractivity(d3.select(this), d, 6);
-      });
-
-    bubbles.exit().remove();
-    gBubblesRef.current
-      .selectAll('circle')
-      .sort((a, b) => d3.ascending(a.context ? 1 : 0, b.context ? 1 : 0));
-  }, [globalCityGroupsMemo, applyInteractivity]);
-
-  useEffect(() => {
-    if (!svgRef.current) return;
-    if (selectedCity) {
-      let code = selectedCity.country;
-      let cityCountryId = null;
-      if (code && countryCodeMap[code]) {
-        cityCountryId = countryCodeMap[code].id;
-      }
-      svgRef.current
-        .selectAll('path.country')
-        .transition()
-        .duration(750)
-        .attr('opacity', (d) => (d.id === cityCountryId ? '0.1' : '0'));
-    } else if (selectedCountryId) {
-      svgRef.current
-        .selectAll('path.country')
-        .transition()
-        .duration(750)
-        .attr('opacity', (d) => (d.id === selectedCountryId ? '1' : '0.1'));
-    } else {
-      svgRef.current
-        .selectAll('path.country')
-        .transition()
-        .duration(750)
-        .attr('opacity', '1');
+    // Only animate on initial load or when city set changes
+    if (!globalCityGroupsMemo.length) {
+      setVisibleCityCount(0);
+      return;
     }
-  }, [selectedCity, selectedCountryId]);
-
-  useEffect(() => {
-    if (!svgRef.current) return;
-    svgRef.current
-      .select('g:nth-of-type(2)')
-      .selectAll('circle')
-      .transition()
-      .duration(750)
-      .attr('opacity', function () {
-        if (selectedCity) return '0.05';
-        if (!selectedCountryId) return '1';
-        const cityInfo = d3.select(this).datum();
-        if (!cityInfo || !cityInfo.country) return '';
-        if (countryCodeMap[cityInfo.country]) {
-          const bubbleCountryId = countryCodeMap[cityInfo.country].id;
-          return bubbleCountryId === selectedCountryId ? '1' : '0';
-        }
-        return '0';
+    setVisibleCityCount(0); // reset on new data
+    let batch = 5; // how many bubbles per tick
+    let interval = 10; // ms per tick
+    let cancelled = false;
+    function step() {
+      setVisibleCityCount((prev) => {
+        if (prev >= globalCityGroupsMemo.length) return prev;
+        return Math.min(prev + batch, globalCityGroupsMemo.length);
       });
-  }, [selectedCountryId, selectedCity]);
-
-  const filteredUsers = useMemo(
-    () =>
-      selectedCity && selectedCity.users
-        ? selectedCity.users.filter((u) => u.quote)
-        : [],
-    [selectedCity]
-  );
-
-  const currentUser = filteredUsers[currentUserIndex] || null;
+    }
+    // Animate until all visible
+    let timer = setInterval(() => {
+      setVisibleCityCount((prev) => {
+        if (prev >= globalCityGroupsMemo.length) {
+          clearInterval(timer);
+          return prev;
+        }
+        return Math.min(prev + batch, globalCityGroupsMemo.length);
+      });
+    }, interval);
+    return () => {
+      clearInterval(timer);
+      cancelled = true;
+    };
+  }, [globalCityGroupsMemo.length]);
 
   return (
     <>
@@ -625,27 +732,67 @@ const WorldMapWithUsers = () => {
                 Explore creative context in each city; as presented from the
                 Rendah Mag members
               </p>
+              <div className="map-key flex flex-col gap-1.5 min-w-[120px] border border-neutral-800 text-[11.5px] text-neutral-200 mt-0.5 mb-0.5 w-fit self-start">
+                <div className="flex items-center gap-1.5">
+                  <span
+                    className="inline-block w-2.5 h-2.5 rounded-full mr-1.5"
+                    style={{
+                      background: 'rgba(255,0,0,0.9)',
+                      border: '1.5px solid rgba(255,0,0,1)',
+                    }}
+                  />
+                  <span className="text-neutral-300">
+                    Active member{' '}
+                    <span className="text-[#ff4d4d] font-medium">
+                      provided context
+                    </span>
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span
+                    className="inline-block w-2.5 h-2.5 rounded-full mr-1.5"
+                    style={{
+                      background: 'rgba(170,170,170,0.25)',
+                      border: '1.5px solid rgba(170,170,170,0.5)',
+                    }}
+                  />
+                  <span className="text-neutral-200">
+                    Active member{' '}
+                    <span className="text-neutral-300 font-medium">
+                      no context yet
+                    </span>
+                  </span>
+                </div>
+              </div>
             </div>
           )}
-          {selectedCountry && (
+          {(selectedCountry || selectedCity) && (
             <button
               onClick={() => {
-                currentTransform.current = 'translate(0,0) scale(1)';
-                gCountriesRef.current
-                  .transition()
-                  .duration(750)
-                  .attr('transform', currentTransform.current);
-                gBubblesRef.current
-                  .transition()
-                  .duration(750)
-                  .attr('transform', currentTransform.current);
-                setSelectedCountry(null);
-                setSelectedCity(null);
-                setSelectedCountryId(null);
-                setCurrentUserIndex(0);
+                if (selectedCity) {
+                  // If a city is selected, go back to the country view only (preserve selectedCountry/selectedCountryId)
+                  if (selectedCountryId) {
+                    zoomToCountryById(selectedCountryId); // Zoom to country on city->country back
+                  }
+                  setSelectedCity(null);
+                  setCurrentUserIndex(0);
+                } else {
+                  d3.select(countriesGroupRef.current)
+                    .transition()
+                    .duration(750)
+                    .attr('transform', 'translate(0,0) scale(1)');
+                  d3.select(bubblesGroupRef.current)
+                    .transition()
+                    .duration(750)
+                    .attr('transform', 'translate(0,0) scale(1)');
+                  setSelectedCountry(null);
+                  setSelectedCity(null);
+                  setSelectedCountryId(null);
+                  setCurrentUserIndex(0);
+                }
               }}
               className={`text-sm text-rendah-red underline flex items-center gap-x-2 mb-4  ${
-                selectedCountry ? 'opacity-100' : 'opacity-50'
+                selectedCountry || selectedCity ? 'opacity-100' : 'opacity-50'
               }`}
             >
               <FontAwesomeIcon
@@ -703,11 +850,38 @@ const WorldMapWithUsers = () => {
                     <h3 className="text-neutral-300 mb-2">
                       {currentUser.name && currentUser.name}:{' '}
                     </h3>
-                    <div className="rich-text-spacing text-sm text-neutral-400">
-                      <BlockContent
-                        blocks={currentUser.quote}
-                        serializers={SANITY_BLOCK_SERIALIZERS}
-                      />
+                    <div style={{ position: 'relative' }}>
+                      <div
+                        className="rich-text-spacing text-xs text-neutral-400"
+                        style={{
+                          maxHeight:
+                            app.deviceSize !== 'md'
+                              ? `${dimensions.height - 120}px`
+                              : undefined,
+                          overflowY:
+                            app.deviceSize !== 'md' ? 'auto' : 'hidden',
+                        }}
+                        ref={quoteBoxRef}
+                      >
+                        <BlockContent
+                          blocks={currentUser.quote}
+                          serializers={SANITY_BLOCK_SERIALIZERS}
+                        />
+                      </div>
+                      {showFade && (
+                        <div
+                          style={{
+                            position: 'absolute',
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            height: '56px',
+                            pointerEvents: 'none',
+                            background:
+                              'linear-gradient(to bottom, rgba(33,33,33,0) 0%, rgba(33,33,33,0.98) 100%)',
+                          }}
+                        />
+                      )}
                     </div>
                   </div>
                 )}
@@ -720,11 +894,211 @@ const WorldMapWithUsers = () => {
             className="overflow-hidden"
             style={{ display: 'flex', position: 'relative' }}
           >
-            <div
+            <svg
               ref={mapRef}
-              className="flex items-center justify-center"
-              style={{ width: '100%', height: `${dimensions.height}px` }}
-            />
+              width={dimensions.width}
+              height={dimensions.height}
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+              viewBox={
+                projectionMemo && mapData && pathMemo
+                  ? (() => {
+                      const featureCollection = {
+                        type: 'FeatureCollection',
+                        features: filteredCountriesMemo,
+                      };
+                      const [[x0, y0], [x1, y1]] =
+                        pathMemo.bounds(featureCollection);
+                      return `${x0} ${y0} ${x1 - x0} ${y1 - y0}`;
+                    })()
+                  : undefined
+              }
+            >
+              {/* Countries group for D3 zoom/fade transitions */}
+              <g
+                ref={countriesGroupRef} /* why: D3 transitions for zoom/fade */
+              >
+                {filteredCountriesMemo.map((country) => (
+                  <path
+                    key={country.id}
+                    className="country transition-opacity duration-700"
+                    d={pathMemo(country)}
+                    fill={
+                      memberCountryIds.has(country.id) ? '#525252' : '#404040'
+                    }
+                    opacity={
+                      selectedCity
+                        ? (() => {
+                            // Fade all except city country
+                            let code = selectedCity.country;
+                            let cityCountryId = null;
+                            if (code && countryCodeMap[code]) {
+                              cityCountryId = countryCodeMap[code].id;
+                            }
+                            return country.id === cityCountryId ? 0.1 : 0;
+                          })()
+                        : selectedCountryId
+                        ? country.id === selectedCountryId
+                          ? 1
+                          : 0.1
+                        : 1
+                    }
+                    cursor={
+                      memberCountryIds.has(country.id)
+                        ? 'pointer'
+                        : 'not-allowed'
+                    }
+                    stroke="#212121"
+                    strokeWidth={0.5}
+                    onClick={() => handleCountryClick(country)}
+                  />
+                ))}
+              </g>
+              {/* Bubbles group for D3 zoom/fade transitions */}
+              <g ref={bubblesGroupRef} /* why: D3 transitions for zoom/fade */>
+                {/* why: only render up to visibleCityCount for animated reveal */}
+                {/* why: render white (default) bubbles first, then red (context) bubbles so red dots are always on top */}
+                {globalCityGroupsMemo
+                  .slice(0, visibleCityCount)
+                  .filter((cityInfo) => !cityInfo.context)
+                  .map((cityInfo) => {
+                    const point = getCityPointInCountry(
+                      cityInfo.city,
+                      cityInfo.country
+                    );
+                    if (!point) return null;
+                    // Opacity logic as before
+                    let opacity = 1;
+                    if (selectedCity) {
+                      const selectedCityName = selectedCity.city
+                        ?.toLowerCase()
+                        .trim();
+                      const cityInfoName = cityInfo.city?.toLowerCase().trim();
+                      opacity =
+                        selectedCityName &&
+                        cityInfoName &&
+                        selectedCityName === cityInfoName
+                          ? 1
+                          : 0.05;
+                    } else if (selectedCountryId) {
+                      if (!cityInfo.country) opacity = '';
+                      else if (countryCodeMap[cityInfo.country]) {
+                        const bubbleCountryId =
+                          countryCodeMap[cityInfo.country].id;
+                        opacity = bubbleCountryId === selectedCountryId ? 1 : 0;
+                      } else {
+                        opacity = 0;
+                      }
+                    }
+                    return (
+                      <circle
+                        key={cityInfo.city}
+                        cx={point[0]}
+                        cy={point[1]}
+                        r={1}
+                        fill={BUBBLE_STYLES.default.fill}
+                        stroke={BUBBLE_STYLES.default.stroke}
+                        strokeWidth={0.1}
+                        opacity={opacity}
+                        style={{
+                          pointerEvents:
+                            selectedCountry && cityInfo.context
+                              ? 'auto'
+                              : 'none',
+                          cursor:
+                            selectedCountry && cityInfo.context
+                              ? 'pointer'
+                              : 'default',
+                        }}
+                        onMouseOver={(e) => handleBubbleMouseOver(e, cityInfo)}
+                        onMouseOut={handleBubbleMouseOut}
+                        onClick={() =>
+                          cityInfo.context && handleCityClick(cityInfo)
+                        }
+                      />
+                    );
+                  })}
+                {globalCityGroupsMemo
+                  .slice(0, visibleCityCount)
+                  .filter((cityInfo) => cityInfo.context)
+                  .map((cityInfo) => {
+                    const point = getCityPointInCountry(
+                      cityInfo.city,
+                      cityInfo.country
+                    );
+                    if (!point) return null;
+                    // Opacity logic as before
+                    let opacity = 1;
+                    if (selectedCity) {
+                      const selectedCityName = selectedCity.city
+                        ?.toLowerCase()
+                        .trim();
+                      const cityInfoName = cityInfo.city?.toLowerCase().trim();
+                      opacity =
+                        selectedCityName &&
+                        cityInfoName &&
+                        selectedCityName === cityInfoName
+                          ? 1
+                          : 0.05;
+                    } else if (selectedCountryId) {
+                      if (!cityInfo.country) opacity = '';
+                      else if (countryCodeMap[cityInfo.country]) {
+                        const bubbleCountryId =
+                          countryCodeMap[cityInfo.country].id;
+                        opacity = bubbleCountryId === selectedCountryId ? 1 : 0;
+                      } else {
+                        opacity = 0;
+                      }
+                    }
+                    return (
+                      <circle
+                        key={cityInfo.city}
+                        cx={point[0]}
+                        cy={point[1]}
+                        r={2}
+                        fill={BUBBLE_STYLES.context.fill}
+                        stroke={BUBBLE_STYLES.context.stroke}
+                        strokeWidth={0.1}
+                        opacity={opacity}
+                        style={{
+                          pointerEvents:
+                            selectedCountry && cityInfo.context
+                              ? 'auto'
+                              : 'none',
+                          cursor:
+                            selectedCountry && cityInfo.context
+                              ? 'pointer'
+                              : 'default',
+                        }}
+                        onMouseOver={(e) => handleBubbleMouseOver(e, cityInfo)}
+                        onMouseOut={handleBubbleMouseOut}
+                        onClick={() =>
+                          cityInfo.context && handleCityClick(cityInfo)
+                        }
+                      />
+                    );
+                  })}
+              </g>
+            </svg>
+            {/* Tooltip as React element */}
+            {tooltip.visible && (
+              <div
+                className="tooltip"
+                style={{
+                  position: 'fixed',
+                  top: tooltip.y + 10,
+                  left: tooltip.x + 10,
+                  backgroundColor: 'rgba(0,0,0,0.7)',
+                  color: '#d4d4d4',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  fontSize: '12px',
+                  pointerEvents: 'none',
+                  zIndex: 1000,
+                }}
+              >
+                {tooltip.content}
+              </div>
+            )}
             {isLoading && (
               <div
                 className="loading-overlay"
