@@ -52,7 +52,6 @@ export default class MyDocument extends Document {
             color="#000000"
           />
           <link rel="shortcut icon" href="/favicon/favicon.ico" />
-
           {/* Meta tags */}
           <meta name="msapplication-TileColor" content="#000000" />
           <meta
@@ -65,7 +64,6 @@ export default class MyDocument extends Document {
             content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
           />
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
-
           {/* Hotjar (only in Production) */}
           {isProduction && (
             <Script
@@ -87,44 +85,14 @@ export default class MyDocument extends Document {
               }}
             />
           )}
-
           {/* Meta Pixel (only in Production) */}
-          {isProduction && (
-            <>
-              {/* Meta Pixel Script: Facebook/Meta tracking, loaded after page interactive for analytics */}
-              <Script
-                id="meta-pixel"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                  __html: `!function(f,b,e,v,n,t,s)
-                  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                  n.queue=[];t=b.createElement(e);t.async=!0;
-                  t.src=v;s=b.getElementsByTagName(e)[0];
-                  s.parentNode.insertBefore(t,s)}(window, document,'script',
-                  'https://connect.facebook.net/en_US/fbevents.js');
-                  fbq('init', '2984009378374748');
-                  fbq('track', 'PageView');`,
-                }}
-              />
-            </>
-          )}
+          // REMOVED: Meta Pixel script and noscript fallback are now handled in
+          _app.js via react-facebook-pixel
         </Head>
 
         <body>
-          {/* Meta Pixel noscript fallback: ensures tracking for users with JS disabled */}
-          {isProduction && (
-            <noscript>
-              <img
-                height="1"
-                width="1"
-                style={{ display: 'none' }}
-                src="https://www.facebook.com/tr?id=2984009378374748&ev=PageView&noscript=1"
-                alt="Meta Pixel"
-              />
-            </noscript>
-          )}
+          // REMOVED: Meta Pixel noscript fallback is now handled in _app.js via
+          react-facebook-pixel
           <Main />
           <NextScript />
         </body>
