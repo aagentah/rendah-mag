@@ -188,7 +188,14 @@ export default function Product({ siteConfig, product }) {
                   loading={false}
                   disabled={false}
                   skeleton={false}
-                  onClick={null}
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && window.fbq) {
+                      console.log(
+                        'Meta Pixel: InitiateCheckout fired (product)'
+                      );
+                      window.fbq('track', 'InitiateCheckout');
+                    }
+                  }}
                   withLinkProps={{
                     type: 'external',
                     href: product?.stripeCheckoutUrl,
@@ -238,7 +245,12 @@ export default function Product({ siteConfig, product }) {
           loading={false}
           disabled={false}
           skeleton={false}
-          onClick={null}
+          onClick={() => {
+            if (typeof window !== 'undefined' && window.fbq) {
+              console.log('Meta Pixel: InitiateCheckout fired (product)');
+              window.fbq('track', 'InitiateCheckout');
+            }
+          }}
           withLinkProps={{
             type: 'external',
             href: product?.stripeCheckoutUrl,

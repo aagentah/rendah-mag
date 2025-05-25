@@ -290,7 +290,14 @@ export default function Dominion({ siteConfig }) {
                   loading={false}
                   disabled={false}
                   skeleton={false}
-                  onClick={null}
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && window.fbq) {
+                      console.log(
+                        'Meta Pixel: InitiateCheckout fired (membership)'
+                      );
+                      window.fbq('track', 'InitiateCheckout');
+                    }
+                  }}
                   /* Children */
                   withLinkProps={{
                     type: 'external',
