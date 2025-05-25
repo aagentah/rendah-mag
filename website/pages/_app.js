@@ -7,6 +7,7 @@ import PlausibleProvider from 'next-plausible';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { useUser } from '~/lib/hooks';
+import Script from 'next/script';
 
 import { AppProvider } from '~/context-provider/app';
 import {
@@ -88,60 +89,59 @@ function MyApp({ Component, pageProps }) {
   // Use scroll to top hook
   useScrollToTop();
 
-  // --- Meta Pixel (Facebook) Integration using official script ---
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'production') {
-      // Inject the Facebook Pixel base code (official snippet)
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod
-            ? n.callMethod.apply(n, arguments)
-            : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(
-        window,
-        document,
-        'script',
-        'https://connect.facebook.net/en_US/fbevents.js'
-      );
-      window.fbq('init', '2984009378374748'); // Your Pixel ID
-      window.fbq('track', 'PageView');
+  // --- Meta Pixel (Facebook) Integration using next/script ---
+  const isProduction = process.env.NODE_ENV === 'production';
 
-      // Track page views on route change (SPA navigation)
-      const handleRouteChange = () => {
+  useEffect(() => {
+    if (!isProduction) return;
+    // Track page views on route change (SPA navigation)
+    const handleRouteChange = () => {
+      if (window.fbq) {
         window.fbq('track', 'PageView');
-      };
-      Router.events.on('routeChangeComplete', handleRouteChange);
-      return () => {
-        Router.events.off('routeChangeComplete', handleRouteChange);
-      };
-    }
-  }, []);
+      }
+    };
+    Router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      Router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [isProduction]);
   // --- End Meta Pixel Integration ---
 
   return (
-    <PlausibleProvider domain="rendahmag.com">
-      <GoogleAnalytics gaId={GA_ID} />
-      <AppProvider>
-        <ParallaxProvider>
-          <DarkModeProvider>
-            <ApplyDarkMode />
-            {getLayout(<Component {...pageProps} />)}
-          </DarkModeProvider>
-        </ParallaxProvider>
-      </AppProvider>
-    </PlausibleProvider>
+    <>
+      {isProduction && (
+        <Script
+          id="facebook-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;
+              n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '2984009378374748');
+              fbq('track', 'PageView');
+            `,
+          }}
+        />
+      )}
+      <PlausibleProvider domain="rendahmag.com">
+        <GoogleAnalytics gaId={GA_ID} />
+        <AppProvider>
+          <ParallaxProvider>
+            <DarkModeProvider>
+              <ApplyDarkMode />
+              {getLayout(<Component {...pageProps} />)}
+            </DarkModeProvider>
+          </ParallaxProvider>
+        </AppProvider>
+      </PlausibleProvider>
+    </>
   );
 }
 
