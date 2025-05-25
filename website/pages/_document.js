@@ -85,14 +85,9 @@ export default class MyDocument extends Document {
               }}
             />
           )}
-          {/* Meta Pixel (only in Production) */}
-          // REMOVED: Meta Pixel script and noscript fallback are now handled in
-          _app.js via react-facebook-pixel
         </Head>
 
         <body>
-          // REMOVED: Meta Pixel noscript fallback is now handled in _app.js via
-          react-facebook-pixel
           <Main />
           <NextScript />
         </body>

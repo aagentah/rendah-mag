@@ -6,7 +6,7 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import PlausibleProvider from 'next-plausible';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { config } from '@fortawesome/fontawesome-svg-core';
-import ReactPixel from 'react-facebook-pixel'; // Meta Pixel for Facebook tracking
+import { addScriptDefault } from 'meta-pixel'; // Meta Pixel for Facebook tracking (alternative library)
 import { useUser } from '~/lib/hooks';
 
 import { AppProvider } from '~/context-provider/app';
@@ -89,16 +89,17 @@ function MyApp({ Component, pageProps }) {
   // Use scroll to top hook
   useScrollToTop();
 
-  // --- Meta Pixel (Facebook) Integration ---
+  // --- Meta Pixel (Facebook) Integration using meta-pixel ---
   useEffect(() => {
-    // Only initialize in production
     if (process.env.NODE_ENV === 'production') {
-      ReactPixel.init('2984009378374748'); // Your Meta Pixel ID
-      ReactPixel.pageView(); // Track initial page load
+      // Initialize Meta Pixel script and fbq function
+      const fbq = addScriptDefault();
+      fbq('init', '2984009378374748'); // Your Meta Pixel ID
+      fbq('track', 'PageView'); // Track initial page load
 
       // Track page views on route change
       const handleRouteChange = () => {
-        ReactPixel.pageView();
+        fbq('track', 'PageView');
       };
       Router.events.on('routeChangeComplete', handleRouteChange);
       return () => {
