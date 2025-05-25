@@ -6,7 +6,6 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import PlausibleProvider from 'next-plausible';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { config } from '@fortawesome/fontawesome-svg-core';
-import { addScriptDefault } from 'meta-pixel'; // Meta Pixel for Facebook tracking (alternative library)
 import { useUser } from '~/lib/hooks';
 
 import { AppProvider } from '~/context-provider/app';
@@ -89,22 +88,39 @@ function MyApp({ Component, pageProps }) {
   // Use scroll to top hook
   useScrollToTop();
 
-  // --- Meta Pixel (Facebook) Integration using meta-pixel ---
+  // --- Meta Pixel (Facebook) Integration using official script ---
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
-      // Initialize Meta Pixel script and fbq function
-      const fbq = addScriptDefault();
-      fbq('init', '2984009378374748'); // Your Meta Pixel ID
-      // Delay PageView to ensure script is loaded before firing event
-      setTimeout(() => {
-        fbq('track', 'PageView');
-      }, 500);
+      // Inject the Facebook Pixel base code (official snippet)
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        'script',
+        'https://connect.facebook.net/en_US/fbevents.js'
+      );
+      window.fbq('init', '2984009378374748'); // Your Pixel ID
+      window.fbq('track', 'PageView');
 
-      // Track page views on route change, also with delay
+      // Track page views on route change (SPA navigation)
       const handleRouteChange = () => {
-        setTimeout(() => {
-          fbq('track', 'PageView');
-        }, 500);
+        window.fbq('track', 'PageView');
       };
       Router.events.on('routeChangeComplete', handleRouteChange);
       return () => {
