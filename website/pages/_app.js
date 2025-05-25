@@ -89,15 +89,22 @@ function MyApp({ Component, pageProps }) {
   // Use scroll to top hook
   useScrollToTop();
 
-  // --- Meta Pixel (Facebook) Integration using next/script ---
+  // --- Meta Pixel (Facebook) Integration using next/script (robust version) ---
   const isProduction = process.env.NODE_ENV === 'production';
 
+  // SPA navigation: track PageView on route change, only if fbq is available
   useEffect(() => {
     if (!isProduction) return;
-    // Track page views on route change (SPA navigation)
     const handleRouteChange = () => {
       if (window.fbq) {
         window.fbq('track', 'PageView');
+      } else {
+        // Fallback: try again after a short delay if fbq isn't ready
+        setTimeout(() => {
+          if (window.fbq) {
+            window.fbq('track', 'PageView');
+          }
+        }, 500);
       }
     };
     Router.events.on('routeChangeComplete', handleRouteChange);
@@ -109,26 +116,48 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+      {/* Facebook Pixel: base code */}
       {isProduction && (
-        <Script
-          id="facebook-pixel"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;
-              n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '2984009378374748');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
+        <>
+          <Script
+            id="facebook-pixel-base"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                !function(f,b,e,v,n,t,s)
+                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;
+                n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+              `,
+            }}
+          />
+          {/* Facebook Pixel: init and first PageView event */}
+          <Script
+            id="facebook-pixel-init"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                if (window.fbq) {
+                  window.fbq('init', '2984009378374748');
+                  window.fbq('track', 'PageView');
+                } else {
+                  // Fallback: try again after a short delay if fbq isn't ready
+                  setTimeout(function() {
+                    if (window.fbq) {
+                      window.fbq('init', '2984009378374748');
+                      window.fbq('track', 'PageView');
+                    }
+                  }, 500);
+                }
+              `,
+            }}
+          />
+        </>
       )}
       <PlausibleProvider domain="rendahmag.com">
         <GoogleAnalytics gaId={GA_ID} />
