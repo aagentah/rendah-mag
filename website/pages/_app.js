@@ -95,11 +95,16 @@ function MyApp({ Component, pageProps }) {
       // Initialize Meta Pixel script and fbq function
       const fbq = addScriptDefault();
       fbq('init', '2984009378374748'); // Your Meta Pixel ID
-      fbq('track', 'PageView'); // Track initial page load
-
-      // Track page views on route change
-      const handleRouteChange = () => {
+      // Delay PageView to ensure script is loaded before firing event
+      setTimeout(() => {
         fbq('track', 'PageView');
+      }, 500);
+
+      // Track page views on route change, also with delay
+      const handleRouteChange = () => {
+        setTimeout(() => {
+          fbq('track', 'PageView');
+        }, 500);
       };
       Router.events.on('routeChangeComplete', handleRouteChange);
       return () => {
