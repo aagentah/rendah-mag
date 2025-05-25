@@ -291,12 +291,12 @@ export default function Dominion({ siteConfig }) {
                   disabled={false}
                   skeleton={false}
                   onClick={() => {
-                    if (typeof window !== 'undefined' && window.fbq) {
-                      console.log(
-                        'Meta Pixel: InitiateCheckout fired (membership)'
-                      );
-                      window.fbq('track', 'InitiateCheckout');
-                    }
+                    // if (typeof window !== 'undefined' && window.fbq) {
+                    //   console.log(
+                    //     'Meta Pixel: InitiateCheckout fired (membership)'
+                    //   );
+                    //   window.fbq('track', 'InitiateCheckout');
+                    // }
                   }}
                   /* Children */
                   withLinkProps={{

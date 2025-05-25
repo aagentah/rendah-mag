@@ -189,12 +189,12 @@ export default function Product({ siteConfig, product }) {
                   disabled={false}
                   skeleton={false}
                   onClick={() => {
-                    if (typeof window !== 'undefined' && window.fbq) {
-                      console.log(
-                        'Meta Pixel: InitiateCheckout fired (product)'
-                      );
-                      window.fbq('track', 'InitiateCheckout');
-                    }
+                    // if (typeof window !== 'undefined' && window.fbq) {
+                    //   console.log(
+                    //     'Meta Pixel: InitiateCheckout fired (product)'
+                    //   );
+                    //   window.fbq('track', 'InitiateCheckout');
+                    // }
                   }}
                   withLinkProps={{
                     type: 'external',
@@ -246,10 +246,10 @@ export default function Product({ siteConfig, product }) {
           disabled={false}
           skeleton={false}
           onClick={() => {
-            if (typeof window !== 'undefined' && window.fbq) {
-              console.log('Meta Pixel: InitiateCheckout fired (product)');
-              window.fbq('track', 'InitiateCheckout');
-            }
+            // if (typeof window !== 'undefined' && window.fbq) {
+            //   console.log('Meta Pixel: InitiateCheckout fired (product)');
+            //   window.fbq('track', 'InitiateCheckout');
+            // }
           }}
           withLinkProps={{
             type: 'external',
