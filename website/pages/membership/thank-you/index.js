@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+// import { useRouter } from 'next/router';
+// import { useEffect } from 'react';
 
 import Heading from '~/components/elements/heading';
 import Copy from '~/components/elements/copy';
@@ -9,16 +9,16 @@ import Container from '~/components/layout/container';
 import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function DominionThankYou({ siteConfig }) {
-  const router = useRouter();
+  // const router = useRouter();
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Purchase', {
-        // value: 0,
-        currency: 'GBP',
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined' && window.fbq) {
+  //     window.fbq('track', 'Purchase', {
+  //       // value: 0,
+  //       currency: 'GBP',
+  //     });
+  //   }
+  // }, []);
 
   return (
     <>

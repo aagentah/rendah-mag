@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import Heading from '~/components/elements/heading';
 import Copy from '~/components/elements/copy';
 import Layout from '~/components/layout';
@@ -8,14 +8,14 @@ import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function ProductThankYou({ siteConfig }) {
   // Fire Meta Pixel 'Purchase' event on page load (if available)
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Purchase', {
-        // value: 0, // Set to actual product value if known
-        currency: 'GBP',
-      });
-    }
-  }, []);
+  //   useEffect(() => {
+  //     if (typeof window !== 'undefined' && window.fbq) {
+  //       window.fbq('track', 'Purchase', {
+  //         // value: 0, // Set to actual product value if known
+  //         currency: 'GBP',
+  //       });
+  //     }
+  //   }, []);
 
   return (
     <>
