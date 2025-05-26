@@ -26,6 +26,8 @@ const renderRobots = (domainType) => {
     Disallow: /cookie-policy/
     Disallow: /terms-conditions/
     Disallow: /tool/
+    Disallow: /product/thank-you/
+    Disallow: /membership/thank-you/
     SITEMAP: http://www.rendahmag.com/feeds/sitemap.xml
     `;
   } else {
