@@ -1,27 +1,36 @@
-// import { useRouter } from 'next/router';
-// import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import Heading from '~/components/elements/heading';
 import Copy from '~/components/elements/copy';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
+import Head from 'next/head';
 
 import { getSiteConfig } from '~/lib/sanity/requests';
 
 export default function DominionThankYou({ siteConfig }) {
-  // const router = useRouter();
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined' && window.fbq) {
-  //     window.fbq('track', 'Purchase', {
-  //       // value: 0,
-  //       currency: 'GBP',
-  //     });
-  //   }
-  // }, []);
+  useEffect(() => {
+    // Only fire Purchase event if order and success params are present and order is a string
+    if (
+      typeof router.query.order === 'string' &&
+      router.query.success === '1' &&
+      typeof window !== 'undefined' &&
+      window.fbq
+    ) {
+      window.fbq('track', 'Purchase', {
+        currency: 'GBP',
+      });
+    }
+  }, [router.query]);
 
   return (
     <>
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
       <Layout
         navOffset="top"
         navOnWhite
