@@ -12,6 +12,7 @@ import ImageNew from '~/components/elements/image-new';
 import Label from '~/components/elements/label';
 import { useApp } from '~/context-provider/app';
 import Table from '~/components/table';
+import SubscriptionBanner from '~/components/subscription-banner';
 
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
@@ -385,6 +386,12 @@ export default function Product({ siteConfig, product }) {
             <div className="container my-12 md:my-16">
               <Timeline />
             </div>
+
+            <div className="container">
+              <hr className="my-12 md:my-16 border border-neutral-700 opacity-25 md:opacity-50" />
+            </div>
+
+            <SubscriptionBanner showDominionButton={false} />
           </article>
         </Layout>
       </div>
