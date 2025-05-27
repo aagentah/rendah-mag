@@ -240,7 +240,7 @@ export default function Dominion({ siteConfig }) {
                 rows={[
                   {
                     left: 'Price',
-                    right: '£11/month',
+                    right: '£12/month',
                     rightClassName: 'text-right',
                   },
                   {
@@ -251,7 +251,7 @@ export default function Dominion({ siteConfig }) {
                         <br />
                         Free Global Shipping
                         <br />
-                        Welcome Pack
+                        Sticker Pack
                       </span>
                     ),
                   },
@@ -303,7 +303,7 @@ export default function Dominion({ siteConfig }) {
                     type: 'external',
                     href: isTrial
                       ? 'https://buy.stripe.com/00g6rH85LceZ3cc5kq'
-                      : 'https://buy.stripe.com/cN29DT2Lr6UFcMM8wG',
+                      : 'https://buy.stripe.com/8x2dRa9VU1N3bI90k257W0g',
                     target: '_blank',
                     routerLink: null,
                     routerLinkProps: null,

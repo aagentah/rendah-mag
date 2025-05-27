@@ -131,7 +131,7 @@ export default function Product({ siteConfig, product }) {
                 <h2 className="text-balance">
                   Join membership <i>instead</i> for{' '}
                   <Link href={`/membership`}>
-                    <span className="text-rendah-red underline">£11?</span>
+                    <span className="text-rendah-red underline">£12?</span>
                   </Link>
                 </h2>
               </div>
@@ -303,7 +303,7 @@ export default function Product({ siteConfig, product }) {
                         },
                         {
                           left: 'Price',
-                          right: `£${product?.price}`,
+                          right: `£${product?.price} + shipping`,
                           rightClassName: 'text-right',
                         },
                         {
