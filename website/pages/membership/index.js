@@ -154,11 +154,11 @@ export default function Dominion({ siteConfig }) {
     },
     {
       question: `How do I access the digital content?`,
-      answer: `A Dominion profile & login will be automatically created where you can access all of our digital content off-the-bat. In addition, we'll typically send a few emails each month to expand on what we're building as a team, and highlight the various things launching across the Dominion platform.`,
+      answer: `A membership profile & login will be automatically created where you can access all of our digital content off-the-bat. In addition, we'll typically send a few emails each month to expand on what we're building as a team, and highlight the various things launching across the membership platform.`,
     },
     {
-      question: `Who is the Dominion aimed at?`,
-      answer: `We hope there's something for everyone here. Whether you're a DJ; artist; general listener; we aim to switch up what we offer to support plenty of avenues!`,
+      question: `Who is the membership aimed at?`,
+      answer: `We hope there's something for everyone here. Whether you're an artist or enthusiast we hope to keep the conversation open.`,
     },
     {
       question: 'Can I cancel whenever?',
@@ -166,7 +166,7 @@ export default function Dominion({ siteConfig }) {
     },
     {
       question: 'Why not Patreon?',
-      answer: `We built this website and the Dominion dashboard completely bespoke to create a custom experience for those using the platform. Instead of going down the Patreon route, we've enjoyed the experiences that arise in creating something specifically for our vision. Technologies used are React.js, Next.js, and Sanity.io, with Stripe integrations to handle security & payments.`,
+      answer: `We built this website and the membership dashboard completely bespoke to create a custom experience for those using the platform. Instead of going down the Patreon route, we've enjoyed the experiences that arise in creating something specifically for our vision. Technologies used are React.js, Next.js, and Sanity.io, with Stripe integrations to handle security & payments.`,
     },
   ];
 
@@ -213,9 +213,8 @@ export default function Dominion({ siteConfig }) {
       hasFooter
       meta={{
         siteConfig,
-        title: 'Dominion',
+        title: 'Membership',
         description: 'Something new & exciting.',
-        image: '/images/dominion-logo.png',
       }}
       preview={null}
     >
