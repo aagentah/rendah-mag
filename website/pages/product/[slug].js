@@ -303,7 +303,7 @@ export default function Product({ siteConfig, product }) {
                         },
                         {
                           left: 'Price',
-                          right: `£${product?.price} + shipping`,
+                          right: `£${product?.price}`,
                           rightClassName: 'text-right',
                         },
                         {
