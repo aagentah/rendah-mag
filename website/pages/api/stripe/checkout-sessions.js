@@ -1,4 +1,5 @@
 import { countries } from '~/lib/stripe/country-alpha-codes';
+import { trackInitiateCheckout } from '~/lib/meta/conversions-api';
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -67,6 +68,23 @@ export default async function handler(req, res) {
         success_url: `${req.headers.origin}${data.successUrl}`,
         cancel_url: `${req.headers.origin}${data.cancelUrl}`,
       });
+
+      try {
+        await trackInitiateCheckout({
+          sessionUrl: session.url,
+          priceId: data.priceId,
+          quantity: data.quantity,
+          mode: data.mode,
+          userAgent: req.headers['user-agent'],
+          clientIp:
+            req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+        });
+      } catch (metaError) {
+        console.error(
+          'Meta Conversions API InitiateCheckout error:',
+          metaError
+        );
+      }
 
       return res.status(200).json({ url: session.url });
     }

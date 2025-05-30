@@ -9,6 +9,7 @@ import orderCompleted from '~/lib/stripe/order-completed';
 import subscriptionCreated from '~/lib/stripe/subscription-created';
 import subscriptionCancelled from '~/lib/stripe/subscription-cancelled';
 import receiptEmail from '~/lib/emails/order-receipt';
+import { trackPurchase } from '~/lib/meta/conversions-api';
 
 // Final-retry helpers
 import {
@@ -57,6 +58,12 @@ export default async function handler(req, res) {
           name: i.description,
           quantity: i.quantity,
         }));
+
+        try {
+          await trackPurchase({ session, products });
+        } catch (metaError) {
+          console.error('Meta Conversions API error:', metaError);
+        }
 
         await orderCompleted({ session, products });
         await receiptEmail({

@@ -5,6 +5,7 @@ import Copy from '~/components/elements/copy';
 import Layout from '~/components/layout';
 import Container from '~/components/layout/container';
 import Head from 'next/head';
+import { generateEventId } from '~/lib/utils/event-id';
 
 import { getSiteConfig } from '~/lib/sanity/requests';
 
@@ -18,9 +19,24 @@ export default function ProductThankYou({ siteConfig }) {
       typeof window !== 'undefined' &&
       window.fbq
     ) {
-      window.fbq('track', 'Purchase', {
-        currency: 'GBP',
-      });
+      // @why: Use same timestamp estimation as server for event ID generation
+      const estimatedTimestamp = Math.floor(Date.now() / 1000) - 30; // Approximate checkout completion time
+      const eventId = generateEventId(
+        'purchase',
+        router.query.order,
+        estimatedTimestamp
+      );
+
+      window.fbq(
+        'track',
+        'Purchase',
+        {
+          currency: 'GBP',
+        },
+        {
+          eventID: eventId, // @why: Enables deduplication with server-side event
+        }
+      );
     }
   }, [router.query]);
 

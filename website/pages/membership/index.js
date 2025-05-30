@@ -26,6 +26,7 @@ import {
 } from '~/lib/sanity/requests';
 
 import { useApp } from '~/context-provider/app';
+import { generateEventId } from '~/lib/utils/event-id'; // @why: Client-side event ID generation for deduplication
 
 const IconPlus = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconPlus)
@@ -113,7 +114,7 @@ export default function Dominion({ siteConfig }) {
   const steps = [
     {
       title: '1) Sign up',
-      description: 'Join the membership and we’ll get you up and running.',
+      description: 'Join the membership and we will get you up and running.',
       icon: IconWelcome, // Sign-up icon
     },
     {
@@ -124,14 +125,13 @@ export default function Dominion({ siteConfig }) {
     },
     {
       title: '3) Access the member dashboard',
-      description:
-        'In the meantime, explore our exclusive platform’s resources.',
+      description: 'In the meantime, explore our exclusive platform resources.',
       icon: IconWebsite,
     },
     {
       title: '4) Keep it locked',
       description:
-        'Keep an eye out for new content & updates throughout each month.',
+        'Keep an eye out for new content and updates throughout each month.',
       icon: <FaEye size={38} color="#525252" />, // Notification icon
     },
   ];
@@ -146,27 +146,31 @@ export default function Dominion({ siteConfig }) {
     {
       question: 'When do I get my first printed mag?',
       answer:
-        'Once you’ve subscribed, we’ll send out the very latest magazine happening at that point in time, regardless of anything else that may be happening in our schedule. From there, you can expect a new print in the mail every 3-4 months on average.',
+        'Once you have subscribed, we will send out the very latest magazine happening at that point in time, regardless of anything else that may be happening in our schedule. From there, you can expect a new print in the mail every 3-4 months on average.',
     },
     {
       question: 'Free shipping?',
-      answer: `On the subscription, shipping is totally free—forever—regardless of where you're based.`,
+      answer:
+        'On the subscription, shipping is totally free—forever—regardless of where you are based.',
     },
     {
-      question: `How do I access the digital content?`,
-      answer: `A membership profile & login will be automatically created where you can access all of our digital content off-the-bat. In addition, we'll typically send a few emails each month to expand on what we're building as a team, and highlight the various things launching across the membership platform.`,
+      question: 'How do I access the digital content?',
+      answer:
+        'A membership profile and login will be automatically created where you can access all of our digital content off-the-bat. In addition, we will typically send a few emails each month to expand on what we are building as a team, and highlight the various things launching across the membership platform.',
     },
     {
-      question: `Who is the membership aimed at?`,
-      answer: `We hope there's something for everyone here. Whether you're an artist or enthusiast we hope to keep the conversation open.`,
+      question: 'Who is the membership aimed at?',
+      answer:
+        'We hope there is something for everyone here. Whether you are an artist or enthusiast we hope to keep the conversation open.',
     },
     {
       question: 'Can I cancel whenever?',
-      answer: 'Yes. You’re absolutely free to cancel at any time via email.',
+      answer: 'Yes. You are absolutely free to cancel at any time via email.',
     },
     {
       question: 'Why not Patreon?',
-      answer: `We built this website and the membership dashboard completely bespoke to create a custom experience for those using the platform. Instead of going down the Patreon route, we've enjoyed the experiences that arise in creating something specifically for our vision. Technologies used are React.js, Next.js, and Sanity.io, with Stripe integrations to handle security & payments.`,
+      answer:
+        'We built this website and the membership dashboard completely bespoke to create a custom experience for those using the platform. Instead of going down the Patreon route, we have enjoyed the experiences that arise in creating something specifically for our vision. Technologies used are React.js, Next.js, and Sanity.io, with Stripe integrations to handle security and payments.',
     },
   ];
 
@@ -290,12 +294,33 @@ export default function Dominion({ siteConfig }) {
                   disabled={false}
                   skeleton={false}
                   onClick={() => {
-                    // if (typeof window !== 'undefined' && window.fbq) {
-                    //   console.log(
-                    //     'Meta Pixel: InitiateCheckout fired (membership)'
-                    //   );
-                    //   window.fbq('track', 'InitiateCheckout');
-                    // }
+                    // @why: Track InitiateCheckout event with proper event ID for deduplication
+                    if (typeof window !== 'undefined' && window.fbq) {
+                      const timestamp = Math.floor(Date.now() / 1000);
+                      const priceId = isTrial
+                        ? '00g6rH85LceZ3cc5kq'
+                        : '8x2dRa9VU1N3bI90k257W0g';
+                      const eventId = generateEventId(
+                        'initiate_checkout',
+                        priceId,
+                        timestamp
+                      );
+
+                      console.log(
+                        'Meta Pixel: InitiateCheckout fired (membership)'
+                      );
+                      window.fbq(
+                        'track',
+                        'InitiateCheckout',
+                        {
+                          currency: 'GBP',
+                          content_type: 'membership',
+                        },
+                        {
+                          eventID: eventId, // @why: Enables deduplication with server-side event
+                        }
+                      );
+                    }
                   }}
                   /* Children */
                   withLinkProps={{
