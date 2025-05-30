@@ -140,7 +140,7 @@ export default function HeaderDesktop({
         <div className="w-full">
           <nav className="w-full flex justify-end">
             <ul className="flex flex-wrap items-center gap-x-4">
-              {user && meta.title === 'Profile' ? (
+              {user && meta?.title === 'Profile' ? (
                 dominion()
               ) : (
                 <>
@@ -283,7 +283,7 @@ export default function HeaderDesktop({
                     />
                   </li>
 
-                  {user && meta.title !== 'Profile' && (
+                  {user && meta?.title !== 'Profile' && (
                     <li className="inline-flex items-center">
                       <Button
                         type="secondary"

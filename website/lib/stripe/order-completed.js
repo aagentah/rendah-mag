@@ -7,6 +7,7 @@ export default async ({ session, products }) => {
   try {
     const { customer_details } = session;
     const { email } = customer_details;
+    const phone = customer_details?.phone || '';
     const { shipping } = session;
     const { name } = shipping;
     const firstName = name.split(' ')[0];
@@ -60,7 +61,7 @@ export default async ({ session, products }) => {
     };
 
     await addUpdateMailchimpUser();
-    await orderEmail({ email, name, products, session });
+    await orderEmail({ email, phone, name, products, session });
 
     return { error: '' };
   } catch (error) {

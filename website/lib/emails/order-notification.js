@@ -1,7 +1,7 @@
 import sendinblue from './sendinblue';
 import emailCommon from '~/emails/component/common';
 
-export default async ({ email, name, products, session }) => {
+export default async ({ email, phone, name, products, session }) => {
   try {
     const title = `New order from ${name}!`;
 
@@ -15,9 +15,31 @@ export default async ({ email, name, products, session }) => {
     }
 
     const shippingAddress = session.shipping.address;
+
+    // @why: Build single product and quantity values for the address table row based on session mode
+    let productName, productQuantity;
+    if (session.mode === 'subscription') {
+      productName = 'Membership';
+      productQuantity = '1';
+    } else {
+      // @why: For payment mode, combine multiple products into single display string
+      if (products.length === 1) {
+        productName = products[0].name;
+        productQuantity = products[0].quantity.toString();
+      } else {
+        productName = products.map((p) => p.name).join(', ');
+        productQuantity = products
+          .reduce((sum, p) => sum + p.quantity, 0)
+          .toString();
+      }
+    }
+
     const address = `
       <tr>
+        <td>${productName}</td>
+        <td>${productQuantity}</td>
         <td>${email}</td>
+        <td>${phone}</td>
         <td>${name}</td>
         <td>${shippingAddress.line1}</td>
         <td>${shippingAddress.line2 || ''}</td>
@@ -39,7 +61,10 @@ export default async ({ email, name, products, session }) => {
       <br />
       <table>
         <tr>
+          <th>Product</th>
+          <th>Quantity</th>
           <th>Email</th>
+          <th>Phone</th>
           <th>Name</th>
           <th>Address Line 1</th>
           <th>Address Line 2</th>
