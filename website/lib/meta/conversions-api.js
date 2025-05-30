@@ -103,7 +103,7 @@ export async function trackPurchase({
     event_time: created,
     event_id: eventId,
     action_source: 'website',
-    event_source_url: `${process.env.SITE_URL}/membership/thank-you?order=${sessionId}&success=1`,
+    event_source_url: session.success_url,
     user_data: {
       em: customer_details.email ? [hashUserData(customer_details.email)] : [],
       ph: customer_details.phone ? [hashUserData(customer_details.phone)] : [],
