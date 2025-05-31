@@ -96,7 +96,7 @@ export default function ProductThankYou({ siteConfig, session }) {
                 <p className="text-sm text-neutral-500">
                   A confirmation email has been sent to:
                   <br />
-                  <span className="underline text-neutral-600">
+                  <span className="underline text-neutral-400">
                     {customerEmail}
                   </span>
                 </p>

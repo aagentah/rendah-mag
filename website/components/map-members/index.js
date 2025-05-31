@@ -726,111 +726,9 @@ const WorldMapWithUsers = () => {
       <div className="flex flex-col md:flex-row gap-x-12">
         <div className="flex flex-col gap-y-4 w-full md:w-4/12 md:border-r border-neutral-700 pr-12 order-2 md:order-1">
           {/* Country select: only show when no country/city is selected, and only countries with context (red dots) */}
-          {!selectedCountry && !selectedCity && (
-            <>
-              {/* why: allow mobile/desktop users to select a country with context directly */}
-              <label
-                htmlFor="country-select"
-                className="text-xs text-neutral-400 mb-1"
-              >
-                Jump to country with context
-              </label>
-              <select
-                id="country-select"
-                className="mb-4 bg-neutral-900 text-neutral-200 border border-neutral-700 rounded px-2 py-1 text-sm"
-                defaultValue=""
-                onChange={(e) => {
-                  const countryId = e.target.value;
-                  if (!countryId) return;
-                  // why: find the country object for handleCountryClick
-                  const country = filteredCountriesMemo.find(
-                    (c) => c.id === countryId
-                  );
-                  if (country) handleCountryClick(country);
-                }}
-              >
-                <option value="">Select a country...</option>
-                {/** why: only show countries with at least one context city (red dot) */}
-                {Array.from(
-                  new Set(
-                    globalCityGroupsMemo
-                      .filter((ci) => ci.context)
-                      .map((ci) => ci.country)
-                  )
-                ).map((countryCode) => {
-                  const countryData = countryCodeMap[countryCode];
-                  if (!countryData) return null;
-                  const countryId = countryData.id;
-                  const countryName = Array.isArray(countryData.name)
-                    ? countryData.name[0]
-                    : countryData.name;
-                  return (
-                    <option key={countryId} value={countryId}>
-                      {countryName}
-                    </option>
-                  );
-                })}
-              </select>
-
-              <hr className="mt-8 border border-neutral-700 opacity-25 md:opacity-50" />
-            </>
-          )}
+          {!selectedCountry && !selectedCity && <></>}
           {/* City select: only show when a country is selected but not a city, and only cities with context (red dots) in that country */}
-          {selectedCountry && !selectedCity && (
-            <>
-              {/* why: allow users to jump directly to a city with context in the selected country */}
-              <label
-                htmlFor="city-select"
-                className="text-xs text-neutral-400 mb-1"
-              >
-                Jump to city with context
-              </label>
-              <select
-                id="city-select"
-                className="mb-4 bg-neutral-900 text-neutral-200 border border-neutral-700 rounded px-2 py-1 text-sm"
-                defaultValue=""
-                onChange={(e) => {
-                  const cityKey = e.target.value;
-                  if (!cityKey) return;
-                  // why: find the cityInfo object for handleCityClick
-                  const cityInfo = globalCityGroupsMemo.find(
-                    (ci) =>
-                      ci.context &&
-                      ci.city.toLowerCase().trim() +
-                        '|' +
-                        ci.country.toUpperCase().trim() ===
-                        cityKey
-                  );
-                  if (cityInfo) handleCityClick(cityInfo);
-                }}
-              >
-                <option value="">Select a city...</option>
-                {globalCityGroupsMemo
-                  .filter(
-                    (ci) =>
-                      ci.context &&
-                      countryCodeMap[ci.country] &&
-                      countryCodeMap[ci.country].id === selectedCountryId
-                  )
-                  .map((ci) => (
-                    <option
-                      key={
-                        ci.city.toLowerCase().trim() +
-                        '|' +
-                        ci.country.toUpperCase().trim()
-                      }
-                      value={
-                        ci.city.toLowerCase().trim() +
-                        '|' +
-                        ci.country.toUpperCase().trim()
-                      }
-                    >
-                      {ci.city}
-                    </option>
-                  ))}
-              </select>
-            </>
-          )}
+          {selectedCountry && !selectedCity && <></>}
           {!selectedCountry && (
             <div className="flex flex-col gap-y-4">
               <h1 className="text-neutral-300">Member Map</h1>
@@ -930,7 +828,7 @@ const WorldMapWithUsers = () => {
             <div className="flex flex-col md:hidden">
               <hr className="mb-8 border border-neutral-700 opacity-25 md:opacity-50" />
 
-              {/* why: allow mobile/desktop users to select a country with context directly */}
+              {/* why: allow mobile users to select a country with context directly */}
               <label
                 htmlFor="country-select"
                 className="block text-xs text-neutral-400 mb-4"

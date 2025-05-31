@@ -91,18 +91,6 @@ export default function DominionThankYou({ siteConfig, session }) {
               />
             </div>
 
-            {customerEmail && (
-              <div className="pb-4">
-                <p className="text-sm text-neutral-500">
-                  A confirmation email has been sent to:
-                  <br />
-                  <span className="underline text-neutral-600">
-                    {customerEmail}
-                  </span>
-                </p>
-              </div>
-            )}
-
             <div className="pb-4 text-left">
               <Heading
                 /* Options */
