@@ -28,7 +28,7 @@
 
 //           <div className="pb4  mb2">
 //             <p className="white  f6  lh-copy  measure-wide">
-//               Welcome to the Dominion! Here you can access all exclusive content
+//               Welcome to the Membership! Here you can access all exclusive content
 //               available on your subscription. We add new content here frequently
 //               month-to-month, make sure to keep an eye here for cool stuff.
 //             </p>

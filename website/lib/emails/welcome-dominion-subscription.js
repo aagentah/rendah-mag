@@ -43,7 +43,7 @@ export default async ({ email, temporaryPassword }) => {
     const sendSmtpEmail = {
       sender: { name: 'Dan', email: 'dan@rendahmag.com' },
       to: [{ email }],
-      subject: 'Welcome to the Dominion',
+      subject: 'Welcome to the Membership',
       htmlContent: emailCommon(title, body, image, buttonText, buttonLink),
     };
 
