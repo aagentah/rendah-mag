@@ -92,11 +92,11 @@ export default function ProductThankYou({ siteConfig, session }) {
             </div>
 
             {customerEmail && (
-              <div className="pb-4">
+              <div className="pb-8">
                 <p className="text-sm text-neutral-500">
                   A confirmation email has been sent to:
                   <br />
-                  <span className="underline text-neutral-400">
+                  <span className="underline text-neutral-500">
                     {customerEmail}
                   </span>
                 </p>
