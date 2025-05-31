@@ -86,30 +86,6 @@ export default {
       type: "blockContent",
     },
     {
-      name: "stripeCheckoutUrl",
-      title: "Stripe Checkout URL",
-      type: "string",
-      validation: (Rule) => Rule.required(),
-    },
-    // {
-    //   name: "weight",
-    //   title: "Item Weight (g)",
-    //   type: "number",
-    //   validation: (Rule) => Rule.required(),
-    // },
-    {
-      name: "price",
-      title: "Item Price (GBP)",
-      type: "number",
-      validation: (Rule) => Rule.required(),
-    },
-    // {
-    //   name: "specialPrice",
-    //   title: "Special Price (GBP)",
-    //   description: "Will be used as the new price.",
-    //   type: "number",
-    // },
-    {
       name: "tag",
       title: "Tag",
       type: "string",
@@ -124,31 +100,194 @@ export default {
       },
       validation: (Rule) => Rule.required(),
     },
-    // {
-    //   name: "priceId",
-    //   title: "Price ID",
-    //   description: "Fetched from Stripe",
-    //   type: "string",
-    //   validation: (Rule) => Rule.required(),
-    // },
-    // {
-    //   name: "shippingUK",
-    //   title: "Shipping UK",
-    //   type: "number",
-    //   validation: (Rule) => Rule.required(),
-    // },
-    // {
-    //   name: "shippingEurope",
-    //   title: "Shipping Europe",
-    //   type: "number",
-    //   validation: (Rule) => Rule.required(),
-    // },
-    // {
-    //   name: "shippingWorldwide",
-    //   title: "Shipping Worldwide",
-    //   type: "number",
-    //   validation: (Rule) => Rule.required(),
-    // },
+
+    // Regional Pricing Configuration
+    {
+      name: "regionalPricing",
+      title: "Regional Pricing",
+      type: "object",
+      description: "Set different prices for different regions",
+      fields: [
+        {
+          name: "ukPrice",
+          title: "UK Price (GBP)",
+          type: "number",
+          validation: (Rule) => Rule.required().min(0),
+        },
+        {
+          name: "usPrice",
+          title: "US Price (USD)",
+          type: "number",
+          validation: (Rule) => Rule.required().min(0),
+        },
+        {
+          name: "canadaPrice",
+          title: "Canada Price (CAD)",
+          type: "number",
+          validation: (Rule) => Rule.required().min(0),
+        },
+        {
+          name: "australiaPrice",
+          title: "Australia Price (AUD)",
+          type: "number",
+          validation: (Rule) => Rule.required().min(0),
+        },
+        {
+          name: "chinaPrice",
+          title: "China Price (CNY)",
+          type: "number",
+          validation: (Rule) => Rule.required().min(0),
+        },
+        {
+          name: "europePrice",
+          title: "Europe Price (EUR)",
+          type: "number",
+          validation: (Rule) => Rule.required().min(0),
+        },
+        {
+          name: "globalPrice",
+          title: "Global Price (GBP)",
+          type: "number",
+          validation: (Rule) => Rule.required().min(0),
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    },
+
+    // Regional Shipping Configuration
+    {
+      name: "regionalShipping",
+      title: "Regional Shipping",
+      type: "object",
+      description: "Set shipping costs for different regions",
+      fields: [
+        {
+          name: "ukShipping",
+          title: "UK Shipping",
+          type: "object",
+          fields: [
+            {
+              name: "price",
+              title: "Price (GBP)",
+              type: "number",
+              validation: (Rule) => Rule.required().min(0),
+            },
+          ],
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "usShipping",
+          title: "US Shipping",
+          type: "object",
+          fields: [
+            {
+              name: "price",
+              title: "Price (USD)",
+              type: "number",
+              validation: (Rule) => Rule.required().min(0),
+            },
+          ],
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "canadaShipping",
+          title: "Canada Shipping",
+          type: "object",
+          fields: [
+            {
+              name: "price",
+              title: "Price (CAD)",
+              type: "number",
+              validation: (Rule) => Rule.required().min(0),
+            },
+          ],
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "australiaShipping",
+          title: "Australia Shipping",
+          type: "object",
+          fields: [
+            {
+              name: "price",
+              title: "Price (AUD)",
+              type: "number",
+              validation: (Rule) => Rule.required().min(0),
+            },
+          ],
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "chinaShipping",
+          title: "China Shipping",
+          type: "object",
+          fields: [
+            {
+              name: "price",
+              title: "Price (CNY)",
+              type: "number",
+              validation: (Rule) => Rule.required().min(0),
+            },
+          ],
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "europeShipping",
+          title: "Europe Shipping",
+          type: "object",
+          fields: [
+            {
+              name: "price",
+              title: "Price (EUR)",
+              type: "number",
+              validation: (Rule) => Rule.required().min(0),
+            },
+          ],
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "globalShipping",
+          title: "Global Shipping",
+          type: "object",
+          fields: [
+            {
+              name: "price",
+              title: "Standard Price (GBP)",
+              type: "number",
+              validation: (Rule) => Rule.required().min(0),
+            },
+          ],
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    },
+
+    // Stripe Integration
+    {
+      name: "stripeProductId",
+      title: "Stripe Product ID",
+      type: "string",
+      description:
+        "Stripe product ID to attach prices to (e.g. prod_S5m1RcYOFCy7RB) - leave empty to create new products",
+      placeholder: "prod_xxxxxxxxx",
+    },
+
+    // Legacy fields for backward compatibility (hidden from UI)
+    {
+      name: "price",
+      title: "Legacy Price (GBP)",
+      type: "number",
+      description: "Legacy field - use Regional Pricing instead",
+      hidden: true,
+    },
+    {
+      name: "stripeCheckoutUrl",
+      title: "Legacy Stripe Checkout URL",
+      type: "string",
+      description: "Legacy field - dynamic checkout is now used",
+      hidden: true,
+    },
   ],
 
   orderings: [
@@ -163,6 +302,15 @@ export default {
     select: {
       title: "title",
       media: "image1",
+      ukPrice: "regionalPricing.ukPrice",
+    },
+    prepare(selection) {
+      const { title, media, ukPrice } = selection;
+      return {
+        title: title,
+        subtitle: ukPrice ? `£${ukPrice}` : "No UK price set",
+        media: media,
+      };
     },
   },
 };

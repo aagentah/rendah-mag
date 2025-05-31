@@ -67,6 +67,7 @@ const deskStructure = async (S) => {
               S.list()
                 .title("Store")
                 .items([
+                  S.documentTypeListItem("membership").title("Membership"),
                   S.documentTypeListItem("storeItem").title("Store Item"),
                   S.documentTypeListItem("storeCollection").title(
                     "Store Collection"

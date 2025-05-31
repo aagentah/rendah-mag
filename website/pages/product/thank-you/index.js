@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Heading from '~/components/elements/heading';
 import Copy from '~/components/elements/copy';
 import Layout from '~/components/layout';
@@ -9,11 +9,24 @@ import { generateEventId } from '~/lib/utils/event-id';
 
 import { getSiteConfig } from '~/lib/sanity/requests';
 
-export default function ProductThankYou({ siteConfig }) {
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+export default function ProductThankYou({ siteConfig, session }) {
   const router = useRouter();
+  const [customerEmail, setCustomerEmail] = useState('');
+
   useEffect(() => {
-    // Only fire Purchase event if order and success params are present and order is a string
-    if (
+    // @why: Handle product purchase tracking with session data if available
+    if (session && typeof window !== 'undefined' && window.fbq) {
+      console.log('Meta Pixel: Purchase fired (product)');
+      window.fbq('track', 'Purchase', {
+        currency: session.currency?.toUpperCase() || 'GBP',
+        value: session.amount_total / 100 || 0,
+        content_type: 'product',
+      });
+    }
+    // @why: Legacy tracking for old orders without session data
+    else if (
       typeof router.query.order === 'string' &&
       router.query.success === '1' &&
       typeof window !== 'undefined' &&
@@ -38,7 +51,12 @@ export default function ProductThankYou({ siteConfig }) {
         }
       );
     }
-  }, [router.query]);
+
+    // @why: Extract customer email from session data if available
+    if (session?.customer_details?.email) {
+      setCustomerEmail(session.customer_details.email);
+    }
+  }, [router.query, session]);
 
   return (
     <>
@@ -73,11 +91,49 @@ export default function ProductThankYou({ siteConfig }) {
               />
             </div>
 
-            <div className="pb-4">
-              <p className="text-sm text-neutral-500">
-                We can't thank you enough {'<3'}
-              </p>
-            </div>
+            {customerEmail && (
+              <div className="pb-4">
+                <p className="text-sm text-neutral-500">
+                  A confirmation email has been sent to{' '}
+                  <strong className="text-neutral-300">{customerEmail}</strong>
+                </p>
+              </div>
+            )}
+
+            {session && (
+              <div className="bg-neutral-800 border border-neutral-700 rounded-lg p-6 my-8">
+                <h3 className="text-neutral-300 text-sm mb-4">Order Details</h3>
+                <div className="space-y-2 text-xs">
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Order ID:</span>
+                    <span className="text-neutral-400 font-mono">
+                      {session.payment_intent || session.id}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Amount:</span>
+                    <span className="text-neutral-400">
+                      {session.currency?.toUpperCase()}{' '}
+                      {(session.amount_total / 100).toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Region:</span>
+                    <span className="text-neutral-400">
+                      {session.metadata?.customer_region || 'Global'}
+                    </span>
+                  </div>
+                  {session.metadata?.product_title && (
+                    <div className="flex justify-between">
+                      <span className="text-neutral-500">Product:</span>
+                      <span className="text-neutral-400">
+                        {session.metadata.product_title}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
 
             <div className="pb-4 text-left">
               <Heading
@@ -93,8 +149,8 @@ export default function ProductThankYou({ siteConfig }) {
 
             <div className="pb-4">
               <p className="text-sm text-neutral-500">
-                We typically ship out any new orders within 3-days of purchase
-                (it's a small operation here, so please bear with us).
+                We typically ship out new orders once each week. (it's a super
+                small operation here, so thank you for the patience).
               </p>
             </div>
 
@@ -114,10 +170,27 @@ export default function ProductThankYou({ siteConfig }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({ query }) {
   const siteConfig = await getSiteConfig();
 
+  let session = null;
+
+  if (query.session_id) {
+    try {
+      // @why: Retrieve Stripe session to show order details, similar to membership page
+      session = await stripe.checkout.sessions.retrieve(query.session_id, {
+        expand: ['payment_intent', 'customer'],
+      });
+    } catch (error) {
+      console.error('Error retrieving Stripe session:', error);
+      // @why: Continue without session data rather than breaking the page
+    }
+  }
+
   return {
-    props: { siteConfig },
+    props: {
+      siteConfig,
+      session,
+    },
   };
 }

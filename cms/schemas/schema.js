@@ -9,6 +9,7 @@ import newsletterCypher from "./documents/newsletterCypher";
 import storeCategory from "./documents/storeCategory";
 import storeCollection from "./documents/storeCollection";
 import storeItem from "./documents/storeItem";
+import membership from "./documents/membership";
 import cypher from "./documents/cypher";
 import dominionItem from "./documents/dominionItem";
 import dominionResource from "./documents/dominionResource";
@@ -38,6 +39,7 @@ export default [
   storeCategory,
   storeCollection,
   storeItem,
+  membership,
   cypher,
   dominionItem,
   dominionResource,

@@ -23,8 +23,15 @@ import {
   getSiteConfig,
   getProduct,
   getAllProductsTotal,
+  getActiveMembership,
   imageBuilder,
 } from '~/lib/sanity/requests';
+
+import { getCurrencySymbol, formatPrice } from '~/lib/utils/currency';
+import {
+  getRegionalPricing,
+  getDisplayRegion as getDisplayRegionFromUtils,
+} from '~/lib/utils/regional-pricing';
 
 const Modal = dynamic(() => import('~/components/modal'));
 
@@ -43,12 +50,14 @@ const IconInfoCircle = dynamic(() =>
 
 const Timeline = dynamic(() => import('~/components/timeline'));
 
-export default function Product({ siteConfig, product }) {
+export default function Product({ siteConfig, product, membership }) {
   const app = useApp();
   const router = useRouter();
   const [modalActive, setModalActive] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [discount, setDiscount] = useState('');
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [customerCountry, setCustomerCountry] = useState(null);
   const isMobile = app.deviceSize === 'md';
   const height = app.deviceSize === 'md' ? 500 : 400;
 
@@ -75,7 +84,99 @@ export default function Product({ siteConfig, product }) {
     }
   }, [instanceRef]);
 
+  // Get customer country for shipping restrictions
+  useEffect(() => {
+    const detectCountry = async () => {
+      try {
+        // @why: Add timeout to prevent hanging on slow IP detection service
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+        const response = await fetch('https://ipapi.co/country_code/', {
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+          const countryCode = await response.text();
+          setCustomerCountry(countryCode.trim());
+        } else {
+          throw new Error('IP detection service unavailable');
+        }
+      } catch (error) {
+        console.error('Failed to detect country:', error);
+        // @why: Fallback to global shipping if detection fails
+        setCustomerCountry(null);
+      }
+    };
+
+    detectCountry();
+  }, []);
+
   const isSoldOut = product?.tag === 'Sold-out';
+
+  // Function to get regional price based on customer country
+  const getRegionalPrice = () => {
+    if (!product?.regionalPricing || !customerCountry) {
+      return { price: product?.price || 0, currency: 'GBP' }; // Fallback to legacy price
+    }
+
+    // @why: Use centralized utility to ensure consistency across the platform
+    return getRegionalPricing(product.regionalPricing, customerCountry);
+  };
+
+  // Get display region name for customer (use centralized utility)
+  const getDisplayRegion = () => {
+    // @why: Use centralized utility for consistent region name display
+    return getDisplayRegionFromUtils(customerCountry);
+  };
+
+  // Function to get membership regional price based on customer country
+  const getMembershipRegionalPrice = () => {
+    if (!membership?.regionalPricing || !customerCountry) {
+      return { price: 12, currency: 'GBP' }; // Fallback to legacy price
+    }
+
+    // @why: Use centralized utility to ensure consistency with membership page
+    return getRegionalPricing(membership.regionalPricing, customerCountry);
+  };
+
+  const handlePurchase = async () => {
+    setIsCheckoutLoading(true);
+
+    try {
+      const response = await fetch('/api/stripe/product-checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productSlug: product.slug, // CMS-driven: use actual product slug from Sanity
+          quantity: 1,
+          customerCountry: customerCountry,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        // Track Meta Pixel event before redirect
+        if (typeof window !== 'undefined' && window.fbq) {
+          console.log('Meta Pixel: InitiateCheckout fired (product)');
+          window.fbq('track', 'InitiateCheckout');
+        }
+
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Failed to create checkout session');
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('There was an error starting checkout. Please try again.');
+    } finally {
+      setIsCheckoutLoading(false);
+    }
+  };
 
   if (!router.isFallback && !product?.slug) {
     Router.push('/404');
@@ -88,6 +189,9 @@ export default function Product({ siteConfig, product }) {
     const buttonIconMinus = <IconMinus color="#000000" size={16} />;
 
     const renderPurchaseButton = () => {
+      // Show loading state while detecting customer country
+      const isCountryLoading = customerCountry === null;
+
       if (isSoldOut) {
         return (
           <Button
@@ -114,31 +218,60 @@ export default function Product({ siteConfig, product }) {
             <Button
               type="primary"
               size="medium"
-              text="Purchase"
+              text={isCountryLoading ? 'Loading...' : 'Purchase'}
               color="rendah-red"
               fluid={false}
               icon={buttonIconPlusWhite}
               iconFloat="left"
               inverted={false}
-              loading={false}
-              disabled={false}
+              loading={isCheckoutLoading || isCountryLoading}
+              disabled={isCheckoutLoading || isCountryLoading}
               skeleton={false}
               onClick={() => setModalActive(true)}
               withLinkProps={null}
             />
+
+            <p className="text-xs text-neutral-500 text-balance pt-2">
+              [or join membership <i>instead</i> for{' '}
+              <Link href={`/membership`}>
+                <span className="text-neutral-600 underline">
+                  {(() => {
+                    // @why: Show loading state until customer country is detected
+                    if (customerCountry === null) {
+                      return '...';
+                    }
+                    const { price, currency } = getMembershipRegionalPrice();
+                    return `${getCurrencySymbol(currency)}${price}`;
+                  })()}
+                </span>
+              </Link>
+              ]
+            </p>
+
             <Modal size="large" active={modalActive}>
-              <div className="pb-3 md:pb-4">
+              <div className="pb-3">
                 <h2 className="text-balance">
                   Join membership <i>instead</i> for{' '}
                   <Link href={`/membership`}>
-                    <span className="text-rendah-red underline">£12?</span>
+                    <span className="text-rendah-red underline">
+                      {(() => {
+                        // @why: Show loading state until customer country is detected
+                        if (customerCountry === null) {
+                          return '...';
+                        }
+                        const { price, currency } =
+                          getMembershipRegionalPrice();
+                        return `${getCurrencySymbol(currency)}${price}`;
+                      })()}
+                      ?
+                    </span>
                   </Link>
                 </h2>
               </div>
 
               <div className="pb-3 md:pb-4">
                 <p className="text-neutral-500 text-xs md:text-sm pb-2">
-                  Free Global Shipping and includes:
+                  It's <i>FREE</i> Global Shipping & Includes:
                 </p>
                 <div className="w-full">
                   <Table
@@ -186,24 +319,11 @@ export default function Product({ siteConfig, product }) {
                   icon={null}
                   iconFloat="left"
                   inverted={true}
-                  loading={false}
-                  disabled={false}
+                  loading={isCheckoutLoading || isCountryLoading}
+                  disabled={isCheckoutLoading || isCountryLoading}
                   skeleton={false}
-                  onClick={() => {
-                    // if (typeof window !== 'undefined' && window.fbq) {
-                    //   console.log(
-                    //     'Meta Pixel: InitiateCheckout fired (product)'
-                    //   );
-                    //   window.fbq('track', 'InitiateCheckout');
-                    // }
-                  }}
-                  withLinkProps={{
-                    type: 'external',
-                    href: product?.stripeCheckoutUrl,
-                    target: '_blank',
-                    routerLink: null,
-                    routerLinkProps: null,
-                  }}
+                  onClick={handlePurchase}
+                  withLinkProps={null}
                 />
 
                 <Button
@@ -237,28 +357,17 @@ export default function Product({ siteConfig, product }) {
         <Button
           type="primary"
           size="medium"
-          text="Purchase"
+          text={isCountryLoading ? 'Loading...' : 'Purchase'}
           color="neutral-400"
           fluid={false}
           icon={buttonIconPlusWhite}
           iconFloat="left"
           inverted={false}
-          loading={false}
-          disabled={false}
+          loading={isCheckoutLoading || isCountryLoading}
+          disabled={isCheckoutLoading || isCountryLoading}
           skeleton={false}
-          onClick={() => {
-            // if (typeof window !== 'undefined' && window.fbq) {
-            //   console.log('Meta Pixel: InitiateCheckout fired (product)');
-            //   window.fbq('track', 'InitiateCheckout');
-            // }
-          }}
-          withLinkProps={{
-            type: 'external',
-            href: product?.stripeCheckoutUrl,
-            target: '_blank',
-            routerLink: null,
-            routerLinkProps: null,
-          }}
+          onClick={handlePurchase}
+          withLinkProps={null}
         />
       );
     };
@@ -303,12 +412,29 @@ export default function Product({ siteConfig, product }) {
                         },
                         {
                           left: 'Price',
-                          right: `£${product?.price}`,
+                          right: (() => {
+                            // Show loading state until customer country is detected
+                            if (customerCountry === null) {
+                              return '...';
+                            }
+                            const { price, currency } = getRegionalPrice();
+                            return `${getCurrencySymbol(currency)}${price}`;
+                          })(),
                           rightClassName: 'text-right',
                         },
                         {
                           left: 'Available Shipping',
-                          right: 'Globally',
+                          right: (() => {
+                            // Show loading state until customer country is detected
+                            if (customerCountry === null) {
+                              return '...';
+                            }
+                            return `${getDisplayRegion()} ${
+                              customerCountry
+                                ? `(${customerCountry})`
+                                : '+ Global'
+                            }`;
+                          })(),
                           rightClassName: 'text-right',
                         },
                       ]}
@@ -404,10 +530,12 @@ export default function Product({ siteConfig, product }) {
 export async function getStaticProps({ req, params, preview = false }) {
   const siteConfig = await getSiteConfig();
   const product = await getProduct(params.slug);
+  const membership = await getActiveMembership();
   return {
     props: {
       siteConfig,
       product,
+      membership,
     },
     revalidate: 10,
   };

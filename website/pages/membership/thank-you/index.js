@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Heading from '~/components/elements/heading';
 import Copy from '~/components/elements/copy';
@@ -10,12 +10,24 @@ import { generateEventId } from '~/lib/utils/event-id';
 
 import { getSiteConfig } from '~/lib/sanity/requests';
 
-export default function DominionThankYou({ siteConfig }) {
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+export default function DominionThankYou({ siteConfig, session }) {
   const router = useRouter();
+  const [customerEmail, setCustomerEmail] = useState('');
 
   useEffect(() => {
-    // Only fire Purchase event if order and success params are present and order is a string
-    if (
+    // Handle subscription purchase tracking
+    if (session && typeof window !== 'undefined' && window.fbq) {
+      console.log('Meta Pixel: Purchase fired (membership subscription)');
+      window.fbq('track', 'Purchase', {
+        currency: session.currency?.toUpperCase() || 'GBP',
+        value: session.amount_total / 100 || 0,
+        content_type: 'membership_subscription',
+      });
+    }
+    // Legacy tracking for old orders
+    else if (
       typeof router.query.order === 'string' &&
       router.query.success === '1' &&
       typeof window !== 'undefined' &&
@@ -40,7 +52,11 @@ export default function DominionThankYou({ siteConfig }) {
         }
       );
     }
-  }, [router.query]);
+
+    if (session?.customer_details?.email) {
+      setCustomerEmail(session.customer_details.email);
+    }
+  }, [router.query, session]);
 
   return (
     <>
@@ -75,12 +91,43 @@ export default function DominionThankYou({ siteConfig }) {
               />
             </div>
 
-            <div className="pb-4">
-              <p className="text-sm text-neutral-500">
-                We can't thank you enough, and we're happy to have you on this
-                journey with us.
-              </p>
-            </div>
+            {customerEmail && (
+              <div className="pb-4">
+                <p className="text-sm text-neutral-500">
+                  A confirmation email has been sent to{' '}
+                  <strong className="text-neutral-300">{customerEmail}</strong>
+                </p>
+              </div>
+            )}
+
+            {session && (
+              <div className="bg-neutral-800 border border-neutral-700 rounded-lg p-6 my-8">
+                <h3 className="text-neutral-300 text-sm mb-4">
+                  Membership Details
+                </h3>
+                <div className="space-y-2 text-xs">
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Membership ID:</span>
+                    <span className="text-neutral-400 font-mono">
+                      {session.subscription}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Amount:</span>
+                    <span className="text-neutral-400">
+                      {session.currency?.toUpperCase()}{' '}
+                      {(session.amount_total / 100).toFixed(2)} / month
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Region:</span>
+                    <span className="text-neutral-400">
+                      {session.metadata?.customer_region || 'Global'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className="pb-4 text-left">
               <Heading
@@ -127,10 +174,27 @@ export default function DominionThankYou({ siteConfig }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({ query }) {
   const siteConfig = await getSiteConfig();
 
+  let session = null;
+
+  if (query.session_id) {
+    try {
+      // @why: Retrieve Stripe session to show subscription details
+      session = await stripe.checkout.sessions.retrieve(query.session_id, {
+        expand: ['subscription', 'customer'],
+      });
+    } catch (error) {
+      console.error('Error retrieving Stripe session:', error);
+      // @why: Continue without session data rather than breaking the page
+    }
+  }
+
   return {
-    props: { siteConfig },
+    props: {
+      siteConfig,
+      session,
+    },
   };
 }

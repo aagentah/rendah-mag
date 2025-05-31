@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import { shuffle } from 'lodash';
+import BlockContent from '@sanity/block-content-to-react';
 
 import { FaUserPlus, FaTabletAlt, FaBook, FaEye } from 'react-icons/fa'; // Importing icons
 
@@ -17,14 +18,21 @@ import Accordion from '~/components/accordion';
 import LatestPrint from '~/components/latest-print';
 import Table from '~/components/table';
 import Map from '~/components/map';
+import { SANITY_BLOCK_SERIALIZERS } from '~/constants';
 
 import {
   getSiteConfig,
   getDominionUsersAllTime,
   getTeamMemberAndPosts,
+  getActiveMembership,
   imageBuilder,
 } from '~/lib/sanity/requests';
 
+import { getCurrencySymbol, formatPrice } from '~/lib/utils/currency';
+import {
+  getRegionalPricing,
+  getDisplayRegion,
+} from '~/lib/utils/regional-pricing';
 import { useApp } from '~/context-provider/app';
 import { generateEventId } from '~/lib/utils/event-id'; // @why: Client-side event ID generation for deduplication
 
@@ -36,10 +44,12 @@ const IconArrowRight = dynamic(() =>
   import('~/components/elements/icon').then((m) => m.IconArrowRight)
 );
 
-export default function Dominion({ siteConfig }) {
+export default function Dominion({ siteConfig, membership }) {
   const [dominion, setDominion] = useState(null);
   const app = useApp();
   const [isTrial, setIsTrial] = useState(false);
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [customerCountry, setCustomerCountry] = useState(null);
   const router = useRouter();
   const buttonIconRed = <IconArrowRight color="#e9393f" size={16} />;
   const Timeline = dynamic(() => import('~/components/timeline'));
@@ -70,6 +80,104 @@ export default function Dominion({ siteConfig }) {
 
     return () => clearInterval(interval);
   }, [instanceRef]);
+
+  // Get customer country for regional pricing
+  useEffect(() => {
+    const detectCountry = async () => {
+      try {
+        // @why: Add timeout to prevent hanging on slow IP detection service
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+        const response = await fetch('https://ipapi.co/country_code/', {
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+          const countryCode = await response.text();
+          setCustomerCountry(countryCode.trim());
+        } else {
+          throw new Error('IP detection service unavailable');
+        }
+      } catch (error) {
+        console.error('Failed to detect country:', error);
+        // @why: Fallback to global pricing if detection fails
+        setCustomerCountry(null);
+      }
+    };
+
+    detectCountry();
+  }, []);
+
+  // Function to get regional price based on customer country
+  const getRegionalPrice = () => {
+    if (!membership?.regionalPricing || !customerCountry) {
+      return { price: 12, currency: 'GBP' }; // Fallback to legacy price
+    }
+
+    return getRegionalPricing(membership.regionalPricing, customerCountry);
+  };
+
+  // Get display region name for customer (use centralized utility)
+  const getDisplayRegionName = () => {
+    return getDisplayRegion(customerCountry);
+  };
+
+  const handleMembershipPurchase = async () => {
+    setIsCheckoutLoading(true);
+
+    try {
+      const response = await fetch('/api/stripe/membership-checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          customerCountry: customerCountry,
+          isTrial: isTrial,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        // Track Meta Pixel event before redirect
+        if (typeof window !== 'undefined' && window.fbq) {
+          const timestamp = Math.floor(Date.now() / 1000);
+          const { price, currency } = getRegionalPrice();
+          const eventId = generateEventId(
+            'initiate_checkout',
+            'membership',
+            timestamp
+          );
+
+          console.log('Meta Pixel: InitiateCheckout fired (membership)');
+          window.fbq(
+            'track',
+            'InitiateCheckout',
+            {
+              currency: currency,
+              content_type: 'membership',
+              value: price,
+            },
+            {
+              eventID: eventId, // @why: Enables deduplication with server-side event
+            }
+          );
+        }
+
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Failed to create checkout session');
+      }
+    } catch (error) {
+      console.error('Membership checkout error:', error);
+      alert('There was an error starting checkout. Please try again.');
+    } finally {
+      setIsCheckoutLoading(false);
+    }
+  };
 
   const IconWelcome = (
     <svg
@@ -217,7 +325,7 @@ export default function Dominion({ siteConfig }) {
       hasFooter
       meta={{
         siteConfig,
-        title: 'Membership',
+        title: membership?.title || 'Membership',
         description: 'Something new & exciting.',
       }}
       preview={null}
@@ -225,12 +333,14 @@ export default function Dominion({ siteConfig }) {
       <div className="container my-12 md:my-16">
         <div className="flex flex-col md:grid md:grid-cols-4 gap-4 gap-y-12 mb-12">
           <div className="order-2 md:order-1 md:col-span-2 max-w-md md:mb-12">
-            <h1 className="text-neutral-300 text-left mb-4">Membership</h1>
+            <h1 className="text-neutral-300 text-left mb-4">
+              {membership?.title || 'Membership'}
+            </h1>
             <p className="text-xs md:text-sm text-neutral-400  text-left">
-              The membership was created to push our platform into new
-              territory, offering a way for people to explore the landscape of
-              underground music, art, and technology; away from noise and
-              distraction.
+              {`The membership was created to push our platform into new
+                territory, offering a way for people to explore the landscape of
+                underground music, art, and technology; away from noise and
+                distraction.`}
             </p>
 
             <div className="max-w-md pt-8">
@@ -243,7 +353,27 @@ export default function Dominion({ siteConfig }) {
                 rows={[
                   {
                     left: 'Price',
-                    right: '£12/month',
+                    right: (() => {
+                      // Show loading state until customer country is detected
+                      if (customerCountry === null) {
+                        return '...';
+                      }
+                      const { price, currency } = getRegionalPrice();
+                      return `${getCurrencySymbol(currency)}${price}/month`;
+                    })(),
+                    rightClassName: 'text-right',
+                  },
+                  {
+                    left: 'Region',
+                    right: (() => {
+                      // Show loading state until customer country is detected
+                      if (customerCountry === null) {
+                        return '...';
+                      }
+                      return `${getDisplayRegionName()} ${
+                        customerCountry ? `(${customerCountry})` : ''
+                      }`;
+                    })(),
                     rightClassName: 'text-right',
                   },
                   {
@@ -284,54 +414,20 @@ export default function Dominion({ siteConfig }) {
                   /* Options */
                   type="secondary"
                   size="small"
-                  text="Join Membership"
+                  text={
+                    customerCountry === null ? 'Loading...' : 'Join Membership'
+                  }
                   color="rendah-red"
                   fluid={false}
                   icon={buttonIconRed}
                   iconFloat="right"
                   inverted={false}
-                  loading={false}
-                  disabled={false}
+                  loading={isCheckoutLoading || customerCountry === null}
+                  disabled={isCheckoutLoading || customerCountry === null}
                   skeleton={false}
-                  onClick={() => {
-                    // @why: Track InitiateCheckout event with proper event ID for deduplication
-                    if (typeof window !== 'undefined' && window.fbq) {
-                      const timestamp = Math.floor(Date.now() / 1000);
-                      const priceId = isTrial
-                        ? '00g6rH85LceZ3cc5kq'
-                        : '8x2dRa9VU1N3bI90k257W0g';
-                      const eventId = generateEventId(
-                        'initiate_checkout',
-                        priceId,
-                        timestamp
-                      );
-
-                      console.log(
-                        'Meta Pixel: InitiateCheckout fired (membership)'
-                      );
-                      window.fbq(
-                        'track',
-                        'InitiateCheckout',
-                        {
-                          currency: 'GBP',
-                          content_type: 'membership',
-                        },
-                        {
-                          eventID: eventId, // @why: Enables deduplication with server-side event
-                        }
-                      );
-                    }
-                  }}
+                  onClick={handleMembershipPurchase}
                   /* Children */
-                  withLinkProps={{
-                    type: 'external',
-                    href: isTrial
-                      ? 'https://buy.stripe.com/00g6rH85LceZ3cc5kq'
-                      : 'https://buy.stripe.com/8x2dRa9VU1N3bI90k257W0g',
-                    target: '_blank',
-                    routerLink: null,
-                    routerLinkProps: null,
-                  }}
+                  withLinkProps={null}
                 />
 
                 <p className="text-xs text-neutral-500 pt-2">
@@ -531,10 +627,12 @@ export default function Dominion({ siteConfig }) {
 
 export async function getServerSideProps({ params, preview = false }) {
   const siteConfig = await getSiteConfig();
+  const membership = await getActiveMembership(preview);
 
   return {
     props: {
       siteConfig,
+      membership,
     },
   };
 }

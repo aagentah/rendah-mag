@@ -148,6 +148,38 @@ const productFields = `
     }
   },
   credits,
+  regionalPricing {
+    ukPrice,
+    usPrice,
+    canadaPrice,
+    australiaPrice,
+    chinaPrice,
+    europePrice,
+    globalPrice
+  },
+  regionalShipping {
+    ukShipping {
+      price
+    },
+    usShipping {
+      price
+    },
+    canadaShipping {
+      price
+    },
+    australiaShipping {
+      price
+    },
+    chinaShipping {
+      price
+    },
+    europeShipping {
+      price
+    },
+    globalShipping {
+      price,
+    }
+  },
   stripeCheckoutUrl,
 `;
 
@@ -935,4 +967,83 @@ export async function getHomePage() {
     },
    }`);
   return data;
+}
+
+export async function getActiveMembership(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "membership" && isActive == true] | order(_createdAt desc) [0] {
+      ...,
+      regionalPricing {
+        ukPrice,
+        usPrice,
+        canadaPrice,
+        australiaPrice,
+        chinaPrice,
+        europePrice,
+        globalPrice
+      },
+      stripePriceIds {
+        ukPriceId,
+        usPriceId,
+        canadaPriceId,
+        europePriceId,
+        globalPriceId
+      },
+      'slug': slug.current,
+    }`
+  );
+  return results;
+}
+
+export async function getMembership(slug, preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "membership" && slug.current == $slug] | order(_createdAt desc) [0] {
+      ...,
+      regionalPricing {
+        ukPrice,
+        usPrice,
+        canadaPrice,
+        australiaPrice,
+        chinaPrice,
+        europePrice,
+        globalPrice
+      },
+      stripePriceIds {
+        ukPriceId,
+        usPriceId,
+        canadaPriceId,
+        europePriceId,
+        globalPriceId
+      },
+      'slug': slug.current,
+    }`,
+    { slug }
+  );
+  return results;
+}
+
+export async function getAllMemberships(preview) {
+  const results = await getClient(preview).fetch(
+    `*[_type == "membership"] | order(isActive desc, _createdAt desc) {
+      ...,
+      regionalPricing {
+        ukPrice,
+        usPrice,
+        canadaPrice,
+        australiaPrice,
+        chinaPrice,
+        europePrice,
+        globalPrice
+      },
+      stripePriceIds {
+        ukPriceId,
+        usPriceId,
+        canadaPriceId,
+        europePriceId,
+        globalPriceId
+      },
+      'slug': slug.current,
+    }`
+  );
+  return results;
 }
