@@ -92,6 +92,7 @@ export default async function handler(req, res) {
         line_items: lineItems,
         mode: 'payment',
         phone_number_collection: { enabled: true },
+        allow_promotion_codes: true,
         success_url: `${req.headers.origin}/product/thank-you?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/product/${productSlug}`,
         metadata: {

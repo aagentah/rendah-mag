@@ -7,10 +7,10 @@ export default async ({ email, name, products, session }) => {
 
     let productDetails = '';
     if (session.mode === 'subscription') {
-      productDetails = `<tr><td style="text-align: left; padding-right: 15px;">Rendah Mag Membership</td><td style="text-align: left; padding-right: 15px;">1</td></tr>`;
+      productDetails = `<tr><td style="text-align: left; padding-right: 15px;">Rendah Mag Membership</td></tr>`;
     } else {
       products.forEach((product) => {
-        productDetails += `<tr><td style="text-align: left; padding-right: 15px;">${product.name}</td><td style="text-align: left; padding-right: 15px;">${product.quantity}</td></tr>`;
+        productDetails += `<tr><td style="text-align: left; padding-right: 15px;">${product.name} (${product.quantity})</td></tr>`;
       });
     }
 
@@ -79,7 +79,6 @@ export default async ({ email, name, products, session }) => {
       <table>
         <tr>
           <th style="text-align: left; padding-right: 15px;">Product Name</th>
-          <th style="text-align: left; padding-right: 15px;">Quantity</th>
         </tr>
         ${productDetails}
       </table>

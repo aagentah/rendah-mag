@@ -94,11 +94,43 @@ export default function ProductThankYou({ siteConfig, session }) {
             {customerEmail && (
               <div className="pb-4">
                 <p className="text-sm text-neutral-500">
-                  A confirmation email has been sent to{' '}
-                  <strong className="text-neutral-300">{customerEmail}</strong>
+                  A confirmation email has been sent to:
+                  <br />
+                  <span className="underline text-neutral-600">
+                    {customerEmail}
+                  </span>
                 </p>
               </div>
             )}
+
+            <div className="pb-4 text-left">
+              <Heading
+                htmlEntity="h2"
+                text="What's next?"
+                color="neutral-300"
+                size="medium"
+                truncate={null}
+                onClick={null}
+                withLinkProps={null}
+              />
+            </div>
+
+            <div className="pb-4">
+              <p className="text-sm text-neutral-500">
+                We typically ship out new orders once each week. (it's a super
+                small operation here, so thank you for the patience).
+              </p>
+            </div>
+
+            <div className="pb-8 md:mb-4">
+              <p className="text-sm text-neutral-500">
+                If you have any questions, feel free to contact us at{' '}
+                <a className="underline" href="mailto:info@rendahmag.com">
+                  info@rendahmag.com
+                </a>
+                .
+              </p>
+            </div>
 
             {session && (
               <div className="bg-neutral-800 border border-neutral-700 rounded-lg p-6 my-8">
@@ -134,35 +166,6 @@ export default function ProductThankYou({ siteConfig, session }) {
                 </div>
               </div>
             )}
-
-            <div className="pb-4 text-left">
-              <Heading
-                htmlEntity="h2"
-                text="What's next?"
-                color="neutral-300"
-                size="medium"
-                truncate={null}
-                onClick={null}
-                withLinkProps={null}
-              />
-            </div>
-
-            <div className="pb-4">
-              <p className="text-sm text-neutral-500">
-                We typically ship out new orders once each week. (it's a super
-                small operation here, so thank you for the patience).
-              </p>
-            </div>
-
-            <div className="pb-8 md:mb-4">
-              <p className="text-sm text-neutral-500">
-                If you have any questions, feel free to contact us at{' '}
-                <a className="underline" href="mailto:info@rendahmag.com">
-                  info@rendahmag.com
-                </a>
-                .
-              </p>
-            </div>
           </div>
         </Container>
       </Layout>
@@ -188,7 +191,10 @@ export async function getServerSideProps({ query }) {
       // @why: Extract only serializable fields to prevent React hydration errors
       session = {
         id: stripeSession.id,
-        payment_intent: stripeSession.payment_intent?.id || null,
+        payment_intent:
+          typeof stripeSession.payment_intent === 'string'
+            ? stripeSession.payment_intent
+            : stripeSession.payment_intent?.id || null,
         amount_total: stripeSession.amount_total,
         currency: stripeSession.currency,
         customer_details: {

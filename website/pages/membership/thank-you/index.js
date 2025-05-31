@@ -94,38 +94,12 @@ export default function DominionThankYou({ siteConfig, session }) {
             {customerEmail && (
               <div className="pb-4">
                 <p className="text-sm text-neutral-500">
-                  A confirmation email has been sent to{' '}
-                  <strong className="text-neutral-300">{customerEmail}</strong>
+                  A confirmation email has been sent to:
+                  <br />
+                  <span className="underline text-neutral-600">
+                    {customerEmail}
+                  </span>
                 </p>
-              </div>
-            )}
-
-            {session && (
-              <div className="bg-neutral-800 border border-neutral-700 rounded-lg p-6 my-8">
-                <h3 className="text-neutral-300 text-sm mb-4">
-                  Membership Details
-                </h3>
-                <div className="space-y-2 text-xs">
-                  <div className="flex justify-between">
-                    <span className="text-neutral-500">Membership ID:</span>
-                    <span className="text-neutral-400 font-mono">
-                      {session.subscription}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-neutral-500">Amount:</span>
-                    <span className="text-neutral-400">
-                      {session.currency?.toUpperCase()}{' '}
-                      {(session.amount_total / 100).toFixed(2)} / month
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-neutral-500">Region:</span>
-                    <span className="text-neutral-400">
-                      {session.metadata?.customer_region || 'Global'}
-                    </span>
-                  </div>
-                </div>
               </div>
             )}
 
@@ -167,6 +141,35 @@ export default function DominionThankYou({ siteConfig, session }) {
                 .
               </p>
             </div>
+
+            {session && (
+              <div className="bg-neutral-800 border border-neutral-700 rounded-lg p-6 my-8">
+                <h3 className="text-neutral-300 text-sm mb-4">
+                  Membership Details
+                </h3>
+                <div className="space-y-2 text-xs">
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Membership ID:</span>
+                    <span className="text-neutral-400 font-mono">
+                      {session.subscription}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Amount:</span>
+                    <span className="text-neutral-400">
+                      {session.currency?.toUpperCase()}{' '}
+                      {(session.amount_total / 100).toFixed(2)} / month
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Region:</span>
+                    <span className="text-neutral-400">
+                      {session.metadata?.customer_region || 'Global'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </Container>
       </Layout>
@@ -192,7 +195,10 @@ export async function getServerSideProps({ query }) {
       // @why: Extract only serializable fields to prevent React hydration errors
       session = {
         id: stripeSession.id,
-        subscription: stripeSession.subscription?.id || null,
+        subscription:
+          typeof stripeSession.subscription === 'string'
+            ? stripeSession.subscription
+            : stripeSession.subscription?.id || null,
         amount_total: stripeSession.amount_total,
         currency: stripeSession.currency,
         customer_details: {
