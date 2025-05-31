@@ -182,9 +182,24 @@ export async function getServerSideProps({ query }) {
   if (query.session_id) {
     try {
       // @why: Retrieve Stripe session to show subscription details
-      session = await stripe.checkout.sessions.retrieve(query.session_id, {
-        expand: ['subscription', 'customer'],
-      });
+      const stripeSession = await stripe.checkout.sessions.retrieve(
+        query.session_id,
+        {
+          expand: ['subscription', 'customer'],
+        }
+      );
+
+      // @why: Extract only serializable fields to prevent React hydration errors
+      session = {
+        id: stripeSession.id,
+        subscription: stripeSession.subscription?.id || null,
+        amount_total: stripeSession.amount_total,
+        currency: stripeSession.currency,
+        customer_details: {
+          email: stripeSession.customer_details?.email || null,
+        },
+        metadata: stripeSession.metadata || {},
+      };
     } catch (error) {
       console.error('Error retrieving Stripe session:', error);
       // @why: Continue without session data rather than breaking the page
