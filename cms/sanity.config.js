@@ -10,6 +10,7 @@ import UsersAddress from "./components/previews/UsersAddress";
 import StripeMetrics from "./components/previews/StripeMetrics";
 import RecentOrders from "./components/previews/RecentOrders";
 import FailedPayments from "./components/previews/FailedPayments";
+import ShippingHubMetrics from "./components/previews/ShippingHubMetrics";
 
 import { createClient } from "@sanity/client";
 
@@ -101,6 +102,13 @@ const deskStructure = async (S) => {
                   S.listItem()
                     .title("FailedPayments")
                     .child(S.component(FailedPayments).title("FailedPayments")),
+                  S.listItem()
+                    .title("ShippingHubMetrics")
+                    .child(
+                      S.component(ShippingHubMetrics).title(
+                        "ShippingHubMetrics"
+                      )
+                    ),
                 ])
             ),
         admin &&
