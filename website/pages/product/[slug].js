@@ -193,23 +193,7 @@ export default function Product({ siteConfig, product, membership }) {
       const isCountryLoading = customerCountry === null;
 
       if (isSoldOut) {
-        return (
-          <Button
-            type="primary"
-            size="medium"
-            text="Sold Out"
-            color="neutral-400"
-            fluid={false}
-            icon={buttonIconPlus}
-            iconFloat="left"
-            inverted={false}
-            loading={false}
-            disabled
-            skeleton={false}
-            onClick={null}
-            withLinkProps={null}
-          />
-        );
+        return null
       }
 
       if (product.category === 'Printed Issues') {
@@ -234,7 +218,7 @@ export default function Product({ siteConfig, product, membership }) {
             <p className="text-xs text-neutral-500 text-balance pt-2">
               [or join membership <i>instead</i> for{' '}
               <Link href={`/membership`}>
-                <span className="text-neutral-600 underline">
+                <span className="text-neutral-500 underline">
                   {(() => {
                     // @why: Show loading state until customer country is detected
                     if (customerCountry === null) {
@@ -410,18 +394,22 @@ export default function Product({ siteConfig, product, membership }) {
                           right: product?.tag,
                           rightClassName: 'text-right',
                         },
-                        {
-                          left: 'Price',
-                          right: (() => {
-                            // Show loading state until customer country is detected
-                            if (customerCountry === null) {
-                              return '...';
-                            }
-                            const { price, currency } = getRegionalPrice();
-                            return `${getCurrencySymbol(currency)}${price}`;
-                          })(),
-                          rightClassName: 'text-right',
-                        },
+                        ...(!isSoldOut
+                          ? [
+                              {
+                                left: 'Price',
+                                right: (() => {
+                                  // Show loading state until customer country is detected
+                                  if (customerCountry === null) {
+                                    return '...';
+                                  }
+                                  const { price, currency } = getRegionalPrice();
+                                  return `${getCurrencySymbol(currency)}${price}`;
+                                })(),
+                                rightClassName: 'text-right',
+                              },
+                            ]
+                          : []),
                         {
                           left: 'Available Shipping',
                           right: (() => {
