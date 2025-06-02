@@ -772,8 +772,8 @@ const WorldMapWithUsers = () => {
               <p className="text-neutral-500 text-xxs md:text-xs">
                 * Context is provided by members who have shared. If you would
                 like to add your city and country, feel free to email{' '}
-                <a href="mailto:dan@rendah.com" className="underline">
-                  dan@rendah.com
+                <a href="mailto:dan@rendahmag.com" className="underline">
+                  dan@rendahmag.com
                 </a>
                 .
               </p>
