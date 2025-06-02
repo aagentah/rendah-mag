@@ -244,7 +244,10 @@ export default function Profile({ siteConfig }) {
                         : 'text-neutral-300'
                     }`}
                   >
-                    <span>Member Map</span>
+                    <div className="flex items-center gap-x-2">
+                      <span>Member Map</span>
+                      <span className="text-rendah-red text-xs">[in-progress]</span>
+                    </div>
                   </button>
                   <button
                     onClick={() =>
@@ -253,7 +256,7 @@ export default function Profile({ siteConfig }) {
                         query: { tab: 'profile' },
                       })
                     }
-                    className={`col-span-12 py-2 px-4 border-l md:border-b md:border-t-0 md:border-r-0 md:border-l-0 border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
+                    className={`text-left md:text-center col-span-12 py-2 px-4 border-l md:border-b md:border-t-0 md:border-r-0 md:border-l-0 border-neutral-300 cursor-pointer text-sm transition-colors duration-300 ${
                       filter === 'profile'
                         ? 'bg-neutral-300 text-neutral-800'
                         : 'text-neutral-300'
