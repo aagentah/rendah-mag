@@ -60,8 +60,22 @@ export default async ({ session, products }) => {
       await addMembertags();
     };
 
-    await addUpdateMailchimpUser();
-    await orderEmail({ email, phone, name, products, session });
+    const [mailchimpResult, orderEmailResult] = await Promise.allSettled([
+      addUpdateMailchimpUser(),
+      orderEmail({ email, phone, name, products, session })
+    ]);
+
+    // Log but don't fail on Mailchimp errors (non-critical for user experience)
+    if (mailchimpResult.status === 'rejected') {
+      console.error('Mailchimp update failed for order:', mailchimpResult.reason);
+      // Maybe send to error monitoring service
+    }
+
+    // Order email failure is critical for customer experience
+    if (orderEmailResult.status === 'rejected') {
+      console.error('Order email failed:', orderEmailResult.reason);
+      throw new Error('Failed to send order confirmation email');
+    }
 
     return { error: '' };
   } catch (error) {

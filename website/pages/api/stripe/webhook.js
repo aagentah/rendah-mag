@@ -65,13 +65,27 @@ export default async function handler(req, res) {
           console.error('Meta Conversions API error:', metaError);
         }
 
-        await orderCompleted({ session, products });
-        await receiptEmail({
-          email: customer_details.email,
-          name: shipping.name,
-          products,
-          session,
-        });
+        const [orderCompletedResult, receiptResult] = await Promise.allSettled([
+          orderCompleted({ session, products }),
+          receiptEmail({
+            email: customer_details.email,
+            name: shipping.name,
+            products,
+            session,
+          })
+        ]);
+
+        // Log but don't fail on order processing errors (contains Mailchimp operations)
+        if (orderCompletedResult.status === 'rejected') {
+          console.error('Order processing failed:', orderCompletedResult.reason);
+          // Order notification to business failed, but customer still gets receipt
+        }
+
+        // Customer receipt failure is critical
+        if (receiptResult.status === 'rejected') {
+          console.error('Customer receipt email failed:', receiptResult.reason);
+          throw new Error('Failed to send customer receipt');
+        }
 
         if (session.mode === 'subscription') {
           await subscriptionCreated({

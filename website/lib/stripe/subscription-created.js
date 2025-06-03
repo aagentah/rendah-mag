@@ -91,8 +91,22 @@ export default async details => {
     };
 
     // Add or update mailchimp user
-    await addUpdateMailchimpUser();
-    await welcomeDominionEmail({ email, temporaryPassword });
+    const [mailchimpResult, emailResult] = await Promise.allSettled([
+      addUpdateMailchimpUser(),
+      welcomeDominionEmail({ email, temporaryPassword })
+    ]);
+    
+    // Log but don't fail on Mailchimp errors (non-critical for user experience)
+    if (mailchimpResult.status === 'rejected') {
+      console.error('Mailchimp update failed:', mailchimpResult.reason);
+      // Maybe send to error monitoring service
+    }
+    
+    // Welcome email failure is more serious
+    if (emailResult.status === 'rejected') {
+      console.error('Welcome email failed:', emailResult.reason);
+      throw new Error('Failed to send welcome email');
+    }
 
     return { error: '' };
   } catch (error) {
