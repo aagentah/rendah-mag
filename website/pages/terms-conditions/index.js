@@ -4,700 +4,540 @@ import Container from '~/components/layout/container';
 
 import { getSiteConfig } from '~/lib/sanity/requests';
 
-export default function Error404({ siteConfig }) {
+export default function TermsAndConditions({ siteConfig }) {
+  const lastUpdated = 'June 9, 2025';
+  const effectiveDate = 'June 9, 2025';
+  const termsVersion = '3.0';
+
   return (
-    <>
-      <Layout
-        navOffset="top"
-        navOnWhite
-        hasNav
-        hasFooter
-        meta={{
-          siteConfig,
-          title: 'Terms & Conditions',
-          description: null,
-          image: null
-        }}
-        preview={null}
-      >
-        <Container>
-          <div className="pb4  tac">
-            <Heading
-              /* Options */
-              htmlEntity="h1"
-              text="Terms & Conditions"
-              color="black"
-              size="large"
-              truncate={0}
-              onClick={null}
-              /* Children */
-              withLinkProps={null}
-            />
-          </div>
-          <div className="rich-text  measure-wide  mla  mra  pb5">
-            <div>
-              <div data-custom-class="body">
-                <div>
-                  <p data-custom-class="title">
-                    <strong>TERMS OF USE</strong>
-                  </p>
-                </div>
-                <div>
-                  <p data-custom-class="heading_1">
-                    <a name="_6aa3gkhykvst" />
-                    <strong>AGREEMENT TO TERMS</strong>
-                  </p>
-                </div>
-                <p>
-                  <strong>
-                    {' '}
-                    <span> Last updated January 01, 2021&nbsp; </span>{' '}
-                  </strong>{' '}
-                  &nbsp;
-                </p>
-                <p data-custom-class="body_text">
-                  These Terms of Use constitute a legally binding agreement made
-                  between you, whether personally or on behalf of an entity
-                  (&ldquo;you&rdquo;) and ("
-                  <strong>Company</strong>", &ldquo;<strong>we</strong>
-                  &rdquo;, &ldquo;<strong>us</strong>&rdquo;, or &ldquo;
-                  <strong>our</strong>&rdquo;), concerning your access to and
-                  use of the website as well as any other media form, media
-                  channel, mobile website or mobile application related, linked,
-                  or otherwise connected thereto (collectively, the
-                  &ldquo;Site&rdquo;). You agree that by accessing the Site, you
-                  have read, understood, and agreed to be bound by all of these
-                  Terms of Use. IF YOU DO NOT AGREE WITH ALL OF THESE TERMS OF
-                  USE, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SITE AND
-                  YOU MUST DISCONTINUE USE IMMEDIATELY.
-                </p>
-                <p data-custom-class="body_text">
-                  Supplemental terms and conditions or documents that may be
-                  posted on the Site from time to time are hereby expressly
-                  incorporated herein by reference. We reserve the right, in our
-                  sole discretion, to make changes or modifications to these
-                  Terms of Use at any time and for any reason. We will alert you
-                  about any changes by updating the &ldquo;Last updated&rdquo;
-                  date of these Terms of Use, and you waive any right to receive
-                  specific notice of each such change. Please ensure that you
-                  check the applicable Terms every time you use our Site so that
-                  you understand which Terms apply. You will be subject to, and
-                  will be deemed to have been made aware of and to have
-                  accepted, the changes in any revised Terms of Use by your
-                  continued use of the Site after the date such revised Terms of
-                  Use are posted.
-                </p>
-                <p data-custom-class="body_text">
-                  The information provided on the Site is not intended for
-                  distribution to or use by any person or entity in any
-                  jurisdiction or country where such distribution or use would
-                  be contrary to law or regulation or which would subject us to
-                  any registration requirement within such jurisdiction or
-                  country. Accordingly, those persons who choose to access the
-                  Site from other locations do so on their own initiative and
-                  are solely responsible for compliance with local laws, if and
-                  to the extent local laws are applicable.
-                </p>
-                <p data-custom-class="heading_1">
-                  <a name="_b6y29mp52qvx" />
-                  <strong>INTELLECTUAL PROPERTY RIGHTS</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  Unless otherwise indicated, the Site is our proprietary
-                  property and all source code, databases, functionality,
-                  software, website designs, audio, video, text, photographs,
-                  and graphics on the Site (collectively, the
-                  &ldquo;Content&rdquo;) and the trademarks, service marks, and
-                  logos contained therein (the &ldquo;Marks&rdquo;) are owned or
-                  controlled by us or licensed to us, and are protected by
-                  copyright and trademark laws and various other intellectual
-                  property rights and unfair competition laws of the United
-                  States, international copyright laws, and international
-                  conventions. The Content and the Marks are provided on the
-                  Site &ldquo;AS IS&rdquo; for your information and personal use
-                  only. Except as expressly provided in these Terms of Use, no
-                  part of the Site and no Content or Marks may be copied,
-                  reproduced, aggregated, republished, uploaded, posted,
-                  publicly displayed, encoded, translated, transmitted,
-                  distributed, sold, licensed, or otherwise exploited for any
-                  commercial purpose whatsoever, without our express prior
-                  written permission.
-                </p>
-                <p data-custom-class="body_text">
-                  Provided that you are eligible to use the Site, you are
-                  granted a limited license to access and use the Site and to
-                  download or print a copy of any portion of the Content to
-                  which you have properly gained access solely for your
-                  personal, non-commercial use. We reserve all rights not
-                  expressly granted to you in and to the Site, the Content and
-                  the Marks.
-                </p>
-                <p data-custom-class="heading_1">
-                  <a name="_5hg7kgyv9l8z" />
-                  <strong>USER REPRESENTATIONS</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  By using the Site, you represent and warrant that:&nbsp;(1)
-                  you have the legal capacity and you agree to comply with these
-                  Terms of Use;&nbsp;(2) you are not a minor in the jurisdiction
-                  in which you reside; (3) you will not access the Site through
-                  automated or non-human means, whether through a bot, script or
-                  otherwise; (4) you will not use the Site for any illegal or
-                  unauthorized purpose; and (5) your use of the Site will not
-                  violate any applicable law or regulation.
-                </p>
-                <div>
-                  <p data-custom-class="body_text">
-                    If you provide any information that is untrue, inaccurate,
-                    not current, or incomplete, we have the right to suspend or
-                    terminate your account and refuse any and all current or
-                    future use of the Site (or any portion thereof).
-                  </p>
-                  <p data-custom-class="heading_1">
-                    <a name="_nds4qylockxx" />
-                    <strong>PRODUCTS</strong>
-                  </p>
-                </div>
-                <div>
-                  <p data-custom-class="body_text">
-                    We make every effort to display as accurately as possible
-                    the colors, features, specifications, and details of the
-                    products available on the Site. However, we do not guarantee
-                    that the colors, features, specifications, and details of
-                    the products will be accurate, complete, reliable, current,
-                    or free of other errors, and your electronic display may not
-                    accurately reflect the actual colors and details of the
-                    products.&nbsp;All products are subject to availability, and
-                    we cannot guarantee that items will be in stock. We reserve
-                    the right to discontinue any products at any time for any
-                    reason. Prices for all products are subject to change.
-                  </p>
-                </div>
-                <div>
-                  <p data-custom-class="heading_1">
-                    <a name="_ynub0jdx8pob" />
-                    <strong>PURCHASES AND PAYMENT</strong>
-                  </p>
-                </div>
-                <div>
-                  <p data-custom-class="body_text">
-                    We accept the following forms of payment:
-                  </p>
-                  <div />
-                  <p data-custom-class="body_text">
-                    You agree to provide current, complete, and accurate
-                    purchase and account information for all purchases made via
-                    the Site. You further agree to promptly update account and
-                    payment information, including email address, payment
-                    method, and payment card expiration date, so that we can
-                    complete your transactions and contact you as needed. Sales
-                    tax will be added to the price of purchases as deemed
-                    required by us. We may change prices at any time. All
-                    payments shall be&nbsp.
-                  </p>
-                </div>
-                <div>
-                  <p data-custom-class="body_text">
-                    You agree to pay all charges at the prices then in effect
-                    for your purchases and any applicable shipping fees, and you
-                    authorize us to charge your chosen payment provider for any
-                    such amounts upon placing your order. We reserve the right
-                    to correct any errors or mistakes in pricing, even if we
-                    have already requested or received payment.
-                  </p>
-                </div>
-                <div>
-                  <p data-custom-class="body_text">
-                    We reserve the right to refuse any order placed through the
-                    Site. We may, in our sole discretion, limit or cancel
-                    quantities purchased per person, per household, or per
-                    order. These restrictions may include orders placed by or
-                    under the same customer account, the same payment method,
-                    and/or orders that use the same billing or shipping address.
-                    We reserve the right to limit or prohibit orders that, in
-                    our sole judgment, appear to be placed by dealers,
-                    resellers, or distributors.
-                  </p>
-                </div>
-                <p>
-                  <a name="_h284p8mrs3r7" />
-                  <div data-custom-class="heading_1">
-                    <strong>PROHIBITED ACTIVITIES</strong>
-                  </div>
-                </p>
-                <div>
-                  <p data-custom-class="body_text">
-                    You may not access or use the Site for any purpose other
-                    than that for which we make the Site available. The Site may
-                    not be used in connection with any commercial endeavors
-                    except those that are specifically endorsed or approved by
-                    us.
-                  </p>
-                </div>
-                <div>
-                  <div>
-                    <div>
-                      <div>
-                        <p data-custom-class="body_text">
-                          As a user of the Site, you agree not to:
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <p data-custom-class="heading_1">
-                        <strong>USER GENERATED CONTRIBUTIONS</strong>
-                      </p>
-                    </div>
-                    <div>
-                      <p data-custom-class="body_text">
-                        The Site does not offer users to submit or post content.
-                        We may provide you with the opportunity to create,
-                        submit, post, display, transmit, perform, publish,
-                        distribute, or broadcast content and materials to us or
-                        on the Site, including but not limited to text,
-                        writings, video, audio, photographs, graphics, comments,
-                        suggestions, or personal information or other material
-                        (collectively, "Contributions"). Contributions may be
-                        viewable by other users of the Site and through
-                        third-party websites. As such, any Contributions you
-                        transmit may be treated in accordance with the Site
-                        Privacy Policy. When you create or make available any
-                        Contributions, you thereby represent and warrant that:
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <p>
-                  1. The creation, distribution, transmission, public display,
-                  or performance, and the accessing, downloading, or copying of
-                  your Contributions do not and will not infringe the
-                  proprietary rights, including but not limited to the
-                  copyright, patent, trademark, trade secret, or moral rights of
-                  any third party.
-                  <br />
-                  2. You are the creator and owner of or have the necessary
-                  licenses, rights, consents, releases, and permissions to use
-                  and to authorize us, the Site, and other users of the Site to
-                  use your Contributions in any manner contemplated by the Site
-                  and these Terms of Use.
-                  <br />
-                  3. You have the written consent, release, and/or permission of
-                  each and every identifiable individual person in your
-                  Contributions to use the name or likeness of each and every
-                  such identifiable individual person to enable inclusion and
-                  use of your Contributions in any manner contemplated by the
-                  Site and these Terms of Use.
-                  <br />
-                  4. Your Contributions are not false, inaccurate, or
-                  misleading.
-                  <br />
-                  5. Your Contributions are not unsolicited or unauthorized
-                  advertising, promotional materials, pyramid schemes, chain
-                  letters, spam, mass mailings, or other forms of solicitation.
-                  <br />
-                  6. Your Contributions are not obscene, lewd, lascivious,
-                  filthy, violent, harassing, libelous, slanderous, or otherwise
-                  objectionable (as determined by us).
-                  <br />
-                  7. Your Contributions do not ridicule, mock, disparage,
-                  intimidate, or abuse anyone.
-                  <br />
-                  8. Your Contributions are not used to harass or threaten (in
-                  the legal sense of those terms) any other person and to
-                  promote violence against a specific person or class of people.
-                  <br />
-                  9. Your Contributions do not violate any applicable law,
-                  regulation, or rule.
-                  <br />
-                  10. Your Contributions do not violate the privacy or publicity
-                  rights of any third party.
-                  <br />
-                  11. Your Contributions do not violate any applicable law
-                  concerning child pornography, or otherwise intended to protect
-                  the health or well-being of minors;
-                  <br />
-                  12. Your Contributions do not include any offensive comments
-                  that are connected to race, national origin, gender, sexual
-                  preference, or physical handicap.
-                  <br />
-                  13. Your Contributions do not otherwise violate, or link to
-                  material that violates, any provision of these Terms of Use,
-                  or any applicable law or regulation.
-                </p>
-                <div>
-                  <p data-custom-class="body_text">
-                    Any use of the Site or the Marketplace Offerings in
-                    violation of the foregoing violates these Terms of Use and
-                    may result in, among other things, termination or suspension
-                    of your rights to use the Site and the Marketplace
-                    Offerings.
-                  </p>
-                </div>
-                <div>
-                  <p data-custom-class="heading_1">
-                    <strong>CONTRIBUTION LICENSE</strong>
-                  </p>
-                </div>
-                <p data-custom-class="body_text">
-                  You and Site agree that we may access, store, process, and use
-                  any information and personal data that you provide following
-                  the terms of the Privacy Policy and your choices (including
-                  settings).
-                </p>
-                <p data-custom-class="body_text">
-                  By submitting suggestions or other feedback regarding the
-                  Site, you agree that we can use and share such feedback for
-                  any purpose without compensation to you.
-                </p>
-                <p data-custom-class="body_text">
-                  We do not assert any ownership over your Contributions. You
-                  retain full ownership of all of your Contributions and any
-                  intellectual property rights or other proprietary rights
-                  associated with your Contributions. We are not liable for any
-                  statements or representations in your Contributions provided
-                  by you in any area on the Site. You are solely responsible for
-                  your Contributions to the Site and you expressly agree to
-                  exonerate us from any and all responsibility and to refrain
-                  from any legal action against us regarding your Contributions.
-                </p>
-              </div>
-              <div>
-                <p data-custom-class="heading_1">
-                  <strong>SUBMISSIONS</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  You acknowledge and agree that any questions, comments,
-                  suggestions, ideas, feedback, or other information regarding
-                  the Site or the Marketplace Offerings ("Submissions") provided
-                  by you to us are non-confidential and shall become our sole
-                  property. We shall own exclusive rights, including all
-                  intellectual property rights, and shall be entitled to the
-                  unrestricted use and dissemination of these Submissions for
-                  any lawful purpose, commercial or otherwise, without
-                  acknowledgment or compensation to you. You hereby waive all
-                  moral rights to any such Submissions, and you hereby warrant
-                  that any such Submissions are original with you or that you
-                  have the right to submit such Submissions. You agree there
-                  shall be no recourse against us for any alleged or actual
-                  infringement or misappropriation of any proprietary right in
-                  your Submissions.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>SITE MANAGEMENT</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  We reserve the right, but not the obligation, to: (1) monitor
-                  the Site for violations of these Terms of Use; (2) take
-                  appropriate legal action against anyone who, in our sole
-                  discretion, violates the law or these Terms of Use, including
-                  without limitation, reporting such user to law enforcement
-                  authorities; (3) in our sole discretion and without
-                  limitation, refuse, restrict access to, limit the availability
-                  of, or disable (to the extent technologically feasible) any of
-                  your Contributions or any portion thereof; (4) in our sole
-                  discretion and without limitation, notice, or liability, to
-                  remove from the Site or otherwise disable all files and
-                  content that are excessive in size or are in any way
-                  burdensome to our systems; and (5) otherwise manage the Site
-                  in a manner designed to protect our rights and property and to
-                  facilitate the proper functioning of the Site and the
-                  Marketplace Offerings.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>TERM AND TERMINATION</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  These Terms of Use shall remain in full force and effect while
-                  you use the Site. WITHOUT LIMITING ANY OTHER PROVISION OF
-                  THESE TERMS OF USE, WE RESERVE THE RIGHT TO, IN OUR SOLE
-                  DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND
-                  USE OF THE SITE AND THE MARKETPLACE OFFERINGS (INCLUDING
-                  BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON
-                  OR FOR NO REASON, INCLUDING WITHOUT LIMITATION FOR BREACH OF
-                  ANY REPRESENTATION, WARRANTY, OR COVENANT CONTAINED IN THESE
-                  TERMS OF USE OR OF ANY APPLICABLE LAW OR REGULATION. WE MAY
-                  TERMINATE YOUR USE OR PARTICIPATION IN THE SITE AND THE
-                  MARKETPLACE OFFERINGS OR DELETE ANY CONTENT OR INFORMATION
-                  THAT YOU POSTED AT ANY TIME, WITHOUT WARNING, IN OUR SOLE
-                  DISCRETION.
-                </p>
-                <p data-custom-class="body_text">
-                  If we terminate or suspend your account for any reason, you
-                  are prohibited from registering and creating a new account
-                  under your name, a fake or borrowed name, or the name of any
-                  third party, even if you may be acting on behalf of the third
-                  party. In addition to terminating or suspending your account,
-                  we reserve the right to take appropriate legal action,
-                  including without limitation pursuing civil, criminal, and
-                  injunctive redress.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>MODIFICATIONS AND INTERRUPTIONS</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  We reserve the right to change, modify, or remove the contents
-                  of the Site at any time or for any reason at our sole
-                  discretion without notice. However, we have no obligation to
-                  update any information on our Site. We also reserve the right
-                  to modify or discontinue all or part of the Marketplace
-                  Offerings without notice at any time. We will not be liable to
-                  you or any third party for any modification, price change,
-                  suspension, or discontinuance of the Site or the Marketplace
-                  Offerings.
-                </p>
-                <p data-custom-class="body_text">
-                  We cannot guarantee the Site and the Marketplace Offerings
-                  will be available at all times. We may experience hardware,
-                  software, or other problems or need to perform maintenance
-                  related to the Site, resulting in interruptions, delays, or
-                  errors. We reserve the right to change, revise, update,
-                  suspend, discontinue, or otherwise modify the Site or the
-                  Marketplace Offerings at any time or for any reason without
-                  notice to you. You agree that we have no liability whatsoever
-                  for any loss, damage, or inconvenience caused by your
-                  inability to access or use the Site or the Marketplace
-                  Offerings during any downtime or discontinuance of the Site or
-                  the Marketplace Offerings. Nothing in these Terms of Use will
-                  be construed to obligate us to maintain and support the Site
-                  or the Marketplace Offerings or to supply any corrections,
-                  updates, or releases in connection therewith.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>GOVERNING LAW</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  These terms shall be governed by and defined following the
-                  laws and yourself irrevocably consent that the courts shall
-                  have exclusive jurisdiction to resolve any dispute which may
-                  arise in connection with these terms.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>DISPUTE RESOLUTION</strong>
-                </p>
-                <p data-custom-class="heading_2">
-                  <strong>Informal Negotiations</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  To expedite resolution and control the cost of any dispute,
-                  controversy, or claim related to these Terms of Use (each
-                  "Dispute" and collectively, the &ldquo;Disputes&rdquo;)
-                  brought by either you or us (individually, a
-                  &ldquo;Party&rdquo; and collectively, the
-                  &ldquo;Parties&rdquo;), the Parties agree to first attempt to
-                  negotiate any Dispute (except those Disputes expressly
-                  provided below) informally for at least days before initiating
-                  arbitration. Such informal negotiations commence upon written
-                  notice from one Party to the other Party.
-                </p>
-                <p data-custom-class="heading_2">
-                  <strong>Restrictions</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  The Parties agree that any arbitration shall be limited to the
-                  Dispute between the Parties individually. To the full extent
-                  permitted by law, (a) no arbitration shall be joined with any
-                  other proceeding; (b) there is no right or authority for any
-                  Dispute to be arbitrated on a class-action basis or to utilize
-                  class action procedures; and (c) there is no right or
-                  authority for any Dispute to be brought in a purported
-                  representative capacity on behalf of the general public or any
-                  other persons.
-                </p>
-                <p data-custom-class="heading_2">
-                  <strong>
-                    Exceptions to Informal Negotiations and Arbitration
-                  </strong>
-                </p>
-                <p data-custom-class="body_text">
-                  The Parties agree that the following Disputes are not subject
-                  to the above provisions concerning informal negotiations
-                  binding arbitration: (a) any Disputes seeking to enforce or
-                  protect, or concerning the validity of, any of the
-                  intellectual property rights of a Party; (b) any Dispute
-                  related to, or arising from, allegations of theft, piracy,
-                  invasion of privacy, or unauthorized use; and (c) any claim
-                  for injunctive relief. If this provision is found to be
-                  illegal or unenforceable, then neither Party will elect to
-                  arbitrate any Dispute falling within that portion of this
-                  provision found to be illegal or unenforceable and such
-                  Dispute shall be decided by a court of competent jurisdiction
-                  within the courts listed for jurisdiction above, and the
-                  Parties agree to submit to the personal jurisdiction of that
-                  court.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>CORRECTIONS</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  There may be information on the Site that contains
-                  typographical errors, inaccuracies, or omissions that may
-                  relate to the Marketplace Offerings, including descriptions,
-                  pricing, availability, and various other information. We
-                  reserve the right to correct any errors, inaccuracies, or
-                  omissions and to change or update the information on the Site
-                  at any time, without prior notice.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>DISCLAIMER</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  THE SITE IS PROVIDED ON AN AS-IS AND AS-AVAILABLE BASIS. YOU
-                  AGREE THAT YOUR USE OF THE SITE SERVICES WILL BE AT YOUR SOLE
-                  RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL
-                  WARRANTIES, EXPRESS OR IMPLIED, IN CONNECTION WITH THE SITE
-                  AND YOUR USE THEREOF, INCLUDING, WITHOUT LIMITATION, THE
-                  IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-                  PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE MAKE NO
-                  WARRANTIES OR REPRESENTATIONS ABOUT THE ACCURACY OR
-                  COMPLETENESS OF THE SITE&rsquo;S CONTENT OR THE CONTENT OF ANY
-                  WEBSITES LINKED TO THIS SITE AND WE WILL ASSUME NO LIABILITY
-                  OR RESPONSIBILITY FOR ANY (1) ERRORS, MISTAKES, OR
-                  INACCURACIES OF CONTENT AND MATERIALS, (2) PERSONAL INJURY OR
-                  PROPERTY DAMAGE, OF ANY NATURE WHATSOEVER, RESULTING FROM YOUR
-                  ACCESS TO AND USE OF THE SITE, (3) ANY UNAUTHORIZED ACCESS TO
-                  OR USE OF OUR SECURE SERVERS AND/OR ANY AND ALL PERSONAL
-                  INFORMATION AND/OR FINANCIAL INFORMATION STORED THEREIN, (4)
-                  ANY INTERRUPTION OR CESSATION OF TRANSMISSION TO OR FROM THE
-                  SITE, (5) ANY BUGS, VIRUSES, TROJAN HORSES, OR THE LIKE WHICH
-                  MAY BE TRANSMITTED TO OR THROUGH THE SITE BY ANY THIRD PARTY,
-                  AND/OR (6) ANY ERRORS OR OMISSIONS IN ANY CONTENT AND
-                  MATERIALS OR FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A
-                  RESULT OF THE USE OF ANY CONTENT POSTED, TRANSMITTED, OR
-                  OTHERWISE MADE AVAILABLE VIA THE SITE. WE DO NOT WARRANT,
-                  ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR ANY PRODUCT
-                  OR SERVICE ADVERTISED OR OFFERED BY A THIRD PARTY THROUGH THE
-                  SITE, ANY HYPERLINKED WEBSITE, OR ANY WEBSITE OR MOBILE
-                  APPLICATION FEATURED IN ANY BANNER OR OTHER ADVERTISING, AND
-                  WE WILL NOT BE A PARTY TO OR IN ANY WAY BE RESPONSIBLE FOR
-                  MONITORING ANY TRANSACTION BETWEEN YOU AND ANY THIRD-PARTY
-                  PROVIDERS OF PRODUCTS OR SERVICES. AS WITH THE PURCHASE OF A
-                  PRODUCT OR SERVICE THROUGH ANY MEDIUM OR IN ANY ENVIRONMENT,
-                  YOU SHOULD USE YOUR BEST JUDGMENT AND EXERCISE CAUTION WHERE
-                  APPROPRIATE.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>LIMITATIONS OF LIABILITY</strong>
-                </p>
-                <p>
-                  IN NO EVENT WILL WE OR OUR DIRECTORS, EMPLOYEES, OR AGENTS BE
-                  LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT,
-                  CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL, OR PUNITIVE
-                  DAMAGES, INCLUDING LOST PROFIT, LOST REVENUE, LOSS OF DATA, OR
-                  OTHER DAMAGES ARISING FROM YOUR USE OF THE SITE, EVEN IF WE
-                  HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-                  NOTWITHSTANDING ANYTHING TO THE CONTRARY CONTAINED HEREIN, OUR
-                  LIABILITY TO YOU FOR ANY CAUSE WHATSOEVER AND REGARDLESS OF
-                  THE FORM OF THE ACTION, WILL AT ALL TIMES BE LIMITED TO THE
-                  LESSER OF THE AMOUNT PAID, IF ANY, BY YOU TO US OR CERTAIN US
-                  STATE LAWS AND INTERNATIONAL LAWS DO NOT ALLOW LIMITATIONS ON
-                  IMPLIED WARRANTIES OR THE EXCLUSION OR LIMITATION OF CERTAIN
-                  DAMAGES. IF THESE LAWS APPLY TO YOU, SOME OR ALL OF THE ABOVE
-                  DISCLAIMERS OR LIMITATIONS MAY NOT APPLY TO YOU, AND YOU MAY
-                  HAVE ADDITIONAL RIGHTS.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>INDEMNIFICATION</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  You agree to defend, indemnify, and hold us harmless,
-                  including our subsidiaries, affiliates, and all of our
-                  respective officers, agents, partners, and employees, from and
-                  against any loss, damage, liability, claim, or demand,
-                  including reasonable attorneys&rsquo; fees and expenses, made
-                  by any third party due to or arising out of: (1) use of the
-                  Site; (2) breach of these Terms of Use; (3) any breach of your
-                  representations and warranties set forth in these Terms of
-                  Use; (4) your violation of the rights of a third party,
-                  including but not limited to intellectual property rights; or
-                  (5) any overt harmful act toward any other user of the Site
-                  with whom you connected via the Site. Notwithstanding the
-                  foregoing, we reserve the right, at your expense, to assume
-                  the exclusive defense and control of any matter for which you
-                  are required to indemnify us, and you agree to cooperate, at
-                  your expense, with our defense of such claims. We will use
-                  reasonable efforts to notify you of any such claim, action, or
-                  proceeding which is subject to this indemnification upon
-                  becoming aware of it.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>USER DATA</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  We will maintain certain data that you transmit to the Site
-                  for the purpose of managing the performance of the Site, as
-                  well as data relating to your use of the Site. Although we
-                  perform regular routine backups of data, you are solely
-                  responsible for all data that you transmit or that relates to
-                  any activity you have undertaken using the Site. You agree
-                  that we shall have no liability to you for any loss or
-                  corruption of any such data, and you hereby waive any right of
-                  action against us arising from any such loss or corruption of
-                  such data.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>
-                    ELECTRONIC COMMUNICATIONS, TRANSACTIONS, AND SIGNATURES
-                  </strong>
-                </p>
-                <p data-custom-class="body_text">
-                  Visiting the Site, sending us emails, and completing online
-                  forms constitute electronic communications. You consent to
-                  receive electronic communications, and you agree that all
-                  agreements, notices, disclosures, and other communications we
-                  provide to you electronically, via email and on the Site,
-                  satisfy any legal requirement that such communication be in
-                  writing. YOU HEREBY AGREE TO THE USE OF ELECTRONIC SIGNATURES,
-                  CONTRACTS, ORDERS, AND OTHER RECORDS, AND TO ELECTRONIC
-                  DELIVERY OF NOTICES, POLICIES, AND RECORDS OF TRANSACTIONS
-                  INITIATED OR COMPLETED BY US OR VIA THE SITE. You hereby waive
-                  any rights or requirements under any statutes, regulations,
-                  rules, ordinances, or other laws in any jurisdiction which
-                  require an original signature or delivery or retention of
-                  non-electronic records, or to payments or the granting of
-                  credits by any means other than electronic means.
-                </p>
-                <p data-custom-class="heading_1">
-                  <strong>MISCELLANEOUS</strong>
-                </p>
-                <p data-custom-class="body_text">
-                  These Terms of Use and any policies or operating rules posted
-                  by us on the Site or in respect to the Site constitute the
-                  entire agreement and understanding between you and us. Our
-                  failure to exercise or enforce any right or provision of these
-                  Terms of Use shall not operate as a waiver of such right or
-                  provision. These Terms of Use operate to the fullest extent
-                  permissible by law. We may assign any or all of our rights and
-                  obligations to others at any time. We shall not be responsible
-                  or liable for any loss, damage, delay, or failure to act
-                  caused by any cause beyond our reasonable control. If any
-                  provision or part of a provision of these Terms of Use is
-                  determined to be unlawful, void, or unenforceable, that
-                  provision or part of the provision is deemed severable from
-                  these Terms of Use and does not affect the validity and
-                  enforceability of any remaining provisions. There is no joint
-                  venture, partnership, employment or agency relationship
-                  created between you and us as a result of these Terms of Use
-                  or use of the Site. You agree that these Terms of Use will not
-                  be construed against us by virtue of having drafted them. You
-                  hereby waive any and all defenses you may have based on the
-                  electronic form of these Terms of Use and the lack of signing
-                  by the parties hereto to execute these Terms of Use.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Layout>
-    </>
+    <Layout
+      navOffset="top"
+      navOnWhite
+      hasNav
+      hasFooter
+      meta={{
+        siteConfig,
+        title: 'Terms & Conditions - Rendah Mag',
+        description: 'Comprehensive terms and conditions governing the use of Rendah Mag website, services, memberships, and digital content',
+        image: null
+      }}
+      preview={null}
+    >
+      <Container>
+        <div className="py-8 tac">
+          <Heading
+            htmlEntity="h1"
+            text="TERMS & CONDITIONS"
+            color="black"
+            size="large"
+          />
+        </div>
+
+        <div className="rich-text rich-text-spacing gap-y-4 flex flex-col text-sm">
+          <p><strong>Last updated: {lastUpdated}</strong></p>
+          <p><strong>Effective date: {effectiveDate}</strong></p>
+          <p><strong>Version: {termsVersion}</strong></p>
+
+          <h2>1. Agreement to Terms</h2>
+          <p>
+            These Terms and Conditions ("<strong>Terms</strong>", "<strong>Agreement</strong>") constitute a legally binding agreement between you ("<strong>User</strong>", "<strong>you</strong>", "<strong>your</strong>") and Rendah Mag ("<strong>Company</strong>", "<strong>we</strong>", "<strong>us</strong>", "<strong>our</strong>") regarding your access to and use of our website, services, and related offerings.
+          </p>
+
+          <h3>1.1 Acceptance of Terms</h3>
+          <ul>
+            <li>By accessing, browsing, or using our website at <a href="https://www.rendahmag.com/" target="_blank" rel="noopener noreferrer">https://www.rendahmag.com/</a> (the "<strong>Site</strong>"), you acknowledge that you have read, understood, and agree to be bound by these Terms.</li>
+            <li>If you do not agree to these Terms, you must immediately discontinue use of the Site and our services.</li>
+            <li>Your continued use of the Site following any modifications to these Terms constitutes acceptance of such modifications.</li>
+          </ul>
+
+          <h3>1.2 Capacity and Authority</h3>
+          <ul>
+            <li>You represent and warrant that you have the legal capacity to enter into this Agreement.</li>
+            <li>If you are acting on behalf of an organisation, you represent that you have the authority to bind that organisation to these Terms.</li>
+            <li>You confirm that all information provided during registration or use of our services is accurate and complete.</li>
+          </ul>
+
+          <h2>2. Definitions</h2>
+          <ul>
+            <li><strong>"Account"</strong> means the user account created when you register for our services, including membership subscriptions or user profiles.</li>
+            <li><strong>"Content"</strong> means all text, images, photographs, graphics, audio, video, data, software, and other materials available on or through the Site.</li>
+            <li><strong>"Digital Products"</strong> means digital downloads, online archive access, exclusive digital content, and other non-physical products offered through the Site.</li>
+            <li><strong>"Intellectual Property Rights"</strong> means all intellectual property rights worldwide, including copyright, trademarks, patents, trade secrets, moral rights, and other proprietary rights.</li>
+            <li><strong>"Membership"</strong> means paid subscription services offering premium access to Content, exclusive features, or additional benefits.</li>
+            <li><strong>"Personal Data"</strong> has the meaning given in our <a href="/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and applicable data protection laws.</li>
+            <li><strong>"Physical Products"</strong> means printed materials, merchandise, and other tangible goods sold through the Site.</li>
+            <li><strong>"Services"</strong> means all services provided through the Site, including Content access, Membership subscriptions, e-commerce functionality, and community features.</li>
+            <li><strong>"Third-Party Services"</strong> means services, content, or functionality provided by entities other than Rendah Mag that may be integrated with or accessible through the Site.</li>
+            <li><strong>"User Content"</strong> means any content, including text, images, audio, video, comments, reviews, or other materials, that you submit, upload, or otherwise make available through the Site.</li>
+          </ul>
+
+          <h2>3. Eligibility and Registration</h2>
+
+          <h3>3.1 Age Requirements</h3>
+          <ul>
+            <li>You must be at least 16 years old to use the Site.</li>
+            <li>Users between 16-18 years old must have parental consent to use paid services or submit User Content.</li>
+            <li>We reserve the right to request age verification at any time.</li>
+          </ul>
+
+          <h3>3.2 Registration Requirements</h3>
+          <ul>
+            <li>Certain features require registration and creation of an Account.</li>
+            <li>You must provide accurate, current, and complete information during registration.</li>
+            <li>You are responsible for maintaining the confidentiality of your Account credentials.</li>
+            <li>You must promptly notify us of any unauthorised use of your Account.</li>
+            <li>One person may not maintain multiple Accounts without our express permission.</li>
+          </ul>
+
+          <h3>3.3 Geographic Restrictions</h3>
+          <ul>
+            <li>The Site is intended for users in the United Kingdom and European Economic Area.</li>
+            <li>We may restrict access from other jurisdictions based on legal requirements or business considerations.</li>
+            <li>Users accessing the Site from other locations do so at their own risk and are responsible for compliance with local laws.</li>
+          </ul>
+
+          <h2>4. Modifications to Terms</h2>
+
+          <h3>4.1 Right to Modify</h3>
+          <ul>
+            <li>We reserve the right to modify these Terms at any time in our sole discretion.</li>
+            <li>Modifications may be necessary due to changes in law, business practices, or technological developments.</li>
+          </ul>
+
+          <h3>4.2 Notification of Changes</h3>
+          <ul>
+            <li><strong>Material changes:</strong> We will provide at least 30 days' notice via email to registered users and/or prominent notice on the Site.</li>
+            <li><strong>Minor changes:</strong> Updated "Last updated" date and notification in our newsletter or on the Site.</li>
+            <li>For significant changes affecting paid services, we may offer grandfathering or transition periods.</li>
+          </ul>
+
+          <h3>4.3 Acceptance of Changes</h3>
+          <ul>
+            <li>Continued use of the Site after the effective date constitutes acceptance of modified Terms.</li>
+            <li>If you do not agree to modifications, you may terminate your Account and discontinue use.</li>
+            <li>Termination due to rejected modifications does not entitle you to refunds unless specifically stated.</li>
+          </ul>
+
+          <h2>5. Use of the Site and Services</h2>
+
+          <h3>5.1 Permitted Use</h3>
+          <ul>
+            <li>You may access and use the Site for personal, non-commercial purposes in accordance with these Terms.</li>
+            <li>You may view, download, and print Content for personal use only.</li>
+            <li>You may share Content using provided social sharing features.</li>
+            <li>Commercial use requires our prior written consent and may be subject to additional terms.</li>
+          </ul>
+
+          <h3>5.2 Account Responsibilities</h3>
+          <ul>
+            <li>You are solely responsible for all activities occurring under your Account.</li>
+            <li>You must maintain the security and confidentiality of your login credentials.</li>
+            <li>You must promptly update Account information to keep it accurate and current.</li>
+            <li>You may not share, transfer, or assign your Account to another person without our consent.</li>
+          </ul>
+
+          <h3>5.3 Technical Requirements</h3>
+          <ul>
+            <li>You are responsible for ensuring your devices and internet connection meet minimum technical requirements.</li>
+            <li>We do not guarantee compatibility with all devices, browsers, or operating systems.</li>
+            <li>System requirements may change and will be communicated through the Site or Account notifications.</li>
+          </ul>
+
+          <h2>6. Prohibited Activities</h2>
+
+          <h3>6.1 General Prohibitions</h3>
+          <p>You agree not to:</p>
+          <ul>
+            <li>Use the Site for any unlawful purpose or in violation of any applicable laws or regulations.</li>
+            <li>Impersonate any person or entity or falsely state or misrepresent your affiliation with any person or entity.</li>
+            <li>Interfere with or disrupt the integrity, security, or performance of the Site or its underlying infrastructure.</li>
+            <li>Attempt to gain unauthorised access to any portion of the Site, other user accounts, or computer systems.</li>
+            <li>Use automated scripts, bots, crawlers, or other automated means to access or interact with the Site without our express permission.</li>
+            <li>Circumvent any security measures or access restrictions implemented on the Site.</li>
+            <li>Reverse engineer, decompile, or disassemble any software or technology used in connection with the Site.</li>
+          </ul>
+
+          <h3>6.2 Content-Related Prohibitions</h3>
+          <p>You may not submit, upload, or otherwise make available any User Content that:</p>
+          <ul>
+            <li>Infringes upon the Intellectual Property Rights of any third party.</li>
+            <li>Contains harmful, threatening, abusive, harassing, defamatory, vulgar, obscene, or otherwise objectionable material.</li>
+            <li>Promotes discrimination, hatred, or violence against individuals or groups.</li>
+            <li>Contains false, misleading, or deceptive information.</li>
+            <li>Violates the privacy rights of any third party.</li>
+            <li>Contains malware, viruses, or other harmful computer code.</li>
+            <li>Constitutes spam, unsolicited advertising, or promotional material.</li>
+            <li>Relates to illegal activities or encourages unlawful behaviour.</li>
+          </ul>
+
+          <h3>6.3 Commercial Restrictions</h3>
+          <ul>
+            <li>You may not use the Site for commercial purposes without our prior written consent.</li>
+            <li>You may not reproduce, distribute, modify, or create derivative works of our Content without authorisation.</li>
+            <li>You may not frame, mirror, or otherwise incorporate the Site into another website or service.</li>
+            <li>You may not collect user information for commercial purposes or to create competing services.</li>
+          </ul>
+
+          <h2>7. Intellectual Property Rights</h2>
+
+          <h3>7.1 Our Intellectual Property</h3>
+          <ul>
+            <li>All Content on the Site, including text, graphics, logos, images, audio, video, software, and design elements, is owned by or licensed to Rendah Mag.</li>
+            <li>Our Content is protected by copyright, trademark, and other Intellectual Property Rights under UK, EU, and international law.</li>
+            <li>The "Rendah Mag" name, logo, and associated trademarks are our exclusive property.</li>
+            <li>No right, title, or interest in our Intellectual Property Rights is transferred to you through these Terms or your use of the Site.</li>
+          </ul>
+
+          <h3>7.2 Limited License to Users</h3>
+          <ul>
+            <li>We grant you a limited, non-exclusive, non-transferable, revocable license to access and use the Content for personal, non-commercial purposes.</li>
+            <li>This license does not permit republication, redistribution, commercial use, or creation of derivative works.</li>
+            <li>You may not remove, alter, or obscure any copyright, trademark, or other proprietary notices.</li>
+            <li>Any unauthorised use immediately terminates your license and may subject you to legal action.</li>
+          </ul>
+
+          <h3>7.3 Digital Millennium Copyright Act (DMCA) Compliance</h3>
+          <ul>
+            <li>We respect intellectual property rights and expect users to do the same.</li>
+            <li>If you believe your copyright has been infringed, please contact us at dmca@rendahmag.com with the following information:
+              <ul>
+                <li>Description of the copyrighted work claimed to be infringed</li>
+                <li>Location of the allegedly infringing material on our Site</li>
+                <li>Your contact information and a statement of good faith belief</li>
+                <li>Statement of accuracy and authority to act on behalf of the copyright owner</li>
+                <li>Your physical or electronic signature</li>
+              </ul>
+            </li>
+            <li>We will investigate valid claims and remove infringing content where appropriate.</li>
+            <li>Users who repeatedly infringe copyright may have their Accounts terminated.</li>
+          </ul>
+
+          <h2>8. User Content and Contributions</h2>
+
+          <h3>8.1 User Content License</h3>
+          <ul>
+            <li>By submitting User Content, you grant us a worldwide, perpetual, irrevocable, royalty-free, sublicensable license to use, reproduce, modify, adapt, publish, translate, distribute, and display such content.</li>
+            <li>This license includes the right to use your User Content for promotional, marketing, and commercial purposes.</li>
+            <li>You retain ownership of your User Content, but the license granted to us continues even if you delete your Account or remove the content.</li>
+            <li>You may request removal of specific User Content by contacting us, though we are not obligated to comply.</li>
+          </ul>
+
+          <h3>8.2 User Content Representations</h3>
+          <p>By submitting User Content, you represent and warrant that:</p>
+          <ul>
+            <li>You own or have the necessary rights to grant the license described above.</li>
+            <li>Your User Content does not infringe upon the rights of any third party.</li>
+            <li>Your User Content complies with all applicable laws and these Terms.</li>
+            <li>You have obtained all necessary permissions and releases from individuals depicted in your User Content.</li>
+          </ul>
+
+          <h3>8.3 Content Moderation</h3>
+          <ul>
+            <li>We reserve the right, but have no obligation, to monitor, review, edit, or remove User Content at our sole discretion.</li>
+            <li>We may remove User Content that violates these Terms or is otherwise objectionable.</li>
+            <li>We may suspend or terminate Accounts of users who repeatedly violate our content policies.</li>
+            <li>Content moderation decisions are final and not subject to appeal unless specifically provided.</li>
+          </ul>
+
+          <h2>9. Membership and Subscription Services</h2>
+
+          <h3>9.1 Membership Terms</h3>
+          <ul>
+            <li>Membership subscriptions provide access to premium Content and exclusive features as described on the Site.</li>
+            <li>Membership benefits may change over time, with reasonable notice provided to existing members.</li>
+            <li>We reserve the right to modify, suspend, or discontinue Membership programs with appropriate notice.</li>
+            <li>Membership is non-transferable and for personal use only unless otherwise specified.</li>
+          </ul>
+
+          <h3>9.2 Billing and Renewal</h3>
+          <ul>
+            <li>Membership subscriptions automatically renew at the then-current rate unless cancelled before the renewal date.</li>
+            <li>You authorise us to charge your designated payment method for subscription fees, taxes, and applicable charges.</li>
+            <li>If payment fails, we may suspend access until payment is resolved or cancel your subscription.</li>
+            <li>Price changes will be communicated at least 30 days in advance for existing subscribers.</li>
+          </ul>
+
+          <h3>9.3 Cancellation</h3>
+          <ul>
+            <li>You may cancel your subscription at any time through your Account settings or by contacting us.</li>
+            <li>Cancellation takes effect at the end of your current billing period.</li>
+            <li>No refunds are provided for partial billing periods unless required by law.</li>
+            <li>Access to premium features terminates when your subscription expires.</li>
+          </ul>
+
+          <h2>10. E-Commerce and Purchases</h2>
+
+          <h3>10.1 Product Information</h3>
+          <ul>
+            <li>We strive to provide accurate product descriptions, images, and pricing information.</li>
+            <li>Product availability, specifications, and prices may change without notice.</li>
+            <li>We reserve the right to correct errors in product information or pricing.</li>
+            <li>Colours and images may vary due to display settings and printing processes.</li>
+          </ul>
+
+          <h3>10.2 Orders and Payment</h3>
+          <ul>
+            <li>All orders are subject to acceptance and availability.</li>
+            <li>We reserve the right to refuse or cancel orders for any reason, including suspected fraud.</li>
+            <li>Payment is required in full at the time of order unless otherwise arranged.</li>
+            <li>We accept payment methods displayed at checkout and may add or remove options at any time.</li>
+            <li>You are responsible for any applicable taxes, duties, or fees.</li>
+          </ul>
+
+          <h3>10.3 Shipping and Delivery</h3>
+          <ul>
+            <li>Shipping costs and estimated delivery times are provided during checkout.</li>
+            <li>Risk of loss transfers to you upon delivery to the address you provide.</li>
+            <li>We are not responsible for delays caused by shipping carriers or customs authorities.</li>
+            <li>International customers are responsible for customs duties and import taxes.</li>
+          </ul>
+
+          <h3>10.4 Returns and Refunds</h3>
+          <ul>
+            <li>Our return and refund policy is detailed in our separate <a href="/returns-policy" target="_blank" rel="noopener noreferrer">Returns & Refunds Policy</a>.</li>
+            <li>Digital Products are generally non-refundable except as required by law.</li>
+            <li>Physical Products may be returned within specified timeframes if in original condition.</li>
+            <li>Custom or personalised items may not be eligible for return unless defective.</li>
+          </ul>
+
+          <h2>11. Privacy and Data Protection</h2>
+
+          <h3>11.1 Privacy Policy</h3>
+          <ul>
+            <li>Your privacy is important to us. Our collection and use of Personal Data is governed by our <a href="/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</li>
+            <li>By using the Site, you consent to the collection and use of information as described in our Privacy Policy.</li>
+            <li>We implement appropriate security measures to protect your Personal Data.</li>
+          </ul>
+
+          <h3>11.2 Data Rights</h3>
+          <ul>
+            <li>You have rights regarding your Personal Data as described in our Privacy Policy and under applicable data protection laws.</li>
+            <li>You may request access, correction, deletion, or portability of your Personal Data.</li>
+            <li>You may withdraw consent for certain data processing activities.</li>
+            <li>You may lodge complaints with relevant data protection authorities.</li>
+          </ul>
+
+          <h2>12. Third-Party Services and Content</h2>
+
+          <h3>12.1 Third-Party Integration</h3>
+          <ul>
+            <li>The Site may integrate with or link to Third-Party Services such as payment processors, social media platforms, and analytics providers.</li>
+            <li>Your use of Third-Party Services is subject to their respective terms and privacy policies.</li>
+            <li>We are not responsible for the availability, accuracy, or content of Third-Party Services.</li>
+            <li>Any transactions or interactions with third parties are solely between you and the third party.</li>
+          </ul>
+
+          <h3>12.2 Embedded Content</h3>
+          <ul>
+            <li>The Site may include embedded content from third parties (videos, audio, social media posts).</li>
+            <li>Embedded content is governed by the terms and policies of the content provider.</li>
+            <li>We do not control or endorse Third-Party Content and are not responsible for its accuracy or legality.</li>
+          </ul>
+
+          <h2>13. Disclaimers and Warranties</h2>
+
+          <h3>13.1 General Disclaimers</h3>
+          <ul>
+            <li>THE SITE AND SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED.</li>
+            <li>WE DISCLAIM ALL WARRANTIES, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND TITLE.</li>
+            <li>WE DO NOT WARRANT THAT THE SITE WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, OR FREE FROM VIRUSES OR OTHER HARMFUL COMPONENTS.</li>
+            <li>WE MAKE NO REPRESENTATIONS REGARDING THE ACCURACY, RELIABILITY, OR COMPLETENESS OF CONTENT.</li>
+          </ul>
+
+          <h3>13.2 Third-Party Disclaimers</h3>
+          <ul>
+            <li>WE DISCLAIM ALL LIABILITY FOR THIRD-PARTY SERVICES, CONTENT, OR PRODUCTS.</li>
+            <li>ANY RELIANCE ON THIRD-PARTY INFORMATION IS AT YOUR OWN RISK.</li>
+            <li>WE DO NOT ENDORSE OR GUARANTEE THIRD-PARTY OFFERINGS.</li>
+          </ul>
+
+          <h3>13.3 Performance Disclaimers</h3>
+          <ul>
+            <li>WE DO NOT GUARANTEE SPECIFIC RESULTS FROM USE OF THE SITE OR SERVICES.</li>
+            <li>DOWNLOAD SPEEDS, STREAMING QUALITY, AND OTHER PERFORMANCE METRICS MAY VARY.</li>
+            <li>SYSTEM MAINTENANCE AND UPGRADES MAY TEMPORARILY AFFECT AVAILABILITY.</li>
+          </ul>
+
+          <h2>14. Limitation of Liability</h2>
+
+          <h3>14.1 Exclusion of Damages</h3>
+          <ul>
+            <li>TO THE FULLEST EXTENT PERMITTED BY LAW, WE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES.</li>
+            <li>THIS INCLUDES DAMAGES FOR LOSS OF PROFITS, GOODWILL, USE, DATA, OR OTHER INTANGIBLE LOSSES.</li>
+            <li>OUR EXCLUSION OF LIABILITY APPLIES REGARDLESS OF THE THEORY OF LIABILITY (CONTRACT, TORT, NEGLIGENCE, OR OTHERWISE).</li>
+          </ul>
+
+          <h3>14.2 Damage Cap</h3>
+          <ul>
+            <li>OUR TOTAL LIABILITY FOR ANY CLAIM SHALL NOT EXCEED THE AMOUNT YOU PAID US IN THE 12 MONTHS PRECEDING THE CLAIM.</li>
+            <li>FOR FREE SERVICES, OUR LIABILITY SHALL NOT EXCEED £100.</li>
+            <li>THESE LIMITATIONS APPLY EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</li>
+          </ul>
+
+          <h3>14.3 Essential Purpose</h3>
+          <ul>
+            <li>THE LIMITATIONS IN THIS SECTION ARE FUNDAMENTAL ELEMENTS OF THE BASIS OF THE BARGAIN BETWEEN US.</li>
+            <li>THE SITE AND SERVICES WOULD NOT BE PROVIDED WITHOUT SUCH LIMITATIONS.</li>
+            <li>SOME JURISDICTIONS DO NOT ALLOW CERTAIN LIMITATIONS, SO THEY MAY NOT APPLY TO YOU.</li>
+          </ul>
+
+          <h2>15. Indemnification</h2>
+
+          <h3>15.1 Your Indemnification Obligations</h3>
+          <ul>
+            <li>You agree to indemnify, defend, and hold harmless Rendah Mag, its officers, directors, employees, agents, licensors, and suppliers from any claims, liabilities, damages, losses, costs, or expenses (including reasonable attorney fees) arising out of or related to:</li>
+            <li>Your use of the Site or Services in violation of these Terms.</li>
+            <li>Your User Content or any infringement of third-party rights.</li>
+            <li>Your violation of any applicable laws or regulations.</li>
+            <li>Any negligent or wrongful conduct on your part.</li>
+          </ul>
+
+          <h3>15.2 Indemnification Process</h3>
+          <ul>
+            <li>We will notify you promptly of any claim subject to indemnification.</li>
+            <li>You will have the right to control the defence and settlement of the claim.</li>
+            <li>We may participate in the defence at our own expense.</li>
+            <li>You may not settle any claim without our prior written consent.</li>
+          </ul>
+
+          <h2>16. Termination</h2>
+
+          <h3>16.1 Termination by You</h3>
+          <ul>
+            <li>You may terminate your Account at any time by following the procedures in your Account settings or contacting us.</li>
+            <li>Termination does not relieve you of obligations incurred prior to termination.</li>
+            <li>Some provisions of these Terms survive termination as described below.</li>
+          </ul>
+
+          <h3>16.2 Termination by Us</h3>
+          <ul>
+            <li>We may suspend or terminate your Account immediately if you violate these Terms or engage in prohibited activities.</li>
+            <li>We may terminate Accounts for convenience with reasonable notice.</li>
+            <li>We may terminate Services entirely with appropriate notice to users.</li>
+            <li>Termination for cause does not entitle you to refunds.</li>
+          </ul>
+
+          <h3>16.3 Effects of Termination</h3>
+          <ul>
+            <li>Upon termination, your right to access and use the Site immediately ceases.</li>
+            <li>We may delete your Account data subject to legal retention requirements.</li>
+            <li>Outstanding payment obligations survive termination.</li>
+            <li>Licenses granted by you to us survive termination.</li>
+          </ul>
+
+          <h3>16.4 Survival</h3>
+          <p>The following sections survive termination: Definitions, Intellectual Property Rights, User Content licenses, Payment obligations, Disclaimers, Limitation of Liability, Indemnification, Governing Law, and any other provisions that by their nature should survive.</p>
+
+          <h2>17. Dispute Resolution</h2>
+
+          <h3>17.1 Informal Resolution</h3>
+          <ul>
+            <li>Before initiating formal proceedings, you agree to attempt to resolve disputes informally by contacting us.</li>
+            <li>We will work in good faith to resolve complaints within 30 days of receiving notice.</li>
+            <li>Informal resolution may include mediation or other alternative dispute resolution methods.</li>
+          </ul>
+
+          <h3>17.2 Governing Law</h3>
+          <ul>
+            <li>These Terms are governed by and construed in accordance with the laws of England and Wales.</li>
+            <li>The United Nations Convention on Contracts for the International Sale of Goods does not apply.</li>
+            <li>Local consumer protection laws may also apply to your transactions.</li>
+          </ul>
+
+          <h3>17.3 Jurisdiction</h3>
+          <ul>
+            <li>Any legal action or proceeding shall be brought exclusively in the courts of England and Wales.</li>
+            <li>You consent to the personal jurisdiction of such courts.</li>
+            <li>This does not prevent us from seeking injunctive relief in any appropriate jurisdiction.</li>
+          </ul>
+
+          <h2>18. General Provisions</h2>
+
+          <h3>18.1 Electronic Communications</h3>
+          <ul>
+            <li>You consent to receive communications from us electronically via email or notices posted on the Site.</li>
+            <li>Electronic communications satisfy any legal requirement for written communication.</li>
+            <li>You are responsible for maintaining current contact information.</li>
+          </ul>
+
+          <h3>18.2 Entire Agreement</h3>
+          <ul>
+            <li>These Terms, together with our Privacy Policy and any additional terms for specific Services, constitute the entire agreement between us.</li>
+            <li>These Terms supersede all prior agreements and understandings relating to the subject matter.</li>
+            <li>Any conflicting terms in other documents are superseded by these Terms unless specifically stated otherwise.</li>
+          </ul>
+
+          <h3>18.3 Severability</h3>
+          <ul>
+            <li>If any provision of these Terms is found invalid or unenforceable, the remaining provisions continue in full force and effect.</li>
+            <li>Invalid provisions will be replaced with valid provisions that most closely reflect the original intent.</li>
+            <li>The invalidity of one provision does not affect the validity of the entire Agreement.</li>
+          </ul>
+
+          <h3>18.4 Waiver</h3>
+          <ul>
+            <li>Our failure to enforce any provision does not constitute a waiver of our right to enforce it later.</li>
+            <li>Waivers must be in writing and signed by our authorised representative.</li>
+            <li>No waiver of any breach constitutes a waiver of any subsequent breach.</li>
+          </ul>
+
+          <h3>18.5 Assignment</h3>
+          <ul>
+            <li>We may assign or transfer these Terms and our rights and obligations without restriction.</li>
+            <li>You may not assign these Terms or your Account without our prior written consent.</li>
+            <li>Any attempted unauthorised assignment is void.</li>
+          </ul>
+
+          <h3>18.6 Force Majeure</h3>
+          <ul>
+            <li>We are not liable for delays or failures due to circumstances beyond our reasonable control.</li>
+            <li>This includes natural disasters, government actions, labour disputes, internet failures, or other unforeseeable events.</li>
+            <li>We will use reasonable efforts to minimise the impact of such events.</li>
+          </ul>
+
+          <h3>18.7 Relationship of Parties</h3>
+          <ul>
+            <li>No joint venture, partnership, employment, or agency relationship exists between you and us.</li>
+            <li>Neither party has authority to bind the other except as expressly set forth in these Terms.</li>
+            <li>We are independent contractors with respect to each other.</li>
+          </ul>
+
+          <h2>19. Contact Information</h2>
+
+          <h3>19.1 General Contact</h3>
+          <ul>
+            <li><strong>Email:</strong> legal@rendahmag.com</li>
+            <li><strong>Contact Form:</strong> <a href="https://forms.gle/xpPtVhUiuzZzehdy8" target="_blank" rel="noopener noreferrer">Submit inquiry</a></li>
+            <li><strong>Response Time:</strong> We will respond to inquiries within 5 business days</li>
+          </ul>
+
+          <h3>19.2 Specific Concerns</h3>
+          <ul>
+            <li><strong>Copyright Claims:</strong> dmca@rendahmag.com</li>
+            <li><strong>Privacy Matters:</strong> privacy@rendahmag.com</li>
+            <li><strong>Billing Questions:</strong> billing@rendahmag.com</li>
+            <li><strong>Technical Support:</strong> support@rendahmag.com</li>
+          </ul>
+
+          <h3>19.3 Legal Notices</h3>
+          <ul>
+            <li>Legal notices should be sent to: legal@rendahmag.com</li>
+            <li>Notices are effective when received and confirmed by us</li>
+            <li>For urgent legal matters, you may also send notices via registered mail</li>
+          </ul>
+
+          <hr />
+
+          <p><strong>Acknowledgment:</strong> By using our Site and Services, you acknowledge that you have read these Terms, understand them, and agree to be bound by them. If you do not agree to these Terms, please discontinue use immediately.</p>
+
+          <p><em>These Terms & Conditions are designed to be comprehensive and legally compliant. For questions about specific provisions or how they apply to your situation, please contact us using the information provided above.</em></p>
+        </div>
+      </Container>
+    </Layout>
   );
 }
 
-export async function getStaticProps({ req }) {
+export async function getStaticProps() {
   const siteConfig = await getSiteConfig();
-
-  return {
-    props: { siteConfig }
-  };
+  return { props: { siteConfig } };
 }

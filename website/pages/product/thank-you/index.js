@@ -117,7 +117,10 @@ export default function ProductThankYou({ siteConfig, session }) {
 
             <div className="pb-4">
               <p className="text-sm text-neutral-500">
-                We typically ship out new orders once each week. (it's a super
+                Our latest print will be shipping from <strong>July 2025</strong> onwards.
+                <br />
+                <br />
+                From then, we typically ship out new orders once each week (it's a super
                 small operation here, so thank you for the patience).
               </p>
             </div>

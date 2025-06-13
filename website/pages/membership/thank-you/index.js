@@ -105,19 +105,40 @@ export default function DominionThankYou({ siteConfig, session }) {
               />
             </div>
 
+    
+    
             <div className="pb-4">
               <p className="text-sm text-neutral-500">
                 Check your email. We've created your account and have sent login
-                details to access your Membership Dashboard.
+                details to access your Membership Dashboard. 
+                <br />
+                <br />
+                In addition to the Membership Dashboard, we also send any updates via email, to keep you in the loop.
               </p>
+            </div>
+
+            <div className="pb-4 text-left">
+              <Heading
+                htmlEntity="h2"
+                text="And the print?"
+                color="neutral-300"
+                size="medium"
+                truncate={null}
+                onClick={null}
+                withLinkProps={null}
+              />
             </div>
 
             <div className="pb-4">
               <p className="text-sm text-neutral-500">
-                In addition to the Membership Dashboard, we also send any
-                updates via email, to keep you in the loop.
+                Our latest print will be shipping from <strong>July 2025</strong> onwards.
+                <br />
+                <br />
+                From then, we typically ship out new orders once each week (it's a super
+                small operation here, so thank you for the patience).
               </p>
             </div>
+
 
             <div className="pb-8 md:mb-4">
               <p className="text-sm text-neutral-500">

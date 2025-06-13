@@ -21,7 +21,7 @@ export default function Error404({ siteConfig }) {
         preview={null}
       >
         <Container>
-          <div className="pb4  tac">
+          <div className="py-8  tac">
             <Heading
               /* Options */
               htmlEntity="h1"
@@ -37,7 +37,7 @@ export default function Error404({ siteConfig }) {
           {
             // https://htmltidy.net/
           }
-          <div className="rich-text  measure-wide  mla  mra  pb5">
+        <div className="rich-text rich-text-spacing gap-y-4 flex flex-col text-sm">
             <div>
               <p>
                 <strong>

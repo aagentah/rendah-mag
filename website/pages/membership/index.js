@@ -364,20 +364,22 @@ export default function Dominion({ siteConfig, membership }) {
                     rightClassName: 'text-right',
                   },
                   {
-                    left: 'Region',
+                    left: 'Available',
                     right: (() => {
                       // Show loading state until customer country is detected
                       if (customerCountry === null) {
                         return '...';
                       }
-                      return `${getDisplayRegionName()} ${
-                        customerCountry ? `(${customerCountry})` : ''
+                      return `${getDisplayRegion()} ${
+                        customerCountry
+                          ? `(${customerCountry})`
+                          : ''
                       }`;
                     })(),
                     rightClassName: 'text-right',
                   },
                   {
-                    left: 'Magazine Delivery',
+                    left: 'Magazine Frequency',
                     right: (
                       <span className="text-right">
                         3x prints yearly
@@ -389,6 +391,14 @@ export default function Dominion({ siteConfig, membership }) {
                     ),
                   },
                   {
+                    left: 'Expected Shipping',
+                    right: (
+                      <span className="text-right">
+                       July 2025 Onwards
+                      </span>
+                    ),
+                  },
+                  {
                     left: 'Dashboard Access',
                     right: (
                       <span className="text-right">
@@ -396,14 +406,8 @@ export default function Dominion({ siteConfig, membership }) {
                         <br />
                         Monthly exclusive insights
                         <br />
-                        20% additional discount
+                        Print Archive Access
                       </span>
-                    ),
-                  },
-                  {
-                    left: 'Digital Archive',
-                    right: (
-                      <span className="text-right">Print Archive Access</span>
                     ),
                   },
                 ]}

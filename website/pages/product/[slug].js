@@ -30,7 +30,7 @@ import {
 import { getCurrencySymbol, formatPrice } from '~/lib/utils/currency';
 import {
   getRegionalPricing,
-  getDisplayRegion as getDisplayRegionFromUtils,
+  getDisplayRegion,
 } from '~/lib/utils/regional-pricing';
 
 const Modal = dynamic(() => import('~/components/modal'));
@@ -125,11 +125,7 @@ export default function Product({ siteConfig, product, membership }) {
     return getRegionalPricing(product.regionalPricing, customerCountry);
   };
 
-  // Get display region name for customer (use centralized utility)
-  const getDisplayRegion = () => {
-    // @why: Use centralized utility for consistent region name display
-    return getDisplayRegionFromUtils(customerCountry);
-  };
+
 
   // Function to get membership regional price based on customer country
   const getMembershipRegionalPrice = () => {
@@ -411,7 +407,7 @@ export default function Product({ siteConfig, product, membership }) {
                             ]
                           : []),
                         {
-                          left: 'Available Shipping',
+                          left: 'Available',
                           right: (() => {
                             // Show loading state until customer country is detected
                             if (customerCountry === null) {
@@ -420,10 +416,18 @@ export default function Product({ siteConfig, product, membership }) {
                             return `${getDisplayRegion()} ${
                               customerCountry
                                 ? `(${customerCountry})`
-                                : '+ Global'
+                                : 'Globally'
                             }`;
                           })(),
                           rightClassName: 'text-right',
+                        },
+                        {
+                          left: 'Expected Shipping',
+                          right: (
+                            <span className="text-right">
+                             July 2025 Onwards
+                            </span>
+                          ),
                         },
                       ]}
                     />
